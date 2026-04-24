@@ -1,0 +1,236 @@
+========================================================================
+ASH_COATED_OSMIUM — Round 1 ALL DAYS pooled
+========================================================================
+ANCHOR: mid_price on each row (historical capsule has no hold-1 server FV).
+Offsets vs mid are self-referential: use for coarse layers / volume splits only.
+
+Unique (day, timestamp) cells for this product: 40932
+Book level observations: 134384
+
+------------------------------------------------------------------------
+PRIMARY: round(price − mid_price)  (offset_int)
+
+BID:
+  offset_int=  -8  n=24553
+  offset_int= -10  n=15670
+  offset_int= -11  n=10103
+  offset_int=  -9  n=4802
+  offset_int= -12  n=4095
+  offset_int=  +0  n=1559
+  offset_int=  -5  n=1081
+  offset_int=  -6  n=975
+  offset_int=  -3  n=972
+  offset_int=  -4  n=829
+  offset_int=  -2  n=748
+  offset_int= -14  n=566
+  offset_int= -13  n=521
+  offset_int=  -7  n=344
+  offset_int= -16  n=248
+  offset_int= -15  n=165
+
+ASK:
+  offset_int=  +8  n=24897
+  offset_int= +10  n=15503
+  offset_int= +11  n=9879
+  offset_int=  +9  n=4835
+  offset_int= +12  n=4240
+  offset_int=  +0  n=1547
+  offset_int=  +6  n=1153
+  offset_int=  +3  n=953
+  offset_int=  +5  n=880
+  offset_int= +14  n=878
+  offset_int=  +4  n=826
+  offset_int=  +2  n=709
+  offset_int= +16  n=364
+  offset_int= +13  n=243
+  offset_int= +15  n=166
+  offset_int= +17  n=63
+  offset_int=  +7  n=17
+
+------------------------------------------------------------------------
+PERSISTENCE: fraction of (day,timestamp) cells with ≥1 level at offset
+
+BID offset_rf (price − round(mid)):
+  offset_rf=  -8  cells= 24308  ( 59.4% of 40932)
+  offset_rf= -10  cells= 12662  ( 30.9% of 40932)
+  offset_rf= -11  cells= 11756  ( 28.7% of 40932)
+  offset_rf=  -9  cells=  7173  ( 17.5% of 40932)
+  offset_rf= -12  cells=  2963  (  7.2% of 40932)
+  offset_rf=  -5  cells=  1646  (  4.0% of 40932)
+  offset_rf=  +0  cells=  1559  (  3.8% of 40932)
+  offset_rf=  -3  cells=  1196  (  2.9% of 40932)
+  offset_rf= -13  cells=   862  (  2.1% of 40932)
+  offset_rf=  -7  cells=   663  (  1.6% of 40932)
+  offset_rf=  -2  cells=   638  (  1.6% of 40932)
+  offset_rf=  -6  cells=   567  (  1.4% of 40932)
+  offset_rf=  -4  cells=   460  (  1.1% of 40932)
+  offset_rf= -15  cells=   349  (  0.9% of 40932)
+  offset_rf= -14  cells=   266  (  0.6% of 40932)
+  offset_rf= -16  cells=   126  (  0.3% of 40932)
+  offset_rf= -17  cells=    37  (  0.1% of 40932)
+
+ASK offset_rf:
+  offset_rf=  +8  cells= 24666  ( 60.3% of 40932)
+  offset_rf= +10  cells= 12534  ( 30.6% of 40932)
+  offset_rf= +11  cells= 11593  ( 28.3% of 40932)
+  offset_rf=  +9  cells=  7284  ( 17.8% of 40932)
+  offset_rf= +12  cells=  3067  (  7.5% of 40932)
+  offset_rf=  +0  cells=  1547  (  3.8% of 40932)
+  offset_rf=  +5  cells=  1433  (  3.5% of 40932)
+  offset_rf=  +3  cells=  1176  (  2.9% of 40932)
+  offset_rf=  +6  cells=   757  (  1.8% of 40932)
+  offset_rf= +14  cells=   622  (  1.5% of 40932)
+  offset_rf=  +2  cells=   603  (  1.5% of 40932)
+  offset_rf= +13  cells=   505  (  1.2% of 40932)
+  offset_rf=  +4  cells=   449  (  1.1% of 40932)
+  offset_rf=  +7  cells=   324  (  0.8% of 40932)
+  offset_rf= +16  cells=   275  (  0.7% of 40932)
+  offset_rf= +15  cells=   255  (  0.6% of 40932)
+  offset_rf= +17  cells=    63  (  0.2% of 40932)
+
+BID offset_int:
+  offset_int=  -8  cells= 24553  ( 60.0% of 40932)
+  offset_int= -10  cells= 15670  ( 38.3% of 40932)
+  offset_int= -11  cells= 10103  ( 24.7% of 40932)
+  offset_int=  -9  cells=  4802  ( 11.7% of 40932)
+  offset_int= -12  cells=  4095  ( 10.0% of 40932)
+  offset_int=  +0  cells=  1559  (  3.8% of 40932)
+  offset_int=  -5  cells=  1081  (  2.6% of 40932)
+  offset_int=  -6  cells=   975  (  2.4% of 40932)
+  offset_int=  -3  cells=   972  (  2.4% of 40932)
+  offset_int=  -4  cells=   829  (  2.0% of 40932)
+  offset_int=  -2  cells=   748  (  1.8% of 40932)
+  offset_int= -14  cells=   566  (  1.4% of 40932)
+  offset_int= -13  cells=   521  (  1.3% of 40932)
+  offset_int=  -7  cells=   344  (  0.8% of 40932)
+  offset_int= -16  cells=   248  (  0.6% of 40932)
+  offset_int= -15  cells=   165  (  0.4% of 40932)
+
+ASK offset_int:
+  offset_int=  +8  cells= 24897  ( 60.8% of 40932)
+  offset_int= +10  cells= 15503  ( 37.9% of 40932)
+  offset_int= +11  cells=  9879  ( 24.1% of 40932)
+  offset_int=  +9  cells=  4835  ( 11.8% of 40932)
+  offset_int= +12  cells=  4240  ( 10.4% of 40932)
+  offset_int=  +0  cells=  1547  (  3.8% of 40932)
+  offset_int=  +6  cells=  1153  (  2.8% of 40932)
+  offset_int=  +3  cells=   953  (  2.3% of 40932)
+  offset_int=  +5  cells=   880  (  2.1% of 40932)
+  offset_int= +14  cells=   878  (  2.1% of 40932)
+  offset_int=  +4  cells=   826  (  2.0% of 40932)
+  offset_int=  +2  cells=   709  (  1.7% of 40932)
+  offset_int= +16  cells=   364  (  0.9% of 40932)
+  offset_int= +13  cells=   243  (  0.6% of 40932)
+  offset_int= +15  cells=   166  (  0.4% of 40932)
+  offset_int= +17  cells=    63  (  0.2% of 40932)
+  offset_int=  +7  cells=    17  (  0.0% of 40932)
+
+------------------------------------------------------------------------
+CONDITIONAL: volume | (side, offset)
+
+--- offset_rf ---
+  side=bid
+    off=  -8  n= 24308  vol 3..30  mean=12.61  chi2_uniform=87372.17 df=27
+    off= -10  n= 12662  vol 10..30  mean=23.64  chi2_uniform=7065.16 df=20
+    off= -11  n= 11756  vol 10..30  mean=24.44  chi2_uniform=8695.69 df=20
+    off=  -9  n=  7173  vol 3..30  mean=18.75  chi2_uniform=5810.57 df=27
+    off= -12  n=  2963  vol 10..30  mean=24.21  chi2_uniform=2119.45 df=20
+    off=  -5  n=  1646  vol 1..30  mean=10.80  chi2_uniform=1971.97 df=29
+    off=  +0  n=  1559  vol 2..30  mean=13.82  chi2_uniform=3737.92 df=28
+    off=  -3  n=  1196  vol 2..30  mean=16.40  chi2_uniform=408.89 df=28
+    off= -13  n=   862  vol 10..30  mean=20.32  chi2_uniform=225.86 df=20
+    off=  -7  n=   663  vol 1..30  mean=20.87  chi2_uniform=586.73 df=29
+    off=  -2  n=   638  vol 10..30  mean=22.79  chi2_uniform=284.95 df=20
+    off=  -6  n=   567  vol 2..30  mean=13.11  chi2_uniform=896.04 df=28
+    off=  -4  n=   460  vol 2..30  mean=12.59  chi2_uniform=465.73 df=28
+    off= -15  n=   349  vol 10..30  mean=24.09  chi2_uniform=253.98 df=20
+    off= -14  n=   266  vol 10..30  mean=23.32  chi2_uniform=135.05 df=20
+    off= -16  n=   126  vol 20..30  mean=25.31  chi2_uniform=12.46 df=10
+    off= -17  n=    37  vol 20..30  mean=24.78  chi2_uniform=10.27 df=10
+  side=ask
+    off=  +8  n= 24666  vol 5..30  mean=12.79  chi2_uniform=77539.56 df=25
+    off= +10  n= 12534  vol 10..30  mean=23.90  chi2_uniform=7606.63 df=20
+    off= +11  n= 11593  vol 10..30  mean=24.48  chi2_uniform=8747.03 df=20
+    off=  +9  n=  7284  vol 10..30  mean=18.64  chi2_uniform=2643.06 df=20
+    off= +12  n=  3067  vol 10..30  mean=24.14  chi2_uniform=2023.89 df=20
+    off=  +0  n=  1547  vol 2..30  mean=14.04  chi2_uniform=3447.88 df=28
+    off=  +5  n=  1433  vol 1..30  mean=9.67  chi2_uniform=2276.89 df=29
+    off=  +3  n=  1176  vol 1..30  mean=16.28  chi2_uniform=481.09 df=29
+    off=  +6  n=   757  vol 1..30  mean=16.35  chi2_uniform=350.70 df=29
+    off= +14  n=   622  vol 10..30  mean=22.70  chi2_uniform=257.03 df=20
+    off=  +2  n=   603  vol 3..30  mean=21.68  chi2_uniform=525.87 df=27
+    off= +13  n=   505  vol 10..30  mean=17.20  chi2_uniform=340.36 df=20
+    off=  +4  n=   449  vol 2..30  mean=8.66  chi2_uniform=661.07 df=28
+    off=  +7  n=   324  vol 2..30  mean=22.53  chi2_uniform=300.40 df=28
+    off= +16  n=   275  vol 20..30  mean=25.23  chi2_uniform=20.32 df=10
+    off= +15  n=   255  vol 10..30  mean=23.06  chi2_uniform=137.08 df=20
+    off= +17  n=    63  vol 20..30  mean=24.24  chi2_uniform=8.41 df=10
+
+--- offset_int ---
+  side=bid
+    off=  -8  n= 24553  vol 2..30  mean=12.69  chi2_uniform=90589.37 df=28
+    off= -10  n= 15670  vol 10..30  mean=22.81  chi2_uniform=6370.54 df=20
+    off= -11  n= 10103  vol 10..30  mean=24.62  chi2_uniform=7923.05 df=20
+    off=  -9  n=  4802  vol 10..30  mean=18.84  chi2_uniform=1668.68 df=20
+    off= -12  n=  4095  vol 10..30  mean=23.89  chi2_uniform=2596.45 df=20
+    off=  +0  n=  1559  vol 2..30  mean=13.82  chi2_uniform=3737.92 df=28
+    off=  -5  n=  1081  vol 1..30  mean=10.93  chi2_uniform=1351.44 df=29
+    off=  -6  n=   975  vol 1..30  mean=11.05  chi2_uniform=2320.54 df=29
+    off=  -3  n=   972  vol 2..30  mean=17.90  chi2_uniform=339.80 df=28
+    off=  -4  n=   829  vol 2..30  mean=11.56  chi2_uniform=1024.17 df=28
+    off=  -2  n=   748  vol 10..30  mean=21.30  chi2_uniform=206.49 df=20
+    off= -14  n=   566  vol 10..30  mean=23.33  chi2_uniform=282.61 df=20
+    off= -13  n=   521  vol 10..30  mean=20.67  chi2_uniform=145.48 df=20
+    off=  -7  n=   344  vol 3..30  mean=24.78  chi2_uniform=537.51 df=27
+    off= -16  n=   248  vol 20..30  mean=25.05  chi2_uniform=6.51 df=10
+    off= -15  n=   165  vol 20..30  mean=24.79  chi2_uniform=8.27 df=10
+  side=ask
+    off=  +8  n= 24897  vol 5..30  mean=12.87  chi2_uniform=76944.01 df=25
+    off= +10  n= 15503  vol 10..30  mean=23.11  chi2_uniform=7008.51 df=20
+    off= +11  n=  9879  vol 10..30  mean=24.58  chi2_uniform=7783.39 df=20
+    off=  +9  n=  4835  vol 10..30  mean=18.68  chi2_uniform=1738.76 df=20
+    off= +12  n=  4240  vol 10..30  mean=23.92  chi2_uniform=2566.20 df=20
+    off=  +0  n=  1547  vol 2..30  mean=14.04  chi2_uniform=3447.88 df=28
+    off=  +6  n=  1153  vol 1..30  mean=17.04  chi2_uniform=602.85 df=29
+    off=  +3  n=   953  vol 1..30  mean=17.82  chi2_uniform=386.55 df=29
+    off=  +5  n=   880  vol 1..22  mean=8.17  chi2_uniform=1122.85 df=21
+    off= +14  n=   878  vol 10..30  mean=22.07  chi2_uniform=288.77 df=20
+    off=  +4  n=   826  vol 2..30  mean=8.75  chi2_uniform=1327.23 df=28
+    off=  +2  n=   709  vol 3..30  mean=19.43  chi2_uniform=439.95 df=27
+    off= +16  n=   364  vol 20..30  mean=25.20  chi2_uniform=19.55 df=10
+    off= +13  n=   243  vol 10..30  mean=13.54  chi2_uniform=510.67 df=20
+    off= +15  n=   166  vol 10..30  mean=21.95  chi2_uniform=81.45 df=20
+    off= +17  n=    63  vol 20..30  mean=24.24  chi2_uniform=8.41 df=10
+    off=  +7  n=17  (skip chi²)
+
+------------------------------------------------------------------------
+CONDITIONAL: volume | crossing vs passive (vs mid anchor)
+
+  ask_at       n=   1547  mean_vol=14.04  min..max=2..30
+  ask_passive  n=  65606  mean_vol=18.53  min..max=1..30
+  bid_at       n=   1559  mean_vol=13.82  min..max=2..30
+  bid_passive  n=  65672  mean_vol=18.49  min..max=1..30
+
+------------------------------------------------------------------------
+TIMING (sequential across pooled days): dominant offset_int
+
+BID dominant offset_int=-8: n_cells=24553  sequential (day,ts) gap stats on sorted keys — raw (d*1e6+dt) min=100 median=100.0 max=99900500
+ASK dominant offset_int=8: n_cells=24897  sequential (day,ts) gap stats on sorted keys — raw (d*1e6+dt) min=100 median=100.0 max=99900400
+
+Top persistence (side, offset_int):
+  ask  offset_int=  +8  persist= 60.8%  cells=24897
+  bid  offset_int=  -8  persist= 60.0%  cells=24553
+  bid  offset_int= -10  persist= 38.3%  cells=15670
+  ask  offset_int= +10  persist= 37.9%  cells=15503
+  bid  offset_int= -11  persist= 24.7%  cells=10103
+  ask  offset_int= +11  persist= 24.1%  cells=9879
+  ask  offset_int=  +9  persist= 11.8%  cells=4835
+  bid  offset_int=  -9  persist= 11.7%  cells=4802
+  ask  offset_int= +12  persist= 10.4%  cells=4240
+  bid  offset_int= -12  persist= 10.0%  cells=4095
+  bid  offset_int=  +0  persist=  3.8%  cells=1559
+  ask  offset_int=  +0  persist=  3.8%  cells=1547
+  ask  offset_int=  +6  persist=  2.8%  cells=1153
+  bid  offset_int=  -5  persist=  2.6%  cells=1081
+  bid  offset_int=  -6  persist=  2.4%  cells=975
+  bid  offset_int=  -3  persist=  2.4%  cells=972

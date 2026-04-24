@@ -1,0 +1,49 @@
+osmium-only PnL: potential1 vs potential2 (full Trader backtest, match=worse)
+====================================================================================================
+data: /Users/pattenlane/ProsperityRepo/Prosperity4Data
+combined dir: /Users/pattenlane/ProsperityRepo/round2work/day 29 logs/combined_all_including_extra
+
+label                          osm_potentia osm_potentia d_potential2-potential1
+--------------------------------------------------------------------------------
+R1 day -2                         18,392.00    18,094.00      -298.00
+R1 day -1                         19,828.00    19,582.00      -246.00
+R1 day 0                          17,998.00    18,817.00       819.00
+R1 day 19                          2,809.00     3,089.00       280.00
+R1 day 119                         4,674.00     3,656.00    -1,018.00
+R2 day -1                         20,258.00    19,890.00      -368.00
+R2 day 0                          20,404.00    20,820.00       416.00
+R2 day 1                          20,212.00    20,419.00       207.00
+day 29 logs/278346                 1,849.00     1,850.00         1.00
+day 29 logs/278388                 1,861.00     1,826.00       -35.00
+day 29 logs/278483                 1,695.50     1,692.00        -3.50
+day 29 logs/278621                 1,784.00     1,826.00        42.00
+day 29 logs/278671                 1,763.00     1,827.00        64.00
+day 29 logs/278731                 1,931.50     1,948.50        17.00
+day 29 logs/278826                 1,464.00     1,665.00       201.00
+day 29 logs/278895                 1,825.50     1,825.00        -0.50
+day 29 logs/279070                 1,447.00     1,470.00        23.00
+day 29 logs/279156                 1,581.00     1,844.00       263.00
+day 29 logs/279510                 1,755.00     1,714.00       -41.00
+day 29 logs/279610                 1,798.00     1,832.00        34.00
+day 29 logs/279880                 1,811.00     1,820.00         9.00
+day 29 logs/280847                 1,543.00     1,587.00        44.00
+day 29 logs/281064                 1,746.00     1,697.00       -49.00
+extra/331738                       1,693.00     1,801.00       108.00
+extra/331831                       1,834.00     1,794.00       -40.00
+extra/331896                       1,687.00     1,846.00       159.00
+combined/ALL                       4,280.00     4,378.00        98.00
+--------------------------------------------------------------------------------
+
+# Per-tape wins on osmium (strict >): potential1 10 / 27, potential2 17 / 27
+
+Sums (all tapes)
+------------------------------------------------------------
+  potential1    osmium     159,923.50
+  potential2    osmium     160,609.50
+  Δ(potential2−potential1)   osmium         686.00
+
+Sums (individual day-29 zips only, 18 zips)
+------------------------------------------------------------
+  potential1    osmium      31,068.50
+  potential2    osmium      31,864.50
+  Δ(potential2−potential1)   osmium         796.00

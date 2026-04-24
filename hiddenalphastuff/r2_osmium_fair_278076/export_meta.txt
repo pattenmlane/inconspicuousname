@@ -1,0 +1,5 @@
+log=/Users/pattenlane/ProsperityRepo/round2work/osmium fair/278076.log
+symbol=ASH_COATED_OSMIUM
+buy_price=10016.0
+price_rows=1000
+trade_rows=46

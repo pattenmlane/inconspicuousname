@@ -1,0 +1,43 @@
+================================================================================
+Why Frankfurt’s Figure 6a often LOOKS cleaner than ours (and what we changed)
+================================================================================
+
+1) FEWER STRIKES, ALL NEAR SPOT
+   Their plot stacks five strikes around a ~10k underlying, so every series sits in a
+   similar moneyness band and implied vol stays in a modest vertical range (~0.1–0.35).
+   We have ten strikes from 4k–6.5k on a ~5.2k spot: wings sit at extreme m_t where
+   Black–Scholes IV inverts noisily from tiny extrinsic values → tall vertical “smears”
+   if we draw them on the same axes.
+
+2) SAME PHENOMENON INSIDE EACH STRIKE (NOT “BUGS”)
+   Over time S moves while K is fixed, so (m_t, v_t) traces a narrow diagonal ribbon per
+   strike. Dense overlapping ribbons read as “muddy” or “striped” compared to a sparse
+   historical sample.
+
+3) GLOBAL SMOOTH vs LOCAL ZOOM
+   Frankfurt still had scatter width; their parabola summarizes a dense cloud. We now
+   match their LOGIC better by:
+   - FITTING the quadratic on ALL strikes’ pooled (m_t, v_t) after the extrinsic filter
+     (full cross-section, like their one implied surface).
+   - PLOTTING only the six near-money strikes and ZOOMING axes to that cloud so the
+     figure reads like theirs: one gentle smile, not wing noise on the same y-scale.
+
+4) LOW EXTRINSIC = UNSTABLE IV
+   Their caption drops bottom-left points (extrinsic too small). We already drop rows
+   with extrinsic < 0.25; wings can still wobble more than ATM.
+
+5) VISUAL DEFAULTS
+   Small markers + higher transparency + tight x/y limits + lighter grid + hiding top/
+   right spines reduces “jank” without changing the economics.
+
+FILE: frankfurt_fig06a_volatility_smile_near_money.png
+  - Black curve = quadratic fit on FULL filtered dataset (all vouchers).
+  - Points = only strikes 5000–5500, axis limits from that subset’s percentiles.
+
+All IV / BS paths in this folder now use **intraday winding DTE** (same convention as
+plot_iv_smile_round3: dte_eff = DTE_open − (timestamp//100)/10000).
+
+If the black curve still looks a bit off a cluster, that is telling you the ATM points
+do not lie on the same quadratic as the wings — a model limitation, not only a plot bug.
+
+================================================================================

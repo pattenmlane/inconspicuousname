@@ -1,0 +1,182 @@
+OSMIUM NEAR-FV / RESIDUAL ANALYSIS
+data_dir=/Users/pattenlane/ProsperityRepo/hiddenalphastuff/r2_osmium_fair_278076  max_abs=4.0
+
+========================================================================
+  ALL LEVELS with |price - FV| <= max_abs
+========================================================================
+  Slice: includes any cluster inside band
+  prices file: prices_round_2_day_1.csv  timesteps=1000  events=80
+
+  Timestamps with ≥1 near-FV event: 79/1000 (7.90%)
+  Timestamps with bid-side event:   32
+  Timestamps with ask-side event:   47
+  Timestamps with BOTH sides:       0 (0.00%)
+
+  Events per timestamp:
+    1 event(s): 78 timestamps
+    2 event(s): 1 timestamps
+
+  Presence run lengths (contiguous timesteps in file order):
+    ON runs: n=74 mean=1.07
+      len 1: 69
+      len 2: 5
+    fraction of ON-runs with length 1: 93.2%
+    OFF runs: n=74 mean=12.45
+
+  EVENT-LEVEL (each level is one event)
+    Bid events: 32  Ask events: 48  (40.0% / 60.0%)
+
+  delta = price - round(FV):
+    -3: 20 (25.0%)
+    -2: 26 (32.5%)
+    +0: 1 (1.2%)
+    +1: 13 (16.2%)
+    +2: 19 (23.8%)
+    +3: 1 (1.2%)
+
+  (SIDE, DELTA) joint counts:
+    ('ask', -3): 5
+    ('ask', -2): 17
+    ('ask', 0): 1
+    ('ask', 1): 10
+    ('ask', 2): 14
+    ('ask', 3): 1
+    ('bid', -3): 15
+    ('bid', -2): 9
+    ('bid', 1): 3
+    ('bid', 2): 5
+
+  off_int = round(price - FV) (among |cont|<=max):
+    -3: 20
+    -2: 26
+    +0: 1
+    +1: 13
+    +2: 19
+    +3: 1
+
+  Crossing (bid price>FV or ask price<FV): 30/80 (37.5%)
+
+  VOLUME | CROSSING (tomato-style)
+    Crossing: n=30 mean=7.37 min=4 max=10
+    Passive:  n=50 mean=4.24 min=2 max=21
+
+  VOLUME | DELTA
+    delta -3: n=20 mean_vol=4.40
+    delta -2: n=26 mean_vol=6.23
+    delta +0: n=1 mean_vol=13.00
+    delta +1: n=13 mean_vol=5.23
+    delta +2: n=19 mean_vol=4.26
+    delta +3: n=1 mean_vol=21.00
+
+  VOLUME | (SIDE, CROSSING)
+    bid cross: n=8 mean=7.62 [4,10]
+    bid pass: n=24 mean=3.75 [2,5]
+    ask cross: n=22 mean=7.27 [4,10]
+    ask pass: n=26 mean=4.69 [2,21]
+
+  Chi-squared vs TOMATO uniform on delta in {-2,-1,0,+1}: chi2=44.600 df=3 crit(0.05)=7.815
+    (using 40/80 events with delta in that set)
+  Chi-squared vs uniform on OSMIUM ring {-3,-2,+1,+2}: chi2=4.359 df=3 crit(0.05)=7.815
+    (using 78/80 events)
+
+  Pearson chi2 delta sign bucket x crossing: chi2=5.168 df=2
+
+  Presence rate by FV fractional bin (0.05 steps, first bins):
+    frac~0.00: present 6/52 (11.5%)
+    frac~0.05: present 5/47 (10.6%)
+    frac~0.10: present 3/50 (6.0%)
+    frac~0.15: present 5/62 (8.1%)
+    frac~0.20: present 7/52 (13.5%)
+    frac~0.25: present 3/40 (7.5%)
+    frac~0.30: present 5/45 (11.1%)
+    frac~0.35: present 4/51 (7.8%)
+
+========================================================================
+  RESIDUAL (exclude off_int in {-11,-10,-8,8,10,11})
+========================================================================
+  Slice: MM integer offsets removed — stricter participant slice
+  prices file: prices_round_2_day_1.csv  timesteps=1000  events=80
+
+  Timestamps with ≥1 near-FV event: 79/1000 (7.90%)
+  Timestamps with bid-side event:   32
+  Timestamps with ask-side event:   47
+  Timestamps with BOTH sides:       0 (0.00%)
+
+  Events per timestamp:
+    1 event(s): 78 timestamps
+    2 event(s): 1 timestamps
+
+  Presence run lengths (contiguous timesteps in file order):
+    ON runs: n=74 mean=1.07
+      len 1: 69
+      len 2: 5
+    fraction of ON-runs with length 1: 93.2%
+    OFF runs: n=74 mean=12.45
+
+  EVENT-LEVEL (each level is one event)
+    Bid events: 32  Ask events: 48  (40.0% / 60.0%)
+
+  delta = price - round(FV):
+    -3: 20 (25.0%)
+    -2: 26 (32.5%)
+    +0: 1 (1.2%)
+    +1: 13 (16.2%)
+    +2: 19 (23.8%)
+    +3: 1 (1.2%)
+
+  (SIDE, DELTA) joint counts:
+    ('ask', -3): 5
+    ('ask', -2): 17
+    ('ask', 0): 1
+    ('ask', 1): 10
+    ('ask', 2): 14
+    ('ask', 3): 1
+    ('bid', -3): 15
+    ('bid', -2): 9
+    ('bid', 1): 3
+    ('bid', 2): 5
+
+  off_int = round(price - FV) (among |cont|<=max):
+    -3: 20
+    -2: 26
+    +0: 1
+    +1: 13
+    +2: 19
+    +3: 1
+
+  Crossing (bid price>FV or ask price<FV): 30/80 (37.5%)
+
+  VOLUME | CROSSING (tomato-style)
+    Crossing: n=30 mean=7.37 min=4 max=10
+    Passive:  n=50 mean=4.24 min=2 max=21
+
+  VOLUME | DELTA
+    delta -3: n=20 mean_vol=4.40
+    delta -2: n=26 mean_vol=6.23
+    delta +0: n=1 mean_vol=13.00
+    delta +1: n=13 mean_vol=5.23
+    delta +2: n=19 mean_vol=4.26
+    delta +3: n=1 mean_vol=21.00
+
+  VOLUME | (SIDE, CROSSING)
+    bid cross: n=8 mean=7.62 [4,10]
+    bid pass: n=24 mean=3.75 [2,5]
+    ask cross: n=22 mean=7.27 [4,10]
+    ask pass: n=26 mean=4.69 [2,21]
+
+  Chi-squared vs TOMATO uniform on delta in {-2,-1,0,+1}: chi2=44.600 df=3 crit(0.05)=7.815
+    (using 40/80 events with delta in that set)
+  Chi-squared vs uniform on OSMIUM ring {-3,-2,+1,+2}: chi2=4.359 df=3 crit(0.05)=7.815
+    (using 78/80 events)
+
+  Pearson chi2 delta sign bucket x crossing: chi2=5.168 df=2
+
+  Presence rate by FV fractional bin (0.05 steps, first bins):
+    frac~0.00: present 6/52 (11.5%)
+    frac~0.05: present 5/47 (10.6%)
+    frac~0.10: present 3/50 (6.0%)
+    frac~0.15: present 5/62 (8.1%)
+    frac~0.20: present 7/52 (13.5%)
+    frac~0.25: present 3/40 (7.5%)
+    frac~0.30: present 5/45 (11.1%)
+    frac~0.35: present 4/51 (7.8%)

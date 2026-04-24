@@ -1,0 +1,131 @@
+Round 2 day 29 — osmium-only strategies on submission tapes + combined
+================================================================================================
+
+METHODOLOGY (read this before interpreting deltas)
+------------------------------------------------------------------------------------------------
+  * Individual zips: one submission replay’s book + that run’s market trades.
+  * Combined tape: ``combine_submission_runs.py`` merges **books** (majority / fill
+    empty cells) and **unions** all ``tradeHistory`` rows across zips (deduped).
+  * The combined **trade tape is not a single real run** — it can contain more
+    prints at a timestamp than any one submission saw. ``OrderMatchMaker`` uses
+    those trades for ``match_trades=worse`` fills, so combined can get **many**
+    more fills than a typical single zip even when **price row count** is still
+    2000. PnL vs trade-count is **not** linear, but **~2.5× trades vs ~2.4× osmium
+    PnL** on combined vs mean singles is in the same ballpark — not a CSV bug.
+  * Input ``profit_and_loss`` / ``mid_price`` columns are for logging / MTM in
+    activity rows; **matching** uses reconstructed ``OrderDepth`` + trade list.
+  * If two osmium variants match PnL on almost every zip, their **fair / quote**
+    path coincided on those tapes (touch-freeze branch rarely changed behavior).
+
+273774 osmium (WM spike freeze)
+========================================================================
+Module: osmium_273774_wm_freeze_standalone
+
+Length-normalized (``osmium@20000``) = osmium_pnl × (20000 / price_rows).
+Assumes linear scaling in row count — ballpark only.
+
+source             run              osmium_pnl      osm@20000      total_pnl   prices   trades
+----------------------------------------------------------------------------------------------
+day 29 logs        278346             1,828.00      18,280.00       1,828.00     2000       77
+day 29 logs        278388             1,672.00      16,720.00       1,672.00     2000       73
+day 29 logs        278483             1,522.50      15,225.00       1,522.50     2000       78
+day 29 logs        278621             1,705.00      17,050.00       1,705.00     2000       82
+day 29 logs        278671             1,796.00      17,960.00       1,796.00     2000       76
+day 29 logs        278731             1,717.00      17,170.00       1,717.00     2000       72
+day 29 logs        278826             1,685.00      16,850.00       1,685.00     2000       74
+day 29 logs        278895             1,625.00      16,250.00       1,625.00     2000       75
+day 29 logs        279070             1,487.00      14,870.00       1,487.00     2000       72
+day 29 logs        279156             1,691.00      16,910.00       1,691.00     2000       77
+day 29 logs        279510             1,638.00      16,380.00       1,638.00     2000       70
+day 29 logs        279610             1,718.00      17,180.00       1,718.00     2000       78
+day 29 logs        279880             1,790.00      17,900.00       1,790.00     2000       78
+day 29 logs        280847             1,908.00      19,080.00       1,908.00     2000       78
+day 29 logs        281064             1,734.00      17,340.00       1,734.00     2000       77
+extra              331738             1,678.00      16,780.00       1,678.00     2000       80
+extra              331831             1,683.00      16,830.00       1,683.00     2000       77
+extra              331896             1,728.00      17,280.00       1,728.00     2000       75
+combined           COMBINED_ALL_RUNS       4,142.00      41,420.00       4,142.00     2000      196
+----------------------------------------------------------------------------------------------
+
+Aggregate — individuals only
+------------------------------------------------------------------------
+  Count:                18
+  Avg osmium PnL:       1,700.31
+  Avg osmium@20000:   17,003.06
+  Min / max osmium:     1,487.00  /  1,908.00
+  Stdev osmium:         96.54
+  Stdev osm@20000:     965.37
+
+Combined vs average individual
+------------------------------------------------------------------------
+  Combined osmium PnL:          4,142.00
+  Combined osmium@20000:       41,420.00
+  Mean individual osmium PnL: 1,700.31
+  Mean individual osm@20000: 17,003.06
+  Delta osm@20000 (comb − mean indiv): 24,416.94
+
+  Combined total PnL:          4,142.00
+  Mean individual total PnL: 1,700.31
+
+Notes
+------------------------------------------------------------------------
+  * Osmium PnL from last activity row for ASH_COATED_OSMIUM.
+  * These traders do not quote pepper; total usually equals osmium.
+  * Combined tape: merge of all zips (see combine_submission_runs.py).
+
+269993 osmium (WM + touch freeze)
+========================================================================
+Module: osmium_269993_touch_wm_standalone
+
+Length-normalized (``osmium@20000``) = osmium_pnl × (20000 / price_rows).
+Assumes linear scaling in row count — ballpark only.
+
+source             run              osmium_pnl      osm@20000      total_pnl   prices   trades
+----------------------------------------------------------------------------------------------
+day 29 logs        278346             1,828.00      18,280.00       1,828.00     2000       77
+day 29 logs        278388             1,672.00      16,720.00       1,672.00     2000       73
+day 29 logs        278483             1,522.50      15,225.00       1,522.50     2000       78
+day 29 logs        278621             1,705.00      17,050.00       1,705.00     2000       82
+day 29 logs        278671             1,796.00      17,960.00       1,796.00     2000       76
+day 29 logs        278731             1,717.00      17,170.00       1,717.00     2000       72
+day 29 logs        278826             1,685.00      16,850.00       1,685.00     2000       74
+day 29 logs        278895             1,625.00      16,250.00       1,625.00     2000       75
+day 29 logs        279070             1,487.00      14,870.00       1,487.00     2000       72
+day 29 logs        279156             1,691.00      16,910.00       1,691.00     2000       77
+day 29 logs        279510             1,638.00      16,380.00       1,638.00     2000       70
+day 29 logs        279610             1,707.00      17,070.00       1,707.00     2000       78
+day 29 logs        279880             1,790.00      17,900.00       1,790.00     2000       78
+day 29 logs        280847             1,908.00      19,080.00       1,908.00     2000       78
+day 29 logs        281064             1,734.00      17,340.00       1,734.00     2000       77
+extra              331738             1,678.00      16,780.00       1,678.00     2000       80
+extra              331831             1,683.00      16,830.00       1,683.00     2000       77
+extra              331896             1,728.00      17,280.00       1,728.00     2000       75
+combined           COMBINED_ALL_RUNS       4,142.00      41,420.00       4,142.00     2000      196
+----------------------------------------------------------------------------------------------
+
+Aggregate — individuals only
+------------------------------------------------------------------------
+  Count:                18
+  Avg osmium PnL:       1,699.69
+  Avg osmium@20000:   16,996.94
+  Min / max osmium:     1,487.00  /  1,908.00
+  Stdev osmium:         96.46
+  Stdev osm@20000:     964.57
+
+Combined vs average individual
+------------------------------------------------------------------------
+  Combined osmium PnL:          4,142.00
+  Combined osmium@20000:       41,420.00
+  Mean individual osmium PnL: 1,699.69
+  Mean individual osm@20000: 16,996.94
+  Delta osm@20000 (comb − mean indiv): 24,423.06
+
+  Combined total PnL:          4,142.00
+  Mean individual total PnL: 1,699.69
+
+Notes
+------------------------------------------------------------------------
+  * Osmium PnL from last activity row for ASH_COATED_OSMIUM.
+  * These traders do not quote pepper; total usually equals osmium.
+  * Combined tape: merge of all zips (see combine_submission_runs.py).
+

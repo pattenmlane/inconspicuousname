@@ -48,7 +48,12 @@ class RoundDayOption:
             available_days = data_reader.available_days(round_num)
 
             if day_num is not None and day_num not in available_days:
-                print(f"Warning: no data found for round {round_num} day {day_num}")
+                print(
+                    f"Warning: no data found for round {round_num} day {day_num} "
+                    f"(available: {available_days}). "
+                    f"Pass --data /path/to/Prosperity4Data to use your CSVs; "
+                    f"without --data only bundled tutorial days are listed."
+                )
                 continue
 
             days = [day_num] if day_num is not None else available_days

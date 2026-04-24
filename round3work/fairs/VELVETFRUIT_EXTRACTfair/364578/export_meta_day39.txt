@@ -1,0 +1,7 @@
+log=/Users/pattenlane/ProsperityRepo/round3work/fairs/VELVETFRUIT_EXTRACTfair/364578/364578.log
+symbol=VELVETFRUIT_EXTRACT
+buy_price=5270.0
+price_rows=1000
+trade_rows=53
+labeled_day=39
+fv_csv=VELVETFRUIT_EXTRACT_true_fv_day39.csv

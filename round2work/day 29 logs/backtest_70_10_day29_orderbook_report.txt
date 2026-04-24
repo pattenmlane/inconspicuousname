@@ -1,0 +1,110 @@
+Round 2 — Day 29 order-book / tape sweep
+========================================================================
+
+Strategy: pepper_70_10_slope_safeguard_standalone.Trader
+match_trades: worse
+Individual zips: 15 in `day 29 logs/` + 3 in `extra/`
+Combined tape: merge of all 18 zips (combine_submission_runs.py)
+Combined data directory: /Users/pattenlane/ProsperityRepo/round2work/day 29 logs/combined_all_including_extra
+
+Length-normalized pepper (``pepper@20000``) = pepper_pnl × (20000 / price_rows).
+Assumes PnL scales ~linearly with tick count — ballpark only, not a claim about longer runs.
+
+Per-run results (same replay length; different book/trade tape)
+------------------------------------------------------------------------------------------------
+source             run              pepper_pnl   pepper@20000      total_pnl   prices   trades
+----------------------------------------------------------------------------------------------
+day 29 logs        278346             7,633.00      76,330.00       7,633.00     2000       77
+day 29 logs        278388             7,667.50      76,675.00       7,667.50     2000       73
+day 29 logs        278483             7,919.00      79,190.00       7,919.00     2000       78
+day 29 logs        278621             7,733.00      77,330.00       7,733.00     2000       82
+day 29 logs        278671             7,714.00      77,140.00       7,714.00     2000       76
+day 29 logs        278731             7,537.00      75,370.00       7,537.00     2000       72
+day 29 logs        278826             7,739.50      77,395.00       7,739.50     2000       74
+day 29 logs        278895             7,685.00      76,850.00       7,685.00     2000       75
+day 29 logs        279070             7,483.00      74,830.00       7,483.00     2000       72
+day 29 logs        279156             7,760.00      77,600.00       7,760.00     2000       77
+day 29 logs        279510             7,729.00      77,290.00       7,729.00     2000       70
+day 29 logs        279610             7,534.00      75,340.00       7,534.00     2000       78
+day 29 logs        279880             7,591.00      75,910.00       7,591.00     2000       78
+day 29 logs        280847             7,836.00      78,360.00       7,836.00     2000       78
+day 29 logs        281064             7,780.00      77,800.00       7,780.00     2000       77
+extra              331738             7,681.00      76,810.00       7,681.00     2000       80
+extra              331831             7,729.00      77,290.00       7,729.00     2000       77
+extra              331896             7,572.00      75,720.00       7,572.00     2000       75
+combined           COMBINED_ALL_RUNS       8,024.00      80,240.00       8,024.00     2000      196
+----------------------------------------------------------------------------------------------
+
+Aggregate — individuals only
+------------------------------------------------------------------------
+  Count:                18
+  Avg pepper PnL:       7,684.61
+  Avg pepper@20000:    76,846.11
+  Avg total PnL:        7,684.61
+  Min / max pepper:     7,483.00  /  7,919.00
+  Stdev pepper:         108.61
+  Stdev pepper@20000:  1,086.10
+
+Combined vs average individual
+------------------------------------------------------------------------
+  Combined pepper PnL:           8,024.00
+  Combined pepper@20000:        80,240.00
+  Mean individual pepper PnL:  7,684.61
+  Mean individual pepper@20000: 76,846.11
+  Delta pepper@20000 (comb − mean indiv): 3,393.89
+
+  Combined total PnL:           8,024.00
+  Mean individual total PnL:  7,684.61
+  Delta (combined − mean):     339.39
+
+Notes
+------------------------------------------------------------------------
+  * Pepper PnL is from the last activity row for INTARIAN_PEPPER_ROOT.
+  * Total PnL is the sum of last-row PnL across products in that tape.
+  * The combined tape is not an average of books; it merges cells across
+    runs (majority vote) and unions trades. Performance can differ from
+    the mean of single-run backtests because fills depend on the merged book.
+
+
+
+Prosperity4Data — same 70/10 strategy on bundled historical tapes
+========================================================================
+Data root: /Users/pattenlane/ProsperityRepo/Prosperity4Data
+(Days are those with a matching ``prices_round_<n>_day_<d>.csv`` file.)
+(Same ``pepper@20000`` scaling as above.)
+
+  round    day     pepper_pnl   pepper@20000      total_pnl   prices   trades
+-----------------------------------------------------------------------------
+      1     -2      83,008.00      83,008.00      83,008.00    20000      773
+      1     -1      82,400.00      82,400.00      82,400.00    20000      760
+      1      0      83,027.00      83,027.00      83,027.00    20000      743
+      1     19       7,438.50      74,385.00       7,438.50     2000       88
+      1    119      78,844.00      78,844.00      78,844.00    20000      167
+      2     -1      82,417.50      82,417.50      82,417.50    20000      790
+      2      0      83,092.00      83,092.00      83,092.00    20000      803
+      2      1      83,912.00      83,912.00      83,912.00    20000      798
+-----------------------------------------------------------------------------
+
+Aggregate — Prosperity4Data days
+------------------------------------------------------------------------
+  Day count:            8
+  Sum pepper PnL (raw): 584,139.00
+  Sum total PnL:        584,139.00
+  Avg pepper / day:     73,017.38
+  Avg pepper@20000 / day: 81,385.69
+  Min / max pepper:     7,438.50  /  83,912.00
+  Stdev pepper (days):  24,827.23
+  Stdev pepper@20000:    3,003.81
+
+  Round 2 only (Prosperity4Data days −1, 0, 1 — different tapes than day-29 zips)
+------------------------------------------------------------------------
+    Count:              3
+    Sum pepper PnL:     249,421.50
+    Avg pepper / day:   83,140.50
+    Avg pepper@20000/day: 83,140.50
+
+Notes
+------------------------------------------------------------------------
+  * Same trader and match_trades=worse as the day-29 zip section above.
+  * Files such as ``prices_round_1_day_19_enriched.csv`` are ignored unless
+    renamed to match the engine's ``..._day_<int>.csv`` pattern.

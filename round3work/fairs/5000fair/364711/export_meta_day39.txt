@@ -1,0 +1,7 @@
+log=/Users/pattenlane/ProsperityRepo/round3work/fairs/5000fair/364711/364711.log
+symbol=VEV_5000
+buy_price=273.0
+price_rows=1000
+trade_rows=1
+labeled_day=39
+fv_csv=VEV_5000_true_fv_day39.csv

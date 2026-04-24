@@ -1,0 +1,43 @@
+Implied Volatility and Moneyness
+
+SELECTED
+Orin
+Options pricing. The Black-Scholes formula. Now, this takes me back, dear. I remember when that came out. Caused quite a stir. People acted as if markets had never been uncertain before. As if we had all just been guessing until then. Well. Some of us had been, I suppose.
+
+To assess the real potential of the Velvetfruit Extract Vouchers, you will need to look beyond their prices and examine what sits underneath. The Black-Scholes formula lets you compute the Implied Volatility embedded in each voucher. That number tells you something important. Not what the market knows, but what it expects. Or fears. Often both at once.
+
+Once you have those volatility figures, look at how they vary across strikes and time. Do they move consistently, or does the picture become uneven as you scan across the range? Then bring in moneyness. The relationship between each voucher's strike price and the current underlying price. How does that difference relate to the volatility you calculated?
+
+If you plot Implied Volatility against moneyness, a pattern tends to emerge. The market is always saying something with that pattern, whether it intends to or not. Now, I once had a student who spent three weeks staring at exactly this kind of chart on a portable DVD player. Tiny screen. Terrible glare. She still spotted the pattern before anyone else in the room. Sharp girl. I wonder what became of her. Anyway.
+
+Your job, before you do anything else, is to understand what structure the market is currently implying. Everything else follows from that.
+
+Positioning With IV and Moneyness
+
+SELECTED
+Orin
+Once you have your Implied Volatility and moneyness figures side by side, the real question becomes: does the picture hold together? Does the distribution look consistent across the board, or do certain vouchers sit somewhere they probably should not?
+
+Markets are not perfectly efficient. Never have been, and I have had a very long time to verify that personally. There are always points that deviate from the broader structure. A voucher that implies more uncertainty than its neighbors. Another that seems oddly calm given where it sits relative to the underlying. Those deviations are worth paying attention to.
+
+Ask yourself what they mean. Is the market overestimating uncertainty in some cases? Underestimating it in others? Both happen more often than people admit. I have seen entire trading floors miss exactly this kind of signal because they were too busy looking at the headline numbers to notice what the structure was quietly suggesting.
+
+Finding the odd ones out is only the first step, of course. Deviation does not automatically mean opportunity. It means something is misaligned. Whether that misalignment is worth acting on, and in which direction, is the judgment call that separates a trader from someone who is simply guessing, sweetheart.
+
+Buy, sell, or stay put. The structure will give you clues. But the decision, as always, remains yours.
+
+Let's Talk Volume
+
+SELECTED
+Orin
+Ah. Volume. The part where confidence meets honesty. And they do not always get along, in my experience.
+
+You have identified a mispriced voucher. Possibly two. Possibly three. Possibly more. Now the question is not whether to act, but how much to commit. And that question deserves more thought than it usually gets.
+
+Consider the magnitude of the deviation you spotted. A voucher that appears slightly misaligned is a different proposition from one that seems significantly off. Does that difference justify proportional exposure? In principle, yes. A stronger signal tends to warrant a larger position. But principle and practice have a complicated relationship, as any experienced trader will tell you.
+
+Larger volume amplifies your returns if you are right. It amplifies your losses if you are not. And the uncomfortable truth is that even a well-reasoned volatility interpretation can be wrong. Markets have a long history of remaining misaligned far longer than anyone expects, and moving in directions nobody anticipated.
+
+That reminds me... I have a full breakdown of exactly that phenomenon, recorded during a particularly turbulent stretch in a market... I know it is stored on a MiniDisc here somewhere. Oh boy, how am I supposed to find anything if I can’t even read my own handwriting from back then?! You know what? I’ll let you know once I found it, okay? But the lesson was clear enough that I remember it without it. Conviction is not certainty.
+
+So before you commit, ask yourself honestly: how confident are you in your reading? And how much damage can your strategy absorb if that reading turns out to be off? Volume should reflect the strength of your conviction, love. Not the size of your hope.

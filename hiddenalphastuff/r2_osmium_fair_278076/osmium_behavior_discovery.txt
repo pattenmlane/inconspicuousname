@@ -1,0 +1,369 @@
+========================================================================
+ASH_COATED_OSMIUM — behavior discovery (FV-anchored, no preset bot count)
+========================================================================
+Timesteps (unique timestamps in prices file): 1000
+Parsed book level observations (side × depth slots × time): 3297
+
+------------------------------------------------------------------------
+PRIMARY A: round(price − true_fv)  (offset_int) — vs continuous FV
+PRIMARY B: price − round(true_fv)   (offset_rf) — integer book vs integer anchor
+Use A when FV is fractional so one physical layer does not split across .5 jumps.
+Marginals are maps only; use conditionals below for structure.
+
+BID (round(price - FV)):
+  offset_int=  -8  n=801
+  offset_int= -11  n=404
+  offset_int= -10  n=390
+  offset_int=  -3  n=15
+  offset_int=  -2  n=9
+  offset_int=  +2  n=5
+  offset_int=  -9  n=3
+  offset_int=  +1  n=3
+  offset_int= -18  n=1
+
+ASK (round(price - FV)):
+  offset_int=  +8  n=811
+  offset_int= +11  n=405
+  offset_int= +10  n=401
+  offset_int=  -2  n=17
+  offset_int=  +2  n=14
+  offset_int=  +1  n=10
+  offset_int=  -3  n=5
+  offset_int=  +0  n=1
+  offset_int=  +3  n=1
+  offset_int=  +9  n=1
+
+
+PRIMARY B detail: price − round(FV)  (offset_rf), by side
+
+BID level counts (how many (t, depth) slots sit at each offset_rf):
+  offset_rf=  -8  n=801
+  offset_rf= -11  n=404
+  offset_rf= -10  n=390
+  offset_rf=  -3  n=15
+  offset_rf=  -2  n=9
+  offset_rf=  +2  n=5
+  offset_rf=  -9  n=3
+  offset_rf=  +1  n=3
+  offset_rf= -18  n=1
+
+ASK level counts:
+  offset_rf=  +8  n=811
+  offset_rf= +11  n=405
+  offset_rf= +10  n=401
+  offset_rf=  -2  n=17
+  offset_rf=  +2  n=14
+  offset_rf=  +1  n=10
+  offset_rf=  -3  n=5
+  offset_rf=  +0  n=1
+  offset_rf=  +3  n=1
+  offset_rf=  +9  n=1
+
+------------------------------------------------------------------------
+PERSISTENCE: fraction of timesteps where ≥1 bid/ask level exists at offset_rf
+(High persistence + tight offset → stable background layer candidate.)
+
+BID (timesteps with level at offset_rf = price − round(FV)):
+  offset_rf=  -8  timesteps= 801  ( 80.1% of 1000)
+  offset_rf= -11  timesteps= 404  ( 40.4% of 1000)
+  offset_rf= -10  timesteps= 390  ( 39.0% of 1000)
+  offset_rf=  -3  timesteps=  15  (  1.5% of 1000)
+  offset_rf=  -2  timesteps=   9  (  0.9% of 1000)
+  offset_rf=  +2  timesteps=   5  (  0.5% of 1000)
+  offset_rf=  -9  timesteps=   3  (  0.3% of 1000)
+  offset_rf=  +1  timesteps=   3  (  0.3% of 1000)
+  offset_rf= -18  timesteps=   1  (  0.1% of 1000)
+
+ASK:
+  offset_rf=  +8  timesteps= 811  ( 81.1% of 1000)
+  offset_rf= +11  timesteps= 405  ( 40.5% of 1000)
+  offset_rf= +10  timesteps= 401  ( 40.1% of 1000)
+  offset_rf=  -2  timesteps=  17  (  1.7% of 1000)
+  offset_rf=  +2  timesteps=  14  (  1.4% of 1000)
+  offset_rf=  +1  timesteps=  10  (  1.0% of 1000)
+  offset_rf=  -3  timesteps=   5  (  0.5% of 1000)
+  offset_rf=  +0  timesteps=   1  (  0.1% of 1000)
+  offset_rf=  +3  timesteps=   1  (  0.1% of 1000)
+  offset_rf=  +9  timesteps=   1  (  0.1% of 1000)
+
+PERSISTENCE vs offset_int = round(price − FV):
+BID:
+  offset_int=  -8  timesteps= 801  ( 80.1% of 1000)
+  offset_int= -11  timesteps= 404  ( 40.4% of 1000)
+  offset_int= -10  timesteps= 390  ( 39.0% of 1000)
+  offset_int=  -3  timesteps=  15  (  1.5% of 1000)
+  offset_int=  -2  timesteps=   9  (  0.9% of 1000)
+  offset_int=  +2  timesteps=   5  (  0.5% of 1000)
+  offset_int=  -9  timesteps=   3  (  0.3% of 1000)
+  offset_int=  +1  timesteps=   3  (  0.3% of 1000)
+  offset_int= -18  timesteps=   1  (  0.1% of 1000)
+
+ASK:
+  offset_int=  +8  timesteps= 811  ( 81.1% of 1000)
+  offset_int= +11  timesteps= 405  ( 40.5% of 1000)
+  offset_int= +10  timesteps= 401  ( 40.1% of 1000)
+  offset_int=  -2  timesteps=  17  (  1.7% of 1000)
+  offset_int=  +2  timesteps=  14  (  1.4% of 1000)
+  offset_int=  +1  timesteps=  10  (  1.0% of 1000)
+  offset_int=  -3  timesteps=   5  (  0.5% of 1000)
+  offset_int=  +0  timesteps=   1  (  0.1% of 1000)
+  offset_int=  +3  timesteps=   1  (  0.1% of 1000)
+  offset_int=  +9  timesteps=   1  (  0.1% of 1000)
+
+------------------------------------------------------------------------
+CONDITIONAL: volume given (side, offset_rf)
+Uniform volume on a support only where category counts justify a test.
+
+CONDITIONAL: volume | (side, offset_rf (price - round(FV)))
+  Side = bid
+    off=  -8  n= 801  vol 10..15  mean=12.51  chi2_uniform=1.60 df=5
+    off= -11  n= 404  vol 20..30  mean=25.02  chi2_uniform=7.90 df=10
+    off= -10  n= 390  vol 20..30  mean=25.14  chi2_uniform=3.80 df=10
+    off=  -3  n=  15  (skip chi²; n < 30)
+    off=  -2  n=   9  (skip chi²; n < 30)
+    off=  +2  n=   5  (skip chi²; n < 30)
+    off=  -9  n=   3  (skip chi²; n < 30)
+    off=  +1  n=   3  (skip chi²; n < 30)
+    off= -18  n=   1  (skip chi²; n < 30)
+  Side = ask
+    off=  +8  n= 811  vol 10..15  mean=12.49  chi2_uniform=1.56 df=5
+    off= +11  n= 405  vol 20..30  mean=25.19  chi2_uniform=5.20 df=10
+    off= +10  n= 401  vol 20..30  mean=25.00  chi2_uniform=3.48 df=10
+    off=  -2  n=  17  (skip chi²; n < 30)
+    off=  +2  n=  14  (skip chi²; n < 30)
+    off=  +1  n=  10  (skip chi²; n < 30)
+    off=  -3  n=   5  (skip chi²; n < 30)
+    off=  +0  n=   1  (skip chi²; n < 30)
+    off=  +3  n=   1  (skip chi²; n < 30)
+    off=  +9  n=   1  (skip chi²; n < 30)
+
+CONDITIONAL: volume | (side, offset_int (round(price-FV)))
+  Side = bid
+    off=  -8  n= 801  vol 10..15  mean=12.51  chi2_uniform=1.60 df=5
+    off= -11  n= 404  vol 20..30  mean=25.02  chi2_uniform=7.90 df=10
+    off= -10  n= 390  vol 20..30  mean=25.14  chi2_uniform=3.80 df=10
+    off=  -3  n=  15  (skip chi²; n < 30)
+    off=  -2  n=   9  (skip chi²; n < 30)
+    off=  +2  n=   5  (skip chi²; n < 30)
+    off=  -9  n=   3  (skip chi²; n < 30)
+    off=  +1  n=   3  (skip chi²; n < 30)
+    off= -18  n=   1  (skip chi²; n < 30)
+  Side = ask
+    off=  +8  n= 811  vol 10..15  mean=12.49  chi2_uniform=1.56 df=5
+    off= +11  n= 405  vol 20..30  mean=25.19  chi2_uniform=5.20 df=10
+    off= +10  n= 401  vol 20..30  mean=25.00  chi2_uniform=3.48 df=10
+    off=  -2  n=  17  (skip chi²; n < 30)
+    off=  +2  n=  14  (skip chi²; n < 30)
+    off=  +1  n=  10  (skip chi²; n < 30)
+    off=  -3  n=   5  (skip chi²; n < 30)
+    off=  +0  n=   1  (skip chi²; n < 30)
+    off=  +3  n=   1  (skip chi²; n < 30)
+    off=  +9  n=   1  (skip chi²; n < 30)
+
+------------------------------------------------------------------------
+CONDITIONAL: volume | (side, aggressive vs passive vs at_fv)
+Aggressive bid: price > FV; passive bid: price < FV; at: price == FV (rare float).
+Aggressive ask: price < FV; passive ask: price > FV.
+(Reveals whether a marginal volume law is two processes — e.g. large aggressive vs small passive.)
+
+  ask_at       n=    1  mean_vol=13.00  min..max=13..13
+  ask_cross    n=   22  mean_vol=7.27  min..max=4..10
+  ask_passive  n= 1643  mean_vol=18.55  min..max=2..30
+  bid_cross    n=    8  mean_vol=7.62  min..max=4..10
+  bid_passive  n= 1623  mean_vol=18.53  min..max=2..30
+
+Compare crossing vs passive within same side (rough z on mean ranks skipped;
+use nonparametric or formal test offline if n large).
+  ask_cross mean=7.27 (n=22)  ask_passive mean=18.55 (n=1643)
+
+------------------------------------------------------------------------
+TIMING (coarse): inter-arrival of timesteps with ANY bid at offset_rf = best bid touch
+(proxy for inner quote refresh if you pick dominant inner offset from persistence table).
+
+Dominant bid offset_int=-8: inter-timestep gaps (100 = 1 step): min=100 median=100.0 max=500
+Dominant ask offset_int=8: inter-timestep gaps: min=100 median=100.0 max=600
+
+========================================================================
+PHILOSOPHY CHECKLIST: conditionals (never trust pooled marginals alone)
+Reference: hiddenalphastuff/ANALYSIS_PHILOSOPHY.md
+
+------------------------------------------------------------------------
+volume | side   (POOLED over all prices / depths — compare to blocks below)
+
+  bid: n= 1631  mean_vol=18.48  median=15.0  min..max=2..30
+  ask: n= 1666  mean_vol=18.40  median=15.0  min..max=2..30
+  If this looks 'simple' but volume|(side,offset) is bimodal, the marginal lied.
+
+------------------------------------------------------------------------
+volume | (side, absolute price)   — top cells by count (discrete price ticks)
+
+  ask price= 10013  n=  196  mean_vol=19.77  std=6.49  range=10..30
+  bid price=  9995  n=  191  mean_vol=20.04  std=6.96  range=10..30
+  bid price=  9994  n=  185  mean_vol=15.58  std=5.67  range=10..30
+  ask price= 10010  n=  176  mean_vol=15.16  std=5.28  range=5..30
+  ask price= 10014  n=  175  mean_vol=18.31  std=7.15  range=10..30
+  ask price= 10016  n=  166  mean_vol=22.12  std=6.01  range=10..30
+  ask price= 10012  n=  166  mean_vol=21.08  std=6.18  range=10..30
+  bid price=  9992  n=  164  mean_vol=20.57  std=6.38  range=10..30
+  bid price=  9993  n=  160  mean_vol=19.21  std=7.32  range=10..30
+  bid price=  9996  n=  156  mean_vol=20.63  std=6.70  range=10..30
+  bid price=  9998  n=  150  mean_vol=16.31  std=6.39  range=10..30
+  ask price= 10011  n=  150  mean_vol=17.15  std=6.72  range=4..30
+  ask price= 10015  n=  140  mean_vol=16.25  std=6.25  range=10..30
+  bid price=  9997  n=  138  mean_vol=18.21  std=6.59  range=10..30
+  ask price= 10017  n=  137  mean_vol=21.30  std=6.65  range=10..30
+  bid price=  9991  n=  133  mean_vol=22.94  std=5.07  range=10..30
+  bid price=  9999  n=  132  mean_vol=14.57  std=5.88  range=3..29
+  ask price= 10009  n=   92  mean_vol=12.66  std=3.03  range=3..27
+
+------------------------------------------------------------------------
+volume | price   (POOLED across sides — FV moves, so absolute price mixes regimes)
+(Prefer volume|(side,price) or placement-offset conditionals for structural inference.)
+
+  price= 10013  n=  196  mean_vol=19.77  std=6.49  range=10..30
+  price=  9995  n=  191  mean_vol=20.04  std=6.96  range=10..30
+  price=  9994  n=  185  mean_vol=15.58  std=5.67  range=10..30
+  price= 10010  n=  177  mean_vol=15.12  std=5.30  range=5..30
+  price= 10014  n=  175  mean_vol=18.31  std=7.15  range=10..30
+  price= 10016  n=  166  mean_vol=22.12  std=6.01  range=10..30
+  price= 10012  n=  166  mean_vol=21.08  std=6.18  range=10..30
+  price=  9992  n=  164  mean_vol=20.57  std=6.38  range=10..30
+  price=  9993  n=  160  mean_vol=19.21  std=7.32  range=10..30
+  price=  9996  n=  156  mean_vol=20.63  std=6.70  range=10..30
+  price=  9998  n=  152  mean_vol=16.21  std=6.41  range=8..30
+  price= 10011  n=  150  mean_vol=17.15  std=6.72  range=4..30
+
+------------------------------------------------------------------------
+timing | price   (pooled sides — inter-arrival at each absolute price tick)
+
+  price= 10013  n_gap=195  min=100  med=100  p90=1000  max=8200
+  price=  9995  n_gap=190  min=100  med=100  p90=600  max=10100
+  price=  9994  n_gap=184  min=100  med=100  p90=500  max=11700
+  price= 10010  n_gap=176  min=100  med=100  p90=600  max=33700
+  price= 10014  n_gap=174  min=100  med=100  p90=600  max=19900
+  price= 10016  n_gap=165  min=100  med=100  p90=600  max=36700
+  price= 10012  n_gap=165  min=100  med=100  p90=800  max=26400
+  price=  9992  n_gap=163  min=100  med=100  p90=800  max=30500
+  price=  9993  n_gap=159  min=100  med=100  p90=900  max=26900
+  price=  9996  n_gap=155  min=100  med=100  p90=700  max=26900
+  price=  9998  n_gap=151  min=100  med=100  p90=700  max=23600
+  price= 10011  n_gap=149  min=100  med=100  p90=1100  max=29200
+
+------------------------------------------------------------------------
+price | side   (distribution of quoted price conditional on side)
+
+  bid: n=1631  mean_price=9995.09  std=3.22  min=9988  max=10010
+  ask: n=1666  mean_price=10013.11  std=3.44  min=9998  max=10021
+
+------------------------------------------------------------------------
+timing | (side, absolute price)   inter-arrival of timestamps with that quote
+
+  ask price= 10013  n_gap=195  min=100  med=100  p90=1000  max=8200
+  bid price=  9995  n_gap=190  min=100  med=100  p90=600  max=10100
+  bid price=  9994  n_gap=184  min=100  med=100  p90=500  max=11700
+  ask price= 10010  n_gap=175  min=100  med=100  p90=600  max=33700
+  ask price= 10014  n_gap=174  min=100  med=100  p90=600  max=19900
+  ask price= 10016  n_gap=165  min=100  med=100  p90=600  max=36700
+  ask price= 10012  n_gap=165  min=100  med=100  p90=800  max=26400
+  bid price=  9992  n_gap=163  min=100  med=100  p90=800  max=30500
+  bid price=  9993  n_gap=159  min=100  med=100  p90=900  max=26900
+  bid price=  9996  n_gap=155  min=100  med=100  p90=700  max=26900
+  bid price=  9998  n_gap=149  min=100  med=100  p90=600  max=38600
+  ask price= 10011  n_gap=149  min=100  med=100  p90=1100  max=29200
+  ask price= 10015  n_gap=139  min=100  med=100  p90=700  max=32100
+  bid price=  9997  n_gap=137  min=100  med=100  p90=700  max=36600
+  ask price= 10017  n_gap=136  min=100  med=100  p90=600  max=39600
+  bid price=  9991  n_gap=132  min=100  med=100  p90=600  max=37200
+  bid price=  9999  n_gap=131  min=100  med=100  p90=800  max=16200
+  ask price= 10009  n_gap=91  min=100  med=100  p90=1200  max=16600
+  ask price= 10018  n_gap=74  min=100  med=100  p90=500  max=49100
+  bid price=  9990  n_gap=62  min=100  med=100  p90=1100  max=42200
+  ask price= 10008  n_gap=57  min=100  med=100  p90=300  max=47600
+  bid price= 10000  n_gap=45  min=100  med=100  p90=1200  max=57200
+  bid price= 10001  n_gap=45  min=100  med=200  p90=400  max=28300
+  ask price= 10019  n_gap=40  min=100  med=150  p90=700  max=70700
+
+------------------------------------------------------------------------
+timing | (side, offset_int)   same, for structural offsets (inner + wall)
+
+  bid offset_int=-11  n_gap=403  min=100  med=200  p90=500  max=1400
+  bid offset_int=-10  n_gap=389  min=100  med=200  p90=500  max=1800
+  bid offset_int= -8  n_gap=800  min=100  med=100  p90=200  max=500
+  ask offset_int= +8  n_gap=810  min=100  med=100  p90=200  max=600
+  ask offset_int=+10  n_gap=400  min=100  med=200  p90=500  max=1400
+  ask offset_int=+11  n_gap=404  min=100  med=200  p90=500  max=1700
+
+------------------------------------------------------------------------
+volume | (side, offset_int, crossing)   — split each placement bucket by FV side
+(If mean volume shifts here, a 'uniform' marginal at that offset was hiding two processes.)
+
+  bid offset_int= -11  n=404
+      bid_passive  n= 404  mean_vol=25.02  min..max=20..30
+  bid offset_int= -10  n=390
+      bid_passive  n= 390  mean_vol=25.14  min..max=20..30
+  bid offset_int=  -8  n=801
+      bid_passive  n= 801  mean_vol=12.51  min..max=10..15
+  ask offset_int=  +8  n=811
+      ask_passive  n= 811  mean_vol=12.49  min..max=10..15
+  ask offset_int= +10  n=401
+      ask_passive  n= 401  mean_vol=25.00  min..max=20..30
+  ask offset_int= +11  n=405
+      ask_passive  n= 405  mean_vol=25.19  min..max=20..30
+
+------------------------------------------------------------------------
+volume | (side, depth_slot)   L1 vs L2 vs L3 (same side, all offsets pooled)
+
+  bid L1: n=  968  mean_vol=14.24  median=13.0  range=2..30
+  bid L2: n=  644  mean_vol=24.61  median=25.0  range=10..30
+  bid L3: n=   19  mean_vol=26.63  median=28.0  range=20..30
+  ask L1: n=  958  mean_vol=13.97  median=13.0  range=2..30
+  ask L2: n=  675  mean_vol=24.34  median=25.0  range=10..30
+  ask L3: n=   33  mean_vol=25.39  median=26.0  range=20..30
+
+------------------------------------------------------------------------
+volume | (side, offset_int, depth_slot)   — inner/wall only (|offset| in 8,10,11)
+
+  bid off= -11 L1  n=  72  mean_vol=24.68  range=20..30
+  bid off= -11 L2  n= 320  mean_vol=25.02  range=20..30
+  bid off= -10 L1  n=  84  mean_vol=24.96  range=20..30
+  bid off= -10 L2  n= 299  mean_vol=25.17  range=20..30
+  bid off=  -8 L1  n= 776  mean_vol=12.50  range=10..15
+  bid off=  -8 L2  n=  25  mean_vol=12.60  range=10..15
+
+  ask off=  +8 L1  n= 771  mean_vol=12.50  range=10..15
+  ask off=  +8 L2  n=  40  mean_vol=12.32  range=10..15
+  ask off= +10 L1  n=  68  mean_vol=25.03  range=20..30
+  ask off= +10 L2  n= 322  mean_vol=24.98  range=20..30
+  ask off= +11 L1  n=  71  mean_vol=24.94  range=20..30
+  ask off= +11 L2  n= 312  mean_vol=25.23  range=20..30
+  ask off= +11 L3  n=  22  mean_vol=25.41  range=20..30
+
+------------------------------------------------------------------------
+PAIRWISE REMINDER
+  Any cell above with low n is *not* 'done' — pool another fair day or widen bins.
+  If volume|(side,off,cross) differs from volume|(side,off), model crossing as explicit state.
+
+========================================================================
+CANDIDATE BEHAVIORS (rename after you validate rules)
+Assign names only after a proposed rule hits high match rate on a second day.
+
+Heuristic from THIS pass only:
+  • Layers with ≥~95% timestep persistence at a fixed offset_rf → background makers.
+  • Offsets with moderate persistence + volume law differing by crossing → taker residue / inner.
+  • Rare offsets + short runs → opportunistic third process (cf. tomato 'near-FV').
+
+Top persistence (side, offset_int, frac):
+  ask  offset_int=  +8  persist= 81.1%  timesteps=811
+  bid  offset_int=  -8  persist= 80.1%  timesteps=801
+  ask  offset_int= +11  persist= 40.5%  timesteps=405
+  bid  offset_int= -11  persist= 40.4%  timesteps=404
+  ask  offset_int= +10  persist= 40.1%  timesteps=401
+  bid  offset_int= -10  persist= 39.0%  timesteps=390
+  ask  offset_int=  -2  persist=  1.7%  timesteps=17
+  bid  offset_int=  -3  persist=  1.5%  timesteps=15
+  ask  offset_int=  +2  persist=  1.4%  timesteps=14
+  ask  offset_int=  +1  persist=  1.0%  timesteps=10
+  bid  offset_int=  -2  persist=  0.9%  timesteps=9
+  bid  offset_int=  +2  persist=  0.5%  timesteps=5
+  ask  offset_int=  -3  persist=  0.5%  timesteps=5
+  bid  offset_int=  -9  persist=  0.3%  timesteps=3

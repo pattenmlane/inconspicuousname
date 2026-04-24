@@ -1,0 +1,31 @@
+Round 1 day 119 — each R1submissionlogs strategy on canonical Prosperity4Data
+==============================================================================
+
+Data: /Users/pattenlane/ProsperityRepo/Prosperity4Data
+Trade matching: worse
+Zips (5): 269048.zip, 269993.zip, 270726.zip, 273774.zip, 273862.zip
+
+submission       pepper_pnl     osmium_pnl      total_pnl
+---------------------------------------------------------
+269048            78,722.00       3,405.00      82,127.00
+269993            78,722.00       3,552.00      82,274.00
+270726            78,844.00       3,129.00      81,973.00
+273774            78,844.00       3,510.00      82,354.00
+273862            78,722.00       3,510.00      82,232.00
+---------------------------------------------------------
+
+Summary
+------------------------------------------------------------------------------
+  Mean pepper:        78,770.80
+  Mean osmium:         3,421.20
+  Mean total:         82,192.00
+  Best total:         82,354.00  (273774)
+  Worst total:        81,973.00  (270726)
+
+Per-product keys in final activity (for debugging non-pepper/osmium)
+------------------------------------------------------------------------------
+  269048: ['ASH_COATED_OSMIUM', 'INTARIAN_PEPPER_ROOT']
+  269993: ['ASH_COATED_OSMIUM', 'INTARIAN_PEPPER_ROOT']
+  270726: ['ASH_COATED_OSMIUM', 'INTARIAN_PEPPER_ROOT']
+  273774: ['ASH_COATED_OSMIUM', 'INTARIAN_PEPPER_ROOT']
+  273862: ['ASH_COATED_OSMIUM', 'INTARIAN_PEPPER_ROOT']

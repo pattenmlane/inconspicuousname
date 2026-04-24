@@ -1,0 +1,28 @@
+Pepper submission / experiment exports (sibling of submission_exports_p2_variants).
+
+Files
+-----
+pepper_long_80_buyonly_asap.py
+  Buy at best ask each tick until position +80; never sells. Same logic as
+  submissions/pepper_long_80_buyonly_asap.py.
+
+test_long80_pepper_osmium_273774style.py
+  Copy of submissions/test_long80_pepper_osmium_273774style.py — long-80 pepper
+  (aggressive) + 273774-style osmium. Use as-is for combined tests.
+
+r2_submission_pepper_only.py
+  Pepper leg only from round2work/r2_submission.py — drift FV 70/10 + slope
+  safeguard, MAF bid 6001, no osmium.
+
+r2_submission_pepper_only_target75.py
+  Same as r2_submission_pepper_only but PEPPER_TARGET_LONG=75 (75/5 vs 70/10).
+
+potential1_pepper_only.py
+  _pepper from round2work/litests/potential1.py (drift-sum fair + entry takes).
+
+potential2_pepper_only.py
+  BuyAndHold path only from round2work/litests/potential2.py (mid history / regime).
+
+potential3_pepper_only.py
+  Pepper leg only from round2work/litests/potential3.py — BuyAndHold path; ``bid()`` 0.
+  Regenerated from current potential3.py.

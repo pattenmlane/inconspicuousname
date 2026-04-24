@@ -35,6 +35,10 @@ class BackTester:
             if len(round.days) > 1:
                 SummaryPrinter.print_overall_summary(results)
 
+        if not results:
+            print("No days were backtested (check --data and round-day args).")
+            return
+
         merged_result = merger.merge(results)
 
         if self.options.output_file is not None:

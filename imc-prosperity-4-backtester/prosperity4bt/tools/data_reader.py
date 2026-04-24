@@ -120,9 +120,27 @@ class FileSystemReader(BackDataReader):
     def __init__(self, root: Path):
         self._root = root.resolve()
 
+    def _round_dir(self, round_num: int) -> Optional[Path]:
+        """Resolve ``round{n}`` case-insensitively (e.g. ``ROUND1``) and ``round_{n}`` (e.g. ``ROUND_2``)."""
+        want = f"round{round_num}".lower()
+        want_underscore = f"round_{round_num}".lower()
+        direct = self._root / f"round{round_num}"
+        if direct.is_dir():
+            return direct
+        try:
+            for child in self._root.iterdir():
+                if not child.is_dir():
+                    continue
+                cn = child.name.lower()
+                if cn == want or cn == want_underscore:
+                    return child
+        except OSError:
+            pass
+        return None
+
     def available_days(self, round_num: int) -> list[int]:
-        rdir = self._root / f"round{round_num}"
-        if not rdir.is_dir():
+        rdir = self._round_dir(round_num)
+        if rdir is None:
             return []
         days: list[int] = []
         pattern = re.compile(rf"^prices_round_{round_num}_day_(-?\d+)\.csv$")
@@ -135,7 +153,20 @@ class FileSystemReader(BackDataReader):
 
     @contextmanager
     def _read_file_content(self, path_parts: list[str]) -> ContextManager[Optional[Path]]:
-        path = self._root.joinpath(*path_parts)
+        # path_parts[0] is "round{n}" from read_from_file
+        if not path_parts:
+            yield None
+            return
+        m = re.match(r"^round(\d+)$", path_parts[0], flags=re.I)
+        if not m:
+            path = self._root.joinpath(*path_parts)
+            yield path if path.is_file() else None
+            return
+        rdir = self._round_dir(int(m.group(1)))
+        if rdir is None:
+            yield None
+            return
+        path = rdir / path_parts[-1]
         yield path if path.is_file() else None
 
 

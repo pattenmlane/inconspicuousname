@@ -1,0 +1,10 @@
+Hybrid tape: combined prices + single-zip trades
+========================================================================
+Prices: /Users/pattenlane/ProsperityRepo/round2work/day 29 logs/combined_all_including_extra/prices_combined_all_runs.csv
+Trades: 278346.zip → trades_round_2_day_29_278346.csv
+match_trades: worse
+
+strategy                         osmium_pnl
+--------------------------------------------
+273774 WM spike freeze             1,720.00
+269993 WM + touch                  1,720.00

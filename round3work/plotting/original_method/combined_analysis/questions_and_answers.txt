@@ -1,0 +1,130 @@
+================================================================================
+ROUND 3 TIPS (Orin) — QUESTIONS EXTRACTED FROM THE TEXT AND ANSWERS
+================================================================================
+Source text: round3work/round3tips.txt
+Data: Prosperity4Data/ROUND_3/prices_round_3_day_{0,1,2}.csv
+DTE: CSV `day` 0,1,2 → calendar DTE at session **open** 8,7,6 (round3description.txt).
+  Intraday: DTE **winds down** ~1 day over the session (Frankfurt-style); BS uses
+  T = dte_effective(day,timestamp)/365 (see original_method/combined_analysis/plot_iv_smile_round3.py).
+Analysis scripts in original_method/combined_analysis/: plot_iv_smile_round3.py, analyze_price_deviations.py
+Plots (in this folder): iv_smile_snapshots.png, iv_vs_logmoneyness_scatter.png, median_iv_by_strike.png,
+       iv_residuals_detrended.png, price_deviation_lag1_autocorr_bars.png,
+       price_deviation_timeseries_VEV_5000.png, price_deviation_timeseries_VEV_5100.png
+Tables: iv_smile_residual_summary.csv, iv_panel_sample.csv, price_deviation_lag1_autocorr.csv
+Per-voucher tree: ../pervoucher_analysis/<VEV_K>/{day0,day1,day2,combined}/ + FINDINGS.txt
+
+--------------------------------------------------------------------------------
+SECTION: Implied Volatility and Moneyness
+--------------------------------------------------------------------------------
+
+Q1 (implicit): What should you use beyond raw voucher prices to judge value?
+A1: Implied volatility from a pricing model (we used Black–Scholes European call, r=0,
+    T = winding DTE / 365 per timestamp, underlying = VELVETFRUIT_EXTRACT mid, option =
+    voucher mid). IV encodes
+    the market’s implied uncertainty (expectation and risk premium), not a guaranteed
+    future volatility.
+
+Q2: Once you have volatility figures, do they move consistently across strikes and time,
+    or does the picture become uneven?
+A2: Mostly a coherent SMILE (higher IV in deep ITM left wing and far OTM right wing,
+    lower near ATM around 5000–5500 given S~5.2–5.3k). Across the three historical
+    days, median IV by strike shifts somewhat (wings a bit higher on later days in our
+    sample). The picture is not perfectly smooth: quadratic detrend in log(K/S) leaves
+    systematic residuals for some strikes — see iv_residuals_detrended.png and
+    iv_smile_residual_summary.csv (e.g. VEV_4500 rich vs fit, VEV_4000 / VEV_5400 cheap).
+
+Q3: How does moneyness (strike vs underlying) relate to the volatility you calculated?
+A3: IV tends to rise as |log(K/S)| grows in this data: deep ITM (low K/S) and far OTM
+    (high K/S) carry more IV; the ATM neighborhood is flatter / lower. Plot IV vs
+    log(K/S) in iv_vs_logmoneyness_scatter.png and iv_smile_snapshots.png.
+
+Q4: If you plot IV against moneyness, what is the market implying?
+A4: A volatility smile / skewed surface: participants demand more “insurance” / lottery
+    convexity away from the money. Localized kinks (residuals off a simple parabola)
+    suggest RELATIVE cheap vs rich names vs that smooth benchmark — not by itself a
+    full trading rule.
+
+Q5 (quote): “Your job, before you do anything else, is to understand what structure the
+    market is currently implying. Everything else follows from that.” — What structure?
+A5: Cross-sectionally: smile-shaped IV in log-moneyness with ATM valley and wing peaks.
+    Intra-surface: persistent misalignment pockets (see residual table). Temporally:
+    deviations fluctuate (price_deviation timeseries plots); lag-1 autocorrelation of
+    (mid − theoretical price using iv_fit) is in price_deviation_lag1_autocorr.csv /
+    price_deviation_lag1_autocorr_bars.png — use that to judge short-horizon persistence
+    vs mean reversion for sizing/scalping hypotheses.
+
+--------------------------------------------------------------------------------
+SECTION: Positioning With IV and Moneyness
+--------------------------------------------------------------------------------
+
+Q6: Does the picture hold together, or do certain vouchers sit where they should not?
+A6: Globally it holds (one smile). Locally VEV_4000, VEV_4500, VEV_5400, VEV_6000 show
+    the largest systematic departures from a single quadratic in log(K/S) across days
+    in our subsampled IV panel — “odd ones out” for further price-space and execution
+    work.
+
+Q7: Are deviations over- or underestimating uncertainty vs neighbors?
+A7: Positive IV residual ~ higher IV than neighbors (e.g. VEV_4500, VEV_6000 in places).
+    Negative residual ~ lower IV than the fitted smile (e.g. VEV_4000, VEV_5400).
+    Interpret as RELATIVE richness/cheapness to the chosen smile model, not ground truth.
+
+Q8: Does deviation automatically mean opportunity?
+A8: No. It means misalignment vs the model curve. Whether to trade, and which side,
+    needs edge after spreads, limits, inventory, and how fast mispricing mean-reverts.
+
+Q9: Who decides buy, sell, or stay put?
+A9: The trader. Structure supplies diagnostics; it does not replace judgment.
+
+--------------------------------------------------------------------------------
+SECTION: Let’s Talk Volume
+--------------------------------------------------------------------------------
+
+Q10: After spotting mispricing, how much should you commit?
+A10: Scale with (i) magnitude of deviation, (ii) confidence in the read, (iii) how wrong
+     you can be without ruin. Position limits (300 per voucher in the spec) cap size.
+
+Q11: Should a larger deviation imply a larger position?
+A11: In principle a stronger signal can justify more risk budget; in practice coupling
+     should be sub-linear (model error, fat tails on wings, liquidity).
+
+Q12: What is the downside of larger volume?
+A12: Returns and losses both scale; wrong vol read + adverse path = larger drawdown.
+
+Q13: Can a well-reasoned volatility interpretation still be wrong?
+A13: Yes — surfaces can stay dislocated or move against you.
+
+Q14: “How confident are you in your reading? And how much damage can your strategy absorb?”
+A14: Answer with explicit risk limits, stress on underlying + options book, and worst-case
+     inventory paths — not with narrative conviction alone.
+
+Q15: “Conviction is not certainty.” What does that imply for sizing?
+A15: Size to survive being wrong; treat high conviction as still probabilistic.
+
+Q16: Should volume reflect conviction or hope?
+A16: Conviction backed by evidence (structure + execution + backtest), not hope.
+
+--------------------------------------------------------------------------------
+EMPIRICAL SNAPSHOT (this folder’s subsampled historical run)
+--------------------------------------------------------------------------------
+Price deviation = voucher mid minus Black–Scholes price using smile-fitted IV (iv_fit)
+from a quadratic in log(K/S) at each timestamp. Lag-1 autocorrelation of that series
+per (day, voucher) is in price_deviation_lag1_autocorr.csv.
+
+Observation: on this grid (every 20th timestep + endpoints), lag-1 autocorrelations
+are mostly POSITIVE for many strikes (not strongly negative mean-reversion). That
+does not kill scalping hypotheses (different horizons, full timestep grid, or raw
+mid changes may differ), but it DOES warn against assuming Frankfurt-style negative
+lag-1 in price deviations without re-checking on your exact bar frequency and fair-vol
+definition. Near-ATM names (e.g. VEV_5000) show moderate positive persistence in this
+sample (e.g. day 2 lag1 ~ +0.17 for VEV_5000).
+
+Use price_deviation_lag1_autocorr_bars.png and the CSV to compare strikes and days.
+
+================================================================================
+REGENERATE OUTPUTS
+================================================================================
+From repository root:
+  python3 round3work/plotting/original_method/combined_analysis/plot_iv_smile_round3.py
+  python3 round3work/plotting/original_method/combined_analysis/analyze_price_deviations.py
+
+================================================================================

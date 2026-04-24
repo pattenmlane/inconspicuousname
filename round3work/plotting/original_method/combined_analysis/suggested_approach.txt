@@ -1,0 +1,134 @@
+================================================================================
+SUGGESTED APPROACH FROM HERE (Round 3 — hints, Frankfurt, and our plots)
+================================================================================
+This file ties together: round3tips.txt (Orin), the Frankfurt Hedgehogs Prosperity 3
+IV-scalping story, and the analysis in combined_analysis/ (IV smile, residuals, price
+deviations, Frankfurt-style figs 6–8). It is guidance, not a guarantee of edge.
+
+--------------------------------------------------------------------------------
+1. What the hints are really asking you to do
+--------------------------------------------------------------------------------
+- Build a clear picture of IMPLIED STRUCTURE (IV vs moneyness / smile) before you
+  optimize entries. That is the spine of the tips and matches what we plotted.
+- Then ask whether the surface is CONSISTENT or has strikes that sit “wrong” vs
+  neighbors — that is relative value, not a buy signal by itself.
+- Finally size positions from CONVICTION and DAMAGE tolerance, not from how clever
+  the chart looks.
+
+So: diagnostics first (smile + residuals + price deviations), then execution and
+risk, not the reverse.
+
+--------------------------------------------------------------------------------
+2. Does a “Frankfurt-style” approach make sense here?
+--------------------------------------------------------------------------------
+Yes, as a WORKFLOW, for the voucher book:
+
+  (a) Each timestep (or each bar you trade on): observe underlying mid S, all VEV
+      mids, DTE calendar with **intraday winding** in BS (see plot_iv_smile_round3).
+  (b) Invert mids to IVs; fit a simple cross-sectional smile v̂(m) — they used a
+      parabola in moneyness; we used a quadratic in log(S/K) for the Frankfurt-style
+      plots and log(K/S) for some legacy plots. Either is a deliberate simplification.
+  (c) Define “mispricing” in PRICE space: C_market − BS(S,K,T, σ̂(m)) where σ̂ is the
+      smile-implied vol at that strike’s moneyness (Frankfurt Fig 6c path).
+  (d) Trade short-horizon reversion or richness/cheapness vs that benchmark, with
+      limits and spread awareness.
+
+That pipeline is aligned with both the wiki-style hints and the writeup. It is the
+right *class* of approach for options on a traded underlying in this competition.
+
+--------------------------------------------------------------------------------
+3. Would doing EXACTLY what Frankfurt did make sense?
+--------------------------------------------------------------------------------
+Mostly no, if “exactly” means the same implementation details, strikes, and narrative
+without re-validation.
+
+Reasons:
+- Different edition / products: five VR strikes around 10k vs ten VEV strikes from
+  4k–6.5k on VELVETFRUIT_EXTRACT; tick sizes, spreads, and bot microstructure will
+  not match Prosperity 3.
+- Their statistical edge story included **negative** lag-1 autocorrelation in some
+  price-mispricing series; our exploratory run on a **subsampled** grid often showed
+  **positive** persistence for several strikes (see questions_and_answers.txt and
+  price_deviation_lag1_autocorr.csv). That does not forbid scalping, but it means you
+  should NOT assume their mean-reversion story transfers without re-checking on the
+  same timestep cadence you will trade and on website logs.
+- They combined IV scalping with a **hybrid** (underlying mean reversion, gamma-style
+  ideas). Blindly dropping the hybrid or copying their hybrid weights would be wrong
+  until you see whether YOUR underlying series supports it (use frankfurt_fig08-style
+  diagnostics on live/historical extract mids).
+
+What *does* transfer: the **order of operations** (smile → detrend → price deviation
+→ signal → size) and the insistence on **price-space** thresholds.
+
+--------------------------------------------------------------------------------
+4. How to ADAPT Frankfurt for our products (recommended)
+--------------------------------------------------------------------------------
+A. Underlying + delta-1 books (HYDROGEL_PACK, VELVETFRUIT_EXTRACT)
+   - Treat these separately from vouchers: wall-mid / take-passive style (as in your
+     Kelp-style work) is still the natural baseline unless logs show a different edge.
+   - Keep a clean fair for extract when you can infer it (e.g. hold-1 PnL probe); a bad
+     S breaks every voucher IV.
+
+B. Vouchers (VEV_*)
+   - Use a **Frankfurt-style panel each timestep**: IVs, per-timestamp quadratic smile
+     in log(S/K) (or log(K/S) consistently everywhere — pick one convention and stick to
+     it in code and plots).
+   - Monitor **Fig 6b / 6c analogs** (frankfurt_fig06b_*.png, frankfurt_fig06c_*.png)
+     for which strikes oscillate around fair vs which stay biased.
+   - Prefer **near-ATM** names for primary scalping bandwidth (they are where mids are
+     less lottery-like); use wings for smaller size unless mispricing is large in
+     **price** terms after spread.
+   - Re-estimate **lag structure on PRICE deviations** on full timestamps and on the
+     same clock as the live trader before locking a rule.
+   - Optional **vertical / wing spreads** when residuals say “4500 rich vs 4000 cheap”
+     etc., so you are not naked short vol in one illiquid wing without a hedge leg.
+
+C. Smile model robustness
+   - A single parabola is a teaching device; if residuals are systematic by strike
+     cluster, consider a slightly richer curve (piecewise, spline) or a fixed skew
+     parameter — but avoid overfitting small samples. Let **out-of-round** stability
+     guide complexity.
+
+D. Sizing (Orin’s volume section)
+   - Map signal strength to **notional and per-voucher cap (300)** with explicit worst
+     cases when underlying gaps against you on delta accumulated across strikes.
+
+--------------------------------------------------------------------------------
+5. Slightly altered vs completely different
+--------------------------------------------------------------------------------
+**Slightly altered (recommended default):** Frankfurt pipeline + our strike grid +
+    price-space thresholds + your existing wall-mid discipline on extract/hydrogel +
+    re-checked autocorrelation / half-life on mispricing series.
+
+**Completely different** would only be justified if, after website backtests, the smile
+    residual signal has no stable edge at realistic spreads — then vouchers become a
+    smaller sleeve and you lean on delta-1 and any bot-structure alpha you already
+    trust. Do not decide that without logs; the smile structure we see is too coherent
+    to ignore without testing.
+
+--------------------------------------------------------------------------------
+6. Concrete “from here” checklist
+--------------------------------------------------------------------------------
+1) Lock conventions: one moneyness definition, DTE open + intraday winding rule, r=0
+   says otherwise.
+2) Re-run deviation autocorrelation on **full** timesteps for strikes you might actually
+   quote (at least ATM ±1 notch).
+3) Translate signals to **bid/ask aware** rules: e.g. only act if mispricing exceeds
+   half-spread + buffer in **price**.
+4) Paper / website mini-backtest a minimal scalper: enter against large positive
+   price_dev, exit on cross of fair or time stop — tune one strike first (e.g. VEV_5000
+   or whichever sits in the flattest part of the smile).
+5) Keep frankfurt_style_plots.py as a regression suite when you change fair vol or
+   smile definition — visually compare to prior runs.
+6) Re-read iv_smile_residual_summary.csv after any major code change to see if “odd
+   strikes” persist or were an artifact of subsampling.
+
+--------------------------------------------------------------------------------
+7. One-line summary
+--------------------------------------------------------------------------------
+Follow the hints: **understand the implied smile first**, then trade **price**
+deviations from a simple smile with **Frankfurt-shaped** monitoring — but **adapt**
+strikes, thresholds, and sizing to Prosperity 4 data; **do not** copy Frankfurt’s
+details or assume their autocorrelation sign without re-measuring on your cadence.
+
+================================================================================

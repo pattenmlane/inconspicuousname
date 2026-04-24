@@ -1,0 +1,132 @@
+====================  /Users/pattenlane/ProsperityRepo/hiddenalphastuff/r2_osmium_fair_278076  ====================
+
+========================================================================
+OSMIUM QUOTE RULE SEARCH (brute force on true FV)
+data_dir=/Users/pattenlane/ProsperityRepo/hiddenalphastuff/r2_osmium_fair_278076
+timesteps=1000
+
+========================================================================
+HYPOTHESIS A — part 1: INNER cluster (bid @ offset_int -8, ask @ +8)
+
+Ticks with inner_bid present: 801/1000
+Ticks with inner_ask present: 811/1000
+
+INNER BID brute (same grid as tomato-style analyze_bot1)
+  Best: floor: floor(FV + -1.5) + -6  →  801/801  (100.0% of ticks with inner bid)
+
+INNER ASK brute
+  Best: floor: floor(FV + -1.5) + 10  →  811/811  (100.0% of ticks with inner ask)
+
+  Fixed tomato-style inner: bid=round(FV)-8  → 801/801 (100.0%)
+                              ask=round(FV)+8  → 811/811 (100.0%)
+  BOTH exact same tick: 641/641 (100.0% of ticks with both inner legs)
+
+  Bot2-style asymmetric inner (floor/ceil + shift grid ±1.0 step 0.25; coarser than full ladder search):
+    Best sum(bid_match+ask_match)=1612: bid=floor(FV+-0.5)+-7  ask=ceil(FV+-0.5)+8  (100.0% bid, 100.0% ask)
+
+  TWO-BOT same anchor round(FV): all 3 bid rungs (-8,-10,-11) match when all present: 0/0 (0.0%)
+                                 all 3 ask rungs (+8,+10,+11) match when all present: 0/0 (0.0%)
+  (Denominator 0: no tick has inner_bid AND bid_m10 AND bid_m11 simultaneously — book rarely shows all three.)
+  (Denominator 0: no tick has inner_ask AND ask_p10 AND ask_p11 simultaneously.)
+  Bid depth histogram (#price levels): {0: 32, 1: 324, 2: 625, 3: 19}
+  Ask depth histogram: {0: 42, 1: 283, 2: 642, 3: 33}
+  Ticks where bid offset set contains {-8,-10,-11}: 0/1000; asks contain {+8,+10,+11}: 0/1000
+  Among ticks with ≥3 bids: top-3 prices vs round(FV)+{-8,-10,-11} (sorted): 0/19 (0.0%)
+
+========================================================================
+HYPOTHESIS A — part 2: WALL rungs (tagged offset -10, -11 bids / +10, +11 asks)
+
+  bid -10   n_valid= 390  BEST floor: floor(FV + -2.0) + -8  → 390/390 (100.0%)
+  bid -11   n_valid= 404  BEST floor: floor(FV + -1.5) + -9  → 404/404 (100.0%)
+  ask +10   n_valid= 401  BEST floor: floor(FV + -2.0) + 13  → 401/401 (100.0%)
+  ask +11   n_valid= 405  BEST floor: floor(FV + -1.75) + 13  → 405/405 (100.0%)
+
+  Fixed ladder-style from round(FV):
+    bid -10: round(FV)+k  → 390/390 (100.0%)
+    bid -11: round(FV)+k  → 404/404 (100.0%)
+    ask +10: round(FV)+k  → 401/401 (100.0%)
+    ask +11: round(FV)+k  → 405/405 (100.0%)
+
+========================================================================
+HYPOTHESIS B: ONE MM — three bid + three ask prices from same rnd(FV+shift)+offset ladder
+Template: bids = sort_desc(R+ob1, R+ob2, R+ob3) with {ob}= {-8,-10,-11}, asks sort_asc(R+oa1,...) with {+8,+10,+11}
+
+  Best over rnd × shift: floor(FV + -2.0)  bid_offs=(-8, -10, -11) ask_offs=(8, 10, 11)  bid_3tuple=0/19 (0.0%)  ask_3tuple=0/33 (0.0%)  joint_score=0
+
+  Anchor shift=0 only:
+    round(FV)+k: bid 0/19 (0.0%)  ask 0/33 (0.0%)
+    floor(FV)+k: bid 0/19 (0.0%)  ask 0/33 (0.0%)
+
+========================================================================
+INTERPRETATION
+  • Inner (offset ±8) and wall (±10/±11) each match round(FV)±k on every tick where that tagged level exists.
+  • Brute 'best floor(FV+shift)+k' hits 100% too — non-unique; prefer round(FV)±k unless boundary misses appear.
+  • This slice often has 0–2 book levels; full {{-8,-10,-11}} bid set never co-occurs → cannot distinguish
+    'one 3-layer MM' vs 'separate bots' from simultaneous top-of-book alone; use longer logs or level timing.
+
+
+====================  /Users/pattenlane/ProsperityRepo/hiddenalphastuff/r2_osmium_fair_248329  ====================
+
+========================================================================
+OSMIUM QUOTE RULE SEARCH (brute force on true FV)
+data_dir=/Users/pattenlane/ProsperityRepo/hiddenalphastuff/r2_osmium_fair_248329
+timesteps=1000
+
+========================================================================
+HYPOTHESIS A — part 1: INNER cluster (bid @ offset_int -8, ask @ +8)
+
+Ticks with inner_bid present: 758/1000
+Ticks with inner_ask present: 806/1000
+
+INNER BID brute (same grid as tomato-style analyze_bot1)
+  Best: floor: floor(FV + -1.5) + -6  →  758/758  (100.0% of ticks with inner bid)
+
+INNER ASK brute
+  Best: floor: floor(FV + -1.5) + 10  →  806/806  (100.0% of ticks with inner ask)
+
+  Fixed tomato-style inner: bid=round(FV)-8  → 758/758 (100.0%)
+                              ask=round(FV)+8  → 806/806 (100.0%)
+  BOTH exact same tick: 618/618 (100.0% of ticks with both inner legs)
+
+  Bot2-style asymmetric inner (floor/ceil + shift grid ±1.0 step 0.25; coarser than full ladder search):
+    Best sum(bid_match+ask_match)=1564: bid=floor(FV+-0.5)+-7  ask=ceil(FV+-0.5)+8  (100.0% bid, 100.0% ask)
+
+  TWO-BOT same anchor round(FV): all 3 bid rungs (-8,-10,-11) match when all present: 0/0 (0.0%)
+                                 all 3 ask rungs (+8,+10,+11) match when all present: 0/0 (0.0%)
+  (Denominator 0: no tick has inner_bid AND bid_m10 AND bid_m11 simultaneously — book rarely shows all three.)
+  (Denominator 0: no tick has inner_ask AND ask_p10 AND ask_p11 simultaneously.)
+  Bid depth histogram (#price levels): {0: 49, 1: 335, 2: 591, 3: 25}
+  Ask depth histogram: {0: 39, 1: 318, 2: 624, 3: 19}
+  Ticks where bid offset set contains {-8,-10,-11}: 0/1000; asks contain {+8,+10,+11}: 0/1000
+  Among ticks with ≥3 bids: top-3 prices vs round(FV)+{-8,-10,-11} (sorted): 0/25 (0.0%)
+
+========================================================================
+HYPOTHESIS A — part 2: WALL rungs (tagged offset -10, -11 bids / +10, +11 asks)
+
+  bid -10   n_valid= 425  BEST floor: floor(FV + -1.75) + -8  → 425/425 (100.0%)
+  bid -11   n_valid= 368  BEST floor: floor(FV + -2.0) + -8  → 368/368 (100.0%)
+  ask +10   n_valid= 382  BEST floor: floor(FV + -1.5) + 12  → 382/382 (100.0%)
+  ask +11   n_valid= 396  BEST floor: floor(FV + -2.0) + 13  → 396/396 (100.0%)
+
+  Fixed ladder-style from round(FV):
+    bid -10: round(FV)+k  → 425/425 (100.0%)
+    bid -11: round(FV)+k  → 368/368 (100.0%)
+    ask +10: round(FV)+k  → 382/382 (100.0%)
+    ask +11: round(FV)+k  → 396/396 (100.0%)
+
+========================================================================
+HYPOTHESIS B: ONE MM — three bid + three ask prices from same rnd(FV+shift)+offset ladder
+Template: bids = sort_desc(R+ob1, R+ob2, R+ob3) with {ob}= {-8,-10,-11}, asks sort_asc(R+oa1,...) with {+8,+10,+11}
+
+  Best over rnd × shift: floor(FV + -2.0)  bid_offs=(-8, -10, -11) ask_offs=(8, 10, 11)  bid_3tuple=0/25 (0.0%)  ask_3tuple=0/19 (0.0%)  joint_score=0
+
+  Anchor shift=0 only:
+    round(FV)+k: bid 0/25 (0.0%)  ask 0/19 (0.0%)
+    floor(FV)+k: bid 0/25 (0.0%)  ask 0/19 (0.0%)
+
+========================================================================
+INTERPRETATION
+  • Inner (offset ±8) and wall (±10/±11) each match round(FV)±k on every tick where that tagged level exists.
+  • Brute 'best floor(FV+shift)+k' hits 100% too — non-unique; prefer round(FV)±k unless boundary misses appear.
+  • This slice often has 0–2 book levels; full {{-8,-10,-11}} bid set never co-occurs → cannot distinguish
+    'one 3-layer MM' vs 'separate bots' from simultaneous top-of-book alone; use longer logs or level timing.

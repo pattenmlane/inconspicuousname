@@ -1,0 +1,31 @@
+zips (18):
+  278346.zip
+  278388.zip
+  278483.zip
+  278621.zip
+  278671.zip
+  278731.zip
+  278826.zip
+  278895.zip
+  279070.zip
+  279156.zip
+  279510.zip
+  279610.zip
+  279880.zip
+  280847.zip
+  281064.zip
+  331738.zip
+  331831.zip
+  331896.zip
+
+price rows (keys): 2000
+book cells total (rows x 13 cols): 26000
+non-empty book cells first zip (278346): 15010 (57.7%)
+non-empty book cells merged: 18320 (70.5%)
+book cells empty in ALL runs (unrecoverable): 7680
+book cells filled vs first zip only: 3310
+book cells multimodal tie (earliest-run tie-break): 10
+unique trades after union+dedupe: 196
+
+wrote /Users/pattenlane/ProsperityRepo/round2work/day 29 logs/combined_all_including_extra/prices_combined_all_runs.csv
+wrote /Users/pattenlane/ProsperityRepo/round2work/day 29 logs/combined_all_including_extra/trades_combined_all_runs.csv

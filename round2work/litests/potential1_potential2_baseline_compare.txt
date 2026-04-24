@@ -1,0 +1,47 @@
+potential1 vs potential2 vs baseline (r2_submission JSON)
+====================================================================================================
+baseline file: /Users/pattenlane/ProsperityRepo/round2work/litests/baseline_r2_submission_pnls.json
+match (baseline meta): worse
+data_root: /Users/pattenlane/ProsperityRepo/Prosperity4Data
+combined_dir: /Users/pattenlane/ProsperityRepo/round2work/day 29 logs/combined_all_including_extra
+tapes: 27
+
+ALL TAPES (27 rows)
+-----------------------------------------------------------
+                               pepper         osmium          total
+baseline (r2 JSON)         730,486.00     156,247.50     886,733.50
+potential1                 703,302.00     159,923.50     863,225.50
+potential2                 723,890.00     160,609.50     884,499.50
+Δ potential1 − baseline     -27,184.00       3,676.00     -23,508.00
+Δ potential2 − baseline      -6,596.00       4,362.00      -2,234.00
+Δ potential2 − potential1      20,588.00         686.00      21,274.00
+
+R1 DAY 19 ONLY
+------------------------------------------------------
+                               pepper         osmium          total
+baseline (r2 JSON)           7,438.50       2,951.00      10,389.50
+potential1                   7,411.00       2,809.00      10,220.00
+potential2                   7,355.00       3,089.00      10,444.00
+Δ potential1 − baseline         -27.50        -142.00        -169.50
+Δ potential2 − baseline         -83.50         138.00          54.50
+Δ potential2 − potential1         -56.00         280.00         224.00
+
+R1 DAY 119 ONLY
+-------------------------------------------------------
+                               pepper         osmium          total
+baseline (r2 JSON)          78,844.00       3,510.00      82,354.00
+potential1                  79,362.00       4,674.00      84,036.00
+potential2                  78,719.00       3,656.00      82,375.00
+Δ potential1 − baseline         518.00       1,164.00       1,682.00
+Δ potential2 − baseline        -125.00         146.00          21.00
+Δ potential2 − potential1        -643.00      -1,018.00      -1,661.00
+
+INDIVIDUAL DAY-29 ZIPS ONLY (sum of 18 zips)
+------------------------------------------------------------------------------------
+                               pepper         osmium          total
+baseline (r2 JSON)         138,323.00      30,605.50     168,928.50
+potential1                 132,685.00      31,068.50     163,753.50
+potential2                 136,117.00      31,864.50     167,981.50
+Δ potential1 − baseline      -5,638.00         463.00      -5,175.00
+Δ potential2 − baseline      -2,206.00       1,259.00        -947.00
+Δ potential2 − potential1       3,432.00         796.00       4,228.00

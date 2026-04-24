@@ -1,0 +1,38 @@
+Pepper slope_crash tick counts (same logic as r2_submission.run)
+PEPPER_SLOPE_WINDOW=50 PEPPER_SLOPE_SAFEGUARD=-0.00015
+
+Historical (Prosperity4Data)
+--------------------------------------------------
+  R1 day    -2: 0 ticks
+  R1 day    -1: 0 ticks
+  R1 day     0: 0 ticks
+  R1 day    19: 0 ticks
+  R1 day   119: 0 ticks
+  R2 day    -1: 0 ticks
+  R2 day     0: 0 ticks
+  R2 day     1: 0 ticks
+  SUM R1+R2: 0
+
+Round 2 day 29 tapes
+--------------------------------------------------
+  day 29 logs/278346.zip: 0 ticks
+  day 29 logs/278388.zip: 0 ticks
+  day 29 logs/278483.zip: 0 ticks
+  day 29 logs/278621.zip: 0 ticks
+  day 29 logs/278671.zip: 0 ticks
+  day 29 logs/278731.zip: 0 ticks
+  day 29 logs/278826.zip: 0 ticks
+  day 29 logs/278895.zip: 0 ticks
+  day 29 logs/279070.zip: 0 ticks
+  day 29 logs/279156.zip: 0 ticks
+  day 29 logs/279510.zip: 0 ticks
+  day 29 logs/279610.zip: 0 ticks
+  day 29 logs/279880.zip: 0 ticks
+  day 29 logs/280847.zip: 0 ticks
+  day 29 logs/281064.zip: 0 ticks
+  extra/331738.zip: 0 ticks
+  extra/331831.zip: 0 ticks
+  extra/331896.zip: 0 ticks
+  combined/ALL: 0 ticks
+  SUM day29 (+combined unless --no-combined): 0
+

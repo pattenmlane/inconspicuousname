@@ -1,0 +1,225 @@
+{
+  "version": 1,
+  "match": "worse",
+  "r2_submission": "/Users/pattenlane/ProsperityRepo/round2work/r2_submission.py",
+  "data_root": "/Users/pattenlane/ProsperityRepo/Prosperity4Data",
+  "combined_dir": "/Users/pattenlane/ProsperityRepo/round2work/day 29 logs/combined_all_including_extra",
+  "rows": [
+    {
+      "kind": "historical",
+      "round": 1,
+      "day": -2,
+      "pepper": 83008.0,
+      "osmium": 17702.0,
+      "total": 100710.0
+    },
+    {
+      "kind": "historical",
+      "round": 1,
+      "day": -1,
+      "pepper": 82400.0,
+      "osmium": 19066.0,
+      "total": 101466.0
+    },
+    {
+      "kind": "historical",
+      "round": 1,
+      "day": 0,
+      "pepper": 83027.0,
+      "osmium": 18232.0,
+      "total": 101259.0
+    },
+    {
+      "kind": "historical",
+      "round": 1,
+      "day": 19,
+      "pepper": 7438.5,
+      "osmium": 2951.0,
+      "total": 10389.5
+    },
+    {
+      "kind": "historical",
+      "round": 1,
+      "day": 119,
+      "pepper": 78844.0,
+      "osmium": 3510.0,
+      "total": 82354.0
+    },
+    {
+      "kind": "historical",
+      "round": 2,
+      "day": -1,
+      "pepper": 82417.5,
+      "osmium": 19571.0,
+      "total": 101988.5
+    },
+    {
+      "kind": "historical",
+      "round": 2,
+      "day": 0,
+      "pepper": 83092.0,
+      "osmium": 20773.0,
+      "total": 103865.0
+    },
+    {
+      "kind": "historical",
+      "round": 2,
+      "day": 1,
+      "pepper": 83912.0,
+      "osmium": 19695.0,
+      "total": 103607.0
+    },
+    {
+      "kind": "day29",
+      "bucket": "day 29 logs",
+      "stem": "278346",
+      "pepper": 7633.0,
+      "osmium": 1828.0,
+      "total": 9461.0
+    },
+    {
+      "kind": "day29",
+      "bucket": "day 29 logs",
+      "stem": "278388",
+      "pepper": 7667.5,
+      "osmium": 1672.0,
+      "total": 9339.5
+    },
+    {
+      "kind": "day29",
+      "bucket": "day 29 logs",
+      "stem": "278483",
+      "pepper": 7919.0,
+      "osmium": 1522.5,
+      "total": 9441.5
+    },
+    {
+      "kind": "day29",
+      "bucket": "day 29 logs",
+      "stem": "278621",
+      "pepper": 7733.0,
+      "osmium": 1705.0,
+      "total": 9438.0
+    },
+    {
+      "kind": "day29",
+      "bucket": "day 29 logs",
+      "stem": "278671",
+      "pepper": 7714.0,
+      "osmium": 1796.0,
+      "total": 9510.0
+    },
+    {
+      "kind": "day29",
+      "bucket": "day 29 logs",
+      "stem": "278731",
+      "pepper": 7537.0,
+      "osmium": 1717.0,
+      "total": 9254.0
+    },
+    {
+      "kind": "day29",
+      "bucket": "day 29 logs",
+      "stem": "278826",
+      "pepper": 7739.5,
+      "osmium": 1685.0,
+      "total": 9424.5
+    },
+    {
+      "kind": "day29",
+      "bucket": "day 29 logs",
+      "stem": "278895",
+      "pepper": 7685.0,
+      "osmium": 1625.0,
+      "total": 9310.0
+    },
+    {
+      "kind": "day29",
+      "bucket": "day 29 logs",
+      "stem": "279070",
+      "pepper": 7483.0,
+      "osmium": 1487.0,
+      "total": 8970.0
+    },
+    {
+      "kind": "day29",
+      "bucket": "day 29 logs",
+      "stem": "279156",
+      "pepper": 7760.0,
+      "osmium": 1691.0,
+      "total": 9451.0
+    },
+    {
+      "kind": "day29",
+      "bucket": "day 29 logs",
+      "stem": "279510",
+      "pepper": 7729.0,
+      "osmium": 1638.0,
+      "total": 9367.0
+    },
+    {
+      "kind": "day29",
+      "bucket": "day 29 logs",
+      "stem": "279610",
+      "pepper": 7534.0,
+      "osmium": 1718.0,
+      "total": 9252.0
+    },
+    {
+      "kind": "day29",
+      "bucket": "day 29 logs",
+      "stem": "279880",
+      "pepper": 7591.0,
+      "osmium": 1790.0,
+      "total": 9381.0
+    },
+    {
+      "kind": "day29",
+      "bucket": "day 29 logs",
+      "stem": "280847",
+      "pepper": 7836.0,
+      "osmium": 1908.0,
+      "total": 9744.0
+    },
+    {
+      "kind": "day29",
+      "bucket": "day 29 logs",
+      "stem": "281064",
+      "pepper": 7780.0,
+      "osmium": 1734.0,
+      "total": 9514.0
+    },
+    {
+      "kind": "day29",
+      "bucket": "extra",
+      "stem": "331738",
+      "pepper": 7681.0,
+      "osmium": 1678.0,
+      "total": 9359.0
+    },
+    {
+      "kind": "day29",
+      "bucket": "extra",
+      "stem": "331831",
+      "pepper": 7729.0,
+      "osmium": 1683.0,
+      "total": 9412.0
+    },
+    {
+      "kind": "day29",
+      "bucket": "extra",
+      "stem": "331896",
+      "pepper": 7572.0,
+      "osmium": 1728.0,
+      "total": 9300.0
+    },
+    {
+      "kind": "day29",
+      "bucket": "combined",
+      "stem": "ALL",
+      "pepper": 8024.0,
+      "osmium": 4142.0,
+      "total": 12166.0
+    }
+  ]
+}

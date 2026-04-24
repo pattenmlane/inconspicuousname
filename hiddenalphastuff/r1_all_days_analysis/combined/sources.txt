@@ -1,0 +1,17 @@
+PRICE SOURCES (in order):
+/Users/pattenlane/ProsperityRepo/Prosperity4Data/ROUND1/prices_round_1_day_-2.csv
+/Users/pattenlane/ProsperityRepo/Prosperity4Data/ROUND1/prices_round_1_day_-1.csv
+/Users/pattenlane/ProsperityRepo/Prosperity4Data/ROUND1/prices_round_1_day_0.csv
+/Users/pattenlane/ProsperityRepo/Prosperity4Data/ROUND1/prices_round_1_day_19.csv
+/Users/pattenlane/ProsperityRepo/Prosperity4Data/ROUND1/prices_round_1_day_119.csv
+
+Total price data rows written: 82000
+
+TRADE SOURCES:
+/Users/pattenlane/ProsperityRepo/Prosperity4Data/ROUND1/trades_round_1_day_-2.csv
+/Users/pattenlane/ProsperityRepo/Prosperity4Data/ROUND1/trades_round_1_day_-1.csv
+/Users/pattenlane/ProsperityRepo/Prosperity4Data/ROUND1/trades_round_1_day_0.csv
+/Users/pattenlane/ProsperityRepo/Prosperity4Data/ROUND1/trades_round_1_day_19.csv
+/Users/pattenlane/ProsperityRepo/Prosperity4Data/ROUND1/trades_round_1_day_119.csv
+
+Total trade rows written: 2531

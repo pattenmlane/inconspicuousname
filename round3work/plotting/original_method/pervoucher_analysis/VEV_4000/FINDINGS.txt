@@ -1,0 +1,39 @@
+==============================================================================
+PER-VOUCHER FINDINGS — VEV_4000 (K=4000)
+Round 3 historical days 0–1–2, original pipeline (combined_analysis).
+==============================================================================
+
+OVERALL DIRECTION (aligned with suggested_approach.txt + questions_and_answers.txt)
+------------------------------------------------------------------------------
+We treat the quadratic smile in log(S/K) as a deliberate cross-sectional benchmark,
+not truth. Edge lives in price space after spreads: mid − BS(S,K,T, σ̂_surface).
+Diagnostics below tell you whether THIS strike behaves like a clean relative-value
+name (good IV-scalping candidate) or a sticky/persistent one (caution for naive
+mean-reversion), and whether quoted spread eats the typical deviation.
+
+KEY METRICS BY DAY
+------------------------------------------------------------------------------
+  day 0: lag1(price_dev)=0.0261, lag1(iv_res)=0.1578, mean|price_dev|=0.931, mean|iv_res|=0.0117, mean(iv_res)=-0.0117 (pos=rich vs smile), median_spread=21.000, median log(K/S)=-0.2709
+  day 1: lag1(price_dev)=0.0465, lag1(iv_res)=0.2787, mean|price_dev|=0.797, mean|iv_res|=0.0144, mean(iv_res)=-0.0142 (pos=rich vs smile), median_spread=21.000, median log(K/S)=-0.2716
+  day 2: lag1(price_dev)=0.0520, lag1(iv_res)=0.2678, mean|price_dev|=0.792, mean|iv_res|=0.0208, mean(iv_res)=-0.0204 (pos=rich vs smile), median_spread=21.000, median log(K/S)=-0.2734
+
+COMBINED (all days, pooled stats)
+------------------------------------------------------------------------------
+  lag1(price_dev)=0.0510, lag1(iv_res)=0.3219, mean|price_dev|=0.840, mean|iv_res|=0.0157
+
+FRANKFURT-STYLE STRATEGY FIT
+------------------------------------------------------------------------------
+IV scalping / relative-value (Frankfurt path): Lag-1 autocorr of price deviation is not strongly positive on average — less evidence of one-directional stickiness; short-horizon IV / relative-value scalping is more plausible than if ACF were large positive. Mean IV residual negative → often CHEAP vs the smile; buy-vol / lift cheapness stories are the natural first read (still not automatic edge). Median quoted spread is a large fraction of typical |price_dev| — microstructure may dominate; IV scalping needs passive or patient execution.
+
+Gamma / hybrid scaling: Prosperity writeups often pair options with underlying structure. This strike's log(K/S) path (see log_K_over_S_vs_time.png) shows how often you are near-the-money (gamma-sensitive) vs deep wing (directional/lottery). Use ../_common/underlying_fig08_day*.png for extract return persistence; hybrid ideas make more sense when ATM-ish AND underlying diagnostics show structure you trust.
+
+OTHER / BETTER-FIT STRATEGIES
+------------------------------------------------------------------------------
+- If spreads are tight vs |price_dev| and ACF is benign: prioritize relative-value scalping vs smile with tight risk.
+- If persistence dominates: consider slower reversion plays, inventory-biased quoting, or avoiding this name for HF straddle/scalp.
+- Deep wings with wide spreads: often better as occasional size when mispricing in PRICE is huge, not as baseline HF gamma farm.
+
+CROSS-REFERENCE
+------------------------------------------------------------------------------
+Cross-strike smile + near-money cloud: ../combined_analysis/ (iv_*.png, frankfurt_fig06a*.png).
+Fig 8 underlying ACF: ../_common/underlying_fig08_day*.png

@@ -1,0 +1,21 @@
+# Seven osmium-only submission variants (potential2 style)
+
+Upload each .py as your Trader module for live / competition runs.
+
+Columns: filename | variant | take edge | PRIOR_STRENGTH | eplison (epsilon)
+
+submission_p2os_baseline.py           p2os baseline        1.5   2000   0.65
+submission_p2osedge_baseline.py     p2osedge baseline    1.0   2000   0.65
+submission_p2os_p2000_eps035.py     p2os                 1.5   2000   0.35
+submission_p2osedge_p2000_eps035.py p2osedge             1.0   2000   0.35
+submission_p2os_p500_eps035.py      p2os                 1.5    500   0.35
+submission_p2osedge_p500_eps035.py  p2osedge             1.0    500   0.35
+submission_p2osedge_p1000_eps050.py p2osedge only        1.0   1000   0.50
+
+potential3_osmium_only.py
+  Osmium leg only from round2work/litests/potential3.py — MeanReversionMarketMaker
+  (window mean + prior blend); ``bid()`` 0. Regenerated from current potential3.py.
+
+Backtest context: same seven configs as Prosperity4Data R1+R2 and R1 days 19/119 sweeps in repo chat.
+
+Regenerate from litests sources by editing MeanReversionMarketMaker.get_orders in potential2_osmium_only.py.

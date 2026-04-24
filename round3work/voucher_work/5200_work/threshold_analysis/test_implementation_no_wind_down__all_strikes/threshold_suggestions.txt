@@ -1,0 +1,31 @@
+VEV_5200 — test_implementation_no_wind_down__all_strikes
+n_switch=603 n_diff=603
+{
+  "branch": "test_implementation_no_wind_down",
+  "subset": "all_strikes",
+  "parabola_rmse": 0.08541001627140683,
+  "parabola_n": 15030,
+  "iv_engine": "implied_volatility_nb_bisection",
+  "data": "historical ROUND_3 days 0-2",
+  "t_source": "nb_method_core.expiration_time_years"
+}
+
+switch_mean quantiles (IV_SCALPING_THR is compared to this):
+  p50: 0.466984
+  p70: 0.516176
+  p80: 0.554011
+  p90: 0.721260
+  p95: 0.804986
+
+Suggested IV_SCALPING_THR (align gate with data):
+  conservative ~ p80: 0.5540
+  moderate ~ p70: 0.5162
+  loose ~ p50: 0.4670
+
+|current_theo_diff| quantiles (wall_mid - BS(smile)):
+
+  p50: 5.911632
+  p90: 6.875709
+  p95: 7.132786
+
+Reference: polished defaults IV_SCALPING_THR=0.7, THR_OPEN=0.5, THR_CLOSE=0.

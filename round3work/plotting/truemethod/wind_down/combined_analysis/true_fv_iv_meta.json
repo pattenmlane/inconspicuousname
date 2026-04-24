@@ -1,0 +1,13 @@
+{
+  "mode": "wind_down",
+  "dte_open_probe": 5,
+  "day_index": 39,
+  "n_timestamps": 1000,
+  "global_m_t_poly_coeffs_high_to_low": [
+    0.03639383407721075,
+    -0.015497051038803682,
+    0.25791798516664755
+  ],
+  "global_m_t_fit_rmse": 0.019226421104418426,
+  "global_m_t_fit_n": 7848
+}

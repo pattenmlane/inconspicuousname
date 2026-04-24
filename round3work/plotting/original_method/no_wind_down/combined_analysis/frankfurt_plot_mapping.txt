@@ -1,0 +1,119 @@
+================================================================================
+FRANKFURT WRITEUP FIGURES ↔ OUR PLOTS (round3work/plotting/)
+================================================================================
+
+Figure 6a — per-day + combined (historical days 0–2):
+  FOLDER:       round3work/plotting/figure_6a/
+    fig06a_day0_DTE8.png
+    fig06a_day1_DTE7.png
+    fig06a_day2_DTE6.png
+    fig06a_combined_days_0_1_2.png  (concatenated pooled clouds; DTE open 8/7/6 by day,
+                                     each day winds intraday in IV/BS)
+  SCRIPT:       frankfurt_style_plots.py → export_figure_6a_per_day_and_combined()
+                (also runs from main() before other figures)
+
+================================================================================
+Reference: Frankfurt Hedgehogs Prosperity 3 writeup — IV scalping figures 6a–6c,
+7a–7b (10k call), 8 (underlying autocorrelation). Their products were Volcanic Rock
+(VR) and 9500–10500 strikes; ours are VELVETFRUIT_EXTRACT and VEV_4000…VEV_6500.
+Styling: light axes face, white grid, strike-colored series (blue→low strike,
+orange/warm→high strike where possible), black smile fit, ~50k-scaled time axis.
+
+--------------------------------------------------------------------------------
+DIRECT MATCHES (new Frankfurt-style outputs — closest visual + same information)
+--------------------------------------------------------------------------------
+
+Frankfurt Figure 6a — “Volatility smile” (scatter v_t vs m_t, colored by strike,
+                 black fitted parabola through the cloud)
+  OUR FILE:     frankfurt_fig06a_volatility_smile.png
+                (ALL strikes 4000–6500; wings look noisier — see note below.)
+  NEAR-ATM:     frankfurt_fig06a_volatility_smile_near_money.png
+                (Scatter ONLY strikes 5000–5500; black parabola fit on ALL strikes’ pooled
+                cloud after extrinsic filter — then axes zoom to near-money percentiles.
+                See frankfurt_fig06a_visual_notes.txt for why Frankfurt looks cleaner.)
+  SCRIPT:       frankfurt_style_plots.py → figure_6a(), figure_6a_near_money()
+  DATA:         Pooled over historical day=2 (DTE=6), all timestamps × strikes.
+  DETAILS:      m_t = log(S/K); v_t = Black–Scholes IV from voucher mid; parabola =
+                quadratic fit to pooled (m_t, v_t) after dropping rows with
+                extrinsic < 0.25 (similar spirit to their “disregard bottom-left
+                outliers” note).
+
+  WHY THEIRS LOOKS “CLEANER” (ours vs Frankfurt screenshot)
+  - They had only FIVE strikes, all fairly close to a ~10k spot, so m_t stays in a
+    tight band and IV does not explode from penny-option math.
+  - We have TEN strikes including deep ITM (4000) and lottery OTM (6500): tiny price
+    moves → huge IV swings → vertical streaks and a tall y-axis.
+  - They explicitly dropped low-extrinsic points that distort IV; we already drop
+    extrinsic < 0.25 but wings can still be unstable.
+  - YES — for STRUCTURE near the money, it is reasonable to IGNORE or down-weight
+    strikes “too far” from spot when fitting/visualizing the smile; keep trading /
+    risk awareness for wings separate. Use the near-money PNG when you want the
+    Frankfurt-like diagnostic; keep the full PNG for tail risk context.
+
+Frankfurt Figure 6b — “IV deviations over time” (lines: v_t − v̂_t per strike vs time)
+  OUR FILE:     frankfurt_fig06b_iv_deviations_time.png
+  SCRIPT:       frankfurt_style_plots.py → figure_6b()
+  DETAILS:      Per timestamp, v̂ from quadratic in log(S/K) across strikes; x-axis
+                stretched to 0…50,000 like their plot (index map, not raw ms).
+
+Frankfurt Figure 6c — “Price deviations over time” (mid − BS(S,K,T,σ̂) per strike)
+  OUR FILE:     frankfurt_fig06c_price_deviations_time.png
+  SCRIPT:       frankfurt_style_plots.py → figure_6c()
+  DETAILS:      σ̂ = smile IV from same per-timestamp quadratic as 6b.
+
+Frankfurt Figure 7a — “10k call” bid/ask + theoretical + mid (+ markers sized by vol)
+  OUR FILE:     frankfurt_fig07a_focal_call_fluctuations.png
+  SCRIPT:       frankfurt_style_plots.py → figure_7a_7b()
+  ANALOG:       Focal strike = VEV_5000 (FOCAL_VOUCHER in script; their 10000 strike).
+                51-timestep zoom from day=2 book; blue=bid, red=ask, orange=BS mid
+                using σ̂(m_t), yellow + = mid.
+
+Frankfurt Figure 7b — Same window, prices normalized by theoretical (flat orange 0)
+  OUR FILE:     frankfurt_fig07b_focal_call_fluctuations_normalized.png
+  SCRIPT:       same as 7a
+
+Frankfurt Figure 8 — Underlying rolling lag-1 ACF vs many random return paths
+  OUR FILE:     frankfurt_fig08_underlying_rolling_acf.png
+  SCRIPT:       frankfurt_style_plots.py → figure_8_underlying_acf()
+  ANALOG:       Underlying = VELVETFRUIT_EXTRACT mid (their VOLCANIC_ROCK). Red line =
+                log-return series; black cloud = i.i.d. Gaussian returns matched to
+                same length/vol scale (120 paths).
+
+Supporting table for 6b/6c/7 (full day, day=2):
+  frankfurt_resdf_full_day.csv   — per (timestamp, voucher): iv, iv_fit, iv_res,
+                                   theoretical_mid, price_dev, log_S_over_K.
+
+--------------------------------------------------------------------------------
+EARLIER / EXPLORATORY PLOTS — HOW THEY RELATE (same themes, not 1:1 with Frankfurt)
+--------------------------------------------------------------------------------
+
+Frankfurt 6a (smile cloud + parabola)
+  PARTIAL:      iv_vs_logmoneyness_scatter.png — IV vs log(K/S) = −log(S/K); subsampled
+                time, not one pooled parabola on full cloud.
+  PARTIAL:      iv_smile_snapshots.png — three time slices only, not dense pooled 6a.
+
+Frankfurt 6b (IV residual vs time, lines by strike)
+  NOT SAME:     iv_residuals_detrended.png — scatter in log(K/S) vs IV residual;
+                uses log(K/S) smile from plot_iv_smile_round3.py, not line plot vs time.
+
+Frankfurt 6c (price deviation vs time, all strikes)
+  PARTIAL:      price_deviation_timeseries_VEV_5000.png, …_VEV_5100.png — one strike
+                per file, subsampled timestamps, not all strikes on one axis.
+
+Frankfurt 7a / 7b (book + theo zoom)
+  (no close match before; only the new frankfurt_fig07a/07b files.)
+
+Frankfurt 8 (underlying ACF diagnostic)
+  NOT SAME:     price_deviation_lag1_autocorr_bars.png — lag-1 ACF of OPTION *price*
+                deviations, not underlying rolling-window ACF vs random bundle.
+
+--------------------------------------------------------------------------------
+REGENERATION
+--------------------------------------------------------------------------------
+  python3 round3work/plotting/original_method/combined_analysis/frankfurt_style_plots.py
+  python3 round3work/plotting/original_method/combined_analysis/plot_iv_smile_round3.py
+  python3 round3work/plotting/original_method/combined_analysis/analyze_price_deviations.py
+
+Note: frankfurt_style_plots.py runs ~1 minute (full-day IV solve per timestep).
+
+================================================================================

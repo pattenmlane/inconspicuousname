@@ -1,0 +1,31 @@
+VEV_5200 — truemethod_wind_down__near_5000_5500
+n_switch=1000 n_diff=1000
+{
+  "branch": "truemethod_wind_down",
+  "subset": "near_5000_5500",
+  "parabola_rmse": 0.008099096677154374,
+  "parabola_n": 6000,
+  "iv_engine": "implied_vol_call_brent_on_true_fv",
+  "data": "fairs day 39 VEV_5200 book + extract mid",
+  "t_source": "probe DTE=5 wind"
+}
+
+switch_mean quantiles (IV_SCALPING_THR is compared to this):
+  p50: 0.211114
+  p70: 0.224059
+  p80: 0.233085
+  p90: 0.249012
+  p95: 0.257467
+
+Suggested IV_SCALPING_THR (align gate with data):
+  conservative ~ p80: 0.2331
+  moderate ~ p70: 0.2241
+  loose ~ p50: 0.2111
+
+|current_theo_diff| quantiles (wall_mid - BS(smile)):
+
+  p50: 0.875893
+  p90: 1.476605
+  p95: 1.593504
+
+Reference: polished defaults IV_SCALPING_THR=0.7, THR_OPEN=0.5, THR_CLOSE=0.

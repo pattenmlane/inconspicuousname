@@ -1,0 +1,154 @@
+{
+  "description": "Global quadratic IV fit in m_t=log(K/S)/sqrt(T); coeffs numpy polyfit high\u2192low (m\u00b2, m, const).",
+  "subsample_step": 20,
+  "branches": {
+    "original_method_wind_down": {
+      "all_strikes": {
+        "coeffs_high_to_low": [
+          0.14215151147708086,
+          -0.0016298611395181932,
+          0.23576325646627055
+        ],
+        "rmse": 0.018215023790316323,
+        "n_points": 12622,
+        "x_axis": "log(K/S)/sqrt(T)",
+        "iv_engine": "implied_vol_call_brent_plot_iv"
+      },
+      "near_5000_5500": {
+        "coeffs_high_to_low": [
+          0.029682579827555476,
+          0.0024113521900090236,
+          0.23943767718887515
+        ],
+        "rmse": 0.007513331918058226,
+        "n_points": 9017,
+        "x_axis": "log(K/S)/sqrt(T)",
+        "iv_engine": "implied_vol_call_brent_plot_iv"
+      }
+    },
+    "original_method_no_wind_down": {
+      "all_strikes": {
+        "coeffs_high_to_low": [
+          0.14823892427544985,
+          -0.0019831085560776903,
+          0.2268827346349199
+        ],
+        "rmse": 0.01774046667832097,
+        "n_points": 12622,
+        "x_axis": "log(K/S)/sqrt(T)",
+        "iv_engine": "implied_vol_call_brent_plot_iv"
+      },
+      "near_5000_5500": {
+        "coeffs_high_to_low": [
+          0.027807971710042796,
+          0.0025656292417566844,
+          0.23071284262671193
+        ],
+        "rmse": 0.008862400975073303,
+        "n_points": 9017,
+        "x_axis": "log(K/S)/sqrt(T)",
+        "iv_engine": "implied_vol_call_brent_plot_iv"
+      }
+    },
+    "test_implementation_wind_down": {
+      "all_strikes": {
+        "coeffs_high_to_low": [
+          0.06562332583316784,
+          0.1061308088528813,
+          0.23634467861329375
+        ],
+        "rmse": 0.08932404927720976,
+        "n_points": 15030,
+        "x_axis": "log(K/S)/sqrt(T)",
+        "iv_engine": "implied_volatility_nb_bisection"
+      },
+      "near_5000_5500": {
+        "coeffs_high_to_low": [
+          0.02877878441002327,
+          0.0025348216180408785,
+          0.23947436131542604
+        ],
+        "rmse": 0.00772956317383627,
+        "n_points": 9018,
+        "x_axis": "log(K/S)/sqrt(T)",
+        "iv_engine": "implied_volatility_nb_bisection"
+      }
+    },
+    "test_implementation_no_wind_down": {
+      "all_strikes": {
+        "coeffs_high_to_low": [
+          0.06932234236653145,
+          0.10468146118859943,
+          0.22745141260673366
+        ],
+        "rmse": 0.08541001627140683,
+        "n_points": 15030,
+        "x_axis": "log(K/S)/sqrt(T)",
+        "iv_engine": "implied_volatility_nb_bisection"
+      },
+      "near_5000_5500": {
+        "coeffs_high_to_low": [
+          0.026997062810081306,
+          0.0026827665168077343,
+          0.23074115222991334
+        ],
+        "rmse": 0.009025768068884141,
+        "n_points": 9018,
+        "x_axis": "log(K/S)/sqrt(T)",
+        "iv_engine": "implied_volatility_nb_bisection"
+      }
+    },
+    "truemethod_wind_down": {
+      "all_strikes": {
+        "coeffs_high_to_low": [
+          0.03639383407721075,
+          -0.015497051038803682,
+          0.25791798516664755
+        ],
+        "rmse": 0.019226421104418426,
+        "n_points": 7848,
+        "x_axis": "log(K/S)/sqrt(T)",
+        "iv_engine": "implied_vol_call_brent_on_true_fv",
+        "data": "fairs merged true_fv day_39"
+      },
+      "near_5000_5500": {
+        "coeffs_high_to_low": [
+          0.0016078210900044123,
+          0.0017607876552544835,
+          0.2649982073083618
+        ],
+        "rmse": 0.008099096677154374,
+        "n_points": 6000,
+        "x_axis": "log(K/S)/sqrt(T)",
+        "iv_engine": "implied_vol_call_brent_on_true_fv",
+        "data": "fairs merged true_fv day_39"
+      }
+    },
+    "truemethod_no_wind_down": {
+      "all_strikes": {
+        "coeffs_high_to_low": [
+          0.03658794881227009,
+          -0.015497019604332397,
+          0.2566209938092365
+        ],
+        "rmse": 0.019165579199642454,
+        "n_points": 7848,
+        "x_axis": "log(K/S)/sqrt(T)",
+        "iv_engine": "implied_vol_call_brent_on_true_fv",
+        "data": "fairs merged true_fv day_39"
+      },
+      "near_5000_5500": {
+        "coeffs_high_to_low": [
+          0.0015083342762787241,
+          0.0017254715722271542,
+          0.2636765304654242
+        ],
+        "rmse": 0.008058677814713172,
+        "n_points": 6000,
+        "x_axis": "log(K/S)/sqrt(T)",
+        "iv_engine": "implied_vol_call_brent_on_true_fv",
+        "data": "fairs merged true_fv day_39"
+      }
+    }
+  }
+}

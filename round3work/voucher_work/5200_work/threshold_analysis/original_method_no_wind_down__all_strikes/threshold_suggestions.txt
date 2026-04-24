@@ -1,0 +1,31 @@
+VEV_5200 — original_method_no_wind_down__all_strikes
+n_switch=600 n_diff=600
+{
+  "branch": "original_method_no_wind_down",
+  "subset": "all_strikes",
+  "parabola_rmse": 0.01774046667832097,
+  "parabola_n": 12622,
+  "iv_engine": "implied_vol_call_brent_plot_iv",
+  "data": "historical ROUND_3 days 0-2",
+  "t_source": "plot_iv_smile_round3.t_years_effective"
+}
+
+switch_mean quantiles (IV_SCALPING_THR is compared to this):
+  p50: 0.384088
+  p70: 0.422891
+  p80: 0.457742
+  p90: 0.521046
+  p95: 0.560407
+
+Suggested IV_SCALPING_THR (align gate with data):
+  conservative ~ p80: 0.4577
+  moderate ~ p70: 0.4229
+  loose ~ p50: 0.3841
+
+|current_theo_diff| quantiles (wall_mid - BS(smile)):
+
+  p50: 3.773900
+  p90: 4.975825
+  p95: 5.284286
+
+Reference: polished defaults IV_SCALPING_THR=0.7, THR_OPEN=0.5, THR_CLOSE=0.

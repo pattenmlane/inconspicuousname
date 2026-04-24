@@ -1,0 +1,17 @@
+{
+  "coeffs_high_to_low": [
+    0.14215151147708086,
+    -0.0016298611395181932,
+    0.23576325646627055
+  ],
+  "description": "np.polyfit / np.poly1d order: m_t^2, m_t^1, constant; m_t=log(K/S)/sqrt(T)",
+  "n_points": 12622,
+  "rmse": 0.018215023790316323,
+  "mean_abs_resid": 0.011244744538330168,
+  "subsample_step": 20,
+  "dte_calendar": {
+    "csv_day_0": 8,
+    "csv_day_1": 7,
+    "csv_day_2": 6
+  }
+}

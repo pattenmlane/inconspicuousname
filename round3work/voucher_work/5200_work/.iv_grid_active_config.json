@@ -1,0 +1,1 @@
+{"model_id": "original_method_wind_down__all_strikes", "coeffs_high_to_low": [0.14215151147708086, -0.0016298611395181932, 0.23576325646627055], "IV_SCALPING_THR": 0.2849250119219576, "TARGET_VOUCHER": "VEV_4500", "K_STRIKE": 4500, "UNDERLYING": "VELVETFRUIT_EXTRACT", "t_kind": "om_wind", "csv_day": 0}

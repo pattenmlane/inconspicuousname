@@ -1,0 +1,18 @@
+VEV_5200 threshold suggestions (Frankfurt-style stats on historical ROUND_3)
+n_switch=600 n_diff=600
+
+switch_mean quantiles (IV_SCALPING_THR is compared to this):
+  p50: 0.316759
+  p70: 0.342761
+  p80: 0.357271
+  p90: 0.376878
+  p95: 0.393699
+
+theo_diff (wall_mid - theo) abs quantiles:
+
+  |diff| p50: 1.529530
+  |diff| p90: 2.586296
+  |diff| p95: 2.905393
+
+Frankfurt defaults in calibration.json: IV_SCALPING_THR=0.7, THR_OPEN=0.5, THR_CLOSE=0.
+Tune if your p70 on switch_mean is far from 0.7.

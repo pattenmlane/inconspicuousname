@@ -1,0 +1,31 @@
+VEV_5200 — truemethod_wind_down__all_strikes
+n_switch=1000 n_diff=1000
+{
+  "branch": "truemethod_wind_down",
+  "subset": "all_strikes",
+  "parabola_rmse": 0.019226421104418426,
+  "parabola_n": 7848,
+  "iv_engine": "implied_vol_call_brent_on_true_fv",
+  "data": "fairs day 39 VEV_5200 book + extract mid",
+  "t_source": "probe DTE=5 wind"
+}
+
+switch_mean quantiles (IV_SCALPING_THR is compared to this):
+  p50: 0.216795
+  p70: 0.232448
+  p80: 0.242561
+  p90: 0.254573
+  p95: 0.261297
+
+Suggested IV_SCALPING_THR (align gate with data):
+  conservative ~ p80: 0.2426
+  moderate ~ p70: 0.2324
+  loose ~ p50: 0.2168
+
+|current_theo_diff| quantiles (wall_mid - BS(smile)):
+
+  p50: 2.019183
+  p90: 2.557317
+  p95: 2.677444
+
+Reference: polished defaults IV_SCALPING_THR=0.7, THR_OPEN=0.5, THR_CLOSE=0.

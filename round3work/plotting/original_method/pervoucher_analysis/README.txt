@@ -13,4 +13,7 @@ Interactive dashboard (multi-voucher / multi-day, Plotly):
   pip install -r round3work/plotting/original_method/pervoucher_analysis/requirements-viz.txt
   streamlit run round3work/plotting/original_method/pervoucher_analysis/interactive_visualizer.py
 
-Cross-strike plots and methodology text live in ../combined_analysis/.
+Cross-strike plots and methodology text live in ../combined_analysis/ (winding DTE).
+
+For the **split** (wind vs calendar-T-only): see `../README_WINDING_LAYOUT.txt` and
+`../no_wind_down/pervoucher_analysis/` to regenerate with **no** intraday winding.

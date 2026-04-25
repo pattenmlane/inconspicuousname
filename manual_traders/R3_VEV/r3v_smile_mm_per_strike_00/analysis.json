@@ -120,5 +120,21 @@
       "duplicate_risk": "low",
       "new_adjusted_variant": "n/a"
     }
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "Tape distribution of |d mid| for VELVETFRUIT_EXTRACT (100ms steps, days 0\u20132): median |dS| ~1 tick, p25 ~0.5, p90 ~2, mean ~0.85\u20130.86 per day. Motivates an online EMA of |dS| as a calm vs volatile proxy tied to the underlying propagation workstream.",
+    "analysis_outputs": [
+      "Prosperity4Data/ROUND_3/prices_round_3_day_0.csv",
+      "Prosperity4Data/ROUND_3/prices_round_3_day_1.csv",
+      "Prosperity4Data/ROUND_3/prices_round_3_day_2.csv"
+    ],
+    "used_to_decide": "Implemented v18: EMA(|dS|) with thresholds 0.55/1.1 and tight/wide on VEV `half` only. **First try** applied the same `reg` to EXTRACT_HALF and HYDRO_HALF; days 0+1 PnL dropped 4815 vs 5132 and 6380 vs 6329 (aggregate 11398). VEV-only scaling restores 5132/6329/203 and ties v9 (11664). VEV-only grid (0.95,1.05) vs (0.92,1.08) is identical in this run (same totals). Keep v9 on tie (simpler); v18 documents the failed cash-leg regime and the neutral VEV overlay.",
+    "EXACT_DUPLICATE_CHECK": {
+      "parent_explored": "v15/v16: discrete shock table on voucher half *after* |dS| threshold; v17: R2 size tiering.",
+      "my_variant_delta": "Continuous EMA(|dS|) with two-band half-spread multiplier on vouchers only; no per-strike shock table, no R2 size map.",
+      "duplicate_risk": "low",
+      "new_adjusted_variant": "n/a (already distinct; VEV-only after cash damage)"
+    }
   }
 ]

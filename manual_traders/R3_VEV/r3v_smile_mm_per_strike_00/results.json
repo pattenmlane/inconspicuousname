@@ -231,5 +231,48 @@
         "VEV_5500": 10
       }
     }
+  },
+  {
+    "iteration": 18,
+    "trader_file": "trader_v18.py",
+    "strategy_description": "v9 + EMA(|d extract mid|) regime: calm (EMA<0.55) tight / volatile (EMA>1.1) wide on VEV half-spread only; extract and hydrogel unchanged (full-spread variant lost -266 on days 0-1). Grid: (0.95,1.05) vs (0.92,1.08) on VEV-only both tie v9 at 11664.",
+    "total_profit": 11664,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v18.py 3 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/backtests/iter18_vev_only_0.95_1.05.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/backtests/iter18_vev_only_0.95_1.05.log",
+    "parameter_sweep": {
+      "abs_move_ema_alpha": 0.12,
+      "abs_move_lo_hi_ticks": [
+        0.55,
+        1.1
+      ],
+      "vev_only_tight_wide_pairs": [
+        [
+          0.95,
+          1.05
+        ],
+        [
+          0.92,
+          1.08
+        ]
+      ],
+      "all_products_tight_wide_first_try": [
+        0.95,
+        1.05
+      ],
+      "all_products_total_profit": 11398
+    },
+    "trades_or_fills_summary": {
+      "day_totals": {
+        "0": 5132,
+        "1": 6329,
+        "2": 203
+      },
+      "day2_nonzero_products": {
+        "VEV_5400": 193,
+        "VEV_5500": 10
+      }
+    }
   }
 ]

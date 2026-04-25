@@ -13,5 +13,21 @@
     "analysis_description": "Small parameter grid on the same surface strategy (documented in results.json iteration 1): lower hurdle + smoother spline + smaller clip. Backtest total_profit 3486 vs v0 3883 on Round 3 days 0–2, worse fills — tighter hurdle increased turnover without improving edge.",
     "analysis_outputs": ["manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/results.json"],
     "used_to_decide": "Keep v0 as parent for the next iteration; prefer v0’s higher hurdle and slightly less smoothed spline."
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Residual predictiveness analysis by strike/day using Round 3 tapes: fit same spline IV surface on sampled snapshots, compute residual at t and corr(residual_t, next_mid_move) with spread and vega context. Timing assumptions unchanged from round3description + plot_iv_smile_round3 conventions (csv day d -> DTE open 8-d; intraday dte_eff = dte_open - (timestamp//100)/10000; T=dte_eff/365).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/iv_residual_predictiveness_v2.json"
+    ],
+    "used_to_decide": "Signal concentrated in central strikes (especially 5500, then 5000/5200/5300) while far wings are weak/noisy; added strike-quality gate and a vega-aware hurdle to keep the same surface mispricing thesis but cut low-quality trades."
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "Follow-up sweep around iteration 2 on the same thesis: lower base hurdle (1.28) + lower vega penalty (0.0010) + slightly smaller max size.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/results.json"
+    ],
+    "used_to_decide": "v3 outperformed v2 (6313 vs 5820 total), with better day0/day1 while retaining day2 strength; choose v3 as new parent."
   }
 ]

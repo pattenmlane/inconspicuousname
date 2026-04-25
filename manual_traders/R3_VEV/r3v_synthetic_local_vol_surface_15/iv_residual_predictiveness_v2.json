@@ -1,0 +1,147 @@
+{
+  "timing": {
+    "csv_day_to_dte_open": {
+      "0": 8,
+      "1": 7,
+      "2": 6
+    },
+    "intraday": "dte_eff=dte_open-(timestamp//100)/10000;T=dte_eff/365"
+  },
+  "residual_predictiveness": [
+    {
+      "csv_day": 0,
+      "top_strikes": [
+        {
+          "strike": 4500,
+          "samples": 54,
+          "resid_next_mid_corr": -0.3279969239867482,
+          "mean_abs_resid": 0.11813587939239503,
+          "mean_half_spread": 7.916666666666667,
+          "mean_vega_abs_resid": 2.5600552503037637
+        },
+        {
+          "strike": 5500,
+          "samples": 499,
+          "resid_next_mid_corr": -0.18526299747987166,
+          "mean_abs_resid": 0.5468579859173893,
+          "mean_half_spread": 0.5761523046092184,
+          "mean_vega_abs_resid": 70.6270165933938
+        },
+        {
+          "strike": 5100,
+          "samples": 499,
+          "resid_next_mid_corr": 0.08082410103091646,
+          "mean_abs_resid": 1.3491753871490237,
+          "mean_half_spread": 2.162324649298597,
+          "mean_vega_abs_resid": 281.7692527096625
+        },
+        {
+          "strike": 5200,
+          "samples": 499,
+          "resid_next_mid_corr": 0.036563368745771645,
+          "mean_abs_resid": 1.774345701334602,
+          "mean_half_spread": 1.4589178356713426,
+          "mean_vega_abs_resid": 508.6291521347668
+        },
+        {
+          "strike": 5400,
+          "samples": 499,
+          "resid_next_mid_corr": -0.029371055923712853,
+          "mean_abs_resid": 2.1507090931533335,
+          "mean_half_spread": 0.7134268537074149,
+          "mean_vega_abs_resid": 458.85814422105545
+        }
+      ]
+    },
+    {
+      "csv_day": 1,
+      "top_strikes": [
+        {
+          "strike": 4500,
+          "samples": 50,
+          "resid_next_mid_corr": -0.14113684812246285,
+          "mean_abs_resid": 0.2624137072740632,
+          "mean_half_spread": 7.67,
+          "mean_vega_abs_resid": 5.5512685602799285
+        },
+        {
+          "strike": 5500,
+          "samples": 499,
+          "resid_next_mid_corr": -0.09063080237480257,
+          "mean_abs_resid": 0.770817697173624,
+          "mean_half_spread": 0.5811623246492986,
+          "mean_vega_abs_resid": 85.26032871356404
+        },
+        {
+          "strike": 5000,
+          "samples": 499,
+          "resid_next_mid_corr": -0.04456164173169261,
+          "mean_abs_resid": 0.7490306982121135,
+          "mean_half_spread": 2.9799599198396796,
+          "mean_vega_abs_resid": 76.07429069005259
+        },
+        {
+          "strike": 5200,
+          "samples": 499,
+          "resid_next_mid_corr": -0.03818108131707724,
+          "mean_abs_resid": 2.853801968787831,
+          "mean_half_spread": 1.4278557114228456,
+          "mean_vega_abs_resid": 757.5693534974217
+        },
+        {
+          "strike": 5100,
+          "samples": 499,
+          "resid_next_mid_corr": -0.03321124957058081,
+          "mean_abs_resid": 0.5677878710716422,
+          "mean_half_spread": 2.1092184368737477,
+          "mean_vega_abs_resid": 108.4765296226649
+        }
+      ]
+    },
+    {
+      "csv_day": 2,
+      "top_strikes": [
+        {
+          "strike": 4500,
+          "samples": 45,
+          "resid_next_mid_corr": 0.20309344703912563,
+          "mean_abs_resid": 0.12538103990235766,
+          "mean_half_spread": 8.022222222222222,
+          "mean_vega_abs_resid": 1.5376239239897047
+        },
+        {
+          "strike": 5500,
+          "samples": 499,
+          "resid_next_mid_corr": -0.1951305731710653,
+          "mean_abs_resid": 0.871195307184587,
+          "mean_half_spread": 0.5511022044088176,
+          "mean_vega_abs_resid": 84.07435062753994
+        },
+        {
+          "strike": 5000,
+          "samples": 497,
+          "resid_next_mid_corr": -0.12210082205101268,
+          "mean_abs_resid": 0.5239245382765397,
+          "mean_half_spread": 3.0824949698189137,
+          "mean_vega_abs_resid": 38.799874748981445
+        },
+        {
+          "strike": 5300,
+          "samples": 499,
+          "resid_next_mid_corr": -0.09663344638742549,
+          "mean_abs_resid": 3.078287315252913,
+          "mean_half_spread": 1.0330661322645291,
+          "mean_vega_abs_resid": 758.7948251937876
+        },
+        {
+          "strike": 5200,
+          "samples": 499,
+          "resid_next_mid_corr": -0.0848902233427702,
+          "mean_abs_resid": 2.6153313788623254,
+          "mean_half_spread": 1.4478957915831663,
+          "mean_vega_abs_resid": 623.063746822183
+        }
+      ]
+    }
+  ]
+}

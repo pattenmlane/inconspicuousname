@@ -14,5 +14,21 @@
     "total_profit": 3486,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v1.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 2,
+    "trader_file": "trader_v2.py",
+    "strategy_description": "Same synthetic local-vol residual thesis from v0, with analysis-driven strike quality gate (5000..5500 only) and vega-aware hurdle: hurdle = 1.35*half_spread + 0.0015*vega.",
+    "total_profit": 5820,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v2.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "Parameter sweep around v2: RESID_HURDLE_MULT 1.28, VEGA_HURDLE_COEF 0.0010, MAX_ORDER_PER_VOUCHER 16 (other logic unchanged).",
+    "total_profit": 6313,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v3.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

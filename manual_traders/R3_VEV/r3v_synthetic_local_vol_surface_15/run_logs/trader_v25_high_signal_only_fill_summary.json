@@ -1,0 +1,9 @@
+{
+  "log_file": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v25_high_signal_only.log",
+  "submission_trade_count": 487,
+  "submission_trade_count_by_symbol": {
+    "VEV_5000": 186,
+    "VEV_5100": 301
+  },
+  "all_trade_rows": 4535
+}

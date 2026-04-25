@@ -216,5 +216,16 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v24_signal_strike_subset.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v24_signal_strike_subset_fill_summary.json"
+  },
+  {
+    "iteration": 25,
+    "trader_file": "trader_v25_high_signal_only.py",
+    "strategy_description": "v24 family12 uniform + strike subset refined by Greek/residual tape: trade only VEV_5000 and VEV_5100 (drop 5200) because v24_strike_greeks_iv_extract shows 5200 mean_abs_resid/hsp >> 5000/5100 across days while IV\u2013extract corr is negligible for all three.",
+    "total_profit": 21633,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v25_high_signal_only.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v25_high_signal_only.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v25_high_signal_only.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v25_high_signal_only_fill_summary.json"
   }
 ]

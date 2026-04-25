@@ -162,5 +162,17 @@
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v24_signal_strike_subset_fill_summary.json"
     ],
     "used_to_decide": "Restricting to high-signal strikes (5000/5100/5200) improved realized PnL under worse fills to 15,145 vs v19 11,399 and v23 11,238, while keeping the same spline/execution framework. New parent should be v24."
+  },
+  {
+    "iteration": 25,
+    "analysis_description": "IV/Greek thread on v24 strike subset (v24_strike_greeks_iv_extract.json): Newton IV + BS vega/delta on same uniform smile as live trader; per day mean_abs_resid/hsp is ~0.15\u20130.54 for 5000/5100 but ~1.1\u20131.9 for 5200 while mean vega is highest at 5200 (noise per spread unit). Corr(dlogS,\u0394IV) is ~0 for all three, so extract-driven IV tilt is not a lever; residual quality vs spread is. Underlying propagation (prior work) already justified 5000/5100/5200 over wings; this step removes the noisiest of the three.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/_analyze_v24_strike_greeks_iv.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/v24_strike_greeks_iv_extract.json",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v25_high_signal_only.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v25_high_signal_only.log",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v25_high_signal_only_fill_summary.json"
+    ],
+    "used_to_decide": "Drop 5200 from v24 subset; v25 PnL 21,633 > v24 15,145 under worse fills. New parent v25; day0 is worse (-1166 vs -686) but day1+2 gains dominate\u2014optional next step is day0-only micro-gate, not random hurdle nudges."
   }
 ]

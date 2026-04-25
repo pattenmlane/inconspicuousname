@@ -23,5 +23,13 @@
       "analysis_outputs/iv_shock_by_spread_bucket.json"
     ],
     "used_to_decide": "Tightest books (spread sum<9) are a small subset (~720/30000 ticks) with slightly more negative median shock; median combined spread is 10, so v5’s gate=9 still captures most near-median liquidity. v5’s slightly lower SHOCK and higher clip raised total PnL vs v4 in backtest without abandoning the ATM bundle thesis."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "Per-leg BS Greeks on ATM straddle proxy (VEV_5000 + VEV_5100 calls, IV from bisection on mids) at last tick ≤500k per day: straddle γ (sum of call gammas), straddle vega, straddle Θ (BS theta per year, r=0, reported as sum). TTE d->8-d per round3description.",
+    "analysis_outputs": [
+      "analysis_outputs/atm_greeks_gamma_theta.json"
+    ],
+    "used_to_decide": "ATM cluster carries large combined vega (~230–330 by day) and material negative Θ, consistent with straddle/proxy PnL being IV- and time-sensitive. v6 (lower shock, looser misprice) and v7 (tighter spread 8.5) both lost vs v5, so v5 parameters remain the current best; next iterations should nudge in smaller steps or hold shock at 0.055."
   }
 ]

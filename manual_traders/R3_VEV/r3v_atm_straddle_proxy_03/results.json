@@ -46,5 +46,21 @@
     "total_profit": 39494,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 6,
+    "trader_file": "trader_v6.py",
+    "strategy_description": "Parent v5 grid: MISPRICE_EDGE 3.0->2.8, SHOCK 0.055->0.05, CLIP 11->12. Did not improve total PnL vs v5.",
+    "total_profit": 39042,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "Parent v5 grid: SPREAD_GATE 9.0->8.5, CLIP 11->12, shock 0.055 unchanged. Underperformed v5; tighter gate reduced day-1 PnL.",
+    "total_profit": 31910,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
   }
 ]

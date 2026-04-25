@@ -1,0 +1,32 @@
+{
+  "tte_rule": "hist day d -> 8-d days -> T=(8-d)/365 years",
+  "by_day": [
+    {
+      "hist_day": 0,
+      "S": 5249.5,
+      "iv_5000": 0.2346,
+      "iv_5100": 0.2373,
+      "straddle_gamma_sum": 0.002319,
+      "straddle_vega_sum": 331.15,
+      "straddle_theta_sum_per_year": -1785.81
+    },
+    {
+      "hist_day": 1,
+      "S": 5243.5,
+      "iv_5000": 0.2261,
+      "iv_5100": 0.2252,
+      "straddle_gamma_sum": 0.002368,
+      "straddle_vega_sum": 281.54,
+      "straddle_theta_sum_per_year": -1654.97
+    },
+    {
+      "hist_day": 2,
+      "S": 5245.5,
+      "iv_5000": 0.2328,
+      "iv_5100": 0.2218,
+      "straddle_gamma_sum": 0.002301,
+      "straddle_vega_sum": 234.25,
+      "straddle_theta_sum_per_year": -1604.1
+    }
+  ]
+}

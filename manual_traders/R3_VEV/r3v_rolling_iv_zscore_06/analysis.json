@@ -28,5 +28,11 @@
     "analysis_description": "IV microstructure A/B: counted ticks on prices_round_3_day_* with past-only rolling IV z<-6 and spread<=4 \u2014 v5-style (mid, mid) has a handful of such ticks per day; (microprice,microprice) for S and C gave **zero** such ticks (IV path no longer shows extremes). (microprice,mid) also gave 0. **Greek thread:** call vega = S*phi(d1)*sqrt(T) for clip sizing. Grid VEGA_TARGET in {600,750,900,1100,1400} with mids-for-IV left total PnL at -83 (unchanged from v5 fixed Q=10 on this backtest), implying touch-liquidity not vega-budget limited.",
     "analysis_outputs": [],
     "used_to_decide": "Ship v7 as v5+vega documentation; do not use micro-mid for IV if the rolling-z thesis is preserved. PnL tie with v5; prefer v5 for simplicity unless vega-sizing needed later."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "Pivot within same thesis: rolling **log(IV)** z instead of level IV z. IV is strictly positive; log stabilizes variance so past-only std is more meaningful for multiplicative IV moves. First pass (Z=3.0/0.1) backtest +780 total (days 0\u20132) vs v5 -83. Small grid on (Z_ENTRY, Z_EXIT) with log-z: (2.75,0.1) and (2.75,0.08) -> +1028 (best); (2.75,0.12) -> +963; (3.0,*) -> +780; (3.25,*) much lower. Same BS IV inversion, r=0, T=7/365; Greeks unchanged (call delta/vega implicit in IV path).",
+    "analysis_outputs": [],
+    "used_to_decide": "Set v8 thresholds to 2.75/0.1; keep v5\u2013v7 as level-IV baselines. Log-z is the main lift; not a product-mix change \u2014 still single-strike VEV_5000 long-vol mean reversion on rolling z."
   }
 ]

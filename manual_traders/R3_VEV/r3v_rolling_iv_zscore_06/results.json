@@ -62,5 +62,13 @@
     "total_profit": -83,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v7.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 8,
+    "trader_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v8.py",
+    "strategy_description": "Log-IV rolling z (past-only log(max(IV,floor))) long-only on VEV_5000; Z_ENTRY=2.75 Z_EXIT=0.1 spread<=4 ORDER_Q=10 \u2014 grid-tuned vs level-IV v5.",
+    "total_profit": 1028,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v8.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

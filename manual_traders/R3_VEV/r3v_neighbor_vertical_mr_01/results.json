@@ -54,5 +54,13 @@
     "total_profit": -908,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "Parent v2; L1 volume-weighted microprice for all ten VEVs in neighbor gap series and IV inversion; VELVETFRUIT_EXTRACT stays mid. Same Z=2.9, EWMA, vega/spread sizing, TTE, delta hedge. Worse than v2: total -1081 vs -908 (days 0..2, worse fills) \u2014 microprice shifts signal vs tradeable mid-based execution.",
+    "total_profit": -1081,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

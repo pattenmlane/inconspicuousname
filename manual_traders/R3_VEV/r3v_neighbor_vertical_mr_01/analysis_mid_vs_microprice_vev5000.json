@@ -1,0 +1,7 @@
+{
+  "symbol": "VEV_5000",
+  "n": 1800,
+  "mean_micro_minus_mid": -0.060300510945122815,
+  "std": 1.0884160907444302,
+  "method": "L1 microprice (bid*askVol+ask*bidVol)/(bidVol+askVol); mid=(bid+ask)/2 from CSV."
+}

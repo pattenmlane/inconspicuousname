@@ -57,5 +57,13 @@
       "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/grid_gamma_ref_sweep.json"
     ],
     "used_to_decide": "All tested gamma refs produce identical total -908 on this historical run, indicating current fills/trade set are insensitive to this convexity dampener at these levels; kept simpler default while preserving documented Greek thread."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Book microstructure: L1 microprice vs simple mid for VEV_5000 (subsampled timestamps, all three day files) in analysis_mid_vs_microprice_vev5000.json. Mean micro-minus-mid ~ -0.06 with std ~1.09 \u2014 material enough to change gap z-scores when used as quote for VEVs.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/analysis_mid_vs_microprice_vev5000.json"
+    ],
+    "used_to_decide": "trader_v7 uses microprice for VEV legs only; backtest total -1081 vs v2 -908 (worse). Treat as failed experiment: signal should stay consistent with executable mid for these tapes; retain v2-style mid for vouchers going forward."
   }
 ]

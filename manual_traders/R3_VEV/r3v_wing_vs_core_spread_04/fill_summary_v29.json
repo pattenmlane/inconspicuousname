@@ -1,0 +1,30 @@
+{
+  "log_file": "/workspace/manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v29.log",
+  "total_profit_end": 3750.0,
+  "products_pnl_end": {
+    "HYDROGEL_PACK": 0.0,
+    "VELVETFRUIT_EXTRACT": -50.0,
+    "VEV_4000": 0.0,
+    "VEV_4500": 0.0,
+    "VEV_5000": 0.0,
+    "VEV_5100": 0.0,
+    "VEV_5200": 0.0,
+    "VEV_5300": 0.0,
+    "VEV_5400": 4250.0,
+    "VEV_5500": 0.0,
+    "VEV_6000": -450.0,
+    "VEV_6500": 0.0
+  },
+  "n_trade_rows_total": 4243,
+  "n_submission_trade_rows": 195,
+  "submission_qty_by_symbol": {
+    "VELVETFRUIT_EXTRACT": 2,
+    "VEV_5400": 489,
+    "VEV_6000": 900
+  },
+  "submission_trades_by_symbol": {
+    "VELVETFRUIT_EXTRACT": 2,
+    "VEV_5400": 43,
+    "VEV_6000": 150
+  }
+}

@@ -200,5 +200,22 @@
       "fill_summary_v28.json"
     ],
     "used_to_decide": "Family10 regime-WLS variations under current assumptions remain inferior to existing best branch settings; retain as documented non-duplicate exploration."
+  },
+  {
+    "iteration": 29,
+    "analysis_description": "underlying_response_spread_iv_v29.json: voucher response beta to extract drops strongly by strike (e.g., high near ITM, weak far OTM); lag/lead betas near zero -> mostly contemporaneous response. Shock spreads widen little for dominant wing leg. Used this to define beta-bucket clip scaling in v29.",
+    "analysis_outputs": [
+      "underlying_response_spread_iv_v29.json",
+      "fill_summary_v29.json"
+    ],
+    "used_to_decide": "Response-aware clip scaling did not change realized path vs v20 on this tape (same 3750), indicating executed path dominated by one strike already at effective cap."
+  },
+  {
+    "iteration": 30,
+    "analysis_description": "Same response analysis suggested asymmetry mostly in shock timing, so v30 tightened cheap-long entry after large extract moves. This slightly improved total to 3754 with similar fill footprint.",
+    "analysis_outputs": [
+      "fill_summary_v30.json"
+    ],
+    "used_to_decide": "v30 is marginally best in branch; still far below ~800k bar, but this is a meaningful directed tweak rather than random nudging."
   }
 ]

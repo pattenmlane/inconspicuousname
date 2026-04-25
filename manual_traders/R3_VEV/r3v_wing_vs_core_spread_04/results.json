@@ -230,5 +230,27 @@
     "total_profit": 1723,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v28.py 3 --data Prosperity4Data --match-trades worse --out backtests/r3v_wing_vs_core_spread_04_v28.log"
+  },
+  {
+    "iteration": 29,
+    "trader_file": "trader_v29.py",
+    "strategy_description": "Response-aware sizing from v20: per-strike leg caps by extract-response beta buckets (high-response 4000/4500 reduced clip; low-response 6000/6500 reduced clip).",
+    "total_profit": 3750,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v29.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v29.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v29.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v29.json"
+  },
+  {
+    "iteration": 30,
+    "trader_file": "trader_v30.py",
+    "strategy_description": "Shock-aware cheap-entry from v20: when |\u0394extract|>=2, require deeper cheapness by shifting CHEAP threshold downward.",
+    "total_profit": 3754,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v30.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v30.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v30.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v30.json"
   }
 ]

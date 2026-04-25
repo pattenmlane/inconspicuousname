@@ -34,9 +34,49 @@
   {
     "iteration": 4,
     "trader_file": "trader_v4.py",
-    "strategy_description": "Combine v2-style inside-quote tilt with v1 hydrogel MM; TILT_AMP=4.0, VEV_SIZE=19 — best total in this sweep.",
+    "strategy_description": "Combine v2-style inside-quote tilt with v1 hydrogel MM; TILT_AMP=4.0, VEV_SIZE=19 \u2014 best total in this sweep.",
     "total_profit": 16039,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v4.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 5,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "Strike-filtered (5200/5300/5400/5500) tilt using highest vega-per-spread subset; hydrogel disabled via size=0. Too selective with inside quotes -> no fills.",
+    "total_profit": 0,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v5.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 6,
+    "trader_file": "trader_v6.py",
+    "strategy_description": "Strike-filtered robustness arm with lower amplitude/size; hydrogel disabled. Also produced no fills.",
+    "total_profit": 0,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v6.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "All-strike tilt with stronger z-weight and adaptive size by spread bucket; hydrogel disabled.",
+    "total_profit": 8272,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v7.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 8,
+    "trader_file": "trader_v8.py",
+    "strategy_description": "Strike-filtered tilt quoting at best levels instead of inside to force participation; hydrogel disabled. Participated but weak PnL.",
+    "total_profit": 2380,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v8.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 9,
+    "trader_file": "trader_v9.py",
+    "strategy_description": "v4 parent plus mild inventory-skew offset in quote shift (sh -= round(pos/120)); near-tie with v4 but slightly worse.",
+    "total_profit": 16018,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v9.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

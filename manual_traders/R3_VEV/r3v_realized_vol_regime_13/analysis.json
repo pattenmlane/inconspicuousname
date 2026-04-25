@@ -1,0 +1,11 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round 3 tapes days 0–2: ATM (nearest strike) BS implied vol from voucher mid vs short-horizon realized vol of VELVETFRUIT_EXTRACT; model IV from pooled quadratic smile; mean VEV bid-ask spread from top-of-book. Confirms IV≈model on average (mean iv_minus_model≈0) while mean iv_minus_rv is negative on subsample—co-movement with book width is weak (corr≈-0.06).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/rv_iv_atm_subsample200.csv",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/rv_iv_regime_summary.json"
+    ],
+    "used_to_decide": "Ground joint VEV width on iv_atm − rv_ann with T from round3description + intraday wind-down (plot_iv_smile_round3). After v0/v1 backtests, hydrogel day-2 losses dominated; v2 cuts hydrogel size/spread sensitivity while keeping the RV-vs-IV VEV thesis."
+  }
+]

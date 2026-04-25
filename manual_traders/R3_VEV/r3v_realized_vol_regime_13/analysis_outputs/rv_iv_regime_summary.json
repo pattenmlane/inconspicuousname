@@ -1,0 +1,9 @@
+{
+  "timing_assumptions": "Calendar DTE at open of historical CSV day d: TTE = 8 - d (day 0->8d, 1->7d, 2->6d) per round3work/round3description.txt. Intraday: DTE_eff = start-of-day DTE minus (timestamp//100)/10000 (one full day over the session), T_years = DTE_eff/365, r=0, European call on VELVETFRUIT_EXTRACT; same as plot_iv_smile_round3.py.",
+  "iv_method": "Black\u2013Scholes call implied vol from voucher mid, S=extract mid, K=strike, T=T_years (brentq on sigma). Model IV uses global quadratic smile in m_t=log(K/S)/sqrt(T) with coeffs from fitted_smile_coeffs.json (5200_work).",
+  "rv_method": "Short-horizon realized vol of extract: rolling std of log returns over last min(20, len) subsample steps (200-timestamp spacing), annualized as sigma * sqrt(252 * 10000) treating each 100-timestamp step as 1/10000 day fraction at 10k steps/day (Frankfurt-style session length).",
+  "n_rows": 150,
+  "corr_iv_minus_rv_vs_mean_spread": -0.05728648589557953,
+  "mean_iv_minus_rv": -3.228057729797456,
+  "mean_iv_minus_model": 0.0073950419343421165
+}

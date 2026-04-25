@@ -1,0 +1,26 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "trader_v0.py",
+    "strategy_description": "Joint VEV half-spread from ATM IV minus short RV of extract; BS fair from global smile; extract/hydrogel MM with regime-scaled width. Baseline widen/tighten gains K_WIDEN=10, K_TIGHTEN=5, RV_WIN=40.",
+    "total_profit": 14992,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v0.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 1,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Grid sweep: stronger IV-rich widening (K_WIDEN=14), gentler IV-cheap tightening (K_TIGHTEN=4), shorter RV window (30), slightly larger VEV clips.",
+    "total_profit": 14625,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v1.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 2,
+    "trader_file": "trader_v2.py",
+    "strategy_description": "Keep v0 RV/IV core; reduce hydrogel adverse selection (wider base half-spread, smaller size, low regime coupling) after day 2 hydrogel drawdown in v0/v1.",
+    "total_profit": 19027,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v2.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  }
+]

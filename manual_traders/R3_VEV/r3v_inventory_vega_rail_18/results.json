@@ -252,5 +252,38 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v25_backtest.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v25_fill_summary.json"
+  },
+  {
+    "iteration": 26,
+    "trader_file": "trader_v26.py",
+    "strategy_description": "Parent v25: IV_SCALPING_THR=0.35 (tape p90 aligned). Worse-fill PnL +65; main branch too loose for this sim (over-trading).",
+    "total_profit": 65,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v26.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v26_backtest.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v26_backtest.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v26_fill_summary.json"
+  },
+  {
+    "iteration": 27,
+    "trader_file": "trader_v27.py",
+    "strategy_description": "Parent v25: IV_SCALPING_THR=0.30 (deeper, near p95 of ATM VEV_5100 switch_ema). Ties best +146; more submission events (23 vs 5) same total PnL.",
+    "total_profit": 146,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v27.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v27_backtest.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v27_backtest.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v27_fill_summary.json"
+  },
+  {
+    "iteration": 28,
+    "trader_file": "trader_v28.py",
+    "strategy_description": "Parent v25: IV_SCALPING_THR=0.40. +140; between v25/v24, not a new high.",
+    "total_profit": 140,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v28.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v28_backtest.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v28_backtest.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v28_fill_summary.json"
   }
 ]

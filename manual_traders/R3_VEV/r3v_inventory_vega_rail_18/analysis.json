@@ -126,5 +126,20 @@
       "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v25_fill_summary.json"
     ],
     "used_to_decide": "Lower switch gate improved submission events (3 -> 5) and PnL (+132 -> +136/+146), while preserving the propagation-based soft strike modulation. v25 is current best on branch."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Replicated the Frankfurt switch_ema (EMA of |option_theo_diff - mean_theo_diff|) for ATM VEV_5100 with the same smile/BS and EMA windows as the trader, per CSV day, in run_atm_switch_ema_tape.py -> atm_switch_ema_5100_by_day.json. p90~0.32-0.35, p95~0.33-0.36, median~0.28-0.30. So a gate of 0.7 is a rare event; 0.45 and 0.30 sit near/above the tape distribution, not a tail.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/run_atm_switch_ema_tape.py",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/atm_switch_ema_5100_by_day.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v26_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v27_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v28_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v26_fill_summary.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v27_fill_summary.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v28_fill_summary.json"
+    ],
+    "used_to_decide": "Swept IV_SCALPING_THR: 0.40 (+140) < 0.45 v25 (+146) < tie 0.30 v27 (+146, more events). 0.35 was too open (+65) — not monotonic, model vs worse-fill path matters. No new PnL high; v25 and v27 remain best +146. Prefer v27 for higher submission count at same PnL."
   }
 ]

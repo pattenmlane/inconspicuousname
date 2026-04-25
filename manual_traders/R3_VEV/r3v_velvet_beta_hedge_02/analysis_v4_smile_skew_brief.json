@@ -1,0 +1,5 @@
+{
+  "method": "Subsampled timestamps: BS implied vol (r=0) from mid for wing pair 4000/6500 minus mean of 5200/5300; same TTE winding as traders.",
+  "mean_wing_minus_mid_mkt_iv": 0.36586427182132936,
+  "n": 600
+}

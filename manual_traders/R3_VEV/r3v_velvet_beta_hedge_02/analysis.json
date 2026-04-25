@@ -33,5 +33,13 @@
       "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analysis_v3_regime_brief.json"
     ],
     "used_to_decide": "Correlation ~-0.17 between extract return and step change in mean IV suggests modest co-movement; reinforces keeping tilt bounded (spread dampening in v12/v14) rather than large unconstrained shifts. v14 tightened spread multipliers and improved backtest total vs v12."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "Smile / skew proxy: BS implied vol (r=0) from mid at wing strikes (4000+6500) minus mean of mid at 5200+5300, subsampled across Round-3 days; TTE as traders. Positive spread indicates wings carry higher mkt IV than the nearby-money pair on average.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analysis_v4_smile_skew_brief.json"
+    ],
+    "used_to_decide": "Mean (wing) IV - (mid) IV ~+0.37, consistent with a smile. Extra dampening on very wide per-voucher books (v17 third tier) nudged PnL up vs v14; further lowering global TILT_AMP (v18) only matched v16, so signal amplitude 4.0 remains a local optimum next to v14."
   }
 ]

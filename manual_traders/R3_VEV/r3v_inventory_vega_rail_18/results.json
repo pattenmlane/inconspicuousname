@@ -62,5 +62,21 @@
     "total_profit": -22,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 8,
+    "trader_file": "trader_v8.py",
+    "strategy_description": "Parent v5 with DELTA_HEDGE_FRAC=0 (no VELVETFRUIT_EXTRACT hedge). Pure vega-rail + IV scalp; total +14 matching v5 with zero extract PnL all days.",
+    "total_profit": 14,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v8.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 9,
+    "trader_file": "trader_v9.py",
+    "strategy_description": "Parent v5 sweep: IV_SCALPING_THR=0.65, THR_OPEN=0.32. More day-2 strikes + small extract hedge losses; total -8 vs v5/v8 +14.",
+    "total_profit": -8,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v9.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
   }
 ]

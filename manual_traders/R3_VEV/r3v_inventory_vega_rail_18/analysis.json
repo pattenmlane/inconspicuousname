@@ -32,5 +32,14 @@
       "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/results.json"
     ],
     "used_to_decide": "Best candidate remains v5 (+14 total PnL). v6 ATM filter kept strategy safe but thinned to +2. Next parents: v5 for threshold tuning around switch_mean and THR_OPEN without dropping IV gate as far as v1."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "Subsampled tape distribution of the Frankfurt switch_mean (EMA_100 of |theo_diff - EMA_20|) per voucher row; TTE and smile as traders. Output: share of rows where switch_mean >= 0.55/0.65/0.7 (rare) and quantiles 0.5-0.99. This explains why IV_SCALPING_THR=0.7 rarely opens the main branch and why v8 (no extract hedge) ties v5 on total PnL.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/switch_mean_quantiles.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/run_switch_mean_quantiles.py"
+    ],
+    "used_to_decide": "v8 duplicate of v5 PnL (+14) with no extract: hedge was not the edge driver. v9 (slightly looser gate) was worse (-8) due to extract hedge drag + more wing strikes. Prefer v5 or v8 as parent; if tuning IV gate, use small steps above tape median (~0.23) and below 0.55 unless willing to change EMA window shape."
   }
 ]

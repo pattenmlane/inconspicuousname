@@ -55,5 +55,14 @@
       "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analyze_anchor_ewma_smile_stability.py"
     ],
     "used_to_decide": "Grid selected alpha=0.045 to minimize c2 jiggle; implemented as trader_v6. Backtest: total PnL 19246 vs 19255 for v2, so the smoother anchor did not improve realized PnL here; next iterations should stay on tick-S smile (v2) unless a different smoothing hook is found."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Grid over smile-coeff EMA rate alpha in {0.02,0.03,0.045,0.06} on days 0-2, step 25: for each path, sequential EMA of poly coeffs from per-tick vega-weighted fit; at VEV_5200 record median |Delta fair| between steps and |BS call theta| (dV/dT, r=0) at sticky IV. Fair uses S from tape, T from dte_effective/365 (round3 DTE + intraday wind).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analysis_outputs/smile_ewma_fair_drift_5200.json",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analyze_smile_ewma_fair_drift_5200.py"
+    ],
+    "used_to_decide": "Median |Delta fair| for VEV_5200 is ~2.0 and nearly flat in alpha in this grid; |theta| is huge (~1785/year) as expected for short T—dominant signal is moneyness/IV, not a small EMA tweak. Tried trader_v7 with EMA 0.03: backtest tied v2 at 19255; default remains v2 (0.045) for fewer moving parts unless future work needs slower reaction."
   }
 ]

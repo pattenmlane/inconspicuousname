@@ -54,5 +54,13 @@
     "total_profit": 19246,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "Parent v2: slower smile-coeff EWMA (0.03 vs 0.045); wing filter and rest unchanged. Grid search on tape (smile_ewma_fair_drift_5200) found fair-step drift for VEV_5200 nearly identical across EMA rates; backtest total 19255 (tied v2, tie-break keep v2 as canonical config). DTE: round3description + intraday winding.",
+    "total_profit": 19255,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
   }
 ]

@@ -1,0 +1,33 @@
+{
+  "focal_strike": 5200,
+  "focal_voucher": "VEV_5200",
+  "subsample_step": 25,
+  "dte": "8-csv_day at open, intraday -1d per session",
+  "grid": [
+    {
+      "alpha": 0.06,
+      "n_steps": 1200,
+      "median_abs_delta_fair": 1.993454683507025,
+      "median_abs_theta_per_year": 1785.381052424988
+    },
+    {
+      "alpha": 0.03,
+      "n_steps": 1200,
+      "median_abs_delta_fair": 1.9965084229870627,
+      "median_abs_theta_per_year": 1783.8961330801694
+    },
+    {
+      "alpha": 0.02,
+      "n_steps": 1200,
+      "median_abs_delta_fair": 1.9968592233035451,
+      "median_abs_theta_per_year": 1784.9031509911383
+    },
+    {
+      "alpha": 0.045,
+      "n_steps": 1200,
+      "median_abs_delta_fair": 2.0053518807994806,
+      "median_abs_theta_per_year": 1784.3606073020194
+    }
+  ],
+  "lowest_median_drift_alpha": 0.06
+}

@@ -418,5 +418,78 @@
         "hydrogel": 10106
       }
     }
+  },
+  {
+    "iteration": 20,
+    "trader_file": "trader_v20.py",
+    "strategy_description": "v19 + straddle-gamma add-on to vega+spread misprice floor: mis_floor += GAMMA_MISPRICE_PER_GAMMA * (BS call gamma@5000 + @5100). Motivated by ~0.25 corr(|mis|,straddle gamma) in mispricing_vs_gamma_straddle_v20.json. Same shock scaling and OR logic as v19. TTE hist day d -> 8-d.",
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v20.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/backtest_logs/trader_v20_round3_worse.log",
+    "match_trades": "worse",
+    "total_profit": 55221,
+    "trades_or_fills_summary": {
+      "per_day": [
+        {
+          "day": 0,
+          "products": {
+            "VEV_6500": 0,
+            "VEV_6000": 0,
+            "VEV_5500": 0,
+            "VEV_5400": 0,
+            "VEV_5300": 0,
+            "VEV_5200": 0,
+            "VEV_5100": 1686,
+            "VEV_5000": 2372,
+            "VEV_4500": 0,
+            "VEV_4000": 0,
+            "VELVETFRUIT_EXTRACT": 0,
+            "HYDROGEL_PACK": 2989
+          },
+          "day_total_profit": 7047
+        },
+        {
+          "day": 1,
+          "products": {
+            "VEV_6500": 0,
+            "VEV_6000": 0,
+            "VEV_5500": 0,
+            "VEV_5400": 0,
+            "VEV_5300": 0,
+            "VEV_5200": 0,
+            "VEV_5100": 5637,
+            "VEV_5000": 7065,
+            "VEV_4500": 0,
+            "VEV_4000": 0,
+            "VELVETFRUIT_EXTRACT": -360,
+            "HYDROGEL_PACK": 4210
+          },
+          "day_total_profit": 16552
+        },
+        {
+          "day": 2,
+          "products": {
+            "VEV_6500": 0,
+            "VEV_6000": 0,
+            "VEV_5500": 0,
+            "VEV_5400": 0,
+            "VEV_5300": 0,
+            "VEV_5200": 0,
+            "VEV_5100": 13818,
+            "VEV_5000": 15279,
+            "VEV_4500": 0,
+            "VEV_4000": 0,
+            "VELVETFRUIT_EXTRACT": -382,
+            "HYDROGEL_PACK": 2907
+          },
+          "day_total_profit": 31622
+        }
+      ],
+      "aggregate_by_product_group": {
+        "vev_sum": 45857,
+        "extract": -742,
+        "hydrogel": 10106
+      }
+    }
   }
 ]

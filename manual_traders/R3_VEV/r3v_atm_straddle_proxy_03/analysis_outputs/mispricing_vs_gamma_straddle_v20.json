@@ -1,0 +1,5 @@
+{
+  "method": "subsample day0 every 10th tick; robust smile like v19",
+  "n": 1000,
+  "corr_abs_mis_straddle_gamma": 0.2525
+}

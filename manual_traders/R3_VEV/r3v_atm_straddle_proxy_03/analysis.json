@@ -91,5 +91,13 @@
       "analysis_outputs/mispricing_vs_spread_v19.json"
     ],
     "used_to_decide": "Tight 5000+5100 books carry larger structural smile residuals per tick, so v19 raises the effective edge floor in those regimes. v19 total 55221 > v18 55009 under worse-match; still far from 800k bar (would need multi-VEV execution and/or parent full smile stack)."
+  },
+  {
+    "iteration": 20,
+    "analysis_description": "Offline subsample (day 0, every 10th tick, robust smile like v19): Pearson corr between |bundle mispricing| and BS straddle gamma (g5000+g5100) is ~0.25; see analysis_outputs/mispricing_vs_gamma_straddle_v20.json. TTE from round3description via hist day d -> 8-d.",
+    "analysis_outputs": [
+      "analysis_outputs/mispricing_vs_gamma_straddle_v20.json"
+    ],
+    "used_to_decide": "v20 adds a mis_floor term proportional to straddle gamma (GAMMA_MISPRICE_PER_GAMMA * (g0+g1)) on top of v19. Backtest PnL and fills matched v19 because entries are still dominated by the IV-shock OR branch (shock not gated by mis_floor), so the gamma term only would affect pure misprice-driven trades."
   }
 ]

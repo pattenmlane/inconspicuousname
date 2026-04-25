@@ -111,6 +111,12 @@ class TestRunner:
                 plainValueObservations={}, conversionObservations={"MAGNIFICENT_MACARONS": conversion_observation}
             )
 
+        # Prosperity-4 backtester resets traderData each day; expose tape day for TTE / day-specific logic.
+        plain = dict(state.observations.plainValueObservations)
+        plain["__BT_TAPE_DAY__"] = data.day_num
+        plain["__BT_ROUND__"] = data.round_num
+        state.observations = Observation(plain, state.observations.conversionObservations)
+
         return state
 
     # def __validate_orders(self, orders: dict[Symbol, list[Order]]) -> None:

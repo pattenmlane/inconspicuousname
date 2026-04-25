@@ -41,5 +41,13 @@
       "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analysis_v4_smile_skew_brief.json"
     ],
     "used_to_decide": "Mean (wing) IV - (mid) IV ~+0.37, consistent with a smile. Extra dampening on very wide per-voucher books (v17 third tier) nudged PnL up vs v14; further lowering global TILT_AMP (v18) only matched v16, so signal amplitude 4.0 remains a local optimum next to v14."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "Spread-bucket microstructure pass on Round-3 VEV books: grouped observations by spread buckets <=2, 3-5, 6-8, >=9 and computed mean/95th percentile of absolute mid-step change as a volatility proxy. Kept IV/Greek thread via existing smile/IV metrics and used this to calibrate tilt dampening by spread.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analysis_v5_spread_bucket_stats.json"
+    ],
+    "used_to_decide": "Wider spreads show higher abs mid-step volatility (mean abs step rises from ~0.11 at <=2 to ~0.87 at >=9), supporting stronger dampening for wide books. v19-v21 tested this directly; v20 (0.85/0.66/0.54, VEV_SIZE=18) delivered new best 16,246."
   }
 ]

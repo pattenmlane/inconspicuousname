@@ -1,0 +1,29 @@
+{
+  "method": "Per voucher/day: spread bucket vs next-step absolute mid change proxy using |diff(mid)|.",
+  "table": [
+    {
+      "bucket": "<=2",
+      "mean_abs_mid_step": 0.11011174074024922,
+      "p95_abs_mid_step": 0.5,
+      "n": 150706
+    },
+    {
+      "bucket": "3-5",
+      "mean_abs_mid_step": 0.5619128192732253,
+      "p95_abs_mid_step": 1.5,
+      "n": 62055
+    },
+    {
+      "bucket": "6-8",
+      "mean_abs_mid_step": 0.7710819411296739,
+      "p95_abs_mid_step": 2.0,
+      "n": 27654
+    },
+    {
+      "bucket": ">=9",
+      "mean_abs_mid_step": 0.8727448183267601,
+      "p95_abs_mid_step": 2.0,
+      "n": 59585
+    }
+  ]
+}

@@ -161,5 +161,16 @@
       "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v17_fill_summary.json"
     ],
     "used_to_decide": "Tie with v15 at 18,968 and identical 5400/4000 PnL pattern — extra core poly weight did not create new integer-tick quote states for 5000-5300. Next iterations should try width/edge on core only or a slightly larger w step (0.45) with caution, or accept v15 as local optimum for this blend family."
+  },
+  {
+    "iteration": 18,
+    "analysis_description": "Tape: at each timestamp, flag extract shock |dS|>=2 vs prior mid within day; compare median bid1-ask1 spread for core VEV (5000-5300) vs deep wings (4000,4500,6500) on shock vs calm (analyze_extract_shock_spread_core_wing.py). Greeks thread unchanged from smile stack (IV from mid + BS vega in trader).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analyze_extract_shock_spread_core_wing.py",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analysis_outputs/extract_shock_spread_core_wing.json",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v18_backtest.log",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v18_fill_summary.json"
+    ],
+    "used_to_decide": "Median core spread stays 3 on shocks vs calm; wings stay 16 either way — so shock is not a spread-widening regime for core books. Implemented v18: tiny core-only width/edge nudge only when |dS|>=2. Backtest is bit-for-bit same as v15 (18,968, same 5400/4000 lines): nudge is below integer tick threshold after round(fair\u00b1shift). Next shock-aware iteration needs either larger delta (risk adverse selection) or a non-width lever (e.g. core-only size bump without crossing into v13-style aggressive takes)."
   }
 ]

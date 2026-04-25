@@ -1,0 +1,10 @@
+{
+  "shock_def": "|delta extract mid| >= 2 vs prior timestamp within same csv day",
+  "timestamps_shock": 3872,
+  "timestamps_calm": 26125,
+  "core_vev_median_spread_shock": 3.0,
+  "core_vev_median_spread_calm": 3.0,
+  "deep_wing_median_spread_shock": 16.0,
+  "deep_wing_median_spread_calm": 16.0,
+  "interpretation": "Median top-of-book spread is unchanged shock vs calm for both bands (core 3, wings 16) on this tape \u2014 shocks are not widening core books. Still useful: |dS|>=2 marks high extract-velocity windows where core vouchers co-move with S (see underlying_propagation); tightening core-only quotes on those steps is a targeted lever without changing wing liquidity filters."
+}

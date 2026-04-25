@@ -32,5 +32,14 @@
       "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/grid_v3_spline_filter.json"
     ],
     "used_to_decide": "Simpler v2 logic is the performance driver; spline residual as a same-sign gate does not change total PnL on days 0\u20132 here (likely same trade set). Kept Z_R_MIN=0.45 and cap=100 for interpretability; IV curvature stats document smile is not flat in second diff."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "Theta parameter sweep on v4 (grid_theta_ref_sweep.json): aggressive theta-based size cuts (low THETA_REF) worsened total PnL to -1248 vs v2/v3 -908; neutral ref recovers -908. New tape sample: Pearson correlation of VELVETFRUIT_EXTRACT mid vs mean BS IV across 10 strikes (subsampling timestamps) in analysis_iv_u_mean_corr.json \u2014 weak positive ~0.16 on n=116 pairs (method in analyze_iv_u_corr.py).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/grid_theta_ref_sweep.json",
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/analysis_iv_u_mean_corr.json"
+    ],
+    "used_to_decide": "Theta as a shrinker is not helpful at strong levels on this backtest; document and set THETA_REF high enough to be inert. IV level co-moves weakly with extract on subsample\u2014does not replace neighbor-gap signal but supports using extract for IV/Greeks."
   }
 ]

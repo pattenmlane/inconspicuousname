@@ -30,5 +30,13 @@
     "total_profit": -908,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v3.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "Parent v2 (best PnL -908). Adds Black-Scholes theta (r=0, dC/dT per year) on both legs; size multiplier theta_scale = THETA_REF/(THETA_REF+0.5(|\u03b8h|+|\u03b8l|)), floored 0.25. Sweep: THETA_REF in {12,50,150} -> total -1248; {500+} -> -908 (neutral, same as v2). Shipped THETA_REF=500 to keep Greek in code without hurting PnL on this tape.",
+    "total_profit": -908,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v4.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

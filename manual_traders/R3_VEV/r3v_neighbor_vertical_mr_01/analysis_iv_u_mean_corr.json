@@ -1,0 +1,5 @@
+{
+  "method": "Per timestamp: mean of 10 option IVs (BS, r=0) vs VELVETFRUIT_EXTRACT mid; T=TTE/365, TTE_days=8-csv_day.",
+  "n_pairs": 116,
+  "pearson_u_vs_mean_iv": 0.16309261219531523
+}

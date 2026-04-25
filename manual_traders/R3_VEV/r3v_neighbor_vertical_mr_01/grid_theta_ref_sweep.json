@@ -1,0 +1,26 @@
+[
+  {
+    "THETA_REF": 12,
+    "total": -1248
+  },
+  {
+    "THETA_REF": 50,
+    "total": -1248
+  },
+  {
+    "THETA_REF": 150,
+    "total": -1248
+  },
+  {
+    "THETA_REF": 500,
+    "total": -908
+  },
+  {
+    "THETA_REF": 5000,
+    "total": -908
+  },
+  {
+    "THETA_REF": 1000000.0,
+    "total": -908
+  }
+]

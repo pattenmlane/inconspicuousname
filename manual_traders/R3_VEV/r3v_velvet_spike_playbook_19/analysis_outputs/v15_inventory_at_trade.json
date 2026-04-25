@@ -1,0 +1,11 @@
+{
+  "source_log": "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v15_spline_delta_beta_scaled.json",
+  "vev_submission_trades": 42,
+  "buckets_pos_before": {
+    "near_flat": 18,
+    "long_10_50": 11,
+    "short_10_50": 5,
+    "long_ge_half": 8
+  },
+  "rationale": "If large |inventory| at fill time is common, fair-value skew vs delta-scaled position risk can help inventory mean reversion under worse fills."
+}

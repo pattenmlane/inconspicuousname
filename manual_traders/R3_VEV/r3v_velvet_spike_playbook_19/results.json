@@ -330,5 +330,49 @@
         }
       }
     }
+  },
+  {
+    "iteration": 18,
+    "trader_file": "trader_v18_spline_inventory_skew.py",
+    "strategy_description": "Family12 v15 + execution inventory skew: shift theo_exec (not spline) by -alpha*(pos/lim)*(1+k*resp) with resp=|delta|+beta and |pos|>=MIN before skew; tuned grid — best +6418 vs v15 +7181 (worse fills).",
+    "total_profit": 6418,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v18_spline_inventory_skew.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v18_spline_inventory_skew.json",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v18_spline_inventory_skew.json",
+    "match_trades": "worse",
+    "trades_or_fills_summary": {
+      "profit": {
+        "0": 270,
+        "1": 2520,
+        "2": 3628,
+        "total": 6418
+      },
+      "fills": {
+        "submission_trade_count": 36,
+        "submission_filled_abs_qty": 448,
+        "submission_by_symbol": {
+          "VEV_4000": {
+            "trade_count": 5,
+            "filled_abs_qty": 10
+          },
+          "VEV_5000": {
+            "trade_count": 5,
+            "filled_abs_qty": 99
+          },
+          "VEV_5100": {
+            "trade_count": 13,
+            "filled_abs_qty": 226
+          },
+          "VEV_5200": {
+            "trade_count": 4,
+            "filled_abs_qty": 54
+          },
+          "VEV_5300": {
+            "trade_count": 9,
+            "filled_abs_qty": 59
+          }
+        }
+      }
+    }
   }
 ]

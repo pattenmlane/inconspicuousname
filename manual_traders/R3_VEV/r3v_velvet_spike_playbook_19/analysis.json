@@ -109,5 +109,14 @@
       "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v17_fill_trade_summary.json"
     ],
     "used_to_decide": "Gap analysis suggested adverse short-horizon expectancy for spread crossing (buy gap=0 mean about -2.33, sell gap=0 mean about -0.82), so v17 tested passive-only quoting. Backtest dropped to -660 (vs v15 +7181), implying taking remains necessary for opportunity capture despite local adverse proxy. Keep v15 as better family12 base; avoid full passive lock."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Execution inventory path from v15 backtest: replayed tradeHistory to compute VEV position before each SUBMISSION print. Bucketed pos_before by normalized inventory |pos|/300 (vev lim): near_flat (|f|<=0.10) vs 10-50% band vs 50%+. No Greek re-solve — positions from tape-consistent submission trades only.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/v15_inventory_at_trade.json",
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v18_fill_trade_summary.json"
+    ],
+    "used_to_decide": "A majority of v15 submission prints occur with non-trivial pre-trade inventory; warrants an inventory-skewed execution theo. v18 applies theo_skew = -alpha * (pos/lim) * (1 + k*resp) with resp=|delta|+beta (same as v15), gated by |pos|>=36 so small inventory matches v15. Tuned (alpha/cap/resp/pos gate) on worse fills: best v18 = +6,418 vs v15 +7,181; skew remains a small net loss on this band — log as negative vs v15, keep v15 as primary; inventory overlay needs different mechanism or finer grid later."
   }
 ]

@@ -2,7 +2,7 @@
   {
     "iteration": 0,
     "trader_file": "trader_v0.py",
-    "strategy_description": "Synthetic IV slice: cubic spline in log-moneyness on Newton IV knots each tick; trade VEV when |mid−BS(theo)| > 1.35× half-spread; aggressive prices bb−1 / ba+1 for worse market-trade matching. TTE from backtest_day (8−d DTE at open, intraday wind per plot_iv_smile_round3).",
+    "strategy_description": "Synthetic IV slice: cubic spline in log-moneyness on Newton IV knots each tick; trade VEV when |mid\u2212BS(theo)| > 1.35\u00d7 half-spread; aggressive prices bb\u22121 / ba+1 for worse market-trade matching. TTE from backtest_day (8\u2212d DTE at open, intraday wind per plot_iv_smile_round3).",
     "total_profit": 3883,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v0.py 3 --data Prosperity4Data --match-trades worse"
@@ -34,7 +34,7 @@
   {
     "iteration": 4,
     "trader_file": "trader_v4.py",
-    "strategy_description": "Same as v3 but IV spline is fit only on ALLOWED_STRIKES knots (6 strikes), not the full 10, to keep the local slice local to 5000–5500. Empirically hurt PnL (underspecified spline).",
+    "strategy_description": "Same as v3 but IV spline is fit only on ALLOWED_STRIKES knots (6 strikes), not the full 10, to keep the local slice local to 5000\u20135500. Empirically hurt PnL (underspecified spline).",
     "total_profit": 302,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v4.py 3 --data Prosperity4Data --match-trades worse"
@@ -50,7 +50,7 @@
   {
     "iteration": 6,
     "trader_file": "trader_v6.py",
-    "strategy_description": "Parent v3 + weighted IV spline: all 10 Newton-IV knots, but wing strikes 4000/4500/6000/6500 use UnivariateSpline weight 0.35 vs 1.0 for core (5000–5500). Same hurdles and allowed strikes as v3.",
+    "strategy_description": "Parent v3 + weighted IV spline: all 10 Newton-IV knots, but wing strikes 4000/4500/6000/6500 use UnivariateSpline weight 0.35 vs 1.0 for core (5000\u20135500). Same hurdles and allowed strikes as v3.",
     "total_profit": -3264,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v6.py 3 --data Prosperity4Data --match-trades worse"
@@ -94,5 +94,37 @@
     "total_profit": 10512,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v11.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 12,
+    "trader_file": "trader_v12.py",
+    "strategy_description": "Fine sweep around v8: WING_SPLINE_WEIGHT 0.50, SPLINE_SMOOTH 0.08.",
+    "total_profit": 8800,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v12.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 13,
+    "trader_file": "trader_v13.py",
+    "strategy_description": "Fine sweep around v8: WING_SPLINE_WEIGHT 0.53, SPLINE_SMOOTH 0.08.",
+    "total_profit": 9990,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v13.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 14,
+    "trader_file": "trader_v14.py",
+    "strategy_description": "Fine sweep around v8: WING_SPLINE_WEIGHT 0.58, SPLINE_SMOOTH 0.08.",
+    "total_profit": 11366,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v14.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 15,
+    "trader_file": "trader_v15.py",
+    "strategy_description": "Fine sweep around v8: keep WING_SPLINE_WEIGHT 0.55, raise SPLINE_SMOOTH to 0.09.",
+    "total_profit": 10794,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v15.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

@@ -1,18 +1,20 @@
 [
   {
     "iteration": 0,
-    "analysis_description": "Round 3 tape IV smile width and vega-at-ATM from historical prices (days 0–2). TTE: CSV day d maps to DTE at open = 8−d per round3description example; intraday dte_eff = dte_open − (timestamp//100)/10000, T_years = dte_eff/365, r=0 (same as plot_iv_smile_round3). Implied vol from mid via Black–Scholes call + Brent; vega from closed form. Also summarized half-spread proxy from bid/ask mids in the script output file.",
+    "analysis_description": "Round 3 tape IV smile width and vega-at-ATM from historical prices (days 0\u20132). TTE: CSV day d maps to DTE at open = 8\u2212d per round3description example; intraday dte_eff = dte_open \u2212 (timestamp//100)/10000, T_years = dte_eff/365, r=0 (same as plot_iv_smile_round3). Implied vol from mid via Black\u2013Scholes call + Brent; vega from closed form. Also summarized half-spread proxy from bid/ask mids in the script output file.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/iv_surface_tape_summary.json",
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/_run_iv_surface_analysis.py"
     ],
-    "used_to_decide": "IV smile width ~0.32–0.50 (median ~0.38 across sampled timestamps) suggests cross-strike mispricings vs a smooth surface can exceed typical half-spreads on some names; vega ATM declines as DTE shortens (8→6d). Guided initial residual hurdle ~1.35× half-spread and spline smoothing ~0.08 for a stable σ(log K) slice."
+    "used_to_decide": "IV smile width ~0.32\u20130.50 (median ~0.38 across sampled timestamps) suggests cross-strike mispricings vs a smooth surface can exceed typical half-spreads on some names; vega ATM declines as DTE shortens (8\u21926d). Guided initial residual hurdle ~1.35\u00d7 half-spread and spline smoothing ~0.08 for a stable \u03c3(log K) slice."
   },
   {
     "iteration": 1,
-    "analysis_description": "Small parameter grid on the same surface strategy (documented in results.json iteration 1): lower hurdle + smoother spline + smaller clip. Backtest total_profit 3486 vs v0 3883 on Round 3 days 0–2, worse fills — tighter hurdle increased turnover without improving edge.",
-    "analysis_outputs": ["manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/results.json"],
-    "used_to_decide": "Keep v0 as parent for the next iteration; prefer v0’s higher hurdle and slightly less smoothed spline."
+    "analysis_description": "Small parameter grid on the same surface strategy (documented in results.json iteration 1): lower hurdle + smoother spline + smaller clip. Backtest total_profit 3486 vs v0 3883 on Round 3 days 0\u20132, worse fills \u2014 tighter hurdle increased turnover without improving edge.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/results.json"
+    ],
+    "used_to_decide": "Keep v0 as parent for the next iteration; prefer v0\u2019s higher hurdle and slightly less smoothed spline."
   },
   {
     "iteration": 2,
@@ -32,19 +34,23 @@
   },
   {
     "iteration": 4,
-    "analysis_description": "Refinement test: if the implied-vol spline uses only 5000–5500 strike knots, the RBF/spline is fit on 6 points instead of 10. Risk: under-constrained wobble. Backtest: total_profit 302 vs 6313 (v3) — rejected as a thesis pivot; the edge needs global strike context for a stable local slice.",
-    "analysis_outputs": ["manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/results.json"],
-    "used_to_decide": "Do not use knot-only local patch for v3-style spline; when revisiting, keep 10-strike IV knots for σ̂(x) and optionally blend or weight wings instead of dropping them."
+    "analysis_description": "Refinement test: if the implied-vol spline uses only 5000\u20135500 strike knots, the RBF/spline is fit on 6 points instead of 10. Risk: under-constrained wobble. Backtest: total_profit 302 vs 6313 (v3) \u2014 rejected as a thesis pivot; the edge needs global strike context for a stable local slice.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/results.json"
+    ],
+    "used_to_decide": "Do not use knot-only local patch for v3-style spline; when revisiting, keep 10-strike IV knots for \u03c3\u0302(x) and optionally blend or weight wings instead of dropping them."
   },
   {
     "iteration": 5,
-    "analysis_description": "Greek add-on: closed-form call gamma in the same BS framework as vega, expressed as S*|gamma| in the spread hurdle. Method: d2 from d1, gamma = N'(d1)/(S*σ*sqrt(T)) with T from round3 DTE+intraday wind. Tuned scale after an initial overshoot (very large S^2*gamma/100) produced zero PnL by blocking all edges.",
-    "analysis_outputs": ["manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v5.py"],
+    "analysis_description": "Greek add-on: closed-form call gamma in the same BS framework as vega, expressed as S*|gamma| in the spread hurdle. Method: d2 from d1, gamma = N'(d1)/(S*\u03c3*sqrt(T)) with T from round3 DTE+intraday wind. Tuned scale after an initial overshoot (very large S^2*gamma/100) produced zero PnL by blocking all edges.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v5.py"
+    ],
     "used_to_decide": "v5 (5347) < v3 (6313): gamma term did not add value in this backtest; keep v3 as parent, drop gamma from production path until a better calibration (or separate wing gate) is justified."
   },
   {
     "iteration": 6,
-    "analysis_description": "Implemented analysis follow-up from iteration 4: keep 10 IV knots for σ̂(log K) but **down-weight** far-strike knots in the cubic spline (weighted least squares via UnivariateSpline `w`), so wings still anchor curvature without dominating the mid-stripe like unweighted v3 or underfitting like v4. IV at each knot still from Newton inversion of mid vs BS call; TTE/DTE mapping unchanged (round3description DTE at open 8−csv_day, intraday wind, T=dte_eff/365, r=0). v6 used wing weight 0.35: backtest total_profit −3264 — too aggressive; mid-stripe σ̂ likely mis-anchored.",
+    "analysis_description": "Implemented analysis follow-up from iteration 4: keep 10 IV knots for \u03c3\u0302(log K) but **down-weight** far-strike knots in the cubic spline (weighted least squares via UnivariateSpline `w`), so wings still anchor curvature without dominating the mid-stripe like unweighted v3 or underfitting like v4. IV at each knot still from Newton inversion of mid vs BS call; TTE/DTE mapping unchanged (round3description DTE at open 8\u2212csv_day, intraday wind, T=dte_eff/365, r=0). v6 used wing weight 0.35: backtest total_profit \u22123264 \u2014 too aggressive; mid-stripe \u03c3\u0302 likely mis-anchored.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v6.py",
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/results.json"
@@ -53,16 +59,16 @@
   },
   {
     "iteration": 7,
-    "analysis_description": "Parameter sweep: v7 identical to v6 except WING_SPLINE_WEIGHT 0.65. Backtest total_profit 10512 vs v3 6313 (same dataset, worse fills). Implication: moderate down-weighting of wing IV noise improves the synthetic local-vol residual edge on 5000–5500 without v4’s six-point spline instability.",
+    "analysis_description": "Parameter sweep: v7 identical to v6 except WING_SPLINE_WEIGHT 0.65. Backtest total_profit 10512 vs v3 6313 (same dataset, worse fills). Implication: moderate down-weighting of wing IV noise improves the synthetic local-vol residual edge on 5000\u20135500 without v4\u2019s six-point spline instability.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v7.py",
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/results.json"
     ],
-    "used_to_decide": "Adopt v7 as the new best baseline; next sweeps should stay on WLS surface + v3-style vega hurdle, e.g. tune weight 0.55–0.75 or spline smoothness S."
+    "used_to_decide": "Adopt v7 as the new best baseline; next sweeps should stay on WLS surface + v3-style vega hurdle, e.g. tune weight 0.55\u20130.75 or spline smoothness S."
   },
   {
     "iteration": 8,
-    "analysis_description": "WLS surface grid (parent v7, 10-knot IV slice, same BS/vega hurdle as v3). Swept wing knot weight in {0.55,0.75} and spline smoothness S in {0.05,0.11} vs v7 baseline (0.65, 0.08). The weight controls how much far-strike implied vol knots influence σ̂(x) in log-moneyness (WLS = weighted residual minimization: higher weight = trust knot more). TTE: unchanged — DTE at open 8−csv_day from round3description, intraday dte_eff = dte_open−(ts//100)/10000, T=dte_eff/365, r=0.",
+    "analysis_description": "WLS surface grid (parent v7, 10-knot IV slice, same BS/vega hurdle as v3). Swept wing knot weight in {0.55,0.75} and spline smoothness S in {0.05,0.11} vs v7 baseline (0.65, 0.08). The weight controls how much far-strike implied vol knots influence \u03c3\u0302(x) in log-moneyness (WLS = weighted residual minimization: higher weight = trust knot more). TTE: unchanged \u2014 DTE at open 8\u2212csv_day from round3description, intraday dte_eff = dte_open\u2212(ts//100)/10000, T=dte_eff/365, r=0.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v8.py",
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v9.py",
@@ -70,6 +76,18 @@
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v11.py",
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/results.json"
     ],
-    "used_to_decide": "v8 (wing weight 0.55, S=0.08) best at 10,794 total vs v7 10,512; v9 (0.75) dropped to 8,467 — wings still carry signal but overweighting them hurts. v10/v11 tied v7 (10,512): changing S alone at 0.65 did not move PnL on this backtest, so the dominant knob is wing WLS weight. Next parent: v8; optional fine-sweep 0.50–0.60."
+    "used_to_decide": "v8 (wing weight 0.55, S=0.08) best at 10,794 total vs v7 10,512; v9 (0.75) dropped to 8,467 \u2014 wings still carry signal but overweighting them hurts. v10/v11 tied v7 (10,512): changing S alone at 0.65 did not move PnL on this backtest, so the dominant knob is wing WLS weight. Next parent: v8; optional fine-sweep 0.50\u20130.60."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Fine WLS wing-weight sweep around v8 with same BS implied-vol inversion and vega hurdle (residual threshold), preserving DTE/TTE mapping from round3description (DTE open=8-csv_day; intraday dte_eff=dte_open-(timestamp//100)/10000; T=dte_eff/365). Evaluated wing weights 0.50, 0.53, 0.58 and a smoothness perturbation S=0.09.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v12.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v13.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v14.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v15.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/results.json"
+    ],
+    "used_to_decide": "Best was wing weight 0.58 (v14, total 11,366), beating v8 (10,794). Stronger down-weight (0.50/0.53) reduced day2 capture; smoothness tweak to 0.09 gave no gain over v8. New parent should be v14; next micro-grid near 0.58 (e.g. 0.57/0.60) and possibly small hurdle tweak."
   }
 ]

@@ -67,5 +67,16 @@
       "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v22_v24.json"
     ],
     "used_to_decide": "v22 outperforms v24 by +14, driven by VEV_4000 edge (+6 day0, +2 day1, +6 day2) with identical hydrogel path; supports keeping v22 spread multipliers as current best local setting."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Family-10 weighting robustness check for smile_quadratic_logm_wls: per sampled timestamp fit quadratic IV(log-moneyness) under three schemes (unweighted, inverse-spread WLS, spread+sqrt(vega) hybrid WLS). Compared RMSE, weighted RMSE, and coefficient stability via repeated half-sample refits.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analysis_v7_wls_weighting_robustness.json",
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v25_v26.json",
+      "backtests/r3v_v25_worse.log",
+      "backtests/r3v_v26_worse.log"
+    ],
+    "used_to_decide": "On tape-level fitting, inverse-spread and hybrid improve weighted RMSE but worsen coefficient stability vs unweighted in this setup. In live backtests, both WLS variants underperform current best v22 (16,260): v25=15,508, v26=15,700. Therefore keep v22 as best for now and document this family-10 variation as explored and non-improving on current architecture."
   }
 ]

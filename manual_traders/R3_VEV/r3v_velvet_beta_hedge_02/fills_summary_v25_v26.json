@@ -1,0 +1,108 @@
+{
+  "trader_v25": {
+    "log": "backtests/r3v_v25_worse.log",
+    "day_totals": [
+      6842,
+      10747,
+      -2081
+    ],
+    "overall": 15508,
+    "day_product_pnl": {
+      "0": {
+        "VEV_6500": 0,
+        "VEV_6000": 0,
+        "VEV_5500": 0,
+        "VEV_5400": 0,
+        "VEV_5300": 0,
+        "VEV_5200": 0,
+        "VEV_5100": 0,
+        "VEV_5000": 0,
+        "VEV_4500": 0,
+        "VEV_4000": 2686,
+        "VELVETFRUIT_EXTRACT": 0,
+        "HYDROGEL_PACK": 4156
+      },
+      "1": {
+        "VEV_6500": 0,
+        "VEV_6000": 0,
+        "VEV_5500": 0,
+        "VEV_5400": 0,
+        "VEV_5300": 0,
+        "VEV_5200": 0,
+        "VEV_5100": 0,
+        "VEV_5000": 0,
+        "VEV_4500": -34,
+        "VEV_4000": 3010,
+        "VELVETFRUIT_EXTRACT": 0,
+        "HYDROGEL_PACK": 7770
+      },
+      "2": {
+        "VEV_6500": 0,
+        "VEV_6000": 0,
+        "VEV_5500": 0,
+        "VEV_5400": 0,
+        "VEV_5300": 0,
+        "VEV_5200": 0,
+        "VEV_5100": 0,
+        "VEV_5000": 0,
+        "VEV_4500": 0,
+        "VEV_4000": 2212,
+        "VELVETFRUIT_EXTRACT": 0,
+        "HYDROGEL_PACK": -4293
+      }
+    }
+  },
+  "trader_v26": {
+    "log": "backtests/r3v_v26_worse.log",
+    "day_totals": [
+      6892,
+      10820,
+      -2012
+    ],
+    "overall": 15700,
+    "day_product_pnl": {
+      "0": {
+        "VEV_6500": 0,
+        "VEV_6000": 0,
+        "VEV_5500": 0,
+        "VEV_5400": 0,
+        "VEV_5300": 0,
+        "VEV_5200": 0,
+        "VEV_5100": 0,
+        "VEV_5000": 0,
+        "VEV_4500": 0,
+        "VEV_4000": 2736,
+        "VELVETFRUIT_EXTRACT": 0,
+        "HYDROGEL_PACK": 4156
+      },
+      "1": {
+        "VEV_6500": 0,
+        "VEV_6000": 0,
+        "VEV_5500": 0,
+        "VEV_5400": 0,
+        "VEV_5300": 0,
+        "VEV_5200": 0,
+        "VEV_5100": 0,
+        "VEV_5000": 0,
+        "VEV_4500": -34,
+        "VEV_4000": 3084,
+        "VELVETFRUIT_EXTRACT": 0,
+        "HYDROGEL_PACK": 7770
+      },
+      "2": {
+        "VEV_6500": 0,
+        "VEV_6000": 0,
+        "VEV_5500": 0,
+        "VEV_5400": 0,
+        "VEV_5300": 0,
+        "VEV_5200": 0,
+        "VEV_5100": 0,
+        "VEV_5000": 0,
+        "VEV_4500": 0,
+        "VEV_4000": 2281,
+        "VELVETFRUIT_EXTRACT": 0,
+        "HYDROGEL_PACK": -4293
+      }
+    }
+  }
+}

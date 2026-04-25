@@ -214,5 +214,21 @@
     "total_profit": 16246,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v24.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee backtests/r3v_v24_worse.log"
+  },
+  {
+    "iteration": 27,
+    "trader_file": "trader_v25.py",
+    "strategy_description": "Family10 WLS variant: dynamic quadratic smile fit with inverse-spread weights each tick; integrated minimally into v22 architecture. Underperformed baseline.",
+    "total_profit": 15508,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v25.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee backtests/r3v_v25_worse.log"
+  },
+  {
+    "iteration": 28,
+    "trader_file": "trader_v26.py",
+    "strategy_description": "Family10 WLS variant: dynamic quadratic smile fit with spread+sqrt(vega) hybrid weights each tick; better than v25 but still below v22.",
+    "total_profit": 15700,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v26.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee backtests/r3v_v26_worse.log"
   }
 ]

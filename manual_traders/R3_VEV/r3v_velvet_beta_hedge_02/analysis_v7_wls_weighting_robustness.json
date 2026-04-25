@@ -1,0 +1,26 @@
+{
+  "method": "Fit IV smile quadratic in log-moneyness per sampled timestamp; compare unweighted vs inverse-spread vs spread*sqrt(vega) hybrid WLS on fit error and coefficient stability.",
+  "summary": [
+    {
+      "method": "inv_spread",
+      "rmse": 0.010998515478577825,
+      "wrmse": 0.00975383409918989,
+      "coef_stability": 1.327984015489983,
+      "n_samples": 600
+    },
+    {
+      "method": "spread_vega_hybrid",
+      "rmse": 0.011399965360880367,
+      "wrmse": 0.009599447369689066,
+      "coef_stability": 1.3082515418412115,
+      "n_samples": 600
+    },
+    {
+      "method": "unweighted",
+      "rmse": 0.010163829578321293,
+      "wrmse": 0.010163829578321293,
+      "coef_stability": 1.2334614451926709,
+      "n_samples": 600
+    }
+  ]
+}

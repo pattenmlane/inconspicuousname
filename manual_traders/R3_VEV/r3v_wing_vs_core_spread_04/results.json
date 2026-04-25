@@ -340,5 +340,16 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v38.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v38.json"
+  },
+  {
+    "iteration": 39,
+    "trader_file": "trader_v39.py",
+    "strategy_description": "v37 + HEDGE_FRAC 0.24 (from 0.28); tape beta VEV_5400 mid vs extract mid ~0.13, corr ~0.57 \u2014 lighter hedge to cut worse-fill extract drag.",
+    "total_profit": 4229.0,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v39.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v39.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v39.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v39.json"
   }
 ]

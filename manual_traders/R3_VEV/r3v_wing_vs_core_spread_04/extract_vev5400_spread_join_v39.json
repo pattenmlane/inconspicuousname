@@ -1,0 +1,12 @@
+{
+  "n_joined_rows": 14651,
+  "extract_spread_mean": 5.003890519418469,
+  "extract_spread_p50": 5,
+  "extract_spread_p75": 5,
+  "extract_spread_p90": 6,
+  "vev5400_spread_mean_all": 1.3822264691829909,
+  "vev5400_spread_mean_when_extract_ge_p75": 1.3834547729447266,
+  "vev5400_spread_mean_when_extract_lt_p75": 1.3665413533834587,
+  "n_hi": 13587,
+  "n_lo": 1064
+}

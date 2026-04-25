@@ -284,5 +284,17 @@
       "backtest_v38.log"
     ],
     "used_to_decide": "Keep v37 as simpler canonical (6500 redundant in WING_KS here). Next parent v37 for parameter sweeps or tape-only shock/spread regime tied to extract."
+  },
+  {
+    "iteration": 39,
+    "analysis_description": "Tape join (analyze_extract_vev5400_spread_v39.py \u2192 extract_vev5400_spread_join_v39.json): extract bid-ask width is mostly 5\u20136 ticks; conditioning VEV_5400 width on extract \u2265 p90 vs <p90 moves mean VEV spread by only ~0.01\u20130.02 tick \u2014 weak regime for spread-gated quoting. Stronger signal: same-timestamp mid first-differences (vev5400_mid_beta_vs_extract_v39.json) give OLS beta d(VEV_5400)/d(extract) \u2248 0.129, corr \u2248 0.568 over ~22.6k steps (days 0\u20132), so co-movement is substantial. v39 lowers HEDGE_FRAC 0.28\u21920.24 on v37 wing set. fill_summary: total 4229 (+\u224824.5 vs v37), VELVETFRUIT_EXTRACT PnL 0 (was -24.5), VEV_5400 still 4229, 42 submission rows (no extract submission row \u2014 rounded hedge to zero).",
+    "analysis_outputs": [
+      "analyze_extract_vev5400_spread_v39.py",
+      "extract_vev5400_spread_join_v39.json",
+      "vev5400_mid_beta_vs_extract_v39.json",
+      "fill_summary_v39.json",
+      "backtest_v39.log"
+    ],
+    "used_to_decide": "New branch best v39; next grid HEDGE 0.22 or 0.26 from v39, or leave hedge and tune RICH/CHEAP on v39 parent."
   }
 ]

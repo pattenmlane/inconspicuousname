@@ -1,0 +1,48 @@
+{
+  "method": "shock-trigger ticks only; side from v20 shock rule; next-tick proxy = side * d(bundle_mid)",
+  "n_samples": 14646,
+  "abs_dS_q50": 0.5,
+  "abs_dS_q75": 1.0,
+  "ss_q50": 10.0,
+  "ss_q75": 11.0,
+  "all": {
+    "n": 14646,
+    "hit_rate": 0.4104,
+    "avg_proxy": 0.018299
+  },
+  "abs_dS_le_q50": {
+    "n": 8042,
+    "hit_rate": 0.4071,
+    "avg_proxy": 0.013927
+  },
+  "abs_dS_gt_q50": {
+    "n": 6604,
+    "hit_rate": 0.4143,
+    "avg_proxy": 0.023622
+  },
+  "abs_dS_gt_q75": {
+    "n": 2325,
+    "hit_rate": 0.4219,
+    "avg_proxy": 0.047097
+  },
+  "spread_le_q50": {
+    "n": 8799,
+    "hit_rate": 0.4056,
+    "avg_proxy": 0.05978
+  },
+  "spread_gt_q50": {
+    "n": 5847,
+    "hit_rate": 0.4175,
+    "avg_proxy": -0.044125
+  },
+  "spread_gt_q75": {
+    "n": 1385,
+    "hit_rate": 0.3957,
+    "avg_proxy": -0.144043
+  },
+  "joint_high_dS_wide_spread": {
+    "n": 207,
+    "hit_rate": 0.4106,
+    "avg_proxy": -0.082126
+  }
+}

@@ -491,5 +491,78 @@
         "hydrogel": 10106
       }
     }
+  },
+  {
+    "iteration": 21,
+    "trader_file": "trader_v21.py",
+    "strategy_description": "v20 + shock-regime quality gating from tape analysis: keep robust family10 smile and vega+gamma+spread mis-floor, but for shock-only entries require |dS|>=0.5 and widen shock edge by 1.25x when ATM spread sum is wide (ss>11). Motivated by shock_nexttick_proxy_regimes_v21.json showing wide-book shock trades are net negative and stronger |dS| shocks are higher quality.",
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v21.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/backtest_logs/trader_v21_round3_worse.log",
+    "match_trades": "worse",
+    "total_profit": 57098,
+    "trades_or_fills_summary": {
+      "per_day": [
+        {
+          "day": 0,
+          "products": {
+            "VEV_6500": 0,
+            "VEV_6000": 0,
+            "VEV_5500": 0,
+            "VEV_5400": 0,
+            "VEV_5300": 0,
+            "VEV_5200": 0,
+            "VEV_5100": 2016,
+            "VEV_5000": 2746,
+            "VEV_4500": 0,
+            "VEV_4000": 0,
+            "VELVETFRUIT_EXTRACT": -404,
+            "HYDROGEL_PACK": 2989
+          },
+          "day_total_profit": 7347
+        },
+        {
+          "day": 1,
+          "products": {
+            "VEV_6500": 0,
+            "VEV_6000": 0,
+            "VEV_5500": 0,
+            "VEV_5400": 0,
+            "VEV_5300": 0,
+            "VEV_5200": 0,
+            "VEV_5100": 5694,
+            "VEV_5000": 7089,
+            "VEV_4500": 0,
+            "VEV_4000": 0,
+            "VELVETFRUIT_EXTRACT": -360,
+            "HYDROGEL_PACK": 4210
+          },
+          "day_total_profit": 16632
+        },
+        {
+          "day": 2,
+          "products": {
+            "VEV_6500": 0,
+            "VEV_6000": 0,
+            "VEV_5500": 0,
+            "VEV_5400": 0,
+            "VEV_5300": 0,
+            "VEV_5200": 0,
+            "VEV_5100": 14542,
+            "VEV_5000": 16051,
+            "VEV_4500": 0,
+            "VEV_4000": 0,
+            "VELVETFRUIT_EXTRACT": -382,
+            "HYDROGEL_PACK": 2907
+          },
+          "day_total_profit": 33118
+        }
+      ],
+      "aggregate_by_product_group": {
+        "vev_sum": 48138,
+        "extract": -1146,
+        "hydrogel": 10106
+      }
+    }
   }
 ]

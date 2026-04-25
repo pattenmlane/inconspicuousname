@@ -1,0 +1,25 @@
+{
+  "method": "round3 all ticks robust smile; compare shock-signal vs mis-sign under bundle move residual |dBundle-0.82*dS|",
+  "rows": 30000,
+  "shock_signal_rows": 14647,
+  "resid_abs_q50": 0.77,
+  "resid_abs_q75": 1.23,
+  "summary_q50": {
+    "threshold": 0.77,
+    "n_low": 8191,
+    "n_high": 6456,
+    "conflict_rate_low_resid": 0.9937,
+    "conflict_rate_high_resid": 0.9873,
+    "same_sign_rate_low_resid": 0.0063,
+    "same_sign_rate_high_resid": 0.0127
+  },
+  "summary_q75": {
+    "threshold": 1.23,
+    "n_low": 11492,
+    "n_high": 3155,
+    "conflict_rate_low_resid": 0.993,
+    "conflict_rate_high_resid": 0.9829,
+    "same_sign_rate_low_resid": 0.007,
+    "same_sign_rate_high_resid": 0.0171
+  }
+}

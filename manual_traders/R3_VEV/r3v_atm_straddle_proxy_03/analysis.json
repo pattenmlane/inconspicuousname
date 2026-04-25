@@ -99,5 +99,14 @@
       "analysis_outputs/mispricing_vs_gamma_straddle_v20.json"
     ],
     "used_to_decide": "v20 adds a mis_floor term proportional to straddle gamma (GAMMA_MISPRICE_PER_GAMMA * (g0+g1)) on top of v19. Backtest PnL and fills matched v19 because entries are still dominated by the IV-shock OR branch (shock not gated by mis_floor), so the gamma term only would affect pure misprice-driven trades."
+  },
+  {
+    "iteration": 21,
+    "analysis_description": "Round-3 propagation deep-dive for shock entries under robust smile family10. Two analyses: (1) shock-vs-mis sign conflict against explained bundle move residual |d(bundle)-0.82*dS|; (2) next-tick proxy quality for shock-triggered side split by |dS| and combined ATM spread (5000+5100). TTE mapping kept d->8-d from round3description.",
+    "analysis_outputs": [
+      "analysis_outputs/shock_conflict_vs_explained_move_v21.json",
+      "analysis_outputs/shock_nexttick_proxy_regimes_v21.json"
+    ],
+    "used_to_decide": "Shock and mis signs conflict on ~99% of shock ticks, explaining why mis_floor tweaks had little effect. Next-tick proxy improved with larger |dS| and degraded sharply when combined spread was wide (>~11). v21 therefore keeps robust smile + gamma floor but changes shock execution logic: require minimum |dS| for shock-only entries and raise shock threshold further in wide-book regimes."
   }
 ]

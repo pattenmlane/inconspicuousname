@@ -86,5 +86,13 @@
     "total_profit": 8801,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v10.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 11,
+    "trader_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v11.py",
+    "strategy_description": "Family-13 pivot: realized-vol regime signal (RV40 - ATM IV), hysteresis state machine, quote-width scaling only on VEV_5000 (neutral width 1, high-regime width 3).",
+    "total_profit": 0,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v11.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

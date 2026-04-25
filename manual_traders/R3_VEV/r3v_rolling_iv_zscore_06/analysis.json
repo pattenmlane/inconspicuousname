@@ -46,5 +46,17 @@
     "analysis_description": "Neighborhood grid on v9 (log-IV z, same BS IV from mids): swept ROLL_WIN in {400,420,440}, Z_ENTRY in {2.55,2.6,2.65}, Z_EXIT in {0.07,0.09}, MAX_SPREAD in {2,3}, ORDER_Q in {6,8} on Round 3 days 0-2, worse fills. Tighter spread MAX_SPREAD=2 materially improved PnL vs 3; best stack in this slice was (400,2.6,0.07,2,6) with total +8801 vs v9 +5863. Pattern: **even tick-level spread filter** (bid/ask gap 1-2) dominates when combined with log-z; ROLL_WIN 400 shortens the rolling window for faster reactivity.",
     "analysis_outputs": [],
     "used_to_decide": "Set trader_v10 to best point; v9 kept as parent reference. Greek thread unchanged: implied IV inverts the same; mean reversion is still on the **log-IV** scale."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Family-13 data analysis first (RV regime): signal = short-window realized vol of VELVETFRUIT_EXTRACT (RV window 40 log-returns, annualized via dt=1/(365*10000)) minus ATM implied vol of VEV_5000 from BS mids (T=7/365, r=0). Signal stats over days 0-2: mean ~0.176, std ~0.057, p10~0.106, p50~0.172, p90~0.253. This means signal is almost always positive on available tapes; low-vol regime triggers are essentially absent. Hysteresis hit-rate test for (enter,exit) in {(0.20,0.16),(0.22,0.18),(0.24,0.19),(0.26,0.20),(0.28,0.22)} yielded flip rates ~0.006-0.018 and high-regime occupancy 9.5%-42.9%. Implemented width-scaling-only market maker (no directional taking): neutral half-width=1, high-regime wider half-width=3/4. Sweeps with --match-trades worse all returned total PnL ~0 and near-zero submission fills on VEV_5000 (tradeHistory had mostly market background rows; SUBMISSION fills = 0 in sampled runs). Per-run logs captured: backtests/2026-04-25_15-16-36.log, ...42.log, ...48.log, ...54.log, ...17-01.log with fill summaries recorded in this analysis.",
+    "analysis_outputs": [
+      "backtests/2026-04-25_15-16-36.log",
+      "backtests/2026-04-25_15-16-42.log",
+      "backtests/2026-04-25_15-16-48.log",
+      "backtests/2026-04-25_15-16-54.log",
+      "backtests/2026-04-25_15-17-01.log"
+    ],
+    "used_to_decide": "This pivot is genuinely new vs prior rolling-z family (not previously explored). On current data + worse-fill model, width-scaling-only regime maker did not monetize flow (no submission fills), so current family-13 variant is empirically inferior to family-10/11 log-z strategies in this branch."
   }
 ]

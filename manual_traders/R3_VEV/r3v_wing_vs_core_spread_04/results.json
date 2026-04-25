@@ -94,5 +94,37 @@
     "total_profit": -3357,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v11.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 12,
+    "trader_file": "trader_v12.py",
+    "strategy_description": "v2 with cubic IV(m_t) core (deg-3 poly). Tape analysis shows lower in-sample RMSE but wing |resid| can be larger; in backtest RICH/CHEAP vs v2 thresholds never tripped (0 trades).",
+    "total_profit": 0,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v12.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 13,
+    "trader_file": "trader_v13.py",
+    "strategy_description": "Parent v2: HEDGE_FRAC 0.62, MAX_LEG 10, RICH 0.012, CHEAP -0.018 — reduce extract hedge drag vs v0/v2 while keeping quadratic smile.",
+    "total_profit": 759,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v13.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 14,
+    "trader_file": "trader_v14.py",
+    "strategy_description": "Parent v13 with HEDGE_FRAC 0.50; with int(round(hedge)) and typical d_net, PnL matched v13 (759) in this run — hedge quantizes same as 0.62 for these flows.",
+    "total_profit": 759,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v14.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 15,
+    "trader_file": "trader_v15.py",
+    "strategy_description": "Parent v13 with HEDGE_FRAC 0.28 — much lighter extract hedge; option legs unchanged vs v13. Best in series so far on this tape (3010).",
+    "total_profit": 3010,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v15.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

@@ -1,0 +1,13 @@
+{
+  "method": "BS IV (r=0), m_t=log(K/S)/sqrt(T), polyfit deg 2 vs 3; subsample every 100 ticks; MIN_TV=0.045 of mid for smile points",
+  "n_fit_points": "require >=7 IV points per timestamp for cubic",
+  "mean_rmse_all_strikes_used_in_fit": {
+    "quadratic": 0.008850506598081814,
+    "cubic": 0.007231948890308852
+  },
+  "mean_abs_residual_wing_strikes_only": {
+    "quadratic": 0.013744491910820287,
+    "cubic": 0.026608690765086162
+  },
+  "n_quadratic_fits": 295
+}

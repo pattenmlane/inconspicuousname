@@ -70,5 +70,13 @@
     "total_profit": 37603,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v8.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
+  },
+  {
+    "iteration": 9,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v9.py",
+    "strategy_description": "Family 13 pivot: 3-regime state machine from RV-IV z-score (calm/neutral/stressed) computed on extract returns vs near-ATM IV. Keep local smile valuation and vega sizing from v3, but multiply voucher quote width by regime (calm 0.8x, neutral 1.0x, stressed 1.35x). Gating is intentionally simple/interpretable.",
+    "total_profit": 39466,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v9.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis > manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v9.txt 2>&1"
   }
 ]

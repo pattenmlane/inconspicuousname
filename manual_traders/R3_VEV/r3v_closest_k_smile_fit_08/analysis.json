@@ -61,5 +61,16 @@
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_theta_by_strike.py"
     ],
     "used_to_decide": "Motivated a refit cadence test: trader_v8 uses REFIT_EVERY=40 vs v3=50, else identical. Backtest total 37603 < v3 39307 — more frequent smile refit did not help. v3 remains best; if retesting refit, use smaller deltas or adjust EMA(S) smoothing instead of only the smile loop."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "Family-13 pivot analysis: built calm/neutral/stressed regime from zscore(rv_ann - iv_atm). rv_ann = rolling std of extract log returns (window 60 ticks), annualized by sqrt(10000). iv_atm = median implied vol of 3 strikes closest to spot (bisection IV from mids). Regime thresholds: calm z<=-0.8, stressed z>=0.8, else neutral. Computed occupancy, one-step transition matrix, and proxy PnL-by-regime from next-step extract return.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/rv_iv_regime_stats.json",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_regime_rv_iv.py",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v9.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v9.json"
+    ],
+    "used_to_decide": "Regimes are persistent (calm->calm ~0.712, neutral->neutral ~0.773, stressed->stressed ~0.731) with occupancy roughly neutral 54.3%, calm 23.6%, stressed 22.1%, so a 3-state machine is stable/interpretable. Implemented trader_v9 with regime width multipliers on voucher edges (calm 0.8x, neutral 1.0x, stressed 1.25x) while keeping local-smile/vega logic unchanged. Backtest improved to 39466 vs prior best 39307 (v3)."
   }
 ]

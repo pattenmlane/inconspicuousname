@@ -1,0 +1,43 @@
+{
+  "method": "Regime from zscore(rv_ann - iv_atm). rv_ann from rolling log-return std on extract, annualized by sqrt(10000). iv_atm from median IV of 3 strikes closest to spot. Calm z<=-0.8, stressed z>=0.8, else neutral.",
+  "n_rows": 29779,
+  "occupancy": {
+    "neutral": 0.5431008428758521,
+    "calm": 0.23630746499210853,
+    "stressed": 0.22059169213203936
+  },
+  "transition_prob": {
+    "calm": {
+      "calm": 0.711951115532187,
+      "neutral": 0.2751172374591445,
+      "stressed": 0.012931647008668466
+    },
+    "neutral": {
+      "calm": 0.12379421221864952,
+      "neutral": 0.772508038585209,
+      "stressed": 0.10369774919614148
+    },
+    "stressed": {
+      "calm": 0.0038057543005023597,
+      "neutral": 0.2653371898310245,
+      "stressed": 0.7308570558684732
+    }
+  },
+  "pnl_proxy_by_regime": {
+    "calm": {
+      "sum": -4.748425163597638,
+      "n": 7036,
+      "avg": -0.0006748756628194482
+    },
+    "neutral": {
+      "sum": -2.0410636343011257,
+      "n": 16172,
+      "avg": -0.0001262097226255952
+    },
+    "stressed": {
+      "sum": -4.120601420123038,
+      "n": 6568,
+      "avg": -0.000627375368471839
+    }
+  }
+}

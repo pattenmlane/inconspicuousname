@@ -67,11 +67,11 @@
   },
   {
     "iteration": 9,
-    "analysis_description": "Family13 pivot analysis: first evaluated fill quality by RV-IV regime on v8 and v9 using backtester --out tradeHistory merged with Round-3 prices. RV proxy = sqrt(EMA of recent log-return variance on VELVETFRUIT_EXTRACT mids). IV proxy = mean BS implied vol of VEV_4000 and VEV_4500 mids with TTE day map from round3description (day k -> 7-k days). RV-IV distribution is strongly negative on these tapes (median about -0.51), so stress threshold was calibrated to activate both regimes. Swept stress cut and calm aggressive edge thresholds under --match-trades worse.",
+    "analysis_description": "REQUIRED duplicate-check against parent index 13 branch (origin/r3v_realized_vol_regime_13): parent already explored RV-IV regime widths, smile-theo mispricing takes across strikes, and optional theta/gamma scaling with multiple sweeps to v29. Material overlap risk with my earlier v9 was high, so I stopped and switched to a nearby but distinct family13 variant. New variant keeps RV-IV minimal but changes assumptions: calm aggressive fills require L1 imbalance confirmation and stressed regime turns HYDROGEL_PACK off entirely (risk-off), while vouchers remain passive/wider. Optimized under worse-fill with a small grid on stress cut, imbalance gates, and calm edge thresholds.",
     "analysis_outputs": [
-      "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v9.py",
-      "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter9_regime_calibrated.json"
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v10.py",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter10_regime_imbalance.json"
     ],
-    "used_to_decide": "Best calibrated run (v9f) used RV_IV_STRESS_CUT=-0.50 and calm aggressive edge thresholds 4/7. This produced 96,289 total (31,703 + 43,751 + 20,835), improving over v8 (36,500). Fill summaries from per-day logs: 8,281 submission fills (qty 19,178) in overall run, and regime-tagged quality on day-aligned summaries: stressed 1,288 fills at edge/unit -1.586, calm 1,521 fills at edge/unit -1.600. This is still far from the ~800k benchmark target, so further iterations should likely add richer signal quality or option-surface breadth while keeping worse-fill discipline."
+    "used_to_decide": "Best run v10c from sweep_iter10_regime_imbalance.json: total 56,804 with parameters cut=-0.50, imbalance gates extract/hydro 0.20/0.25, calm edges 4/7. This satisfies distinctness from parent (different execution assumptions and instrument risk-off policy) while preserving family13 RV-IV regime framing. Still below ~800k target, so further iterations should improve signal quality and strike coverage."
   }
 ]

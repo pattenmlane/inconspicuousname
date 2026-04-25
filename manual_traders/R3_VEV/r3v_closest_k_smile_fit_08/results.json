@@ -158,5 +158,27 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v16.txt",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v16.json"
+  },
+  {
+    "iteration": 17,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v17.py",
+    "strategy_description": "Parent v15. From shock_spread_asymmetry: on shock rows at 5100, OLS dV~dU shows slightly higher beta for dU<0 than dU>0. On extract shock, add +1 extra tick to 5100 edge when dU<0 (in addition to v15's +1). Tests directional repricing; rest unchanged.",
+    "total_profit": 39876,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v17.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis > manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v17.txt 2>&1",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v17.txt",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v17.json"
+  },
+  {
+    "iteration": 18,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v18.py",
+    "strategy_description": "Parent v15. Parameter sweep: remove 4500 from near shock set — only 5300 is near; core 5000/5100/5200 unchanged. If 4500 shock add was dead weight, this simplifies without loss.",
+    "total_profit": 39945,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v18.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis > manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v18.txt 2>&1",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v18.txt",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v18.json"
   }
 ]

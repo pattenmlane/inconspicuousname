@@ -146,5 +146,26 @@
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v16.json"
     ],
     "used_to_decide": "v16 underperformed v15 and matched v14-like behavior (~39915), reinforcing that a slightly broader selective overlay with milder size suppression is better than very narrow core-only gating under worse fills."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "Shock-row microstructure (shock_spread_asymmetry.json, analyze_shock_spread_asymmetry.py): shock = |d extract| >= day p90. Mean top-of-book spread shock minus calm is near zero (small negative/positive by strike; not a reliable widen signal). On shock rows only, OLS dV~dU through origin split by dU sign: at 5100, median beta_down (~0.535) slightly exceeds beta_up (~0.520) across days — the clearest directional gap in 4500-5300; at 5000/5200/5300 up and down betas are nearly equal. Complements shock_greek_weighted (5100 highest energy).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/shock_spread_asymmetry.json",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_shock_spread_asymmetry.py",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v17.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v17.json"
+    ],
+    "used_to_decide": "trader_v17 = v15 + one extra tick on 5100 only when extract shock and dU<0 (down-shock bucket has higher |dV| per |dU| at 5100 in tape). Backtest 39876 < v15 39945; directional nudge hurt — keep v15 as best, do not ship down-only extra width on 5100 without more evidence."
+  },
+  {
+    "iteration": 18,
+    "analysis_description": "Grid companion: same shock_greek_weighted / lead-lag band (5000-5300 tight co-movement); test removing 4500 from v15 near shock set so only 5300 remains alongside core 5000/5100/5200.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/shock_greek_weighted.json",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v18.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v18.json"
+    ],
+    "used_to_decide": "trader_v18 (near = {5300} only) total PnL 39945, identical to v15 [14070,17394,8481] — 4500 shock overlay was inert; best unchanged at v15."
   }
 ]

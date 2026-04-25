@@ -1,0 +1,128 @@
+{
+  "source_log": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f18.log",
+  "total_trade_rows_all": 30818,
+  "total_trade_rows_submission_only": 26841,
+  "per_symbol_all_rows": {
+    "VEV_5500": {
+      "count": 15026,
+      "qty": 45183,
+      "notional": 284894.0,
+      "buy_qty": 22558,
+      "sell_qty": 21714
+    },
+    "VEV_5400": {
+      "count": 11060,
+      "qty": 33192,
+      "notional": 503465.0,
+      "buy_qty": 16656,
+      "sell_qty": 15826
+    },
+    "VELVETFRUIT_EXTRACT": {
+      "count": 1372,
+      "qty": 8269,
+      "notional": 43415740.0,
+      "buy_qty": 0,
+      "sell_qty": 0
+    },
+    "VEV_5200": {
+      "count": 304,
+      "qty": 822,
+      "notional": 76848.0,
+      "buy_qty": 761,
+      "sell_qty": 44
+    },
+    "VEV_5300": {
+      "count": 920,
+      "qty": 2595,
+      "notional": 102697.0,
+      "buy_qty": 1661,
+      "sell_qty": 785
+    },
+    "VEV_6000": {
+      "count": 284,
+      "qty": 1002,
+      "notional": 0.0,
+      "buy_qty": 0,
+      "sell_qty": 0
+    },
+    "VEV_6500": {
+      "count": 284,
+      "qty": 1002,
+      "notional": 0.0,
+      "buy_qty": 0,
+      "sell_qty": 0
+    },
+    "HYDROGEL_PACK": {
+      "count": 1010,
+      "qty": 4078,
+      "notional": 40742275.0,
+      "buy_qty": 0,
+      "sell_qty": 0
+    },
+    "VEV_4000": {
+      "count": 464,
+      "qty": 940,
+      "notional": 1174738.0,
+      "buy_qty": 0,
+      "sell_qty": 0
+    },
+    "VEV_5100": {
+      "count": 92,
+      "qty": 249,
+      "notional": 39820.0,
+      "buy_qty": 248,
+      "sell_qty": 0
+    },
+    "VEV_4500": {
+      "count": 1,
+      "qty": 1,
+      "notional": 733.0,
+      "buy_qty": 0,
+      "sell_qty": 0
+    },
+    "VEV_5000": {
+      "count": 1,
+      "qty": 1,
+      "notional": 238.0,
+      "buy_qty": 0,
+      "sell_qty": 0
+    }
+  },
+  "per_symbol_submission_rows": {
+    "VEV_5500": {
+      "count": 14765,
+      "qty": 44272,
+      "notional": 279471.0,
+      "buy_qty": 22558,
+      "sell_qty": 21714
+    },
+    "VEV_5400": {
+      "count": 10846,
+      "qty": 32482,
+      "notional": 492914.0,
+      "buy_qty": 16656,
+      "sell_qty": 15826
+    },
+    "VEV_5200": {
+      "count": 293,
+      "qty": 805,
+      "notional": 75374.0,
+      "buy_qty": 761,
+      "sell_qty": 44
+    },
+    "VEV_5300": {
+      "count": 846,
+      "qty": 2446,
+      "notional": 96078.0,
+      "buy_qty": 1661,
+      "sell_qty": 785
+    },
+    "VEV_5100": {
+      "count": 91,
+      "qty": 248,
+      "notional": 39668.0,
+      "buy_qty": 248,
+      "sell_qty": 0
+    }
+  }
+}

@@ -140,5 +140,24 @@
       "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/analysis_shock_spread_by_sign_v16.json"
     ],
     "used_to_decide": "Prefer simpler v15 as production candidate over v17; next iteration should explore different stress functional (e.g. core smile skew) not another additive shock constant."
+  },
+  {
+    "iteration": 18,
+    "analysis_description": "Smile-shock propagation analysis: corr(dU, dbump) positive (~0.21-0.29) for days 0-2, suggesting non-additive interaction candidate. Implemented dbump term in signal (BUMP_COEF*dbump) atop v15. Outcome: excessive fills (submission rows ~26.8k) and large losses, especially wings, indicating magnitude/normalization mismatch.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/analysis_smile_shock_v18.json",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f18.log",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v18.json"
+    ],
+    "used_to_decide": "Reject raw dbump additive term at this scale; signal requires robust normalization/clipping before reuse."
+  },
+  {
+    "iteration": 19,
+    "analysis_description": "Controlled rescue from v18: reduce bump coefficient and restrict calm participation to efficient strikes (5100/5200/5300). This removed overtrading but collapsed activity to zero fills on this tape, confirming over-correction.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f19.log",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v19.json"
+    ],
+    "used_to_decide": "Keep v15 as best current deployment candidate; next step should test clipped/normalized bump term with explicit cap and warmup rather than raw additive or near-zero coefficient."
   }
 ]

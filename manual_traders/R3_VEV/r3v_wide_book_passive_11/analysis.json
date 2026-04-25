@@ -64,5 +64,14 @@
       "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter8_hydro.json"
     ],
     "used_to_decide": "Median hydro spread is 16, so a gate of 16 leaves roughly half the ticks ineligible; lowering HYDRO_WIDE_MIN to 15 and raising passive size 2->3 (still <<200 limit) raises hydro PnL in the backtest; merged three-day total 30,076 -> 36,500. Kept 15 over 14 to align with the VEV wide-spread threshold."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "Family13 pivot analysis: first evaluated fill quality by RV-IV regime on v8 and v9 using backtester --out tradeHistory merged with Round-3 prices. RV proxy = sqrt(EMA of recent log-return variance on VELVETFRUIT_EXTRACT mids). IV proxy = mean BS implied vol of VEV_4000 and VEV_4500 mids with TTE day map from round3description (day k -> 7-k days). RV-IV distribution is strongly negative on these tapes (median about -0.51), so stress threshold was calibrated to activate both regimes. Swept stress cut and calm aggressive edge thresholds under --match-trades worse.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v9.py",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter9_regime_calibrated.json"
+    ],
+    "used_to_decide": "Best calibrated run (v9f) used RV_IV_STRESS_CUT=-0.50 and calm aggressive edge thresholds 4/7. This produced 96,289 total (31,703 + 43,751 + 20,835), improving over v8 (36,500). Fill summaries from per-day logs: 8,281 submission fills (qty 19,178) in overall run, and regime-tagged quality on day-aligned summaries: stressed 1,288 fills at edge/unit -1.586, calm 1,521 fills at edge/unit -1.600. This is still far from the ~800k benchmark target, so further iterations should likely add richer signal quality or option-surface breadth while keeping worse-fill discipline."
   }
 ]

@@ -70,5 +70,33 @@
     "total_profit": 36500,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v8.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-out"
+  },
+  {
+    "iteration": 9,
+    "trader_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v9.py",
+    "strategy_description": "Pivot to family13 realized_vol_regime. Regime signal RV-IV (RV from EMA log-return variance of extract mid; IV from BS implied vols of VEV_4000/4500). Action policy minimal: stressed => passive-only, wider quotes; calm => keep passive and allow small aggressive fills when fair-edge is strong. Optimized under worse-fill via sweep_iter9_regime_calibrated.json; selected cut=-0.50, calm aggressive edges 4(extract)/7(hydro), aggressive size 2.",
+    "total_profit": 96289,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v9.py 3 --data Prosperity4Data --match-trades worse --no-vis --out /tmp/v9_out.json",
+    "run_log": {
+      "per_day_profit": {
+        "day_0": 31703,
+        "day_1": 43751,
+        "day_2": 20835
+      },
+      "fills_summary": {
+        "fills": 8281,
+        "qty": 19178
+      },
+      "fills_by_regime": {
+        "stressed": 1288,
+        "calm": 1521
+      },
+      "fill_quality_edge_per_unit": {
+        "stressed": -1.586,
+        "calm": -1.5999
+      },
+      "sweep_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter9_regime_calibrated.json"
+    }
   }
 ]

@@ -1,0 +1,60 @@
+{
+  "runs": [
+    {
+      "name": "v9a",
+      "rv_iv_stress_cut": -0.25,
+      "calm_edge_extract": 4.0,
+      "calm_edge_hydro": 7.0,
+      "total_profit": 99604,
+      "fills": 971,
+      "qty": 2253,
+      "edge_per_unit": -1.4152241455836663,
+      "regime_tagged_fills": {
+        "stressed": 0,
+        "calm": 971
+      }
+    },
+    {
+      "name": "v9b",
+      "rv_iv_stress_cut": -0.2,
+      "calm_edge_extract": 5.0,
+      "calm_edge_hydro": 8.0,
+      "total_profit": 87916,
+      "fills": 710,
+      "qty": 1714,
+      "edge_per_unit": -0.7812135355892649,
+      "regime_tagged_fills": {
+        "stressed": 0,
+        "calm": 710
+      }
+    },
+    {
+      "name": "v9c",
+      "rv_iv_stress_cut": -0.15,
+      "calm_edge_extract": 6.0,
+      "calm_edge_hydro": 9.0,
+      "total_profit": 75630,
+      "fills": 516,
+      "qty": 1326,
+      "edge_per_unit": 0.15799396681749622,
+      "regime_tagged_fills": {
+        "stressed": 0,
+        "calm": 516
+      }
+    }
+  ],
+  "best": {
+    "name": "v9a",
+    "rv_iv_stress_cut": -0.25,
+    "calm_edge_extract": 4.0,
+    "calm_edge_hydro": 7.0,
+    "total_profit": 99604,
+    "fills": 971,
+    "qty": 2253,
+    "edge_per_unit": -1.4152241455836663,
+    "regime_tagged_fills": {
+      "stressed": 0,
+      "calm": 971
+    }
+  }
+}

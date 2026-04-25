@@ -1,0 +1,99 @@
+{
+  "runs": [
+    {
+      "name": "v9d",
+      "cut": -0.6,
+      "e": 4.0,
+      "h": 7.0,
+      "q": 2,
+      "total_profit": 15279,
+      "fills": 1320,
+      "qty": 2825,
+      "fills_summary": {
+        "fills": 387,
+        "qty": 818,
+        "edge_per_unit": 0.5134474327628362,
+        "regime_tagged_fills": {
+          "stressed": 185,
+          "calm": 202
+        }
+      }
+    },
+    {
+      "name": "v9e",
+      "cut": -0.55,
+      "e": 4.0,
+      "h": 7.0,
+      "q": 2,
+      "total_profit": 54920,
+      "fills": 4055,
+      "qty": 9188,
+      "fills_summary": {
+        "fills": 1344,
+        "qty": 3061,
+        "edge_per_unit": -1.2391375367526951,
+        "regime_tagged_fills": {
+          "stressed": 672,
+          "calm": 672
+        }
+      }
+    },
+    {
+      "name": "v9f",
+      "cut": -0.5,
+      "e": 4.0,
+      "h": 7.0,
+      "q": 2,
+      "total_profit": 96289,
+      "fills": 8281,
+      "qty": 19178,
+      "fills_summary": {
+        "fills": 2809,
+        "qty": 6527,
+        "edge_per_unit": -1.5936111536693733,
+        "regime_tagged_fills": {
+          "stressed": 1288,
+          "calm": 1521
+        }
+      }
+    },
+    {
+      "name": "v9g",
+      "cut": -0.55,
+      "e": 5.0,
+      "h": 8.0,
+      "q": 2,
+      "total_profit": 48029,
+      "fills": 3137,
+      "qty": 7359,
+      "fills_summary": {
+        "fills": 1042,
+        "qty": 2459,
+        "edge_per_unit": -0.6437576250508337,
+        "regime_tagged_fills": {
+          "stressed": 520,
+          "calm": 522
+        }
+      }
+    }
+  ],
+  "best": {
+    "name": "v9f",
+    "cut": -0.5,
+    "e": 4.0,
+    "h": 7.0,
+    "q": 2,
+    "total_profit": 96289,
+    "fills": 8281,
+    "qty": 19178,
+    "fills_summary": {
+      "fills": 2809,
+      "qty": 6527,
+      "edge_per_unit": -1.5936111536693733,
+      "regime_tagged_fills": {
+        "stressed": 1288,
+        "calm": 1521
+      }
+    }
+  }
+}

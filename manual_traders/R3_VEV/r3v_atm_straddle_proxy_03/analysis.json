@@ -31,5 +31,13 @@
       "analysis_outputs/atm_greeks_gamma_theta.json"
     ],
     "used_to_decide": "ATM cluster carries large combined vega (~230–330 by day) and material negative Θ, consistent with straddle/proxy PnL being IV- and time-sensitive. v6 (lower shock, looser misprice) and v7 (tighter spread 8.5) both lost vs v5, so v5 parameters remain the current best; next iterations should nudge in smaller steps or hold shock at 0.055."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "ATM call IV smile skew within the 5000/5100 cluster: time series of IV(VEV_5100) - IV(VEV_5000) at each tick (BS bisection, same T as rounds). TTE d->8-d days.",
+    "analysis_outputs": [
+      "analysis_outputs/atm_iv_skew_5000_5100.json"
+    ],
+    "used_to_decide": "Skew is small in magnitude (median |ΔIV| a few bps) on day 0, turns negative by day 2, suggesting 5100-IV is not systematically richer than 5000-IV; coordinated equal clip on both remains reasonable. v8 (clip 12) and v9 (spread 9.2) did not beat v5; clip increases alone do not add enough edge in this backtest; best remains v5 (gate 9, clip 11, shock 0.055)."
   }
 ]

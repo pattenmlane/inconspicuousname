@@ -1,2 +1,5 @@
 # Large local backtest logs — keep on disk, do not commit
 backtests/
+
+# Local bytecode
+manual_traders/**/__pycache__/

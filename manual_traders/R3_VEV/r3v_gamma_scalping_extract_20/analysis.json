@@ -91,5 +91,17 @@
       "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v15.json"
     ],
     "used_to_decide": "v15 total 3792 (day1 795) is below v13 4157 (day1 1160), so asymmetric buffer did not beat the current best. Keep v13 as production candidate."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "Priority response analysis: contract-by-contract extract move propagation to voucher mids + spread behavior (lead/lag, beta ladder, up/down asymmetry, spread after shocks). Script analyze_extract_voucher_response.py, output extract_voucher_response.json. Findings: near strikes show stable beta ladder (~0.45 for VEV_5200, ~0.27 for VEV_5300, ~0.12 for VEV_5400), weak lead/lag (mostly contemporaneous), and minimal spread widening after large extract moves (shock ratio ~1.0).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analyze_extract_voucher_response.py",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/extract_voucher_response.json",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v16_round3_worse.log",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v16_round3_worse.stdout.txt",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v16.json"
+    ],
+    "used_to_decide": "Because response is contemporaneous and lower-delta near strike moves less per extract tick, tested v16 day1 clip reallocation (larger clip on lower-delta of the two near strikes) to reduce extract bleed while keeping gamma footprint. Result 4150, just below v13 4157, so keep v13 as best."
   }
 ]

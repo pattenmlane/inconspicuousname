@@ -78,5 +78,21 @@
     "total_profit": 57068,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v9.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 10,
+    "trader_file": "trader_v10.py",
+    "strategy_description": "Child of v9: add spread-aware multiplier on the same |theta| gate (wider top-of-book -> slightly stricter edge and edge/vega tests), informed by ~0.68 corr of spread with |mid-fair|/vega on tapes (spread_vegaedge_corr_iter10.json).",
+    "total_profit": 57336,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v10.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 11,
+    "trader_file": "trader_v11.py",
+    "strategy_description": "Child of v9: grid sweep _THETA_REF 1000 (was 1200). Trailing v10 on this run.",
+    "total_profit": 57140,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v11.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
   }
 ]

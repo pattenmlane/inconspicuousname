@@ -49,5 +49,13 @@
       "results.json"
     ],
     "used_to_decide": "Prefer trader_v9.py for PnL on this tape; v8 kept as mid-sweep point."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "Book spread vs smile mispricing: on ROUND_3 days 0-2, per timestamp and strike, compute top-of-book spread and |mid - BS_fair|/vega (fair from pooled WLS sigma(m), T from dte_effective/365). Pearson ~0.68 between spread and edge/vega (n~10000 subsampled), median spread 2, p75~6. Output spread_vegaedge_corr_iter10.json.",
+    "analysis_outputs": [
+      "spread_vegaedge_corr_iter10.json"
+    ],
+    "used_to_decide": "v10: multiply the v9 |theta| gate by an extra 1+0.08*clip((spr-2)/6) (capped) so we are stricter on wide books; v11 sweeps _THETA_REF to 1000; v10 best at 57336 vs v9 57068 on this backtest."
   }
 ]

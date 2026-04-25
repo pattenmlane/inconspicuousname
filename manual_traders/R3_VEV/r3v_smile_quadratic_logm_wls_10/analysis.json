@@ -111,5 +111,15 @@
       "results.json"
     ],
     "used_to_decide": "Instead of broad shock gating (v17 overfit/too conservative), v19 adds a narrow tail-only risk gate: in |dS|>=2.0 regime multiply entry thresholds by 1.35 and clip size by 0.7; otherwise unchanged v15 logic. Backtest improved to 65038 (new branch best)."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "No new file: combination test. v20 merges v19 (tail |dS|>=2.0 stricter entry from shock_regime_gate_iter19) with v18's skip of VEV_6000/6500 (extract_propagation_spread_iter17: beta~0, 1-tick books). Hypothesis: fewer noisy wing points in smile fit and cleaner execution.",
+    "analysis_outputs": [
+      "shock_regime_gate_iter19.json",
+      "extract_propagation_spread_iter17.json",
+      "results.json"
+    ],
+    "used_to_decide": "Worse-match total 63098: below v19 (65038) and above v18 (59368) \u2014 the OTM skip does not help when combined with the tail-shock gate; keep v19 as current best line; v20 retained as an ablation."
   }
 ]

@@ -214,5 +214,21 @@
     "total_profit": -53946,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v26.py 3 --data Prosperity4Data --match-trades worse --out backtests/r3v_wing_vs_core_spread_04_v26.log"
+  },
+  {
+    "iteration": 27,
+    "trader_file": "trader_v27.py",
+    "strategy_description": "family10 distinct variant: stressed regime calibrates WLS smile on core+near-wings {5000,5100,5200,5300,5400} with capped weights (WLS_MAX_W=60); normal uses all strikes.",
+    "total_profit": -1500,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v27.py 3 --data Prosperity4Data --match-trades worse --out backtests/r3v_wing_vs_core_spread_04_v27.log"
+  },
+  {
+    "iteration": 28,
+    "trader_file": "trader_v28.py",
+    "strategy_description": "family10 distinct conservative variant: same core+near-wing stressed set, stricter CHEAP/RICH and weight cap (WLS_MAX_W=50), stress trigger uses depth<=105.",
+    "total_profit": 1723,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v28.py 3 --data Prosperity4Data --match-trades worse --out backtests/r3v_wing_vs_core_spread_04_v28.log"
   }
 ]

@@ -184,5 +184,21 @@
       "fill_summary_v26.json"
     ],
     "used_to_decide": "This family10 regime-dependent core-only calibration appears over-aggressive for current signal thresholds in this branch; keep documented pivot result and revert to prior best branch (v20/v21/v23/v24 class) unless re-parameterizing entry logic substantially."
+  },
+  {
+    "iteration": 27,
+    "analysis_description": "Duplicate-check-driven pivot within family10: moved stressed calibration from core-only to core+near-wings and capped WLS weights to avoid far-wing domination seen in v25/v26 fill summaries. Performance improved from v25/v26 but still negative (-1500).",
+    "analysis_outputs": [
+      "fill_summary_v27.json"
+    ],
+    "used_to_decide": "Core+near-wing stressed set materially reduced far-wing fill concentration vs v25/v26, but still below prior non-family10 branch best."
+  },
+  {
+    "iteration": 28,
+    "analysis_description": "Conservative family10 variant (stricter thresholds + lower WLS cap) lifted total to +1723 with lower fill counts than v27, but still below v20-class 3750 and far below ~800k bar.",
+    "analysis_outputs": [
+      "fill_summary_v28.json"
+    ],
+    "used_to_decide": "Family10 regime-WLS variations under current assumptions remain inferior to existing best branch settings; retain as documented non-duplicate exploration."
   }
 ]

@@ -102,6 +102,17 @@
       "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v16_round3_worse.stdout.txt",
       "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v16.json"
     ],
-    "used_to_decide": "Because response is contemporaneous and lower-delta near strike moves less per extract tick, tested v16 day1 clip reallocation (larger clip on lower-delta of the two near strikes) to reduce extract bleed while keeping gamma footprint. Result 4150, just below v13 4157, so keep v13 as best."
+    "used_to_decide": "Because response is contemporaneous, tested v16 day-1 clip reallocation (larger clip on the lower-delta of the two near strikes) vs equal clips. v16 scored 4150, slightly below v13 (4157). Superseded: v17 inverts the clip split toward the higher-delta (higher extract-beta) leg and improves total; see analysis iteration 11."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "Follow-up to extract_voucher_response.json: the higher-delta near strike has larger dOption/dS (e.g. VEV_5200 ~0.43 vs VEV_5300 ~0.27 on day1), so v16 (larger clip on lower-delta) may underweight the leg that carries more local move per extract tick. v17 inverts v16 day1 clip split (6 on higher-delta, 4 on lower-delta). Parsed v13 vs v17 fills in run_fill_summary_v13_v17.json.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/extract_voucher_response.json",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v17_round3_worse.log",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v17_round3_worse.stdout.txt",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v13_v17.json"
+    ],
+    "used_to_decide": "v17 total 4167 (day1 1170) vs v13 4157 (day1 1160); extract PnL improves +39 (195 vs 156) with small VEV_5300 PnL tradeoff. Adopt v17 as new best; v16 remains suboptimal clip direction."
   }
 ]

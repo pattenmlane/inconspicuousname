@@ -109,7 +109,10 @@
     "strategy_description": "v12 grid: day-1 hedge_frac 0.48, hedge_band 12 (vs v12 0.55/10). Day 0/2 same as v12. New best total 4157.",
     "total_profit": 4157,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v13.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v13.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v13_round3_worse.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v13_v17.json"
   },
   {
     "iteration": 14,
@@ -125,7 +128,10 @@
     "strategy_description": "Distinct variant: day-1 asymmetric extract hedge around target (larger buffer on buy-side than sell-side) while preserving v13 day-level policy. Underperforms v13.",
     "total_profit": 3792,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v15.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v15.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v15_round3_worse.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v15.json"
   },
   {
     "iteration": 16,
@@ -137,5 +143,16 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v16_round3_worse.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v16.json"
+  },
+  {
+    "iteration": 17,
+    "trader_file": "trader_v17.py",
+    "strategy_description": "v16 inverse: on day 1 allocate larger clip to higher-delta (higher extract-beta) near strike per extract_voucher_response.json; same v13 hedge policy. New best total 4167 vs v13 4157.",
+    "total_profit": 4167,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v17.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v17_round3_worse.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v13_v17.json"
   }
 ]

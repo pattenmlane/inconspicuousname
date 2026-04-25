@@ -62,5 +62,29 @@
     "total_profit": -1081,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 8,
+    "trader_file": "trader_v8.py",
+    "strategy_description": "Family10 smile_quadratic_logm_wls pivot. Fit IV=a+b*log(K/S)+c*log(K/S)^2 by WLS (1/spread^2), excluding tiny extrinsic points via cutoff. Compared cutoffs 0.5 vs 1.5 (also 3.0): 0.5 best. Then logical retune of execution (higher entry z, slower cadence, smaller clip) reduced losses from ~-18k to -3,352 under worse fills.",
+    "total_profit": -3352,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v8.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+    "backtest_output": {
+      "day0": -222,
+      "day1": -1270,
+      "day2": -1860,
+      "total": -3352
+    },
+    "trade_fill_summary": {
+      "symbols_with_nonzero_pnl": [
+        "VEV_4000",
+        "VEV_4500",
+        "VEV_5100",
+        "VEV_5200",
+        "VELVETFRUIT_EXTRACT"
+      ],
+      "comment": "Backtester output indicates fills concentrated in low strikes and underlying hedge leg; many strikes remained inactive at tuned thresholds."
+    }
   }
 ]

@@ -1,0 +1,44 @@
+[
+  {
+    "open_z": 3.2,
+    "close_z": 0.7,
+    "trade_every": 5,
+    "max_clip": 8,
+    "total": -3352
+  },
+  {
+    "open_z": 2.8,
+    "close_z": 0.6,
+    "trade_every": 5,
+    "max_clip": 8,
+    "total": -4296
+  },
+  {
+    "open_z": 3.0,
+    "close_z": 0.6,
+    "trade_every": 4,
+    "max_clip": 8,
+    "total": -5160
+  },
+  {
+    "open_z": 2.6,
+    "close_z": 0.5,
+    "trade_every": 5,
+    "max_clip": 10,
+    "total": -6082
+  },
+  {
+    "open_z": 2.7,
+    "close_z": 0.5,
+    "trade_every": 4,
+    "max_clip": 10,
+    "total": -7358
+  },
+  {
+    "open_z": 2.4,
+    "close_z": 0.4,
+    "trade_every": 4,
+    "max_clip": 12,
+    "total": -8387
+  }
+]

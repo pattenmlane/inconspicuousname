@@ -1,0 +1,26 @@
+[
+  {
+    "cutoff": 0.5,
+    "day0": -2901,
+    "day1": -6520,
+    "day2": -8696,
+    "total": -18116,
+    "nonzero_symbol_lines": 15
+  },
+  {
+    "cutoff": 1.5,
+    "day0": -2808,
+    "day1": -7226,
+    "day2": -12231,
+    "total": -22265,
+    "nonzero_symbol_lines": 18
+  },
+  {
+    "cutoff": 3.0,
+    "day0": -2242,
+    "day1": -6752,
+    "day2": -12026,
+    "total": -21021,
+    "nonzero_symbol_lines": 20
+  }
+]

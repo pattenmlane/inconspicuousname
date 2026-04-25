@@ -65,5 +65,15 @@
       "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/analysis_mid_vs_microprice_vev5000.json"
     ],
     "used_to_decide": "trader_v7 uses microprice for VEV legs only; backtest total -1081 vs v2 -908 (worse). Treat as failed experiment: signal should stay consistent with executable mid for these tapes; retain v2-style mid for vouchers going forward."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Family10 cutoff analysis first: extrinsic quantiles q25=0.5, q50=5.5. WLS quadratic smile RMSE comparison from analysis_family10_extrinsic_cutoff.json: cutoff 0.5 gives lowest IV RMSE (~0.023) while 1.5 reduces price RMSE but uses fewer points. Backtest cutoff comparison (grid_f10_cutoff_backtest.json) under worse fills: cutoff 0.5 total -18,116; 1.5 total -22,265. Chose 0.5 then execution retune grid (grid_f10_exec_tune.json) to stricter OPEN_Z / lower frequency / smaller clip, improving to -3,352.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/analysis_family10_extrinsic_cutoff.json",
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/grid_f10_cutoff_backtest.json",
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/grid_f10_exec_tune.json"
+    ],
+    "used_to_decide": "Data justified testing both 0.5 and 1.5 cutoffs; 0.5 retained more informative points and performed better in backtest. Execution tuning logically reduced overtrading but family10 variant remains far from target and below neighbor-vertical family."
   }
 ]

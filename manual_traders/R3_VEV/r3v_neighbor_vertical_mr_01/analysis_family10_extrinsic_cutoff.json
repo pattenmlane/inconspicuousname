@@ -1,0 +1,37 @@
+{
+  "tte_rule": "TTE_days = 8 - csv_day using round3description mapping (csv days 0,1,2).",
+  "extrinsic_quantiles": {
+    "q10": 0.0,
+    "q25": 0.5,
+    "q50": 5.5,
+    "q75": 19.0,
+    "q90": 46.5
+  },
+  "cutoff_eval_wls_quad_logm": {
+    "0.5": {
+      "n_fit_points": 251785,
+      "n_ticks": 30000,
+      "rmse_iv": 0.023206593038984934,
+      "rmse_price": 2.3987164677582173,
+      "n_resid": 251785,
+      "avg_fit_points": 8.392833333333334
+    },
+    "1.5": {
+      "n_fit_points": 182286,
+      "n_ticks": 30000,
+      "rmse_iv": 0.06518948723366602,
+      "rmse_price": 1.8952182516097318,
+      "n_resid": 251785,
+      "avg_fit_points": 6.0762
+    },
+    "3.0": {
+      "n_fit_points": 175905,
+      "n_ticks": 30000,
+      "rmse_iv": 0.07541199928668707,
+      "rmse_price": 2.255501674123699,
+      "n_resid": 251785,
+      "avg_fit_points": 5.8635
+    }
+  },
+  "notes": "Weights 1/spread^2, fit IV = a + b*log(K/S) + c*log(K/S)^2 on points with extrinsic>=cutoff."
+}

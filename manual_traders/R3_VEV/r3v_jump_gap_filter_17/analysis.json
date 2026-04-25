@@ -19,5 +19,13 @@
     "analysis_description": "Naive mean-reversion on raw (wall_mid−theo) minus its EMA backtested sharply negative (−21k); falsified that specific implementation while keeping jump+neighbor structure.",
     "analysis_outputs": [],
     "used_to_decide": "Abandoned raw diff-EMA; retained thesis filters for v4."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "Jump-regime IV/Greek check on all ROUND_3 tapes (days 0–2): classify jump timestamps by |Δextract mid| above day-wise 95th percentile. ATM IV and ATM vega are almost unchanged between jump and non-jump regimes (jump_iv_mean 0.2440 vs nonjump 0.2438; jump_vega_mean 271.27 vs nonjump 271.94). This supports making the post-jump pause/neighbor gate mostly microstructure-driven, with only a light vega adjustment.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analysis_jump_regime_iv.json"
+    ],
+    "used_to_decide": "Implemented v6 as a smaller, regime-aware tweak of v1: shorter pause and vega-adjusted neighbor residual cap, without changing product thesis."
   }
 ]

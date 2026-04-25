@@ -1,0 +1,11 @@
+{
+  "n": 30000,
+  "jump_n": 3872,
+  "nonjump_n": 26128,
+  "jump_atm_iv_mean": 0.2440388680374455,
+  "nonjump_atm_iv_mean": 0.24378188338031517,
+  "jump_vega_mean": 271.266566341498,
+  "nonjump_vega_mean": 271.938863817002,
+  "jump_skew_mean": -0.004993221761586966,
+  "nonjump_skew_mean": -0.00490959909410776
+}

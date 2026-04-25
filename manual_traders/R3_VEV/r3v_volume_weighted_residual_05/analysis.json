@@ -109,11 +109,21 @@
   },
   {
     "iteration": 20,
-    "analysis_description": "Execution reality check: parsed v8/v18 tradeHistory — only rows with buyer or seller equal to SUBMISSION are our fills; they are **HYDROGEL_PACK** and **VEV_5400** only (other VEV lines in the log are other agents). underlying_to_voucher_response.json still motivates per-strike behavior, but only 5400 matters for our option PnL. Greek: 5400 remains an OTM call in the strip with meaningful vega (used in sizing) and moderate dV~dS.",
+    "analysis_description": "Execution reality check: parsed v8/v18 tradeHistory \u2014 only rows with buyer or seller equal to SUBMISSION are our fills; they are **HYDROGEL_PACK** and **VEV_5400** only (other VEV lines in the log are other agents). underlying_to_voucher_response.json still motivates per-strike behavior, but only 5400 matters for our option PnL. Greek: 5400 remains an OTM call in the strip with meaningful vega (used in sizing) and moderate dV~dS.",
     "analysis_outputs": [
       "analysis_outputs/v20_stress_spread_nudge.json",
       "analysis_outputs/v20_5400_stress_passive.log"
     ],
-    "used_to_decide": "On |dS|>=2 (same 2-tick shock scale as the tape study), new 5400 entries use a one-tick-more-passive limit (off the touch toward mid) while keeping v8 EMA/residual/gates; flattening still lifts the touch. Improves total PnL vs v8 (13499 vs 13478) under worse fills — a small but real behavioral delta focused on the strike we actually trade."
+    "used_to_decide": "On |dS|>=2 (same 2-tick shock scale as the tape study), new 5400 entries use a one-tick-more-passive limit (off the touch toward mid) while keeping v8 EMA/residual/gates; flattening still lifts the touch. Improves total PnL vs v8 (13499 vs 13478) under worse fills \u2014 a small but real behavioral delta focused on the strike we actually trade."
+  },
+  {
+    "iteration": 21,
+    "analysis_description": "Focused contract-level propagation study for the actually-traded voucher leg (VEV_5400): computed per-timestamp 5-strike WLS IV residuals, then regressed next-tick idiosyncratic move (dV-beta*dS) on residual, split by extract stress direction (|dS|>=2 with sign). Also compared next-tick spread conditional on stress-up/down. T uses round3description timing convention (dte_eff to years).",
+    "analysis_outputs": [
+      "analysis_outputs/v21_vev5400_stress_asymmetry.json",
+      "analysis_outputs/v21_fills_summary.json",
+      "analysis_outputs/v21_5400_stress_asym_quote.log"
+    ],
+    "used_to_decide": "For VEV_5400, residual predictiveness is stronger during stress-up than stress-down (slope -5.38 vs -3.83), while spread/topsum are similar. Implemented asymmetric stress quoting: on stress-up keep short-entry at touch for faster capture; on stress-down keep passive one-tick-off-touch behavior."
   }
 ]

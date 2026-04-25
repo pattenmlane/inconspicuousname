@@ -1,0 +1,26 @@
+{
+  "symbol": "VEV_5400",
+  "beta_dV_on_dS": 0.12887015339994085,
+  "n_total": 30000,
+  "n_stress_up": 1905,
+  "n_stress_down": 1967,
+  "n_calm": 26125,
+  "predictive": {
+    "slope_idio_next_on_resid_all": -4.701292132533496,
+    "slope_idio_next_on_resid_stress_up": -5.379758514312908,
+    "slope_idio_next_on_resid_stress_down": -3.827397778291206,
+    "corr_resid_idio_next_stress_up": -0.07440660128151222,
+    "corr_resid_idio_next_stress_down": -0.05250542626761591
+  },
+  "spread_response": {
+    "mean_next_spr_stress_up": 1.3622047244094488,
+    "mean_next_spr_stress_down": 1.3701067615658362,
+    "mean_next_spr_calm": 1.383661281678279
+  },
+  "entry_like_stats": {
+    "mean_abs_resid_stress_up": 0.010956906648061223,
+    "mean_abs_resid_stress_down": 0.010951965292150255,
+    "mean_topsum_stress_up": 43.736482939632545,
+    "mean_topsum_stress_down": 43.66802236908998
+  }
+}

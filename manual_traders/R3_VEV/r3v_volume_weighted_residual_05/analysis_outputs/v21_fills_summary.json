@@ -1,0 +1,9 @@
+{
+  "trade_history_rows": 4843,
+  "own_fill_rows": 1577,
+  "own_fill_abs_qty_sum": 4342,
+  "own_fill_rows_by_symbol": {
+    "HYDROGEL_PACK": 979,
+    "VEV_5400": 598
+  }
+}

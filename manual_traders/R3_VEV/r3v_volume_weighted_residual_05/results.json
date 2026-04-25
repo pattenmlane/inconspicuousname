@@ -177,5 +177,16 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v20_5400_stress_passive.log",
     "trades_or_fills_summary": "trade_history_rows=4843, own_fill_rows=1577, own_fill_abs_qty_sum=4342; own SUBMISSION by symbol HYDROGEL_PACK=979, VEV_5400=598 (full tape also includes other participants on VEV_5500 etc.)",
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v20.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v20_5400_stress_passive.log"
+  },
+  {
+    "iteration": 21,
+    "trader_file": "trader_v21.py",
+    "strategy_description": "Parent v20 asymmetric extension on VEV_5400 under extract stress (|dS|>=2): stress-up short entries quote at touch (bb), stress-down remains one-tick passive; long entries keep passive stress behavior; exits unchanged.",
+    "total_profit": 13499,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v21_5400_stress_asym_quote.log",
+    "trades_or_fills_summary": "trade_history_rows=4843, own_fill_rows=1577, own_fill_abs_qty_sum=4342; own SUBMISSION rows by symbol HYDROGEL_PACK=979, VEV_5400=598",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v21.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v21_5400_stress_asym_quote.log"
   }
 ]

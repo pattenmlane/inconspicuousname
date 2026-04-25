@@ -1,0 +1,67 @@
+{
+  "step": 200,
+  "wing_reg_lambda": 0.1,
+  "by_voucher": {
+    "VEV_4000": {
+      "n": 14.0,
+      "median_abs_poly": 0.37853486450376295,
+      "median_abs_spline": 0.051041559611121556,
+      "ratio_poly_over_spline": 7.4162088186130415
+    },
+    "VEV_4500": {
+      "n": 39.0,
+      "median_abs_poly": 0.4257372251122433,
+      "median_abs_spline": 0.07136677893686283,
+      "ratio_poly_over_spline": 5.965481859408101
+    },
+    "VEV_5000": {
+      "n": 150.0,
+      "median_abs_poly": 0.9850989637156999,
+      "median_abs_spline": 0.0934513872853131,
+      "ratio_poly_over_spline": 10.541298447588899
+    },
+    "VEV_5100": {
+      "n": 150.0,
+      "median_abs_poly": 0.8924863567945067,
+      "median_abs_spline": 0.08862571028726052,
+      "ratio_poly_over_spline": 10.07028721013023
+    },
+    "VEV_5200": {
+      "n": 150.0,
+      "median_abs_poly": 0.7382385291334685,
+      "median_abs_spline": 0.07385790976559292,
+      "ratio_poly_over_spline": 9.995388868659544
+    },
+    "VEV_5300": {
+      "n": 150.0,
+      "median_abs_poly": 1.4798552875009818,
+      "median_abs_spline": 0.14814756302155274,
+      "ratio_poly_over_spline": 9.989062643478585
+    },
+    "VEV_5400": {
+      "n": 150.0,
+      "median_abs_poly": 2.5128561979539654,
+      "median_abs_spline": 0.24573823580476528,
+      "ratio_poly_over_spline": 10.22574362400154
+    },
+    "VEV_5500": {
+      "n": 150.0,
+      "median_abs_poly": 0.29878677657254116,
+      "median_abs_spline": 0.0298663691878005,
+      "ratio_poly_over_spline": 10.004121180373891
+    },
+    "VEV_6000": {
+      "n": 150.0,
+      "median_abs_poly": 0.41465024105570913,
+      "median_abs_spline": 0.06738495300253611,
+      "ratio_poly_over_spline": 6.153454481746144
+    },
+    "VEV_6500": {
+      "n": 150.0,
+      "median_abs_poly": 0.45730449604341894,
+      "median_abs_spline": 0.08546865525043934,
+      "ratio_poly_over_spline": 5.350552137545983
+    }
+  },
+  "note": "Instantaneous cross-section (no sticky EWMA). Ratios show where poly would widen fair vs spline."
+}

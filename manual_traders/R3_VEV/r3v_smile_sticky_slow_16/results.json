@@ -135,5 +135,27 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v15_backtest.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v15_fill_summary.json"
+  },
+  {
+    "iteration": 16,
+    "trader_file": "trader_v16.py",
+    "strategy_description": "Falsified grid (documented): v15-identical width; poly blend w(K) varies by strike: 0.42 core 5000-5300, 0.32 at 5400/5500, 0.30 deep wings, else 0.35. Re-run after first v16 (separate width) matched v12 with zero VEV. Result: 18,920 — lowering w on wings increased adverse 5400/4000 PnL vs v15.",
+    "total_profit": 18920,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v16.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v16_backtest.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v16_fill_summary.json"
+  },
+  {
+    "iteration": 17,
+    "trader_file": "trader_v17.py",
+    "strategy_description": "v15 + small sweep: poly blend w=0.40 only on 5000-5300 (tape spline_poly_edge_by_strike: largest poly/spline |edge| ratio + extract beta in band), w=0.35 on all other strikes. Same width as v15.",
+    "total_profit": 18968,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v17.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v17_backtest.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v17_fill_summary.json"
   }
 ]

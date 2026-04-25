@@ -141,5 +141,25 @@
       "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v15_fill_summary.json"
     ],
     "used_to_decide": "Blend + tighter floor reactivated VEV trading on wing pair VEV_5400/VEV_4000 (no core fills) with net -19 on those VEVs over three days; total 18,968 vs 18,949 for v12 (+19) but still far from v2 (19,255). Suggests poly blend nudged quotes enough for occasional wing fills; next can sweep w in {0.2,0.35,0.5} and/or decouple width floor by strike (ATM vs wing) to limit wing adverse selection while seeking ATM activity."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "Tape: instant cross-sectional poly vs wing-regularized spline |mid-BS| by contract (step 200, days 0-2, long-format CSV) — see spline_poly_edge_by_strike.json. Ratios (median |poly|/|spline|) are ~10x in 5000-5300 and similar elsewhere; 4000/4500/6500 also high but deep wings are illiquid (wide spread, low extract beta in underlying_propagation_by_strike.json). v16 first tried strike-specific w plus wider non-core quotes: backtest reverted to v12-like 18,949 with zero VEV (too wide for worse fills). Second v16: v15 width with w bucket grid — backtest 18,920, worse than v15 on wing 5400/4000 PnL.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analyze_spline_poly_edge_by_strike.py",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analysis_outputs/spline_poly_edge_by_strike.json",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v16_backtest.log",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v16_fill_summary.json"
+    ],
+    "used_to_decide": "Conclude: lowering poly weight on illiquid wings while raising core w is not free — at integer tick resolution the wing bucket hurt more than core helped. Prefer keeping wing w at v15 unless paired with a different width rule."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "Single-parameter sweep: only increase poly blend in 5000-5300 (w=0.40 vs 0.35) with wings unchanged, same as v15 otherwise — direct test of 'core needs more |mid-fair| from poly' without touching 5400/4000/6000 blend.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v17_backtest.log",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v17_fill_summary.json"
+    ],
+    "used_to_decide": "Tie with v15 at 18,968 and identical 5400/4000 PnL pattern — extra core poly weight did not create new integer-tick quote states for 5000-5300. Next iterations should try width/edge on core only or a slightly larger w step (0.45) with caution, or accept v15 as local optimum for this blend family."
   }
 ]

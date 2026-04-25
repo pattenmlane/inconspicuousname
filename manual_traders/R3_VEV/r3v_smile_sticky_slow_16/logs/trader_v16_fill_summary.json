@@ -1,0 +1,64 @@
+{
+  "trader_file": "trader_v16.py",
+  "log_path": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v16_backtest.log",
+  "summary": [
+    {
+      "day": 0,
+      "total": 6984,
+      "vev_nonzero_pnl_products": 2,
+      "product_pnl": {
+        "VEV_6500": 0,
+        "VEV_6000": 0,
+        "VEV_5500": 0,
+        "VEV_5400": -20,
+        "VEV_5300": 0,
+        "VEV_5200": 0,
+        "VEV_5100": 0,
+        "VEV_5000": 0,
+        "VEV_4500": 0,
+        "VEV_4000": 19,
+        "VELVETFRUIT_EXTRACT": 0,
+        "HYDROGEL_PACK": 6985
+      }
+    },
+    {
+      "day": 1,
+      "total": 9132,
+      "vev_nonzero_pnl_products": 2,
+      "product_pnl": {
+        "VEV_6500": 0,
+        "VEV_6000": 0,
+        "VEV_5500": 0,
+        "VEV_5400": 42,
+        "VEV_5300": 0,
+        "VEV_5200": 0,
+        "VEV_5100": 0,
+        "VEV_5000": 0,
+        "VEV_4500": 0,
+        "VEV_4000": -13,
+        "VELVETFRUIT_EXTRACT": 0,
+        "HYDROGEL_PACK": 9103
+      }
+    },
+    {
+      "day": 2,
+      "total": 2804,
+      "vev_nonzero_pnl_products": 2,
+      "product_pnl": {
+        "VEV_6500": 0,
+        "VEV_6000": 0,
+        "VEV_5500": 0,
+        "VEV_5400": 49,
+        "VEV_5300": 0,
+        "VEV_5200": 0,
+        "VEV_5100": 0,
+        "VEV_5000": 0,
+        "VEV_4500": 0,
+        "VEV_4000": -106,
+        "VELVETFRUIT_EXTRACT": 0,
+        "HYDROGEL_PACK": 2861
+      }
+    }
+  ],
+  "notes": "Backtester stdout only; non-zero product pnl is fill/activity proxy. Strike-bucket w grid vs v15: more adverse wing 4000/5400, total 18,920."
+}

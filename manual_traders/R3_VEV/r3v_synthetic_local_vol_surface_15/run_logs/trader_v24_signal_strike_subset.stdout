@@ -1,0 +1,50 @@
+running algorithm '/workspace/manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v24_signal_strike_subset.py'...
+Backtesting /workspace/manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v24_signal_strike_subset.py for round: 3 day: 0
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 480
+VEV_5100: 262
+VEV_5000: -1,428
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: -686
+Backtesting /workspace/manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v24_signal_strike_subset.py for round: 3 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: -2,408
+VEV_5100: 4,503
+VEV_5000: 3,460
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: 5,555
+Backtesting /workspace/manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v24_signal_strike_subset.py for round: 3 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: -4,560
+VEV_5100: 11,001
+VEV_5000: 3,836
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: 10,276
+Profit summary:
+Round 3 day 0: -686
+Round 3 day 1: 5,555
+Round 3 day 2: 10,276
+Total profit: 15,145
+
+Successfully saved backtest results to manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v24_signal_strike_subset.log

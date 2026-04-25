@@ -141,7 +141,7 @@
   },
   {
     "iteration": 23,
-    "analysis_description": "Extended underlying→voucher microstructure: same-tick co-movement dominates (mean corr(ΔS,ΔV) lag0 ≈0.35–0.77 by strike; lag1/lag2 near zero in underlying_leadlag_spread_elasticity.json). Spread change vs |ΔS| is weakly correlated (|elasticity| < ~0.005), so widening hurdles broadly on shock is poorly motivated. v23 instead tiers residual hurdle *only* during shock windows: slightly tighten on highest lag-0 co-move strikes (5000/5100) and slightly widen on lowest (5400/5500) relative to the previous blanket v22 approach.",
+    "analysis_description": "Extended underlying\u2192voucher microstructure: same-tick co-movement dominates (mean corr(\u0394S,\u0394V) lag0 \u22480.35\u20130.77 by strike; lag1/lag2 near zero in underlying_leadlag_spread_elasticity.json). Spread change vs |\u0394S| is weakly correlated (|elasticity| < ~0.005), so widening hurdles broadly on shock is poorly motivated. v23 instead tiers residual hurdle *only* during shock windows: slightly tighten on highest lag-0 co-move strikes (5000/5100) and slightly widen on lowest (5400/5500) relative to the previous blanket v22 approach.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/_analyze_underlying_leadlag_spread.py",
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/underlying_leadlag_spread_elasticity.json",
@@ -150,5 +150,17 @@
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v23_asym_shock_tiering_fill_summary.json"
     ],
     "used_to_decide": "v23 (11,238) beats v22 (9,965) by avoiding uniform widening but still under v19 (11,399). Next iteration should return execution to v19 and treat propagation as a *very light* modulator or explore extract-only pre-condition on 5000/5100 only (not all strikes during shock)."
+  },
+  {
+    "iteration": 24,
+    "analysis_description": "Shock-conditional residual edge analysis on v19-style surface (shock_conditional_residual_edge.json): sign-agreement between residual and next-tick move is materially higher for 5000/5100/5200 than 5300/5400/5500 in both normal and shock buckets; spread ratios shock/normal ~1.0, so low-signal strikes are not compensated by better spread conditions. Also aligns with leadlag results: lag-0 response dominates and decays by strike.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/_analyze_shock_conditional_edge.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/shock_conditional_residual_edge.json",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v24_signal_strike_subset.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v24_signal_strike_subset.log",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v24_signal_strike_subset_fill_summary.json"
+    ],
+    "used_to_decide": "Restricting to high-signal strikes (5000/5100/5200) improved realized PnL under worse fills to 15,145 vs v19 11,399 and v23 11,238, while keeping the same spline/execution framework. New parent should be v24."
   }
 ]

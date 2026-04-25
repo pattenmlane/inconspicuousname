@@ -1,0 +1,20 @@
+{
+  "method": "Subsample every 50 timestamps; per tick corr(vega_model, top_spread) across strikes with valid book; vega at model_iv.",
+  "mean_within_tick_corr_vega_spread": -0.4545718013705338,
+  "std_within_tick_corr": 0.017218794986227286,
+  "n_tick_corrs": 600,
+  "mean_spread_minus_pool_by_voucher": {
+    "VEV_4000": 15.071833333333334,
+    "VEV_4500": 10.136833333333334,
+    "VEV_5000": 0.38349999999999973,
+    "VEV_5100": -1.3648333333333333,
+    "VEV_5200": -2.758166666666667,
+    "VEV_5300": -3.5181666666666667,
+    "VEV_5400": -4.269833333333334,
+    "VEV_5500": -4.4515,
+    "VEV_6000": -4.614833333333333,
+    "VEV_6500": -4.614833333333333
+  },
+  "pooled_mean_spread": 5.614833333333333,
+  "shock_spread_note": "VEV_5200 mean_dspread_shock - mean_dspread_calm ~ +0.011 from leadlag_shock script (signed shock widening focal)."
+}

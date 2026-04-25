@@ -111,5 +111,17 @@
       "manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v43_worse.log"
     ],
     "used_to_decide": "Added optional UP_SHOCK_VEV_HALF_ADD_MAP and DN_SHOCK_VEV_HALF_ADD_MAP in trader_v0 (when both set, they replace the unsigned per-strike map for the shock component) and v42 to widen low strikes on d log S>0 and 5200-5500 on d log S<0. Backtest still 60,627 (tied v33). v43 disables new hydrogel quotes; logged benchmark PnL and noted hydrogel carry in tradeHistory for context."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Greek + microstructure cross-section on Round 3 tapes (days 0-2, subsample every 50 timestamps): at each tick compute BS vega at model_iv per VEV and top-of-book spread; corr(vega, spread) across strikes averages about -0.45 (600 ticks). Pooled mean spread ~5.6; 4000/4500 are ~+15/+10 vs pool, OTM strikes negative vs pool. Same T as trader (DTE from csv day 8 minus intraday per round3description).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/run_spread_vega_crosssection.py",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/spread_vega_crosssection_summary.json",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/mean_top_spread_by_voucher.csv",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v44_worse.log",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v45_worse.log"
+    ],
+    "used_to_decide": "Added optional VEV_HALF_LOCAL_ADD_MAP + scale in trader_v0 to tilt half-spreads by strike-level spread structure vs pool. v44 used signed mean(spread)-pool offsets (scale 0.07) -> 58,781 worse. v45 used positive offsets only (scale 0.09) -> 56,912 worse. Falsified adding static vega-spread cross-section tilts on top of joint IV-RV width for this backtest; keep hook off in champion v33."
   }
 ]

@@ -198,6 +198,10 @@ class Trader:
     DN_SHOCK_VEV_HALF_ADD_MAP: dict | None = None
     # Set False to benchmark extract+VEV only (still allowed to quote other products if needed).
     TRADE_HYDROGEL = True
+    # Optional: per-strike add to VEV half-spread after joint regime + shocks (e.g. from tape
+    # cross-section of top-of-book spread vs model vega). Scaled by VEV_HALF_LOCAL_ADD_SCALE.
+    VEV_HALF_LOCAL_ADD_MAP: dict | None = None
+    VEV_HALF_LOCAL_ADD_SCALE = 1.0
 
     def run(self, state: TradingState):
         result: dict[str, list[Order]] = {}
@@ -340,6 +344,10 @@ class Trader:
                 shock_map = getattr(self, "SHOCK_VEV_HALF_ADD_MAP", None)
                 if isinstance(shock_map, dict) and abs(du_inst) >= thr_s:
                     half_vev_local += float(shock_map.get(v, 0.0))
+            loc_map = getattr(self, "VEV_HALF_LOCAL_ADD_MAP", None)
+            loc_sc = float(getattr(self, "VEV_HALF_LOCAL_ADD_SCALE", 1.0))
+            if isinstance(loc_map, dict) and loc_sc != 0.0:
+                half_vev_local += loc_sc * float(loc_map.get(v, 0.0))
             half_vev_local = max(self.VEV_HALF_MIN, min(half_vev_local, self.VEV_HALF_MAX))
             bid_p = int(round(theo - half_vev_local + skew + center_shift))
             ask_p = int(round(theo + half_vev_local + skew + center_shift))

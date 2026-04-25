@@ -136,5 +136,21 @@
       "duplicate_risk": "low",
       "new_adjusted_variant": "n/a (already distinct; VEV-only after cash damage)"
     }
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "Per-strike BS call **vega** from tape (subsample every 20 timestamps): invert IV from mid with bisection (r=0), T=dte_effective/365 per round3 wind. Days 0\u20132: deep wings (4000/4500/6000/6500) show vega ~8\u201335; 5000\u20135400 band ~60\u2013290 (day and moneyness dependent), i.e. order-of-magnitude spread vs flat SKEW_PER_UNIT in v9.",
+    "analysis_outputs": [
+      "Prosperity4Data/ROUND_3/prices_round_3_day_0.csv",
+      "Prosperity4Data/ROUND_3/prices_round_3_day_1.csv",
+      "Prosperity4Data/ROUND_3/prices_round_3_day_2.csv"
+    ],
+    "used_to_decide": "v19: scale inventory skew by clip(vega/VEGA_SKEW_REF, 0.35, 2.2) using smile IV at quote time. Grid VEGA_SKEW_REF 200 vs 260 ties v9 (11664) in this backtest; prefer v9 on simplicity. Documents Greek-normalized risk bias path.",
+    "EXACT_DUPLICATE_CHECK": {
+      "parent_explored": "v9 flat skew; v17 R2 size; v15/v16 shock half-spread.",
+      "my_variant_delta": "Skew scaling by BS vega at fitted smile vol (not size, not shock widening).",
+      "duplicate_risk": "low",
+      "new_adjusted_variant": "n/a"
+    }
   }
 ]

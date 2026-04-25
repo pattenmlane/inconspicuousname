@@ -274,5 +274,37 @@
         "VEV_5500": 10
       }
     }
+  },
+  {
+    "iteration": 19,
+    "trader_file": "trader_v19.py",
+    "strategy_description": "v9 + vega-scaled inventory skew: BS call vega at smile IV scales skew via clip(vega/VEGA_SKEW_REF, 0.35, 2.2). Tape analysis: vega ~10-15 on deep wings vs ~110-290 near 5000-5400 (IV from mid, same T as trader). Grid VEGA_SKEW_REF=200 vs 260 both tie v9 at 11664; file uses 200.",
+    "total_profit": 11664,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v19.py 3 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/backtests/iter19_vega_skew_ref200.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/backtests/iter19_vega_skew_ref200.log",
+    "parameter_sweep": {
+      "vega_skew_ref_values_tried": [
+        200,
+        260
+      ],
+      "vega_skew_clip": [
+        0.35,
+        2.2
+      ],
+      "both_total_profit": 11664
+    },
+    "trades_or_fills_summary": {
+      "day_totals": {
+        "0": 5132,
+        "1": 6329,
+        "2": 203
+      },
+      "day2_nonzero_products": {
+        "VEV_5400": 193,
+        "VEV_5500": 10
+      }
+    }
   }
 ]

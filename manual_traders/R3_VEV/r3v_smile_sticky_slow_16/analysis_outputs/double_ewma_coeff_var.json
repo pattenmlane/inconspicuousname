@@ -1,0 +1,9 @@
+{
+  "step": 100,
+  "fast_alpha": 0.045,
+  "slow_alpha": 0.12,
+  "n_steps": 300,
+  "var_c2_single_layer_ewma": 0.0002536666963225542,
+  "var_c2_double_layer_ewma": 0.00030299811175427973,
+  "var_ratio_double_over_single": 1.1944733626719266
+}

@@ -82,5 +82,14 @@
       "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v9.py"
     ],
     "used_to_decide": "At scale 0.15, median bump=0.066 and 0% of samples >=0.5 tick (explains v8 tie). At scale 1.0, median bump=0.44 and 48% >=0.5 tick (non-trivial price impact), so tested v9. Backtest fell to 19147; conclusion: extra gamma-based widening is too conservative in this regime."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "Smile c2 (quadratic IV curvature) variance: on tape days 0-2 step 100, per timestamp vega-weighted polyfit, then (A) one EWMA(0.045) of coeffs vs (B) same plus outer EWMA(0.12) of the result, matching trader_v10.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analysis_outputs/double_ewma_coeff_var.json",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analyze_double_ewma_coeff_var.py"
+    ],
+    "used_to_decide": "Offline var(c2) is ~19% higher for the double-EMA path on this subsample (var_ratio ~1.19)—lag/phase can increase short-window coefficient volatility even while intent is 'smoother' fair. trader_v10 backtest still tied v2 (19255), so double layer is optional complexity; keep v2 as default unless a forward-looking smoother is justified."
   }
 ]

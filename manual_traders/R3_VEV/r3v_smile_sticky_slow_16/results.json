@@ -78,5 +78,13 @@
     "total_profit": 19147,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v9.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 10,
+    "trader_file": "trader_v10.py",
+    "strategy_description": "Parent v2: double EWMA on smile poly coeffs (fast 0.045 as v2, then slow outer 0.12 on the first EMA; trading uses ema2). Stronger 'sticky' fair without changing S or taker rules. Backtest 19255 (tied v2, tie-break prefer v2 for simpler state). DTE: round3description + intraday winding.",
+    "total_profit": 19255,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v10.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
   }
 ]

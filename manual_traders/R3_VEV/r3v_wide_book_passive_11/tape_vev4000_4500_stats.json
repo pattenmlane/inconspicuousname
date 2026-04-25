@@ -1,0 +1,68 @@
+{
+  "day_0": {
+    "TTE_calendar_days": 7,
+    "T_years": 0.019178082191780823,
+    "per_vev": {
+      "VEV_4000": {
+        "spread_mean": 20.7654,
+        "spread_median": 21.0,
+        "iv_mean": 0.7869010915595821,
+        "iv_std": 0.07637061422571018,
+        "delta_mean": 0.9937785489240036,
+        "n_ticks": 10000
+      },
+      "VEV_4500": {
+        "spread_mean": 15.7842,
+        "spread_median": 16.0,
+        "iv_mean": 0.4461918653476443,
+        "iv_std": 0.031403042840156714,
+        "delta_mean": 0.9936265029992727,
+        "n_ticks": 10000
+      }
+    }
+  },
+  "day_1": {
+    "TTE_calendar_days": 6,
+    "T_years": 0.01643835616438356,
+    "per_vev": {
+      "VEV_4000": {
+        "spread_mean": 20.7745,
+        "spread_median": 21.0,
+        "iv_mean": 0.8517783524633252,
+        "iv_std": 0.08456844183771624,
+        "delta_mean": 0.9936656987839714,
+        "n_ticks": 10000
+      },
+      "VEV_4500": {
+        "spread_mean": 15.8129,
+        "spread_median": 16.0,
+        "iv_mean": 0.483801277985538,
+        "iv_std": 0.03442471049657184,
+        "delta_mean": 0.9935819445592923,
+        "n_ticks": 10000
+      }
+    }
+  },
+  "day_2": {
+    "TTE_calendar_days": 5,
+    "T_years": 0.0136986301369863,
+    "per_vev": {
+      "VEV_4000": {
+        "spread_mean": 20.9005,
+        "spread_median": 21.0,
+        "iv_mean": 0.9353316516857602,
+        "iv_std": 0.08973468693545139,
+        "delta_mean": 0.9938896389374101,
+        "n_ticks": 10000
+      },
+      "VEV_4500": {
+        "spread_mean": 15.9609,
+        "spread_median": 16.0,
+        "iv_mean": 0.533361381157039,
+        "iv_std": 0.03912989393035926,
+        "delta_mean": 0.993562037890756,
+        "n_ticks": 10000
+      }
+    }
+  }
+}

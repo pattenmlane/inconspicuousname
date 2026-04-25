@@ -1,0 +1,34 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v0.py",
+    "strategy_description": "Deep passive quotes (bb+7/ba-7 on VEV_4000, bb+5/ba-5 on VEV_4500) when spread >= 18; size 2. Extract/hydrogel penny-MM with EMA fair and vega-weighted skew from BS delta on the two strikes (T proxy 6d/365y). VEV_4500 rarely fills in backtest (no tape trades most days).",
+    "total_profit": 27014,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v0.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-out"
+  },
+  {
+    "iteration": 1,
+    "trader_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v1.py",
+    "strategy_description": "Parameter sweep: spread gate 16 for both strikes; symmetric deep offset 6; passive size 3. Same extract/hydrogel and delta skew. Improves total PnL vs v0; VEV_4500 still ~0 PnL (historical trades file has almost no VEV_4500 prints).",
+    "total_profit": 27938,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v1.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-out"
+  },
+  {
+    "iteration": 2,
+    "trader_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v2.py",
+    "strategy_description": "Sweep asymmetric offsets (4500 bb+4); same total as v1 in worse-fill regime — dominated by VEV_4000 + hydrogel.",
+    "total_profit": 27938,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v2.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-out"
+  },
+  {
+    "iteration": 3,
+    "trader_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v3.py",
+    "strategy_description": "VEV_4500 touch quotes (bb+1/ba-1) vs deep 4000; still no 4500 PnL — matching relies on tape trades; VEV_4500 has O(1) trades across Round-3 CSVs. Kept for documentation.",
+    "total_profit": 27938,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v3.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-out"
+  }
+]

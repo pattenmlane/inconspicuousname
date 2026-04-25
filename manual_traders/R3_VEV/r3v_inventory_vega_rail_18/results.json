@@ -1,0 +1,34 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "trader_v0.py",
+    "strategy_description": "Frankfurt-style IV scalping on all ten VEVs with BS vega at fitted smile IV; per-strike clip capped by vega rail (700) minus |pos|; partial extract delta hedge and two-sided extract + hydrogel MM. TTE: csv day 0/1/2 -> DTE 8/7/6 at open with intraday wind per plot_iv_smile_round3.",
+    "total_profit": -5459,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v0.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 1,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Parameter sweep: IV_SCALPING_THR 0.35, VEGA_RAIL 900, weaker hedge, no hydrogel. Intended to unlock more VEV flow; deep wings traded and total PnL collapsed.",
+    "total_profit": -15414,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v1.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 2,
+    "trader_file": "trader_v2.py",
+    "strategy_description": "Sweep: restore IV gate 0.7, skip trading when quiet (no flatten branch), ATM band 0.98<=K/S<=1.02 only, VEGA_RAIL 800, no hydrogel. Few VEV fills; extract MM still negative.",
+    "total_profit": -8554,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v2.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "Parent v0 with merge_orders on extract/hydrogel to respect 200 limit when hedge and MM stack; VEGA_RAIL grid point 750. Best aggregate in this batch; day 2 still dominated by hydrogel + extract losses.",
+    "total_profit": -5439,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v3.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  }
+]

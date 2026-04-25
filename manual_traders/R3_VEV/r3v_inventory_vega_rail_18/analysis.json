@@ -1,0 +1,17 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Tape-based IV (Brentq from mid vs extract mid), model IV from global quadratic smile in m=log(K/S)/sqrt(T), BS vega; L1 spread means; vega_rail grid mapping rail constant to max |pos| per strike at mid-session sample. TTE/DTE: round3work/round3description.txt (historical day index maps to TTE at open 8,7,6 for days 0,1,2 per spec example pattern) plus intraday DTE_eff = DTE_open - (timestamp//100)/10000 per round3work/plotting/original_method/combined_analysis/plot_iv_smile_round3.py (T = DTE_eff/365 years).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/vega_iv_spread_summary.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/run_vega_rail_analysis.py"
+    ],
+    "used_to_decide": "Informed vega_rail magnitude (order-of-hundreds in vega proxy per unit position) and confirmed ATM-focused behavior is safer than flooding deep strikes (see iteration 1). Smile coeffs reused from round3work/voucher_work/5200_work/calibration.json global fit."
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Implicit parameter sweep from backtests: IV_SCALPING_THR vs wing PnL (v1 low gate -> large losses on VEV_4000/4500); v2 ATM-only + no flatten reduces trade count but does not fix extract drag.",
+    "analysis_outputs": ["manual_traders/R3_VEV/r3v_inventory_vega_rail_18/results.json"],
+    "used_to_decide": "Reverted toward stricter Frankfurt gate; kept order merge from v1 as infrastructure fix in v3; next iterations should parent v3 and tune day-2 hydrogel/extract risk or scalp thresholds narrowly."
+  }
+]

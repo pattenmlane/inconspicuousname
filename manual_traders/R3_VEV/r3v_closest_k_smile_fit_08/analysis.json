@@ -94,5 +94,37 @@
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v11.json"
     ],
     "used_to_decide": "Observed strong monotonic beta term structure (high for low strikes, near zero for 6000/6500), tiny lag-1 beta (weak lead/lag), and mild up/down asymmetry (generally small, larger at deep ITM). Shock spread widening is modest and strike-specific. Implemented trader_v11 with regime edge multiplier partly scaled by strike beta and a small shock-triggered widen bump. Backtest 39285 < v9 39466, so keep v9 as best while preserving interpretability."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Extract shock vs near-ATM implied vol: p90 of |d extract mid| from pooled diffs, compare mean |dIV_ATM| (median IV of 3 closest strikes) on shock vs calm, and Spearman/corr of |dS| with |dIV_ATM| (atm_iv_dS_lead_lag.json, analyze_atm_iv_shock_lead.py).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/atm_iv_dS_lead_lag.json",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_atm_iv_shock_lead.py",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v12.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v12.json"
+    ],
+    "used_to_decide": "Tape shows |dIV_ATM| is larger after large |dU| and corr(|dS|,|dIV|) is modestly positive (~0.26). trader_v12 adds: if |dU| change since last tick is at or above the tape p90 (2.0 ticks), add +1 tick voucher edge and scale size x0.88 on all strikes (parent v9 regime + local smile + vega sizing). Backtest 39918 (new best vs v9 39466). Documents extract-wide shock re-pricing risk beyond strike-specific betas."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Pooled (days 0–2) |dU| shock vs |dV| by strike: shock = |dU| at pooled p90 (2.0). For each VEV, report mean |dV| on shock vs calm rows, ratio, and Pearson corr at lags -3..3 between dU and dV (voucher_lead_lag_shock.json). Complements OLS betas: contemporaneous lag-0 correlation is very high in 5000–5200 (~0.72–0.75), still ~0.62 at 5300, smaller at 4000/5500; non-zero lags are negligible. Mean |dV| on shocks scales down the chain (e.g. ~1.75 at 4000 vs ~0.12 at 5500) with a roughly uniform 2.2x shock/calm ratio where defined.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/voucher_lead_lag_shock.json",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_voucher_lead_lag_shock.py",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v13.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v13.json"
+    ],
+    "used_to_decide": "trader_v13 tests a parameter grid on the v12 shock: tier extra edge and size by strike using absolute mean |dV| on shock rows (larger for low strikes, tiny for 5500+). Backtest 39906, below v12 39918 — overshooting widen on 4000/4500 and extra cuts likely hurt. Best line remains v12; tiered absolutes are not a clear win over a flat +1 / x0.88 when combined with vega+regime."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "Same voucher_lead_lag_shock.json evidence; grid point two: keep v12 shock magnitudes but apply only to strikes 5000–5300 (highest same-tick corr(dU,dV)); leave deep ITM/OTM on regime+vega-only quoting during shocks.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/voucher_lead_lag_shock.json",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v14.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v14.json"
+    ],
+    "used_to_decide": "trader_v14: shock overlay only on 5000–5300. Backtest 39915, still below v12 39918. Suggests the flat extract-wide v12 adjustment (including wings) captures useful protection or fill mix; gating the overlay to the high-corr core alone is not an improvement. Retain v12 as best; deep-wing behavior left for a future test (e.g. optional wing-only no-shock) if combined with new tape stats."
   }
 ]

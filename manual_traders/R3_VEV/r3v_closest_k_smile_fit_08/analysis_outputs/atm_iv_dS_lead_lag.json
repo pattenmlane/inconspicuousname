@@ -1,0 +1,30 @@
+{
+  "method": "ATM cluster K in {5100,5200,5300}: each tick IV from bisection, take median. dS=|diff extract mid|, dIV=|diff median IV|. Pool days 0-2 for global corr.",
+  "by_day": {
+    "0": {
+      "median_abs_dS": 1.0,
+      "p90_abs_dS": 2.0,
+      "median_abs_dIV_atm_median3": 0.0010208309453988984,
+      "mean_div_when_shock": 0.0018789595974265637,
+      "mean_div_when_calm": 0.0011111868148641197
+    },
+    "1": {
+      "median_abs_dS": 1.0,
+      "p90_abs_dS": 2.0,
+      "median_abs_dIV_atm_median3": 0.0011976723054613059,
+      "mean_div_when_shock": 0.002321716238102099,
+      "mean_div_when_calm": 0.00128260617984322
+    },
+    "2": {
+      "median_abs_dS": 1.0,
+      "p90_abs_dS": 2.0,
+      "median_abs_dIV_atm_median3": 0.0013349781075083222,
+      "mean_div_when_shock": 0.002682463166008318,
+      "mean_div_when_calm": 0.0014435534992436984
+    }
+  },
+  "pooled": {
+    "n": 22597,
+    "corr_absdS_absdIV": 0.2572422897194887
+  }
+}

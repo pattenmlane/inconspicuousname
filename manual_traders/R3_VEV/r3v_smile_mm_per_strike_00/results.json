@@ -193,5 +193,43 @@
         "VEV_5500": 10
       }
     }
+  },
+  {
+    "iteration": 17,
+    "trader_file": "trader_v17.py",
+    "strategy_description": "v9 + per-strike VEV clip scaled by mean iter8 r2_dV_dS (high-R2 core strikes ~1.06x size, low-R2 wings ~0.90x). 2-point sweep: (0.86,1.10) and (0.90,1.06) both aggregate 11664 (tie v9); file uses gentler pair. Backtest uses --no-vis to avoid browser.",
+    "total_profit": 11664,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v17.py 3 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/backtests/iter17_sweep_alt_0.90_1.06.log",
+    "backtest_log_path": "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/backtests/iter17_sweep_alt_0.90_1.06.log",
+    "parameter_sweep": {
+      "r2_map_ref": [
+        0.12,
+        0.59
+      ],
+      "size_mult_pairs_tried": [
+        [
+          0.86,
+          1.1
+        ],
+        [
+          0.9,
+          1.06
+        ]
+      ],
+      "both_total_profit": 11664
+    },
+    "trades_or_fills_summary": {
+      "day_totals": {
+        "0": 5132,
+        "1": 6329,
+        "2": 203
+      },
+      "day2_nonzero_products": {
+        "VEV_5400": 193,
+        "VEV_5500": 10
+      }
+    }
   }
 ]

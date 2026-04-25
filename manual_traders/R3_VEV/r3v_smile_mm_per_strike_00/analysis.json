@@ -106,5 +106,19 @@
       "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/analysis_outputs/iter8_underlying_propagation_spread_shocks.json"
     ],
     "used_to_decide": "Used strike-level shock spread response to build v15/v16 shock-aware widening logic on days 0-1. Both variants tied v9 aggregate (11664), so simpler v9 remains preferred."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "R2 tiering from iter8: mean r2_dV_dS across csv_day 0\u20132 peaks on VEV_5000\u20135200 (~0.51\u20130.59), mid on 5300/5400 (~0.29\u20130.39), low on 5500+ (~0.12); 6000/6500 have NaN R2 (no co-movement). Lead/lag |beta| are small vs contemporaneous beta on 5000\u20135500, so sizing from R2 is a distinct lever from shock half-spread widening (v15/v16).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/analysis_outputs/iter8_underlying_propagation_spread_shocks.json"
+    ],
+    "used_to_decide": "Implemented v17: linear map from mean R2 to per-strike SIZE_VEV multiplier in [0.90,1.06] (ref R2 0.12\u20130.59). Grid (0.86,1.10) vs (0.90,1.06) both tie v9 at 11664; keep gentler range. Prefer v9 on tie-break (simpler); v17 documents propagation-based sizing path.",
+    "EXACT_DUPLICATE_CHECK": {
+      "parent_explored": "v15/v16 used iter8 spread-jump shock widening on days 0\u20131; same parent v9 execution otherwise.",
+      "my_variant_delta": "Per-strike quote size from mean r2_dV_dS (not half-spread shocks); applies all days.",
+      "duplicate_risk": "low",
+      "new_adjusted_variant": "n/a"
+    }
   }
 ]

@@ -109,6 +109,20 @@
     "strategy_description": "PIVOT family12: parent smile_cubic_spline_logk_12 v1 edge/MM + v9 LOO fair IV + intraday t_years_effective T + jump/cadence sticky smile refit (not jump-gap EMA line).",
     "total_profit": 47709,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v13.py 3 --data Prosperity4Data --match-trades worse"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v13.py 3 --data Prosperity4Data --match-trades worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter13_backtest.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter13_fill_summary.json"
+  },
+  {
+    "iteration": 14,
+    "trader_file": "trader_v14.py",
+    "strategy_description": "family12 strike-response-aware quoting: same v13 jump/cadence sticky LOO spline, but suppress very-low beta strikes and downsize low-beta strikes based on underlying\u2192voucher propagation analysis.",
+    "total_profit": 46996,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v14.py 3 --data Prosperity4Data --match-trades worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter14_backtest.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter14_fill_summary.json"
   }
 ]

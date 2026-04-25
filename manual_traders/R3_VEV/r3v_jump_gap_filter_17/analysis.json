@@ -97,5 +97,17 @@
       "duplicate_risk": "low",
       "rationale": "Prior local trader_v12 duplicated jump-gap v10; v13 is a different product/economy stack and code path from parent v11, though shares the abstract 'cubic spline in logK' name."
     }
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "Underlying propagation by strike (analysis_underlying_propagation_by_strike*.csv/json): regress dVEV_mid on dExtract_mid per strike/day and compare spread pre/post 95th-percentile extract shocks. Betas: high around 4000-5100 (~0.58-0.75), lower 5300-5400 (~0.13-0.27), near-zero 6000/6500. Shock spread deltas are small except tails; actionable signal is response beta heterogeneity. Kept substantive Greek thread via same BS/IV/LOO smile (v13 family) and used strike response buckets to modulate quoting/taking intensity in v14.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analysis_underlying_propagation_by_strike.csv",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analysis_underlying_propagation_by_strike_summary.csv",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analysis_underlying_propagation_by_strike_summary.json",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter14_backtest.log",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter14_fill_summary.json"
+    ],
+    "used_to_decide": "Very-low-beta strikes (6000/6500/5500) were mostly noise under worse fills; v14 suppresses or shrinks those while preserving high-beta/core strikes. Result 46,996 < v13 47,709, so keep v13 lead and treat beta-bucket attenuation as over-pruning for this tape."
   }
 ]

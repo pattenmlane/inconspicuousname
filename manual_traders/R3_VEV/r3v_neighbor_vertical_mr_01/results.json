@@ -22,5 +22,13 @@
     "total_profit": -908,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v2.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "Extends v2: same gap z1 entry (Z_G=2.9) and extract delta hedge. Adds spline-style local residual R_i=g_i-0.5(g_{i-1}+g_{i+1}) with its own EWMA z_R; for interior edges require |z_R|>=0.45 and sign(z_R)=sign(z1). Edges use v2 only. Four-strike half-spread sum cap MAX_SPREAD_SUM=100. Backtest total -908 (matches v2 on this tape; micro-sweep z_R in {0.35..0.55} x spread cap unchanged PnL).",
+    "total_profit": -908,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v3.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

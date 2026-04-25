@@ -23,5 +23,14 @@
       "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/results.json"
     ],
     "used_to_decide": "Higher entry threshold is strongly beneficial for this neighbor-gap MR (reduces churn/slippage). Hedging at full delta modestly outperformed 0.6 ratio at the top settings. Promoted simplest tied winner (base_size=8) to trader_v2."
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "IV second-difference along strike (smile curvature proxy) and gap second-difference stats on ROUND_3 tapes; see analysis_smile_spline_gaps.json. Method: BS IV (r=0) at T=TTE/365 with TTE_days=8-csv_day. For v3 design: centered gap residual R_i=g_i-0.5(g_{i-1}+g_{i+1}) with separate EWMA z_R; micro-grid grid_v3_spline_filter.json varied Z_R_MIN and MAX_SPREAD_SUM \u2014 all tied at -908 total vs v2 in this run.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/analysis_smile_spline_gaps.json",
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/grid_v3_spline_filter.json"
+    ],
+    "used_to_decide": "Simpler v2 logic is the performance driver; spline residual as a same-sign gate does not change total PnL on days 0\u20132 here (likely same trade set). Kept Z_R_MIN=0.45 and cap=100 for interpretability; IV curvature stats document smile is not flat in second diff."
   }
 ]

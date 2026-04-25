@@ -1,0 +1,14 @@
+{
+  "method": "IV from BS call vs mid, T=TTE/365, r=0. Second diff along strike index for interior triples: IV and neighbor gaps m_i - m_{i+1}.",
+  "tte": "TTE_days = 8 - csv_day for csv_day in {0,1,2} (same mapping as prior analysis and trader day_idx).",
+  "iv_second_diff_interior": {
+    "n": 264,
+    "mean": 0.0663020207917242,
+    "std": 0.08022310725087564
+  },
+  "gap_second_diff_interior": {
+    "n": 4200,
+    "mean": -0.23976190476190476,
+    "std": 211.91033708731308
+  }
+}

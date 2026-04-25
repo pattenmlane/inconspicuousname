@@ -1,0 +1,293 @@
+"""
+Round 3 — v2 (sticky EWMA smile + wing filter) with stronger BS gamma-aware widening.
+
+Idea: when smile IV is held sticky, fair is still concave in S; high call gamma
+means small S moves pass through more to the option, so we widen by 1.0 * (gamma / GAMMA_REF) added to the half-spread shift. GAMMA_REF ≈ tape median
+at VEV_5200/5300 (see vev_gamma_by_strike_median.json).
+
+DTE: round3work/round3description + intraday winding (dte_effective as v2).
+No standalone extract trading.
+"""
+from __future__ import annotations
+
+import json
+import math
+from typing import Any
+
+import numpy as np
+from scipy.optimize import brentq
+from scipy.stats import norm
+
+from datamodel import Order, OrderDepth, TradingState
+
+STRIKES = [4000, 4500, 5000, 5100, 5200, 5300, 5400, 5500, 6000, 6500]
+VOUCHERS = [f"VEV_{k}" for k in STRIKES]
+U = "VELVETFRUIT_EXTRACT"
+H = "HYDROGEL_PACK"
+
+LIMITS = {H: 200, U: 200, **{v: 300 for v in VOUCHERS}}
+
+EWMA_ALPHA = 0.045
+HYD_EWMA_ALPHA = 0.004
+MIN_IV_POINTS = 6
+QUOTE_SIZE_VEV = 10
+QUOTE_SIZE_DELTA = 8
+EDGE_CLIP = 35.0
+VEGA_SCALE_REF = 80.0
+
+# From analysis_outputs/vev_gamma_by_strike_median.json (median 5200/5300)
+GAMMA_REF = 0.002209
+GAMMA_WIDEN_SCALE = 1.0
+
+HYD_MM_WIDTH = 3
+HYD_QUOTE_SIZE = 5
+
+WING_STRIKES = {4000, 4500, 6500}
+HS_WIDE = 8.0
+EDGE_MULT_WIDE = 0.85
+
+
+def dte_from_csv_day(day: int) -> int:
+    return 8 - int(day)
+
+
+def intraday_progress(timestamp: int) -> float:
+    return (int(timestamp) // 100) / 10_000.0
+
+
+def dte_effective(day: int, timestamp: int) -> float:
+    return max(float(dte_from_csv_day(day)) - intraday_progress(timestamp), 1e-6)
+
+
+def t_years_effective(day: int, timestamp: int) -> float:
+    return dte_effective(day, timestamp) / 365.0
+
+
+def bs_call_price(S: float, K: float, T: float, sigma: float, r: float = 0.0) -> float:
+    if T <= 0:
+        return max(S - K, 0.0)
+    if sigma <= 1e-12:
+        return max(S - K, 0.0)
+    v = sigma * math.sqrt(T)
+    d1 = (math.log(S / K) + (r + 0.5 * sigma * sigma) * T) / v
+    d2 = d1 - v
+    return S * norm.cdf(d1) - K * math.exp(-r * T) * norm.cdf(d2)
+
+
+def bs_vega(S: float, K: float, T: float, sigma: float, r: float = 0.0) -> float:
+    if T <= 0 or sigma <= 1e-12 or S <= 0 or K <= 0:
+        return 0.0
+    v = sigma * math.sqrt(T)
+    d1 = (math.log(S / K) + (r + 0.5 * sigma * sigma) * T) / v
+    return S * norm.pdf(d1) * math.sqrt(T)
+
+
+def bs_call_gamma(S: float, K: float, T: float, sigma: float, r: float = 0.0) -> float:
+    if T <= 0 or sigma <= 1e-12 or S <= 0 or K <= 0:
+        return 0.0
+    v = sigma * math.sqrt(T)
+    d1 = (math.log(S / K) + (r + 0.5 * sigma * sigma) * T) / v
+    return float(norm.pdf(d1) / (S * v))
+
+
+def implied_vol_call(market: float, S: float, K: float, T: float, r: float = 0.0) -> float | None:
+    intrinsic = max(S - K, 0.0)
+    if market <= intrinsic + 1e-6:
+        return None
+    if market >= S - 1e-6:
+        return None
+    if S <= 0 or K <= 0 or T <= 0:
+        return None
+
+    def f(sig: float) -> float:
+        return bs_call_price(S, K, T, sig, r) - market
+
+    lo, hi = 1e-5, 12.0
+    try:
+        if f(lo) > 0 or f(hi) < 0:
+            return None
+        return float(brentq(f, lo, hi, xtol=1e-7, rtol=1e-7))
+    except ValueError:
+        return None
+
+
+def best_bid_ask(depth: OrderDepth) -> tuple[int | None, int | None]:
+    if not depth.buy_orders or not depth.sell_orders:
+        return None, None
+    return max(depth.buy_orders.keys()), min(depth.sell_orders.keys())
+
+
+def micro_mid(depth: OrderDepth) -> float | None:
+    bb, ba = best_bid_ask(depth)
+    if bb is None or ba is None:
+        return None
+    return 0.5 * (bb + ba)
+
+
+def infer_csv_day(s_mid: float, h_mid: float | None) -> int:
+    if abs(s_mid - 5250.0) < 1.5 and h_mid is not None and abs(h_mid - 10000.0) < 2.5:
+        return 0
+    if abs(s_mid - 5245.0) < 1.5 and h_mid is not None and abs(h_mid - 9958.0) < 2.5:
+        return 1
+    if abs(s_mid - 5267.5) < 2.0:
+        return 2
+    return 0
+
+
+class Trader:
+    def run(self, state: TradingState):
+        store: dict[str, Any] = {}
+        raw = getattr(state, "traderData", "") or ""
+        if raw:
+            try:
+                o = json.loads(raw)
+                if isinstance(o, dict):
+                    store = o
+            except (json.JSONDecodeError, TypeError):
+                store = {}
+
+        ts = int(getattr(state, "timestamp", 0))
+        pos = getattr(state, "position", {}) or {}
+        depths = getattr(state, "order_depths", {}) or {}
+        out: dict[str, list[Order]] = {}
+
+        du = depths.get(U)
+        dh = depths.get(H)
+        if du is None:
+            return out, 0, json.dumps(store, separators=(",", ":"))
+
+        s_mid = micro_mid(du)
+        if s_mid is None:
+            return out, 0, json.dumps(store, separators=(",", ":"))
+
+        h_mid = micro_mid(dh) if dh is not None else None
+        csv_day = int(store.get("csv_day", -1))
+        if csv_day < 0 or ts == 0:
+            csv_day = infer_csv_day(float(s_mid), float(h_mid) if h_mid is not None else None)
+            store["csv_day"] = csv_day
+
+        T = t_years_effective(csv_day, ts)
+        sqrtT = math.sqrt(T) if T > 0 else 1e-6
+        S0 = float(s_mid)
+
+        xs: list[float] = []
+        ys: list[float] = []
+        vegas: list[float] = []
+        mids_v: dict[str, float] = {}
+
+        for v in VOUCHERS:
+            dv = depths.get(v)
+            if dv is None:
+                continue
+            m = micro_mid(dv)
+            if m is None:
+                continue
+            K = float(v.split("_")[1])
+            iv = implied_vol_call(float(m), S0, K, T, 0.0)
+            if iv is None:
+                continue
+            m_t = math.log(K / S0) / sqrtT
+            xs.append(m_t)
+            ys.append(iv)
+            vegas.append(bs_vega(S0, K, T, iv, 0.0))
+            mids_v[v] = float(m)
+
+        coeff_raw: list[float] | None = None
+        if len(xs) >= MIN_IV_POINTS:
+            xf = np.asarray(xs, dtype=float)
+            yf = np.asarray(ys, dtype=float)
+            wf = np.asarray(vegas, dtype=float) + 1e-6
+            coeff_raw = list(np.polyfit(xf, yf, 2, w=wf))
+
+        ema = store.get("ema_coeff")
+        if not isinstance(ema, list) or len(ema) != 3:
+            ema = [0.15, 0.0, 0.24]
+        if coeff_raw is not None:
+            a = EWMA_ALPHA
+            ema = [(1 - a) * float(ema[i]) + a * float(coeff_raw[i]) for i in range(3)]
+        store["ema_coeff"] = ema
+        c2, c1, c0 = float(ema[0]), float(ema[1]), float(ema[2])
+
+        gref = max(GAMMA_REF, 1e-9)
+
+        for v in VOUCHERS:
+            if v not in mids_v:
+                continue
+            dv = depths.get(v)
+            if dv is None:
+                continue
+            K = int(v.split("_")[1])
+            m_t = math.log(K / S0) / sqrtT
+            fair_iv = max(1e-4, min(8.0, float(np.polyval([c2, c1, c0], m_t))))
+            fair = bs_call_price(S0, float(K), T, fair_iv, 0.0)
+            mid = mids_v[v]
+            vega = bs_vega(S0, float(K), T, fair_iv, 0.0)
+            gam = bs_call_gamma(S0, float(K), T, fair_iv, 0.0)
+            edge = mid - fair
+            w = max(0.35, min(2.5, vega / VEGA_SCALE_REF))
+            w_g = GAMMA_WIDEN_SCALE * (gam / gref)
+
+            bb, ba = best_bid_ask(dv)
+            if bb is None or ba is None:
+                continue
+            half_spread = 0.5 * float(ba - bb)
+            need_edge = EDGE_MULT_WIDE * half_spread if (K in WING_STRIKES and half_spread >= HS_WIDE) else 0.0
+            if need_edge > 0 and abs(edge) < need_edge:
+                continue
+
+            half_spread_floor = max(1.0, 0.45 * float(ba - bb))
+            atm_w = math.exp(-0.5 * m_t * m_t)
+            base_width = 1.0 + 1.4 * (1.0 - atm_w)
+            shift = base_width + half_spread_floor + w * max(-EDGE_CLIP, min(EDGE_CLIP, edge)) * 0.055 + w_g
+
+            pos_v = int(pos.get(v, 0))
+            lim = LIMITS[v]
+
+            bid_px = int(round(fair - shift))
+            ask_px = int(round(fair + shift))
+            bid_px = min(bid_px, ba - 1)
+            ask_px = max(ask_px, bb + 1)
+            if ask_px <= bid_px:
+                ask_px = bid_px + 1
+
+            q_buy = min(QUOTE_SIZE_VEV, lim - pos_v)
+            q_sell = min(QUOTE_SIZE_VEV, lim + pos_v)
+            if edge > 1.5:
+                q_buy = min(q_buy + QUOTE_SIZE_DELTA, lim - pos_v)
+            if edge < -1.5:
+                q_sell = min(q_sell + QUOTE_SIZE_DELTA, lim + pos_v)
+
+            ol: list[Order] = []
+            if q_buy > 0 and bid_px > 0:
+                ol.append(Order(v, bid_px, q_buy))
+            if q_sell > 0:
+                ol.append(Order(v, ask_px, -q_sell))
+            if ol:
+                out[v] = ol
+
+        if dh is not None and h_mid is not None:
+            hf = store.get("hyd_fair")
+            if not isinstance(hf, (int, float)) or not math.isfinite(float(hf)):
+                hf = float(h_mid)
+            hf = (1.0 - HYD_EWMA_ALPHA) * float(hf) + HYD_EWMA_ALPHA * float(h_mid)
+            store["hyd_fair"] = hf
+            pos_h = int(pos.get(H, 0))
+            hb = int(round(hf - HYD_MM_WIDTH))
+            ha = int(round(hf + HYD_MM_WIDTH))
+            bb_h, ba_h = best_bid_ask(dh)
+            if bb_h is not None and ba_h is not None:
+                hb = min(hb, ba_h - 1)
+                ha = max(ha, bb_h + 1)
+                if ha <= hb:
+                    ha = hb + 1
+                qh = min(HYD_QUOTE_SIZE, 200 - pos_h)
+                qhs = min(HYD_QUOTE_SIZE, 200 + pos_h)
+                ho: list[Order] = []
+                if qh > 0:
+                    ho.append(Order(H, hb, qh))
+                if qhs > 0:
+                    ho.append(Order(H, ha, -qhs))
+                if ho:
+                    out[H] = ho
+
+        return out, 0, json.dumps(store, separators=(",", ":"))

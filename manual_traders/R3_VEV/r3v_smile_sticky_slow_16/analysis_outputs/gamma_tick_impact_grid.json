@@ -1,0 +1,55 @@
+{
+  "gamma_ref": 0.002209028134179821,
+  "rows": 2508,
+  "grid": [
+    {
+      "scale": 0.15,
+      "median_bump": 0.06603947788808998,
+      "p75_bump": 0.12530450853330657,
+      "share_bump_ge_0_5": 0.0,
+      "share_bump_ge_1_0": 0.0,
+      "share_bump_ge_1_5": 0.0
+    },
+    {
+      "scale": 0.25,
+      "median_bump": 0.11006579648014997,
+      "p75_bump": 0.20884084755551094,
+      "share_bump_ge_0_5": 0.0,
+      "share_bump_ge_1_0": 0.0,
+      "share_bump_ge_1_5": 0.0
+    },
+    {
+      "scale": 0.5,
+      "median_bump": 0.22013159296029994,
+      "p75_bump": 0.4176816951110219,
+      "share_bump_ge_0_5": 0.15031897926634769,
+      "share_bump_ge_1_0": 0.0,
+      "share_bump_ge_1_5": 0.0
+    },
+    {
+      "scale": 1.0,
+      "median_bump": 0.4402631859205999,
+      "p75_bump": 0.8353633902220438,
+      "share_bump_ge_0_5": 0.4788676236044657,
+      "share_bump_ge_1_0": 0.15031897926634769,
+      "share_bump_ge_1_5": 0.0
+    },
+    {
+      "scale": 1.5,
+      "median_bump": 0.6603947788808998,
+      "p75_bump": 1.2530450853330657,
+      "share_bump_ge_0_5": 0.6610845295055822,
+      "share_bump_ge_1_0": 0.42543859649122806,
+      "share_bump_ge_1_5": 0.15031897926634769
+    },
+    {
+      "scale": 2.0,
+      "median_bump": 0.8805263718411998,
+      "p75_bump": 1.6707267804440875,
+      "share_bump_ge_0_5": 0.7125199362041468,
+      "share_bump_ge_1_0": 0.4788676236044657,
+      "share_bump_ge_1_5": 0.30821371610845294
+    }
+  ],
+  "note": "bump is additive quote half-width term in price units before int rounding"
+}

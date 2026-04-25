@@ -63,7 +63,7 @@
       "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analysis_outputs/smile_ewma_fair_drift_5200.json",
       "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analyze_smile_ewma_fair_drift_5200.py"
     ],
-    "used_to_decide": "Median |Delta fair| for VEV_5200 is ~2.0 and nearly flat in alpha in this grid; |theta| is huge (~1785/year) as expected for short T—dominant signal is moneyness/IV, not a small EMA tweak. Tried trader_v7 with EMA 0.03: backtest tied v2 at 19255; default remains v2 (0.045) for fewer moving parts unless future work needs slower reaction."
+    "used_to_decide": "Median |Delta fair| for VEV_5200 is ~2.0 and nearly flat in alpha in this grid; |theta| is huge (~1785/year) as expected for short T\u2014dominant signal is moneyness/IV, not a small EMA tweak. Tried trader_v7 with EMA 0.03: backtest tied v2 at 19255; default remains v2 (0.045) for fewer moving parts unless future work needs slower reaction."
   },
   {
     "iteration": 8,
@@ -73,5 +73,14 @@
       "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analyze_vev_gamma_profile.py"
     ],
     "used_to_decide": "Added gamma-based quote widening in trader_v8 (scale 0.15 vs GAMMA_REF from ATM medians). Backtest PnL tied v2 at 19255: sub-tick adjustment often does not change integer prices after rounding, so prefer simpler v2 unless we scale gamma bump in whole ticks (e.g. 1-2) in a follow-up."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "Gamma bump tick-impact grid on days 0-2 (step 100): using sticky-smile fair_iv and tape-derived gamma, estimate additive half-width bump distribution across scales. Goal: ensure gamma term crosses integer tick thresholds after rounding.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analysis_outputs/gamma_tick_impact_grid.json",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v9.py"
+    ],
+    "used_to_decide": "At scale 0.15, median bump=0.066 and 0% of samples >=0.5 tick (explains v8 tie). At scale 1.0, median bump=0.44 and 48% >=0.5 tick (non-trivial price impact), so tested v9. Backtest fell to 19147; conclusion: extra gamma-based widening is too conservative in this regime."
   }
 ]

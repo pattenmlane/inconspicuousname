@@ -66,9 +66,17 @@
   {
     "iteration": 8,
     "trader_file": "trader_v8.py",
-    "strategy_description": "Parent v2: add BS call gamma at sticky fair_iv; widen quote shift by 0.15*(gamma/GAMMA_REF) with GAMMA_REF from tape medians at VEV_5200/5300. Intended to protect when concavity in S is high; backtest total 19255 (tied v2—integer rounding likely absorbs sub-tick widening). DTE: round3description + intraday winding.",
+    "strategy_description": "Parent v2: add BS call gamma at sticky fair_iv; widen quote shift by 0.15*(gamma/GAMMA_REF) with GAMMA_REF from tape medians at VEV_5200/5300. Intended to protect when concavity in S is high; backtest total 19255 (tied v2\u2014integer rounding likely absorbs sub-tick widening). DTE: round3description + intraday winding.",
     "total_profit": 19255,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v8.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 9,
+    "trader_file": "trader_v9.py",
+    "strategy_description": "Parent v2 with discrete-impact gamma widening: increased gamma widen scale from 0.15 to 1.0 so bump survives integer quote rounding (analysis-backed). Same sticky EWMA smile and wing filter; underperformed v2 due to weaker day-2 VEV_5400 capture.",
+    "total_profit": 19147,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v9.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
   }
 ]

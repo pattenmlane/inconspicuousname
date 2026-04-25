@@ -14,5 +14,13 @@
     "total_profit": 33466,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v1.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
+  },
+  {
+    "iteration": 2,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v2.py",
+    "strategy_description": "Same closest-k=6 local smile thesis, but voucher quote size scales with local BS vega and quote edge scales inversely with vega regime. This keeps wings quoted (small size, wider edge) while concentrating size near ATM where local-surface pricing is most stable; extract/hydrogel MM unchanged.",
+    "total_profit": 37230,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v2.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
   }
 ]

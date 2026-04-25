@@ -7,5 +7,14 @@
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_local_smile.py"
     ],
     "used_to_decide": "Median IV RMSE vs mids was lower for k=6 than k=3 on days 0–2 (e.g. day0: k6 0.089 vs k3 0.161 vs flat 0.121), supporting fitting the smile on more local strikes for surface accuracy; small sweep trader_v1 (k=3) underperformed trader_v0 (k=6) in backtest total PnL (33466 vs 36834), so v0 kept. Spread median 3 ticks on vouchers/extract — informs MM_EDGE=2 as inside typical spread."
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Greek extension of local-smile diagnostics: computed BS implied vols from mids, then fitted local quadratic smile for k=6 and k=3 per sampled timestamp; measured model mispricing in ticks plus fitted vega/delta by strike. T/DTE convention matches round3description + plot_iv_smile_round3 (historical CSV day d -> DTE open 8-d, intraday wind-down, T=dte_eff/365).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/local_smile_greeks.json",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_local_smile_greeks.py"
+    ],
+    "used_to_decide": "Across days 0–2, k=6 had much tighter p90 abs mispricing than k=3 (~1.53/2.33/2.01 ticks vs ~4.49/4.40/3.75), and vega concentrated around 5100-5400 (median abs vega often ~170-290) while far wings were near zero. Implemented vega-scaled quote size/edge in trader_v2 so central strikes quote larger/tighter and wings smaller/wider while preserving closest-k smile thesis."
   }
 ]

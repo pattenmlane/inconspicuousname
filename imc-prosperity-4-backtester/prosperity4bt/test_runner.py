@@ -39,6 +39,9 @@ class TestRunner:
         )
         result = BacktestResult(data.round_num, data.day_num)
 
+        # Round-3 DTE/TTE maps to historical CSV day index (0,1,2). Expose for strategies.
+        setattr(state, "_prosperity4bt_csv_day", int(data.day_num))
+
         timestamps = sorted(data.prices.keys())
         timestamps_iterator = tqdm(timestamps, ascii=True) if self.show_progress_bar else timestamps
         for timestamp in timestamps_iterator:

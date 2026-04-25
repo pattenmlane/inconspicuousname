@@ -1,0 +1,13 @@
+{
+  "method": "One-step pnl proxy by hypothetical take-gap under v15 fair.",
+  "recommended": {
+    "buy": [
+      {
+        "gap": 0,
+        "mean": -2.3333333333333335,
+        "count": 21
+      }
+    ],
+    "sell": []
+  }
+}

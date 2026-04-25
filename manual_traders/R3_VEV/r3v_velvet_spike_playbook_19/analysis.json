@@ -99,5 +99,15 @@
       "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/shock_continuation_summary.json"
     ],
     "used_to_decide": "Continuation rates are high (e.g. 5000~0.94, 5300~0.70-0.77), motivating a burst fair shift along the extract move. v16 implemented that; backtest total 3,432 vs v15 7,181 \u2014 misfit vs worse-fill execution (shifted fair into adverse cross), so retain v15-style without signed step shift for now; log as negative result."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "v15 hypothetical take-gap one-step proxy: replay v15 fair and evaluate next-tick pnl proxy for hypothetical spread-crossing trades by gap in ticks.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/v15_take_gap_pnl1.csv",
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/v15_take_gap_summary.json",
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v17_fill_trade_summary.json"
+    ],
+    "used_to_decide": "Gap analysis suggested adverse short-horizon expectancy for spread crossing (buy gap=0 mean about -2.33, sell gap=0 mean about -0.82), so v17 tested passive-only quoting. Backtest dropped to -660 (vs v15 +7181), implying taking remains necessary for opportunity capture despite local adverse proxy. Keep v15 as better family12 base; avoid full passive lock."
   }
 ]

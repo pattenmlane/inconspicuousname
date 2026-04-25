@@ -290,5 +290,45 @@
         }
       }
     }
+  },
+  {
+    "iteration": 17,
+    "trader_file": "trader_v17_spline_passive_only.py",
+    "strategy_description": "v15 with passive-only execution (disable spread crossing) based on v15 take-gap adverse proxy analysis.",
+    "total_profit": -660,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v17_spline_passive_only.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v17_spline_passive_only.json",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v17_spline_passive_only.json",
+    "match_trades": "worse",
+    "trades_or_fills_summary": {
+      "profit": {
+        "0": 10,
+        "1": 70,
+        "2": -741,
+        "total": -660
+      },
+      "fills": {
+        "submission_trade_count": 10,
+        "submission_filled_abs_qty": 60,
+        "submission_by_symbol": {
+          "VEV_4000": {
+            "trade_count": 5,
+            "filled_abs_qty": 10
+          },
+          "VEV_5100": {
+            "trade_count": 1,
+            "filled_abs_qty": 4
+          },
+          "VEV_5200": {
+            "trade_count": 2,
+            "filled_abs_qty": 36
+          },
+          "VEV_5300": {
+            "trade_count": 2,
+            "filled_abs_qty": 10
+          }
+        }
+      }
+    }
   }
 ]

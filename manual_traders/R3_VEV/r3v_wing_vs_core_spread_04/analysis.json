@@ -105,5 +105,20 @@
     "analysis_description": "v15 HEDGE 0.28: option legs match v13 pattern but extract PnL mostly near zero (small d_net rounds to 0 hedge), total 3010 on days 0–2 — new best in this strategy folder.",
     "analysis_outputs": [],
     "used_to_decide": "Prefer v15 line for next micro-sweeps (RICH/CHEAP, optional cap on extract hedge when |d_net| large)."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "analyze_wing_resid_thresholds_v16.py → wing_resid_thresholds_v16.json: on subsample (step 50), max |quadratic IV resid| over wing strikes is ≥0.012 at ~80.7% of timestamps, ≥0.014 at ~68% — guides RICH sweep (higher RICH cuts activity).",
+    "analysis_outputs": [
+      "analyze_wing_resid_thresholds_v16.py",
+      "wing_resid_thresholds_v16.json"
+    ],
+    "used_to_decide": "v16 RICH=0.014 was too tight (total 1565 vs v15); v17 RICH=0.010 + CHEAP=-0.022 beat v15 (3659)."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "v17 backtest: looser RICH and stricter CHEAP than v15; option-centric PnL with light extract (like v15); new best total 3659 on days 0–2.",
+    "analysis_outputs": [],
+    "used_to_decide": "Next parent: trader_v17.py; micro-sweep CHEAP in [-0.020,-0.024] or MAX_LEG 8–12."
   }
 ]

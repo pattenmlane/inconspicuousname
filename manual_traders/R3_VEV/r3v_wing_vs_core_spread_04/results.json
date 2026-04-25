@@ -126,5 +126,21 @@
     "total_profit": 3010,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v15.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 16,
+    "trader_file": "trader_v16.py",
+    "strategy_description": "Parent v15: tighter entry grid RICH=0.014, CHEAP=-0.015 (higher bar for short-rich and cheap long) with HEDGE 0.28. Total below v15 (1565 vs 3010).",
+    "total_profit": 1565,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v16.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 17,
+    "trader_file": "trader_v17.py",
+    "strategy_description": "Parent v15: RICH=0.010, CHEAP=-0.022 (looser short-rich, stricter cheap long) with HEDGE 0.28. New best in folder (3659 vs v15 3010).",
+    "total_profit": 3659,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v17.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

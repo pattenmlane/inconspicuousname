@@ -156,5 +156,28 @@
       "note": "Backtester output does not print explicit fill counts; summary derived from per-product day PnL lines in saved full log."
     },
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v15.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 16,
+    "trader_file": "trader_v16.py",
+    "strategy_description": "v11 + signed extract momentum fair shift: fair += MOMENTUM_K * (sum of last 6 dS) * BS delta; LOO spline IV unchanged.",
+    "total_profit": 67116,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "backtest_logs/trader_v16_round3_worse.log",
+    "trades_or_fills_summary": {
+      "day_total_profit": {
+        "day0": 9514,
+        "day1": 35685,
+        "day2": 21917
+      },
+      "non_zero_pnl_products_per_day": {
+        "day0": 11,
+        "day1": 10,
+        "day2": 10
+      },
+      "note": "Fill counts not in stdout; nonzero product count parsed from per-product PnL lines in saved log."
+    },
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v16.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

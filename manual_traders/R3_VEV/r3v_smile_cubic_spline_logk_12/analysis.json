@@ -66,5 +66,14 @@
       "analyze_underlying_propagation.py"
     ],
     "used_to_decide": "Findings: voucher response is mostly contemporaneous (lag-1 beta ~0), beta declines by strike (e.g., ~0.74 at VEV_4000 to near 0 at 6000/6500), and spreads widen only mildly during large extract shocks. Implemented shock-aware edge widening in v14/v15; both matched v11 total PnL (68,908), implying little incremental benefit in this dataset. Keep v11 as preferred simpler tie-break."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Up vs down extract moves: on |dExtract|>0.5 steps, separate OLS beta of dVoucher on dExtract for up days vs down days, plus mean spread on those steps. Script: analyze_extract_updown_asymmetry.py; extract_updown_asymmetry.csv.",
+    "analysis_outputs": [
+      "analysis_outputs/extract_updown_asymmetry.csv",
+      "analyze_extract_updown_asymmetry.py"
+    ],
+    "used_to_decide": "For several strikes (e.g. VEV_4000\u20135200) beta_down was >= beta_up on large steps, suggesting mild asymmetry; spreads on up vs down steps were nearly identical. Implemented v16 = v11 + momentum shift to fair (K MOMENTUM_K * sum(dS) * BS delta) to lean with extract trend in a delta-consistent way; backtest 67,116 < v11 68,908. Falsified extra fair nudge\u2014revert to v11 for this dataset unless a different mapping is justified."
   }
 ]

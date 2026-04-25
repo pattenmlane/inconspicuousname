@@ -58,5 +58,16 @@
       "backtests/2026-04-25_15-17-01.log"
     ],
     "used_to_decide": "This pivot is genuinely new vs prior rolling-z family (not previously explored). On current data + worse-fill model, width-scaling-only regime maker did not monetize flow (no submission fills), so current family-13 variant is empirically inferior to family-10/11 log-z strategies in this branch."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "Duplicate-check-mandated adjusted family-13 variant. Parent-history access in this repo exposes only this branch; after high duplicate risk on v11 (raw spread RV-IV + hysteresis + width scaling), switched to nearby distinct assumption: normalized regime signal ratio = RV/ATM_IV - 1 with hysteresis thresholds on ratio levels. Data-first stats (RV_WIN=30): ratio mean ~0.759, std ~0.302, p10~0.403, p50~0.727, p90~1.166; low regime still absent. Sweeps on (ENTER_HIGH, EXIT_HIGH, HIGH_HALF_WIDTH, MAX_MAKE_Q) produced 0 PnL and 0 submission fills across runs under worse fills. Per-run logs: backtests/2026-04-25_15-21-26.log, ...32.log, ...38.log, ...44.log; fill summaries parsed from tradeHistory include submission_fills=0 each run.",
+    "analysis_outputs": [
+      "backtests/2026-04-25_15-21-26.log",
+      "backtests/2026-04-25_15-21-32.log",
+      "backtests/2026-04-25_15-21-38.log",
+      "backtests/2026-04-25_15-21-44.log"
+    ],
+    "used_to_decide": "Implemented v12 to satisfy hard duplicate-avoidance by changing family-13 assumptions materially (signal normalization + 3-state hysteresis). Outcome remains non-viable under worse-fill backtester due to no fills in this product with width-only action."
   }
 ]

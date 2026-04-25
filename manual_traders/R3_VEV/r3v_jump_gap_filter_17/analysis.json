@@ -39,5 +39,14 @@
     "analysis_description": "Ablate-only comparison from backtests: v7 day-0 had +238 on VELVETFRUIT_EXTRACT (light fade on pause) alongside VEV. v8 removes those extract orders. Result: day-0 total 8,294 vs v7 8,542; day-2 total −2,698 vs v7 −4,945 (2.2k better); combined +1,989 vs v7. Still below v1/v2 (24,318) because VEV PnL on this signal does not cover lost Frankfurt-zero hydrogel-only path. No new Greek tape script — v8 reuses the same BS smile/vega path as v4 in compute_option_indicators.",
     "analysis_outputs": [],
     "used_to_decide": "Dropping extract taker on pause is a real improvement for the theo-hybrid; next grid could try v4-only VEV (no hydrogel) vs v1, or add spread filter on resumption to cut day-2 wing losses."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "Off-line: analyze_atm_vev_spread.py — for each row timestamp, nearest-ATM VEV to extract mid, width = best_ask_1−best_bid_1, optional ATM vega via get_option_values and t_years_effective. Pooled 30k rows: width p50=2, p90=p95=3 ticks; per-day p95 also 3. Tight two–three tick top-of-book is universal, so a max-width cap would rarely gate (unlike the neighbor-theo misalignment). v9 backtest: tighter neighbor 6.5 + thr 0.45 + clip 18 underperformed v8 (16,398 vs 17,342) — more selectivity did not help day-2 VEV; keep v8/v4-threshold as stronger hybrid.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analyze_atm_vev_spread.py",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analysis_atm_vev_spread.json"
+    ],
+    "used_to_decide": "Argued against bid-ask width as the main resume filter; next iteration should either stay at v8 params or test orthogonal filters (e.g. per-day only, or skip VEV in last session segment) rather than neighbor/threshold grids that mirror v5’s miss."
   }
 ]

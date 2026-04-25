@@ -1,0 +1,37 @@
+{
+  "by_csv_day": {
+    "0": {
+      "n": 10000,
+      "width_p50": 3.0,
+      "width_p75": 3.0,
+      "width_p90": 3.0,
+      "width_p95": 3.0,
+      "vega_p50": 292.4527664667787
+    },
+    "1": {
+      "n": 10000,
+      "width_p50": 3.0,
+      "width_p75": 3.0,
+      "width_p90": 3.0,
+      "width_p95": 3.0,
+      "vega_p50": 271.4174392362288
+    },
+    "2": {
+      "n": 10000,
+      "width_p50": 2.0,
+      "width_p75": 3.0,
+      "width_p90": 3.0,
+      "width_p95": 3.0,
+      "vega_p50": 248.52709618326153
+    }
+  },
+  "pooled": {
+    "n": 30000,
+    "width_p50": 2.0,
+    "width_p75": 3.0,
+    "width_p90": 3.0,
+    "width_p95": 3.0,
+    "vega_p50": 271.4174392362288
+  },
+  "method": "width=ask1-bid1 on nearest ATM VEV; vega=get_option_values ATM; T=t_years_effective"
+}

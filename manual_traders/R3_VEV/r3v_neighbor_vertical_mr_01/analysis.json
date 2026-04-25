@@ -9,10 +9,19 @@
   },
   {
     "iteration": 1,
-    "analysis_description": "Parameter sweep vs v0 (grid on one axis at a time in code): raised Z_THRESHOLD 1.8→2.35, ALPHA 0.02→0.03, smaller BASE_SIZE/MAX_PAIR, TRADE_EVERY=3, added day_idx from timestamp rollback for TTE_days=8-day_idx (per round3description CSV mapping), BS delta hedge on VELVETFRUIT_EXTRACT. Backtest: v0 total -57,517 vs v1 total -7,850 (same prosperity4bt command, worse fills).",
+    "analysis_description": "Parameter sweep vs v0 (grid on one axis at a time in code): raised Z_THRESHOLD 1.8\u21922.35, ALPHA 0.02\u21920.03, smaller BASE_SIZE/MAX_PAIR, TRADE_EVERY=3, added day_idx from timestamp rollback for TTE_days=8-day_idx (per round3description CSV mapping), BS delta hedge on VELVETFRUIT_EXTRACT. Backtest: v0 total -57,517 vs v1 total -7,850 (same prosperity4bt command, worse fills).",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/results.json"
     ],
     "used_to_decide": "v1 kept the same neighbor-gap thesis but reduced churn and directional bleed; day-aware TTE and delta hedge align greeks with spec timing; still underwater vs ~800k extract+VEV benchmark so further tuning needed."
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Grid search (24 runs) around v1 with IV/greek-aware core unchanged: Z_THRESHOLD in {2.35,2.6,2.9}, TRADE_EVERY in {3,4}, BASE_SIZE in {8,10}, hedge_ratio in {1.0,0.6}. Used same worse-fill round-3 backtest command. Best totals clustered at Z=2.9; top = -908.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/grid_search_v2.json",
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/results.json"
+    ],
+    "used_to_decide": "Higher entry threshold is strongly beneficial for this neighbor-gap MR (reduces churn/slippage). Hedging at full delta modestly outperformed 0.6 ratio at the top settings. Promoted simplest tied winner (base_size=8) to trader_v2."
   }
 ]

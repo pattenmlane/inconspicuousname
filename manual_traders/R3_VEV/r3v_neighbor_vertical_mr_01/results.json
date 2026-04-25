@@ -10,9 +10,17 @@
   {
     "iteration": 1,
     "trader_file": "trader_v1.py",
-    "strategy_description": "Same neighbor-gap MR core; iteration-1 sweep: higher Z_THRESHOLD (2.35), faster EWMA (0.03), smaller clips, trade every 3 ticks after warmup. Day-aware TTE: detect day boundary via timestamp rollback, TTE_days=8-day_idx per round3description mapping to CSV days 0–2; BS IV/delta/vega use that T. Post vertical, hedge VELVETFRUIT_EXTRACT with integer size ~round(net bundle delta).",
+    "strategy_description": "Same neighbor-gap MR core; iteration-1 sweep: higher Z_THRESHOLD (2.35), faster EWMA (0.03), smaller clips, trade every 3 ticks after warmup. Day-aware TTE: detect day boundary via timestamp rollback, TTE_days=8-day_idx per round3description mapping to CSV days 0\u20132; BS IV/delta/vega use that T. Post vertical, hedge VELVETFRUIT_EXTRACT with integer size ~round(net bundle delta).",
     "total_profit": -7850,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v1.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 2,
+    "trader_file": "trader_v2.py",
+    "strategy_description": "Same neighbor-gap MR thesis as v1; parameter grid over {Z_THRESHOLD, TRADE_EVERY, BASE_SIZE, hedge_ratio} selected stricter entry Z_THRESHOLD=2.9 (tie-broken to simpler base_size=8). Keeps day-aware TTE from round3description mapping via timestamp rollback day_idx and BS IV/vega/delta with extract hedge.",
+    "total_profit": -908,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v2.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

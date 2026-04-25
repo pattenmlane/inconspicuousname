@@ -1,0 +1,194 @@
+[
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_17.py",
+    "z": 2.9,
+    "trade_every": 3,
+    "base_size": 8,
+    "hedge_ratio": 1.0,
+    "total": -908
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_19.py",
+    "z": 2.9,
+    "trade_every": 3,
+    "base_size": 10,
+    "hedge_ratio": 1.0,
+    "total": -908
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_18.py",
+    "z": 2.9,
+    "trade_every": 3,
+    "base_size": 8,
+    "hedge_ratio": 0.6,
+    "total": -949
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_20.py",
+    "z": 2.9,
+    "trade_every": 3,
+    "base_size": 10,
+    "hedge_ratio": 0.6,
+    "total": -949
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_22.py",
+    "z": 2.9,
+    "trade_every": 4,
+    "base_size": 8,
+    "hedge_ratio": 0.6,
+    "total": -953
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_24.py",
+    "z": 2.9,
+    "trade_every": 4,
+    "base_size": 10,
+    "hedge_ratio": 0.6,
+    "total": -953
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_21.py",
+    "z": 2.9,
+    "trade_every": 4,
+    "base_size": 8,
+    "hedge_ratio": 1.0,
+    "total": -1044
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_23.py",
+    "z": 2.9,
+    "trade_every": 4,
+    "base_size": 10,
+    "hedge_ratio": 1.0,
+    "total": -1044
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_14.py",
+    "z": 2.6,
+    "trade_every": 4,
+    "base_size": 8,
+    "hedge_ratio": 0.6,
+    "total": -3636
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_16.py",
+    "z": 2.6,
+    "trade_every": 4,
+    "base_size": 10,
+    "hedge_ratio": 0.6,
+    "total": -3636
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_13.py",
+    "z": 2.6,
+    "trade_every": 4,
+    "base_size": 8,
+    "hedge_ratio": 1.0,
+    "total": -3811
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_15.py",
+    "z": 2.6,
+    "trade_every": 4,
+    "base_size": 10,
+    "hedge_ratio": 1.0,
+    "total": -3811
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_6.py",
+    "z": 2.35,
+    "trade_every": 4,
+    "base_size": 8,
+    "hedge_ratio": 0.6,
+    "total": -5218
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_8.py",
+    "z": 2.35,
+    "trade_every": 4,
+    "base_size": 10,
+    "hedge_ratio": 0.6,
+    "total": -5218
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_5.py",
+    "z": 2.35,
+    "trade_every": 4,
+    "base_size": 8,
+    "hedge_ratio": 1.0,
+    "total": -5256
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_7.py",
+    "z": 2.35,
+    "trade_every": 4,
+    "base_size": 10,
+    "hedge_ratio": 1.0,
+    "total": -5256
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_10.py",
+    "z": 2.6,
+    "trade_every": 3,
+    "base_size": 8,
+    "hedge_ratio": 0.6,
+    "total": -5378
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_12.py",
+    "z": 2.6,
+    "trade_every": 3,
+    "base_size": 10,
+    "hedge_ratio": 0.6,
+    "total": -5378
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_9.py",
+    "z": 2.6,
+    "trade_every": 3,
+    "base_size": 8,
+    "hedge_ratio": 1.0,
+    "total": -5498
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_11.py",
+    "z": 2.6,
+    "trade_every": 3,
+    "base_size": 10,
+    "hedge_ratio": 1.0,
+    "total": -5498
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_1.py",
+    "z": 2.35,
+    "trade_every": 3,
+    "base_size": 8,
+    "hedge_ratio": 1.0,
+    "total": -7850
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_3.py",
+    "z": 2.35,
+    "trade_every": 3,
+    "base_size": 10,
+    "hedge_ratio": 1.0,
+    "total": -7850
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_2.py",
+    "z": 2.35,
+    "trade_every": 3,
+    "base_size": 8,
+    "hedge_ratio": 0.6,
+    "total": -7976
+  },
+  {
+    "file": "/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/_grid_tmp/cand_4.py",
+    "z": 2.35,
+    "trade_every": 3,
+    "base_size": 10,
+    "hedge_ratio": 0.6,
+    "total": -7976
+  }
+]

@@ -151,5 +151,47 @@
         "VEV_5400": 67
       }
     }
+  },
+  {
+    "iteration": 15,
+    "trader_file": "trader_v15.py",
+    "strategy_description": "Distinct nearby variant from v9: per-strike shock-aware spread widening on days 0-1 keyed to underlying shock magnitude and strike-level spread-shock response analysis. Day-2 logic unchanged from v9.",
+    "total_profit": 11664,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v15.py 3 --data Prosperity4Data --match-trades worse",
+    "backtest_log_file": "backtests/2026-04-25_15-51-30.log",
+    "trades_or_fills_summary": {
+      "day_totals": {
+        "0": 5132,
+        "1": 6329,
+        "2": 203
+      },
+      "day2_nonzero_products": {
+        "VEV_5400": 193,
+        "VEV_5500": 10
+      }
+    }
+  },
+  {
+    "iteration": 16,
+    "trader_file": "trader_v16.py",
+    "strategy_description": "v15 directional asymmetry: widen high-delta strikes on positive underlying shocks, lighter widening for negative shocks on 5300/5400. Aggregate ties v15/v9.",
+    "total_profit": 11664,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v16.py 3 --data Prosperity4Data --match-trades worse",
+    "backtest_log_file": "backtests/2026-04-25_15-52-43.log",
+    "trades_or_fills_summary": {
+      "day_totals": {
+        "0": 5132,
+        "1": 6329,
+        "2": 203
+      },
+      "day2_nonzero_products": {
+        "VEV_5400": 193,
+        "VEV_5500": 10
+      }
+    }
   }
 ]

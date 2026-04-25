@@ -98,5 +98,13 @@
       "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/analysis_outputs/iter7_core_vs_all_fit_stability.json"
     ],
     "used_to_decide": "v14 (core+clamp) ties v13 at 11528 and remains below v9 (11664); keep v9 as preferred non-duplicate best."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Underlying-to-voucher propagation and spread shock study: for each strike/day, regress dVoucher_mid on dUnderlying_mid (plus lead/lag and up/down asymmetry), and measure spread jump after top-decile |dS| shocks. Also include IV and delta means per strike.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/analysis_outputs/iter8_underlying_propagation_spread_shocks.json"
+    ],
+    "used_to_decide": "Used strike-level shock spread response to build v15/v16 shock-aware widening logic on days 0-1. Both variants tied v9 aggregate (11664), so simpler v9 remains preferred."
   }
 ]

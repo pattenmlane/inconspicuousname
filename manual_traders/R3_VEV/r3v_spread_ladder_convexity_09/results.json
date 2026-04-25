@@ -38,5 +38,13 @@
     "total_profit": 124,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v4.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 5,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "Parent v4 + grid: Z_HI 2.15 (more entries), Z_LO 0.8, BF_WINDOW 400, CLIP 10; Greek check: net vega of short fly at z>2.2 is positive ~50–75 by day (BS-vega from IV).",
+    "total_profit": 182,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
   }
 ]

@@ -19,5 +19,14 @@
       "terminal event-study output in this run (win/z/bump grid)"
     ],
     "used_to_decide": "Grid showed stronger mean reversion for higher z but sparse samples when over-filtering by IV bump/delta. Selected v4 params Z_HI=2.2, Z_LO=0.8, BF_WINDOW=400, CLIP=10; kept passive one-tick pricing from v3."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "Vega thread on ROUND_3 tapes (TTE = 8−d days at open per round3description): at each tick compute BS IV from mids, then BS vega per leg; net vega of a short fly is −vega(5000)−vega(5200)+2·vega(5100) (positive in sample). For rolling z (window 400) > 2.2, report mean net vega: day0 ~50.0, day1 ~65.3, day2 ~74.2 (higher TTE day has larger body vega). Backtester grid on v4 code: (2.15,0.8,400,10) total 182 vs v4 124; wider window 450 or Z_LO 0.85 hurt.",
+    "analysis_outputs": [
+      "one-off vega table in analysis.json iteration 5",
+      "backtester grid: lower_entry 2.15/0.8/400/10 = 182; v4 baseline 124; w450 = -138; Z_LO 0.85 = -4"
+    ],
+    "used_to_decide": "Picked v5: lower Z_HI to 2.15 to capture a bit more of the tape’s high-z episodes without changing window/exit; leaves execution identical to v4."
   }
 ]

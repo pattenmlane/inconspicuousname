@@ -1,0 +1,130 @@
+{
+  "method": "Per-strike contemporaneous beta dC/dS and asymmetry using Round3 days0-2 mids; spread response uses next-tick spread after large |dS| shocks.",
+  "by_strike": {
+    "VEV_4000": {
+      "n_obs": 29994,
+      "beta_dC_dS": 0.745,
+      "beta_up": 0.6383,
+      "beta_down": 0.6178,
+      "asymmetry_up_minus_down": 0.0204,
+      "avg_spread": 20.813,
+      "shock_q90_abs_dS": 2.0,
+      "avg_spread_change_after_top_decile_shock": 0.0008,
+      "avg_spread_change_after_up_shock": -0.0184,
+      "avg_spread_change_after_down_shock": 0.0193
+    },
+    "VEV_4500": {
+      "n_obs": 29994,
+      "beta_dC_dS": 0.6618,
+      "beta_up": 0.5614,
+      "beta_down": 0.5622,
+      "asymmetry_up_minus_down": -0.0008,
+      "avg_spread": 15.853,
+      "shock_q90_abs_dS": 2.0,
+      "avg_spread_change_after_top_decile_shock": 0.0111,
+      "avg_spread_change_after_up_shock": 0.001,
+      "avg_spread_change_after_down_shock": 0.0208
+    },
+    "VEV_5000": {
+      "n_obs": 29994,
+      "beta_dC_dS": 0.6535,
+      "beta_up": 0.5348,
+      "beta_down": 0.5459,
+      "asymmetry_up_minus_down": -0.0111,
+      "avg_spread": 6.043,
+      "shock_q90_abs_dS": 2.0,
+      "avg_spread_change_after_top_decile_shock": -0.0088,
+      "avg_spread_change_after_up_shock": 0.0,
+      "avg_spread_change_after_down_shock": -0.0173
+    },
+    "VEV_5100": {
+      "n_obs": 29994,
+      "beta_dC_dS": 0.5773,
+      "beta_up": 0.4786,
+      "beta_down": 0.489,
+      "asymmetry_up_minus_down": -0.0104,
+      "avg_spread": 4.296,
+      "shock_q90_abs_dS": 2.0,
+      "avg_spread_change_after_top_decile_shock": 0.0155,
+      "avg_spread_change_after_up_shock": 0.0178,
+      "avg_spread_change_after_down_shock": 0.0132
+    },
+    "VEV_5200": {
+      "n_obs": 29994,
+      "beta_dC_dS": 0.4367,
+      "beta_up": 0.3621,
+      "beta_down": 0.3714,
+      "asymmetry_up_minus_down": -0.0093,
+      "avg_spread": 2.888,
+      "shock_q90_abs_dS": 2.0,
+      "avg_spread_change_after_top_decile_shock": -0.0072,
+      "avg_spread_change_after_up_shock": -0.0058,
+      "avg_spread_change_after_down_shock": -0.0086
+    },
+    "VEV_5300": {
+      "n_obs": 29994,
+      "beta_dC_dS": 0.2727,
+      "beta_up": 0.2202,
+      "beta_down": 0.2305,
+      "asymmetry_up_minus_down": -0.0103,
+      "avg_spread": 2.107,
+      "shock_q90_abs_dS": 2.0,
+      "avg_spread_change_after_top_decile_shock": 0.0062,
+      "avg_spread_change_after_up_shock": 0.0068,
+      "avg_spread_change_after_down_shock": 0.0056
+    },
+    "VEV_5400": {
+      "n_obs": 29994,
+      "beta_dC_dS": 0.1289,
+      "beta_up": 0.1061,
+      "beta_down": 0.1075,
+      "asymmetry_up_minus_down": -0.0014,
+      "avg_spread": 1.381,
+      "shock_q90_abs_dS": 2.0,
+      "avg_spread_change_after_top_decile_shock": -0.0119,
+      "avg_spread_change_after_up_shock": -0.0226,
+      "avg_spread_change_after_down_shock": -0.0015
+    },
+    "VEV_5500": {
+      "n_obs": 29994,
+      "beta_dC_dS": 0.0549,
+      "beta_up": 0.0481,
+      "beta_down": 0.0424,
+      "asymmetry_up_minus_down": 0.0057,
+      "avg_spread": 1.15,
+      "shock_q90_abs_dS": 2.0,
+      "avg_spread_change_after_top_decile_shock": -0.0026,
+      "avg_spread_change_after_up_shock": -0.0031,
+      "avg_spread_change_after_down_shock": -0.002
+    },
+    "VEV_6000": {
+      "n_obs": 29994,
+      "beta_dC_dS": 0.0,
+      "beta_up": 0.0,
+      "beta_down": 0.0,
+      "asymmetry_up_minus_down": 0.0,
+      "avg_spread": 1.0,
+      "shock_q90_abs_dS": 2.0,
+      "avg_spread_change_after_top_decile_shock": 0.0,
+      "avg_spread_change_after_up_shock": 0.0,
+      "avg_spread_change_after_down_shock": 0.0
+    },
+    "VEV_6500": {
+      "n_obs": 29994,
+      "beta_dC_dS": 0.0,
+      "beta_up": 0.0,
+      "beta_down": 0.0,
+      "asymmetry_up_minus_down": 0.0,
+      "avg_spread": 1.0,
+      "shock_q90_abs_dS": 2.0,
+      "avg_spread_change_after_top_decile_shock": 0.0,
+      "avg_spread_change_after_up_shock": 0.0,
+      "avg_spread_change_after_down_shock": 0.0
+    }
+  },
+  "core_summary": {
+    "avg_beta_core": 0.4138,
+    "avg_asymmetry_core": -0.0085,
+    "avg_shock_spread_widen_core": -0.0012
+  }
+}

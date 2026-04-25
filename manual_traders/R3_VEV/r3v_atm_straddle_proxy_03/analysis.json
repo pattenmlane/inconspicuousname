@@ -65,5 +65,14 @@
       "analysis_outputs/smile_family10_run_summary.json"
     ],
     "used_to_decide": "Because parent already explored broad smile/WLS execution/gate sweeps, duplicate risk on the original request was high. I switched to strict-gated robust/plain controls. On this branch robust (v14) slightly beats plain (v15), but both remain well below class target and only modestly above parent family outcomes (~53k)."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "Underlying propagation analysis by strike from Round3 tapes: contemporaneous beta dC/dS, up/down asymmetry, and post-shock spread response; then family10 robust/plain variants add an explained-move suppression filter using expected bundle move from beta_5000+beta_5100.",
+    "analysis_outputs": [
+      "analysis_outputs/extract_propagation_by_strike_family10.json",
+      "analysis_outputs/fill_summary_v16_v17.json"
+    ],
+    "used_to_decide": "Core strikes have sizable dC/dS (~0.41 avg over 5000-5400), minimal asymmetry, and little spread widening after top-decile extract shocks. Implemented filter to avoid trading when ATM bundle move is mostly explained by concurrent extract move. v16/v17 improved strongly over v12/v13 but remain below prior strict-gated v14/v15 and far below class bar."
   }
 ]

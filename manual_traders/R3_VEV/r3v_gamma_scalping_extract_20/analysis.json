@@ -1,0 +1,20 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round-3 tapes (days 0–2): Black–Scholes implied volatility from option mid and VELVETFRUIT_EXTRACT mid; delta and gamma per strike. TTE_days = 8 − tape_day_index per round3work/round3description.txt worked-example pattern (historical day +1→8d, +2→7d, +3→6d aligned to final Round-3 TTE=5d). T in years = TTE_days/365. Subsampled timestamps (step 500). Documented mean IV by strike/day and bid–ask spread (level 1) in summary JSON.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analysis_outputs/iv_greeks_timeseries_sample.csv",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analysis_outputs/iv_greeks_summary.json",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analyze_tapes_iv_greeks.py"
+    ],
+    "used_to_decide": "Near-ATM strikes (5200/5300) show moderate mean IV (~0.23–0.24) and tight spreads vs wings; justified focusing execution on nearest strikes and extract hedge rather than wing IV noise. Equal-weight long strip mean gamma ~0.0092/day supports gamma-scalping thesis magnitude."
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Backtester behavior: each historical day reloads Trader with empty traderData, so inferring tape_day from timestamp resets left TTE stuck at 8d for all days. Patched imc-prosperity-4-backtester/prosperity4bt/test_runner.py to inject __BT_TAPE_DAY__ (and __BT_ROUND__) into state.observations.plainValueObservations each tick; traders read this for TTE and day-specific rules. Re-ran all trader versions.",
+    "analysis_outputs": [
+      "imc-prosperity-4-backtester/prosperity4bt/test_runner.py"
+    ],
+    "used_to_decide": "Without correct tape_day, day-2 PnL and hedge tuning were misleading; after fix, tape day 2 extract hedging showed large negative contribution and v4 (no hedge on day 2) became best among gamma-focused variants."
+  }
+]

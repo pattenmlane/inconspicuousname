@@ -72,5 +72,30 @@
       "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter12_fill_summary.json"
     ],
     "used_to_decide": "This is not literally pre-existing in this branch, but in practice it behaves like v10 at execution level; further family12 impact likely requires routing entry/exit signal itself through spline-refit deltas (not just auxiliary theo path)."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Duplicate-check vs origin/r3v_smile_cubic_spline_logk_12: parent explored full spline book (v0\u2013v13) with global/LOO IV smile, vega-spread edge scaling, multi-level takes, delta headroom grids; best ~68.9k. This child\u2019s prior trader_v12 was HIGH duplicate risk: it layered a jump refit on the wrong strategy stack and matched v10 PnL (18,791). trader_v13 realigns to parent\u2019s actual family-12 stack (v1 take/MM) but changes assumptions: intraday T from t_years_effective, LOO IV at each strike, and sticky refit policy. Backtest 47,709 (worse fills) \u2014 below parent best but NOT a duplicate execution path.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter13_backtest.log",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter13_fill_summary.json"
+    ],
+    "used_to_decide": "Record EXACT_DUPLICATE_CHECK in assistant output; keep v13 as the non-duplicate family-12 pivot on this branch.",
+    "exact_duplicate_check": {
+      "parent_explored": [
+        "Cubic spline IV(log K) from per-strike BS IV vs extract; robust global IV outlier drop (ROBUST_IV_RANGE 0.35).",
+        "v1: live extract wall mid S for spline/option fair; smoothed _fex for extract/hydrogel cash quotes.",
+        "Edge/MM take+make ladder on all strikes; vega\u00d7spread edge scaling (v5\u2013v8).",
+        "v9+: leave-one-out spline IV per strike fair; v10\u2013v13 delta-headroom inventory taper grids.",
+        "Analysis: LOO vs in-sample fair gaps, strike-edge+Greek CSVs, iv_spline_summary, etc."
+      ],
+      "my_variant_delta": [
+        "Uses parent v1 order engine + v9 LOO fair IV, but T from t_years_effective (intraday DTE wind-down) vs parent constant (8\u2212d)/365.25.",
+        "Jump/cadence sticky refit of robust (*x,y*) nodes; between refits fair uses cached smile at new (S,T) \u2014 not in parent history.",
+        "No vega-spread scaling / delta taper from parent v5\u2013v11 (iteration-1 minimal port)."
+      ],
+      "duplicate_risk": "low",
+      "rationale": "Prior local trader_v12 duplicated jump-gap v10; v13 is a different product/economy stack and code path from parent v11, though shares the abstract 'cubic spline in logK' name."
+    }
   }
 ]

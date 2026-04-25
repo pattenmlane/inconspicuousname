@@ -1,0 +1,19 @@
+{
+  "tte_convention": "CSV day d in {0,1,2} -> DTE_open = 8-d; intraday DTE_eff = DTE_open - (timestamp//100)/10000; T = DTE_eff/365 (see round3work/round3description.txt example + combined_analysis winding).",
+  "iv_method": "Black-Scholes European call, r=0; IV from mid via brentq on [1e-5, 15]; intrinsic/deep ITM/invalid -> NaN.",
+  "greeks": "Vega from BS at implied sigma; delta not exported in this pass but available via same formula as trader.",
+  "vega_weighted_iv_vs_extract_ret_corr_diff": -0.3787583617396215,
+  "mean_spread_by_voucher": {
+    "VEV_4000": 20.813466666666667,
+    "VEV_4500": 15.852666666666666,
+    "VEV_5000": 6.043333333333333,
+    "VEV_5100": 4.295833333333333,
+    "VEV_5200": 2.888133333333333,
+    "VEV_5300": 2.1068,
+    "VEV_5400": 1.3814333333333333,
+    "VEV_5500": 1.1497666666666666,
+    "VEV_6000": 1.0,
+    "VEV_6500": 1.0
+  },
+  "n_iv_rows_finite": 251785
+}

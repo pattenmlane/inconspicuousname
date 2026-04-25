@@ -1,0 +1,12 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round 3 tapes days 0–2: BS implied vol from voucher mid vs VELVETFRUIT_EXTRACT mid; vega at implied sigma; vega-weighted mean IV time series vs extract 1-tick return. Spread (ask1−bid1) by voucher. TTE: DTE_open=8−csv_day; DTE_eff=DTE_open−(timestamp//100)/10000; T=DTE_eff/365 per round3description.txt + combined_analysis winding (same as plot_iv_smile_round3). Backtest merged timestamps: csv_day = timestamp//1e6, local_ts = timestamp%1e6.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analysis_summary.json",
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/iv_vega_subsample.csv",
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analyze_round3_surface.py"
+    ],
+    "used_to_decide": "Negative correlation (~−0.38) between change in vega-weighted IV and concurrent extract return suggests tilting quotes with extract momentum is directionally consistent with surface co-movement. Mean spread rises for low strikes (VEV_4000 ~21 vs VEV_6500 ~1), so prefer tight inside quotes on liquid strikes and avoid naive wide synthetic spreads. v0’s directional extract leg was abandoned after backtest showed it dominated losses; v2+ use integer shift from inside quotes so OTM strikes still quote."
+  }
+]

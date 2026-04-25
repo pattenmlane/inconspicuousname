@@ -22,5 +22,11 @@
     "analysis_description": "Smile / IV skew: For each timestamp, BS implied IV at all VEV mids vs VELVETFRUIT_EXTRACT (T=7/365, r=0). Tested (i) rolling z on **residual** IV: IV(5000) minus median(IV(4500,5100,5200,5300)) \u2014 forward +5-tick VEV_5000 return correlation with z similar to raw; grid Z_ENTRY x MAX_SPREAD on pure-residual z underperformed v5 (e.g. best ~-136). (ii) **Hybrid** in trader_v6: keep rolling z on **raw** IV(5000) (parent v5) and require cheap-on-smile IV(5000)<=median(neighbors) for new longs. Backtest total PnL -83, identical to v5 on this tape, so the filter is effectively a no-op or matches v5 trades.",
     "analysis_outputs": [],
     "used_to_decide": "Ship v6 as documented smile-aware variant; do not replace v5 for PnL on days 0-2. Pure residual-z path rejected as worse than v5; hybrid preserves best known PnL with clearer economic interpretation (strike vs smile)."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "IV microstructure A/B: counted ticks on prices_round_3_day_* with past-only rolling IV z<-6 and spread<=4 \u2014 v5-style (mid, mid) has a handful of such ticks per day; (microprice,microprice) for S and C gave **zero** such ticks (IV path no longer shows extremes). (microprice,mid) also gave 0. **Greek thread:** call vega = S*phi(d1)*sqrt(T) for clip sizing. Grid VEGA_TARGET in {600,750,900,1100,1400} with mids-for-IV left total PnL at -83 (unchanged from v5 fixed Q=10 on this backtest), implying touch-liquidity not vega-budget limited.",
+    "analysis_outputs": [],
+    "used_to_decide": "Ship v7 as v5+vega documentation; do not use micro-mid for IV if the rolling-z thesis is preserved. PnL tie with v5; prefer v5 for simplicity unless vega-sizing needed later."
   }
 ]

@@ -78,5 +78,13 @@
     "total_profit": 39466,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v9.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis > manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v9.txt 2>&1"
+  },
+  {
+    "iteration": 10,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v10.py",
+    "strategy_description": "Family-13 nearby but distinct variant from v9 to reduce duplicate risk: add regime hysteresis + persistence gate. Regime enters calm/stressed only past +/-1.0 z and exits to neutral inside +/-0.35; width and voucher size multipliers vary by regime (calm tighter/smaller, stressed wider/larger). Keeps local-smile valuation interpretable.",
+    "total_profit": 39325,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v10.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis > manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v10.txt 2>&1"
   }
 ]

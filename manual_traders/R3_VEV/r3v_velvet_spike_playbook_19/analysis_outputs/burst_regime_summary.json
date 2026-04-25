@@ -1,0 +1,32 @@
+{
+  "method": "Proxy analysis on round3 tapes: next-tick mid reversion by burst regime and moneyness band; burst from |z(log-return)|>=2.2 window=50.",
+  "timing": "TTE from round3description mapping (day0/1/2->8/7/6d open) with intraday wind by timestamp //100 /10000.",
+  "band_proxy": [
+    {
+      "burst": false,
+      "band": "burst_ring",
+      "mean": 0.0009844242212110606,
+      "count": 114280
+    },
+    {
+      "burst": false,
+      "band": "calm_core",
+      "mean": 0.0010558861276397152,
+      "count": 171420
+    },
+    {
+      "burst": true,
+      "band": "burst_ring",
+      "mean": 0.0074062877871825875,
+      "count": 3308
+    },
+    {
+      "burst": true,
+      "band": "calm_core",
+      "mean": -0.0053405884723901655,
+      "count": 4962
+    }
+  ],
+  "best_calm_band_mean": 0.0010558861276397152,
+  "best_burst_ring_mean": 0.0074062877871825875
+}

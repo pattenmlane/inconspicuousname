@@ -84,5 +84,14 @@
       "analyze_propagation_residual_alpha.py"
     ],
     "used_to_decide": "Implemented v17/v18 fair correction using previous residual. Despite apparent signal in tape, backtests degraded materially (61,236 and 29,560 vs 68,908 v11), likely due to execution friction and overreaction in mid strikes (VEV_5000/5100). Conclude this residual correction is not robust under worse-fill regime; keep v11 as leading variant."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "Top-of-book depth by strike: from prices_round_3_day_0-2, for each VEV row compute min(bid_volume_1, |ask_volume_1|) and spread. Pooled mean min-top ~16.4 (median 16) across 300k rows; strike structure: VEV_4000/4500/5000/5100 have thinner min-top (~9-15 mean) and wider spreads, while 5200-6000 have min-top ~19-22 and 1-3 tick spreads. 6500: min-top ~15, tight spread. Script: analyze_vev_book_depth_by_strike.py; vev_book_depth_by_strike.csv.",
+    "analysis_outputs": [
+      "analysis_outputs/vev_book_depth_by_strike.csv",
+      "analyze_vev_book_depth_by_strike.py"
+    ],
+    "used_to_decide": "Hypothesis: after v11 delta taper, further scale MM/TAKE by (min(REF, min_top)/REF)^BETA with REF=16 from pooled tape. v19 (BETA=0.5) total 68,054; v20 (0.25) 68,433 vs v11 68,908. Both trail v11, so do not replace LOO+vega+delta sizing with this depth path; the fixed baseline sizes are already in-range vs typical depth and the extra shrink hurts fill quality under worse-matching. Keep v11 as best."
   }
 ]

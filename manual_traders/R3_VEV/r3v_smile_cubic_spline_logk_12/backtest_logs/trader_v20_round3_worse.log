@@ -1,0 +1,50 @@
+running algorithm '/workspace/manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v20.py'...
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v20.py for round: 3 day: 0
+VEV_6500: 0
+VEV_6000: -150
+VEV_5500: -471
+VEV_5400: -1,449
+VEV_5300: -379
+VEV_5200: 185
+VEV_5100: -2,528
+VEV_5000: 1,593
+VEV_4500: 263
+VEV_4000: -328
+VELVETFRUIT_EXTRACT: 2,451
+HYDROGEL_PACK: 9,915
+Total profit: 9,102
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v20.py for round: 3 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 160
+VEV_5400: -205
+VEV_5300: -1,506
+VEV_5200: 1,664
+VEV_5100: 9,414
+VEV_5000: 49
+VEV_4500: 4,868
+VEV_4000: 4,552
+VELVETFRUIT_EXTRACT: 4,123
+HYDROGEL_PACK: 13,272
+Total profit: 36,392
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v20.py for round: 3 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: -300
+VEV_5400: 790
+VEV_5300: -2,231
+VEV_5200: 2,219
+VEV_5100: -704
+VEV_5000: 51
+VEV_4500: 5,540
+VEV_4000: 11,161
+VELVETFRUIT_EXTRACT: 6,537
+HYDROGEL_PACK: -124
+Total profit: 22,940
+Profit summary:
+Round 3 day 0: 9,102
+Round 3 day 1: 36,392
+Round 3 day 2: 22,940
+Total profit: 68,433
+
+Successfully saved backtest results to backtests/2026-04-25_16-22-17.log

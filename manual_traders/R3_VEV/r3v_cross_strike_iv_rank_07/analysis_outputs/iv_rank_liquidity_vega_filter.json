@@ -1,0 +1,8 @@
+{
+  "n_ticks": 29976,
+  "frac_low_neighbor_ok": 0.9760808646917534,
+  "frac_high_neighbor_ok": 0.0,
+  "frac_low_pair_tradable_filter": 0.9919602348545503,
+  "frac_high_pair_tradable_filter": 0.6749399519615693,
+  "frac_high_any_tradable_filter": 0.9956298372030958
+}

@@ -18,9 +18,33 @@
   {
     "iteration": 2,
     "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v2.py",
-    "strategy_description": "Grid: neighbor cap 0.15 and BASE_Q=5 vs v1 (0.12, 8). PnL unchanged at -11 on Round 3 days 0–2; tie-break keeps v1 as simpler parent.",
+    "strategy_description": "Grid: neighbor cap 0.15 and BASE_Q=5 vs v1 (0.12, 8). PnL unchanged at -11 on Round 3 days 0\u20132; tie-break keeps v1 as simpler parent.",
     "total_profit": -11,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v2.py\" 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 3,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v3.py",
+    "strategy_description": "IV-rank decile fade with asymmetric gates: low-decile keeps neighbor cap 0.12; high-decile uses spread<=16 and vega/spread>=6 gate (no neighbor cap), BASE_Q=8.",
+    "total_profit": -11,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v3.py\" 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 4,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v4.py",
+    "strategy_description": "Grid vs v3 on size only: BASE_Q=6 (cap/gates unchanged).",
+    "total_profit": -11,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v4.py\" 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 5,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v5.py",
+    "strategy_description": "As v3 but decile orders allowed at touch when spread=1 (quote at ask for buys / bid for sells) to force execution on otherwise blocked high-decile ticks.",
+    "total_profit": -594,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v5.py\" 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
   }
 ]

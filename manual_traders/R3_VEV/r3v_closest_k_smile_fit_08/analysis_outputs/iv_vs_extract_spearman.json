@@ -1,0 +1,18 @@
+{
+  "method": "Per timestamp: S=extract mid, T=dte_eff/365. Median IV of three strikes with smallest |K-S| among those with valid bisection IV. Spearman rho between S and that IV series, subsampled.",
+  "0": {
+    "n": 2000,
+    "spearman": -0.2011731508254876,
+    "pvalue": 1.045261531962127e-19
+  },
+  "1": {
+    "n": 2000,
+    "spearman": -0.35674581983756554,
+    "pvalue": 4.344909718206665e-61
+  },
+  "2": {
+    "n": 2000,
+    "spearman": 0.5307957614767015,
+    "pvalue": 8.89215902846205e-146
+  }
+}

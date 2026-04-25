@@ -46,5 +46,13 @@
     "total_profit": 39237,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v5.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
+  },
+  {
+    "iteration": 6,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v6.py",
+    "strategy_description": "Parent v3: grid on closest-k for local surface fit only — CLOSEST_K=5 (between k=3 and k=6). Same vega/edge, REFIT_EVERY, extract/hydrogel as v3. Backtest below v3; k=6 remains best in this line.",
+    "total_profit": 37412,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v6.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
   }
 ]

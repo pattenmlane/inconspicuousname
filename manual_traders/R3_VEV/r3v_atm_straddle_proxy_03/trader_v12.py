@@ -1,13 +1,14 @@
 """
-Iteration 12: Parent v5 with vega-weighted ATM IV for IV-shock.
+Iteration 12: Family10 prototype — quadratic smile(log-moneyness) WLS with robust winsorized residuals.
 
-Shock uses (v0*iv0+v1*iv1)/(v0+v1) - RV instead of simple 0.5*(iv0+iv1). Same triggers, spread gate, clip as v5.
+Execution logic remains close to v5; only fair-value signal changes to smile-fitted ATM bundle residuals with robust treatment.
 TTE: round3description historical day d -> (8-d) days.
 """
 from __future__ import annotations
 
 import json
 import math
+import numpy as np
 from datamodel import Order, OrderDepth, TradingState
 from statistics import NormalDist
 
@@ -93,6 +94,68 @@ def _implied_vol(mid: float, S: float, K: float, T: float) -> float:
     return max(0.06, min(1.2, 0.5 * (lo + hi)))
 
 
+
+
+def _fit_smile_quadratic_logm(
+    S: float,
+    T: float,
+    mids: dict[str, float],
+    spreads: dict[str, float],
+    robust: bool,
+):
+    strikes = [4000.0, 4500.0, 5000.0, 5100.0, 5200.0, 5300.0, 5400.0, 5500.0, 6000.0, 6500.0]
+    syms = [f"VEV_{int(k)}" for k in strikes]
+    xs, ys, ws = [], [], []
+    for sym, K in zip(syms, strikes):
+        m = mids.get(sym)
+        if m is None:
+            continue
+        iv = _implied_vol(m, S, K, T)
+        if iv is None:
+            continue
+        x = math.log(max(1e-9, S / K))
+        sp = max(1.0, spreads.get(sym, 10.0))
+        xs.append(x)
+        ys.append(iv)
+        ws.append(1.0 / sp)
+    if len(xs) < 6:
+        return None
+
+    x = np.array(xs, dtype=float)
+    y = np.array(ys, dtype=float)
+    w = np.array(ws, dtype=float)
+    X = np.column_stack([np.ones_like(x), x, x * x])
+
+    def solve(weight_vec):
+        W = np.diag(weight_vec)
+        return np.linalg.pinv(X.T @ W @ X) @ (X.T @ W @ y)
+
+    beta = solve(w)
+    if robust:
+        for _ in range(3):
+            r = y - (X @ beta)
+            med = float(np.median(r))
+            mad = float(np.median(np.abs(r - med))) + 1e-9
+            c = 2.5 * 1.4826 * mad
+            rw = np.where(np.abs(r) <= c, 1.0, c / np.abs(r))
+            beta = solve(w * rw)
+
+    def pred(logm):
+        return float(beta[0] + beta[1] * logm + beta[2] * logm * logm)
+
+    return pred
+
+
+def _bundle_theo_from_smile(S: float, T: float, pred):
+    iv0 = max(0.05, min(1.5, pred(math.log(max(1e-9, S / 5000.0)))))
+    iv1 = max(0.05, min(1.5, pred(math.log(max(1e-9, S / 5100.0)))))
+    c0 = _bs_call(S, 5000.0, T, iv0)
+    c1 = _bs_call(S, 5100.0, T, iv1)
+    d0 = _bs_delta_call(S, 5000.0, T, iv0)
+    d1 = _bs_delta_call(S, 5100.0, T, iv1)
+    return c0 + c1, d0 + d1, 0.5 * (iv0 + iv1)
+
+
 class Trader:
     def run(self, state: TradingState):
         try:
@@ -143,25 +206,30 @@ class Trader:
                 vol_tick = math.sqrt(max(var, 1e-16))
                 sigma_rv = max(0.08, min(0.9, vol_tick * math.sqrt(STEPS_PER_SIM_DAY * DAYS_PER_YEAR)))
 
-        iv0 = _implied_vol(mid0, S, K0, T)
-        iv1 = _implied_vol(mid1, S, K1, T)
-        theo0 = _bs_call(S, K0, T, iv0)
-        theo1 = _bs_call(S, K1, T, iv1)
-        theo_bundle = theo0 + theo1
+        sp0 = _spread(d0) or 99.0
+        sp1 = _spread(d1) or 99.0
+        mids = {"VEV_5000": mid0, "VEV_5100": mid1}
+        spreads = {"VEV_5000": sp0, "VEV_5100": sp1}
+        for k in ("VEV_4000", "VEV_4500", "VEV_5200", "VEV_5300", "VEV_5400", "VEV_5500", "VEV_6000", "VEV_6500"):
+            od = state.order_depths.get(k)
+            if od is not None and od.buy_orders and od.sell_orders:
+                mk = _mid(od)
+                if mk is not None:
+                    mids[k] = mk[0]
+                    spreads[k] = _spread(od) or 10.0
+
+        pred = _fit_smile_quadratic_logm(S, T, mids, spreads, robust=True)
+        if pred is not None:
+            theo_bundle, unit_straddle_delta, iv_ref = _bundle_theo_from_smile(S, T, pred)
+        else:
+            iv0 = _implied_vol(mid0, S, K0, T)
+            iv1 = _implied_vol(mid1, S, K1, T)
+            theo_bundle = _bs_call(S, K0, T, iv0) + _bs_call(S, K1, T, iv1)
+            unit_straddle_delta = _bs_delta_call(S, K0, T, iv0) + _bs_delta_call(S, K1, T, iv1)
+            iv_ref = 0.5 * (iv0 + iv1)
         bundle_mid = mid0 + mid1
         mis = bundle_mid - theo_bundle
 
-        del0 = _bs_delta_call(S, K0, T, iv0)
-        del1 = _bs_delta_call(S, K1, T, iv1)
-        unit_straddle_delta = del0 + del1
-
-        ve0 = _bs_vega(S, K0, T, iv0)
-        ve1 = _bs_vega(S, K1, T, iv1)
-        ve_sum = ve0 + ve1
-        if ve_sum > 1e-9:
-            iv_ref = (ve0 * iv0 + ve1 * iv1) / ve_sum
-        else:
-            iv_ref = 0.5 * (iv0 + iv1)
         shock = iv_ref - sigma_rv
 
         p0 = state.position.get(VEV_5000, 0)
@@ -169,8 +237,6 @@ class Trader:
         px = state.position.get(EXTRACT, 0)
         ph = state.position.get(HYDROGEL, 0)
 
-        sp0 = _spread(d0) or 99.0
-        sp1 = _spread(d1) or 99.0
         spread_ok = (sp0 + sp1) <= SPREAD_GATE_SUM
 
         want_short = mis > MISPRICE_EDGE or shock > SHOCK_ABS_EDGE

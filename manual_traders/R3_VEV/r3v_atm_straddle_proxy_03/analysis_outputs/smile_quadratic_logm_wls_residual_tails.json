@@ -1,0 +1,19 @@
+{
+  "method": "Quadratic IV(log-moneyness) fit with spread-weighted least squares; robust variant uses 3-step IRLS with winsorized residual influence (Huber-style clipping). TTE day d->8-d from round3description.",
+  "plain": {
+    "n": 251785,
+    "mean_abs": 0.008966737641851684,
+    "p90_abs": 0.015660077997570493,
+    "p95_abs": 0.018567000713032883,
+    "p99_abs": 0.046188259017688305,
+    "max_abs": 0.1135102567412723
+  },
+  "robust": {
+    "n": 251785,
+    "mean_abs": 0.008972880212778252,
+    "p90_abs": 0.015478949896827743,
+    "p95_abs": 0.018081428130093724,
+    "p99_abs": 0.0565236035029697,
+    "max_abs": 0.1324100134606251
+  }
+}

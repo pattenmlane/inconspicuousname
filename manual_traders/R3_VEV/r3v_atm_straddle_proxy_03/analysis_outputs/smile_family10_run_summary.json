@@ -1,0 +1,8 @@
+{
+  "note": "Backtests were run sequentially in same shell output; detailed per-day product totals captured in run outputs. This file records robust vs plain outcome and residual-tail analysis reference.",
+  "residual_tail_analysis": "analysis_outputs/smile_quadratic_logm_wls_residual_tails.json",
+  "robust_total_profit_v12": -112712,
+  "plain_total_profit_v13": -108558,
+  "difference_robust_minus_plain": -4154,
+  "observation": "Both smile-family variants strongly underperform current baseline v5 and produce heavy losses across all days under --match-trades worse."
+}

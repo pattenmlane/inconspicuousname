@@ -113,5 +113,14 @@
       "backtest_logs/trader_v43_worse.log"
     ],
     "used_to_decide": "No PnL gain vs v41; keep v41 as simpler lead unless a future variant needs momentum asymmetry."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Substantive PWL smile fit on tape: run_tape_pwl_misfit.py (mid - BS with sigma from same three-knot PWL and knot IVs from 5000-5500 medians, T=t_years_effective, IV from bisection). tape_pwl_misfit_by_strike.json: VEV_5200 has near-zero median misfit all days; VEV_5400 shows large negative median misfit (-2.5 to -3.1 ticks) on every historical day, i.e. market mid structurally below the PWL-mapped model price at that strike. VEV_5100/5300/5500 misfit signs vary by day (wing/skew not captured by two interior segments). Delta medians in JSON support Greek thread (e.g. 5000~0.92-0.95 delta, 5500~0.07-0.08).",
+    "analysis_outputs": [
+      "run_tape_pwl_misfit.py",
+      "analysis_outputs/tape_pwl_misfit_by_strike.json"
+    ],
+    "used_to_decide": "Skip trading VEV_5400 in v44 (poor PWL map); v45 also skips 5500. Both tie v41 at -95 PnL and 4184 trades — 5400/5500 were not meaningful PnL levers in this backtest, so no change to lead; keep v41 for simplicity."
   }
 ]

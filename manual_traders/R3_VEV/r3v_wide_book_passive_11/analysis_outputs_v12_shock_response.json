@@ -1,0 +1,68 @@
+{
+  "day_0": {
+    "VEV_4000": {
+      "n": 9999,
+      "mean_dV_given_upShock_dS>=3": 1.930232558139535,
+      "mean_dV_given_downShock_dS<=-3": -2.1302083333333335,
+      "mean_dV_neutral": 0.0069764464925755245,
+      "mean_spread_change_up": -0.11627906976744029,
+      "mean_spread_change_down": -0.010416666666667851,
+      "beta_dV_per_dS_up": 0.5928571428571429,
+      "beta_dV_per_dS_down": 0.6430817610062893
+    },
+    "VEV_4500": {
+      "n": 9999,
+      "mean_dV_given_upShock_dS>=3": 1.744186046511628,
+      "mean_dV_given_downShock_dS<=-3": -1.9322916666666667,
+      "mean_dV_neutral": 0.014144905273937532,
+      "mean_spread_change_up": -0.11627906976744207,
+      "mean_spread_change_down": -0.010416666666666075,
+      "beta_dV_per_dS_up": 0.5357142857142857,
+      "beta_dV_per_dS_down": 0.5833333333333334
+    }
+  },
+  "day_1": {
+    "VEV_4000": {
+      "n": 9999,
+      "mean_dV_given_upShock_dS>=3": 2.097938144329897,
+      "mean_dV_given_downShock_dS<=-3": -2.243119266055046,
+      "mean_dV_neutral": 0.013690705746239876,
+      "mean_spread_change_up": 0.17525773195876226,
+      "mean_spread_change_down": -0.02752293577981746,
+      "beta_dV_per_dS_up": 0.6450079239302694,
+      "beta_dV_per_dS_down": 0.7005730659025788
+    },
+    "VEV_4500": {
+      "n": 9999,
+      "mean_dV_given_upShock_dS>=3": 1.824742268041237,
+      "mean_dV_given_downShock_dS<=-3": -2.0458715596330275,
+      "mean_dV_neutral": 0.012212366628101299,
+      "mean_spread_change_up": 0.20618556701031032,
+      "mean_spread_change_down": 0.018348623853210455,
+      "beta_dV_per_dS_up": 0.561014263074485,
+      "beta_dV_per_dS_down": 0.6389684813753582
+    }
+  },
+  "day_2": {
+    "VEV_4000": {
+      "n": 9999,
+      "mean_dV_given_upShock_dS>=3": 1.8936170212765957,
+      "mean_dV_given_downShock_dS<=-3": -1.8711340206185567,
+      "mean_dV_neutral": -0.01576079906602672,
+      "mean_spread_change_up": 0.2340425531914896,
+      "mean_spread_change_down": 0.030927835051546282,
+      "beta_dV_per_dS_up": 0.5973154362416108,
+      "beta_dV_per_dS_down": 0.5671875
+    },
+    "VEV_4500": {
+      "n": 9999,
+      "mean_dV_given_upShock_dS>=3": 1.7765957446808511,
+      "mean_dV_given_downShock_dS<=-3": -1.7371134020618557,
+      "mean_dV_neutral": -0.012388117784407834,
+      "mean_spread_change_up": 0.10638297872340274,
+      "mean_spread_change_down": 0.010309278350515427,
+      "beta_dV_per_dS_up": 0.5604026845637584,
+      "beta_dV_per_dS_down": 0.5265625
+    }
+  }
+}

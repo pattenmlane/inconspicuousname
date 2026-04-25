@@ -140,5 +140,30 @@
       },
       "sweep_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter12_skew_depth.json"
     }
+  },
+  {
+    "iteration": 12,
+    "trader_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v13.py",
+    "strategy_description": "v8 baseline with analysis-backed VEV quote-center shift: after large recent extract move, shift both bid/ask center of VEV_4000/4500 by int(round(beta*dS)) to match observed next-tick voucher drift (beta~0.54-0.70 from tape). Keep wide spread gate and tiny passive size unchanged. Sweep over beta and shock threshold in sweep_iter13_center_shift.json.",
+    "total_profit": 36502,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v13.py 3 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v13_iter12_out.json",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v13_iter12_full.log",
+    "trades_or_fills_summary": {
+      "per_day_profit": {
+        "day_0": 14275,
+        "day_1": 16992,
+        "day_2": 5234
+      },
+      "fills": 1884,
+      "fill_qty": 6514,
+      "fill_qty_by_symbol": {
+        "VEV_4000": 929,
+        "VELVETFRUIT_EXTRACT": 3538,
+        "HYDROGEL_PACK": 2047
+      },
+      "sweep_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter13_center_shift.json"
+    }
   }
 ]

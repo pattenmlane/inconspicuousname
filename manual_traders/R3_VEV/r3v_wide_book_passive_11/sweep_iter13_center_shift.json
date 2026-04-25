@@ -1,0 +1,40 @@
+{
+  "runs": [
+    {
+      "name": "b0",
+      "beta": 0.0,
+      "shock": 3.0,
+      "total_profit": 36499
+    },
+    {
+      "name": "b1",
+      "beta": 0.35,
+      "shock": 3.0,
+      "total_profit": 36491
+    },
+    {
+      "name": "b2",
+      "beta": 0.55,
+      "shock": 3.0,
+      "total_profit": 36483
+    },
+    {
+      "name": "b3",
+      "beta": 0.7,
+      "shock": 3.0,
+      "total_profit": 36485
+    },
+    {
+      "name": "b4",
+      "beta": 0.55,
+      "shock": 4.0,
+      "total_profit": 36501
+    }
+  ],
+  "best": {
+    "name": "b4",
+    "beta": 0.55,
+    "shock": 4.0,
+    "total_profit": 36501
+  }
+}

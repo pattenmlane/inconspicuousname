@@ -93,5 +93,15 @@
       "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v12.py"
     ],
     "used_to_decide": "Best grid point (S_IV_EMA=0.30, IV_SKEW_HIGH=0.34, IV_SKEW_EMA_ALPHA=0.10) still only reaches 34,814 on days 0-2 worse-fill vs 36,500 for the simpler v8. Deepening on high EMA skew reduced edge vs our wide-spread capture thesis. Keep v8 as practical champion; retain analysis for future (e.g. use S* only in hedge without extra depth, or use skew to shrink not widen in stressed tape)."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Deeper contract-by-contract shock propagation study from prices_round_3_day_*.csv: for each timestamp and next tick, measured extract move dS and voucher move dV for VEV_4000/4500 plus spread response asymmetry. With |dS|>=3 ticks, mean next-tick dV is ~+1.74 to +2.10 for up shocks and ~-1.93 to -2.24 for down shocks; estimated beta dV/dS is stable around ~0.54-0.70 across days and strikes. Kept Greek thread by using same BS inversion setup for consistency with previous IV/vega analyses.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/analysis_outputs_v12_shock_response.json",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter13_center_shift.json",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v13.py"
+    ],
+    "used_to_decide": "Implemented minimal policy change aligned with original wide-passive thesis: keep depth/size same but shift VEV quote center after large extract moves. Sweep found best at beta=0.55 and shock_min=4, yielding 36,502 (small +2 vs v8 on full logged run). Improvement is tiny but positive and logically tied to observed lead/lag propagation."
   }
 ]

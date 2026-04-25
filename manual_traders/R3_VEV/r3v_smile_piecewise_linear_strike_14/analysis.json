@@ -78,5 +78,17 @@
       "family13_logs/trader_v35_worse.log"
     ],
     "used_to_decide": "All classifier variants tie at -101 total on days 0-2 and identical/similar fill profiles. No evidence that rolling z-score beats fixed under current execution wiring; keep simpler fixed-threshold classifier if family13 must be retained. Overall best in branch remains v29 (-95), so family13 did not improve benchmark robustness or PnL this turn."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "Duplicate-check follow-up pivot within family13: switched to a distinct nearby variant (realized-vol classifier with hysteresis/persistence). Data-first comparison in family13_hysteresis_classifier_comparison.json contrasts fixed-hysteresis vs z-hysteresis regime paths (entry/exit bands + hold=40). Implemented v36/v37/v38 and stored full worse-fill logs + fill summaries.",
+    "analysis_outputs": [
+      "analysis_outputs/family13_hysteresis_classifier_comparison.json",
+      "family13_logs/trader_v36_worse.log",
+      "family13_logs/trader_v37_worse.log",
+      "family13_logs/trader_v38_worse.log",
+      "family13_logs/trade_fill_summary_family13.json"
+    ],
+    "used_to_decide": "Even with hysteresis, fixed and z-score classifiers remain tied (-101) and close to previous family13 runs; z-retuned variant is worse (-109). Family13 remains below branch best v29 (-95)."
   }
 ]

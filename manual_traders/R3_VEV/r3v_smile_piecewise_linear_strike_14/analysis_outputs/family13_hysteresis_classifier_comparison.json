@@ -1,0 +1,65 @@
+{
+  "method": "Realized-vol classifier with hysteresis/persistence. rv window=120. fixed uses entry/exit quantile bands + min hold 40 ticks; z uses entry/exit z-bands + min hold.",
+  "params": {
+    "rv_window": 120,
+    "fixed_entry_q_low": 0.00021281483023054693,
+    "fixed_entry_q_high": 0.00023061847903988435,
+    "fixed_exit_q_low_to_mid": 0.00021469955749614658,
+    "fixed_exit_q_high_to_mid": 0.00022768297087285568,
+    "z_entry_low": -0.5,
+    "z_entry_high": 0.95,
+    "z_exit_low_to_mid": -0.2,
+    "z_exit_high_to_mid": 0.55,
+    "min_hold": 40
+  },
+  "by_day": {
+    "0": {
+      "n": 9481,
+      "agreement": 0.6450796329501107,
+      "transitions_per_1000_fixed_hys": 14.344478430545301,
+      "transitions_per_1000_z_hys": 15.399219491614808,
+      "dist_fixed_hys": {
+        "low": 0.471152831979749,
+        "mid": 0.37569876595295854,
+        "high": 0.15314840206729247
+      },
+      "dist_z_hys": {
+        "low": 0.383292901592659,
+        "mid": 0.3818162641071617,
+        "high": 0.23489083430017932
+      }
+    },
+    "1": {
+      "n": 9481,
+      "agreement": 0.6074253770699294,
+      "transitions_per_1000_fixed_hys": 13.289737369475795,
+      "transitions_per_1000_z_hys": 14.660900748866153,
+      "dist_fixed_hys": {
+        "low": 0.46440248918890414,
+        "mid": 0.351228773336146,
+        "high": 0.1843687374749499
+      },
+      "dist_z_hys": {
+        "mid": 0.39046514080793165,
+        "low": 0.36926484548043453,
+        "high": 0.24027001371163378
+      }
+    },
+    "2": {
+      "n": 9481,
+      "agreement": 0.6505642864676722,
+      "transitions_per_1000_fixed_hys": 14.02805611222445,
+      "transitions_per_1000_z_hys": 14.871848961080055,
+      "dist_fixed_hys": {
+        "low": 0.40354392996519356,
+        "mid": 0.4015399219491615,
+        "high": 0.19491614808564497
+      },
+      "dist_z_hys": {
+        "mid": 0.4115599620293218,
+        "low": 0.34722075730408186,
+        "high": 0.24121928066659634
+      }
+    }
+  }
+}

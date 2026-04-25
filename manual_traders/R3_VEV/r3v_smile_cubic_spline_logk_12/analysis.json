@@ -18,5 +18,11 @@
       "analyze_strike_edge_greeks.py"
     ],
     "used_to_decide": "Observed persistent positive edge primarily in VEV_4000 (buy_hit_rate ~0.004 with very large edge when present), while other strikes showed near-zero/negative top-of-book edge after spread in this backtester. This motivated v3/v4 to keep the same spline-IV thesis but add edge-gated multi-level taking and faster inventory recycling, with extra aggression only for VEV_4000."
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Design note for v5/v6 (no new CSV): after v3/v4 underperformed v1, parent was reset to best PnL trader_v1. Hypothesis: BS vega weights how much 1 tick of mid move in price space is worth in IV space; combine with observed bid-ask width (spread ticks) to modulate required edge—tighter edge when |vega| is large and spread is narrow. Small grid: VEGA_EDGE_SCALE 0.15 (v5) vs 0.25 (v6). TTE unchanged: 8−d days per round3description.",
+    "analysis_outputs": [],
+    "used_to_decide": "v5 and v6 beat v1 in this backtest (50,261 vs 50,222). v5 and v6 tie on PnL; prefer v5 (smaller scale) per tie-break. v3/v4 multi-level aggressor path still recorded as worse than v1 here, so not pursued further without new evidence."
   }
 ]

@@ -38,5 +38,21 @@
     "total_profit": 49748,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v4.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 5,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "trader_v1 + vega–spread–aware take/make: reduce required edge when |vega| is large and top-of-book spread is tight (spline-mid more informative); VEGA_EDGE_SCALE=0.15. Same cubic spline IV(logK) fair and outlier drop.",
+    "total_profit": 50261,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 6,
+    "trader_file": "trader_v6.py",
+    "strategy_description": "Same as trader_v5 with VEGA_EDGE_SCALE=0.25 (grid vs v5). Tied PnL with v5 in this run.",
+    "total_profit": 50261,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

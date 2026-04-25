@@ -64,5 +64,14 @@
       "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analyze_smile_ewma_fair_drift_5200.py"
     ],
     "used_to_decide": "Median |Delta fair| for VEV_5200 is ~2.0 and nearly flat in alpha in this grid; |theta| is huge (~1785/year) as expected for short T—dominant signal is moneyness/IV, not a small EMA tweak. Tried trader_v7 with EMA 0.03: backtest tied v2 at 19255; default remains v2 (0.045) for fewer moving parts unless future work needs slower reaction."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Round 3 tapes days 0-2, step 200: implied IV from mid per strike, then Black-Scholes call gamma = phi(d1)/(S*sigma*sqrt(T)). Median gamma peaks near VEV_5200/5300 (~0.0022); wings ~1e-5. Same DTE mapping as live trader.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analysis_outputs/vev_gamma_by_strike_median.json",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analyze_vev_gamma_profile.py"
+    ],
+    "used_to_decide": "Added gamma-based quote widening in trader_v8 (scale 0.15 vs GAMMA_REF from ATM medians). Backtest PnL tied v2 at 19255: sub-tick adjustment often does not change integer prices after rounding, so prefer simpler v2 unless we scale gamma bump in whole ticks (e.g. 1-2) in a follow-up."
   }
 ]

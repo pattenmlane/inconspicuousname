@@ -111,5 +111,25 @@
       "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v12_fill_summary.json"
     ],
     "used_to_decide": "Anchor nodes reduced left-wing extrapolation IQR but increased right-wing slope/IQR in stress; backtest unchanged at 18,949 with zero VEV activity. Concludes wing stabilization alone is not the binding issue; next spline variant should focus on quote aggressiveness / edge gates while keeping regularization modest."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Priority analysis: underlying move propagation by contract (days 0-2). For each voucher, computed step elasticity dm/dS, BS delta at prior step IV, spread behavior under shock |dS|>=2, and lag corr (lag0/lag1) between extract returns and voucher returns. Added stress comparison plain vs wing-anchor spline extrapolation.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analysis_outputs/underlying_propagation_by_strike.json",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analysis_outputs/spline_wing_anchor_vs_plain.json"
+    ],
+    "used_to_decide": "Findings: strongest immediate response is core strikes (5000-5300) with high lag0 corr (~0.62-0.77) and near-zero lag1; wings are noisy or flat with very wide spreads (4000/4500) or tiny delta (6000/6500). Incorporated by using core-only shock-sensitive taking and tighter core quoting while leaving wings guarded."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "Post-run quote quality check under worse fills for propagation-aware spline variants v13 and v14 using per-run logs and activity summaries.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v13_backtest.log",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v13_fill_summary.json",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v14_backtest.log",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v14_fill_summary.json"
+    ],
+    "used_to_decide": "v13 activated VEVs but overtraded core down-moves (14923). v14 reduced adverse fills and improved to 18176, but still below v11/v12 and far below baseline v2. Conclusion: propagation logic directionally sensible for activity quality but current thresholds remain too aggressive for this simulator regime."
   }
 ]

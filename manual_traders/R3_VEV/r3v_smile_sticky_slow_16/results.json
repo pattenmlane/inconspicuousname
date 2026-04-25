@@ -102,5 +102,27 @@
     "total_profit": 18949,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v12.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 13,
+    "trader_file": "trader_v13.py",
+    "strategy_description": "Family12 propagation-aware variant: cubic-spline logk (wing regularized + anchor nodes) with core-strike shock logic from tape propagation (K=5000..5300: tighter spreads, shock-triggered top-level takes when |dS|>=2 and edge confirms).",
+    "total_profit": 14923,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v13.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v13_backtest.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v13_fill_summary.json"
+  },
+  {
+    "iteration": 14,
+    "trader_file": "trader_v14.py",
+    "strategy_description": "v13 with tighter shock gating (CORE_TAKE_EDGE 1.2, CORE_TAKE_SIZE 3, smaller shock size boost) to reduce adverse core-flow while preserving propagation-aware core-vs-wing behavior.",
+    "total_profit": 18176,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v14.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v14_backtest.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v14_fill_summary.json"
   }
 ]

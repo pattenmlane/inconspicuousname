@@ -1,0 +1,23 @@
+{
+  "shockAbsExtractMoveThreshold": 2,
+  "by_day": {
+    "0": {
+      "n_base": 17546,
+      "n_shock": 2452,
+      "mean_spread_baseline_all_near": 2.5436566738857858,
+      "mean_spread_shock_all_near": 2.540783034257749
+    },
+    "1": {
+      "n_base": 17404,
+      "n_shock": 2594,
+      "mean_spread_baseline_all_near": 2.4955757297173062,
+      "mean_spread_shock_all_near": 2.4868928296067847
+    },
+    "2": {
+      "n_base": 17300,
+      "n_shock": 2698,
+      "mean_spread_baseline_all_near": 2.4543352601156068,
+      "mean_spread_shock_all_near": 2.4644180874722017
+    }
+  }
+}

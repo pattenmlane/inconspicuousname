@@ -126,5 +126,15 @@
       "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v18_v19.json"
     ],
     "used_to_decide": "Trend-conditioned hedge fraction was too fragile. Keep v17 as best; future changes should avoid day2 hedge adaptation and focus on richer option-side execution changes."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Near-strike L1 spread vs extract shocks: for each timestamp, if |dExtract|>=2 treat as shock, else baseline; take both nearest VEVs to S. JSON near_strike_spread_extract_shock.json. Mean spread barely differs baseline vs shock (~2.45-2.54 all days) \u2014 widening quotes on shocks is not supported by the tape, so v20 does not add spread-widen logic. Separately, day1-only 20-step extract continuation (positive past/future corr) motivated relaxing GAMMA_THRESH on day1 only in v20.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/near_strike_spread_extract_shock.json",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v20_round3_worse.log",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v20.json"
+    ],
+    "used_to_decide": "v20 total ties v17 (4167); no PnL gain, so per tie-break keep simpler v17 as the preferred candidate. Shock-spread null result rules out a shock-widen policy for now."
   }
 ]

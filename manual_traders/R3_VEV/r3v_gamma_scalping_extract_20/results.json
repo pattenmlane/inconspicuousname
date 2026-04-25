@@ -176,5 +176,16 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v19_round3_worse.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v18_v19.json"
+  },
+  {
+    "iteration": 20,
+    "trader_file": "trader_v20.py",
+    "strategy_description": "v17 with lower GAMMA_THRESH (6.5e-5) on tape day 1 only, motivated by day1-only positive 20-step extract past/future correlation. Ties v17 at 4167; prefer v17 (simpler).",
+    "total_profit": 4167,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v20.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v20_round3_worse.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v20.json"
   }
 ]

@@ -1,12 +1,22 @@
 [
   {
     "iteration": 0,
-    "analysis_description": "Round 3 tape days 0–2: Black–Scholes implied vol from voucher mid and VELVETFRUIT_EXTRACT wall mid; natural cubic spline IV vs log(K); leave-one-out IV prediction RMSE; best bid/ask spread stats; correlation of Δ(underlying wall mid) vs Δ(IV at strike nearest S) across subsampled timestamps. TTE: from round3work/round3description.txt, tape CSV day index d (0,1,2 in prices_round_3_day_d.csv) maps to TTE = (8−d) days; year fraction T = TTE_days/365.25. BS: r=0, no dividend.",
+    "analysis_description": "Round 3 tape days 0\u20132: Black\u2013Scholes implied vol from voucher mid and VELVETFRUIT_EXTRACT wall mid; natural cubic spline IV vs log(K); leave-one-out IV prediction RMSE; best bid/ask spread stats; correlation of \u0394(underlying wall mid) vs \u0394(IV at strike nearest S) across subsampled timestamps. TTE: from round3work/round3description.txt, tape CSV day index d (0,1,2 in prices_round_3_day_d.csv) maps to TTE = (8\u2212d) days; year fraction T = TTE_days/365.25. BS: r=0, no dividend.",
     "analysis_outputs": [
       "analysis_outputs/iv_spline_summary.csv",
       "analysis_outputs/grid_sample_stride.csv",
       "run_iv_spline_analysis.py"
     ],
-    "used_to_decide": "Confirmed spline interpolates observed IV smile tightly in-sample; LOO RMSE ~0.75–1.37 vol pts shows cross-strike interpolation noise (worse on day 0). Spread median 2 with mean ~5 suggests penny strikes need tighter absolute edges than deep ITM. Weak positive corr(ΔS, ΔIV_atm) on later tape days steered light extract quote skew vs voucher delta in the trader."
+    "used_to_decide": "Confirmed spline interpolates observed IV smile tightly in-sample; LOO RMSE ~0.75\u20131.37 vol pts shows cross-strike interpolation noise (worse on day 0). Spread median 2 with mean ~5 suggests penny strikes need tighter absolute edges than deep ITM. Weak positive corr(\u0394S, \u0394IV_atm) on later tape days steered light extract quote skew vs voucher delta in the trader."
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Per-strike spline-edge + Greek analysis on ROUND_3 days 0-2. For each timestamp: fit robust cubic spline IV(logK) from BS implied vols (S from VELVETFRUIT_EXTRACT wall mid; TTE = 8-d days from round3description). Compute fair price via BS(spline IV), buy_edge=fair-ask1, sell_edge=bid1-fair, vega, and vega*iv_error. Summarize hit-rates and edge magnitudes by strike.",
+    "analysis_outputs": [
+      "analysis_outputs/strike_edge_greeks_detailed.csv",
+      "analysis_outputs/strike_edge_greeks_summary.csv",
+      "analyze_strike_edge_greeks.py"
+    ],
+    "used_to_decide": "Observed persistent positive edge primarily in VEV_4000 (buy_hit_rate ~0.004 with very large edge when present), while other strikes showed near-zero/negative top-of-book edge after spread in this backtester. This motivated v3/v4 to keep the same spline-IV thesis but add edge-gated multi-level taking and faster inventory recycling, with extra aggression only for VEV_4000."
   }
 ]

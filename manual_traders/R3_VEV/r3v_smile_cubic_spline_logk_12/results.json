@@ -2,7 +2,7 @@
   {
     "iteration": 0,
     "trader_file": "trader_v0.py",
-    "strategy_description": "Cubic spline IV(log K) from BS IV at each strike vs smoothed extract fair; BS fair from spline IV; robust one-strike drop when IV range >0.35; wall-mid microstructure; extract/hydrogel MM. TTE from tape day via PROSPERITY4_BACKTEST_DAY (8−d days).",
+    "strategy_description": "Cubic spline IV(log K) from BS IV at each strike vs smoothed extract fair; BS fair from spline IV; robust one-strike drop when IV range >0.35; wall-mid microstructure; extract/hydrogel MM. TTE from tape day via PROSPERITY4_BACKTEST_DAY (8\u2212d days).",
     "total_profit": 48110,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v0.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
@@ -18,9 +18,25 @@
   {
     "iteration": 2,
     "trader_file": "trader_v2.py",
-    "strategy_description": "v1 plus fair-dependent edge ladder (tighter take / wider size on low fair); parameter sweep vs flat edges — same total PnL in this backtest (50,222), so v1 edges retained as simpler tie.",
+    "strategy_description": "v1 plus fair-dependent edge ladder (tighter take / wider size on low fair); parameter sweep vs flat edges \u2014 same total PnL in this backtest (50,222), so v1 edges retained as simpler tie.",
     "total_profit": 50222,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v2.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "Same spline IV(logK) thesis as v1, but adds edge-gated multi-level voucher taking and near-fair inventory clear; extra take capacity for VEV_4000 per strike-edge analysis.",
+    "total_profit": 48959,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v3.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "Parameter sweep variant of v3 (more conservative take/make sizing and thresholds) with same spline-IV core and edge-gated taking logic.",
+    "total_profit": 49748,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v4.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

@@ -126,5 +126,53 @@
     "total_profit": 59809,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v15.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 16,
+    "trader_file": "trader_v16.py",
+    "strategy_description": "v14 + VEV_HALF_MAX=32 (cap joint width; default was 40). Tied v14 at 59976.",
+    "total_profit": 59976,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v16.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 17,
+    "trader_file": "trader_v17.py",
+    "strategy_description": "v14 + TAKE_EDGE_MULT=0.60. Regression vs v14.",
+    "total_profit": 59864,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v17.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 18,
+    "trader_file": "trader_v18.py",
+    "strategy_description": "v14 + TAKE_EDGE_MULT=0.66. Slight regression vs v14.",
+    "total_profit": 59888,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v18.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 19,
+    "trader_file": "trader_v19.py",
+    "strategy_description": "v14 + THETA_REGIME_WEIGHT=0.18. Slight regression vs v14.",
+    "total_profit": 59942,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v19.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 20,
+    "trader_file": "trader_v20.py",
+    "strategy_description": "v14 + VEV_HALF_MAX=25. Tied v14 at 59976.",
+    "total_profit": 59976,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v20.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 21,
+    "trader_file": "trader_v21.py",
+    "strategy_description": "v14 + TAKE_EDGE_MULT=0.615. Regression vs v14.",
+    "total_profit": 59880,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v21.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

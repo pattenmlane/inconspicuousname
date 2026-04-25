@@ -34,5 +34,14 @@
       "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/theta_atm5200_summary.json"
     ],
     "used_to_decide": "Added optional small blend of (carry/S)-scaled time decay into the IV−RV regime in trader_v0; children v12–v15 nest from v10. Micro-sweep: v14 (THETA_REGIME_WEIGHT=0.16) best at 59,976; stronger theta (v13) not better than v12–v14. Still no pivot away from core thesis; benchmark ~800k remains distant."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "Vega-weighted mispricing vs book: at each subsample timestamp, for each strike compute model-IV BS theo and vega; mispricing = mid−theo; aggregate vega-weighted mean mispricing and mean top-of-book spread across strikes. Corr(vega_w_mispr, mean_spread) small positive (~0.08) on 150 points—suggests weak co-movement, not a strong linear signal for a second gate in this cut.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/vega_w_mispricing_vs_mean_spread.csv",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/vega_w_mispricing_summary.json"
+    ],
+    "used_to_decide": "Nested on best parent v14: optional VEV_HALF_MAX clamp in trader_v0; sweeps v16–v21 (cap 32/25, TAKE 0.60/0.615/0.66, theta 0.18) did not improve over v14 (59,976) on R3 0–2. Tie-keep v14 as champion; no thesis change."
   }
 ]

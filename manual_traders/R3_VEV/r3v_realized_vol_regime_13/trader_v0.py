@@ -164,6 +164,8 @@ class Trader:
     ORDER_SIZE_H = 10
     TAKE_EDGE_MULT = 0.55
     MAX_TAKE_PER_SIDE = 24
+    VEV_HALF_MIN = 1.0
+    VEV_HALF_MAX = 40.0
     # Optional delta hedge vs extract: fraction of -sum(delta_i * pos_i) to offset per tick (0 = disabled).
     DELTA_HEDGE_STRENGTH = 0.0
     MAX_D_HEDGE_QTY = 0
@@ -248,7 +250,7 @@ class Trader:
         half_vev = float(
             self.BASE_VEV_HALF + self.K_WIDEN * max(0.0, regime) - self.K_TIGHTEN * max(0.0, -regime)
         )
-        half_vev = max(1.0, min(half_vev, 40.0))
+        half_vev = max(self.VEV_HALF_MIN, min(half_vev, self.VEV_HALF_MAX))
         half_u = max(1.0, self.BASE_EX_HALF + self.REG_EX_SCALE * abs(regime))
         half_h = max(1.0, self.BASE_H_HALF + self.REG_H_SCALE * abs(regime))
 

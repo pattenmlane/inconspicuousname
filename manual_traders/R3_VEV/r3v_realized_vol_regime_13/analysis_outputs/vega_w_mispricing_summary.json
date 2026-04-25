@@ -1,0 +1,5 @@
+{
+  "n_rows": 150,
+  "corr_mispr_vs_spread": 0.07907923664636211,
+  "method": "vega = S*\u03c6(d1)*\u221aT at model IV; theo = BS; mispricing = mid-theo. Mean spread = average over strikes with a valid book."
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "trader_v0.py",
+    "strategy_description": "EWMA (alpha=0.03) on vega-weighted quadratic IV-in-m_t smile; BS fair per strike; MM on all VEV + extract + slow hydrogel EWMA. Extract MM caused large adverse selection.",
+    "total_profit": 11876,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v0.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 1,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Removed standalone VELVETFRUIT_EXTRACT quotes; EWMA alpha 0.045 (offline grid tradeoff); book half-spread floor in quote width; smaller hydrogel clips.",
+    "total_profit": 19232,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v1.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 2,
+    "trader_file": "trader_v2.py",
+    "strategy_description": "Same as v1 plus wing liquidity filter: for strikes 4000/4500/6500, if half-spread >= 8 require |mid−fair| >= 0.85*half_spread before quoting (from tape median wing spreads ~16–21 vs ATM ~3).",
+    "total_profit": 19255,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v2.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  }
+]

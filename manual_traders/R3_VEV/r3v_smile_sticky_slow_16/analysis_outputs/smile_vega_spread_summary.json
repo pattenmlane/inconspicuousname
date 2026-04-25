@@ -1,0 +1,24 @@
+{
+  "dte_mapping": "round3description.txt + plot_iv_smile_round3: csv_day 0\u2192DTE8 at open, 1\u21927, 2\u21926; intraday DTE winds ~1 day per session",
+  "subsample_timestamp_step": 50,
+  "n_iv_points": 5017,
+  "iv_median_all": 0.2454775633981807,
+  "iv_iqr_all": 0.1343664301563606,
+  "vega_weighted_iv_atm_band": 0.24091598345557821,
+  "iv_median_m_t_gt_0.3": 0.39298232156191176,
+  "iv_median_m_t_lt_-0.3": 0.2439354135998078,
+  "spread_median_VELVETFRUIT_EXTRACT": 5.0,
+  "spread_median_by_voucher": {
+    "VEV_4000": 21.0,
+    "VEV_4500": 16.0,
+    "VEV_5000": 6.0,
+    "VEV_5100": 4.0,
+    "VEV_5200": 3.0,
+    "VEV_5300": 2.0,
+    "VEV_5400": 1.0,
+    "VEV_5500": 1.0,
+    "VEV_6000": 1.0,
+    "VEV_6500": 1.0
+  },
+  "interpretation": "Sticky slow fair: cross-sectional IV is fairly smooth; use EWMA on fitted smile coeffs + vega-weighted edge vs mids."
+}

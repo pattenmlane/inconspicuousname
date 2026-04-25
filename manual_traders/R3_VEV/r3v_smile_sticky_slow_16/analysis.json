@@ -1,0 +1,26 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round 3 tapes days 0–2: Black–Scholes implied vol vs m_t=log(K/S)/sqrt(T) with T from round3description DTE mapping (CSV day 0→8d at open, 1→7, 2→6) plus intraday winding per plot_iv_smile_round3 (dte_effective). Vega per strike from BS vega(S,K,T,iv). Top-of-book spread width on extract and each VEV from bid_price_1/ask_price_1.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analysis_outputs/smile_vega_spread_summary.json"
+    ],
+    "used_to_decide": "Median extract spread ~5; deep OTM vouchers (e.g. VEV_4000) median spread ~21 vs ATM ~3–4 — motivates wider minimum quote width and optional skip/wing filter when edge is small. Vega-weighted ATM IV ~0.241 vs global median ~0.245; right-wing IV median higher than left — keep quadratic smile fit, update slowly with EWMA so fair does not chase tick noise."
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Offline parameter sweep: EWMA alpha on vega-weighted polyfit coeff path (day 0, timestamp step 200). Mean L2 step size of (c2,c1,c0) vector vs alpha.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analysis_outputs/ewma_alpha_offline_grid.json"
+    ],
+    "used_to_decide": "Chose alpha=0.045 as balance between responsiveness and smoothness (between 0.04 and 0.06 in grid); paired with removing extract-only MM after v0 showed large extract losses."
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Cross-check: v2 wing filter thresholds tied to iteration-0 spread medians by strike bucket; micro re-backtest vs v1.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analysis_outputs/smile_vega_spread_summary.json"
+    ],
+    "used_to_decide": "Small PnL gain vs v1 (+23 total); kept v2 as slightly better and simpler than a full new branch — documents that wing filter mainly helps day 1 VEV_4000."
+  }
+]

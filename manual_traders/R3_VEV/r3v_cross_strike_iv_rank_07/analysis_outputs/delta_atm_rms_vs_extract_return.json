@@ -1,0 +1,7 @@
+{
+  "n_pairs": 1394,
+  "subsample": 20,
+  "x": "delta_atm_residual_rms = smile_RMS_t - smile_RMS_{t-1}",
+  "y": "log_return_extract mid",
+  "corr_delta_rms_S_return": -0.15604416245712974
+}

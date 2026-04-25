@@ -110,5 +110,21 @@
     "total_profit": 1200,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v13.py\" 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 14,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v14.py",
+    "strategy_description": "v10 with ACTION_STRIDE=1 (re-rank every centisecond bucket); same residual cap 0.12 and size 8/22. ~10-11 min backtest wall time in this environment.",
+    "total_profit": 4666,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v14.py\" 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 15,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v15.py",
+    "strategy_description": "Grid: v14 with BASE_Q=9 and MAX_CLUSTER_Q=24; identical PnL 4666 on R3 days 0-2 vs v14, so v14 kept as simpler parent.",
+    "total_profit": 4666,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v15.py\" 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
   }
 ]

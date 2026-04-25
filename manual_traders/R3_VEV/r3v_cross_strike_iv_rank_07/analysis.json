@@ -56,5 +56,13 @@
       "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/residual_by_vega_bucket.json"
     ],
     "used_to_decide": "Residual magnitude is only modestly higher in high-vega bucket than low-vega bucket; vega-weighted rank (v12) underperformed heavily (258). Cap/size variant v13 reached 1200 but still below v10 (1858). Keep v10 as best parent; tie-break still favors simpler implementations among equals."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "IV + underlying link: on subsampled timestamps (step 20), compute quadratic-smile RMS of per-strike IV residuals across the ten vouchers; take one-step change in that RMS and correlate with VELVETFRUIT_EXTRACT mid log-return. Same T and IV conventions as v6. Output in delta_atm_rms_vs_extract_return.json.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/delta_atm_rms_vs_extract_return.json"
+    ],
+    "used_to_decide": "Stride=1 re-rank (v14) lifted PnL to 4666 vs v10 1858; v15 size bump was identical, so v14 is best+simplest. New analysis shows negative correlation about -0.16 between delta smile-RMS and extract return, suggesting fast residual reshape when S moves, motivating even faster stride."
   }
 ]

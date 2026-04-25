@@ -1,0 +1,34 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "trader_v0.py",
+    "strategy_description": "WLS quadratic IV in m=log(K/S)/sqrt(T); online vega-weighted ridge toward tape prior; passive VEV limits (below ask / above bid) + hydrogel one-tick MM. v0 used aggressive bid/ask crossing incorrectly for backtester fills — no VEV fills; total mostly hydrogel.",
+    "total_profit": 23247,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v0.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 1,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Parameter sweep: lower edge_frac (0.18), min_vega (0.03), passive limits at min(bid,floor(fair)-off); buffer IV every 3 steps; extract MM added. Still no VEV fills under worse-match (passive).",
+    "total_profit": 29853,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v1.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 2,
+    "trader_file": "trader_v2.py",
+    "strategy_description": "Same smile thesis; cross at touch (buy ask / sell bid) when |mid-fair| > edge_frac*spread so worse-match can fill. Grid point: edge_frac=0.22, min_vega=0.04, vega-tier clips.",
+    "total_profit": 35691,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v2.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "Grid refinement on v2: first 120 steps use pooled tape WLS only (no online ridge); require VEV spread>=2; edge_frac=0.26; tighter vega clips. Best total in this sweep.",
+    "total_profit": 46472,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v3.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  }
+]

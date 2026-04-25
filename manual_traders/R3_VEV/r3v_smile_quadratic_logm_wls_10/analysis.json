@@ -1,0 +1,19 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round-3 tape days 0-2: Black-Scholes implied vol (brentq, r=0) from mids; moneyness m = log(K/S)/sqrt(T) with T = dte_effective/365 where dte_effective = (8-csv_day) - floor(timestamp/100)/10000 (csv_day 0->8d, 1->7d, 2->6d at open; intraday decay aligned with round3work/plotting/original_method/combined_analysis/plot_iv_smile_round3 and round3description.txt). WLS quadratic sigma(m) with weights max(vega,1e-6) at fitted IV. Top-of-book spread (ask1-bid1) on VEV subsampled timestamps: mean ~5.64, median 2. See smile_wls_detail.json for coefficients.",
+    "analysis_outputs": [
+      "smile_wls_detail.json"
+    ],
+    "used_to_decide": "Fair voucher = BS call at sigma_fit(m) from pooled WLS coeffs; trade when edge exceeds fraction of spread and vega above floor; hydrogel MM with tight spread when book valid."
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Parameter grid on execution and gates (trader v0-v3): passive vs touch-cross; edge_frac in {0.18,0.22,0.26}; min_vega in {0.03,0.04,0.045}; min spread 2; prior-only warmup 120 steps. Backtester worse-match: passive bids below best ask rarely fill; touch-cross needed for VEV PnL.",
+    "analysis_outputs": [
+      "smile_wls_detail.json",
+      "results.json"
+    ],
+    "used_to_decide": "Chose v3: pooled prior early + spread>=2 + edge_frac 0.26 + touch-cross; raised Round-3 days 0-2 aggregate PnL vs v2 while keeping same BS-at-fitted-IV concept."
+  }
+]

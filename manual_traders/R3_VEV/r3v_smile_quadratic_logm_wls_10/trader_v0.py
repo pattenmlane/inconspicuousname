@@ -1,0 +1,314 @@
+"""
+Round 3 — WLS quadratic IV in log-moneyness m = log(K/S)/sqrt(T); fair = BS at fitted sigma(m).
+
+TTE: round3description.txt + plot_iv_smile_round3: csv_day 0->8d at open, 1->7d, 2->6d;
+dte_effective = (8 - csv_day) - floor(ts/100)/10000; T = dte_effective/365, r=0.
+
+Online ridge refit on vega-weighted pooled (m, IV) buffer; prior pulls toward offline WLS from tapes
+(smile_wls_detail.json). Tip-2 style: compare fair to mid, trade through when edge exceeds spread fraction.
+"""
+from __future__ import annotations
+
+import json
+import math
+from pathlib import Path
+from typing import Any
+
+from datamodel import Order, OrderDepth, TradingState
+from scipy.stats import norm
+
+try:
+    from prosperity4bt.constants import LIMITS
+except ImportError:
+    LIMITS = {
+        "HYDROGEL_PACK": 200,
+        "VELVETFRUIT_EXTRACT": 200,
+        **{f"VEV_{k}": 300 for k in (4000, 4500, 5000, 5100, 5200, 5300, 5400, 5500, 6000, 6500)},
+    }
+
+U = "VELVETFRUIT_EXTRACT"
+GEL = "HYDROGEL_PACK"
+STRIKES = [4000, 4500, 5000, 5100, 5200, 5300, 5400, 5500, 6000, 6500]
+VOUCHERS = [f"VEV_{k}" for k in STRIKES]
+
+_PRIOR_PATH = Path(__file__).resolve().parent / "smile_wls_detail.json"
+_EDGE_FRAC = 0.35
+_MIN_VEGA = 0.12
+_RIDGE_LAMBDA = 5e-4
+_BUFFER_CAP = 450
+_RECENTER_EVERY = 90
+_GEL_SIZE = 25
+_VEV_ORDER_CAP = 18
+_WARMUP_STEPS = 12
+
+
+def _load_prior() -> tuple[float, float, float]:
+    try:
+        d = json.loads(_PRIOR_PATH.read_text(encoding="utf-8"))
+        c = d["wls_coeffs_high_to_low"]
+        return float(c[0]), float(c[1]), float(c[2])
+    except (OSError, KeyError, json.JSONDecodeError, TypeError, IndexError):
+        return 0.14, -0.006, 0.235
+
+
+_PRIOR_A, _PRIOR_B, _PRIOR_C = _load_prior()
+
+
+def dte_effective(csv_day: int, ts: int) -> float:
+    return max(8.0 - float(csv_day) - (ts // 100) / 10000.0, 1e-6)
+
+
+def t_years(csv_day: int, ts: int) -> float:
+    return dte_effective(csv_day, ts) / 365.0
+
+
+def bs_call(S: float, K: float, T: float, sig: float, r: float = 0.0) -> float:
+    if T <= 0:
+        return max(S - K, 0.0)
+    if sig <= 1e-12:
+        return max(S - K, 0.0)
+    v = sig * math.sqrt(T)
+    d1 = (math.log(S / K) + (r + 0.5 * sig * sig) * T) / v
+    d2 = d1 - v
+    return S * norm.cdf(d1) - K * math.exp(-r * T) * norm.cdf(d2)
+
+
+def vega(S: float, K: float, T: float, sig: float, r: float = 0.0) -> float:
+    if T <= 0 or sig <= 1e-12:
+        return 0.0
+    v = sig * math.sqrt(T)
+    d1 = (math.log(S / K) + (r + 0.5 * sig * sig) * T) / v
+    return float(S * norm.pdf(d1) * math.sqrt(T))
+
+
+def implied_vol_newton(mid: float, S: float, K: float, T: float, r: float = 0.0, guess: float = 0.35) -> float | None:
+    intrinsic = max(S - K, 0.0)
+    if mid <= intrinsic + 1e-9 or mid >= S - 1e-9 or S <= 0 or K <= 0 or T <= 0:
+        return None
+    sig = max(min(guess, 5.0), 1e-4)
+    for _ in range(28):
+        pr = bs_call(S, K, T, sig, r)
+        vg = vega(S, K, T, sig, r)
+        if vg < 1e-12:
+            return None
+        step = (pr - mid) / vg
+        sig -= step
+        if sig <= 1e-5:
+            sig = 1e-5
+        if abs(step) < 1e-7:
+            return float(sig)
+        if sig > 15.0:
+            return None
+    return float(sig) if 1e-5 < sig < 15.0 else None
+
+
+def best_bid_ask(depth: OrderDepth | None) -> tuple[int | None, int | None]:
+    if depth is None:
+        return None, None
+    if not depth.buy_orders or not depth.sell_orders:
+        return None, None
+    return max(depth.buy_orders), min(depth.sell_orders)
+
+
+def sigma_from_abc(m: float, a: float, b: float, c: float) -> float:
+    return max(a * m * m + b * m + c, 0.02)
+
+
+def ridge_abc(xs: list[float], ys: list[float], ws: list[float], lam: float, pa: float, pb: float, pc: float) -> tuple[float, float, float]:
+    if not xs:
+        return pa, pb, pc
+    X = [[x * x, x, 1.0] for x in xs]
+    n = len(xs)
+    g00 = g01 = g02 = g11 = g12 = g22 = 0.0
+    r0 = r1 = r2 = 0.0
+    for i in range(n):
+        w = ws[i]
+        x0, x1, x2 = X[i][0], X[i][1], X[i][2]
+        g00 += w * x0 * x0
+        g01 += w * x0 * x1
+        g02 += w * x0 * x2
+        g11 += w * x1 * x1
+        g12 += w * x1 * x2
+        g22 += w * x2 * x2
+        yi = ys[i]
+        r0 += w * x0 * yi
+        r1 += w * x1 * yi
+        r2 += w * x2 * yi
+    g00 += lam
+    g11 += lam
+    g22 += lam
+    r0 += lam * pa
+    r1 += lam * pb
+    r2 += lam * pc
+    # 3x3 solve
+    det = (
+        g00 * (g11 * g22 - g12 * g12)
+        - g01 * (g01 * g22 - g02 * g12)
+        + g02 * (g01 * g12 - g02 * g11)
+    )
+    if abs(det) < 1e-18:
+        return pa, pb, pc
+    inv00 = (g11 * g22 - g12 * g12) / det
+    inv01 = (g02 * g12 - g01 * g22) / det
+    inv02 = (g01 * g12 - g02 * g11) / det
+    inv11 = (g00 * g22 - g02 * g02) / det
+    inv12 = (g01 * g02 - g00 * g12) / det
+    inv22 = (g00 * g11 - g01 * g01) / det
+    a = inv00 * r0 + inv01 * r1 + inv02 * r2
+    b = inv01 * r0 + inv11 * r1 + inv12 * r2
+    c = inv02 * r0 + inv12 * r1 + inv22 * r2
+    return float(a), float(b), float(c)
+
+
+def _parse_td(raw: str | None) -> dict[str, Any]:
+    if not raw:
+        return {}
+    try:
+        o = json.loads(raw)
+        return o if isinstance(o, dict) else {}
+    except (json.JSONDecodeError, TypeError):
+        return {}
+
+
+class Trader:
+    def run(self, state: TradingState):
+        result: dict[str, list[Order]] = {}
+        conversions = 0
+        store = _parse_td(getattr(state, "traderData", None))
+
+        csv_day = int(getattr(state, "backtest_csv_day", store.get("csv_day", 0)))
+        store["csv_day"] = csv_day
+
+        ts = int(getattr(state, "timestamp", 0))
+        if ts // 100 < _WARMUP_STEPS:
+            return result, conversions, json.dumps(store, separators=(",", ":"))
+
+        depths = getattr(state, "order_depths", None) or {}
+        pos = getattr(state, "position", None) or {}
+
+        bufs_m = store.get("buf_m")
+        bufs_iv = store.get("buf_iv")
+        bufs_w = store.get("buf_w")
+        if not isinstance(bufs_m, list):
+            bufs_m, bufs_iv, bufs_w = [], [], []
+        a = float(store.get("a", _PRIOR_A))
+        b = float(store.get("b", _PRIOR_B))
+        c = float(store.get("c", _PRIOR_C))
+        step = int(store.get("step", 0))
+
+        depth_u = depths.get(U)
+        bb_u, ba_u = best_bid_ask(depth_u)
+        if bb_u is None or ba_u is None:
+            store.update({"buf_m": bufs_m, "buf_iv": bufs_iv, "buf_w": bufs_w, "a": a, "b": b, "c": c, "step": step})
+            return result, conversions, json.dumps(store, separators=(",", ":"))
+
+        S = 0.5 * float(bb_u) + 0.5 * float(ba_u)
+        if S <= 0:
+            store.update({"buf_m": bufs_m, "buf_iv": bufs_iv, "buf_w": bufs_w, "a": a, "b": b, "c": c, "step": step})
+            return result, conversions, json.dumps(store, separators=(",", ":"))
+
+        T = t_years(csv_day, ts)
+        sqrtT = math.sqrt(T)
+
+        new_m: list[float] = []
+        new_iv: list[float] = []
+        new_w: list[float] = []
+        if (ts // 100) % 5 == 0:
+            for sym in VOUCHERS:
+                d = depths.get(sym)
+                bbp, bap = best_bid_ask(d)
+                if bbp is None or bap is None:
+                    continue
+                mid = 0.5 * float(bbp) + 0.5 * float(bap)
+                K = float(sym.split("_")[1])
+                iv = implied_vol_newton(mid, S, K, T, 0.0)
+                if iv is None:
+                    continue
+                m = math.log(K / S) / sqrtT
+                vg = max(vega(S, K, T, iv, 0.0), 1e-6)
+                new_m.append(m)
+                new_iv.append(iv)
+                new_w.append(vg)
+
+        if new_m:
+            bufs_m.extend(new_m)
+            bufs_iv.extend(new_iv)
+            bufs_w.extend(new_w)
+            over = len(bufs_m) - _BUFFER_CAP
+            if over > 0:
+                bufs_m = bufs_m[over:]
+                bufs_iv = bufs_iv[over:]
+                bufs_w = bufs_w[over:]
+
+        step += 1
+        if step % _RECENTER_EVERY == 0 and len(bufs_m) >= 30:
+            a, b, c = ridge_abc(bufs_m, bufs_iv, bufs_w, _RIDGE_LAMBDA, _PRIOR_A, _PRIOR_B, _PRIOR_C)
+
+        for sym in VOUCHERS:
+            d = depths.get(sym)
+            bbp, bap = best_bid_ask(d)
+            if bbp is None or bap is None:
+                continue
+            mid = 0.5 * float(bbp) + 0.5 * float(bap)
+            spr = int(bap - bbp)
+            if spr <= 0:
+                continue
+            K = float(sym.split("_")[1])
+            m = math.log(K / S) / sqrtT
+            sig = sigma_from_abc(m, a, b, c)
+            fair = bs_call(S, K, T, sig, 0.0)
+            vg = vega(S, K, T, sig, 0.0)
+            if vg < _MIN_VEGA:
+                continue
+            edge = mid - fair
+            thr = _EDGE_FRAC * float(spr)
+            if abs(edge) < thr:
+                continue
+            lim = LIMITS.get(sym, 300)
+            p0 = int(pos.get(sym, 0))
+            off = max(1, int(_EDGE_FRAC * spr))
+            orders_sym: list[Order] = []
+            if edge < -thr and p0 < lim:
+                px = min(int(math.floor(fair)) - off, bbp)
+                if px > 0:
+                    q = min(_VEV_ORDER_CAP, lim - p0)
+                    if q > 0:
+                        orders_sym.append(Order(sym, px, q))
+            elif edge > thr and p0 > -lim:
+                px = max(int(math.ceil(fair)) + off, bap)
+                q = min(_VEV_ORDER_CAP, lim + p0)
+                if q > 0:
+                    orders_sym.append(Order(sym, px, -q))
+            if orders_sym:
+                result[sym] = orders_sym
+
+        # Hydrogel: simple one-tick improvement MM when spread allows
+        dg = depths.get(GEL)
+        gb, ga = best_bid_ask(dg)
+        if gb is not None and ga is not None and ga > gb + 1:
+            glim = LIMITS.get(GEL, 200)
+            gp = int(pos.get(GEL, 0))
+            bid_p = gb + 1
+            ask_p = ga - 1
+            if bid_p < ask_p:
+                oo: list[Order] = []
+                if gp < glim:
+                    oo.append(Order(GEL, bid_p, min(_GEL_SIZE, glim - gp)))
+                if gp > -glim:
+                    oo.append(Order(GEL, ask_p, -min(_GEL_SIZE, glim + gp)))
+                if oo:
+                    result[GEL] = oo
+
+        store.update(
+            {
+                "buf_m": bufs_m,
+                "buf_iv": bufs_iv,
+                "buf_w": bufs_w,
+                "a": a,
+                "b": b,
+                "c": c,
+                "step": step,
+                "csv_day": csv_day,
+            }
+        )
+        return result, conversions, json.dumps(store, separators=(",", ":"))

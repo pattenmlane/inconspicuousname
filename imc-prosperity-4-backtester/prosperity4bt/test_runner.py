@@ -80,6 +80,8 @@ class TestRunner:
     def __initialize_trade_state(self, state: TradingState, data: BacktestData, timestamp: int) -> TradingState:
 
         state.timestamp = timestamp
+        # Historical CSV day index (0,1,2 for Round 3 tapes) for DTE/TTE mapping; optional for live.
+        setattr(state, "backtest_csv_day", int(data.day_num))
 
         for product in data.products:
             order_depth = OrderDepth()

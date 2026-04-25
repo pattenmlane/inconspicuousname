@@ -1,0 +1,13 @@
+{
+  "wls_coeffs_high_to_low": [
+    0.14585036574085108,
+    -0.0058172952483170615,
+    0.235456416221278
+  ],
+  "n_points": 12622,
+  "rmse_iv": 0.018553233319070397,
+  "mean_abs_resid": 0.011384531281286622,
+  "mean_spread_vev": 5.642648037258816,
+  "median_spread_vev": 2.0,
+  "dte_mapping": "csv_day 0\u21928d at open, 1\u21927d, 2\u21926d; intraday dte_effective per plot_iv_smile_round3"
+}

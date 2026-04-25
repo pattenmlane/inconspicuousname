@@ -1,0 +1,11 @@
+{
+  "source": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/underlying_to_voucher_response.json",
+  "method": "Use suggested_trade_order score (corr-led ranking with calm-spread bonus) for VEV_5100..VEV_5500 only. Map score linearly to multipliers in [0.85, 1.15] using min score 1.20 (VEV_5500) and max 1.93 (VEV_5200) in that set.",
+  "multiplier_by_voucher": {
+    "VEV_5200": 1.15,
+    "VEV_5300": 1.09,
+    "VEV_5400": 1.07,
+    "VEV_5100": 1.04,
+    "VEV_5500": 0.85
+  }
+}

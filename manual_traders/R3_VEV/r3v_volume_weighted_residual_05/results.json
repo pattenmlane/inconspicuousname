@@ -144,5 +144,16 @@
     "match_trades": "worse",
     "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v17_underlying_response_gate.log",
     "trades_or_fills_summary": "trade_history_rows=4245, own_fill_rows=4245, own_fill_abs_qty_sum=17501; key rows HYDROGEL_PACK=1207, VEV_5400=225, VEV_5500=267, VEV_5300=121"
+  },
+  {
+    "iteration": 18,
+    "trader_file": "trader_v18.py",
+    "strategy_description": "Parent v8: same IV-residual fade. Add analysis-derived vega-scaled size multipliers by strike (5200/5300/5400 up, 5500 down) from underlying_to_voucher_response score map. Integer q rounding; backtest PnL and tradeHistory match v8 exactly.",
+    "total_profit": 13478,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v18_size_mult.log",
+    "trades_or_fills_summary": "trade_history_rows=4843, own_fill_rows=4843, own_fill_abs_qty_sum=18099; HYDROGEL_PACK=1207 rows, VEV_5400=823, VEV_5500=267, VEV_5300=121",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v18.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v18_size_mult.log"
   }
 ]

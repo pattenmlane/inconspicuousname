@@ -86,5 +86,15 @@
       "analysis_outputs/v17_underlying_response_gate.log"
     ],
     "used_to_decide": "Incorporated suggested response-ranked symbols and shock gating directly into v17 entry logic. This produced materially different fill profile (e.g., VEV_5400 fill rows 823 -> 225) but lower total PnL than v8 under worse fills; retain v8 as best for now while keeping this regime mapping as a basis for future variants."
+  },
+  {
+    "iteration": 18,
+    "analysis_description": "Mapped underlying\u2192voucher response rank (5200/5300/5400 high, 5500 weaker on calm-spread+response score) to fixed size multipliers in response_score_to_size_mult.json. v18 applied these to the vega-based q; however integer rounding yields identical PnL and fill counts to v8 \u2014 multipliers are effectively no-ops for q at current vega/limits.",
+    "analysis_outputs": [
+      "analysis_outputs/response_score_to_size_mult.json",
+      "analysis_outputs/v18_fills_summary.json",
+      "analysis_outputs/v18_size_mult.log"
+    ],
+    "used_to_decide": "Next iteration should use floor/ceil of adjusted q, or add partial fills via sub-tranches, to make size skew express in trades when desired."
   }
 ]

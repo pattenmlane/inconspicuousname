@@ -78,5 +78,13 @@
     "total_profit": 232,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v9.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 10,
+    "trader_file": "trader_v10.py",
+    "strategy_description": "Pivot family13 realized_vol_regime: reversed RV-IV + spread-stress blend; stressed regime core-only+tighter rails, calm broader strikes. Sweep under worse-fill found reverse-sign and conservative clips/rails best.",
+    "total_profit": 5826,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v10.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out backtests/r3v_f13_v10.log"
   }
 ]

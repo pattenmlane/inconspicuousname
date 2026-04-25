@@ -61,5 +61,15 @@
       "terminal: bump means by day, corr dS vs d bump, grid scores from trader_v8.py template"
     ],
     "used_to_decide": "v9 = v8 with CLIP_QTY 5 only; best in grid, simpler than changing z_hi to 2.1 to tie at same PnL."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "Family13 stress-proxy validation (data-first): stress=(avg core spread-3)/10 on core strikes, hysteresis enter/exit 0.62/0.48. IV/Greek thread: BS IV bump stats at z>2.15 and one-tick corr(dS_extract,dBump) ~0.17-0.25; net vega short-fly remained positive in prior checks. For family13, worse-fill sweep showed original sign of RV-IV+stress was anti-alpha (-4004), while reversed sign plus conservative rails/clips improved to +5826 (best tested variant).",
+    "analysis_outputs": [
+      "backtests/r3v_f13_v10.log",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v10.json",
+      "terminal sweep outputs for family13 variants (including reverse-sign test)"
+    ],
+    "used_to_decide": "This is a true pivot relative to prior convexity-z family: new signal, regime gating, and universe selection. Kept because data-first validation + sweep favored it, though still far below ~800k benchmark."
   }
 ]

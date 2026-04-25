@@ -40,5 +40,11 @@
     "analysis_description": "Focused grid around v8 log-IV z on ROUND_3 tapes (days 0\u20132), with BS IV inversion unchanged: ROLL_WIN in {420,480,540}, Z_ENTRY in {2.65,2.75,2.85}, Z_EXIT in {0.08,0.10,0.12}, MAX_SPREAD in {3,4,5}, ORDER_Q in {8,10,12}. Strong pattern: spread cap dominates outcomes. At MAX_SPREAD=3 and Z_ENTRY=2.65, PnL jumped to ~5.8k across tested exits/order sizes; MAX_SPREAD=4 yielded ~1.0k; MAX_SPREAD=5 was strongly negative. Best observed point: (420,2.65,0.08,3,8) total +5863. This is still a rolling-IV-z mean-reversion idea, but with stricter microstructure gating from order-book spread.",
     "analysis_outputs": [],
     "used_to_decide": "Promoted v9 from v8 as the next parent due to large uplift (+5863 vs +1028). Tie-break by simplicity favored ORDER_Q=8 (same pnl as 10/12 in observed grid rows)."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Neighborhood grid on v9 (log-IV z, same BS IV from mids): swept ROLL_WIN in {400,420,440}, Z_ENTRY in {2.55,2.6,2.65}, Z_EXIT in {0.07,0.09}, MAX_SPREAD in {2,3}, ORDER_Q in {6,8} on Round 3 days 0-2, worse fills. Tighter spread MAX_SPREAD=2 materially improved PnL vs 3; best stack in this slice was (400,2.6,0.07,2,6) with total +8801 vs v9 +5863. Pattern: **even tick-level spread filter** (bid/ask gap 1-2) dominates when combined with log-z; ROLL_WIN 400 shortens the rolling window for faster reactivity.",
+    "analysis_outputs": [],
+    "used_to_decide": "Set trader_v10 to best point; v9 kept as parent reference. Greek thread unchanged: implied IV inverts the same; mean reversion is still on the **log-IV** scale."
   }
 ]

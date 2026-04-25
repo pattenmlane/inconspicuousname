@@ -307,14 +307,20 @@ class Trader:
             ask_p = max(ask_p, int(bb) + 1)
             if bid_p >= ask_p:
                 continue
-            q = self.ORDER_SIZE_VEV
+            q_default = self.ORDER_SIZE_VEV
+            q_map = getattr(self, "ORDER_SIZE_VEV_MAP", None)
+            q = int(q_map.get(v, q_default)) if isinstance(q_map, dict) else int(q_default)
             # Controlled taking when market is clearly mispriced vs same theo anchor.
             # We still use the same shared regime logic; this only improves execution quality.
             take_edge = max(1.0, half_vev * self.TAKE_EDGE_MULT)
             sells = d.sell_orders or {}
             buys = d.buy_orders or {}
+            max_take = self.MAX_TAKE_PER_SIDE
+            take_map = getattr(self, "MAX_TAKE_PER_SIDE_MAP", None)
+            if isinstance(take_map, dict):
+                max_take = int(take_map.get(v, max_take))
             if p < lim:
-                rem_buy = min(self.MAX_TAKE_PER_SIDE, lim - p)
+                rem_buy = min(max_take, lim - p)
                 for ap in sorted(sells.keys()):
                     if rem_buy <= 0:
                         break
@@ -328,7 +334,7 @@ class Trader:
                     else:
                         break
             if p > -lim:
-                rem_sell = min(self.MAX_TAKE_PER_SIDE, lim + p)
+                rem_sell = min(max_take, lim + p)
                 for bp in sorted(buys.keys(), reverse=True):
                     if rem_sell <= 0:
                         break

@@ -55,11 +55,30 @@
   },
   {
     "iteration": 6,
-    "analysis_description": "ATM call gamma from BS (IV = BS-1 of nearest-strike mid, same T and RV as prior cuts) vs IV−RV. Corr(IV−RV, \\u03b3_atm) is mildly negative (~-0.08) on 150 subsample points—suggests convexity and IV-richness are weakly inversely co-linear in this crude linear sense.",
+    "analysis_description": "ATM call gamma from BS (IV = BS-1 of nearest-strike mid, same T and RV as prior cuts) vs IV\u2212RV. Corr(IV\u2212RV, \\u03b3_atm) is mildly negative (~-0.08) on 150 subsample points\u2014suggests convexity and IV-richness are weakly inversely co-linear in this crude linear sense.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/gamma_atm_vs_iv_minus_rv.csv",
       "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/gamma_atm_vs_iv_minus_rv_summary.json"
     ],
-    "used_to_decide": "Implemented optional GAMMA_REGIME_WEIGHT in trader_v0: scale the same (theta-adjusted) IV−RV joint regime by normalized BS gamma at the ATM (nearest) strike, using IV from inversion. v29 (mild weight) best at 60,493 vs v28 60,126; heavier gamma (v30) regressed. Take-edge nudges v31-v32 did not beat v28."
+    "used_to_decide": "Implemented optional GAMMA_REGIME_WEIGHT in trader_v0: scale the same (theta-adjusted) IV\u2212RV joint regime by normalized BS gamma at the ATM (nearest) strike, using IV from inversion. v29 (mild weight) best at 60,493 vs v28 60,126; heavier gamma (v30) regressed. Take-edge nudges v31-v32 did not beat v28."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Contract-by-contract propagation study using next-tick do vs du: high-delta strikes (4000-5200) show much larger betas/correlation to underlying returns than far OTM (6000/6500 near zero), with mixed but observable spread-widening effects after top-decile |du| shocks. Added BS delta reference from inverted IV per strike.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/underlying_propagation_by_voucher.csv",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/underlying_propagation_summary.json"
+    ],
+    "used_to_decide": "Implemented strike-aware voucher size/take maps in strategy children (v33/v34) while preserving same IV-vs-RV joint width thesis. Emphasizing high-response strikes and de-emphasizing inert far OTM contracts improved to new best v33=60,627. Also started logging per-run outputs under strategy folder and storing trade/fill summaries in results.json for new runs."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Follow-up on propagation-driven strike maps: high-response ITM strikes dominate do~du beta and notional contribution; far OTM contracts (6000/6500) show near-zero beta and low informative response. Tested whether further reducing far-OTM participation while slightly concentrating around 5200 improves outcome.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/underlying_propagation_by_voucher.csv",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v35_worse.log",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v36_worse.log"
+    ],
+    "used_to_decide": "v35 (tighter far-OTM de-emphasis + 5200 bump) tied v33 at 60,627; v36 (simplified conservative bucketing) regressed. Kept strike-aware map family as best current branch, with v33/v35 co-best and v33 preferred as simpler baseline map."
   }
 ]

@@ -1,0 +1,33 @@
+{
+  "n_rows_tick": 299940,
+  "method": "Next-tick do vs du per voucher; beta/corr by contract, up/down asymmetry, and spread widening after top decile |du| shocks; BS delta estimated from inverted IV at t0.",
+  "top3_beta": [
+    {
+      "voucher": "VEV_4000",
+      "beta_do_per_du": 3911.3216496703963
+    },
+    {
+      "voucher": "VEV_4500",
+      "beta_do_per_du": 3474.266116445084
+    },
+    {
+      "voucher": "VEV_5000",
+      "beta_do_per_du": 3430.6531480955928
+    }
+  ],
+  "top3_shock_spread_widen": [
+    {
+      "voucher": "VEV_5200",
+      "shock_spread_widen": 0.010324743088368529
+    },
+    {
+      "voucher": "VEV_5500",
+      "shock_spread_widen": 0.0047565648535557135
+    },
+    {
+      "voucher": "VEV_6000",
+      "shock_spread_widen": 0.0
+    }
+  ],
+  "mean_shock_spread_widen": -0.004074682003452473
+}

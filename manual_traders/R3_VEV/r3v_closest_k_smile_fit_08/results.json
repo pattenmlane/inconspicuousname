@@ -62,5 +62,13 @@
     "total_profit": 32864,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v7.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
+  },
+  {
+    "iteration": 8,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v8.py",
+    "strategy_description": "Parent v3 (best PnL): only REFIT_EVERY=40 (vs 50) for slightly more frequent local smile refits. Same k=6, vega sizing, edges, extract/hydrogel. Theta tape check (see analysis) showed time-decay risk concentrated near 5200-5300; this sweep tests whether more frequent IV re-fit helps — it did not beat v3.",
+    "total_profit": 37603,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v8.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
   }
 ]

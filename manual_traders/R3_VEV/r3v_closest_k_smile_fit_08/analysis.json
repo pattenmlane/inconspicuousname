@@ -52,5 +52,14 @@
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_local_fit_grid.py"
     ],
     "used_to_decide": "k=6 remained the most robust local-surface width (best or tied-best p90 abs residual on most days), while k=7 over-smoothed and k=4/5 were less stable in tails. Nonetheless, to keep iteration discipline and parent diversity we tested trader_v7 with k=4 on top of v3 microstructure; it underperformed materially (32864 vs 39307), reinforcing k=6 as current best."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Greek: Black–Scholes call theta (r=0, T=dte_eff/365) at tape-implied IV per row; median |theta| by strike over full tape. Time-decay magnitude peaks around 5200-5300 (e.g. day0 median |theta| ~1680-1690) and is much lower on far wings — consistent with prior vega concentration near spot.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/theta_median_by_strike.json",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_theta_by_strike.py"
+    ],
+    "used_to_decide": "Motivated a refit cadence test: trader_v8 uses REFIT_EVERY=40 vs v3=50, else identical. Backtest total 37603 < v3 39307 — more frequent smile refit did not help. v3 remains best; if retesting refit, use smaller deltas or adjust EMA(S) smoothing instead of only the smile loop."
   }
 ]

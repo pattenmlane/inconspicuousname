@@ -94,5 +94,13 @@
     "total_profit": 7190,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v11.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 12,
+    "trader_file": "trader_v12.py",
+    "strategy_description": "Parent v8: add innovation gate on new entries \u2014 only fade when EMA(residual) still moves in the mispricing direction (step vs prior EMA) by INNOV_MIN=0.0004; first tick per strike unchanged. Worse than v8 (11013 vs 13478); v8 remains best.",
+    "total_profit": 11013,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v12.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
   }
 ]

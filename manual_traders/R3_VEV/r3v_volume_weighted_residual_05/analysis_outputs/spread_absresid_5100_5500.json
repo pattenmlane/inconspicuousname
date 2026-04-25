@@ -1,0 +1,12 @@
+{
+  "method": "Per timestamp, OLS smile over 5 strikes (no WLS) when all pass; spread=ask1-bid1; T=dte_eff/365. Subsample every 100 timesteps. Pool all strikes.",
+  "n_points": 1500,
+  "corr_spread_absresid": -0.49912655963970753,
+  "per_strike_pool_corr": {
+    "VEV_5100": 0.05233521071314429,
+    "VEV_5200": 0.10842550396466993,
+    "VEV_5300": -0.057397498230656055,
+    "VEV_5400": -0.04526168151170129,
+    "VEV_5500": -0.07652407857589989
+  }
+}

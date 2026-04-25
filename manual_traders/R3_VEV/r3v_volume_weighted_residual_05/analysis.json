@@ -47,5 +47,13 @@
       "analysis_outputs/residual_lag1_by_strike.json"
     ],
     "used_to_decide": "Confirms persistence in residual process (supports EMA entry smoothing from v8). Tested hydrogel risk wind-down in v11 to reduce day-2 drawdown risk, but total PnL dropped materially; retained v8 as best variant."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Cross-sectional pool (subsample every 100 ts): top-of-book spread vs |IV residual| on VEV_5100..VEV_5500 after OLS quadratic smile (no WLS) when all five pass spread<=8. Pool corr(spread,|res|) is moderately negative (~-0.50 on 1500 joint points), suggesting wider books often coincide with smaller cross-sectional mispricings in that snapshot; per-strike correlations are near zero in the same subsample.",
+    "analysis_outputs": [
+      "analysis_outputs/spread_absresid_5100_5500.json"
+    ],
+    "used_to_decide": "Exploratory microstructure context; v12 tested EMA innovation gating (from lag-1 persistence insight) but reduced voucher PnL vs v8 \u2014 keep v8 entry rule."
   }
 ]

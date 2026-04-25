@@ -41,5 +41,23 @@
     "analysis_description": "Greek add-on: closed-form call gamma in the same BS framework as vega, expressed as S*|gamma| in the spread hurdle. Method: d2 from d1, gamma = N'(d1)/(S*σ*sqrt(T)) with T from round3 DTE+intraday wind. Tuned scale after an initial overshoot (very large S^2*gamma/100) produced zero PnL by blocking all edges.",
     "analysis_outputs": ["manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v5.py"],
     "used_to_decide": "v5 (5347) < v3 (6313): gamma term did not add value in this backtest; keep v3 as parent, drop gamma from production path until a better calibration (or separate wing gate) is justified."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "Implemented analysis follow-up from iteration 4: keep 10 IV knots for σ̂(log K) but **down-weight** far-strike knots in the cubic spline (weighted least squares via UnivariateSpline `w`), so wings still anchor curvature without dominating the mid-stripe like unweighted v3 or underfitting like v4. IV at each knot still from Newton inversion of mid vs BS call; TTE/DTE mapping unchanged (round3description DTE at open 8−csv_day, intraday wind, T=dte_eff/365, r=0). v6 used wing weight 0.35: backtest total_profit −3264 — too aggressive; mid-stripe σ̂ likely mis-anchored.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v6.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/results.json"
+    ],
+    "used_to_decide": "Try a gentler wing penalty in the same WLS framework rather than abandoning wing information."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Parameter sweep: v7 identical to v6 except WING_SPLINE_WEIGHT 0.65. Backtest total_profit 10512 vs v3 6313 (same dataset, worse fills). Implication: moderate down-weighting of wing IV noise improves the synthetic local-vol residual edge on 5000–5500 without v4’s six-point spline instability.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v7.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/results.json"
+    ],
+    "used_to_decide": "Adopt v7 as the new best baseline; next sweeps should stay on WLS surface + v3-style vega hurdle, e.g. tune weight 0.55–0.75 or spline smoothness S."
   }
 ]

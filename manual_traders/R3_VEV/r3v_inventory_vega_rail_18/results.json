@@ -142,5 +142,21 @@
     "total_profit": 75,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v17.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v17_backtest.log"
+  },
+  {
+    "iteration": 18,
+    "trader_file": "trader_v18.py",
+    "strategy_description": "Family12 adjusted variant after duplicate-check: cubic-spline logK smile + continuous skew from OWN inventory-vega concentration share (per-strike), with v12 scaffold. Full logs/fill summary saved.",
+    "total_profit": 75,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v18.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v18_backtest.log"
+  },
+  {
+    "iteration": 19,
+    "trader_file": "trader_v19.py",
+    "strategy_description": "Family12 own-vega concentration variant sweep (softer concentration scale). Same realized path under worse fills; total 75.",
+    "total_profit": 75,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v19.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v19_backtest.log"
   }
 ]

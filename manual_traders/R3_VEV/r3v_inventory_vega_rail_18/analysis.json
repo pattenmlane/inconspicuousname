@@ -79,5 +79,16 @@
       "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v17_fill_summary.json"
     ],
     "used_to_decide": "Because concentration is moderate (HHI << 0.4), aggressive concentration gating gave limited differentiation and did not beat v12 (+130). Family-12 pivot is validated as distinct in implementation, but currently weaker under worse fills; v12 remains best versus our branch and far below 800k benchmark."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "REQUIRED duplicate-check against parent index 12 prompted variant adjustment. Switched from market-HHI threshold skew (v16/v17) to a distinct own-inventory-vega concentration coupling (v18/v19): continuous skew by each strike's share of current portfolio vega. Kept family12 spline-logK smile and minimal other changes.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v18_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v19_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v18_fill_summary.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v19_fill_summary.json"
+    ],
+    "used_to_decide": "Distinct variant is implemented and tested, but performance remains 75 (< v12=130 and far below 800k benchmark). Parent-leading recipe still v12."
   }
 ]

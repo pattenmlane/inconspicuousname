@@ -46,5 +46,21 @@
     "total_profit": 433,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
+  },
+  {
+    "iteration": 6,
+    "trader_file": "trader_v6.py",
+    "strategy_description": "v5 + grid: ATM_REL_BURST=0.22 and burst BURST_MAX_LOT=80. Tight burst band excludes VEV_4000 on tape (|4000/S-1|>0.22 for all ticks on days 0-2) \u2014 misfit vs widen-on-burst. Total regressed to 315 vs v5 433; documents that pulling deep ITM from bursts hurts more than it fixes day-0 PnL.",
+    "total_profit": 315,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "v5 + burst-only order size cap (BURST_MAX_LOT=80); same ATM 0.24/0.10 and conservative burst thresholds. Reduces day-0 drag vs v5 while keeping VEV_4000 in cluster on S~5.2k days.",
+    "total_profit": 487,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
   }
 ]

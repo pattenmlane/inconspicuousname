@@ -18,5 +18,14 @@
       "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/burst_regime_summary.json"
     ],
     "used_to_decide": "Proxy means show burst windows weaker than calm (both calm_core and burst_ring near/under zero during burst), motivating less aggressive burst quoting while preserving calm smile MM. This directly informed v5: raised burst IV gate and burst THR_OPEN, with low-z calm inventory flattening fallback."
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "VEV_4000 moneyness vs extract mid on ROUND_3 days 0-2: at each timestamp compute |4000/S-1| with S=VELVETFRUIT_EXTRACT mid. TTE mapping unchanged (round3description + plot_iv_smile intraday). Output: day-level fraction in band for ATM_REL=0.22 vs 0.24. IV remains implicit in strike selection for burst cluster width.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/vev4000_moneyness_by_day.json",
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/vev4000_moneyness_day0.json"
+    ],
+    "used_to_decide": "On days 0-2, |4000/S-1| is ~0.238 mean; 0% of ticks have |K/S-1|<=0.22 while 62-86% have <=0.24. Tightening burst to 0.22 drops all VEV_4000 quotes (falsifies narrow burst-only wing pull). v7 keeps 0.24 burst band and instead caps burst order size: best PnL so far (487) vs v5 (433)."
   }
 ]

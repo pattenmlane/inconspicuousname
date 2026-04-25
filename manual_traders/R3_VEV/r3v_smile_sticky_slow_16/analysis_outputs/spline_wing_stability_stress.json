@@ -1,0 +1,31 @@
+{
+  "method": "cubic spline in logk with lambda pull to quadratic baseline + natural BC",
+  "subsample_step": 100,
+  "stress": "evaluate 20% outside observed logk range",
+  "grid": [
+    {
+      "lambda_reg": 0.0,
+      "median_abs_slope_left": 0.06792806564620654,
+      "median_abs_slope_right": 0.3689206068841841,
+      "iqr_iv_left_ext": 0.35288272897269535,
+      "iqr_iv_right_ext": 0.08608648750809822,
+      "share_negative_wing_iv": 0.0
+    },
+    {
+      "lambda_reg": 0.15,
+      "median_abs_slope_left": 0.06111097948186991,
+      "median_abs_slope_right": 0.3727699333927007,
+      "iqr_iv_left_ext": 0.34504929175612026,
+      "iqr_iv_right_ext": 0.08995822908207685,
+      "share_negative_wing_iv": 0.0
+    },
+    {
+      "lambda_reg": 0.3,
+      "median_abs_slope_left": 0.05564122184723893,
+      "median_abs_slope_right": 0.37593083869488325,
+      "iqr_iv_left_ext": 0.3375528892263382,
+      "iqr_iv_right_ext": 0.09148852366367544,
+      "share_negative_wing_iv": 0.0
+    }
+  ]
+}

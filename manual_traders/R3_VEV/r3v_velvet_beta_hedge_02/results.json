@@ -1,0 +1,42 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "trader_v0.py",
+    "strategy_description": "Initial tilt: BS theo + vega-scaled extract ret/z shift; hydrogel MM; directional extract taker on strong z+ret (removed in later iterations after large losses).",
+    "total_profit": -187050,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v0.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 1,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Anchor VEV quotes to wall_mid + tilt; no extract overlay; hydrogel MM; grid arm vs v2 (inside-quote).",
+    "total_profit": 13043,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v1.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 2,
+    "trader_file": "trader_v2.py",
+    "strategy_description": "Parameter sweep: one-tick-inside bid/ask + integer vega-scaled tilt; no hydrogel (all strikes trade). TILT_AMP=4.5, VEV_SIZE=20.",
+    "total_profit": 8360,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v2.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "Parameter sweep: stronger z weight, larger VEV_SIZE=26, TILT_AMP=4.0.",
+    "total_profit": 8203,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v3.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "Combine v2-style inside-quote tilt with v1 hydrogel MM; TILT_AMP=4.0, VEV_SIZE=19 — best total in this sweep.",
+    "total_profit": 16039,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v4.py 3 --data Prosperity4Data --match-trades worse"
+  }
+]

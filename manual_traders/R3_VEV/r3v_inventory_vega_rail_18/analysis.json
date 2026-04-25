@@ -102,5 +102,18 @@
       "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v21_fill_summary.json"
     ],
     "used_to_decide": "v20/v21 were logical but too restrictive: only 2 submission trade events each and +79 total vs v12 +130. Keep v12 leader; future propagation logic should modulate edge/size continuously rather than hard skipping to avoid starving fills."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "Extended propagation (extract_propagation_extended.json, run_extract_propagation_extended.py): on each tick, du_extract, dmid per VEV, d(IV) from the same quadratic smile as trading vega, BS vega. Confirms OLS beta is stable (up vs down within ~0.2% of all-beta) and d(IV) on du is tiny vs price moves; 90p |du| is only 2 units so 'shock' gating misfired in v20. v22/v23 apply continuous per-strike THR_OPEN = THR_OPEN * clamp(BETA_REF/beta_K) to favor high-beta 5100/5200/5400 flow without hard skips; Greek thread unchanged (smile + bs_vega, vega rail).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/extract_propagation_extended.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/run_extract_propagation_extended.py",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v22_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v23_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v22_fill_summary.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v23_fill_summary.json"
+    ],
+    "used_to_decide": "Replaces v20 spread-shock hard skip with soft threshold scaling from tape betas. v22 and v22-clamp (v23) both reach +132 vs v12 +130; submission-side counts match prior ~3 (path dominated by one day). New leader: v22 (tie with v23; prefer v22 for stronger beta tilt)."
   }
 ]

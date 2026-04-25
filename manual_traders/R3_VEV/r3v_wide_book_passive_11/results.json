@@ -38,5 +38,13 @@
     "total_profit": 28867,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v4.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-out"
+  },
+  {
+    "iteration": 5,
+    "trader_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v5.py",
+    "strategy_description": "Parent v4. Added BS call vega from tape IV; extract skew = pos*delta*DELTA_SKEW + pos*vega*VEGA_SKEW (capped). Sweep: DELTA_SKEW=0.3, VEGA_SKEW=0.0005 (small vega hedge; 0.3/0 tied same total on grid but we keep vega term). Deep passive 4000/4500 unchanged.",
+    "total_profit": 29147,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-out"
   }
 ]

@@ -24,5 +24,15 @@
       "manual_traders/R3_VEV/r3v_wide_book_passive_11/tape_vev4000_4500_stats.json"
     ],
     "used_to_decide": "Best verified config improved total PnL from 27,938 to 28,867 by making VEV_4000 quotes slightly less deep (offset 5). This captures more fills while still monetizing very wide spread regimes; kept strategy concept unchanged."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "Extended analyze_tapes.py with Black\u2013Scholes call vega (S*phi(d1)*sqrt(T)) at implied IV from mids, same TTE map (day k \u2192 7\u2212k days). tape_vev4000_4500_stats.json now includes vega_mean per strike/day (e.g. ~10\u201313 at Round-3 TTEs). Backtest mini-grid over DELTA_SKEW\u00d7VEGA_SKEW on extract hedge; best merged PnL 29,147 vs v4 28,867.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/analyze_tapes.py",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/tape_vev4000_4500_stats.json",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter5_vega_hedge.json"
+    ],
+    "used_to_decide": "Tape shows both strikes still carry material vega despite delta\u22480.994; added vega-weighted term to extract skew. Lower delta skew 0.35\u21920.3 improved day-2 extract PnL vs v4 (+292 on day 2 in backtest), raising three-day total."
   }
 ]

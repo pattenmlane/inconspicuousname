@@ -1,0 +1,124 @@
+{
+  "ranked": [
+    {
+      "DELTA_SKEW": 0.3,
+      "VEGA_SKEW": 0.0,
+      "day_profits": [
+        11864,
+        13572,
+        3712
+      ],
+      "total_profit": 29147
+    },
+    {
+      "DELTA_SKEW": 0.3,
+      "VEGA_SKEW": 0.0005,
+      "day_profits": [
+        11864,
+        13572,
+        3712
+      ],
+      "total_profit": 29147
+    },
+    {
+      "DELTA_SKEW": 0.3,
+      "VEGA_SKEW": 0.001,
+      "day_profits": [
+        11864,
+        13572,
+        3712
+      ],
+      "total_profit": 29147
+    },
+    {
+      "DELTA_SKEW": 0.3,
+      "VEGA_SKEW": 0.0015,
+      "day_profits": [
+        11864,
+        13584,
+        3419
+      ],
+      "total_profit": 28867
+    },
+    {
+      "DELTA_SKEW": 0.35,
+      "VEGA_SKEW": 0.0,
+      "day_profits": [
+        11864,
+        13584,
+        3419
+      ],
+      "total_profit": 28867
+    },
+    {
+      "DELTA_SKEW": 0.35,
+      "VEGA_SKEW": 0.0005,
+      "day_profits": [
+        11864,
+        13584,
+        3419
+      ],
+      "total_profit": 28867
+    },
+    {
+      "DELTA_SKEW": 0.35,
+      "VEGA_SKEW": 0.001,
+      "day_profits": [
+        11864,
+        13584,
+        3419
+      ],
+      "total_profit": 28867
+    },
+    {
+      "DELTA_SKEW": 0.35,
+      "VEGA_SKEW": 0.0015,
+      "day_profits": [
+        11864,
+        13584,
+        3419
+      ],
+      "total_profit": 28867
+    },
+    {
+      "DELTA_SKEW": 0.4,
+      "VEGA_SKEW": 0.0,
+      "day_profits": [
+        11864,
+        13491,
+        2933
+      ],
+      "total_profit": 28288
+    },
+    {
+      "DELTA_SKEW": 0.4,
+      "VEGA_SKEW": 0.0005,
+      "day_profits": [
+        11864,
+        13491,
+        2933
+      ],
+      "total_profit": 28288
+    },
+    {
+      "DELTA_SKEW": 0.4,
+      "VEGA_SKEW": 0.001,
+      "day_profits": [
+        11864,
+        13491,
+        2933
+      ],
+      "total_profit": 28288
+    },
+    {
+      "DELTA_SKEW": 0.4,
+      "VEGA_SKEW": 0.0015,
+      "day_profits": [
+        11864,
+        13632,
+        2765
+      ],
+      "total_profit": 28261
+    }
+  ]
+}

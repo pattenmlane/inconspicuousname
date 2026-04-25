@@ -42,6 +42,15 @@ def bs_delta(S: float, K: float, T: float, sigma: float) -> float:
     return _N.cdf(d1)
 
 
+def bs_vega(S: float, K: float, T: float, sigma: float) -> float:
+    """Call vega: ∂C/∂σ (per 1.0 vol), same sign as standard BS."""
+    if T <= 0 or sigma <= 0:
+        return 0.0
+    v = sigma * math.sqrt(T)
+    d1 = (math.log(S / K) + 0.5 * v * v) / v
+    return S * _N.pdf(d1) * math.sqrt(T)
+
+
 def main():
     out = {}
     for day in (0, 1, 2):
@@ -75,6 +84,7 @@ def main():
             spreads = []
             ivs = []
             deltas = []
+            vegas = []
             K = STRIKE[v]
             for ts, d in by_ts.items():
                 if v not in d:
@@ -87,6 +97,7 @@ def main():
                 if iv is not None:
                     ivs.append(iv)
                     deltas.append(bs_delta(S, K, T, iv))
+                    vegas.append(bs_vega(S, K, T, iv))
             day_stats[v] = {
                 "spread_mean": sum(spreads) / len(spreads) if spreads else None,
                 "spread_median": sorted(spreads)[len(spreads) // 2] if spreads else None,
@@ -97,6 +108,7 @@ def main():
                     else None
                 ),
                 "delta_mean": sum(deltas) / len(deltas) if deltas else None,
+                "vega_mean": sum(vegas) / len(vegas) if vegas else None,
                 "n_ticks": len(spreads),
             }
         out[f"day_{day}"] = {"TTE_calendar_days": tte_days, "T_years": T, "per_vev": day_stats}

@@ -1,3 +1,4 @@
+import os
 from contextlib import closing, redirect_stdout
 from io import StringIO
 from IPython.utils.io import Tee
@@ -43,6 +44,9 @@ class TestRunner:
         timestamps_iterator = tqdm(timestamps, ascii=True) if self.show_progress_bar else timestamps
         for timestamp in timestamps_iterator:
             state = self.__initialize_trade_state(state, data, timestamp)
+            # Expose tape day index so strategies can map TTE per round3description.txt
+            # (historical day d in prices_round_3_day_d.csv <-> TTE = 8 - d days).
+            os.environ["PROSPERITY4_BACKTEST_DAY"] = str(self.day)
             orders = self.__run_trader(state, result, timestamp)
 
             # self.__validate_orders(orders)

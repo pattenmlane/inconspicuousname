@@ -80,6 +80,8 @@ class TestRunner:
     def __initialize_trade_state(self, state: TradingState, data: BacktestData, timestamp: int) -> TradingState:
 
         state.timestamp = timestamp
+        # Expose historical CSV day index for Round-3 option TTE mapping (DTE at open = 8 − day).
+        setattr(state, "backtest_day", int(data.day_num))
 
         for product in data.products:
             order_depth = OrderDepth()

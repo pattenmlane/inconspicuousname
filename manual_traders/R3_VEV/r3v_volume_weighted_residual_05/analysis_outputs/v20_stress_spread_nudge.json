@@ -1,0 +1,5 @@
+{
+  "method": "VEV_5400 new-entry limit prices on extract stress: |dS|>=2 vs prior mid. One tick off the touch toward the mid (sell at min(bb+1,ba-1), buy at max(ba-1,bb+1)) when spread>1; flatten (RESID_EXIT) still uses bb/ba.",
+  "rationale": "Backtest tradeHistory shows our SUBMISSION fills only on HYDROGEL_PACK and VEV_5400 (other VEV lines are other participants). underlying_to_voucher_response.json ranks 5400 highly for dV~dS with non-trivial calm spread; passivizing slightly on underlying shocks targets the only option we actually print while the book is perturbed.",
+  "shock_threshold_abs_dS": 2.0
+}

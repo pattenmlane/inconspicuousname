@@ -166,5 +166,16 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v19_symbol_thresholds.log",
     "trades_or_fills_summary": "trade_history_rows=7161, own_fill_rows=7161, own_fill_abs_qty_sum=20417; key rows VEV_5400=802, VEV_5500=671, VEV_5300=774, VEV_5200=621, VEV_5100=680, HYDROGEL_PACK=1207",
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v19.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v19_symbol_thresholds.log"
+  },
+  {
+    "iteration": 20,
+    "trader_file": "trader_v20.py",
+    "strategy_description": "Parent v8: on extract |dS|>=2, new VEV_5400 fade entries use one-tick-off-touch limits (toward mid); exits unchanged. Targets the only option we actually fill in v8 logs (SUBMISSION on 5400 + hydrogel).",
+    "total_profit": 13499,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v20_5400_stress_passive.log",
+    "trades_or_fills_summary": "trade_history_rows=4843, own_fill_rows=1577, own_fill_abs_qty_sum=4342; own SUBMISSION by symbol HYDROGEL_PACK=979, VEV_5400=598 (full tape also includes other participants on VEV_5500 etc.)",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v20.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v20_5400_stress_passive.log"
   }
 ]

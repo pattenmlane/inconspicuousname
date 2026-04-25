@@ -106,5 +106,14 @@
       "analysis_outputs/v19_symbol_thresholds.log"
     ],
     "used_to_decide": "Used this to intentionally increase signal usage on 5100/5200 and side-restrict weaker symbols. This produced much higher voucher turnover (e.g., VEV_5300/5200/5100 fill rows increased sharply) but reduced total PnL vs v8, indicating overtrading/noise despite predictive signal direction."
+  },
+  {
+    "iteration": 20,
+    "analysis_description": "Execution reality check: parsed v8/v18 tradeHistory — only rows with buyer or seller equal to SUBMISSION are our fills; they are **HYDROGEL_PACK** and **VEV_5400** only (other VEV lines in the log are other agents). underlying_to_voucher_response.json still motivates per-strike behavior, but only 5400 matters for our option PnL. Greek: 5400 remains an OTM call in the strip with meaningful vega (used in sizing) and moderate dV~dS.",
+    "analysis_outputs": [
+      "analysis_outputs/v20_stress_spread_nudge.json",
+      "analysis_outputs/v20_5400_stress_passive.log"
+    ],
+    "used_to_decide": "On |dS|>=2 (same 2-tick shock scale as the tape study), new 5400 entries use a one-tick-more-passive limit (off the touch toward mid) while keeping v8 EMA/residual/gates; flattening still lifts the touch. Improves total PnL vs v8 (13499 vs 13478) under worse fills — a small but real behavioral delta focused on the strike we actually trade."
   }
 ]

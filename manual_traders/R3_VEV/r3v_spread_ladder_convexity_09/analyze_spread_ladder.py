@@ -44,6 +44,14 @@ def implied_vol(S: float, K: float, T: float, r: float, price: float) -> float |
     return 0.5 * (lo + hi)
 
 
+def bs_delta(S: float, K: float, T: float, r: float, sigma: float) -> float:
+    if T <= 0 or sigma <= 0:
+        return 1.0 if S > K else 0.0
+    v = sigma * math.sqrt(T)
+    d1 = (math.log(S / K) + (r + 0.5 * sigma * sigma) * T) / v
+    return norm_cdf(d1)
+
+
 def tte_days_for_csv_day(csv_day: int) -> int:
     # round3description.txt: tape day 0 -> TTE 8d, day 1 -> 7d, day 2 -> 6d at open of that history slice
     return 8 - csv_day
@@ -164,8 +172,9 @@ def main() -> None:
         for (ts, bf), z in zip(bf_ts, zseq):
             if z is not None and abs(z) > 2.5:
                 iv_bump_samples.append({"csv_day": csv_day, "timestamp": ts, "bf_mid": round(bf, 3), "bf_z": round(z, 3)})
-        # IV bump mean (single pass, no giant CSV)
+        # IV bump mean + BS delta means (single pass)
         bumps: list[float] = []
+        delta_samples: dict[str, list[float]] = {s: [] for s in SYMS}
         for ts in sorted(by_ts):
             d = by_ts[ts]
             if U not in d or not all(s in d for s in SYMS):
@@ -182,8 +191,13 @@ def main() -> None:
                 iv_triple.append(iv)
             if ok:
                 bumps.append(iv_triple[1] - 0.5 * (iv_triple[0] + iv_triple[2]))
+                for lab, strike, iv in zip(SYMS, STRIKES_FLY, iv_triple):
+                    delta_samples[lab].append(bs_delta(S, float(strike), T, 0.0, iv))
         per_day_rows[-1]["iv_bump_mean"] = round(stats.mean(bumps), 6) if bumps else None
         per_day_rows[-1]["iv_bump_std"] = round(stats.pstdev(bumps), 6) if len(bumps) > 1 else None
+        for lab in SYMS:
+            ds = delta_samples[lab]
+            per_day_rows[-1][f"delta_{lab}_mean"] = round(stats.mean(ds), 5) if ds else None
 
     bf_path = OUT_DIR / "bf_mid_zscore_summary_by_day.csv"
     with bf_path.open("w", newline="") as f:

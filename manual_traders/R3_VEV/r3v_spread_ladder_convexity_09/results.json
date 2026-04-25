@@ -46,5 +46,13 @@
     "total_profit": 182,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 6,
+    "trader_file": "trader_v6.py",
+    "strategy_description": "Parent v5: CLIP 8 (grid best vs 10/12) — smaller fly per event to reduce slippage under match-trades worse; Z_HI 2.15, Z_LO 0.8, BF 400. Tape: BS net gamma of short fly at z>2.15 is small positive O(1e-3).",
+    "total_profit": 202,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
   }
 ]

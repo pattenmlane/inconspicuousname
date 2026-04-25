@@ -28,5 +28,13 @@
       "backtester grid: lower_entry 2.15/0.8/400/10 = 182; v4 baseline 124; w450 = -138; Z_LO 0.85 = -4"
     ],
     "used_to_decide": "Picked v5: lower Z_HI to 2.15 to capture a bit more of the tape’s high-z episodes without changing window/exit; leaves execution identical to v4."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "Greek: BS gamma per strike from implied vol (same IV/TTE as prior work; TTE = 8−d days at open). For rolling-z window 400 and z>2.15, portfolio gamma of position short 1 lot each wing / long 2 body: −Γ5000−Γ5200+2·Γ5100; mean ~1.8e−3 to 2.5e−3 by day 0–2 (larger as TTE shortens). Parameter grid on parent v5: CLIP 8 → 202 vs CLIP 10 → 182, CLIP 12 → 158; Z_LO 0.85 → 54; BF 380 → 24, BF 420 → −268; Z_HI 2.1/2.12 tie 182 with 2.15/0.8/400/10.",
+    "analysis_outputs": [
+      "terminal: gamma means per day; grid scores CLIP/exit/window (see used_to_decide)"
+    ],
+    "used_to_decide": "Ship v6 = v5 with CLIP_QTY 8 only; best PnL in local sweep, simpler than retuning z/window."
   }
 ]

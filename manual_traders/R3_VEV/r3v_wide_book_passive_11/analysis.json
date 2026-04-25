@@ -83,5 +83,15 @@
       "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v11.py"
     ],
     "used_to_decide": "Propagation asymmetry was real but adding the shock-adjusted offsets did not improve PnL in worse-fill optimization (best 56,804 in sweep; full run 56,803) relative to prior v10 56,804. By tie-break simplicity, keep v10 as effective champion while logging this analysis-backed null result."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "Lead/lag: at same tick, extract return vs VEV_4000/4500 return correlation is exactly 0.0 (artifact of static mids within row); one-tick and multi-tick lags show rising correlation to ~0.79-0.89 (day 0-2). This motivates using a smoothed extract price for Black-Scholes IV and greeks instead of only raw mid_u. Skew/liquidity: IV(4000)-IV(4500) from BS-1 of mids (T=(7-k)/365) negatively correlates ~-0.79 with mean of L1 spreads on 4000/4500, so high vertical skew in IV space lines up with tighter books. We tested EMA of that skew to conditionally deepen passive offset (+1) on 4000/4500, with sweep over IV_SKEW_HIGH, S_IV_EMA blend, IV_SKEW_EMA_ALPHA. Vega thread: recompute per-tick vega at implied IV (4000/4500 means ~10-13) for extract skew. Recorded in analysis_outputs_v11_lead_lag_skew.json.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/analysis_outputs_v11_lead_lag_skew.json",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter12_skew_depth.json",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v12.py"
+    ],
+    "used_to_decide": "Best grid point (S_IV_EMA=0.30, IV_SKEW_HIGH=0.34, IV_SKEW_EMA_ALPHA=0.10) still only reaches 34,814 on days 0-2 worse-fill vs 36,500 for the simpler v8. Deepening on high EMA skew reduced edge vs our wide-spread capture thesis. Keep v8 as practical champion; retain analysis for future (e.g. use S* only in hedge without extra depth, or use skew to shrink not widen in stressed tape)."
   }
 ]

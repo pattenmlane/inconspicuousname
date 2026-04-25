@@ -1,0 +1,32 @@
+{
+  "method": "Per day k in {0,1,2}, T= (7-k)/365. Aligned ticks with VELVETFRUIT_EXTRACT + VEV_4000 + VEV_4500. (1) Lead/lag: corr(log extract ret t->t+lag, log voucher ret same window). Lag 0 is identically 0.0 (same-timestamp mids). Lag1~0.59, lag5~0.87 for both strikes. (2) IV skew IV(4000)-IV(4500) from BS-1 of mids vs corr with mean L1 spread: ~-0.79 all days. (3) vega at IV from mid: 4000/4500 mean ~10-13. Implication: use smoothed extract for IV/greeks; gate depth by EMA of IV skew (high skew associates with tighter books on tape).",
+  "per_day": {
+    "0": {
+      "TTE_days": 7,
+      "iv_skew_mean": 0.3270,
+      "corr_iv_skew_vs_mean_spread_4000_4500": -0.7919,
+      "lead_lag_corr_4000": {"0": 0.0, "1": 0.5949, "2": 0.7387, "3": 0.8061, "5": 0.8744},
+      "lead_lag_corr_4500": {"0": 0.0, "1": 0.5956, "2": 0.7518, "3": 0.8214, "5": 0.8867},
+      "vega_mean_4000": 12.3981,
+      "vega_mean_4500": 12.8033
+    },
+    "1": {
+      "TTE_days": 6,
+      "iv_skew_mean": 0.3562,
+      "corr_iv_skew_vs_mean_spread_4000_4500": -0.7913,
+      "lead_lag_corr_4000": {"0": 0.0, "1": 0.5992, "2": 0.7273, "3": 0.7965, "5": 0.8647},
+      "lead_lag_corr_4500": {"0": 0.0, "1": 0.5964, "2": 0.7439, "3": 0.8148, "5": 0.8796},
+      "vega_mean_4000": 11.6629,
+      "vega_mean_4500": 11.9261
+    },
+    "2": {
+      "TTE_days": 5,
+      "iv_skew_mean": 0.3837,
+      "corr_iv_skew_vs_mean_spread_4000_4500": -0.7956,
+      "lead_lag_corr_4000": {"0": 0.0, "1": 0.5899, "2": 0.7351, "3": 0.8009, "5": 0.8714},
+      "lead_lag_corr_4500": {"0": 0.0, "1": 0.6011, "2": 0.7567, "3": 0.8210, "5": 0.8869},
+      "vega_mean_4000": 10.3358,
+      "vega_mean_4500": 10.9290
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "runs": [
+    {
+      "name": "g1",
+      "IV_SKEW_HIGH": 0.34,
+      "S_IV_EMA": 0.3,
+      "IV_SKEW_EMA_ALPHA": 0.1,
+      "total_profit": 34814
+    },
+    {
+      "name": "g2",
+      "IV_SKEW_HIGH": 0.36,
+      "S_IV_EMA": 0.35,
+      "IV_SKEW_EMA_ALPHA": 0.12,
+      "total_profit": 34501
+    },
+    {
+      "name": "g3",
+      "IV_SKEW_HIGH": 0.38,
+      "S_IV_EMA": 0.4,
+      "IV_SKEW_EMA_ALPHA": 0.12,
+      "total_profit": 34261
+    },
+    {
+      "name": "g4",
+      "IV_SKEW_HIGH": 0.36,
+      "S_IV_EMA": 0.35,
+      "IV_SKEW_EMA_ALPHA": 0.15,
+      "total_profit": 34498
+    },
+    {
+      "name": "g5",
+      "IV_SKEW_HIGH": 0.35,
+      "S_IV_EMA": 0.45,
+      "IV_SKEW_EMA_ALPHA": 0.12,
+      "total_profit": 34051
+    }
+  ],
+  "best": {
+    "name": "g1",
+    "IV_SKEW_HIGH": 0.34,
+    "S_IV_EMA": 0.3,
+    "IV_SKEW_EMA_ALPHA": 0.1,
+    "total_profit": 34814
+  }
+}

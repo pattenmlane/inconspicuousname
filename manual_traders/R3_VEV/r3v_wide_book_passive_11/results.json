@@ -115,5 +115,30 @@
       },
       "sweep_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter11_shock_asym.json"
     }
+  },
+  {
+    "iteration": 11,
+    "trader_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v12.py",
+    "strategy_description": "Return to original thesis (wide-book deep passive on VEV_4000/4500) from v8, with analysis from tape: (1) EMA-smoothed spot S* for BS IV, delta, vega (same-tick extract-voucher return corr=0, lag-1+ strong); (2) EMA of IV(4000)-IV(4500) skew, strong negative correlation with mean VEV spread \u2014 add +1 to passive depth when EMA skew > IV_SKEW_HIGH. Best sweep of S_IV_EMA, skew EMA rate, and IV_SKEW_HIGH in sweep_iter12_skew_depth.json. Underperformed v8 (36,500) on worse-fill: tie-break keep v8 as PnL champion; this logs the skew-depth null.",
+    "total_profit": 34814,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v12.py 3 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v12_iter11_out.json",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v12_iter11_full.log",
+    "trades_or_fills_summary": {
+      "per_day_profit": {
+        "day_0": 13577,
+        "day_1": 17118,
+        "day_2": 4119
+      },
+      "fills": 1862,
+      "fill_qty": 6375,
+      "fill_qty_by_symbol": {
+        "VEV_4000": 929,
+        "VELVETFRUIT_EXTRACT": 3399,
+        "HYDROGEL_PACK": 2047
+      },
+      "sweep_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter12_skew_depth.json"
+    }
   }
 ]

@@ -1,0 +1,363 @@
+"""
+Round 3 — r3v_cross_strike_iv_rank_07, iteration v26.
+
+Parent v24 (best PnL): smile-residual decile fade + beta soft sizing + move/spread stress scalers.
+
+Adds **Black–Scholes theta (Greek) soft sizing** (r=0, T from round3 DTE+winding): per voucher
+|Θ_day|/mid with Θ_day = -(S·φ(d1)·σ/(2√T))/365; wings show much larger θ/mid on historical tapes
+(theta_rel_by_strike_tape.json), so we gently reduce clip size where time decay per dollar is high.
+
+TTE: round3description + intraday winding (dte_eff = 8 - csv_day - (timestamp//100)/10000).
+"""
+from __future__ import annotations
+
+import json
+import math
+from typing import Any
+
+import numpy as np
+from prosperity4bt.datamodel import Listing, Order, OrderDepth, TradingState
+from scipy.stats import norm
+
+STRIKES = [4000, 4500, 5000, 5100, 5200, 5300, 5400, 5500, 6000, 6500]
+VOUCHERS = [f"VEV_{k}" for k in STRIKES]
+
+STABLE_BETA_T: dict[str, float] = {
+    "VEV_4000": 0.8147904803620967,
+    "VEV_4500": 0.8863297384121156,
+    "VEV_5000": 0.869793125175021,
+    "VEV_5100": 0.7623754588358679,
+    "VEV_5200": 0.5794965915049817,
+    "VEV_5300": 0.36400104876769795,
+    "VEV_5400": 0.17097535395909805,
+    "VEV_5500": 0.0750480685194896,
+    "VEV_6000": 0.0,
+    "VEV_6500": 0.0,
+}
+
+NEIGHBOR_RESIDUAL_CAP = 0.12
+BETA_REF = 0.72
+SOFT_SIZE_GAMMA = 0.4
+SIZE_MULT_MIN = 0.45
+SIZE_MULT_MAX = 1.12
+NEIGHBOR_LOOSEN_MAX = 0.0
+BETA_CAP_REF = 0.85
+
+# Soft stress sizing (grid constants for v24; v25 overrides in its file)
+MOVE_SHRINK = 50.0
+MULT_MOVE_MIN = 0.85
+SPREAD_EXTRA_REF = 2.0
+SPREAD_KAPPA = 0.035
+MULT_SPREAD_MIN = 0.82
+
+# BS theta (calendar day, r=0): |Θ_day|/mid; soft haircut 1/(1+THETA_K*theta_rel), floor THETA_MULT_MIN
+THETA_K = 1.2
+THETA_MULT_MIN = 0.55
+
+BASE_Q = 8
+MAX_CLUSTER_Q = 22
+WARMUP_STEPS = 8
+ACTION_STRIDE = 1
+EMA_S_N = 12
+_EMA_KEY = "ema_S"
+_PREV_S_ACTION = "S_prev_action"
+
+
+def _parse_td(raw: str | None) -> dict[str, Any]:
+    if not raw:
+        return {}
+    try:
+        o = json.loads(raw)
+        return o if isinstance(o, dict) else {}
+    except (json.JSONDecodeError, TypeError):
+        return {}
+
+
+def _sym_for_product(state: TradingState, product: str) -> str | None:
+    listings: dict[str, Listing] = getattr(state, "listings", {}) or {}
+    for sym, lst in listings.items():
+        if getattr(lst, "product", None) == product:
+            return sym
+    return None
+
+
+def _best_ba(depth: OrderDepth | None) -> tuple[int | None, int | None]:
+    if depth is None:
+        return None, None
+    buys = getattr(depth, "buy_orders", None) or {}
+    sells = getattr(depth, "sell_orders", None) or {}
+    if not buys or not sells:
+        return None, None
+    return max(buys.keys()), min(sells.keys())
+
+
+def dte_effective(csv_day: int, timestamp: int) -> float:
+    d0 = 8 - int(csv_day)
+    prog = (int(timestamp) // 100) / 10_000.0
+    return max(float(d0) - prog, 1e-6)
+
+
+def t_years(csv_day: int, timestamp: int) -> float:
+    return dte_effective(csv_day, timestamp) / 365.0
+
+
+def bs_call_price(S: float, K: float, T: float, sigma: float, r: float = 0.0) -> float:
+    if T <= 0:
+        return max(S - K, 0.0)
+    if sigma <= 1e-12:
+        return max(S - K, 0.0)
+    v = sigma * math.sqrt(T)
+    d1 = (math.log(S / K) + (r + 0.5 * sigma * sigma) * T) / v
+    d2 = d1 - v
+    return S * norm.cdf(d1) - K * math.exp(-r * T) * norm.cdf(d2)
+
+
+def _bs_theta_day_abs_rel(S: float, K: float, T: float, sigma: float, mid: float, r: float = 0.0) -> float:
+    """|Θ| per calendar day / mid, Θ = ∂C/∂t_cal = -∂C/∂T, Black–Scholes call, T in years."""
+    if T <= 1e-12 or sigma <= 1e-12 or S <= 0.0 or K <= 0.0 or mid <= 0.0:
+        return 0.0
+    v = sigma * math.sqrt(T)
+    d1 = (math.log(S / K) + (r + 0.5 * sigma * sigma) * T) / v
+    d2 = d1 - v
+    # ∂C/∂T (holding S,K,r,σ): standard BS; calendar decay uses -∂C/∂T
+    dCdT = S * norm.pdf(d1) * sigma / (2.0 * math.sqrt(T)) + r * K * math.exp(-r * T) * norm.cdf(d2) - r * S * math.exp(-r * T) * norm.cdf(d1)
+    theta_day = -dCdT / 365.0
+    return abs(theta_day) / max(mid, 1e-6)
+
+
+def _theta_size_mult(theta_rel: float) -> float:
+    m = 1.0 / (1.0 + THETA_K * max(0.0, theta_rel))
+    return max(THETA_MULT_MIN, min(1.0, m))
+
+
+def implied_vol_call(market: float, S: float, K: float, T: float, r: float = 0.0) -> float:
+    intrinsic = max(S - K, 0.0)
+    if market <= intrinsic + 1e-9:
+        return float("nan")
+    if market >= S - 1e-9:
+        return float("nan")
+    if S <= 0 or K <= 0 or T <= 0:
+        return float("nan")
+
+    def f(sig: float) -> float:
+        return bs_call_price(S, K, T, sig, r) - market
+
+    lo, hi = 1e-5, 15.0
+    fl, fh = f(lo), f(hi)
+    if fl > 0 or fh < 0:
+        return float("nan")
+    for _ in range(50):
+        mid = 0.5 * (lo + hi)
+        fm = f(mid)
+        if fm > 0:
+            hi = mid
+        else:
+            lo = mid
+    return 0.5 * (lo + hi)
+
+
+def _update_csv_day(td: dict[str, Any], ts: int, S: float) -> int:
+    if ts != 0:
+        return int(td.get("csv_day", 0))
+    hist = td.get("open_S_hist")
+    if not isinstance(hist, list):
+        hist = []
+    cur = round(float(S), 2)
+    if not hist or abs(float(hist[-1]) - cur) > 0.25:
+        hist.append(cur)
+    td["open_S_hist"] = hist[:4]
+    return max(0, min(len(hist) - 1, 2))
+
+
+def _ema(prev: float | None, x: float, n: int) -> float:
+    if prev is None:
+        return x
+    a = 2.0 / (n + 1.0)
+    return a * x + (1.0 - a) * prev
+
+
+def _quadratic_residuals(S: float, T: float, k_list: list[float], iv_list: list[float]) -> list[float] | None:
+    if len(iv_list) < 5 or T <= 0.0 or S <= 0.0:
+        return None
+    sqrtT = math.sqrt(T)
+    m_arr = []
+    y_arr = []
+    for k, sig in zip(k_list, iv_list):
+        if not math.isfinite(sig) or k <= 0.0:
+            return None
+        m_arr.append(math.log(k / S) / sqrtT)
+        y_arr.append(sig)
+    m_np = np.asarray(m_arr, dtype=float)
+    y_np = np.asarray(y_arr, dtype=float)
+    try:
+        coeff = np.polyfit(m_np, y_np, 2)
+    except (ValueError, np.linalg.LinAlgError):
+        return None
+    if not np.all(np.isfinite(coeff)):
+        return None
+    pred = np.polyval(coeff, m_np)
+    return (y_np - pred).tolist()
+
+
+def _beta_for_product(prod: str) -> float:
+    b = STABLE_BETA_T.get(prod, 0.0)
+    return b if math.isfinite(b) and b > 0.0 else 0.0
+
+
+def _soft_size_mult(beta: float) -> float:
+    if beta <= 0.0 or BETA_REF <= 0.0:
+        return SIZE_MULT_MIN
+    raw = (beta / BETA_REF) ** SOFT_SIZE_GAMMA
+    return max(SIZE_MULT_MIN, min(SIZE_MULT_MAX, raw))
+
+
+def _effective_neighbor_cap(beta: float) -> float:
+    t = min(beta / BETA_CAP_REF, 1.0) if BETA_CAP_REF > 0.0 else 0.0
+    return NEIGHBOR_RESIDUAL_CAP + NEIGHBOR_LOOSEN_MAX * (1.0 - t)
+
+
+def _move_size_mult(td: dict[str, Any], S_raw: float) -> float:
+    prev = td.get(_PREV_S_ACTION)
+    td[_PREV_S_ACTION] = float(S_raw)
+    if not isinstance(prev, (int, float)):
+        return 1.0
+    d_rel = abs(float(S_raw) - float(prev)) / max(float(S_raw), 1.0)
+    m = 1.0 / (1.0 + MOVE_SHRINK * d_rel)
+    return max(MULT_MOVE_MIN, min(1.0, m))
+
+
+def _spread_size_mult(spread_ticks: int) -> float:
+    extra = max(0.0, float(spread_ticks) - SPREAD_EXTRA_REF)
+    m = 1.0 / (1.0 + SPREAD_KAPPA * extra)
+    return max(MULT_SPREAD_MIN, min(1.0, m))
+
+
+class Trader:
+    def run(self, state: TradingState):
+        td = _parse_td(getattr(state, "traderData", None))
+        ts = int(getattr(state, "timestamp", 0))
+        pos: dict[str, int] = getattr(state, "position", None) or {}
+        depths: dict[str, OrderDepth] = getattr(state, "order_depths", None) or {}
+
+        sym_u = _sym_for_product(state, "VELVETFRUIT_EXTRACT")
+        if sym_u is None:
+            return {}, 0, json.dumps(td, separators=(",", ":"))
+
+        du = depths.get(sym_u)
+        ubb, uba = _best_ba(du)
+        if ubb is None or uba is None:
+            return {}, 0, json.dumps(td, separators=(",", ":"))
+
+        S_raw = 0.5 * (ubb + uba)
+        ema_s = td.get(_EMA_KEY)
+        ema_s_f = float(ema_s) if isinstance(ema_s, (int, float)) else None
+        ema_s_f = _ema(ema_s_f, S_raw, EMA_S_N)
+        td[_EMA_KEY] = ema_s_f
+        S = ema_s_f
+
+        csv_day = _update_csv_day(td, ts, S_raw)
+        td["csv_day"] = csv_day
+
+        if ts // 100 < WARMUP_STEPS:
+            return {}, 0, json.dumps(td, separators=(",", ":"))
+        if (ts // 100) % ACTION_STRIDE != 0:
+            return {}, 0, json.dumps(td, separators=(",", ":"))
+
+        mm = _move_size_mult(td, S_raw)
+
+        T = t_years(csv_day, ts)
+
+        ivs: list[float] = []
+        k_list: list[float] = []
+        bids: list[int] = []
+        asks: list[int] = []
+        syms: list[str] = []
+        prods: list[str] = []
+        mids: list[float] = []
+
+        for prod in VOUCHERS:
+            sym = _sym_for_product(state, prod)
+            if sym is None:
+                continue
+            d = depths.get(sym)
+            bb, ba = _best_ba(d)
+            if bb is None or ba is None:
+                continue
+            mid = 0.5 * (bb + ba)
+            K = float(prod.split("_")[1])
+            iv = implied_vol_call(mid, S, K, T, 0.0)
+            if not math.isfinite(iv):
+                continue
+            ivs.append(iv)
+            k_list.append(K)
+            bids.append(int(bb))
+            asks.append(int(ba))
+            syms.append(sym)
+            prods.append(prod)
+            mids.append(float(mid))
+
+        n = len(ivs)
+        if n < 8:
+            return {}, 0, json.dumps(td, separators=(",", ":"))
+
+        res = _quadratic_residuals(S, T, k_list, ivs)
+        if res is None or len(res) != n:
+            rank_key = list(ivs)
+        else:
+            rank_key = res
+
+        order_idx = sorted(range(n), key=lambda i: rank_key[i])
+        low_pair = set(order_idx[:2])
+        high_pair = set(order_idx[-2:])
+
+        def neighbor_rank_gap(i: int) -> float:
+            gaps = []
+            if i > 0:
+                gaps.append(abs(rank_key[i] - rank_key[i - 1]))
+            if i < n - 1:
+                gaps.append(abs(rank_key[i] - rank_key[i + 1]))
+            return max(gaps) if gaps else 0.0
+
+        orders_by_sym: dict[str, list[Order]] = {}
+
+        def add_o(sym: str, price: int, qty: int) -> None:
+            if qty == 0:
+                return
+            orders_by_sym.setdefault(sym, []).append(Order(sym, int(price), int(qty)))
+
+        for i in range(n):
+            sym = syms[i]
+            prod = prods[i]
+            beta = _beta_for_product(prod)
+            cap_i = _effective_neighbor_cap(beta)
+            sm = _soft_size_mult(beta)
+            sp = int(asks[i] - bids[i])
+            ms = _spread_size_mult(sp)
+            tr = _bs_theta_day_abs_rel(S, k_list[i], T, ivs[i], mids[i], 0.0)
+            tm = _theta_size_mult(tr)
+            stress = mm * ms * tm
+
+            pos_i = int(pos.get(sym, 0))
+            lim = 300
+            bb2, ba2 = bids[i], asks[i]
+            if neighbor_rank_gap(i) > cap_i:
+                continue
+            q_use = int(round(BASE_Q * sm * stress))
+            q_use = max(1, min(lim, q_use))
+            if i > 0 and ((i - 1) in low_pair or (i - 1) in high_pair):
+                q_use = min(MAX_CLUSTER_Q, int(round(BASE_Q * 2 * sm * stress)))
+                q_use = max(1, min(lim, q_use))
+            if i < n - 1 and ((i + 1) in low_pair or (i + 1) in high_pair):
+                q_use = min(MAX_CLUSTER_Q, max(q_use, int(round(BASE_Q * 2 * sm * stress))))
+                q_use = max(1, min(lim, q_use))
+
+            if i in low_pair:
+                qb = min(q_use, lim - pos_i)
+                if qb > 0 and bb2 + 1 < ba2:
+                    add_o(sym, bb2 + 1, qb)
+            if i in high_pair:
+                qs = min(q_use, lim + pos_i)
+                if qs > 0 and ba2 - 1 > bb2:
+                    add_o(sym, ba2 - 1, -qs)
+
+        return orders_by_sym, 0, json.dumps(td, separators=(",", ":"))

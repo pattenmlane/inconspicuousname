@@ -125,5 +125,18 @@
       "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v25_round3_worse_fills_summary.json"
     ],
     "used_to_decide": "Tape work showed limited cross-bin spread lift vs large horizon extract moves, so stress sizing stays mild multiplicative (no gates). v24/v25 add move+spread scalers on top of v23; both reach total_profit 4671 (+4 vs v23). v25 grid (softer constants) ties v24; keep v24 as the documented default for slightly stronger defensive skew. Next: optional IV rank using vega-weighted residual noise when spread is wide, or tune MOVE_SHRINK only on high-beta legs."
+  },
+  {
+    "iteration": 26,
+    "analysis_description": "Round-3 tapes + BS: (1) extract_move_asymmetry_voucher_response.json — signed 1-tick and 5-tick extract changes vs voucher |Δmid| and |Δspread|; ratios up/down are ~0.97–0.99 (no meaningful asymmetry to gate on). (2) theta_rel_by_strike_tape.json — from subsampled mids, bisection IV, T=dte_eff/365; |Θ_day|/mid rises sharply into OTM wings (e.g. VEV_5000 median ~0.006 vs VEV_6500 ~0.75), matching intuition that far OTM decay risk per premium dollar dominates. (3) Backtests v26/v27 add live theta_rel scaler on top of v24.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/extract_move_asymmetry_voucher_response.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/theta_rel_by_strike_tape.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v26_round3_worse.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v27_round3_worse.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v26_round3_worse_fills_summary.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v27_round3_worse_fills_summary.json"
+    ],
+    "used_to_decide": "No tradeable up/down asymmetry on extract moves; do not add directional filters. Theta/mid ladder is strong and cross-sectionally stable on tape, so v26 applies a soft size haircut where |Θ_day|/mid is high (wings) while keeping residual-decile signal unchanged. v26 and v27 both reach total_profit 4673 (+2 vs v24); v27’s gentler THETA_K ties v26—keep v26 as default reference. Branch best is now v26/v27; still orders of magnitude below the ~800k surface bar."
   }
 ]

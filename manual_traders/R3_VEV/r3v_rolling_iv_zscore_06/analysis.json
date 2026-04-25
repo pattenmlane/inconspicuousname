@@ -16,5 +16,11 @@
     "analysis_description": "IV/Greek-grounded continuation: recomputed conditional expectancy on ROUND_3 with BS-implied IV (from mids) and call delta/vega proxies. Extreme positive-z events were nearly absent at high thresholds, while extreme negative-z events remained and had positive mean +5-tick option return/IV-change. Parameter grid (long-only shell from v3) over Z_ENTRY {3.5,4.5,5.5,6.0}, Z_EXIT {0.2,0.5,0.8}, MAX_SPREAD {4,5,6}, ORDER_Q {8,10,12,16} showed best aggregate PnL at Z_ENTRY=6.0, Z_EXIT=0.2, MAX_SPREAD=4. Delta gating tests (d<=cap, d>=floor) did not improve over ungated long-only at this threshold.",
     "analysis_outputs": [],
     "used_to_decide": "Selected v5 as the next parent because it improves total PnL from -300 (v4) to -83 while preserving the same single-strike rolling-IV-z thesis and simple implementation."
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "Smile / IV skew: For each timestamp, BS implied IV at all VEV mids vs VELVETFRUIT_EXTRACT (T=7/365, r=0). Tested (i) rolling z on **residual** IV: IV(5000) minus median(IV(4500,5100,5200,5300)) \u2014 forward +5-tick VEV_5000 return correlation with z similar to raw; grid Z_ENTRY x MAX_SPREAD on pure-residual z underperformed v5 (e.g. best ~-136). (ii) **Hybrid** in trader_v6: keep rolling z on **raw** IV(5000) (parent v5) and require cheap-on-smile IV(5000)<=median(neighbors) for new longs. Backtest total PnL -83, identical to v5 on this tape, so the filter is effectively a no-op or matches v5 trades.",
+    "analysis_outputs": [],
+    "used_to_decide": "Ship v6 as documented smile-aware variant; do not replace v5 for PnL on days 0-2. Pure residual-z path rejected as worse than v5; hybrid preserves best known PnL with clearer economic interpretation (strike vs smile)."
   }
 ]

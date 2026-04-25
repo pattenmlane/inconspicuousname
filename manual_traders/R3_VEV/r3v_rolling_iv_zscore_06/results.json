@@ -46,5 +46,13 @@
     "total_profit": -83,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v5.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 6,
+    "trader_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v6.py",
+    "strategy_description": "Same rolling raw-IV z as v5 (long-only, Z_ENTRY=6, spread<=4) with optional cross-strike filter: only add long when IV(5000)<=median neighbor IVs (4500,5100,5200,5300) when 2+ neighbors valid; else behave as v5.",
+    "total_profit": -83,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v6.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

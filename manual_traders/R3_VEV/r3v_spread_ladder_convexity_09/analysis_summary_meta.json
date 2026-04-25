@@ -1,0 +1,65 @@
+{
+  "tte_mapping": "From round3work/round3description.txt: historical tape day d uses TTE = 8 - d days at the start of that day slice (example: day 1 -> 8d, day 2 -> 7d, day 3 -> 6d in doc; our CSVs are day_0, day_1, day_2 so TTE = 8,7,6).",
+  "iv_method": "Black-Scholes European call; bisection implied vol from mid; r=0; T = (TTE_days)/365 with TTE from mapping above.",
+  "greeks": "Analytical BS delta per strike using implied vol at each timestamp.",
+  "butterfly_mid_z": {
+    "rolling_window": 500,
+    "conditional_mean_next_bf_delta_when_z_gt_threshold": {
+      "0": {
+        "z_gt_1.5": {
+          "count": 1155.0,
+          "mean_next_bf_delta": -0.4818181818181818
+        },
+        "z_gt_2.0": {
+          "count": 437.0,
+          "mean_next_bf_delta": -0.6807780320366132
+        },
+        "z_gt_2.5": {
+          "count": 148.0,
+          "mean_next_bf_delta": -0.8277027027027027
+        },
+        "z_gt_3.0": {
+          "count": 16.0,
+          "mean_next_bf_delta": -1.3125
+        }
+      },
+      "1": {
+        "z_gt_1.5": {
+          "count": 1158.0,
+          "mean_next_bf_delta": -0.49352331606217614
+        },
+        "z_gt_2.0": {
+          "count": 440.0,
+          "mean_next_bf_delta": -0.678409090909091
+        },
+        "z_gt_2.5": {
+          "count": 133.0,
+          "mean_next_bf_delta": -0.8233082706766918
+        },
+        "z_gt_3.0": {
+          "count": 24.0,
+          "mean_next_bf_delta": -1.0208333333333333
+        }
+      },
+      "2": {
+        "z_gt_1.5": {
+          "count": 1246.0,
+          "mean_next_bf_delta": -0.36918138041733545
+        },
+        "z_gt_2.0": {
+          "count": 511.0,
+          "mean_next_bf_delta": -0.5322896281800391
+        },
+        "z_gt_2.5": {
+          "count": 152.0,
+          "mean_next_bf_delta": -0.7631578947368421
+        },
+        "z_gt_3.0": {
+          "count": 24.0,
+          "mean_next_bf_delta": -0.8541666666666666
+        }
+      }
+    },
+    "note": "If convexity is overstated at high z, next bf delta tends negative (short fly profits)."
+  }
+}

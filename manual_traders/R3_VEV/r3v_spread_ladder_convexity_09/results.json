@@ -1,0 +1,34 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "trader_v0.py",
+    "strategy_description": "Fade rich 5000-5100-5200 mid butterfly: enter short fly when rolling z>2.0, exit z<0.5; clip 18; bid/ask touch; IV bump EMA logged only.",
+    "total_profit": -51462,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v0.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 1,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Stricter z>2.5, exit z<1.0, clip 8, require IV bump EMA>0 to enter; fewer trades — days 1-2 flat.",
+    "total_profit": -6160,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v1.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 2,
+    "trader_file": "trader_v2.py",
+    "strategy_description": "Passive one tick inside spread when width>1; z 2.25/0.75, window 500, clip 10 — near flat aggregate.",
+    "total_profit": -18,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v2.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "Same passive prices as v2; BF_WINDOW 400; z 2.1/0.65 — best backtest so far; still far below extract+all-VEV benchmark.",
+    "total_profit": 94,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v3.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  }
+]

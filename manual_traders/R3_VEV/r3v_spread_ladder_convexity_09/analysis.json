@@ -1,0 +1,13 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round 3 tapes days 0–2: TTE at slice open = 8,7,6 days per round3description.txt (CSV day d → 8−d). Black–Scholes implied vol from mids (r=0, T=TTE/365). Rolling z-score (500 ticks) of mid butterfly C5000+C5200−2·C5100; conditional mean next-tick bf change when z>threshold (grid 1.5–3.0). Per-day bf/IV bump summary CSVs.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/analysis_summary_meta.json",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/bf_mid_zscore_summary_by_day.csv",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/bf_high_z_sample_ticks.csv",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/analyze_spread_ladder.py"
+    ],
+    "used_to_decide": "High z associates with negative next bf delta on tape (convexity overstated), motivating short-fly fade; monotone vertical on mids holds (no literal arb violations). Chose z entry grid and shorter window in v3 after v0 crossing cost and v1 bump filter blocking volume."
+  }
+]

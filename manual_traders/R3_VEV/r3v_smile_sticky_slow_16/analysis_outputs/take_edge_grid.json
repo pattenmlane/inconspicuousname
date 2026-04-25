@@ -1,0 +1,100 @@
+{
+  "method": "per timestamp/day fit instantaneous vega-weighted quadratic smile then compute abs(mid-fair) and half-spread",
+  "rows": 2508,
+  "edge_threshold_grid": [
+    {
+      "abs_edge_thr": 0.5,
+      "n": 1355,
+      "median_half_spread": 1.5,
+      "share_hs_le_2": 0.7586715867158672,
+      "share_hs_ge_8": 0.007380073800738007
+    },
+    {
+      "abs_edge_thr": 1.0,
+      "n": 905,
+      "median_half_spread": 1.0,
+      "share_hs_le_2": 0.7900552486187845,
+      "share_hs_ge_8": 0.0066298342541436465
+    },
+    {
+      "abs_edge_thr": 1.5,
+      "n": 525,
+      "median_half_spread": 1.0,
+      "share_hs_le_2": 0.8933333333333333,
+      "share_hs_ge_8": 0.0
+    },
+    {
+      "abs_edge_thr": 2.0,
+      "n": 315,
+      "median_half_spread": 1.0,
+      "share_hs_le_2": 0.9809523809523809,
+      "share_hs_ge_8": 0.0
+    },
+    {
+      "abs_edge_thr": 3.0,
+      "n": 60,
+      "median_half_spread": 0.5,
+      "share_hs_le_2": 0.9833333333333333,
+      "share_hs_ge_8": 0.0
+    },
+    {
+      "abs_edge_thr": 4.0,
+      "n": 0,
+      "median_half_spread": null,
+      "share_hs_le_2": null,
+      "share_hs_ge_8": null
+    }
+  ],
+  "by_voucher": {
+    "VEV_4000": {
+      "n": 33,
+      "median_abs_edge": 0.3520501926486759,
+      "median_half_spread": 10.5
+    },
+    "VEV_4500": {
+      "n": 75,
+      "median_abs_edge": 0.43154702079937124,
+      "median_half_spread": 8.0
+    },
+    "VEV_5000": {
+      "n": 300,
+      "median_abs_edge": 0.9853273341482236,
+      "median_half_spread": 3.0
+    },
+    "VEV_5100": {
+      "n": 300,
+      "median_abs_edge": 0.8950712432990713,
+      "median_half_spread": 2.0
+    },
+    "VEV_5200": {
+      "n": 300,
+      "median_abs_edge": 0.7117795192027643,
+      "median_half_spread": 1.5
+    },
+    "VEV_5300": {
+      "n": 300,
+      "median_abs_edge": 1.5011997985970993,
+      "median_half_spread": 1.0
+    },
+    "VEV_5400": {
+      "n": 300,
+      "median_abs_edge": 2.521130945488494,
+      "median_half_spread": 0.5
+    },
+    "VEV_5500": {
+      "n": 300,
+      "median_abs_edge": 0.3273664967518073,
+      "median_half_spread": 0.5
+    },
+    "VEV_6000": {
+      "n": 300,
+      "median_abs_edge": 0.41465057485577406,
+      "median_half_spread": 0.5
+    },
+    "VEV_6500": {
+      "n": 300,
+      "median_abs_edge": 0.4596724135670245,
+      "median_half_spread": 0.5
+    }
+  }
+}

@@ -18,9 +18,33 @@
   {
     "iteration": 2,
     "trader_file": "trader_v2.py",
-    "strategy_description": "Same as v1 plus wing liquidity filter: for strikes 4000/4500/6500, if half-spread >= 8 require |mid−fair| >= 0.85*half_spread before quoting (from tape median wing spreads ~16–21 vs ATM ~3).",
+    "strategy_description": "Same as v1 plus wing liquidity filter: for strikes 4000/4500/6500, if half-spread >= 8 require |mid\u2212fair| >= 0.85*half_spread before quoting (from tape median wing spreads ~16\u201321 vs ATM ~3).",
     "total_profit": 19255,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v2.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "Pivot attempt (falsified): added aggressive selective taker leg on tight books when |edge|>=2.0 while keeping sticky EWMA smile + hydrogel MM. This overtraded near-ATM vouchers and caused large losses on days 1-2.",
+    "total_profit": -4662,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v3.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "Conservative taker rollback: only near-ATM strikes (5000-5400), tighter spread/edge gates, smaller passive/taker sizes; still underperformed baseline sticky passive approach.",
+    "total_profit": 11752,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v4.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 5,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "Return to v2 architecture (sticky EWMA smile + wing liquidity filter) with stricter wing edge multiplier=1.0. Performance tied with v2; prefer v2 for simpler calibrated config.",
+    "total_profit": 19255,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
   }
 ]

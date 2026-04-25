@@ -1,2 +1,3 @@
 # Large local backtest logs — keep on disk, do not commit
 backtests/
+round3_analysis/__pycache__/

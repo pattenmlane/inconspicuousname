@@ -109,5 +109,16 @@
       "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter14_fill_summary.json"
     ],
     "used_to_decide": "Very-low-beta strikes (6000/6500/5500) were mostly noise under worse fills; v14 suppresses or shrinks those while preserving high-beta/core strikes. Result 46,996 < v13 47,709, so keep v13 lead and treat beta-bucket attenuation as over-pruning for this tape."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "Up/down *residual* asymmetry on *large* |dS| (pooled R3, consecutive timestamp pairs): pooled OLS betas dV/dS are near-symmetric by sign, but for |dS| at or above the 80th percentile (~1.5 price units) the mean residual (dV - bpool*dS) is negative on up moves and positive on down for strikes 4000-5500 (e.g. VEV_5000 gap ~0.11). Suggests voucher mids lag a fixed-\u03b2 linear model after big extract moves. IV/Greek path unchanged from v13 (BS from LOO fair IV, intraday T).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analyze_underlying_updown_asymmetry.py",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analysis_underlying_updown_asymmetry.json",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter15_backtest.log",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter15_fill_summary.json"
+    ],
+    "used_to_decide": "parent v15 from v13 (not v14). Apply per-strike \u03bb = mean_resid_up - mean_resid_down from the large-move block: shift BS fair by -sign(dS_ex)*w*\u03bb with w cap 0.45 and |dS| scale to jump threshold 3, gate |dS|>=0.4. Interprets 'pause/widen' regime as *signed* dislocation (buy after up when fair is nudged down vs LSMILE). Day-2 PnL improves vs v14 (11,898 vs 12,084) while day-0 matches v14\u2019s lift on 8,970; three-day total 47,762 > v14 46,996 and v13 47,709. Ops: prosperity4bt defaults to opening the web visualizer; use --no-vis for non-interactive backtests (otherwise process can block after day 1)."
   }
 ]

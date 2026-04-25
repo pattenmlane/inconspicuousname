@@ -19,29 +19,38 @@
   },
   {
     "iteration": 2,
-    "analysis_description": "IV smile shape vs microstructure (days 0–2, subsample 200): per timestamp, fit IV (BS from mid) linearly in m_t=log(K/S)/sqrt(T); report residual skew (IV at max m_t minus at min m_t) and correlate with top-of-book spread on VEV_5200. Confirms no stable linear link between that skew proxy and local spread in this sample.",
+    "analysis_description": "IV smile shape vs microstructure (days 0\u20132, subsample 200): per timestamp, fit IV (BS from mid) linearly in m_t=log(K/S)/sqrt(T); report residual skew (IV at max m_t minus at min m_t) and correlate with top-of-book spread on VEV_5200. Confirms no stable linear link between that skew proxy and local spread in this sample.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/iv_smile_skew_vs_spread_5200.csv",
       "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/iv_smile_skew_vs_spread_summary.json"
     ],
-    "used_to_decide": "Kept the joint RV-vs-ATM-IV width thesis; did not add skew-spread gating. Tried per-tick BS-delta extract hedge (Greek) in code but backtests (v6/v7) trailed v4—disabled by default. Parameter sweep on v4 take edge (v8–v11) nudged PnL; v10 (TAKE_EDGE_MULT=0.63) best in session."
+    "used_to_decide": "Kept the joint RV-vs-ATM-IV width thesis; did not add skew-spread gating. Tried per-tick BS-delta extract hedge (Greek) in code but backtests (v6/v7) trailed v4\u2014disabled by default. Parameter sweep on v4 take edge (v8\u2013v11) nudged PnL; v10 (TAKE_EDGE_MULT=0.63) best in session."
   },
   {
     "iteration": 3,
-    "analysis_description": "BS theta on focal ATM (VEV_5200): θ = -S·φ(d₁)·σ/(2√T) with r=0, IV from BS inversion of mid at K=5200; carry proxy = max(0,−θ)/S; compared to IV_atm - RV of extract (rolling 30 timesteps) on days 0–2 subsample. Correlation(IV−RV, carry) ≈ -0.11 (weak/negative, not a clean second factor in linear sense).",
+    "analysis_description": "BS theta on focal ATM (VEV_5200): \u03b8 = -S\u00b7\u03c6(d\u2081)\u00b7\u03c3/(2\u221aT) with r=0, IV from BS inversion of mid at K=5200; carry proxy = max(0,\u2212\u03b8)/S; compared to IV_atm - RV of extract (rolling 30 timesteps) on days 0\u20132 subsample. Correlation(IV\u2212RV, carry) \u2248 -0.11 (weak/negative, not a clean second factor in linear sense).",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/theta_atm5200_vs_iv_minus_rv.csv",
       "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/theta_atm5200_summary.json"
     ],
-    "used_to_decide": "Added optional small blend of (carry/S)-scaled time decay into the IV−RV regime in trader_v0; children v12–v15 nest from v10. Micro-sweep: v14 (THETA_REGIME_WEIGHT=0.16) best at 59,976; stronger theta (v13) not better than v12–v14. Still no pivot away from core thesis; benchmark ~800k remains distant."
+    "used_to_decide": "Added optional small blend of (carry/S)-scaled time decay into the IV\u2212RV regime in trader_v0; children v12\u2013v15 nest from v10. Micro-sweep: v14 (THETA_REGIME_WEIGHT=0.16) best at 59,976; stronger theta (v13) not better than v12\u2013v14. Still no pivot away from core thesis; benchmark ~800k remains distant."
   },
   {
     "iteration": 4,
-    "analysis_description": "Vega-weighted mispricing vs book: at each subsample timestamp, for each strike compute model-IV BS theo and vega; mispricing = mid−theo; aggregate vega-weighted mean mispricing and mean top-of-book spread across strikes. Corr(vega_w_mispr, mean_spread) small positive (~0.08) on 150 points—suggests weak co-movement, not a strong linear signal for a second gate in this cut.",
+    "analysis_description": "Vega-weighted mispricing vs book: at each subsample timestamp, for each strike compute model-IV BS theo and vega; mispricing = mid\u2212theo; aggregate vega-weighted mean mispricing and mean top-of-book spread across strikes. Corr(vega_w_mispr, mean_spread) small positive (~0.08) on 150 points\u2014suggests weak co-movement, not a strong linear signal for a second gate in this cut.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/vega_w_mispricing_vs_mean_spread.csv",
       "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/vega_w_mispricing_summary.json"
     ],
-    "used_to_decide": "Nested on best parent v14: optional VEV_HALF_MAX clamp in trader_v0; sweeps v16–v21 (cap 32/25, TAKE 0.60/0.615/0.66, theta 0.18) did not improve over v14 (59,976) on R3 0–2. Tie-keep v14 as champion; no thesis change."
+    "used_to_decide": "Nested on best parent v14: optional VEV_HALF_MAX clamp in trader_v0; sweeps v16\u2013v21 (cap 32/25, TAKE 0.60/0.615/0.66, theta 0.18) did not improve over v14 (59,976) on R3 0\u20132. Tie-keep v14 as champion; no thesis change."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "Predictive check for core regime: ATM (nearest strike) IV_minus_RV vs next subsample ATM voucher return. Correlation is mildly negative (~-0.126), consistent with weak short-horizon mean reversion in option returns when IV-RV is high. This supports testing small directional center shifts while keeping the same width-thesis framework.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/iv_minus_rv_next_ret.csv",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/iv_minus_rv_next_ret_summary.json"
+    ],
+    "used_to_decide": "Added optional REGIME_CENTER_SHIFT in base trader and tested v22-v24; directional shift did not beat v14. Follow-on width sweep (v25-v28) found better extract-side settings while preserving the same IV-vs-RV voucher thesis. Best now v28=60,126."
   }
 ]

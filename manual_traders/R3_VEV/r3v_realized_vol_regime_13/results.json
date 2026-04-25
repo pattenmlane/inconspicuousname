@@ -98,7 +98,7 @@
   {
     "iteration": 12,
     "trader_file": "trader_v12.py",
-    "strategy_description": "v10 + light theta blend: scale IV−RV regime by 1+THETA_REGIME_WEIGHT*boost(−θ_atm/price), THETA_REGIME_WEIGHT=0.2, NORM=0.04. Best among first theta try.",
+    "strategy_description": "v10 + light theta blend: scale IV\u2212RV regime by 1+THETA_REGIME_WEIGHT*boost(\u2212\u03b8_atm/price), THETA_REGIME_WEIGHT=0.2, NORM=0.04. Best among first theta try.",
     "total_profit": 59850,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v12.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
@@ -174,5 +174,61 @@
     "total_profit": 59880,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v21.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 22,
+    "trader_file": "trader_v22.py",
+    "strategy_description": "v14 + mild directional center shift from regime sign (REGIME_CENTER_SHIFT=0.35); no improvement.",
+    "total_profit": 59960,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v22.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 23,
+    "trader_file": "trader_v23.py",
+    "strategy_description": "v14 + very mild directional center shift (0.20); near tie but below v14.",
+    "total_profit": 59970,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v23.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 24,
+    "trader_file": "trader_v24.py",
+    "strategy_description": "v14 + stronger center shift (0.50); regression.",
+    "total_profit": 59948,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v24.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 25,
+    "trader_file": "trader_v25.py",
+    "strategy_description": "v14 + slightly wider extract/hydrogel regime widths (REG_EX_SCALE=0.50, REG_H_SCALE=0.10); regression.",
+    "total_profit": 59923,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v25.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 26,
+    "trader_file": "trader_v26.py",
+    "strategy_description": "v14 + wider extract width only (REG_EX_SCALE=0.55, REG_H_SCALE=0.08). New best in this session.",
+    "total_profit": 60123,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v26.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 27,
+    "trader_file": "trader_v27.py",
+    "strategy_description": "v26 micro-sweep REG_EX_SCALE=0.52; regressed to v25-level.",
+    "total_profit": 59923,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v27.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 28,
+    "trader_file": "trader_v28.py",
+    "strategy_description": "v26 micro-sweep with TAKE_EDGE_MULT=0.635; best in session by small margin.",
+    "total_profit": 60126,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v28.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

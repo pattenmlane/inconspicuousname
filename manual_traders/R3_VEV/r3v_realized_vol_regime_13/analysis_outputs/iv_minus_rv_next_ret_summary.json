@@ -1,0 +1,6 @@
+{
+  "n_rows": 150,
+  "corr_iv_minus_rv_next_opt_ret": -0.12601188154451515,
+  "slope_bps_per_unit": -211.20068816804783,
+  "method": "regime=IV_atm-RV_short; target=next subsample return of ATM voucher mid."
+}

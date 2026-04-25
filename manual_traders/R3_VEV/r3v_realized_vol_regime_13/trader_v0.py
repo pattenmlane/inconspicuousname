@@ -172,6 +172,9 @@ class Trader:
     # Optional: blend ATM time-decay (theta) into the IV−RV regime scalar (0 = off).
     THETA_REGIME_WEIGHT = 0.0
     THETA_REGIME_NORM = 0.04
+    # Optional directional short-vol bias from regime sign; keeps same IV-vs-RV thesis
+    # but nudges quote center so asks are lower / bids higher when IV > RV.
+    REGIME_CENTER_SHIFT = 0.0
 
     def run(self, state: TradingState):
         result: dict[str, list[Order]] = {}
@@ -280,8 +283,9 @@ class Trader:
                 skew = -1
             elif p < -15:
                 skew = 1
-            bid_p = int(round(theo - half_vev + skew))
-            ask_p = int(round(theo + half_vev + skew))
+            center_shift = self.REGIME_CENTER_SHIFT * regime
+            bid_p = int(round(theo - half_vev + skew + center_shift))
+            ask_p = int(round(theo + half_vev + skew + center_shift))
             bid_p = min(bid_p, int(ba) - 1)
             ask_p = max(ask_p, int(bb) + 1)
             if bid_p >= ask_p:

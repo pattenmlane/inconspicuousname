@@ -51,6 +51,14 @@ def bs_vega(S: float, K: float, T: float, sigma: float) -> float:
     return S * _N.pdf(d1) * math.sqrt(T)
 
 
+def bs_gamma(S: float, K: float, T: float, sigma: float) -> float:
+    if T <= 0 or sigma <= 0:
+        return 0.0
+    v = sigma * math.sqrt(T)
+    d1 = (math.log(S / K) + 0.5 * v * v) / v
+    return _N.pdf(d1) / (S * v)
+
+
 def main():
     out = {}
     for day in (0, 1, 2):
@@ -85,6 +93,7 @@ def main():
             ivs = []
             deltas = []
             vegas = []
+            gammas = []
             K = STRIKE[v]
             for ts, d in by_ts.items():
                 if v not in d:
@@ -98,6 +107,7 @@ def main():
                     ivs.append(iv)
                     deltas.append(bs_delta(S, K, T, iv))
                     vegas.append(bs_vega(S, K, T, iv))
+                    gammas.append(bs_gamma(S, K, T, iv))
             day_stats[v] = {
                 "spread_mean": sum(spreads) / len(spreads) if spreads else None,
                 "spread_median": sorted(spreads)[len(spreads) // 2] if spreads else None,
@@ -109,6 +119,7 @@ def main():
                 ),
                 "delta_mean": sum(deltas) / len(deltas) if deltas else None,
                 "vega_mean": sum(vegas) / len(vegas) if vegas else None,
+                "gamma_mean": sum(gammas) / len(gammas) if gammas else None,
                 "n_ticks": len(spreads),
             }
         out[f"day_{day}"] = {"TTE_calendar_days": tte_days, "T_years": T, "per_vev": day_stats}

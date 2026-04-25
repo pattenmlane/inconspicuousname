@@ -34,5 +34,15 @@
       "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter5_vega_hedge.json"
     ],
     "used_to_decide": "Tape shows both strikes still carry material vega despite delta\u22480.994; added vega-weighted term to extract skew. Lower delta skew 0.35\u21920.3 improved day-2 extract PnL vs v4 (+292 on day 2 in backtest), raising three-day total."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "analyze_tapes.py: BS call gamma \u03c6(d1)/(S\u00b7\u03c3\u00b7\u221aT) at implied IV from mids; tape_vev4000_4500_stats.json now includes gamma_mean (order ~1e-4 to 1e-5 in these days). sweep_iter6_tier_gamma.json: backtested second passive tier (WIDE_SPREAD_DEEP, OFF_DEEP2, PASSIVE_SIZE2) and GAMMA_SKEW on extract; GAMMA_SKEW>0 reduced total PnL vs v5; second tier with GAMMA_SKEW=0 matched v5 (29,147).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/analyze_tapes.py",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/tape_vev4000_4500_stats.json",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter6_tier_gamma.json"
+    ],
+    "used_to_decide": "Kept v5 extract hedge; document gamma in tape. Added a spread-conditioned second deep quote layer (wide-book passivity) with limit-safe sizing; do not nudge extract from gamma. Performance ties best total with simpler v5; v6 is the same PnL with the extra structural option for very wide books."
   }
 ]

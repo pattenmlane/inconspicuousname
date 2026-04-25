@@ -46,5 +46,13 @@
     "total_profit": 29147,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-out"
+  },
+  {
+    "iteration": 6,
+    "trader_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v6.py",
+    "strategy_description": "v5 base (delta+vega extract skew) + optional second deep passive on VEV_4000/4500 when L1 spread >= 20: extra bb+6/ba-6 and bb+5/ba-5 style pairs with size 2, room reserved vs limits. Added BS call gamma to tape analysis (not used in extract skew: grid found any GAMMA_SKEW>0 hurt; tier-only is neutral vs v5 on backtest, total 29,147).",
+    "total_profit": 29147,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-out"
   }
 ]

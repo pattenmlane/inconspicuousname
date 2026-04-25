@@ -121,5 +121,14 @@
       "results.json"
     ],
     "used_to_decide": "Worse-match total 63098: below v19 (65038) and above v18 (59368) \u2014 the OTM skip does not help when combined with the tail-shock gate; keep v19 as current best line; v20 retained as an ablation."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "shock_tail_by_symbol_iter21.json: per-symbol tail test shows mean pnl proxy flips negative in q90+ extract shocks for both core and wing sets (core ~0.0197 base vs -0.0486 tail; wing ~0.0794 base vs -0.0676 tail), with little spread change by regime.",
+    "analysis_outputs": [
+      "shock_tail_by_symbol_iter21.json",
+      "results.json"
+    ],
+    "used_to_decide": "v21 replaces v19's tail clip scaling with a simpler tail freeze: when |dS|>=2.0, no new voucher entries. Backtest 63142 (below v19 65038), so retaining some controlled tail participation (v19) is superior on this tape."
   }
 ]

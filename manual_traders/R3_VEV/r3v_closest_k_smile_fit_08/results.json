@@ -173,12 +173,34 @@
   {
     "iteration": 18,
     "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v18.py",
-    "strategy_description": "Parent v15. Parameter sweep: remove 4500 from near shock set — only 5300 is near; core 5000/5100/5200 unchanged. If 4500 shock add was dead weight, this simplifies without loss.",
+    "strategy_description": "Parent v15. Parameter sweep: remove 4500 from near shock set \u2014 only 5300 is near; core 5000/5100/5200 unchanged. If 4500 shock add was dead weight, this simplifies without loss.",
     "total_profit": 39945,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v18.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis > manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v18.txt 2>&1",
     "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v18.txt",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v18.json"
+  },
+  {
+    "iteration": 19,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v19.py",
+    "strategy_description": "Parent v15. Regime-aware shock gating from regime_shock_response: apply v15 shock overlay only in neutral RV-IV regime (where shock/calm |dV| amplification is highest, ~2.30), disable in calm/stressed.",
+    "total_profit": 39769,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v19.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis > manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v19.txt 2>&1",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v19.txt",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v19.json"
+  },
+  {
+    "iteration": 20,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v20.py",
+    "strategy_description": "Parent v15. Regime-aware mixed shock: neutral keeps full v15 core+near overlay; stressed keeps only core overlay with softer size cut x0.96; calm no shock overlay.",
+    "total_profit": 39833,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v20.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis > manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v20.txt 2>&1",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v20.txt",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v20.json"
   }
 ]

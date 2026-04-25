@@ -149,14 +149,14 @@
   },
   {
     "iteration": 17,
-    "analysis_description": "Shock-row microstructure (shock_spread_asymmetry.json, analyze_shock_spread_asymmetry.py): shock = |d extract| >= day p90. Mean top-of-book spread shock minus calm is near zero (small negative/positive by strike; not a reliable widen signal). On shock rows only, OLS dV~dU through origin split by dU sign: at 5100, median beta_down (~0.535) slightly exceeds beta_up (~0.520) across days — the clearest directional gap in 4500-5300; at 5000/5200/5300 up and down betas are nearly equal. Complements shock_greek_weighted (5100 highest energy).",
+    "analysis_description": "Shock-row microstructure (shock_spread_asymmetry.json, analyze_shock_spread_asymmetry.py): shock = |d extract| >= day p90. Mean top-of-book spread shock minus calm is near zero (small negative/positive by strike; not a reliable widen signal). On shock rows only, OLS dV~dU through origin split by dU sign: at 5100, median beta_down (~0.535) slightly exceeds beta_up (~0.520) across days \u2014 the clearest directional gap in 4500-5300; at 5000/5200/5300 up and down betas are nearly equal. Complements shock_greek_weighted (5100 highest energy).",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/shock_spread_asymmetry.json",
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_shock_spread_asymmetry.py",
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v17.txt",
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v17.json"
     ],
-    "used_to_decide": "trader_v17 = v15 + one extra tick on 5100 only when extract shock and dU<0 (down-shock bucket has higher |dV| per |dU| at 5100 in tape). Backtest 39876 < v15 39945; directional nudge hurt — keep v15 as best, do not ship down-only extra width on 5100 without more evidence."
+    "used_to_decide": "trader_v17 = v15 + one extra tick on 5100 only when extract shock and dU<0 (down-shock bucket has higher |dV| per |dU| at 5100 in tape). Backtest 39876 < v15 39945; directional nudge hurt \u2014 keep v15 as best, do not ship down-only extra width on 5100 without more evidence."
   },
   {
     "iteration": 18,
@@ -166,6 +166,27 @@
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v18.txt",
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v18.json"
     ],
-    "used_to_decide": "trader_v18 (near = {5300} only) total PnL 39945, identical to v15 [14070,17394,8481] — 4500 shock overlay was inert; best unchanged at v15."
+    "used_to_decide": "trader_v18 (near = {5300} only) total PnL 39945, identical to v15 [14070,17394,8481] \u2014 4500 shock overlay was inert; best unchanged at v15."
+  },
+  {
+    "iteration": 19,
+    "analysis_description": "Regime-conditioned shock response with IV thread (regime_shock_response.json): recreate v9 RV-IV regime using BS-inverted near-ATM IV and RV z-score; inside each regime compare mean |dV| on extract shock rows vs calm for strikes 4500/5000/5100/5200/5300. Pooled shock/calm amplification: calm ~1.64, neutral ~2.30, stressed ~1.95; neutral is strongest.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/regime_shock_response.json",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_regime_shock_response.py",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v19.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v19.json"
+    ],
+    "used_to_decide": "Tested v19: apply v15 shock overlay only in neutral regime where amplification is highest. Backtest dropped to 39769, showing calm/stressed still benefit from some protection or flow shaping under worse fills; neutral-only gating is too restrictive."
+  },
+  {
+    "iteration": 20,
+    "analysis_description": "Companion sweep from regime_shock_response: keep full neutral shock overlay, apply softer core-only shock action in stressed, none in calm.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/regime_shock_response.json",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v20.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v20.json"
+    ],
+    "used_to_decide": "v20 improved over v19 (39833) but still below v15 (39945). Conclusion: simple always-on selective shock overlay (v15) remains better than regime-gated shock logic; keep v15 as best baseline and avoid extra regime branching for this component."
   }
 ]

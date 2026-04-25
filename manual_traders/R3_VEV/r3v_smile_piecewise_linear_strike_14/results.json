@@ -190,5 +190,21 @@
     "total_profit": -101,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v23.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 24,
+    "trader_file": "trader_v24.py",
+    "strategy_description": "v23 with MIN_SPREAD=6 (tighter microstructure filter).",
+    "total_profit": -155,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v24.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 25,
+    "trader_file": "trader_v25.py",
+    "strategy_description": "v23 with MIN_SPREAD=3 (looser than v23).",
+    "total_profit": -215,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v25.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

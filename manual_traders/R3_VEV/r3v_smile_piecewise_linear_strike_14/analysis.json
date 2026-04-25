@@ -39,5 +39,14 @@
       "run_iv_vs_extract_corr.py"
     ],
     "used_to_decide": "Prefer v23 as new best: keep v18 IV-scalp thresholds and add min spread=5; continue grid from v23 (smaller next step) rather than v21-style gate tightening."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "Book/spread: run_vev_spread_quantiles.py on VEV_5000/5200/5300 — top-of-book spread (ask1-bid1) by day. VEV_5000 is very wide (median ~6 ticks, high frac_ge_5). VEV_5200 is mostly 2-3 ticks; VEV_5300 often 2 ticks (frac_ge_3 ~0.17 day 0). So a global MIN_SPREAD is a coarse filter: higher threshold mainly screens 5200/5300 sessions. Bracketing MIN_SPREAD on v23 base: 6 → total -155, 3 → -215; v23 (-101) remains best. v24 (6) still shows +26 day-0 on VEV_5000 but worse days 1-2; v25 (3) worse overall.",
+    "analysis_outputs": [
+      "analysis_outputs/vev_spread_quantiles.json",
+      "run_vev_spread_quantiles.py"
+    ],
+    "used_to_decide": "Keep v23 as the lead line; do not increase MIN_SPREAD to 6 for all strikes without strike-specific rules. Optional next: per-strike spread floor (e.g. 5000>=5, 5200/5300>=2) — not implemented this turn."
   }
 ]

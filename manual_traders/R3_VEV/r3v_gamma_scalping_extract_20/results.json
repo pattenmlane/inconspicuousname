@@ -26,7 +26,7 @@
   {
     "iteration": 3,
     "trader_file": "trader_v3.py",
-    "strategy_description": "v2 with tape-day-2 softer hedge (frac 0.52, band 14) — same as v2 before tape_day fix; after fix improves day-2 extract PnL.",
+    "strategy_description": "v2 with tape-day-2 softer hedge (frac 0.52, band 14) \u2014 same as v2 before tape_day fix; after fix improves day-2 extract PnL.",
     "total_profit": 1814,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v3.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
@@ -34,7 +34,7 @@
   {
     "iteration": 4,
     "trader_file": "trader_v4.py",
-    "strategy_description": "v2 structure: hedge extract on tape days 0–1 only; on tape day 2 skip extract hedging (reduce adverse selection), keep dual-strike gamma MM. Best total after correct TTE per CSV day.",
+    "strategy_description": "v2 structure: hedge extract on tape days 0\u20131 only; on tape day 2 skip extract hedging (reduce adverse selection), keep dual-strike gamma MM. Best total after correct TTE per CSV day.",
     "total_profit": 3456,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v4.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
@@ -42,9 +42,25 @@
   {
     "iteration": 5,
     "trader_file": "trader_v5.py",
-    "strategy_description": "v4 + larger option clip on tape day 2 only (grid sweep); ties v4 at 3456 — prefer v4 for simplicity.",
+    "strategy_description": "v4 + larger option clip on tape day 2 only (grid sweep); ties v4 at 3456 \u2014 prefer v4 for simplicity.",
     "total_profit": 3456,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 6,
+    "trader_file": "trader_v6.py",
+    "strategy_description": "v4 core retained; inventory hold variant (sell-back only when combined nearest-strike option position exceeds 160) to keep long gamma exposure longer.",
+    "total_profit": 3456,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "v6 plus lower GAMMA_THRESH (8e-5 -> 6e-5) parameter sweep; no aggregate PnL change vs v4/v6.",
+    "total_profit": 3456,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
   }
 ]

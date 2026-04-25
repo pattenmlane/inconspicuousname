@@ -1,13 +1,13 @@
 [
   {
     "iteration": 0,
-    "analysis_description": "Round-3 tapes (days 0–2): Black–Scholes implied volatility from option mid and VELVETFRUIT_EXTRACT mid; delta and gamma per strike. TTE_days = 8 − tape_day_index per round3work/round3description.txt worked-example pattern (historical day +1→8d, +2→7d, +3→6d aligned to final Round-3 TTE=5d). T in years = TTE_days/365. Subsampled timestamps (step 500). Documented mean IV by strike/day and bid–ask spread (level 1) in summary JSON.",
+    "analysis_description": "Round-3 tapes (days 0\u20132): Black\u2013Scholes implied volatility from option mid and VELVETFRUIT_EXTRACT mid; delta and gamma per strike. TTE_days = 8 \u2212 tape_day_index per round3work/round3description.txt worked-example pattern (historical day +1\u21928d, +2\u21927d, +3\u21926d aligned to final Round-3 TTE=5d). T in years = TTE_days/365. Subsampled timestamps (step 500). Documented mean IV by strike/day and bid\u2013ask spread (level 1) in summary JSON.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analysis_outputs/iv_greeks_timeseries_sample.csv",
       "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analysis_outputs/iv_greeks_summary.json",
       "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analyze_tapes_iv_greeks.py"
     ],
-    "used_to_decide": "Near-ATM strikes (5200/5300) show moderate mean IV (~0.23–0.24) and tight spreads vs wings; justified focusing execution on nearest strikes and extract hedge rather than wing IV noise. Equal-weight long strip mean gamma ~0.0092/day supports gamma-scalping thesis magnitude."
+    "used_to_decide": "Near-ATM strikes (5200/5300) show moderate mean IV (~0.23\u20130.24) and tight spreads vs wings; justified focusing execution on nearest strikes and extract hedge rather than wing IV noise. Equal-weight long strip mean gamma ~0.0092/day supports gamma-scalping thesis magnitude."
   },
   {
     "iteration": 1,
@@ -16,5 +16,13 @@
       "imc-prosperity-4-backtester/prosperity4bt/test_runner.py"
     ],
     "used_to_decide": "Without correct tape_day, day-2 PnL and hedge tuning were misleading; after fix, tape day 2 extract hedging showed large negative contribution and v4 (no hedge on day 2) became best among gamma-focused variants."
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Additional Greek thread on Round-3 tapes: computed BS-IV from mids for strikes 5100/5200/5300/5400 and summarized near-ATM vs farther strike bins by day (using TTE mapping from round3description pattern). Near-ATM options showed consistently higher average gamma (~0.00212, 0.00221, 0.00237 from day0->day2) than farther strikes (~0.00157, 0.00159, 0.00160), while average option delta stayed around 0.50. Also checked extract realized absolute move per tick by day (~0.85 on all days).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analysis_outputs/iv_greeks_summary.json"
+    ],
+    "used_to_decide": "This supported keeping focus on the two nearest strikes (gamma density) and testing inventory-hold / gamma-threshold sweeps rather than adding far-wing vouchers or hydrogel-heavy logic."
   }
 ]

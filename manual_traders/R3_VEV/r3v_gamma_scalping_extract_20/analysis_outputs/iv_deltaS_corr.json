@@ -1,0 +1,21 @@
+{
+  "method": "Subsample every 100th timestamp; dIV and dS are successive differences in that subseries.",
+  "tte": "8,7,6 days for tape day 0,1,2",
+  "by_tape_day": {
+    "0": {
+      "n_pairs": 99,
+      "corr_dIv_dS": -0.035638466743187144,
+      "mean_abs_dS": 7.752525252525253
+    },
+    "1": {
+      "n_pairs": 99,
+      "corr_dIv_dS": 0.31244148685492634,
+      "mean_abs_dS": 7.318181818181818
+    },
+    "2": {
+      "n_pairs": 99,
+      "corr_dIv_dS": 0.27628945883867007,
+      "mean_abs_dS": 6.91919191919192
+    }
+  }
+}

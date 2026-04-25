@@ -34,5 +34,14 @@
       "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analysis_outputs/vega_theta_sample.csv"
     ],
     "used_to_decide": "Mean BS vega on nearest two strikes falls from ~298 to ~254 as TTE shortens (days 0->2) while per-day |theta| rises ~4.3 to ~5.0, consistent with time decay building into shorter horizon. Suggested day-2 quote tightening (v8) but backtest with match-trades worse got zero VEV fills when MM_EDGE=0 (quotes at best bid/ask, no price improvement for taker). Day-2 requote speed sweep (v9) matched v4 PnL; keep v4 as simplest best."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "IV vs extract co-movement: on each tape day, subsample every 100th timestamp in time order; compute BS implied vol from nearest-strike VEV mid and extract mid (TTE 8/7/6). Pearson correlation between successive differences d(IV) and d(S) on the subseries (n\u224899 pairs/day). Script: analyze_iv_extract_comovement.py. Output: analysis_outputs/iv_deltaS_corr.json.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analyze_iv_extract_comovement.py",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analysis_outputs/iv_deltaS_corr.json"
+    ],
+    "used_to_decide": "Correlation is weak/mixed (day0 ~-0.04, days1-2 ~+0.28\u20130.31), so IV level from EMA is still a reasonable fair; no strong case to add an extract\u2192IV overlay signal. Global requote speed sweep (v10) did not beat v4."
   }
 ]

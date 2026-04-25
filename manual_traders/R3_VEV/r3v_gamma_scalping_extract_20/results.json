@@ -78,5 +78,13 @@
     "total_profit": 3456,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v9.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 10,
+    "trader_file": "trader_v10.py",
+    "strategy_description": "v4 with REQUOTE_EVERY=2 on all tape days (vs v4=3). Ties v4 at 3456; prefer v4 for simpler default requote interval.",
+    "total_profit": 3456,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v10.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
   }
 ]

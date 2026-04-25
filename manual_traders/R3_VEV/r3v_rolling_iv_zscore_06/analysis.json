@@ -69,5 +69,17 @@
       "backtests/2026-04-25_15-21-44.log"
     ],
     "used_to_decide": "Implemented v12 to satisfy hard duplicate-avoidance by changing family-13 assumptions materially (signal normalization + 3-state hysteresis). Outcome remains non-viable under worse-fill backtester due to no fills in this product with width-only action."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "Priority analysis on underlying propagation to vouchers and spread behavior: computed per-strike next-tick beta/elasticity of voucher mid vs extract mid moves and spread response after |dS|>=2 shocks. On this tape, VEV_5000 next-tick beta is near zero/slightly negative (~-0.005) with asymmetric up/down response, and spread is nearly unchanged after shocks (shock/base ~0.999). Further Greek thread: ratio signal r=RV30/ATM_IV-1 for VEV_5000 has mean ~0.759, std ~0.302, with high-tail states common; tails weakly predict next-tick extract downside but not spread widening. Used this to build family-13 adjusted variant (v13): width scaling with hysteresis plus quote-center skew by sign(dS) under high ratio. Sweeps under worse fills still produced 0 submission fills and 0 PnL.",
+    "analysis_outputs": [
+      "backtests/2026-04-25_15-48-36.log",
+      "backtests/2026-04-25_15-48-42.log",
+      "backtests/2026-04-25_15-48-48.log",
+      "backtests/2026-04-25_15-48-54.log",
+      "backtests/2026-04-25_15-49-01.log"
+    ],
+    "used_to_decide": "Implemented v13 because propagation analysis suggested directional asymmetry from extract moves but no spread widening; encoded this as center-skew while preserving width-scaling-only action. Empirically no fills in worse-fill backtester, so family-13 remains inactive in current market data."
   }
 ]

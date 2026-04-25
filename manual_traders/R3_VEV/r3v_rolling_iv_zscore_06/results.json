@@ -102,5 +102,21 @@
     "total_profit": 0,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v12.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 13,
+    "trader_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v13.py",
+    "strategy_description": "Family-13 distinct tweak: normalized RV/IV ratio hysteresis with width-scaling only plus regime-aware quote-center skew from latest underlying move sign.",
+    "total_profit": 0,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v13.py 3 --data Prosperity4Data --match-trades worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v13_best_2026-04-25_15-48-36.log",
+    "trades_or_fills_summary": {
+      "total_trade_rows": 4048,
+      "vev5000_rows": 1,
+      "submission_fills": 0,
+      "submission_abs_qty": 0
+    }
   }
 ]

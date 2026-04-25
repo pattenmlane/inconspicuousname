@@ -230,5 +230,37 @@
     "total_profit": 60126,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v28.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 29,
+    "trader_file": "trader_v29.py",
+    "strategy_description": "v28 + mild gamma scaling of joint IV−RV regime (GAMMA_REGIME_WEIGHT=0.12, NORM=0.0008). New best on R3 0–2.",
+    "total_profit": 60493,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v29.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 30,
+    "trader_file": "trader_v30.py",
+    "strategy_description": "v28 + stronger gamma scaling (GAMMA_REGIME_WEIGHT=0.22). Slight regression vs v29.",
+    "total_profit": 60430,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v30.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 31,
+    "trader_file": "trader_v31.py",
+    "strategy_description": "v28 with TAKE_EDGE_MULT=0.63 (else same as v28). Regression vs v28.",
+    "total_profit": 60123,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v31.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 32,
+    "trader_file": "trader_v32.py",
+    "strategy_description": "v28 with TAKE_EDGE_MULT=0.64. Small regression vs v28.",
+    "total_profit": 60234,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v32.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

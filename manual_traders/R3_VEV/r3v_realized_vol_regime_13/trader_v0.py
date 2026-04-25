@@ -77,6 +77,16 @@ def bs_theta_call(S: float, K: float, T: float, sigma: float, r: float = 0.0) ->
     )
 
 
+def bs_gamma_call(S: float, K: float, T: float, sigma: float, r: float = 0.0) -> float:
+    """d²C/dS² (per $ of underlying) at given sigma; r=0 standard BS gamma."""
+    if T <= 0 or sigma <= 1e-12 or S <= 0 or K <= 0:
+        return 0.0
+    sqrtT = math.sqrt(T)
+    v = sigma * sqrtT
+    d1 = (math.log(S / K) + (r + 0.5 * sigma * sigma) * T) / v
+    return _pdf(d1) / (S * sigma * sqrtT)
+
+
 def implied_vol_bisect(price: float, S: float, K: float, T: float, r: float = 0.0) -> float | None:
     intrinsic = max(S - K, 0.0)
     if price <= intrinsic + 1e-9 or price >= S - 1e-9 or S <= 0 or K <= 0 or T <= 0:
@@ -175,6 +185,9 @@ class Trader:
     # Optional directional short-vol bias from regime sign; keeps same IV-vs-RV thesis
     # but nudges quote center so asks are lower / bids higher when IV > RV.
     REGIME_CENTER_SHIFT = 0.0
+    # Optional: scale joint regime by normalized ATM call gamma (0 = off).
+    GAMMA_REGIME_WEIGHT = 0.0
+    GAMMA_REGIME_NORM = 0.0008
 
     def run(self, state: TradingState):
         result: dict[str, list[Order]] = {}
@@ -250,6 +263,10 @@ class Trader:
             carry = max(0.0, -th) / max(S, 1.0)
             boost = min(2.0, carry / max(self.THETA_REGIME_NORM, 1e-9))
             regime = regime * (1.0 + self.THETA_REGIME_WEIGHT * boost)
+        if self.GAMMA_REGIME_WEIGHT > 0.0 and T > 0 and S > 0:
+            gam = bs_gamma_call(S, float(K0), T, iv_atm, 0.0)
+            gboost = min(2.0, gam / max(self.GAMMA_REGIME_NORM, 1e-12))
+            regime = regime * (1.0 + self.GAMMA_REGIME_WEIGHT * gboost)
         half_vev = float(
             self.BASE_VEV_HALF + self.K_WIDEN * max(0.0, regime) - self.K_TIGHTEN * max(0.0, -regime)
         )

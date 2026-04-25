@@ -1,0 +1,5 @@
+{
+  "n_rows": 150,
+  "corr_iv_minus_rv_vs_atm_gamma": -0.07843280096783385,
+  "method": "Gamma from BS with IV=BS-1(mid); nearest strike; same T and RV as prior analyses."
+}

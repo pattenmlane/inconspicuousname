@@ -52,5 +52,14 @@
       "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/iv_minus_rv_next_ret_summary.json"
     ],
     "used_to_decide": "Added optional REGIME_CENTER_SHIFT in base trader and tested v22-v24; directional shift did not beat v14. Follow-on width sweep (v25-v28) found better extract-side settings while preserving the same IV-vs-RV voucher thesis. Best now v28=60,126."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "ATM call gamma from BS (IV = BS-1 of nearest-strike mid, same T and RV as prior cuts) vs IV−RV. Corr(IV−RV, \\u03b3_atm) is mildly negative (~-0.08) on 150 subsample points—suggests convexity and IV-richness are weakly inversely co-linear in this crude linear sense.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/gamma_atm_vs_iv_minus_rv.csv",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/gamma_atm_vs_iv_minus_rv_summary.json"
+    ],
+    "used_to_decide": "Implemented optional GAMMA_REGIME_WEIGHT in trader_v0: scale the same (theta-adjusted) IV−RV joint regime by normalized BS gamma at the ATM (nearest) strike, using IV from inversion. v29 (mild weight) best at 60,493 vs v28 60,126; heavier gamma (v30) regressed. Take-edge nudges v31-v32 did not beat v28."
   }
 ]

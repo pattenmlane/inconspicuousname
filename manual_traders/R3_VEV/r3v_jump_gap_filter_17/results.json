@@ -54,5 +54,13 @@
     "total_profit": 21025,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/voucher_work/5200_work:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v6.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "Hybrid: v1 full template (120-tick jump pause, hydrogel MM + light extract on pause) but replace Frankfurt get_iv_scalping_orders (never filled on v1–v2) with v4 theo_diff scalp on nearest-ATM; grid thr 0.40, clip 20, bb−1/ba+1.",
+    "total_profit": 15353,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/voucher_work/5200_work:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v7.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

@@ -1,16 +1,16 @@
 [
   {
     "iteration": 0,
-    "analysis_description": "Round 3 tapes (days 0–2): Black–Scholes IV per VEV from top-of-book mid vs VELVETFRUIT_EXTRACT; quadratic IV smile in m_t=log(K/S)/sqrt(T) with WLS weights 1+bid_vol_1+ask_vol_1 (volume conviction). T from round3description (8/7/6 dte at open for csv days 0/1/2) plus intraday wind dte_eff=dte_open-(timestamp//100)/10000; T_years=dte_eff/365; r=0 (same as round3work/plotting/original_method/combined_analysis/plot_iv_smile_round3.py). Greeks: vega at fitted IV for summary mean. Microstructure: mean top-of-book spread ~3.08 on included strikes.",
+    "analysis_description": "Round 3 tapes (days 0\u20132): Black\u2013Scholes IV per VEV from top-of-book mid vs VELVETFRUIT_EXTRACT; quadratic IV smile in m_t=log(K/S)/sqrt(T) with WLS weights 1+bid_vol_1+ask_vol_1 (volume conviction). T from round3description (8/7/6 dte at open for csv days 0/1/2) plus intraday wind dte_eff=dte_open-(timestamp//100)/10000; T_years=dte_eff/365; r=0 (same as round3work/plotting/original_method/combined_analysis/plot_iv_smile_round3.py). Greeks: vega at fitted IV for summary mean. Microstructure: mean top-of-book spread ~3.08 on included strikes.",
     "analysis_outputs": [
       "analysis_outputs/iv_residual_volume_summary.json",
       "analyze_iv_residual_volume.py"
     ],
-    "used_to_decide": "Residual IV is roughly mean-zero (mean -4.9e-5); std ~0.012 guides RESID_ENTER scale. Corr(|residual|, log(weight)) ≈ -0.11 supports weighting the smile by book size. Session-open extract mids 5250.0 / 5245.0 / 5267.5 used as backtest csv_day anchors when traderData resets per day."
+    "used_to_decide": "Residual IV is roughly mean-zero (mean -4.9e-5); std ~0.012 guides RESID_ENTER scale. Corr(|residual|, log(weight)) \u2248 -0.11 supports weighting the smile by book size. Session-open extract mids 5250.0 / 5245.0 / 5267.5 used as backtest csv_day anchors when traderData resets per day."
   },
   {
     "iteration": 3,
-    "analysis_description": "Extended Greek-aware tape analysis on all timestamps for days 0–2: compute IV via BS inversion from top-of-book mid for each VEV, fit per-timestamp volume-WLS smile residual, then profile |residual| against delta, vega, volume, and spread by strike. Timing remains from round3description: day0/1/2 open DTE 8/7/6 with intraday wind dte_eff = dte_open - (timestamp//100)/10000.",
+    "analysis_description": "Extended Greek-aware tape analysis on all timestamps for days 0\u20132: compute IV via BS inversion from top-of-book mid for each VEV, fit per-timestamp volume-WLS smile residual, then profile |residual| against delta, vega, volume, and spread by strike. Timing remains from round3description: day0/1/2 open DTE 8/7/6 with intraday wind dte_eff = dte_open - (timestamp//100)/10000.",
     "analysis_outputs": [
       "analysis_outputs/iv_residual_delta_vega_profile.json"
     ],
@@ -22,22 +22,30 @@
     "analysis_outputs": [
       "analysis_outputs/extract_atm_iv5300_change_cov.json"
     ],
-    "used_to_decide": "Documents IV vs spot co-movement on tape (weak negative OLS/corr in this subsample), kept as context for same thesis—no full delta-hedge leg per failed v1. v5 full-chain WLS was abandoned after backtest; v7 keeps closed 5-strike WLS and drops 5000 as trade candidate."
+    "used_to_decide": "Documents IV vs spot co-movement on tape (weak negative OLS/corr in this subsample), kept as context for same thesis\u2014no full delta-hedge leg per failed v1. v5 full-chain WLS was abandoned after backtest; v7 keeps closed 5-strike WLS and drops 5000 as trade candidate."
   },
   {
     "iteration": 8,
-    "analysis_description": "BS call **gamma** at IV inverted from mid (S=VELVETFRUIT_EXTRACT mid, r=0, T=dte_eff/365) for VEV_5100..VEV_5500, subsampled every 200 timestamps on days 0–2. Mean gamma peaks near 5200/5300 in this strip (roughly 0.00224) and tapers toward wings; supports vega-scaled sizing and focusing on liquid ATM neighborhood.",
+    "analysis_description": "BS call **gamma** at IV inverted from mid (S=VELVETFRUIT_EXTRACT mid, r=0, T=dte_eff/365) for VEV_5100..VEV_5500, subsampled every 200 timestamps on days 0\u20132. Mean gamma peaks near 5200/5300 in this strip (roughly 0.00224) and tapers toward wings; supports vega-scaled sizing and focusing on liquid ATM neighborhood.",
     "analysis_outputs": [
       "analysis_outputs/vev_gamma_5100_5500_by_strike.json"
     ],
-    "used_to_decide": "Reinforces that the 5100–5500 strip is the high-curvature region of the smile for the assigned spot range; paired with v8 EMA + book-depth gate to avoid acting on microstructure noise."
+    "used_to_decide": "Reinforces that the 5100\u20135500 strip is the high-curvature region of the smile for the assigned spot range; paired with v8 EMA + book-depth gate to avoid acting on microstructure noise."
   },
   {
     "iteration": 9,
-    "analysis_description": "BS European **call theta** (per option per year in price space) at IV from mid for VEV_5100..VEV_5500, r=0, T=dte_eff/365, subsampled every 400 timestamps on days 0–2. Mean theta is most negative around 5200/5300 (magnitude ~1850 vs ~750 at 5500 in this subsample), consistent with higher time decay vega concentration near ATM.",
+    "analysis_description": "BS European **call theta** (per option per year in price space) at IV from mid for VEV_5100..VEV_5500, r=0, T=dte_eff/365, subsampled every 400 timestamps on days 0\u20132. Mean theta is most negative around 5200/5300 (magnitude ~1850 vs ~750 at 5500 in this subsample), consistent with higher time decay vega concentration near ATM.",
     "analysis_outputs": [
       "analysis_outputs/vev_theta_5100_5500_by_strike.json"
     ],
     "used_to_decide": "Documents time-decay profile on the traded strip; parameter sweeps v9 (vega-weighted WLS) and v10 (EMA/threshold) both underperformed v8, so we keep v8's linear book weighting in WLS for now."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "Lag-1 autocorrelation of raw IV smile residuals per strike on VEV_5100..VEV_5500 (fit over same strip, spread<=8, all timestamps days 0-2). Residual persistence is very high (about 0.88 to 0.97), consistent with using an EMA residual signal rather than one-tick residual for entries.",
+    "analysis_outputs": [
+      "analysis_outputs/residual_lag1_by_strike.json"
+    ],
+    "used_to_decide": "Confirms persistence in residual process (supports EMA entry smoothing from v8). Tested hydrogel risk wind-down in v11 to reduce day-2 drawdown risk, but total PnL dropped materially; retained v8 as best variant."
   }
 ]

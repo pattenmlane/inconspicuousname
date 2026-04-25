@@ -42,7 +42,7 @@
   {
     "iteration": 5,
     "trader_file": "trader_v5.py",
-    "strategy_description": "From v3: fit WLS on all ten VEVs; trade 5000–5500; entry spread <=6, RESID 0.0135/0.005. PnL 94 — full-chain fit + 5000 leg hurt day 0 vs v3; superseded by v7.",
+    "strategy_description": "From v3: fit WLS on all ten VEVs; trade 5000\u20135500; entry spread <=6, RESID 0.0135/0.005. PnL 94 \u2014 full-chain fit + 5000 leg hurt day 0 vs v3; superseded by v7.",
     "total_profit": 94,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
@@ -50,7 +50,7 @@
   {
     "iteration": 6,
     "trader_file": "trader_v6.py",
-    "strategy_description": "Drop VEV_5000 from trading; test full-chain fit (all VEV) vs trade 5100–5500. Full-chain refit was worse than v3; dropped for v7.",
+    "strategy_description": "Drop VEV_5000 from trading; test full-chain fit (all VEV) vs trade 5100\u20135500. Full-chain refit was worse than v3; dropped for v7.",
     "total_profit": 285,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
@@ -66,7 +66,7 @@
   {
     "iteration": 8,
     "trader_file": "trader_v8.py",
-    "strategy_description": "Parent v7: same 5-strike WLS strip 5100–5500. Add EMA (α=0.12) on raw IV residual per strike for entry signal; exits on raw resid; min top-of-book volume sum 28 for new entries; RESID_ENTER=0.0145, RESID_EXIT=0.0045. Best total in this series (so far).",
+    "strategy_description": "Parent v7: same 5-strike WLS strip 5100\u20135500. Add EMA (\u03b1=0.12) on raw IV residual per strike for entry signal; exits on raw resid; min top-of-book volume sum 28 for new entries; RESID_ENTER=0.0145, RESID_EXIT=0.0045. Best total in this series (so far).",
     "total_profit": 13478,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v8.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
@@ -74,7 +74,7 @@
   {
     "iteration": 9,
     "trader_file": "trader_v9.py",
-    "strategy_description": "Parent v8: WLS weights = (1+book)^1.25 * (1+0.002*vega) (vega-conviction smile); EMA α=0.10; RESID 0.014/0.004; min book 24. Grid sweep: worse than v8 — keep linear 1+vol WLS.",
+    "strategy_description": "Parent v8: WLS weights = (1+book)^1.25 * (1+0.002*vega) (vega-conviction smile); EMA \u03b1=0.10; RESID 0.014/0.004; min book 24. Grid sweep: worse than v8 \u2014 keep linear 1+vol WLS.",
     "total_profit": 12906,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v9.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
@@ -82,9 +82,17 @@
   {
     "iteration": 10,
     "trader_file": "trader_v10.py",
-    "strategy_description": "Parent v8: mild EMA/threshold sweep — α=0.11, RESID_ENTER=0.014, RESID_EXIT=0.0042, min book 26. Worse than v8; v8 params remain best.",
+    "strategy_description": "Parent v8: mild EMA/threshold sweep \u2014 \u03b1=0.11, RESID_ENTER=0.014, RESID_EXIT=0.0042, min book 26. Worse than v8; v8 params remain best.",
     "total_profit": 12860,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v10.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 11,
+    "trader_file": "trader_v11.py",
+    "strategy_description": "Parent v8: same residual-fade voucher logic; hydrogel risk wind-down (reduce quote size and widen edge after timestamp>=700000). Degraded total vs v8; keep v8 as best.",
+    "total_profit": 7190,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v11.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
   }
 ]

@@ -24,5 +24,13 @@
       "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/iv_rank_spread_touchability.json"
     ],
     "used_to_decide": "Found strong asymmetry: low-decile pair almost always neighbor-cap valid, but high-decile pair almost never neighbor-cap valid despite being tradable by spread/vega. Implemented asymmetric gate (v3/v4) and then touch-execution variant (v5). Backtests showed v3/v4 unchanged at -11 and v5 degraded to -594, so keep v1 as best and simpler parent."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "Round-3 tapes: per timestamp (subsample 1/20) compute BS implied vol from VEV_*/extract mids, then quadratic OLS in m_t=log(K/S)/sqrt(T) with T from round3 DTE+intraday winding; report distribution of (max-min) across strikes for raw IV vs polyfit residual. Output quantifies that residual range is an order of magnitude smaller than raw IV range (median ~0.03 vs ~0.38), so neighbor gating on residuals is on the same scale as 0.12 caps.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/iv_smile_residual_vs_raw.json"
+    ],
+    "used_to_decide": "Motivated ranking residual IV to isolate relative mispricings along the smile; v6 backtest improved to +1141 total (days 0-2) vs v1 at -11. v7 cap sweep 0.15 was identical to v6; keep v6 as parent (simpler constant)."
   }
 ]

@@ -1,0 +1,8 @@
+{
+  "timing": "csv day 0/1/2; T=dte/365, dte=max(8-day-(ts//100)/10000,1e-6)",
+  "subsample_timestamps": 20,
+  "n": 1499,
+  "iv_total_range_median": 0.3753679652274407,
+  "iv_residual_range_median": 0.029305927692999723,
+  "iv_residual_range_p90": 0.04712157514722227
+}

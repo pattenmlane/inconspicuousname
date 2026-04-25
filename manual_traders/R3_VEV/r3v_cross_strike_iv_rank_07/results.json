@@ -46,5 +46,21 @@
     "total_profit": -594,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v5.py\" 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 6,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v6.py",
+    "strategy_description": "Same IV decile rank fade and neighbor cap (0.12) as v1, but rank and neighbor gaps use IV residuals vs per-tick quadratic smile in m_t=log(K/S)/sqrt(T); fit np.polyfit on 10 strikes when solvable, else fall back to raw IV.",
+    "total_profit": 1141,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v6.py\" 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 7,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v7.py",
+    "strategy_description": "Grid vs v6: NEIGHBOR_RESIDUAL_CAP 0.15 (vs 0.12); no change in PnL vs v6 on R3 days 0-2, so v6 is simpler/best parent.",
+    "total_profit": 1141,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v7.py\" 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
   }
 ]

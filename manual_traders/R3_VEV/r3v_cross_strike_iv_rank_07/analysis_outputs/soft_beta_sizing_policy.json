@@ -1,0 +1,24 @@
+{
+  "source": "STABLE_BETA_T from analysis_outputs/underlying_propagation_lag_elasticity.json; size multipliers from trader_v22 formulas (BETA_REF=0.72, gamma=0.4, min/max 0.45/1.12).",
+  "policy": {
+    "BETA_REF": 0.72,
+    "SOFT_SIZE_GAMMA": 0.4,
+    "SIZE_MULT_MIN": 0.45,
+    "SIZE_MULT_MAX": 1.12,
+    "NEIGHBOR_LOOSEN_MAX_v22": 0.09,
+    "BETA_CAP_REF": 0.85,
+    "v23_sweep": "NEIGHBOR_LOOSEN_MAX=0; R3 PnL matched v22 (4667), so in-sample the +1 PnL came from soft sizing, not cap widening."
+  },
+  "per_strike": [
+    { "product": "VEV_4000", "beta_t": 0.8147904803620967, "soft_size_mult": 1.0507 },
+    { "product": "VEV_4500", "beta_t": 0.8863297384121156, "soft_size_mult": 1.0867 },
+    { "product": "VEV_5000", "beta_t": 0.869793125175021, "soft_size_mult": 1.0785 },
+    { "product": "VEV_5100", "beta_t": 0.7623754588358679, "soft_size_mult": 1.0231 },
+    { "product": "VEV_5200", "beta_t": 0.5794965915049817, "soft_size_mult": 0.9168 },
+    { "product": "VEV_5300", "beta_t": 0.36400104876769795, "soft_size_mult": 0.7612 },
+    { "product": "VEV_5400", "beta_t": 0.17097535395909805, "soft_size_mult": 0.5627 },
+    { "product": "VEV_5500", "beta_t": 0.0750480685194896, "soft_size_mult": 0.45 },
+    { "product": "VEV_6000", "beta_t": 0.0, "soft_size_mult": 0.45 },
+    { "product": "VEV_6500", "beta_t": 0.0, "soft_size_mult": 0.45 }
+  ]
+}

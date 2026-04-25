@@ -101,5 +101,17 @@
       "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v21_round3_worse_fills_summary.json"
     ],
     "used_to_decide": "Given near-zero lag-beta, tested contemporaneous directional gating by dS sign and high-beta strikes (v20/v21). This over-constrained execution and collapsed edge (-36 both). Keep v14 (4666) as best. Next improvement should apply propagation features as soft sizing/width shifts, not hard side gates."
+  },
+  {
+    "iteration": 22,
+    "analysis_description": "Propagation → execution (soft, not gating): recorded precomputed contemporaneous dP/dS (beta_t) per voucher from underlying_propagation_lag_elasticity.json; built soft_policy table (size multiplier vs beta with conservative clamps) in soft_beta_sizing_policy.json. Same BS IV, quadratic smile residual, and neighbor gating as v14, but sizes scale with beta and v22 also widens the effective neighbor residual cap for low-beta wings (up to +0.09). Filled v22 and ablation v23 (NEIGHBOR_LOOSEN_MAX=0) with full backtest JSON + tradeHistory summaries.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/soft_beta_sizing_policy.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v22_round3_worse.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v23_round3_worse.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v22_round3_worse_fills_summary.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v23_round3_worse_fills_summary.json"
+    ],
+    "used_to_decide": "Soft beta scaling improves total PnL vs v14 by +1 to 4667 under --match-trades worse; hard directional filters (v20/v21) were wrong direction. v23 (no cap widen) matches v22’s PnL, so the gain is from size skew toward high-beta strikes, not the extra neighbor slack; prefer the simpler v23 for ongoing work (or drop NEIGHBOR_LOOSEN_MAX in a future cleanup). Still far below ~800k surface benchmark—next iterations can tune gamma/min/max or add spread-aware soft weights while keeping residual-decile core."
   }
 ]

@@ -60,5 +60,14 @@
       "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analysis_outputs/iv_deltaS_corr.json"
     ],
     "used_to_decide": "Motivated a targeted sweep to soften extract hedging on tape day 1 only (keep day 0 hedge and day 2 no-hedge). trader_v12 improved day-1 extract PnL from -726 (v4) to -610 and total PnL from 3456 to 3572."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Microstructure: mean level-1 spread (ask1-bid1) on the two VEV strikes nearest to extract mid, subsampled step 200. Script analyze_two_strike_spread.py; output two_strike_spread_by_day.json. Spreads are stable across tape days (~2.4\u20132.5 ticks), so MM edge=1 is not clearly forced tighter on any single day from spread alone.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analyze_two_strike_spread.py",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analysis_outputs/two_strike_spread_by_day.json"
+    ],
+    "used_to_decide": "Continued day-1 extract hedge sweeps (parent v12). v13 further reduced day-1 hedge target and widened the deadband; backtest total rose to 4157 from v12=3572; adopt v13 as current best for this line."
   }
 ]

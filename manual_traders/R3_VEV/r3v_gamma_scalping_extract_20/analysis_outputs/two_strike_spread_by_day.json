@@ -1,0 +1,17 @@
+{
+  "method": "step 200; spread = ask1 - bid1 for VEV; two nearest strikes to extract mid",
+  "by_tape_day": {
+    "0": {
+      "n": 100,
+      "mean_spread": 2.5
+    },
+    "1": {
+      "n": 100,
+      "mean_spread": 2.41
+    },
+    "2": {
+      "n": 100,
+      "mean_spread": 2.52
+    }
+  }
+}

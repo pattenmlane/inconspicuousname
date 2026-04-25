@@ -70,5 +70,13 @@
     "total_profit": 1028,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v8.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 9,
+    "trader_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v9.py",
+    "strategy_description": "Log-IV rolling z continuation (single-strike VEV_5000): ROLL_WIN=420, Z_ENTRY=2.65, Z_EXIT=0.08, MAX_SPREAD=3, ORDER_Q=8 (tight-book opportunistic long cheap vol).",
+    "total_profit": 5863,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v9.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

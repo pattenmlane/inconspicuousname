@@ -34,5 +34,11 @@
     "analysis_description": "Pivot within same thesis: rolling **log(IV)** z instead of level IV z. IV is strictly positive; log stabilizes variance so past-only std is more meaningful for multiplicative IV moves. First pass (Z=3.0/0.1) backtest +780 total (days 0\u20132) vs v5 -83. Small grid on (Z_ENTRY, Z_EXIT) with log-z: (2.75,0.1) and (2.75,0.08) -> +1028 (best); (2.75,0.12) -> +963; (3.0,*) -> +780; (3.25,*) much lower. Same BS IV inversion, r=0, T=7/365; Greeks unchanged (call delta/vega implicit in IV path).",
     "analysis_outputs": [],
     "used_to_decide": "Set v8 thresholds to 2.75/0.1; keep v5\u2013v7 as level-IV baselines. Log-z is the main lift; not a product-mix change \u2014 still single-strike VEV_5000 long-vol mean reversion on rolling z."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "Focused grid around v8 log-IV z on ROUND_3 tapes (days 0\u20132), with BS IV inversion unchanged: ROLL_WIN in {420,480,540}, Z_ENTRY in {2.65,2.75,2.85}, Z_EXIT in {0.08,0.10,0.12}, MAX_SPREAD in {3,4,5}, ORDER_Q in {8,10,12}. Strong pattern: spread cap dominates outcomes. At MAX_SPREAD=3 and Z_ENTRY=2.65, PnL jumped to ~5.8k across tested exits/order sizes; MAX_SPREAD=4 yielded ~1.0k; MAX_SPREAD=5 was strongly negative. Best observed point: (420,2.65,0.08,3,8) total +5863. This is still a rolling-IV-z mean-reversion idea, but with stricter microstructure gating from order-book spread.",
+    "analysis_outputs": [],
+    "used_to_decide": "Promoted v9 from v8 as the next parent due to large uplift (+5863 vs +1028). Tie-break by simplicity favored ORDER_Q=8 (same pnl as 10/12 in observed grid rows)."
   }
 ]

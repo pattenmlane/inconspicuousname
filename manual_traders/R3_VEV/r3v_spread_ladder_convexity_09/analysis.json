@@ -80,5 +80,24 @@
       "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v11.json"
     ],
     "used_to_decide": "Given high duplicate risk, switched to a nearby but structurally distinct variation before any further optimization."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Priority underlying-response study (per contract, round3 days0-2): contemporaneous beta to extract move (beta0) is strongest for 5000/5100/5200 and 5300 while spread efficiency |beta|/spread is best near 5200/5100/5300; lag1/lead1 betas near 0 -> little predictive lead-lag. IV thread included mean per-strike IV and spread asymmetry up vs down underlying moves. Used this to narrow calm-regime universe to 5100/5200/5300 and keep stress core-only.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/analysis_underlying_response_v12.json",
+      "backtests/r3v_f13_v12.log",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v12.json"
+    ],
+    "used_to_decide": "Analysis suggested narrower, efficient-strike participation; implemented in v12. Result under-traded (mostly flat), so idea likely too gated despite logical selection."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Follow-up relaxation of v12 calm thresholds/rails to test whether under-trading was caused by gate strictness. No meaningful fill increase and identical PnL, implying bottleneck is likely signal scaling rather than rails.",
+    "analysis_outputs": [
+      "backtests/r3v_f13_v13.log",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v13.json"
+    ],
+    "used_to_decide": "v13 confirms the response-efficient universe choice is not enough alone; next iteration should recalibrate signal magnitude / normalization."
   }
 ]

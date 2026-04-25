@@ -94,5 +94,27 @@
     "total_profit": -2614,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v11.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out backtests/r3v_f13_v11.log"
+  },
+  {
+    "iteration": 12,
+    "trader_file": "trader_v12.py",
+    "strategy_description": "Family13 analysis-led variant C: focus calm participation on response-efficient strikes (5100/5200/5300) found by underlying-response beta/spread study; stress core-only. EWMA RV + weighted core-IV + spread/depth stress.",
+    "total_profit": -152,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v12.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out backtests/r3v_f13_v12.log",
+    "backtest_log_file": "backtests/r3v_f13_v12.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v12.json"
+  },
+  {
+    "iteration": 13,
+    "trader_file": "trader_v13.py",
+    "strategy_description": "Family13 variant C-relaxed: same as v12 with lower calm threshold and wider calm rails; no practical fill increase under worse fills on this tape.",
+    "total_profit": -152,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v13.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out backtests/r3v_f13_v13.log",
+    "backtest_log_file": "backtests/r3v_f13_v13.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v13.json"
   }
 ]

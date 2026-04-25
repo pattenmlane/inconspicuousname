@@ -1,0 +1,67 @@
+{
+  "jump_threshold_abs_dS": 3.0,
+  "pooled_median_spread_shock": 2.0,
+  "pooled_median_spread_calm": 2.0,
+  "per_strike": {
+    "4000": {
+      "median_ratio_shock_over_calm_days_pooled": 1.0,
+      "median_p90_ratio_shock_over_calm_across_days": 1.0,
+      "median_p95_ratio_shock_over_calm_across_days": 1.0,
+      "mean_next_tick_spread_delta_on_shock": 0.031696255759692954
+    },
+    "4500": {
+      "median_ratio_shock_over_calm_days_pooled": 1.0,
+      "median_p90_ratio_shock_over_calm_across_days": 1.0,
+      "median_p95_ratio_shock_over_calm_across_days": 1.0,
+      "mean_next_tick_spread_delta_on_shock": -0.018425245436885757
+    },
+    "5000": {
+      "median_ratio_shock_over_calm_days_pooled": 1.0,
+      "median_p90_ratio_shock_over_calm_across_days": 1.0,
+      "median_p95_ratio_shock_over_calm_across_days": 1.0,
+      "mean_next_tick_spread_delta_on_shock": 0.0005607246241618227
+    },
+    "5100": {
+      "median_ratio_shock_over_calm_days_pooled": 1.0,
+      "median_p90_ratio_shock_over_calm_across_days": 1.0,
+      "median_p95_ratio_shock_over_calm_across_days": 1.0,
+      "mean_next_tick_spread_delta_on_shock": 0.04560498211695283
+    },
+    "5200": {
+      "median_ratio_shock_over_calm_days_pooled": 1.0,
+      "median_p90_ratio_shock_over_calm_across_days": 1.0,
+      "median_p95_ratio_shock_over_calm_across_days": 1.1666666666666667,
+      "mean_next_tick_spread_delta_on_shock": -0.01677370055350028
+    },
+    "5300": {
+      "median_ratio_shock_over_calm_days_pooled": 1.0,
+      "median_p90_ratio_shock_over_calm_across_days": 1.0,
+      "median_p95_ratio_shock_over_calm_across_days": 1.0,
+      "mean_next_tick_spread_delta_on_shock": 0.004777563716210592
+    },
+    "5400": {
+      "median_ratio_shock_over_calm_days_pooled": 1.0,
+      "median_p90_ratio_shock_over_calm_across_days": 1.0,
+      "median_p95_ratio_shock_over_calm_across_days": 1.0,
+      "mean_next_tick_spread_delta_on_shock": 0.007465187686811231
+    },
+    "5500": {
+      "median_ratio_shock_over_calm_days_pooled": 1.0,
+      "median_p90_ratio_shock_over_calm_across_days": 1.0,
+      "median_p95_ratio_shock_over_calm_across_days": 1.0,
+      "mean_next_tick_spread_delta_on_shock": 0.01604940409393213
+    },
+    "6000": {
+      "median_ratio_shock_over_calm_days_pooled": 1.0,
+      "median_p90_ratio_shock_over_calm_across_days": 1.0,
+      "median_p95_ratio_shock_over_calm_across_days": 1.0,
+      "mean_next_tick_spread_delta_on_shock": 0.0
+    },
+    "6500": {
+      "median_ratio_shock_over_calm_days_pooled": 1.0,
+      "median_p90_ratio_shock_over_calm_across_days": 1.0,
+      "median_p95_ratio_shock_over_calm_across_days": 1.0,
+      "mean_next_tick_spread_delta_on_shock": 0.0
+    }
+  }
+}

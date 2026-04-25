@@ -142,5 +142,16 @@
       "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter17_fill_summary.json"
     ],
     "used_to_decide": "Re-embed core thesis 'jump then widen; resume when neighbor residuals compress' on top of v15: after |dS|>=3, pause *new* VEV orders (no flatten), resume when ptp <= 0.88 * ptp at jump or 100 ticks. Backtest 63,106 vs v15 47,762 (largest lift day 2: 11,898 -> 29,566). Still far below ~800k extract+VEV-only bar; next iterations may ablate signed tilt vs this gate or tune 0.88/100."
+  },
+  {
+    "iteration": 18,
+    "analysis_description": "VEV top-of-book spread (ask_1-bid_1) vs extract |dS|>=3 on ROUND_3 tapes (pivot by timestamp). Pooled median spread is 2 ticks on both shock and calm rows; per-strike median shock/calm ratio is 1.0. Tail p95 ratio only nudges above 1 for VEV_5200 on one day. Mean next-tick spread change on shock rows is small (~0 at most strikes; ~+0.03\u20130.05 at 4000 and 5100). IV/Greek path in trader unchanged (LOO spline IV, BS fair, delta for extract skew).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analyze_vev_spread_after_extract_shocks.py",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analysis_vev_spread_after_shocks.json",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter18_backtest.log",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter18_fill_summary.json"
+    ],
+    "used_to_decide": "Despite weak TOB widening signal, tested v17 + exponential post-shock widening of take/make edges with OTM (K/S) scaler. Total PnL 58,408 < v17 63,106 (day 0 6,684 vs 8,417; day 1 24,936 vs 25,124; day 2 similar). Falsified this edge bump at current amplitudes; keep v17 as lead for jump+neighbor gate; do not stack large discretionary edge add-ons without smaller grid or pause-only widening."
   }
 ]

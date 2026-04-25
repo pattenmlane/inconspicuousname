@@ -157,5 +157,16 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter17_backtest.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter17_fill_summary.json"
+  },
+  {
+    "iteration": 18,
+    "trader_file": "trader_v18.py",
+    "strategy_description": "v17 + post-extract shock decay on VEV take/make edges (exp(-age/22 ticks), reset on |dS|>=3): +2 take / +1.15 make scaled by OTM factor 1..1.35 for K/S>1.02. Tape: TOB spread median unchanged shock vs calm; next-tick spread delta weakly positive at 5100/4000.",
+    "total_profit": 58408,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v18.py 3 --data Prosperity4Data --match-trades worse --no-vis",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter18_backtest.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter18_fill_summary.json"
   }
 ]

@@ -266,5 +266,14 @@
       "fill_summary_v36.json"
     ],
     "used_to_decide": "Next iteration must disambiguate: split submission vs full tape PnL for VEV_6000, or test rich-short-only / different wing set, rather than more cheap-far-OTM gates that do not change submissions."
+  },
+  {
+    "iteration": 37,
+    "analysis_description": "Parsed backtest_v30 tradeHistory: all 75 submission-tagged VEV_6000 rows have quantity>0 and seller='SUBMISSION' (buy flow); VEV_5400 rows have buyer='SUBMISSION'. So v34\u2013v36 conditions on the cheap-long elif branch never applied to the fills we counted. v37 removes strikes 6000/6500 from WING_KS only (smile still uses all vouchers with valid IV). fill_summary_v37: total 4204.5 (+450 vs v30), VEV_6000/6500 PnL 0, n_submission_trade_rows 43 (was 118), no VEV_6000 in submission_qty.",
+    "analysis_outputs": [
+      "fill_summary_v37.json",
+      "backtest_v37.log"
+    ],
+    "used_to_decide": "New branch best is v37; far-OTM was execution-only drag under worse fills, not fixable by CHEAP gating. Next: optional re-add 6500 only if tape shows edge, or micro-tune RICH/CHEAP around v37's path."
   }
 ]

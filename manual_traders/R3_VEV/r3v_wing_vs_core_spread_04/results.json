@@ -318,5 +318,16 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v36.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v36.json"
+  },
+  {
+    "iteration": 37,
+    "trader_file": "trader_v37.py",
+    "strategy_description": "v30 + WING_KS without 6000/6500 (still fit smile on all strikes); removes VEV_6000 submission buy path.",
+    "total_profit": 4204.5,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v37.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v37.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v37.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v37.json"
   }
 ]

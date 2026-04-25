@@ -74,5 +74,14 @@
       "analysis_outputs/fill_summary_v16_v17.json"
     ],
     "used_to_decide": "Core strikes have sizable dC/dS (~0.41 avg over 5000-5400), minimal asymmetry, and little spread widening after top-decile extract shocks. Implemented filter to avoid trading when ATM bundle move is mostly explained by concurrent extract move. v16/v17 improved strongly over v12/v13 but remain below prior strict-gated v14/v15 and far below class bar."
+  },
+  {
+    "iteration": 18,
+    "analysis_description": "Lead/lag: Pearson corr dC_t vs dS_{t-k} and dS_t vs dC_{t-k} for k=0,1,2,3,5 on Round3; simultaneous k=0 ~0.75+ for 5000/5100, higher lags near zero. Vega at median: ~118 for 5000. Used to set vega-scaled |mid-fair| floors and |dS|-scaled shock edge instead of lag trading.",
+    "analysis_outputs": [
+      "analysis_outputs/extract_lead_lag_family10_v18.json",
+      "analysis_outputs/extract_propagation_by_strike_family10.json"
+    ],
+    "used_to_decide": "v18 parent=best local family10 v14. Gates now require price mispricing to exceed vega-appropriate minimum and raise IV-shock bar when |dS| is large, reducing spurious short during pure co-move. Backtest 55009 vs v14 53078 total."
   }
 ]

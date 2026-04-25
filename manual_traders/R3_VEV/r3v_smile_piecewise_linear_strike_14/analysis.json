@@ -102,5 +102,16 @@
       "backtest_logs/trader_v41_worse.log"
     ],
     "used_to_decide": "v39 (beta+spread) improved from v23 -101 to -96. v40 over-weighted beta and worsened to -111. v41 (spread floors only) tied branch best at -95 with simpler logic, so keep v41 as lead by tie-break rule."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "Up/down beta asymmetry rollup (underlying_up_down_asymmetry_rollup.json): for VEV_5000-5500, |beta_up-beta_down| is tiny across days 0-2 (max abs ~0.02), so asymmetric quoting from separate up/down elasticities is not supported. Prior branch IV\u2013extract correlation (neg) motivates mild directional THR_OPEN split using EMA of signed extract return: easier bid edge when spot rising, easier offer when falling. Implemented v42 (coef 0.12) and v43 (0.08); both match v41 at -95 total and 4184 trades.",
+    "analysis_outputs": [
+      "analysis_outputs/underlying_up_down_asymmetry_rollup.json",
+      "run_asymmetry_rollup.py",
+      "backtest_logs/trader_v42_worse.log",
+      "backtest_logs/trader_v43_worse.log"
+    ],
+    "used_to_decide": "No PnL gain vs v41; keep v41 as simpler lead unless a future variant needs momentum asymmetry."
   }
 ]

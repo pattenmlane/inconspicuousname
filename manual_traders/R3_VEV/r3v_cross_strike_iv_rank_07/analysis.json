@@ -113,5 +113,17 @@
       "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v23_round3_worse_fills_summary.json"
     ],
     "used_to_decide": "Soft beta scaling improves total PnL vs v14 by +1 to 4667 under --match-trades worse; hard directional filters (v20/v21) were wrong direction. v23 (no cap widen) matches v22’s PnL, so the gain is from size skew toward high-beta strikes, not the extra neighbor slack; prefer the simpler v23 for ongoing work (or drop NEIGHBOR_LOOSEN_MAX in a future cleanup). Still far below ~800k surface benchmark—next iterations can tune gamma/min/max or add spread-aware soft weights while keeping residual-decile core."
+  },
+  {
+    "iteration": 24,
+    "analysis_description": "Round-3 price tapes (days 0–2): L1 spread on each VEV vs VELVETFRUIT_EXTRACT mid moves. One-tick |ΔS| bins are degenerate (median |ΔS|≈1); long-horizon |S(t)-S(t-5000)| quantiles separate calm vs volatile windows. Conditional median L1 spread is nearly flat across those bins on subsampled rows (coarse mids + tight ITM quotes), so spread-shock widening is not a strong linear signal in this aggregation. Implemented soft live sizing anyway: per action tick, haircut size by recent raw-mid step |ΔS|/S and by each voucher’s L1 spread vs tape median (~2 ticks, p90 ~17). BS IV smile residual logic unchanged from v23.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/spread_vs_extract_horizon_shock.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v24_round3_worse.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v25_round3_worse.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v24_round3_worse_fills_summary.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v25_round3_worse_fills_summary.json"
+    ],
+    "used_to_decide": "Tape work showed limited cross-bin spread lift vs large horizon extract moves, so stress sizing stays mild multiplicative (no gates). v24/v25 add move+spread scalers on top of v23; both reach total_profit 4671 (+4 vs v23). v25 grid (softer constants) ties v24; keep v24 as the documented default for slightly stronger defensive skew. Next: optional IV rank using vega-weighted residual noise when spread is wide, or tune MOVE_SHRINK only on high-beta legs."
   }
 ]

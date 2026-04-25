@@ -208,5 +208,27 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v23_round3_worse.json",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v23_round3_worse_fills_summary.json",
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v23.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v23_round3_worse.json"
+  },
+  {
+    "iteration": 24,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v24.py",
+    "strategy_description": "v23 + soft stress sizing: clip size by 1/(1+50*|ΔS_raw|/S) between action ticks (underlying step proxy) and by L1 spread vs ref=2 ticks (kappa 0.035, floor 0.82); layered on beta soft sizing.",
+    "total_profit": 4671,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v24_round3_worse.json",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v24_round3_worse_fills_summary.json",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v24.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v24_round3_worse.json"
+  },
+  {
+    "iteration": 25,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v25.py",
+    "strategy_description": "Grid vs v24: gentler stress (MOVE_SHRINK=30, SPREAD_KAPPA=0.02, floors 0.92/0.9). Same total_profit 4671 on R3 days 0–2; tie-break keeps v24 as reference for the stronger haircut constants.",
+    "total_profit": 4671,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v25_round3_worse.json",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v25_round3_worse_fills_summary.json",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v25.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v25_round3_worse.json"
   }
 ]

@@ -30,5 +30,21 @@
     "total_profit": -5439,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v3.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "Parent v3 with MM drag removed (EXTRACT_MM_Q=0, HYDRO_MM_Q=0), lower hedge frac (0.12), higher VEGA_RAIL=850 to test whether pure vega-rail scalp can stand alone. Trades almost only in day 2; near-flat total.",
+    "total_profit": -14,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v4.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 5,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "Parent v3 without extract/hydro MM (pure vega-rail focus), VEGA_RAIL=650 and THR_OPEN=0.35 sweep. Small positive result from sparse ATM voucher fills on day 2; best in-branch so far.",
+    "total_profit": 14,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
   }
 ]

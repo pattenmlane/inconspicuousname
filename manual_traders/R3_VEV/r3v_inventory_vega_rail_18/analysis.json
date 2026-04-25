@@ -11,7 +11,17 @@
   {
     "iteration": 1,
     "analysis_description": "Implicit parameter sweep from backtests: IV_SCALPING_THR vs wing PnL (v1 low gate -> large losses on VEV_4000/4500); v2 ATM-only + no flatten reduces trade count but does not fix extract drag.",
-    "analysis_outputs": ["manual_traders/R3_VEV/r3v_inventory_vega_rail_18/results.json"],
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/results.json"
+    ],
     "used_to_decide": "Reverted toward stricter Frankfurt gate; kept order merge from v1 as infrastructure fix in v3; next iterations should parent v3 and tune day-2 hydrogel/extract risk or scalp thresholds narrowly."
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "IV/Greek signal-frequency by strike bucket (ATM/mid/wings) from ROUND_3 tapes using smile-IV BS theo/vega and Frankfurt theo-diff EMA windows. Compared edge trigger hit rates at THR_OPEN=0.45 and switch statistics to explain sparse fills.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/vega_signal_window_stats.json"
+    ],
+    "used_to_decide": "Observed ATM has materially tighter spreads and higher edge-hit rates than wings while wings have very wide spreads and low trigger rates; this justified pivoting away from underlying/hydro MM drag and testing pure vega-rail voucher execution (v4/v5)."
   }
 ]

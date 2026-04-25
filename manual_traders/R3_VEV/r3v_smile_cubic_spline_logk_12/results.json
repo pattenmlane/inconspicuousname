@@ -54,5 +54,21 @@
     "total_profit": 50261,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "trader_v5 + optional BS gamma: increase required take/make edge when |gamma| is high (Sensitivity to underlying tick); GAMMA_EDGE_SCALE=100, grid with v8=160. Same 50,261 PnL as v5 in this backtester.",
+    "total_profit": 50261,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 8,
+    "trader_file": "trader_v8.py",
+    "strategy_description": "Same as trader_v7 with GAMMA_EDGE_SCALE=160. Ties v5–v7 at 50,261 in this run; prefer v5 (simplest) on tie.",
+    "total_profit": 50261,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v8.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

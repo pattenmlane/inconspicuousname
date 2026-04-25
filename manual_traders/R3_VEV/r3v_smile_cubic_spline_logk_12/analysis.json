@@ -24,5 +24,14 @@
     "analysis_description": "Design note for v5/v6 (no new CSV): after v3/v4 underperformed v1, parent was reset to best PnL trader_v1. Hypothesis: BS vega weights how much 1 tick of mid move in price space is worth in IV space; combine with observed bid-ask width (spread ticks) to modulate required edge—tighter edge when |vega| is large and spread is narrow. Small grid: VEGA_EDGE_SCALE 0.15 (v5) vs 0.25 (v6). TTE unchanged: 8−d days per round3description.",
     "analysis_outputs": [],
     "used_to_decide": "v5 and v6 beat v1 in this backtest (50,261 vs 50,222). v5 and v6 tie on PnL; prefer v5 (smaller scale) per tie-break. v3/v4 multi-level aggressor path still recorded as worse than v1 here, so not pursued further without new evidence."
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "Mean |BS vega| and |BS gamma| (using spline implied vol at each strike) by voucher and tape day, subsampled 1/500. Confirms |γ| and |vega| peak near 5200–5300; deep ITM (4000) has very different Greek profile than OTM. Motivates optional gamma-caution in edge (v7/v8); in this backtest, gamma scaling 100 vs 160 did not change total PnL vs v5.",
+    "analysis_outputs": [
+      "analysis_outputs/vega_gamma_by_strike.csv",
+      "analyze_vega_gamma_by_strike.py"
+    ],
+    "used_to_decide": "Kept v5 as the leading branch; v7/v8 are documented experiments—same 50,261 aggregate PnL, so the simpler v5 (no extra gamma) remains the preferred tie-break v5 family member unless future runs diverge."
   }
 ]

@@ -115,5 +115,16 @@
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v20_corebiased_fill_summary.json"
     ],
     "used_to_decide": "In tape residual metrics, core-biased looked smoother (lower mean|resid| and |\u0394resid|), but in trading backtest under --match-trades worse, uniform baseline edged core-biased (11,399 vs 11,366). This confirms the variation is real (different spline family) but currently not superior in realized PnL; keep uniform family baseline for now."
+  },
+  {
+    "iteration": 21,
+    "analysis_description": "Duplicate-check driven adjusted Family12 variant: adaptive core-biased knot placement (not fixed core-biased). Core knot concentration is a function of observed core half-spread each tick, while execution/hurdles are kept identical to uniform/core-biased baselines. Data-first comparison in family12_adaptive_vs_uniform_stability.json shows adaptive and uniform residual stability are near-identical in sampled tapes.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/_analyze_family12_adaptive_core.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/family12_adaptive_vs_uniform_stability.json",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v21_adaptive_corebiased.log",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v21_adaptive_corebiased_fill_summary.json"
+    ],
+    "used_to_decide": "v21 total 11,356 is below uniform v19 (11,399) and near v20 core-biased (11,366). The duplicate-risk pivot was valid (distinct assumption), but adaptive density did not improve under --match-trades worse."
   }
 ]

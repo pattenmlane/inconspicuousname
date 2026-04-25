@@ -166,5 +166,13 @@
     "total_profit": 11366,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v20_corebiased.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v20_corebiased.log"
+  },
+  {
+    "iteration": 21,
+    "trader_file": "trader_v21_adaptive_corebiased.py",
+    "strategy_description": "Family12 adjusted variant after duplicate-check: adaptive core-biased pseudo-knot placement (core density tied to observed core spread tightness), execution unchanged vs v19/v20 to isolate spline assumption.",
+    "total_profit": 11356,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v21_adaptive_corebiased.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v21_adaptive_corebiased.log"
   }
 ]

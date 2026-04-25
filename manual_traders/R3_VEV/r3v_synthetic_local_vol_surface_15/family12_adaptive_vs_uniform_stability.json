@@ -1,0 +1,43 @@
+{
+  "timing": {
+    "dte_open": "8-csv_day",
+    "intraday": "dte_eff=dte_open-(ts//100)/10000",
+    "T": "dte_eff/365"
+  },
+  "families": {
+    "uniform": {
+      "0": {
+        "samples": 3000,
+        "mean_abs_resid": 1.271201371901778,
+        "mean_abs_delta_resid": 2.4899734715951816
+      },
+      "1": {
+        "samples": 3000,
+        "mean_abs_resid": 1.6386442696915975,
+        "mean_abs_delta_resid": 3.153804751007483
+      },
+      "2": {
+        "samples": 2999,
+        "mean_abs_resid": 1.5433415440960705,
+        "mean_abs_delta_resid": 2.953683813492282
+      }
+    },
+    "adaptive_core": {
+      "0": {
+        "samples": 3000,
+        "mean_abs_resid": 1.2725020053407146,
+        "mean_abs_delta_resid": 2.4925382469020434
+      },
+      "1": {
+        "samples": 3000,
+        "mean_abs_resid": 1.6379095379904387,
+        "mean_abs_delta_resid": 3.1553417089428826
+      },
+      "2": {
+        "samples": 2999,
+        "mean_abs_resid": 1.5419200971235283,
+        "mean_abs_delta_resid": 2.953920320444193
+      }
+    }
+  }
+}

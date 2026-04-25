@@ -31,5 +31,13 @@
       "analysis_outputs/vev_gamma_5100_5500_by_strike.json"
     ],
     "used_to_decide": "Reinforces that the 5100–5500 strip is the high-curvature region of the smile for the assigned spot range; paired with v8 EMA + book-depth gate to avoid acting on microstructure noise."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "BS European **call theta** (per option per year in price space) at IV from mid for VEV_5100..VEV_5500, r=0, T=dte_eff/365, subsampled every 400 timestamps on days 0–2. Mean theta is most negative around 5200/5300 (magnitude ~1850 vs ~750 at 5500 in this subsample), consistent with higher time decay vega concentration near ATM.",
+    "analysis_outputs": [
+      "analysis_outputs/vev_theta_5100_5500_by_strike.json"
+    ],
+    "used_to_decide": "Documents time-decay profile on the traded strip; parameter sweeps v9 (vega-weighted WLS) and v10 (EMA/threshold) both underperformed v8, so we keep v8's linear book weighting in WLS for now."
   }
 ]

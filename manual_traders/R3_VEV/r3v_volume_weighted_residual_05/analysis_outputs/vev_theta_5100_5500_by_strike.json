@@ -1,0 +1,17 @@
+{
+  "method": "BS European call theta per day at fitted IV from mid; r=0; T=dte_eff/365. Subsample every 400 timestamps.",
+  "mean_theta_by_strike": {
+    "VEV_5100": -1213.2745685473662,
+    "VEV_5200": -1809.1885416774583,
+    "VEV_5300": -1854.6190152103857,
+    "VEV_5400": -1196.691400720583,
+    "VEV_5500": -752.1604417412634
+  },
+  "n_samples": {
+    "VEV_5100": 75,
+    "VEV_5200": 75,
+    "VEV_5300": 75,
+    "VEV_5400": 75,
+    "VEV_5500": 75
+  }
+}

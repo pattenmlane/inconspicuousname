@@ -36,5 +36,13 @@
       "terminal: gamma means per day; grid scores CLIP/exit/window (see used_to_decide)"
     ],
     "used_to_decide": "Ship v6 = v5 with CLIP_QTY 8 only; best PnL in local sweep, simpler than retuning z/window."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Greek+micro: At rolling z (400) > 2.15 on Round 3 tapes, sum of (ask−bid) on the three fly legs (level-1) mean ~12.7–12.9 across days. BS theta of portfolio short 1: −Θ(5000)−Θ(5200)+2·Θ(5100) with r=0, IV from mid, T=(8−d)/365 — mean by day: day0 about −170/yr, day1 about −19/yr, day2 about +94/yr (sign/vol interaction; interpret as time-decay of premium pieces, not a trading rule by itself). Book/grid on parent v6: CLIP 7 → 212, CLIP 8 → 202, CLIP 9 → 192; Z_LO 0.82 → 44, BF 405 → 74; Z_HI 2.18 → 144.",
+    "analysis_outputs": [
+      "one-off: spread_width + theta means by day at z>2.15; grid from trader_v6.py source"
+    ],
+    "used_to_decide": "v7 = v6 with CLIP_QTY 7 only; best in grid, tie-breaks to smaller clip vs retuning z."
   }
 ]

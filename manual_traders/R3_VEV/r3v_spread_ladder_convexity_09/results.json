@@ -54,5 +54,13 @@
     "total_profit": 202,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "Parent v6: CLIP 7 (finer grid around v6); else unchanged. Theta+spread: at z>2.15, sum of three leg spreads mean ~12.7–12.9; net BS theta of short fly (r=0) varies a lot by day (sign flips with moneyness/θ term).",
+    "total_profit": 212,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
   }
 ]

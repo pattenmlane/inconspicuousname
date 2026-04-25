@@ -25,5 +25,13 @@
       "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analysis_delta_brief.json"
     ],
     "used_to_decide": "Delta magnitude is huge on deep ITM low strikes (informational) while vega concentrates near 5000-5400. v10 blended |delta| into tilt scale to align with 'track underlying' without hard strike lists; v12 added spread-based dampening after seeing wide books on deep wings in prior spread tables. v11 (no hydrogel) underperformed v4, so hydrogel MM still adds in this harness."
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "Regime check: per subsampled timestamp, mean BS-implied vol across all ten VEV mids (r=0, same TTE winding); correlate extract 1-tick return with forward first-difference of that mean IV along the tape within each day. Documents joint IV extract dynamics without overfitting.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analysis_v3_regime_brief.json"
+    ],
+    "used_to_decide": "Correlation ~-0.17 between extract return and step change in mean IV suggests modest co-movement; reinforces keeping tilt bounded (spread dampening in v12/v14) rather than large unconstrained shifts. v14 tightened spread multipliers and improved backtest total vs v12."
   }
 ]

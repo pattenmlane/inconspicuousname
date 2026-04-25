@@ -102,5 +102,29 @@
     "total_profit": 16148,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v12.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 13,
+    "trader_file": "trader_v13.py",
+    "strategy_description": "v12 + W_Z 0.52->0.56 to lean on extract z-signal. Total 16,125 (below v12).",
+    "total_profit": 16125,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v13.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 14,
+    "trader_file": "trader_v14.py",
+    "strategy_description": "v12 with stronger spread dampening (0.86/0.72 vs 0.88/0.75). New best total 16,170.",
+    "total_profit": 16170,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v14.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 15,
+    "trader_file": "trader_v15.py",
+    "strategy_description": "v12 + smaller VEV/hydrogel clip (17/10) to reduce day-2 drag. Total 16,148 (ties v12).",
+    "total_profit": 16148,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v15.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

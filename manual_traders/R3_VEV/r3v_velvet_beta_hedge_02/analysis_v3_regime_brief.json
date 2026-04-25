@@ -1,0 +1,5 @@
+{
+  "method": "Subsampled timestamps: mean BS-IV of 10 VEVs; consecutive pairs within a day: diff(mean IV) vs extract 1-tick return at the later time.",
+  "correlation_ret_vs_miv_firstdiff": -0.17164055411016388,
+  "n_pairs": 1197
+}

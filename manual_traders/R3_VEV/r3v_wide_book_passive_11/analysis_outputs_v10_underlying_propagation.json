@@ -1,0 +1,92 @@
+{
+  "per_symbol": {
+    "VEV_4000": {
+      "n": 29997,
+      "corr_extract_ret_to_vev_ret": 0.5946598246234662,
+      "beta_median": 4.180282717167324,
+      "beta_mean": 3.377755408739445,
+      "spread_mean": 20.813448011467813,
+      "spread_widen_after_up_mean": 0.031137303192892953,
+      "spread_widen_after_dn_mean": -0.031350195938724616,
+      "iv_mean": 0.8587222280077713,
+      "imbalance_mean": 0.00017968906721559075
+    },
+    "VEV_4500": {
+      "n": 29997,
+      "corr_extract_ret_to_vev_ret": 0.5976306211798981,
+      "beta_median": 5.626544818608597,
+      "beta_mean": 5.010024101279206,
+      "spread_mean": 15.852585258525853,
+      "spread_widen_after_up_mean": 0.03641481220863752,
+      "spread_widen_after_dn_mean": -0.03126113288208051,
+      "iv_mean": 0.4865441290942774,
+      "imbalance_mean": 0.00015773198400284637
+    },
+    "VEV_5000": {
+      "n": 29997,
+      "corr_extract_ret_to_vev_ret": 0.7524290909930301,
+      "beta_median": 18.992804394800427,
+      "beta_mean": 14.722824651982622,
+      "spread_mean": 6.043270993766043,
+      "spread_widen_after_up_mean": 0.021110036062978274,
+      "spread_widen_after_dn_mean": -0.020039187744923404,
+      "iv_mean": 0.25198460769063763,
+      "imbalance_mean": -0.0037930157118726926
+    },
+    "VEV_5100": {
+      "n": 29997,
+      "corr_extract_ret_to_vev_ret": 0.7626818307630585,
+      "beta_median": 21.354367430117026,
+      "beta_mean": 19.772800398388252,
+      "spread_mean": 4.295796246291296,
+      "spread_widen_after_up_mean": 0.01662415339959539,
+      "spread_widen_after_dn_mean": -0.018257926612041325,
+      "iv_mean": 0.24953676994357246,
+      "imbalance_mean": -0.003088549260618713
+    },
+    "VEV_5200": {
+      "n": 29997,
+      "corr_extract_ret_to_vev_ret": 0.7192605259670997,
+      "beta_median": 26.971781697522715,
+      "beta_mean": 26.11214182499913,
+      "spread_mean": 2.8880888088808883,
+      "spread_widen_after_up_mean": 0.007652388072829625,
+      "spread_widen_after_dn_mean": -0.010242251514071963,
+      "iv_mean": 0.25235798189345465,
+      "imbalance_mean": 0.0016645971926214484
+    },
+    "VEV_5300": {
+      "n": 29997,
+      "corr_extract_ret_to_vev_ret": 0.6123328674528101,
+      "beta_median": 0.0,
+      "beta_mean": 33.4626334185449,
+      "spread_mean": 2.1068106810681066,
+      "spread_widen_after_up_mean": 0.006684844753276454,
+      "spread_widen_after_dn_mean": -0.01059850374064838,
+      "iv_mean": 0.25509686417391486,
+      "imbalance_mean": 0.0011450295869425097
+    },
+    "VEV_5400": {
+      "n": 29997,
+      "corr_extract_ret_to_vev_ret": 0.5251652099854376,
+      "beta_median": 0.0,
+      "beta_mean": 47.02374685412905,
+      "spread_mean": 1.3814048071473815,
+      "spread_widen_after_up_mean": 0.006245052335297739,
+      "spread_widen_after_dn_mean": -0.003028143925899537,
+      "iv_mean": 0.23914047375678457,
+      "imbalance_mean": 0.0011913694615192031
+    },
+    "VEV_5500": {
+      "n": 29997,
+      "corr_extract_ret_to_vev_ret": 0.33384186735451443,
+      "beta_median": 0.0,
+      "beta_mean": 48.824835935469316,
+      "spread_mean": 1.1497483081641497,
+      "spread_widen_after_up_mean": -8.795848359574281e-05,
+      "spread_widen_after_dn_mean": 0.0010687566797292483,
+      "iv_mean": 0.25940172887325397,
+      "imbalance_mean": 3.541967927660687e-05
+    }
+  }
+}

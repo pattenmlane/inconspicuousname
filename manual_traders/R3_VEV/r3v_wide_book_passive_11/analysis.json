@@ -73,5 +73,15 @@
       "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter10_regime_imbalance.json"
     ],
     "used_to_decide": "Best run v10c from sweep_iter10_regime_imbalance.json: total 56,804 with parameters cut=-0.50, imbalance gates extract/hydro 0.20/0.25, calm edges 4/7. This satisfies distinctness from parent (different execution assumptions and instrument risk-off policy) while preserving family13 RV-IV regime framing. Still below ~800k target, so further iterations should improve signal quality and strike coverage."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "Priority tape study requested: underlying (VELVETFRUIT_EXTRACT) move propagation into voucher returns/spreads by contract. For each day and timestamp, computed next-tick extract return and per-VEV return/spread response, plus BS IV per strike with TTE map day k->7-k days. Key findings: response correlation is much stronger around strikes 5000-5200 than 4000/4500 (corr ~0.72-0.76 vs ~0.60), and spread response is asymmetric (small widening after up shocks, compression after down shocks). Implemented this as shock-asymmetric passive offsets on existing wide-book VEV leg and ran a focused sweep.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/analysis_outputs_v10_underlying_propagation.json",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter11_shock_asym.json",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v11.py"
+    ],
+    "used_to_decide": "Propagation asymmetry was real but adding the shock-adjusted offsets did not improve PnL in worse-fill optimization (best 56,804 in sweep; full run 56,803) relative to prior v10 56,804. By tie-break simplicity, keep v10 as effective champion while logging this analysis-backed null result."
   }
 ]

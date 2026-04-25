@@ -1,0 +1,49 @@
+{
+  "runs": [
+    {
+      "name": "v11s1",
+      "shock": 3.0,
+      "up": 1,
+      "dn": 1,
+      "total_profit": 56804,
+      "fills": 3573,
+      "qty": 9809
+    },
+    {
+      "name": "v11s2",
+      "shock": 4.0,
+      "up": 1,
+      "dn": 1,
+      "total_profit": 56803,
+      "fills": 3573,
+      "qty": 9809
+    },
+    {
+      "name": "v11s3",
+      "shock": 5.0,
+      "up": 1,
+      "dn": 1,
+      "total_profit": 56804,
+      "fills": 3573,
+      "qty": 9809
+    },
+    {
+      "name": "v11s4",
+      "shock": 4.0,
+      "up": 2,
+      "dn": 1,
+      "total_profit": 56802,
+      "fills": 3573,
+      "qty": 9809
+    }
+  ],
+  "best": {
+    "name": "v11s1",
+    "shock": 3.0,
+    "up": 1,
+    "dn": 1,
+    "total_profit": 56804,
+    "fills": 3573,
+    "qty": 9809
+  }
+}

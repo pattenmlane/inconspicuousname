@@ -90,5 +90,30 @@
       },
       "sweep_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter10_regime_imbalance.json"
     }
+  },
+  {
+    "iteration": 10,
+    "trader_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v11.py",
+    "strategy_description": "Analysis-led extract-to-voucher propagation tweak from v10: measured per-strike response/spread asymmetry after extract shocks and tested shock-asymmetric VEV offsets (up-shock wider by +1 tick, down-shock tighter by -1) while keeping family13 RV-IV regime + imbalance gate. Performance tied/slightly worse vs v10, so simpler v10 remains practical champion per tie-break.",
+    "total_profit": 56803,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v11.py 3 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v11_iter10_out.json",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v11_iter10_full.log",
+    "trades_or_fills_summary": {
+      "per_day_profit": {
+        "day_0": 20198,
+        "day_1": 24214,
+        "day_2": 12391
+      },
+      "fills": 3573,
+      "fill_qty": 9809,
+      "fill_qty_by_symbol": {
+        "VEV_4000": 920,
+        "VELVETFRUIT_EXTRACT": 6902,
+        "HYDROGEL_PACK": 1987
+      },
+      "sweep_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter11_shock_asym.json"
+    }
   }
 ]

@@ -1,0 +1,7 @@
+{
+  "method": "subsample ts step 40, BS IV + quadratic residual per tick; compare |residual| in low/high vega buckets",
+  "n": 6286,
+  "median_abs_residual_all": 0.007181964708953076,
+  "median_abs_residual_low_vega_q25": 0.006482678132945396,
+  "median_abs_residual_high_vega_q75": 0.007516911115094199
+}

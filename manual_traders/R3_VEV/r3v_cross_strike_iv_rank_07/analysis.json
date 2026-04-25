@@ -43,10 +43,18 @@
   },
   {
     "iteration": 10,
-    "analysis_description": "Greek check on historical mids: at subsampled timestamps, compute quadratic smile IV residual per strike; correlate absolute residual with Black–Scholes vega at fitted IV. Pool ~6k strike-points across days 0-2. Confirms |resid| is only weakly related to vega (corr about -0.065), so residual mispricing is not simply a high-vega artifact.",
+    "analysis_description": "Greek check on historical mids: at subsampled timestamps, compute quadratic smile IV residual per strike; correlate absolute residual with Black\u2013Scholes vega at fitted IV. Pool ~6k strike-points across days 0-2. Confirms |resid| is only weakly related to vega (corr about -0.065), so residual mispricing is not simply a high-vega artifact.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/vega_vs_abs_residual_corr.json"
     ],
     "used_to_decide": "v10 (ACTION_STRIDE=2) improved total PnL to 1858 vs v6 1141, consistent with more frequent re-ranking catching moving residual deciles. v11 (larger size) reverted to 1141 like v6; next parent v10. Trade-off: ~2x backtest wall time vs v6."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Subsampled tape analysis of smile residual magnitude by vega bucket (BS vega at implied vol) plus strategy sweep: tested whether weighting residual rank by vega improves signal quality. Method: BS IV from mids, quadratic residual in m_t=log(K/S)/sqrt(T), T from round3 DTE mapping with intraday winding.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/residual_by_vega_bucket.json"
+    ],
+    "used_to_decide": "Residual magnitude is only modestly higher in high-vega bucket than low-vega bucket; vega-weighted rank (v12) underperformed heavily (258). Cap/size variant v13 reached 1200 but still below v10 (1858). Keep v10 as best parent; tie-break still favors simpler implementations among equals."
   }
 ]

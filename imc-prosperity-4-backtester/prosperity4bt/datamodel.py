@@ -96,7 +96,8 @@ class TradingState(object):
                  own_trades: Dict[Symbol, List[Trade]],
                  market_trades: Dict[Symbol, List[Trade]],
                  position: Dict[Product, Position],
-                 observations: Observation):
+                 observations: Observation,
+                 csv_day: int = 0):
         self.traderData = traderData
         self.timestamp = timestamp
         self.listings = listings
@@ -105,6 +106,8 @@ class TradingState(object):
         self.market_trades = market_trades
         self.position = position
         self.observations = observations
+        # Prosperity 4 Round 3: matches `day` column in prices CSV (0,1,2) for TTE/DTE mapping.
+        self.csv_day = int(csv_day)
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True)

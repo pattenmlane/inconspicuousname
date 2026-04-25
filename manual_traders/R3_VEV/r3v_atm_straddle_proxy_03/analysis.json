@@ -1,0 +1,11 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round-3 tape snapshot at last timestamp (<=500000): Black-Scholes implied volatility (European call, S=VELVETFRUIT_EXTRACT mid, K=strike from symbol, option mid in same price units) and vega per VEV; level-1 spread width. TTE mapping: historical CSV day column d in {0,1,2} corresponds to TTE = 8-d days per round3work/round3description.txt (offset consistent with the VEV_5000 worked example). Method: bisection IV; vega = S*sqrt(T)*phi(d1).",
+    "analysis_outputs": [
+      "analysis_outputs/iv_vega_spread_snapshot.json",
+      "analyze_r3_vev_iv.py"
+    ],
+    "used_to_decide": "ATM cluster VEV_5000/5100 show similar IV (~0.22-0.24) and combined vega ~230-330 vs wings; tightest quoted spreads at 5000/5100 vs deep OTM supports treating them as the liquid ATM bundle for a straddle-proxy. Informed v1: use per-leg IV for fair and add IV-vs-realized-vol shock alongside price-vs-theo mispricing."
+  }
+]

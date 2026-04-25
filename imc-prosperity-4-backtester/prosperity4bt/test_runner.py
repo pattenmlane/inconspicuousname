@@ -94,6 +94,9 @@ class TestRunner:
             state.order_depths[product] = order_depth
             state.listings[product] = Listing(product, product, 1)
 
+        # Backtest-only: CSV historical day index for TTE mapping (not present in live engine).
+        setattr(state, "_prosperity4bt_hist_day", data.day_num)
+
         observation_row = data.observations.get(state.timestamp)
         if observation_row is None:
             state.observations = Observation({}, {})

@@ -1,0 +1,18 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "trader_v0.py",
+    "strategy_description": "ATM VEV_5000+VEV_5100 bundle vs single Black-Scholes sigma (RV from extract log returns annualized); coordinated legs with extract delta hedge; tight-spread hydrogel fade. TTE from round3description: historical day d -> 8-d days (via _prosperity4bt_hist_day in backtest).",
+    "total_profit": 21868,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v0.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 1,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Same ATM bundle thesis; fair from per-leg implied vol (bisection on mids) plus IV-vs-RV shock overlay; MISPRICE_EDGE=2.5, RV_WINDOW=50 grid corner vs v0.",
+    "total_profit": 26230,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v1.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  }
+]

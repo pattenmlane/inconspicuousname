@@ -89,5 +89,17 @@
       "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v19_round3_worse_fills_summary.json"
     ],
     "used_to_decide": "Deep propagation findings: strong beta gradient (ITM high-beta/low-vega wings to ATM high-vega lower-beta center), limited spread-shock uplift, and asymmetry concentrated in deep ITM. The distinct family13-adjusted design was too restrictive and effectively produced no incremental edge in worse-fill backtests (v18/v19 total 0). Keep v14 (4666) as branch best despite still far from 800k bar; future attempts should relax gating and avoid over-combining regime and residual filters."
+  },
+  {
+    "iteration": 20,
+    "analysis_description": "Deep propagation extension: computed contemporaneous and lag-1 betas (dP/dS), delta-normalized elasticity, and per-strike asymmetry on 50k sampled rows. Core finding: strong immediate beta ladder across strikes, but near-zero/negative lag-1 beta for active strikes, and near-zero sensitivity in far OTM wings (K>=6000).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/underlying_propagation_lag_elasticity.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v20_round3_worse.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v21_round3_worse.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v20_round3_worse_fills_summary.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v21_round3_worse_fills_summary.json"
+    ],
+    "used_to_decide": "Given near-zero lag-beta, tested contemporaneous directional gating by dS sign and high-beta strikes (v20/v21). This over-constrained execution and collapsed edge (-36 both). Keep v14 (4666) as best. Next improvement should apply propagation features as soft sizing/width shifts, not hard side gates."
   }
 ]

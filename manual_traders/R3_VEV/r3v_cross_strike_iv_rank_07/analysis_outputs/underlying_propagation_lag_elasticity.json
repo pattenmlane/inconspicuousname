@@ -1,0 +1,76 @@
+{
+  "timing": "round3description DTE+winding, sample step 5, lag uses previous sample",
+  "n_rows": 50298,
+  "per_strike": {
+    "VEV_4000": {
+      "beta_t": 0.8147904803620967,
+      "beta_lag1": -0.02832415420928403,
+      "elasticity_median": 1.0030115459317472,
+      "elasticity_p90": 4.029596974819334,
+      "delta_median": 0.9968976916063703
+    },
+    "VEV_4500": {
+      "beta_t": 0.8863297384121156,
+      "beta_lag1": -0.024463025706381522,
+      "elasticity_median": 1.0049293220163968,
+      "elasticity_p90": 4.603060739744684,
+      "delta_median": 0.9950657152975898
+    },
+    "VEV_5000": {
+      "beta_t": 0.869793125175021,
+      "beta_lag1": -0.019931782403358404,
+      "elasticity_median": 1.0473525789692366,
+      "elasticity_p90": 2.1312582483049725,
+      "delta_median": 0.9364604036389166
+    },
+    "VEV_5100": {
+      "beta_t": 0.7623754588358679,
+      "beta_lag1": -0.010657069480598892,
+      "elasticity_median": 0.9861841820199263,
+      "elasticity_p90": 1.8924143451378181,
+      "delta_median": 0.8214714942649799
+    },
+    "VEV_5200": {
+      "beta_t": 0.5794965915049817,
+      "beta_lag1": -0.010229039640804346,
+      "elasticity_median": 0.9205330199659423,
+      "elasticity_p90": 1.7270489159829574,
+      "delta_median": 0.6206448165648943
+    },
+    "VEV_5300": {
+      "beta_t": 0.36400104876769795,
+      "beta_lag1": -0.00686594804241863,
+      "elasticity_median": 0.890205612311415,
+      "elasticity_p90": 2.489539873648199,
+      "delta_median": 0.39125559969923235
+    },
+    "VEV_5400": {
+      "beta_t": 0.17097535395909805,
+      "beta_lag1": -0.003267003267003267,
+      "elasticity_median": 0.70443654506195,
+      "elasticity_p90": 2.636731131719488,
+      "delta_median": 0.1856743067491074
+    },
+    "VEV_5500": {
+      "beta_t": 0.0750480685194896,
+      "beta_lag1": 0.0019479725362078304,
+      "elasticity_median": 0.0,
+      "elasticity_p90": 3.375571711671735,
+      "delta_median": 0.08556079953668069
+    },
+    "VEV_6000": {
+      "beta_t": 0.0,
+      "beta_lag1": 0.0,
+      "elasticity_median": 0.0,
+      "elasticity_p90": 0.0,
+      "delta_median": 0.005765866489716645
+    },
+    "VEV_6500": {
+      "beta_t": 0.0,
+      "beta_lag1": 0.0,
+      "elasticity_median": 0.0,
+      "elasticity_p90": 0.0,
+      "delta_median": 0.003969561077833238
+    }
+  }
+}

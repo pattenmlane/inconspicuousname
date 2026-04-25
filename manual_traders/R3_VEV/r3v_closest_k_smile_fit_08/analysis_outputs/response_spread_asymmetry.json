@@ -1,0 +1,320 @@
+{
+  "method": "Per day, use voucher/underlying mid diffs. Betas are OLS through origin (dV~beta*dS), split by dS sign. Spread widening compares mean spread in |dS|>=p90 shocks vs normal.",
+  "by_day": {
+    "0": {
+      "shock_abs_ds_p90": 2.0,
+      "per_strike": {
+        "4000": {
+          "beta_all": 0.7444740929547174,
+          "beta_up": 0.7401505090748118,
+          "beta_down": 0.7487090543576806,
+          "beta_up_minus_down": -0.008558545282868812,
+          "beta_lag1": -0.023661096616144517,
+          "spread_mean_after_shock": 20.76916802610114,
+          "spread_mean_normal": 20.764960674797674,
+          "spread_widen_after_shock": 0.004207351303467277
+        },
+        "4500": {
+          "beta_all": 0.6598430841530926,
+          "beta_up": 0.6487987444162743,
+          "beta_down": 0.6706610430052427,
+          "beta_up_minus_down": -0.021862298588968376,
+          "beta_lag1": 0.018761576609771156,
+          "spread_mean_after_shock": 15.765905383360522,
+          "spread_mean_normal": 15.78673201869372,
+          "spread_widen_after_shock": -0.020826635333197174
+        },
+        "5000": {
+          "beta_all": 0.6506631088454339,
+          "beta_up": 0.6450561390800434,
+          "beta_down": 0.6561551499862036,
+          "beta_up_minus_down": -0.011099010906160167,
+          "beta_lag1": 0.00047800195184130335,
+          "spread_mean_after_shock": 5.987765089722675,
+          "spread_mean_normal": 6.003761541091987,
+          "spread_widen_after_shock": -0.015996451369312048
+        },
+        "5100": {
+          "beta_all": 0.5606953681946713,
+          "beta_up": 0.5573262505533422,
+          "beta_down": 0.563995427490244,
+          "beta_up_minus_down": -0.006669176936901833,
+          "beta_lag1": 0.0003585014638809775,
+          "spread_mean_after_shock": 4.311582381729201,
+          "spread_mean_normal": 4.320870853755841,
+          "spread_widen_after_shock": -0.009288472026640626
+        },
+        "5200": {
+          "beta_all": 0.42998526424787925,
+          "beta_up": 0.42263270151716364,
+          "beta_down": 0.4371871181363081,
+          "beta_up_minus_down": -0.014554416619144472,
+          "beta_lag1": -0.0010954211396363202,
+          "spread_mean_after_shock": 2.930668841761827,
+          "spread_mean_normal": 2.9253391086287475,
+          "spread_widen_after_shock": 0.005329733133079717
+        },
+        "5300": {
+          "beta_all": 0.27364689951810106,
+          "beta_up": 0.2712382792064067,
+          "beta_down": 0.2760061492372581,
+          "beta_up_minus_down": -0.004767870030851384,
+          "beta_lag1": 0.003644764882789938,
+          "spread_mean_after_shock": 2.1508972267536706,
+          "spread_mean_normal": 2.1619742391428245,
+          "spread_widen_after_shock": -0.011077012389153928
+        },
+        "5400": {
+          "beta_all": 0.1378589350432116,
+          "beta_up": 0.1369069177834118,
+          "beta_down": 0.13879143836966376,
+          "beta_up_minus_down": -0.0018845205862519643,
+          "beta_lag1": 0.0005178354478280787,
+          "spread_mean_after_shock": 1.4265905383360522,
+          "spread_mean_normal": 1.430069531517155,
+          "spread_widen_after_shock": -0.003478993181102785
+        },
+        "5500": {
+          "beta_all": 0.06382173722569597,
+          "beta_up": 0.06410720753350235,
+          "beta_down": 0.06354211833339903,
+          "beta_up_minus_down": 0.0005650892001033275,
+          "beta_lag1": 0.0009759206516759943,
+          "spread_mean_after_shock": 1.1949429037520392,
+          "spread_mean_normal": 1.1787301949162203,
+          "spread_widen_after_shock": 0.016212708835818823
+        },
+        "6000": {
+          "beta_all": 0.0,
+          "beta_up": 0.0,
+          "beta_down": 0.0,
+          "beta_up_minus_down": 0.0,
+          "beta_lag1": 0.0,
+          "spread_mean_after_shock": 1.0,
+          "spread_mean_normal": 1.0,
+          "spread_widen_after_shock": 0.0
+        },
+        "6500": {
+          "beta_all": 0.0,
+          "beta_up": 0.0,
+          "beta_down": 0.0,
+          "beta_up_minus_down": 0.0,
+          "beta_lag1": 0.0,
+          "spread_mean_after_shock": 1.0,
+          "spread_mean_normal": 1.0,
+          "spread_widen_after_shock": 0.0
+        }
+      }
+    },
+    "1": {
+      "shock_abs_ds_p90": 2.0,
+      "per_strike": {
+        "4000": {
+          "beta_all": 0.7582076222649349,
+          "beta_up": 0.7642034323328892,
+          "beta_down": 0.7523186453723302,
+          "beta_up_minus_down": 0.011884786960559057,
+          "beta_lag1": -0.03685222220064851,
+          "spread_mean_after_shock": 20.7710100231303,
+          "spread_mean_normal": 20.775109170305676,
+          "spread_widen_after_shock": -0.004099147175374185
+        },
+        "4500": {
+          "beta_all": 0.6658900731939348,
+          "beta_up": 0.6711072799937309,
+          "beta_down": 0.6607658264383298,
+          "beta_up_minus_down": 0.010341453555401059,
+          "beta_lag1": 0.005980234161116828,
+          "spread_mean_after_shock": 15.813415574402468,
+          "spread_mean_normal": 15.812801654792002,
+          "spread_widen_after_shock": 0.0006139196104655298
+        },
+        "5000": {
+          "beta_all": 0.6520667093793077,
+          "beta_up": 0.653514614842097,
+          "beta_down": 0.6506446026553782,
+          "beta_up_minus_down": 0.0028700121867188955,
+          "beta_lag1": -0.011397394326544085,
+          "spread_mean_after_shock": 5.989976869699306,
+          "spread_mean_normal": 6.010917030567685,
+          "spread_widen_after_shock": -0.020940160868379465
+        },
+        "5100": {
+          "beta_all": 0.5759605490515852,
+          "beta_up": 0.5738186662487266,
+          "beta_down": 0.5780642678468347,
+          "beta_up_minus_down": -0.004245601598108162,
+          "beta_lag1": -0.014737005611323612,
+          "spread_mean_after_shock": 4.254433307633,
+          "spread_mean_normal": 4.2574120891749025,
+          "spread_widen_after_shock": -0.0029787815419028973
+        },
+        "5200": {
+          "beta_all": 0.4320577785543713,
+          "beta_up": 0.43417443773998904,
+          "beta_down": 0.42997883394265923,
+          "beta_up_minus_down": 0.0041956037973298055,
+          "beta_lag1": -0.009882919441585926,
+          "spread_mean_after_shock": 2.87124132613724,
+          "spread_mean_normal": 2.8788784187543093,
+          "spread_widen_after_shock": -0.007637092617069463
+        },
+        "5300": {
+          "beta_all": 0.2710311219834197,
+          "beta_up": 0.2714128986756524,
+          "beta_down": 0.27065614777756397,
+          "beta_up_minus_down": 0.0007567508980884097,
+          "beta_lag1": -0.005028833271848242,
+          "spread_mean_after_shock": 2.1010023130300692,
+          "spread_mean_normal": 2.1099747184555273,
+          "spread_widen_after_shock": -0.008972405425458074
+        },
+        "5400": {
+          "beta_all": 0.12701186246529597,
+          "beta_up": 0.1269884805266045,
+          "beta_down": 0.12703482778526073,
+          "beta_up_minus_down": -4.6347258656237456e-05,
+          "beta_lag1": -0.0029124517018426113,
+          "spread_mean_after_shock": 1.374710871241326,
+          "spread_mean_normal": 1.3881866237646519,
+          "spread_widen_after_shock": -0.013475752523325779
+        },
+        "5500": {
+          "beta_all": 0.05426446890713883,
+          "beta_up": 0.05485463521667581,
+          "beta_down": 0.05368481816432557,
+          "beta_up_minus_down": 0.0011698170523502388,
+          "beta_lag1": 0.0001941634467895074,
+          "spread_mean_after_shock": 1.141094834232845,
+          "spread_mean_normal": 1.1544472535049415,
+          "spread_widen_after_shock": -0.013352419272096405
+        },
+        "6000": {
+          "beta_all": 0.0,
+          "beta_up": 0.0,
+          "beta_down": 0.0,
+          "beta_up_minus_down": 0.0,
+          "beta_lag1": 0.0,
+          "spread_mean_after_shock": 1.0,
+          "spread_mean_normal": 1.0,
+          "spread_widen_after_shock": 0.0
+        },
+        "6500": {
+          "beta_all": 0.0,
+          "beta_up": 0.0,
+          "beta_down": 0.0,
+          "beta_up_minus_down": 0.0,
+          "beta_lag1": 0.0,
+          "spread_mean_after_shock": 1.0,
+          "spread_mean_normal": 1.0,
+          "spread_widen_after_shock": 0.0
+        }
+      }
+    },
+    "2": {
+      "shock_abs_ds_p90": 2.0,
+      "per_strike": {
+        "4000": {
+          "beta_all": 0.7325392841975213,
+          "beta_up": 0.7511773334362696,
+          "beta_down": 0.7138940376892184,
+          "beta_up_minus_down": 0.03728329574705114,
+          "beta_lag1": -0.0299625468164794,
+          "spread_mean_after_shock": 20.893995552260932,
+          "spread_mean_normal": 20.90150289017341,
+          "spread_widen_after_shock": -0.0075073379124788175
+        },
+        "4500": {
+          "beta_all": 0.6596077371530057,
+          "beta_up": 0.6750559715895932,
+          "beta_down": 0.6441535372258264,
+          "beta_up_minus_down": 0.03090243436376683,
+          "beta_lag1": 0.0076643885864319085,
+          "spread_mean_after_shock": 15.943661971830986,
+          "spread_mean_normal": 15.963583815028901,
+          "spread_widen_after_shock": -0.019921843197915123
+        },
+        "5000": {
+          "beta_all": 0.6577352225782789,
+          "beta_up": 0.6629352273604571,
+          "beta_down": 0.6525332097621255,
+          "beta_up_minus_down": 0.010402017598331592,
+          "beta_lag1": -0.004729912351828256,
+          "spread_mean_after_shock": 6.140103780578206,
+          "spread_mean_normal": 6.116878612716763,
+          "spread_widen_after_shock": 0.02322516786144302
+        },
+        "5100": {
+          "beta_all": 0.5948225937222501,
+          "beta_up": 0.6005558557863043,
+          "beta_down": 0.5890871177015755,
+          "beta_up_minus_down": 0.011468738084728813,
+          "beta_lag1": -0.011371095409089154,
+          "spread_mean_after_shock": 4.275018532246108,
+          "spread_mean_normal": 4.316300578034682,
+          "spread_widen_after_shock": -0.04128204578857453
+        },
+        "5200": {
+          "beta_all": 0.44770472182541216,
+          "beta_up": 0.4508608044468463,
+          "beta_down": 0.4445474204510349,
+          "beta_up_minus_down": 0.0063133839958113835,
+          "beta_lag1": -0.0048650527047376345,
+          "spread_mean_after_shock": 2.8739807264640476,
+          "spread_mean_normal": 2.8582658959537572,
+          "spread_widen_after_shock": 0.015714830510290323
+        },
+        "5300": {
+          "beta_all": 0.27340643218408556,
+          "beta_up": 0.2741835868138655,
+          "beta_down": 0.27262897744825454,
+          "beta_up_minus_down": 0.0015546093656109705,
+          "beta_lag1": -0.0005984787057415344,
+          "spread_mean_after_shock": 2.054855448480356,
+          "spread_mean_normal": 2.0504046242774567,
+          "spread_widen_after_shock": 0.004450824202899106
+        },
+        "5400": {
+          "beta_all": 0.12200301146673874,
+          "beta_up": 0.12132324558017447,
+          "beta_down": 0.12268303985171455,
+          "beta_up_minus_down": -0.0013597942715400796,
+          "beta_lag1": 0.0016409899996138848,
+          "spread_mean_after_shock": 1.3372868791697554,
+          "spread_mean_normal": 1.3267052023121386,
+          "spread_widen_after_shock": 0.010581676857616795
+        },
+        "5500": {
+          "beta_all": 0.0467742558202386,
+          "beta_up": 0.04705473635451247,
+          "beta_down": 0.046493666975594684,
+          "beta_up_minus_down": 0.0005610693789177834,
+          "beta_lag1": 0.0013707092937951272,
+          "spread_mean_after_shock": 1.133432171979244,
+          "spread_mean_normal": 1.113179190751445,
+          "spread_widen_after_shock": 0.02025298122779895
+        },
+        "6000": {
+          "beta_all": 0.0,
+          "beta_up": 0.0,
+          "beta_down": 0.0,
+          "beta_up_minus_down": 0.0,
+          "beta_lag1": 0.0,
+          "spread_mean_after_shock": 1.0,
+          "spread_mean_normal": 1.0,
+          "spread_widen_after_shock": 0.0
+        },
+        "6500": {
+          "beta_all": 0.0,
+          "beta_up": 0.0,
+          "beta_down": 0.0,
+          "beta_up_minus_down": 0.0,
+          "beta_lag1": 0.0,
+          "spread_mean_after_shock": 1.0,
+          "spread_mean_normal": 1.0,
+          "spread_widen_after_shock": 0.0
+        }
+      }
+    }
+  }
+}

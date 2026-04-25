@@ -83,5 +83,16 @@
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v10.json"
     ],
     "used_to_decide": "Given missing separate parent-index-13 artifacts in this checkout, duplicate risk for plain RV-IV thresholding was treated as high. Implemented trader_v10 as distinct nearby variant: hysteresis regime gating + persistence (same RV-IV signal) and regime-dependent width+size. Backtest 39325 (worse than v9 39466 but close), retaining v9 as best in this branch while satisfying non-duplicate requirement."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "Contract-by-contract response/spread-shock study requested in prompt: regress voucher mid changes on extract mid changes (beta_all, beta_up, beta_down), compute lag-1 beta, and measure spread widening after large underlying moves (|dS| >= day p90). This quantifies elasticity/lead-lag/asymmetry and shock spread behavior by strike.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/response_spread_asymmetry.json",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_response_spread_asymmetry.py",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v11.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v11.json"
+    ],
+    "used_to_decide": "Observed strong monotonic beta term structure (high for low strikes, near zero for 6000/6500), tiny lag-1 beta (weak lead/lag), and mild up/down asymmetry (generally small, larger at deep ITM). Shock spread widening is modest and strike-specific. Implemented trader_v11 with regime edge multiplier partly scaled by strike beta and a small shock-triggered widen bump. Backtest 39285 < v9 39466, so keep v9 as best while preserving interpretability."
   }
 ]

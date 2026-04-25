@@ -85,6 +85,20 @@
     "strategy_description": "Family-13 nearby but distinct variant from v9 to reduce duplicate risk: add regime hysteresis + persistence gate. Regime enters calm/stressed only past +/-1.0 z and exits to neutral inside +/-0.35; width and voucher size multipliers vary by regime (calm tighter/smaller, stressed wider/larger). Keeps local-smile valuation interpretable.",
     "total_profit": 39325,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v10.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis > manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v10.txt 2>&1"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v10.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis > manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v10.txt 2>&1",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v10.txt",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v10.json"
+  },
+  {
+    "iteration": 11,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v11.py",
+    "strategy_description": "Family-13 refinement from v10/v9, still RV-IV regime with simple gating: keep hysteresis + persistence, and add strike elasticity/shock-spread-informed width adjustment (from response_spread_asymmetry analysis). Edge widened by moneyness where beta_up/down asymmetry and post-shock spread widening are higher; size still regime-scaled.",
+    "total_profit": 39285,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v11.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis > manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v11.txt 2>&1",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v11.txt",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v11.json"
   }
 ]

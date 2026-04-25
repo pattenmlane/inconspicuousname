@@ -33,5 +33,14 @@
       "analyze_vega_gamma_by_strike.py"
     ],
     "used_to_decide": "Kept v5 as the leading branch; v7/v8 are documented experiments—same 50,261 aggregate PnL, so the simpler v5 (no extra gamma) remains the preferred tie-break v5 family member unless future runs diverge."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "LOO vs in-sample spline fair (BS price from spline IV at each strike): subsample 1/500, same robust global outlier drop as traders, then for each strike compare |BS(S,K,T,IV_LOO) - BS(S,K,T,IV_in)| with LOO omitting that strike's node. Deep ITM VEV_4000 shows largest mean absolute fair gap on day 0 (~62 seashells in this sample), motivating leave-one-out fair for trading that strike while other strikes have small gaps.",
+    "analysis_outputs": [
+      "analysis_outputs/loo_vs_insample_fair_gap.csv",
+      "analyze_loo_vs_insample_fair.py"
+    ],
+    "used_to_decide": "Implemented trader_v9 = trader_v5 logic but fair IV at K from leave-one-out spline when five or more nodes (else in-sample). Backtest total 67,649 vs 50,261 for v5 on the same regime—new best; v5/v6 family superseded for this dataset run."
   }
 ]

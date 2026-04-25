@@ -70,5 +70,13 @@
     "total_profit": 50261,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v8.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 9,
+    "trader_file": "trader_v9.py",
+    "strategy_description": "trader_v5 with leave-one-out cubic spline IV at each strike when valuing that strike (omit that logK node from the smile fit; need at least 5 post-robust nodes). If dropped outlier or <5 nodes, in-sample spline. Strongest alignment with 'fair from spline; robust to one bad tick' thesis.",
+    "total_profit": 67649,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v9.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

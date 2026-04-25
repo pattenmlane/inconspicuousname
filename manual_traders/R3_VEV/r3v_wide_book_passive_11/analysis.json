@@ -1,7 +1,7 @@
 [
   {
     "iteration": 0,
-    "analysis_description": "Round-3 tape mids for VEV_4000 and VEV_4500 vs VELVETFRUIT_EXTRACT: Black–Scholes implied vol (no dividends, zero rate) and call delta from numerical IV inversion. TTE per calendar day index: historical file day k uses TTE = 7 − k days (7-day voucher clock; aligns with round3description example mapping day index to TTE). Spread stats from bid_price_1 / ask_price_1.",
+    "analysis_description": "Round-3 tape mids for VEV_4000 and VEV_4500 vs VELVETFRUIT_EXTRACT: Black\u2013Scholes implied vol (no dividends, zero rate) and call delta from numerical IV inversion. TTE per calendar day index: historical file day k uses TTE = 7 \u2212 k days (7-day voucher clock; aligns with round3description example mapping day index to TTE). Spread stats from bid_price_1 / ask_price_1.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_wide_book_passive_11/tape_vev4000_4500_stats.json",
       "manual_traders/R3_VEV/r3v_wide_book_passive_11/analyze_tapes.py"
@@ -10,10 +10,19 @@
   },
   {
     "iteration": 1,
-    "analysis_description": "Small parameter grid on backtest: (v0) WIDE_SPREAD_MIN=18 vs (v1) 16; deep offset 7/5 vs symmetric 6; passive size 2 vs 3. Counted VEV_4500 rows in trades_round_3_day_*.csv: essentially no market prints for 4500 on days 0 and 2, one trade on day 1 — explains zero PnL contribution under worse-fill matching despite wide quotes.",
+    "analysis_description": "Small parameter grid on backtest: (v0) WIDE_SPREAD_MIN=18 vs (v1) 16; deep offset 7/5 vs symmetric 6; passive size 2 vs 3. Counted VEV_4500 rows in trades_round_3_day_*.csv: essentially no market prints for 4500 on days 0 and 2, one trade on day 1 \u2014 explains zero PnL contribution under worse-fill matching despite wide quotes.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_wide_book_passive_11/tape_vev4000_4500_stats.json"
     ],
     "used_to_decide": "Lower spread threshold to 16 and size 3 improved merged Round-3 PnL (27938 vs 27014). VEV_4500 remains non-actionable in this historical tape for maker-style fills; thesis stays on wide-book passive on 4000 with 4500 quoted for completeness."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "Verified parameter mini-grid centered on best parent v1; maintained IV/Greek framework from iteration 0 (BS implied vol + delta on VEV_4000/4500 from tape mids, TTE mapping from round3description). Grid dimensions: VEV4000 deep offset {5,6,7}, passive size {3,4}, extract passive size {4,6}, hydro passive size {1,2}, with spread gate fixed at 16 and VEV4500 offset fixed at 6 due to sparse 4500 trade prints.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter4_verified.json",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/tape_vev4000_4500_stats.json"
+    ],
+    "used_to_decide": "Best verified config improved total PnL from 27,938 to 28,867 by making VEV_4000 quotes slightly less deep (offset 5). This captures more fills while still monetizing very wide spread regimes; kept strategy concept unchanged."
   }
 ]

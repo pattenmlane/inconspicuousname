@@ -18,7 +18,7 @@
   {
     "iteration": 2,
     "trader_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v2.py",
-    "strategy_description": "Sweep asymmetric offsets (4500 bb+4); same total as v1 in worse-fill regime — dominated by VEV_4000 + hydrogel.",
+    "strategy_description": "Sweep asymmetric offsets (4500 bb+4); same total as v1 in worse-fill regime \u2014 dominated by VEV_4000 + hydrogel.",
     "total_profit": 27938,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v2.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-out"
@@ -26,9 +26,17 @@
   {
     "iteration": 3,
     "trader_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v3.py",
-    "strategy_description": "VEV_4500 touch quotes (bb+1/ba-1) vs deep 4000; still no 4500 PnL — matching relies on tape trades; VEV_4500 has O(1) trades across Round-3 CSVs. Kept for documentation.",
+    "strategy_description": "VEV_4500 touch quotes (bb+1/ba-1) vs deep 4000; still no 4500 PnL \u2014 matching relies on tape trades; VEV_4500 has O(1) trades across Round-3 CSVs. Kept for documentation.",
     "total_profit": 27938,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v3.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-out"
+  },
+  {
+    "iteration": 4,
+    "trader_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v4.py",
+    "strategy_description": "Same thesis (deep passive wide-book on VEV_4000/4500, tiny size). Verified mini-sweep around v1 found best at WIDE_SPREAD_MIN=16, VEV_4000 offset=5, PASSIVE_SIZE=3, EXTRACT_PASSIVE_SIZE=6, HYDRO_PASSIVE_SIZE=2. 4500 still quoted but has near-zero tape market trades in ROUND_3, so realized edge remains concentrated in 4000 + delta-1 ballast.",
+    "total_profit": 28867,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v4.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-out"
   }
 ]

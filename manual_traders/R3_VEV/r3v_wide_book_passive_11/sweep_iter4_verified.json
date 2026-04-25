@@ -1,0 +1,82 @@
+{
+  "ranked": [
+    {
+      "WIDE_SPREAD_MIN": 16,
+      "VEV4000_OFFSET": 5,
+      "PASSIVE_SIZE": 3,
+      "EXTRACT_PASSIVE_SIZE": 6,
+      "HYDRO_PASSIVE_SIZE": 2,
+      "day_profits": [
+        11864,
+        13584,
+        3419
+      ],
+      "total_profit": 28867
+    },
+    {
+      "WIDE_SPREAD_MIN": 16,
+      "VEV4000_OFFSET": 6,
+      "PASSIVE_SIZE": 3,
+      "EXTRACT_PASSIVE_SIZE": 6,
+      "HYDRO_PASSIVE_SIZE": 2,
+      "day_profits": [
+        11517,
+        13256,
+        3165
+      ],
+      "total_profit": 27938
+    },
+    {
+      "WIDE_SPREAD_MIN": 16,
+      "VEV4000_OFFSET": 6,
+      "PASSIVE_SIZE": 4,
+      "EXTRACT_PASSIVE_SIZE": 6,
+      "HYDRO_PASSIVE_SIZE": 2,
+      "day_profits": [
+        11517,
+        13256,
+        3165
+      ],
+      "total_profit": 27938
+    },
+    {
+      "WIDE_SPREAD_MIN": 16,
+      "VEV4000_OFFSET": 7,
+      "PASSIVE_SIZE": 3,
+      "EXTRACT_PASSIVE_SIZE": 6,
+      "HYDRO_PASSIVE_SIZE": 2,
+      "day_profits": [
+        11170,
+        12928,
+        2911
+      ],
+      "total_profit": 27009
+    },
+    {
+      "WIDE_SPREAD_MIN": 16,
+      "VEV4000_OFFSET": 6,
+      "PASSIVE_SIZE": 3,
+      "EXTRACT_PASSIVE_SIZE": 4,
+      "HYDRO_PASSIVE_SIZE": 2,
+      "day_profits": [
+        10231,
+        12392,
+        3346
+      ],
+      "total_profit": 25969
+    },
+    {
+      "WIDE_SPREAD_MIN": 16,
+      "VEV4000_OFFSET": 6,
+      "PASSIVE_SIZE": 3,
+      "EXTRACT_PASSIVE_SIZE": 6,
+      "HYDRO_PASSIVE_SIZE": 1,
+      "day_profits": [
+        9082,
+        9390,
+        1901
+      ],
+      "total_profit": 20373
+    }
+  ]
+}

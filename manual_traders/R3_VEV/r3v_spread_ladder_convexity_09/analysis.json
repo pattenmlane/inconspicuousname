@@ -1,7 +1,7 @@
 [
   {
     "iteration": 0,
-    "analysis_description": "Round 3 tapes days 0–2: TTE at slice open = 8,7,6 days per round3description.txt (CSV day d → 8−d). Black–Scholes implied vol from mids (r=0, T=TTE/365). Analytical BS delta per VEV leg from those IVs (means in summary CSV). Rolling z-score (500 ticks) of mid butterfly C5000+C5200−2·C5100; conditional mean next-tick bf change when z>threshold (grid 1.5–3.0).",
+    "analysis_description": "Round 3 tapes days 0\u20132: TTE at slice open = 8,7,6 days per round3description.txt (CSV day d \u2192 8\u2212d). Black\u2013Scholes implied vol from mids (r=0, T=TTE/365). Analytical BS delta per VEV leg from those IVs (means in summary CSV). Rolling z-score (500 ticks) of mid butterfly C5000+C5200\u22122\u00b7C5100; conditional mean next-tick bf change when z>threshold (grid 1.5\u20133.0).",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/analysis_summary_meta.json",
       "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/bf_mid_zscore_summary_by_day.csv",
@@ -22,16 +22,16 @@
   },
   {
     "iteration": 5,
-    "analysis_description": "Vega thread on ROUND_3 tapes (TTE = 8−d days at open per round3description): at each tick compute BS IV from mids, then BS vega per leg; net vega of a short fly is −vega(5000)−vega(5200)+2·vega(5100) (positive in sample). For rolling z (window 400) > 2.2, report mean net vega: day0 ~50.0, day1 ~65.3, day2 ~74.2 (higher TTE day has larger body vega). Backtester grid on v4 code: (2.15,0.8,400,10) total 182 vs v4 124; wider window 450 or Z_LO 0.85 hurt.",
+    "analysis_description": "Vega thread on ROUND_3 tapes (TTE = 8\u2212d days at open per round3description): at each tick compute BS IV from mids, then BS vega per leg; net vega of a short fly is \u2212vega(5000)\u2212vega(5200)+2\u00b7vega(5100) (positive in sample). For rolling z (window 400) > 2.2, report mean net vega: day0 ~50.0, day1 ~65.3, day2 ~74.2 (higher TTE day has larger body vega). Backtester grid on v4 code: (2.15,0.8,400,10) total 182 vs v4 124; wider window 450 or Z_LO 0.85 hurt.",
     "analysis_outputs": [
       "one-off vega table in analysis.json iteration 5",
       "backtester grid: lower_entry 2.15/0.8/400/10 = 182; v4 baseline 124; w450 = -138; Z_LO 0.85 = -4"
     ],
-    "used_to_decide": "Picked v5: lower Z_HI to 2.15 to capture a bit more of the tape’s high-z episodes without changing window/exit; leaves execution identical to v4."
+    "used_to_decide": "Picked v5: lower Z_HI to 2.15 to capture a bit more of the tape\u2019s high-z episodes without changing window/exit; leaves execution identical to v4."
   },
   {
     "iteration": 6,
-    "analysis_description": "Greek: BS gamma per strike from implied vol (same IV/TTE as prior work; TTE = 8−d days at open). For rolling-z window 400 and z>2.15, portfolio gamma of position short 1 lot each wing / long 2 body: −Γ5000−Γ5200+2·Γ5100; mean ~1.8e−3 to 2.5e−3 by day 0–2 (larger as TTE shortens). Parameter grid on parent v5: CLIP 8 → 202 vs CLIP 10 → 182, CLIP 12 → 158; Z_LO 0.85 → 54; BF 380 → 24, BF 420 → −268; Z_HI 2.1/2.12 tie 182 with 2.15/0.8/400/10.",
+    "analysis_description": "Greek: BS gamma per strike from implied vol (same IV/TTE as prior work; TTE = 8\u2212d days at open). For rolling-z window 400 and z>2.15, portfolio gamma of position short 1 lot each wing / long 2 body: \u2212\u03935000\u2212\u03935200+2\u00b7\u03935100; mean ~1.8e\u22123 to 2.5e\u22123 by day 0\u20132 (larger as TTE shortens). Parameter grid on parent v5: CLIP 8 \u2192 202 vs CLIP 10 \u2192 182, CLIP 12 \u2192 158; Z_LO 0.85 \u2192 54; BF 380 \u2192 24, BF 420 \u2192 \u2212268; Z_HI 2.1/2.12 tie 182 with 2.15/0.8/400/10.",
     "analysis_outputs": [
       "terminal: gamma means per day; grid scores CLIP/exit/window (see used_to_decide)"
     ],
@@ -39,10 +39,19 @@
   },
   {
     "iteration": 7,
-    "analysis_description": "Greek+micro: At rolling z (400) > 2.15 on Round 3 tapes, sum of (ask−bid) on the three fly legs (level-1) mean ~12.7–12.9 across days. BS theta of portfolio short 1: −Θ(5000)−Θ(5200)+2·Θ(5100) with r=0, IV from mid, T=(8−d)/365 — mean by day: day0 about −170/yr, day1 about −19/yr, day2 about +94/yr (sign/vol interaction; interpret as time-decay of premium pieces, not a trading rule by itself). Book/grid on parent v6: CLIP 7 → 212, CLIP 8 → 202, CLIP 9 → 192; Z_LO 0.82 → 44, BF 405 → 74; Z_HI 2.18 → 144.",
+    "analysis_description": "Greek+micro: At rolling z (400) > 2.15 on Round 3 tapes, sum of (ask\u2212bid) on the three fly legs (level-1) mean ~12.7\u201312.9 across days. BS theta of portfolio short 1: \u2212\u0398(5000)\u2212\u0398(5200)+2\u00b7\u0398(5100) with r=0, IV from mid, T=(8\u2212d)/365 \u2014 mean by day: day0 about \u2212170/yr, day1 about \u221219/yr, day2 about +94/yr (sign/vol interaction; interpret as time-decay of premium pieces, not a trading rule by itself). Book/grid on parent v6: CLIP 7 \u2192 212, CLIP 8 \u2192 202, CLIP 9 \u2192 192; Z_LO 0.82 \u2192 44, BF 405 \u2192 74; Z_HI 2.18 \u2192 144.",
     "analysis_outputs": [
       "one-off: spread_width + theta means by day at z>2.15; grid from trader_v6.py source"
     ],
     "used_to_decide": "v7 = v6 with CLIP_QTY 7 only; best in grid, tie-breaks to smaller clip vs retuning z."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "IV/Greek+microstructure refinement: at high-z events (z>2.15, window 400), compute BS delta(5100) from IV(mid, T=(8-d)/365 per round3description) and compare execution-cost proxy (sum of top-level spreads on 5000/5100/5200). Higher-delta bucket tends wider combined spread (~12.9-13.5) than low-delta bucket (as low as ~11.25 day2), indicating cost variability by moneyness. Parameter sweep around v7 found best total with smaller CLIP=6.",
+    "analysis_outputs": [
+      "terminal output: delta-bucket spread means by day (iteration 8 run)",
+      "terminal output: grid around v7 showing CLIP=6 -> 222"
+    ],
+    "used_to_decide": "Adopted v8 = v7 with CLIP_QTY 6 only. Tie-break favored minimal code change over jointly changing z_hi."
   }
 ]

@@ -10,7 +10,7 @@
   {
     "iteration": 1,
     "trader_file": "trader_v1.py",
-    "strategy_description": "Stricter z>2.5, exit z<1.0, clip 8, require IV bump EMA>0 to enter; fewer trades — days 1-2 flat.",
+    "strategy_description": "Stricter z>2.5, exit z<1.0, clip 8, require IV bump EMA>0 to enter; fewer trades \u2014 days 1-2 flat.",
     "total_profit": -6160,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v1.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
@@ -18,7 +18,7 @@
   {
     "iteration": 2,
     "trader_file": "trader_v2.py",
-    "strategy_description": "Passive one tick inside spread when width>1; z 2.25/0.75, window 500, clip 10 — near flat aggregate.",
+    "strategy_description": "Passive one tick inside spread when width>1; z 2.25/0.75, window 500, clip 10 \u2014 near flat aggregate.",
     "total_profit": -18,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v2.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
@@ -26,7 +26,7 @@
   {
     "iteration": 3,
     "trader_file": "trader_v3.py",
-    "strategy_description": "Same passive prices as v2; BF_WINDOW 400; z 2.1/0.65 — best backtest so far; still far below extract+all-VEV benchmark.",
+    "strategy_description": "Same passive prices as v2; BF_WINDOW 400; z 2.1/0.65 \u2014 best backtest so far; still far below extract+all-VEV benchmark.",
     "total_profit": 94,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v3.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
@@ -42,7 +42,7 @@
   {
     "iteration": 5,
     "trader_file": "trader_v5.py",
-    "strategy_description": "Parent v4 + grid: Z_HI 2.15 (more entries), Z_LO 0.8, BF_WINDOW 400, CLIP 10; Greek check: net vega of short fly at z>2.2 is positive ~50–75 by day (BS-vega from IV).",
+    "strategy_description": "Parent v4 + grid: Z_HI 2.15 (more entries), Z_LO 0.8, BF_WINDOW 400, CLIP 10; Greek check: net vega of short fly at z>2.2 is positive ~50\u201375 by day (BS-vega from IV).",
     "total_profit": 182,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
@@ -50,7 +50,7 @@
   {
     "iteration": 6,
     "trader_file": "trader_v6.py",
-    "strategy_description": "Parent v5: CLIP 8 (grid best vs 10/12) — smaller fly per event to reduce slippage under match-trades worse; Z_HI 2.15, Z_LO 0.8, BF 400. Tape: BS net gamma of short fly at z>2.15 is small positive O(1e-3).",
+    "strategy_description": "Parent v5: CLIP 8 (grid best vs 10/12) \u2014 smaller fly per event to reduce slippage under match-trades worse; Z_HI 2.15, Z_LO 0.8, BF 400. Tape: BS net gamma of short fly at z>2.15 is small positive O(1e-3).",
     "total_profit": 202,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
@@ -58,9 +58,17 @@
   {
     "iteration": 7,
     "trader_file": "trader_v7.py",
-    "strategy_description": "Parent v6: CLIP 7 (finer grid around v6); else unchanged. Theta+spread: at z>2.15, sum of three leg spreads mean ~12.7–12.9; net BS theta of short fly (r=0) varies a lot by day (sign flips with moneyness/θ term).",
+    "strategy_description": "Parent v6: CLIP 7 (finer grid around v6); else unchanged. Theta+spread: at z>2.15, sum of three leg spreads mean ~12.7\u201312.9; net BS theta of short fly (r=0) varies a lot by day (sign flips with moneyness/\u03b8 term).",
     "total_profit": 212,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 8,
+    "trader_file": "trader_v8.py",
+    "strategy_description": "Parent v7 with smaller CLIP 6 (tie-best in grid with z_hi 2.1 variant; kept z/window unchanged for simplicity). Same passive one-tick fly execution.",
+    "total_profit": 222,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v8.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
   }
 ]

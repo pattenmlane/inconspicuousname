@@ -1,7 +1,7 @@
 [
   {
     "iteration": 0,
-    "analysis_description": "TTE mapping from round3work/round3description.txt: vouchers lose one day of TTE per competition round; the spec example maps historical tape day index to TTE at tape start as day1->8d, day2->7d, day3->6d. ROUND_3 price files use day column 0,1,2 so TTE at start = 8-d days. Black-Scholes European call IV from semicolon tapes: mid underlying (VELVETFRUIT_EXTRACT) and mid VEV_5000, r=0, bisection sigma in [1e-4,4]. Per-timestamp IV population std on day0 ~0.00534 (8d horizon in calendar sense); day1 ~0.00932 (7d); day2 ~0.00969 (6d). Cross-sectional IV mean ~0.233 annualized with fixed T=7/365 in solver as reference. Order book: VEV_5000 top-of-book spread often 1-3 ticks in early tape samples; extract spread ~6 shells. Diagnostic on day0 tape: Pearson corr between rolling z (400-window, past-only) and +5-tick forward IV change ≈ -0.68, supporting mean-reversion of IV shocks.",
+    "analysis_description": "TTE mapping from round3work/round3description.txt: vouchers lose one day of TTE per competition round; the spec example maps historical tape day index to TTE at tape start as day1->8d, day2->7d, day3->6d. ROUND_3 price files use day column 0,1,2 so TTE at start = 8-d days. Black-Scholes European call IV from semicolon tapes: mid underlying (VELVETFRUIT_EXTRACT) and mid VEV_5000, r=0, bisection sigma in [1e-4,4]. Per-timestamp IV population std on day0 ~0.00534 (8d horizon in calendar sense); day1 ~0.00932 (7d); day2 ~0.00969 (6d). Cross-sectional IV mean ~0.233 annualized with fixed T=7/365 in solver as reference. Order book: VEV_5000 top-of-book spread often 1-3 ticks in early tape samples; extract spread ~6 shells. Diagnostic on day0 tape: Pearson corr between rolling z (400-window, past-only) and +5-tick forward IV change \u2248 -0.68, supporting mean-reversion of IV shocks.",
     "analysis_outputs": [],
     "used_to_decide": "Informed rolling-window IV z-score design on VEV_5000; confirmed past-only mean/std (exclude current IV) to avoid z deflation; validated that naive symmetric z fade loses heavily under worse fills (v0), while extreme thresholds reduce churn."
   },
@@ -10,5 +10,11 @@
     "analysis_description": "Parameter grid on v2 shell (past-only IV deque, spread filter, symmetric short-rich-vol / long-cheap-vol with hysteresis): Z_ENTRY in {1.85,2.0,2.15,2.3,2.5,2.6,2.8,3.0,3.2,3.5,3.6,3.8,4.0,4.5,5.0,5.5,6.0,6.2,...,7.6,8.0,10.0} with prosperity4bt round 3, Prosperity4Data, --match-trades worse. Total PnL aggregated days 0-2 improved monotonically as Z_ENTRY increased until ~5.5 (-300 total) then worsened at 6.0+; 8.0+ produced zero trades (0 PnL). ORDER_Q and Z_EXIT sweeps at Z=7.0 did not change -120 total (sparse fills). Chosen production tune: Z_ENTRY=5.5, HYST=0.12, MAX_SPREAD=5, ROLL_WIN=480, ORDER_Q=12 (trader_v4).",
     "analysis_outputs": [],
     "used_to_decide": "Set trader_v4 thresholds to the best grid point; kept v0-v3 as documented ablations (self-inclusive z bug, delta hedge harm, long-vol-only underperform)."
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "IV/Greek-grounded continuation: recomputed conditional expectancy on ROUND_3 with BS-implied IV (from mids) and call delta/vega proxies. Extreme positive-z events were nearly absent at high thresholds, while extreme negative-z events remained and had positive mean +5-tick option return/IV-change. Parameter grid (long-only shell from v3) over Z_ENTRY {3.5,4.5,5.5,6.0}, Z_EXIT {0.2,0.5,0.8}, MAX_SPREAD {4,5,6}, ORDER_Q {8,10,12,16} showed best aggregate PnL at Z_ENTRY=6.0, Z_EXIT=0.2, MAX_SPREAD=4. Delta gating tests (d<=cap, d>=floor) did not improve over ungated long-only at this threshold.",
+    "analysis_outputs": [],
+    "used_to_decide": "Selected v5 as the next parent because it improves total PnL from -300 (v4) to -83 while preserving the same single-strike rolling-IV-z thesis and simple implementation."
   }
 ]

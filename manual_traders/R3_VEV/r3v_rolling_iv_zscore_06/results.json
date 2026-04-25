@@ -2,7 +2,7 @@
   {
     "iteration": 0,
     "trader_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v0.py",
-    "strategy_description": "VEV_5000 rolling IV z (window includes current IV — biased z); symmetric fade vs touch; light extract flatten when flat on voucher.",
+    "strategy_description": "VEV_5000 rolling IV z (window includes current IV \u2014 biased z); symmetric fade vs touch; light extract flatten when flat on voucher.",
     "total_profit": -110447,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v0.py 3 --data Prosperity4Data --match-trades worse"
@@ -34,9 +34,17 @@
   {
     "iteration": 4,
     "trader_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v4.py",
-    "strategy_description": "Grid-tuned v2: Z_ENTRY=5.5, HYST=0.12, MAX_SPREAD=5, ROLL_WIN=480 — fewer but more selective mean-reversion entries on rolling IV z.",
+    "strategy_description": "Grid-tuned v2: Z_ENTRY=5.5, HYST=0.12, MAX_SPREAD=5, ROLL_WIN=480 \u2014 fewer but more selective mean-reversion entries on rolling IV z.",
     "total_profit": -300,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v4.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 5,
+    "trader_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v5.py",
+    "strategy_description": "Long-only cheap-vol continuation of single-strike rolling IV z: enter only at extreme negative z (Z_ENTRY=6.0), tight spread<=4, flatten when z>-0.2.",
+    "total_profit": -83,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v5.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

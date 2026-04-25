@@ -1,7 +1,7 @@
 [
   {
     "iteration": 0,
-    "analysis_description": "Round 3 tapes (days 0–2): implied vol from mid via Brentq on BS call (r=0), T=dte_effective/365 with dte_eff from plot_iv_smile_round3 (csv day 0→8d open … 2→6d, linear intraday wind). Quadratic smile RMSE across strikes; mean bid-ask spread by product; BS vega at mids (scipy IV) aggregated in summary_iter0.json.",
+    "analysis_description": "Round 3 tapes (days 0\u20132): implied vol from mid via Brentq on BS call (r=0), T=dte_effective/365 with dte_eff from plot_iv_smile_round3 (csv day 0\u21928d open \u2026 2\u21926d, linear intraday wind). Quadratic smile RMSE across strikes; mean bid-ask spread by product; BS vega at mids (scipy IV) aggregated in summary_iter0.json.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/analysis_outputs/iter0_iv_smile_spread_summary.json",
       "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/analysis_outputs/iter0_iv_sample_day_0.csv",
@@ -9,12 +9,26 @@
       "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/analysis_outputs/iter0_iv_sample_day_2.csv",
       "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/analysis_outputs/summary_iter0.json"
     ],
-    "used_to_decide": "Smile is smooth (low poly RMSE ~0.009–0.014); wings have very wide spreads (VEV_4000 ~20 ticks) vs near-ATM (~1–3). High vega concentrates near 5100–5400 strikes — informed wing widening and inventory skew on those strikes. Used same T convention in traders."
+    "used_to_decide": "Smile is smooth (low poly RMSE ~0.009\u20130.014); wings have very wide spreads (VEV_4000 ~20 ticks) vs near-ATM (~1\u20133). High vega concentrates near 5100\u20135400 strikes \u2014 informed wing widening and inventory skew on those strikes. Used same T convention in traders."
   },
   {
     "iteration": 1,
     "analysis_description": "Parameter micro-grid on v0: (BASE_HALF_SPREAD, WING_KM_SQ_SCALE, EXTRACT_HEDGE_BETA) = (1.2,420,0.35) vs (1.75,280,0.22) vs (2.0,200,0.18); all worse than baseline on aggregate PnL. Separate 1-D sweep on EXTRACT_HALF found a small improvement at 2.45 (trader_v3).",
     "analysis_outputs": [],
-    "used_to_decide": "Kept v0 quote shape; only adopted EXTRACT_HALF=2.45 as a minimal change (trader_v3). Rejected larger wing/base tweaks and v2’s day-2-only extract widening."
+    "used_to_decide": "Kept v0 quote shape; only adopted EXTRACT_HALF=2.45 as a minimal change (trader_v3). Rejected larger wing/base tweaks and v2\u2019s day-2-only extract widening."
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Residual and Greek analysis from smile fair: for each day and sampled timestamp, invert IV from mids, fit quadratic smile over log-moneyness, compute residual z=(mid-fair)/spread, plus BS delta and vega per strike with T=dte_effective/365 (dte from round3description mapping + intraday wind).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/analysis_outputs/iter2_residual_greeks.json"
+    ],
+    "used_to_decide": "Highest vega stays near VEV_5200/5300/5400; residual persistence beta is high on 5300/5400 (often >0.75), so we retained wing widening but tightened ATM quoting to capture flow where smile is most informative."
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "Small parameter sweep around v4 local knobs: ATM tight threshold {0.03,0.04,0.05} and WING_KM_SQ_SCALE {320,360,400}; plus size test SIZE_VEV 26\u219230.",
+    "analysis_outputs": [],
+    "used_to_decide": "Best remained the v4 baseline (threshold 0.04, wing 360). 0.05 and wing 400 both degraded PnL; size increase to 30 tied with v4 so tie-break favors simpler parent v4."
   }
 ]

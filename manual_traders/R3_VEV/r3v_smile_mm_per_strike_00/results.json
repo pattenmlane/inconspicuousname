@@ -18,7 +18,7 @@
   {
     "iteration": 2,
     "trader_file": "trader_v2.py",
-    "strategy_description": "v1 base but widen extract further on csv_day>=2 only — failed (more extract losses); documents that naive day-conditional widening hurt.",
+    "strategy_description": "v1 base but widen extract further on csv_day>=2 only \u2014 failed (more extract losses); documents that naive day-conditional widening hurt.",
     "total_profit": -5540,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v2.py 3 --data Prosperity4Data --match-trades worse"
@@ -30,5 +30,21 @@
     "total_profit": -3803,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v3.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "v3 parent + tighter ATM smile-MM participation: wing scale 360 (still widened wings), ATM half spread multiplier 0.75 for |km|<0.04, and near-touch nudges (+1/-1 bounded by touch). Keeps per-strike BS smile fair and inventory skew.",
+    "total_profit": -1216,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v4.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 5,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "v4 with SIZE_VEV increased 26\u219230; no aggregate PnL change in this backtester run (tie, simpler v4 preferred).",
+    "total_profit": -1216,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v5.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

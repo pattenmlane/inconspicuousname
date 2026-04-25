@@ -1,0 +1,85 @@
+{
+  "q75_abs_dS": 1.5,
+  "q90_abs_dS": 2.0,
+  "global": {
+    "small_shock": {
+      "n": 89902,
+      "hit_rate": 0.5495762052012191,
+      "mean_pnl_proxy": 0.13473003937620964
+    },
+    "mid_shock": {
+      "n": 14934,
+      "hit_rate": 0.5111155751975358,
+      "mean_pnl_proxy": 0.05577875987679121
+    },
+    "large_shock": {
+      "n": 23402,
+      "hit_rate": 0.4471840013674045,
+      "mean_pnl_proxy": -0.09608153149303478
+    }
+  },
+  "by_beta_bucket": {
+    "high_beta": {
+      "small_shock": {
+        "n": 62504,
+        "hit_rate": 0.5593722001791885,
+        "mean_pnl_proxy": 0.17842858057084346
+      },
+      "mid_shock": {
+        "n": 9516,
+        "hit_rate": 0.5068306010928961,
+        "mean_pnl_proxy": 0.07450609499789827
+      },
+      "large_shock": {
+        "n": 14336,
+        "hit_rate": 0.4058314732142857,
+        "mean_pnl_proxy": -0.16643415178571427
+      }
+    },
+    "mid_beta": {
+      "small_shock": {
+        "n": 19975,
+        "hit_rate": 0.5117897371714644,
+        "mean_pnl_proxy": 0.02227784730913642
+      },
+      "mid_shock": {
+        "n": 3786,
+        "hit_rate": 0.5081880612783941,
+        "mean_pnl_proxy": 0.01347068145800317
+      },
+      "large_shock": {
+        "n": 6066,
+        "hit_rate": 0.49950544015825915,
+        "mean_pnl_proxy": 0.0019782393669634025
+      }
+    },
+    "low_beta": {
+      "small_shock": {
+        "n": 7423,
+        "hit_rate": 0.568772733396201,
+        "mean_pnl_proxy": 0.06937895729489425
+      },
+      "mid_shock": {
+        "n": 1632,
+        "hit_rate": 0.5428921568627451,
+        "mean_pnl_proxy": 0.044730392156862746
+      },
+      "large_shock": {
+        "n": 3000,
+        "hit_rate": 0.539,
+        "mean_pnl_proxy": 0.041833333333333333
+      }
+    },
+    "zero_beta": {
+      "small_shock": {
+        "n": 0
+      },
+      "mid_shock": {
+        "n": 0
+      },
+      "large_shock": {
+        "n": 0
+      }
+    }
+  }
+}

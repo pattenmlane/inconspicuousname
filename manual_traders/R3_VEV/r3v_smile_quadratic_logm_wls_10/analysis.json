@@ -83,5 +83,15 @@
       "results.json"
     ],
     "used_to_decide": "Reverted v15's 25% microprice edge mark back to plain mid in trader_v16 while keeping the same WLS quadratic log-m IV fair model and theta/spread gates. This tests whether v15 gains were robust or microprice-noise driven under --match-trades worse."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "Two new extract-propagation analyses on ROUND_3 days 0-2. (1) extract_propagation_spread_iter17.json: OLS voucher response betas vs extract move at lag0 and lag1, plus spread and sign-asymmetry by strike. Found strong contemporaneous coupling and negligible lag-1 response; betas decay by strike (e.g., ~0.65 at 5000, ~0.13 at 5400, ~0 at 6000/6500). (2) edge_quality_vs_extract_shock_iter17.json: edge-signal quality by |dS| shock quantile shows degradation in large shocks (hit_rate ~0.45, negative mean pnl proxy).",
+    "analysis_outputs": [
+      "extract_propagation_spread_iter17.json",
+      "edge_quality_vs_extract_shock_iter17.json",
+      "results.json"
+    ],
+    "used_to_decide": "Implemented trader_v17 with shock-aware stricter thresholds and reduced size in mid/large |dS| regimes, while tilting size toward high-beta vouchers during shocks. Backtest underperformed v16/v10, suggesting the added gating was too conservative for this tape."
   }
 ]

@@ -90,5 +90,17 @@
       "family13_logs/trade_fill_summary_family13.json"
     ],
     "used_to_decide": "Even with hysteresis, fixed and z-score classifiers remain tied (-101) and close to previous family13 runs; z-retuned variant is worse (-109). Family13 remains below branch best v29 (-95)."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "Priority analysis on underlying->voucher response/spread behavior by strike (underlying_to_voucher_response.json): same-tick beta declines with strike (day0 approx 5000:0.65, 5200:0.43, 5300:0.27), negligible lag beta, mild spread widening in mid strikes after extract shocks. Incorporated by strike-specific spread floors and beta-aware edge scaling in v39-v41.",
+    "analysis_outputs": [
+      "analysis_outputs/underlying_to_voucher_response.json",
+      "backtest_logs/trade_fill_summary_v39_v41.json",
+      "backtest_logs/trader_v39_worse.log",
+      "backtest_logs/trader_v40_worse.log",
+      "backtest_logs/trader_v41_worse.log"
+    ],
+    "used_to_decide": "v39 (beta+spread) improved from v23 -101 to -96. v40 over-weighted beta and worsened to -111. v41 (spread floors only) tied branch best at -95 with simpler logic, so keep v41 as lead by tie-break rule."
   }
 ]

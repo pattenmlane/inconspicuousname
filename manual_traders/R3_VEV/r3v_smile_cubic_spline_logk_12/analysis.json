@@ -93,5 +93,14 @@
       "analyze_vev_book_depth_by_strike.py"
     ],
     "used_to_decide": "Hypothesis: after v11 delta taper, further scale MM/TAKE by (min(REF, min_top)/REF)^BETA with REF=16 from pooled tape. v19 (BETA=0.5) total 68,054; v20 (0.25) 68,433 vs v11 68,908. Both trail v11, so do not replace LOO+vega+delta sizing with this depth path; the fixed baseline sizes are already in-range vs typical depth and the extra shrink hurts fill quality under worse-matching. Keep v11 as best."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "Directional propagation asymmetry integration test. From extract_updown_asymmetry.csv and prior notes: for active strikes, beta_down >= beta_up on large |dExtract| steps while spreads are near-symmetric by sign. Kept IV/Greek core unchanged (LOO spline IV fair + vega-spread edge + delta taper) and tested directional asymmetry only in take thresholds using current extract move sign.",
+    "analysis_outputs": [
+      "analysis_outputs/extract_updown_asymmetry.csv",
+      "analysis_outputs/strike_edge_greeks_summary.csv"
+    ],
+    "used_to_decide": "Implemented v21/v22 from v11 with take-edge asymmetry: after down extract step, require more buy-call edge and less sell-call edge; reverse on up steps. Parameter sweep ASYM_EDGE_K=0.20 (v21) and 0.35 (v22). Both backtests tied v11 exactly at 68,908 total under worse fills, with identical day totals. No measurable gain from added complexity; keep v11 as preferred tie-break."
   }
 ]

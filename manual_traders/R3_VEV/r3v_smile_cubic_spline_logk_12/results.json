@@ -271,5 +271,51 @@
       "note": "Fill counts not in stdout; nonzero product count from per-product PnL lines in full log."
     },
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v20.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 21,
+    "trader_file": "trader_v21.py",
+    "strategy_description": "v11 + directional take-edge asymmetry from extract propagation: adjust take edge by latest dExtract sign (ASYM_EDGE_K=0.20), with stricter buy-edge after down moves and stricter sell-edge after up moves. LOO spline fair + vega/spread adjustment + delta headroom unchanged.",
+    "total_profit": 68908,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "backtest_logs/trader_v21_round3_worse.log",
+    "trades_or_fills_summary": {
+      "day_total_profit": {
+        "day0": 9152,
+        "day1": 36426,
+        "day2": 23330
+      },
+      "non_zero_pnl_products_per_day": {
+        "day0": 10,
+        "day1": 9,
+        "day2": 9
+      },
+      "note": "Fill counts not in stdout; nonzero product count parsed from per-product day PnL lines in full log."
+    },
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v21.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 22,
+    "trader_file": "trader_v22.py",
+    "strategy_description": "Same as v21 with stronger directional asymmetry ASYM_EDGE_K=0.35 (parameter sweep).",
+    "total_profit": 68908,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "backtest_logs/trader_v22_round3_worse.log",
+    "trades_or_fills_summary": {
+      "day_total_profit": {
+        "day0": 9152,
+        "day1": 36426,
+        "day2": 23330
+      },
+      "non_zero_pnl_products_per_day": {
+        "day0": 10,
+        "day1": 9,
+        "day2": 9
+      },
+      "note": "Fill counts not in stdout; nonzero product count parsed from per-product day PnL lines in full log."
+    },
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v22.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

@@ -62,5 +62,21 @@
     "total_profit": 3456,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 8,
+    "trader_file": "trader_v8.py",
+    "strategy_description": "v4 with MM_EDGE=0 on tape day 2 only (tighter to touch bid/ask). Regresses badly: day-2 option PnL 0 (worse-fill matching likely never triggers).",
+    "total_profit": 710,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v8.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 9,
+    "trader_file": "trader_v9.py",
+    "strategy_description": "v4 with faster requotes on day 2 only (tick bucket //2 vs //3). Ties v4 at 3456; prefer v4 for simplicity.",
+    "total_profit": 3456,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v9.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
   }
 ]

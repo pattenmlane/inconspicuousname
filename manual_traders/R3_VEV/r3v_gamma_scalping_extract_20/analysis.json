@@ -24,5 +24,15 @@
       "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analysis_outputs/iv_greeks_summary.json"
     ],
     "used_to_decide": "This supported keeping focus on the two nearest strikes (gamma density) and testing inventory-hold / gamma-threshold sweeps rather than adding far-wing vouchers or hydrogel-heavy logic."
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "BS vega and theta (per calendar day) from implied vol solved on mids, for the two nearest strikes to extract at each subsampled tick (step 500). TTE 8/7/6 for tape days 0/1/2 per round3work/round3description.txt pattern. Outputs: vega_theta_summary.json (mean vega and mean |theta|/day by tape day) and vega_theta_sample.csv. Script: analyze_vega_theta.py.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analyze_vega_theta.py",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analysis_outputs/vega_theta_summary.json",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analysis_outputs/vega_theta_sample.csv"
+    ],
+    "used_to_decide": "Mean BS vega on nearest two strikes falls from ~298 to ~254 as TTE shortens (days 0->2) while per-day |theta| rises ~4.3 to ~5.0, consistent with time decay building into shorter horizon. Suggested day-2 quote tightening (v8) but backtest with match-trades worse got zero VEV fills when MM_EDGE=0 (quotes at best bid/ask, no price improvement for taker). Day-2 requote speed sweep (v9) matched v4 PnL; keep v4 as simplest best."
   }
 ]

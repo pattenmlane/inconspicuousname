@@ -1,0 +1,13 @@
+{
+  "methodology": "BS vega and theta (per calendar day) from implied vol solved from mids; TTE 8,7,6 for tape days 0,1,2; step 500.",
+  "mean_vega_by_tape_day": {
+    "0": 297.629348,
+    "1": 276.986175,
+    "2": 254.046246
+  },
+  "mean_abs_theta_per_day_by_tape_day": {
+    "0": 4.318422,
+    "1": 4.695824,
+    "2": 4.980077
+  }
+}

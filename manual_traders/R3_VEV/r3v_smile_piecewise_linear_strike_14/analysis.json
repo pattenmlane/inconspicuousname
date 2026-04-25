@@ -122,5 +122,15 @@
       "analysis_outputs/tape_pwl_misfit_by_strike.json"
     ],
     "used_to_decide": "Skip trading VEV_5400 in v44 (poor PWL map); v45 also skips 5500. Both tie v41 at -95 PnL and 4184 trades — 5400/5500 were not meaningful PnL levers in this backtest, so no change to lead; keep v41 for simplicity."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Day-conditioned misfit follow-up from tape_pwl_misfit_by_strike.json, focused on traded core VEV_5000: day0 median misfit is notably negative (~-0.30) while days1-2 are near zero. Hypothesis: day0 should use a stricter open threshold to avoid opens when model overvalues option mid. Implemented day map in inferred csv_day: THR_OPEN day0 > day1/day2, with small grid (v46 day0=0.50, v47 day0=0.52).",
+    "analysis_outputs": [
+      "analysis_outputs/tape_pwl_misfit_by_strike.json",
+      "backtest_logs/trader_v46_worse.log",
+      "backtest_logs/trader_v47_worse.log"
+    ],
+    "used_to_decide": "Day-conditioned threshold worsened robustness: v46 = -109, v47 = -123 (vs v41=-95), with losses concentrated in day2 where stricter day0 policy did not help. Revert to simpler global THR_OPEN in v41."
   }
 ]

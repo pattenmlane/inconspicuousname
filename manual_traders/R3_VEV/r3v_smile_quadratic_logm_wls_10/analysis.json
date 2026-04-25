@@ -35,7 +35,7 @@
   },
   {
     "iteration": 4,
-    "analysis_description": "Greek bucket scan on ROUND_3 tapes (days 0-2, every 25th timestamp): Black-Scholes call |theta| and gamma at sigma from pooled WLS quadratic in m, T=dte_effective/365. Saved greek_buckets_iter8.json — near-ATM strikes (5000-5400) show largest median |theta| and gamma vs wings. Used to justify scaling execution gates by |theta| in trader_v8.",
+    "analysis_description": "Greek bucket scan on ROUND_3 tapes (days 0-2, every 25th timestamp): Black-Scholes call |theta| and gamma at sigma from pooled WLS quadratic in m, T=dte_effective/365. Saved greek_buckets_iter8.json \u2014 near-ATM strikes (5000-5400) show largest median |theta| and gamma vs wings. Used to justify scaling execution gates by |theta| in trader_v8.",
     "analysis_outputs": [
       "greek_buckets_iter8.json"
     ],
@@ -74,5 +74,14 @@
       "microprice_smile_mispricing_iter14.json"
     ],
     "used_to_decide": "v14 micro-only edge regressed; v15 blends 0.25 micro into mark for edge only (v10+ gates) and beat v10 in backtest. IV ridge buffer unchanged (still mid-based)."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "Microprice-vs-mid predictive check on ROUND_3 days 0-2 using fitted WLS smile fair: compute edge=(mark-fair), predict next-step option-mid direction by sign(-edge), and compare hit-rate/signed-move score across mark blends in {mid, 75/25, 50/50, 25/75, micro}. Output in microprice_predictive_iter16.json. Global and spread-bucket metrics favored pure mid (e.g., global signed_move_score 10697 at w=0 vs 9957 at w=0.25; spread 3-4 bucket deteriorated quickly with micro blend).",
+    "analysis_outputs": [
+      "microprice_predictive_iter16.json",
+      "results.json"
+    ],
+    "used_to_decide": "Reverted v15's 25% microprice edge mark back to plain mid in trader_v16 while keeping the same WLS quadratic log-m IV fair model and theta/spread gates. This tests whether v15 gains were robust or microprice-noise driven under --match-trades worse."
   }
 ]

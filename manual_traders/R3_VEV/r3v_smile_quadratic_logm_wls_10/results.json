@@ -2,7 +2,7 @@
   {
     "iteration": 0,
     "trader_file": "trader_v0.py",
-    "strategy_description": "WLS quadratic IV in m=log(K/S)/sqrt(T); online vega-weighted ridge toward tape prior; passive VEV limits (below ask / above bid) + hydrogel one-tick MM. v0 used aggressive bid/ask crossing incorrectly for backtester fills — no VEV fills; total mostly hydrogel.",
+    "strategy_description": "WLS quadratic IV in m=log(K/S)/sqrt(T); online vega-weighted ridge toward tape prior; passive VEV limits (below ask / above bid) + hydrogel one-tick MM. v0 used aggressive bid/ask crossing incorrectly for backtester fills \u2014 no VEV fills; total mostly hydrogel.",
     "total_profit": 23247,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v0.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
@@ -126,5 +126,75 @@
     "total_profit": 60947,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v15.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 16,
+    "trader_file": "trader_v16.py",
+    "strategy_description": "Child of v15 with same WLS quadratic log-m smile fair + theta/spread-gated touch execution; data-grounded ablation reverts edge mark to plain mid (remove 25% microprice blend) based on microprice_predictive_iter16 showing weaker predictive score for blended marks in active buckets.",
+    "total_profit": 57336,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v16.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress",
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/backtest_worse_trader_v16_r3.log",
+    "trades_or_fills_summary": {
+      "note": "prosperity4bt stdout includes per-product PnL and day totals but no explicit fill ledger in this run mode",
+      "day_total_profit": {
+        "0": 17004,
+        "1": 23916,
+        "2": 16416
+      },
+      "vev_pnl_by_day": {
+        "0": {
+          "VEV_6500": 0,
+          "VEV_6000": 0,
+          "VEV_5500": -12,
+          "VEV_5400": -1700,
+          "VEV_5300": 1410,
+          "VEV_5200": -629,
+          "VEV_5100": 4870,
+          "VEV_5000": -84,
+          "VEV_4500": 281,
+          "VEV_4000": -417
+        },
+        "1": {
+          "VEV_6500": 0,
+          "VEV_6000": 0,
+          "VEV_5500": 250,
+          "VEV_5400": -233,
+          "VEV_5300": -1134,
+          "VEV_5200": -1421,
+          "VEV_5100": -506,
+          "VEV_5000": 6117,
+          "VEV_4500": 988,
+          "VEV_4000": 2500
+        },
+        "2": {
+          "VEV_6500": 0,
+          "VEV_6000": 0,
+          "VEV_5500": 220,
+          "VEV_5400": 232,
+          "VEV_5300": -1954,
+          "VEV_5200": -5306,
+          "VEV_5100": 5077,
+          "VEV_5000": 6561,
+          "VEV_4500": 2370,
+          "VEV_4000": 10005
+        }
+      },
+      "delta1_pnl_by_day": {
+        "0": {
+          "VELVETFRUIT_EXTRACT": 3194,
+          "HYDROGEL_PACK": 10091
+        },
+        "1": {
+          "VELVETFRUIT_EXTRACT": 4084,
+          "HYDROGEL_PACK": 13272
+        },
+        "2": {
+          "VELVETFRUIT_EXTRACT": -672,
+          "HYDROGEL_PACK": -116
+        }
+      }
+    }
   }
 ]

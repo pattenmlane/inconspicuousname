@@ -58,7 +58,7 @@
   {
     "iteration": 7,
     "trader_file": "trader_v7.py",
-    "strategy_description": "Parent v2: 5400/5500 only, sell resid>RICH_THR, short-cover resid<EXIT, hedge 0.65. (Thresholds too high: residuals at those strikes are usually negative vs quadratic — almost no trades.)",
+    "strategy_description": "Parent v2: 5400/5500 only, sell resid>RICH_THR, short-cover resid<EXIT, hedge 0.65. (Thresholds too high: residuals at those strikes are usually negative vs quadratic \u2014 almost no trades.)",
     "total_profit": 0,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v7.py 3 --data Prosperity4Data --match-trades worse"
@@ -106,7 +106,7 @@
   {
     "iteration": 13,
     "trader_file": "trader_v13.py",
-    "strategy_description": "Parent v2: HEDGE_FRAC 0.62, MAX_LEG 10, RICH 0.012, CHEAP -0.018 — reduce extract hedge drag vs v0/v2 while keeping quadratic smile.",
+    "strategy_description": "Parent v2: HEDGE_FRAC 0.62, MAX_LEG 10, RICH 0.012, CHEAP -0.018 \u2014 reduce extract hedge drag vs v0/v2 while keeping quadratic smile.",
     "total_profit": 759,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v13.py 3 --data Prosperity4Data --match-trades worse"
@@ -114,7 +114,7 @@
   {
     "iteration": 14,
     "trader_file": "trader_v14.py",
-    "strategy_description": "Parent v13 with HEDGE_FRAC 0.50; with int(round(hedge)) and typical d_net, PnL matched v13 (759) in this run — hedge quantizes same as 0.62 for these flows.",
+    "strategy_description": "Parent v13 with HEDGE_FRAC 0.50; with int(round(hedge)) and typical d_net, PnL matched v13 (759) in this run \u2014 hedge quantizes same as 0.62 for these flows.",
     "total_profit": 759,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v14.py 3 --data Prosperity4Data --match-trades worse"
@@ -122,7 +122,7 @@
   {
     "iteration": 15,
     "trader_file": "trader_v15.py",
-    "strategy_description": "Parent v13 with HEDGE_FRAC 0.28 — much lighter extract hedge; option legs unchanged vs v13. Best in series so far on this tape (3010).",
+    "strategy_description": "Parent v13 with HEDGE_FRAC 0.28 \u2014 much lighter extract hedge; option legs unchanged vs v13. Best in series so far on this tape (3010).",
     "total_profit": 3010,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v15.py 3 --data Prosperity4Data --match-trades worse"
@@ -142,5 +142,29 @@
     "total_profit": 3659,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v17.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 18,
+    "trader_file": "trader_v18.py",
+    "strategy_description": "Parent v17: RICH 0.011, CHEAP -0.024, MAX_LEG 10, HEDGE 0.28 (stricter both sides).",
+    "total_profit": 3404,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v18.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 19,
+    "trader_file": "trader_v19.py",
+    "strategy_description": "Parent v17: same thresholds, smaller MAX_LEG 8 to cut path risk.",
+    "total_profit": 3547,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v19.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 20,
+    "trader_file": "trader_v20.py",
+    "strategy_description": "Mixed parent (from v15 path): v17 thresholds with larger MAX_LEG 12, HEDGE 0.28.",
+    "total_profit": 3750,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v20.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

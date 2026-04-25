@@ -1,12 +1,12 @@
 [
   {
     "iteration": 0,
-    "analysis_description": "Round-3 tapes days 0–2: Black–Scholes implied vol vs m_t=log(K/S)/sqrt(T) with T from round3description (CSV day 0,1,2 → 8,7,6 d at open) and intraday DTE wind-down (timestamps 0..999900 step 100 → ~1 day per session) per round3work/plotting/original_method/combined_analysis/plot_iv_smile_round3.py. Fitted quadratic IV(m_t) per subsample; mean quadratic coefficient a>0 (upward curvature); mean wing IV − core IV > 0; bid-ask width on VEV_5200 and extract mids from CSV.",
+    "analysis_description": "Round-3 tapes days 0\u20132: Black\u2013Scholes implied vol vs m_t=log(K/S)/sqrt(T) with T from round3description (CSV day 0,1,2 \u2192 8,7,6 d at open) and intraday DTE wind-down (timestamps 0..999900 step 100 \u2192 ~1 day per session) per round3work/plotting/original_method/combined_analysis/plot_iv_smile_round3.py. Fitted quadratic IV(m_t) per subsample; mean quadratic coefficient a>0 (upward curvature); mean wing IV \u2212 core IV > 0; bid-ask width on VEV_5200 and extract mids from CSV.",
     "analysis_outputs": [
       "analyze_smile_curvature.py",
       "smile_curvature_summary.json"
     ],
-    "used_to_decide": "Positive mean IV quadratic term and wing−core IV premium support fading rich wings vs smooth core; spread filters sized vs ~3-tick VEV and ~5-tick extract widths. Chose v0 thresholds then refined cheap-wing filter in v2 after v1 sweep hurt PnL."
+    "used_to_decide": "Positive mean IV quadratic term and wing\u2212core IV premium support fading rich wings vs smooth core; spread filters sized vs ~3-tick VEV and ~5-tick extract widths. Chose v0 thresholds then refined cheap-wing filter in v2 after v1 sweep hurt PnL."
   },
   {
     "iteration": 1,
@@ -16,7 +16,7 @@
   },
   {
     "iteration": 2,
-    "analysis_description": "Compared v2 vs v0 PnL decomposition in backtest logs: large losses on VEV_4500 longs in v0; v2’s time-value filter reduced extract hedge bleed while keeping wing shorts.",
+    "analysis_description": "Compared v2 vs v0 PnL decomposition in backtest logs: large losses on VEV_4500 longs in v0; v2\u2019s time-value filter reduced extract hedge bleed while keeping wing shorts.",
     "analysis_outputs": [],
     "used_to_decide": "Kept v2 as preferred active curvature implementation for next tuning."
   },
@@ -44,53 +44,53 @@
     "iteration": 6,
     "analysis_description": "v6 vs v2: blocking 4000/4500 cheap longs reduced some loss tail but total PnL worsened vs v2; still valid as a parent for strike-scoped experiments.",
     "analysis_outputs": [],
-    "used_to_decide": "Preferred parent for next grid remained v2 (−751) over v6 (−2326)."
+    "used_to_decide": "Preferred parent for next grid remained v2 (\u2212751) over v6 (\u22122326)."
   },
   {
     "iteration": 7,
-    "analysis_description": "Signed residual check on tapes (50-tick step, time-value filter): IV−quadratic(m_t) at 5400/5500 is almost always negative (short side of parabola); 6000 often positive. Same TTE mapping as round3description + intraday wind-down. Correlation artifact: analyze_wing_resid_vs_extract_v7.py → wing_resid_vs_extract_v7.json (Δlog S vs Δresid, weak pooled r ~0.05–0.09 for 5400).",
+    "analysis_description": "Signed residual check on tapes (50-tick step, time-value filter): IV\u2212quadratic(m_t) at 5400/5500 is almost always negative (short side of parabola); 6000 often positive. Same TTE mapping as round3description + intraday wind-down. Correlation artifact: analyze_wing_resid_vs_extract_v7.py \u2192 wing_resid_vs_extract_v7.json (\u0394log S vs \u0394resid, weak pooled r ~0.05\u20130.09 for 5400).",
     "analysis_outputs": [
       "analyze_wing_resid_vs_extract_v7.py",
       "wing_resid_vs_extract_v7.json"
     ],
-    "used_to_decide": "Explains v7–v10 zero activity when entry required resid>RICH on 5400/5500 only; led to v11 signed-strike split (short 6000 rich, long 5400/5500 cheap)."
+    "used_to_decide": "Explains v7\u2013v10 zero activity when entry required resid>RICH on 5400/5500 only; led to v11 signed-strike split (short 6000 rich, long 5400/5500 cheap)."
   },
   {
     "iteration": 8,
-    "analysis_description": "n/a — v8 grid vs v7 (same structural issue).",
+    "analysis_description": "n/a \u2014 v8 grid vs v7 (same structural issue).",
     "analysis_outputs": [],
     "used_to_decide": "No change to signed-residual conclusion."
   },
   {
     "iteration": 9,
-    "analysis_description": "n/a — v9 lower RICH/EXIT on 5400/5500-only short rule.",
+    "analysis_description": "n/a \u2014 v9 lower RICH/EXIT on 5400/5500-only short rule.",
     "analysis_outputs": [],
     "used_to_decide": "Still no positive RICH events at 5400/5500 at scale under quadratic fit."
   },
   {
     "iteration": 10,
-    "analysis_description": "n/a — v10 lower-threshold grid vs v8.",
+    "analysis_description": "n/a \u2014 v10 lower-threshold grid vs v8.",
     "analysis_outputs": [],
     "used_to_decide": "Same as iteration 9."
   },
   {
     "iteration": 11,
-    "analysis_description": "v11 backtest: signed-strike book triggered but total −3357 (extract hedge drag). v2 still best in-folder; pivot documented without abandoning smile-residual concept.",
+    "analysis_description": "v11 backtest: signed-strike book triggered but total \u22123357 (extract hedge drag). v2 still best in-folder; pivot documented without abandoning smile-residual concept.",
     "analysis_outputs": [],
     "used_to_decide": "Next iterations should branch from v2: strike-specific or cubic smile, or smaller option clips / lower HEDGE_FRAC to reduce extract churn."
   },
   {
     "iteration": 12,
-    "analysis_description": "analyze_quad_vs_cubic_v12.py → quad_vs_cubic_smile_v12.json: cubic IV(m_t) lowers in-sample RMSE vs quadratic but mean |resid| on wing strikes is larger; with v2’s fixed RICH/CHEAP, v12 never entered (0 PnL).",
+    "analysis_description": "analyze_quad_vs_cubic_v12.py \u2192 quad_vs_cubic_smile_v12.json: cubic IV(m_t) lowers in-sample RMSE vs quadratic but mean |resid| on wing strikes is larger; with v2\u2019s fixed RICH/CHEAP, v12 never entered (0 PnL).",
     "analysis_outputs": [
       "analyze_quad_vs_cubic_v12.py",
       "quad_vs_cubic_smile_v12.json"
     ],
-    "used_to_decide": "Kept quadratic for v13–v15 parameter sweeps; cubic would need threshold recalibration."
+    "used_to_decide": "Kept quadratic for v13\u2013v15 parameter sweeps; cubic would need threshold recalibration."
   },
   {
     "iteration": 13,
-    "analysis_description": "v13 vs v2: lower HEDGE_FRAC (0.62) and MAX_LEG 10 cut extract bleed; total +759 vs v2 −751 on days 0–2 (worse-match backtest).",
+    "analysis_description": "v13 vs v2: lower HEDGE_FRAC (0.62) and MAX_LEG 10 cut extract bleed; total +759 vs v2 \u2212751 on days 0\u20132 (worse-match backtest).",
     "analysis_outputs": [],
     "used_to_decide": "Confirmed hedge as main loss channel; extended to v15."
   },
@@ -102,13 +102,13 @@
   },
   {
     "iteration": 15,
-    "analysis_description": "v15 HEDGE 0.28: option legs match v13 pattern but extract PnL mostly near zero (small d_net rounds to 0 hedge), total 3010 on days 0–2 — new best in this strategy folder.",
+    "analysis_description": "v15 HEDGE 0.28: option legs match v13 pattern but extract PnL mostly near zero (small d_net rounds to 0 hedge), total 3010 on days 0\u20132 \u2014 new best in this strategy folder.",
     "analysis_outputs": [],
     "used_to_decide": "Prefer v15 line for next micro-sweeps (RICH/CHEAP, optional cap on extract hedge when |d_net| large)."
   },
   {
     "iteration": 16,
-    "analysis_description": "analyze_wing_resid_thresholds_v16.py → wing_resid_thresholds_v16.json: on subsample (step 50), max |quadratic IV resid| over wing strikes is ≥0.012 at ~80.7% of timestamps, ≥0.014 at ~68% — guides RICH sweep (higher RICH cuts activity).",
+    "analysis_description": "analyze_wing_resid_thresholds_v16.py \u2192 wing_resid_thresholds_v16.json: on subsample (step 50), max |quadratic IV resid| over wing strikes is \u22650.012 at ~80.7% of timestamps, \u22650.014 at ~68% \u2014 guides RICH sweep (higher RICH cuts activity).",
     "analysis_outputs": [
       "analyze_wing_resid_thresholds_v16.py",
       "wing_resid_thresholds_v16.json"
@@ -117,8 +117,28 @@
   },
   {
     "iteration": 17,
-    "analysis_description": "v17 backtest: looser RICH and stricter CHEAP than v15; option-centric PnL with light extract (like v15); new best total 3659 on days 0–2.",
+    "analysis_description": "v17 backtest: looser RICH and stricter CHEAP than v15; option-centric PnL with light extract (like v15); new best total 3659 on days 0\u20132.",
     "analysis_outputs": [],
-    "used_to_decide": "Next parent: trader_v17.py; micro-sweep CHEAP in [-0.020,-0.024] or MAX_LEG 8–12."
+    "used_to_decide": "Next parent: trader_v17.py; micro-sweep CHEAP in [-0.020,-0.024] or MAX_LEG 8\u201312."
+  },
+  {
+    "iteration": 18,
+    "analysis_description": "vega_weighted_resid_v18.json: vega-weighted wing residual mean is negative (~-0.0105), indicating aggregate cheap-wing bias versus quadratic core; tested stricter cheap threshold and slightly tighter rich threshold.",
+    "analysis_outputs": [
+      "vega_weighted_resid_v18.json"
+    ],
+    "used_to_decide": "v18 improved over v15 but under v17; stricter entries reduced day1 participation too much."
+  },
+  {
+    "iteration": 19,
+    "analysis_description": "Risk sizing sweep from best parent v17: reduce MAX_LEG 10->8 while keeping thresholds fixed.",
+    "analysis_outputs": [],
+    "used_to_decide": "v19 (3547) remained close but below v17 (3659), suggesting clip reduction under-uses profitable day2 signals."
+  },
+  {
+    "iteration": 20,
+    "analysis_description": "Mixed-parent test (older v15 mechanics + v17 thresholds) with MAX_LEG 12; keeps low hedge and larger clip to exploit day2 edge while still curbing extract drag.",
+    "analysis_outputs": [],
+    "used_to_decide": "v20 is new best (3750), so next iterations should parent from v20 and tune MAX_LEG/thresholds around this regime."
   }
 ]

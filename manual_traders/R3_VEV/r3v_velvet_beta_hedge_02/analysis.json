@@ -16,5 +16,14 @@
       "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analysis_v1_strike_ranking.csv"
     ],
     "used_to_decide": "Despite high vega-per-spread on mid strikes, restricting traded strikes reduced participation and PnL (v5/v6=0). This falsifies the 'aggressive strike filter' extension for current quote style under this backtester. The concept remains valid as all-strike surface tilt (v4/v9) where extract-driven shift still improves over naive variants."
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Per-strike BS delta and vega at smile IV on Round-3 tapes; paired with |correlation| of (voucher mid - extract mid) with extract mid (moneyness co-movement). Output tabulates mean |delta| and mean vega by voucher. Method: same TTE winding as traders; r=0.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analysis_v2_delta_moneyness.csv",
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analysis_delta_brief.json"
+    ],
+    "used_to_decide": "Delta magnitude is huge on deep ITM low strikes (informational) while vega concentrates near 5000-5400. v10 blended |delta| into tilt scale to align with 'track underlying' without hard strike lists; v12 added spread-based dampening after seeing wide books on deep wings in prior spread tables. v11 (no hydrogel) underperformed v4, so hydrogel MM still adds in this harness."
   }
 ]

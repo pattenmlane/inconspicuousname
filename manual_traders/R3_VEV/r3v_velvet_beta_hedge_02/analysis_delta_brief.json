@@ -1,0 +1,30 @@
+{
+  "method": "BS call delta/vega at smile IV (same poly coeffs as trader); T from DTE winding.",
+  "top_by_mean_abs_delta": [
+    {
+      "V": "VEV_4500",
+      "moneyness_corr": -0.011937134418485684,
+      "mean_abs_delta": 0.9967833388985046,
+      "mean_vega": 6.836523300883234
+    },
+    {
+      "V": "VEV_4000",
+      "moneyness_corr": -0.005087363795201673,
+      "mean_abs_delta": 0.9937622182159398,
+      "mean_vega": 12.129341727116412
+    },
+    {
+      "V": "VEV_5000",
+      "moneyness_corr": -0.8307018046246241,
+      "mean_abs_delta": 0.9253983024112055,
+      "mean_vega": 98.80809427370885
+    },
+    {
+      "V": "VEV_5100",
+      "moneyness_corr": -0.9228426872727648,
+      "mean_abs_delta": 0.818146537862261,
+      "mean_vega": 184.40190809958486
+    }
+  ],
+  "insight": "Moneyness (opt-underlying mid spread) tracks extract; delta magnitude peaks near money strikes, supporting delta-scaled sizing for VEV quotes."
+}

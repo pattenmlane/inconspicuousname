@@ -78,5 +78,29 @@
     "total_profit": 16018,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v9.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 10,
+    "trader_file": "trader_v10.py",
+    "strategy_description": "v4 + delta-weighted tilt/qty: scale by (vega/VEGA_REF) * (DELTA_W + (1-DELTA_W)*|delta|) with smile IV. Ties v4 total (16,039) in this run.",
+    "total_profit": 16039,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v10.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 11,
+    "trader_file": "trader_v11.py",
+    "strategy_description": "v4 without hydrogel, slightly larger VEV and W_Z; benchmark-style surface-only leg. Worse than v4 at 8,395.",
+    "total_profit": 8395,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v11.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 12,
+    "trader_file": "trader_v12.py",
+    "strategy_description": "v4 + spread-aware tilt multiplier (down-weight when ba-bb wide). New best total 16,148 vs previous 16,039.",
+    "total_profit": 16148,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v12.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

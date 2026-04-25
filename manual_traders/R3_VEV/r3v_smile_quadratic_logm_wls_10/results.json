@@ -62,5 +62,21 @@
     "total_profit": 48596,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 8,
+    "trader_file": "trader_v8.py",
+    "strategy_description": "Child of v5: same WLS quadratic smile + touch cross; add BS call |theta| at fitted sigma(m) to scale edge_frac and edge/vega gates (pickier when time-decay risk per year is large). TTE from round3description mapping (dte_effective/365). Best total in series so far on days 0-2.",
+    "total_profit": 55659,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v8.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 9,
+    "trader_file": "trader_v9.py",
+    "strategy_description": "Same as v8 (theta-scaled edge gates on WLS smile); grid sweep: _THETA_EDGE_MULT 0.12 -> 0.15. Best total in series on days 0-2 in this backtest run.",
+    "total_profit": 57068,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v9.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
   }
 ]

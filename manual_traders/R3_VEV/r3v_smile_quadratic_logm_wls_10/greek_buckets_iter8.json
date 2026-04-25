@@ -1,0 +1,45 @@
+{
+  "by_strike": {
+    "VEV_4000": {
+      "med_abs_theta": 327.17138664370555,
+      "med_gamma": 3.3463716099334115e-05
+    },
+    "VEV_4500": {
+      "med_abs_theta": 95.95760298153763,
+      "med_gamma": 3.672480664962844e-05
+    },
+    "VEV_5000": {
+      "med_abs_theta": 716.8649030654437,
+      "med_gamma": 0.0007884271219494199
+    },
+    "VEV_5100": {
+      "med_abs_theta": 1258.488496026015,
+      "med_gamma": 0.0015441102103861816
+    },
+    "VEV_5200": {
+      "med_abs_theta": 1753.2845698116435,
+      "med_gamma": 0.0022650148035191463
+    },
+    "VEV_5300": {
+      "med_abs_theta": 1756.693556103297,
+      "med_gamma": 0.0022931504503504486
+    },
+    "VEV_5400": {
+      "med_abs_theta": 1296.136466242955,
+      "med_gamma": 0.0016209154291862119
+    },
+    "VEV_5500": {
+      "med_abs_theta": 770.9304193897755,
+      "med_gamma": 0.0008921601634741678
+    },
+    "VEV_6000": {
+      "med_abs_theta": 92.24244015728864,
+      "med_gamma": 4.67939124466201e-05
+    },
+    "VEV_6500": {
+      "med_abs_theta": 150.38168539637047,
+      "med_gamma": 3.00981341992626e-05
+    }
+  },
+  "note": "BS call theta (r=0), sigma from pooled WLS quadratic in m; subsample every 25 ts all days"
+}

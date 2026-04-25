@@ -32,5 +32,22 @@
       "iv_extract_comovement_iter6.json"
     ],
     "used_to_decide": "Keep production candidate trader_v5.py; v6 and v7 kept as ablations. Future work: optional BS theta in fair sensitivity tests; no thesis change."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "Greek bucket scan on ROUND_3 tapes (days 0-2, every 25th timestamp): Black-Scholes call |theta| and gamma at sigma from pooled WLS quadratic in m, T=dte_effective/365. Saved greek_buckets_iter8.json — near-ATM strikes (5000-5400) show largest median |theta| and gamma vs wings. Used to justify scaling execution gates by |theta| in trader_v8.",
+    "analysis_outputs": [
+      "greek_buckets_iter8.json"
+    ],
+    "used_to_decide": "trader_v8.py: multiply edge_frac threshold and edge/vega minimum by theta_edge_multiplier(|theta|) (~1.0-1.2), keeping v5 logic otherwise. Backtest total 55659 vs v5 49178 on same regime; new best line for this branch."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "Parameter sweep on v8 theta gating: _THETA_EDGE_MULT in {0.12, 0.15} with _THETA_REF=1200. v9 at 0.15 edge multiplier edges v8; logged in results.json only (same greek_buckets_iter8 analysis).",
+    "analysis_outputs": [
+      "greek_buckets_iter8.json",
+      "results.json"
+    ],
+    "used_to_decide": "Prefer trader_v9.py for PnL on this tape; v8 kept as mid-sweep point."
   }
 ]

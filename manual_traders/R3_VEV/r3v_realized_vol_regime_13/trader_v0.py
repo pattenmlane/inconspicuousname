@@ -191,6 +191,13 @@ class Trader:
     # Optional: widen joint VEV half-spread when |Δlog S| exceeds threshold (microstructure shock).
     SHOCK_VEV_HALF_ADD = 0.0
     SHOCK_ABS_LOG_DU = 0.0012
+    # Optional: per-strike add to half width when |d log S| is large; use sign of du for
+    # different maps (tape: low strikes widen more on up-shocks vs down). If both are set,
+    # they take precedence over SHOCK_VEV_HALF_ADD_MAP for the signed component.
+    UP_SHOCK_VEV_HALF_ADD_MAP: dict | None = None
+    DN_SHOCK_VEV_HALF_ADD_MAP: dict | None = None
+    # Set False to benchmark extract+VEV only (still allowed to quote other products if needed).
+    TRADE_HYDROGEL = True
 
     def run(self, state: TradingState):
         result: dict[str, list[Order]] = {}
@@ -317,9 +324,22 @@ class Trader:
                 thr = float(getattr(self, "SHOCK_ABS_LOG_DU", 0.0012))
                 if abs(du_inst) >= thr:
                     half_vev_local += float(self.SHOCK_VEV_HALF_ADD)
-            shock_map = getattr(self, "SHOCK_VEV_HALF_ADD_MAP", None)
-            if isinstance(shock_map, dict) and abs(du_inst) >= float(getattr(self, "SHOCK_ABS_LOG_DU", 0.0012)):
-                half_vev_local += float(shock_map.get(v, 0.0))
+            thr_s = float(getattr(self, "SHOCK_ABS_LOG_DU", 0.0012))
+            up_m = getattr(self, "UP_SHOCK_VEV_HALF_ADD_MAP", None)
+            dn_m = getattr(self, "DN_SHOCK_VEV_HALF_ADD_MAP", None)
+            if (
+                isinstance(up_m, dict)
+                and isinstance(dn_m, dict)
+                and abs(du_inst) >= thr_s
+            ):
+                if du_inst > 0.0:
+                    half_vev_local += float(up_m.get(v, 0.0))
+                elif du_inst < 0.0:
+                    half_vev_local += float(dn_m.get(v, 0.0))
+            else:
+                shock_map = getattr(self, "SHOCK_VEV_HALF_ADD_MAP", None)
+                if isinstance(shock_map, dict) and abs(du_inst) >= thr_s:
+                    half_vev_local += float(shock_map.get(v, 0.0))
             half_vev_local = max(self.VEV_HALF_MIN, min(half_vev_local, self.VEV_HALF_MAX))
             bid_p = int(round(theo - half_vev_local + skew + center_shift))
             ask_p = int(round(theo + half_vev_local + skew + center_shift))
@@ -420,23 +440,24 @@ class Trader:
                 result.setdefault(du, []).append(Order(du, au, -min(self.ORDER_SIZE_U, lim_u + pu)))
 
         # Hydrogel: simple MM around mid scaled by regime
-        dh = sym(H)
-        if dh and dh in depths:
-            d_h = depths[dh]
-            mh = micro_mid(d_h)
-            if mh is not None:
-                ph = int(pos.get(dh, 0))
-                lim_h = LIMITS[H]
-                bh = int(round(float(mh) - half_h))
-                ah = int(round(float(mh) + half_h))
-                bbh, bah = book_walls(d_h)[2], book_walls(d_h)[3]
-                if bbh is not None and bah is not None:
-                    bh = min(bh, int(bah) - 1)
-                    ah = max(ah, int(bbh) + 1)
-                if bh < ah:
-                    if ph < lim_h:
-                        result.setdefault(dh, []).append(Order(dh, bh, min(self.ORDER_SIZE_H, lim_h - ph)))
-                    if ph > -lim_h:
-                        result.setdefault(dh, []).append(Order(dh, ah, -min(self.ORDER_SIZE_H, lim_h + ph)))
+        if getattr(self, "TRADE_HYDROGEL", True):
+            dh = sym(H)
+            if dh and dh in depths:
+                d_h = depths[dh]
+                mh = micro_mid(d_h)
+                if mh is not None:
+                    ph = int(pos.get(dh, 0))
+                    lim_h = LIMITS[H]
+                    bh = int(round(float(mh) - half_h))
+                    ah = int(round(float(mh) + half_h))
+                    bbh, bah = book_walls(d_h)[2], book_walls(d_h)[3]
+                    if bbh is not None and bah is not None:
+                        bh = min(bh, int(bah) - 1)
+                        ah = max(ah, int(bbh) + 1)
+                    if bh < ah:
+                        if ph < lim_h:
+                            result.setdefault(dh, []).append(Order(dh, bh, min(self.ORDER_SIZE_H, lim_h - ph)))
+                        if ph > -lim_h:
+                            result.setdefault(dh, []).append(Order(dh, ah, -min(self.ORDER_SIZE_H, lim_h + ph)))
 
         return result, conv, json.dumps(td, separators=(",", ":"))

@@ -101,5 +101,15 @@
       "manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v41_worse.log"
     ],
     "used_to_decide": "Implemented SHOCK_VEV_HALF_ADD_MAP in base and tested v40-v41 to target low-strike widening under extract shocks. Aggregate PnL tied v33 at 60,627 (no incremental lift under worse fills), so retained v33 as simpler champion tie-break."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "Re-used propagation_asymmetry_by_voucher: lower strikes (4000-5100) have largest (mean Δspread|up-shock) minus (mean|down-shock) while 5200-5500 show a different split; signed extract moves let us add half-width on the relevant side only. TRADE_HYDROGEL=False benchmark: activitiesLog per-product pnl at last timestamp (max day, max ts) sums to 49,755 vs 60,627 with active hydrogel—hydrogel adds net +~10,872 in this v33 clone, far from a standalone extract+VEV ~800k bar (likely different aggressor/sizing; our stack remains conservative).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/propagation_asymmetry_by_voucher.csv",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v42_worse.log",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v43_worse.log"
+    ],
+    "used_to_decide": "Added optional UP_SHOCK_VEV_HALF_ADD_MAP and DN_SHOCK_VEV_HALF_ADD_MAP in trader_v0 (when both set, they replace the unsigned per-strike map for the shock component) and v42 to widen low strikes on d log S>0 and 5200-5500 on d log S<0. Backtest still 60,627 (tied v33). v43 disables new hydrogel quotes; logged benchmark PnL and noted hydrogel carry in tradeHistory for context."
   }
 ]

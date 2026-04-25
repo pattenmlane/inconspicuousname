@@ -44,11 +44,19 @@
   },
   {
     "iteration": 5,
-    "analysis_description": "v10 set IV gate to 0.25 to align with subsampled switch_mean median (~0.23). That let the *main* Frankfurt scalper run on all strikes, not the quiet-flatten path — wings (VEV_4000/4500) dominated losses. v11 kept gate 0.7 but set QUIET_FLATTEN off: when switch_mean is low, no more forced take/stop of full inventory at the touch (reduces spread-driven hidden liquidation PnL). v11 PnL +96 vs v8 +14, consistent with prior v2 ‘no quiet flatten’ direction but now with v8’s no-hedge baseline.",
+    "analysis_description": "v10 set IV gate to 0.25 to align with subsampled switch_mean median (~0.23). That let the *main* Frankfurt scalper run on all strikes, not the quiet-flatten path \u2014 wings (VEV_4000/4500) dominated losses. v11 kept gate 0.7 but set QUIET_FLATTEN off: when switch_mean is low, no more forced take/stop of full inventory at the touch (reduces spread-driven hidden liquidation PnL). v11 PnL +96 vs v8 +14, consistent with prior v2 \u2018no quiet flatten\u2019 direction but now with v8\u2019s no-hedge baseline.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/results.json",
       "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/switch_mean_quantiles.json"
     ],
-    "used_to_decide": "Do **not** use tape median as IV activity gate for the *main* branch without strike filters — it replicates v1-style wing damage. Next parents: v11; optional combine with ATM filter or slightly higher gate than 0.25 for any main-branch experiments."
+    "used_to_decide": "Do **not** use tape median as IV activity gate for the *main* branch without strike filters \u2014 it replicates v1-style wing damage. Next parents: v11; optional combine with ATM filter or slightly higher gate than 0.25 for any main-branch experiments."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "ATM vs non-ATM switch/edge analysis from ROUND_3 tapes using trader-consistent smile+TTE+EMA formulas (output atm_switch_vs_edge.json). ATM subset shows much tighter spreads and stronger edge-open hit rates than non-ATM, while high switch_mean remains rare overall; this supports combining no-quiet-flatten with ATM-only exposure.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/atm_switch_vs_edge.json"
+    ],
+    "used_to_decide": "Guided v12 (ATM filter + no quiet flatten) which improved PnL to +130. v13 showed over-tight vega rail sacrifices too much edge; keep rail near 650 with ATM filter."
   }
 ]

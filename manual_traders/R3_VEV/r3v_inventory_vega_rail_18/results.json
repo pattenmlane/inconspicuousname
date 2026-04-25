@@ -90,9 +90,25 @@
   {
     "iteration": 11,
     "trader_file": "trader_v11.py",
-    "strategy_description": "Parent v8: QUIET_FLATTEN=False — do not take/stop full position at touch when switch_mean is below gate (hides FV/liquidation spread risk in quiet). Best in-branch: +96 (day2 +98, day1 -2).",
+    "strategy_description": "Parent v8: QUIET_FLATTEN=False \u2014 do not take/stop full position at touch when switch_mean is below gate (hides FV/liquidation spread risk in quiet). Best in-branch: +96 (day2 +98, day1 -2).",
     "total_profit": 96,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v11.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 12,
+    "trader_file": "trader_v12.py",
+    "strategy_description": "Parent v11 (+96): add ATM strike filter 0.97<=K/S<=1.03 while keeping QUIET_FLATTEN=False and no extract hedge. Best so far: +130 total (day2 +132).",
+    "total_profit": 130,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v12.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 13,
+    "trader_file": "trader_v13.py",
+    "strategy_description": "Parent v11: VEGA_RAIL sweep 650->500 to tighten per-strike liquidation notional. PnL drops to +61 (fewer profitable fills).",
+    "total_profit": 61,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v13.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
   }
 ]

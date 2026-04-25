@@ -312,8 +312,17 @@ class Trader:
             elif p < -15:
                 skew = 1
             center_shift = self.REGIME_CENTER_SHIFT * regime
-            bid_p = int(round(theo - half_vev + skew + center_shift))
-            ask_p = int(round(theo + half_vev + skew + center_shift))
+            half_vev_local = half_vev
+            if float(getattr(self, "SHOCK_VEV_HALF_ADD", 0.0)) > 0.0:
+                thr = float(getattr(self, "SHOCK_ABS_LOG_DU", 0.0012))
+                if abs(du_inst) >= thr:
+                    half_vev_local += float(self.SHOCK_VEV_HALF_ADD)
+            shock_map = getattr(self, "SHOCK_VEV_HALF_ADD_MAP", None)
+            if isinstance(shock_map, dict) and abs(du_inst) >= float(getattr(self, "SHOCK_ABS_LOG_DU", 0.0012)):
+                half_vev_local += float(shock_map.get(v, 0.0))
+            half_vev_local = max(self.VEV_HALF_MIN, min(half_vev_local, self.VEV_HALF_MAX))
+            bid_p = int(round(theo - half_vev_local + skew + center_shift))
+            ask_p = int(round(theo + half_vev_local + skew + center_shift))
             bid_p = min(bid_p, int(ba) - 1)
             ask_p = max(ask_p, int(bb) + 1)
             if bid_p >= ask_p:
@@ -323,7 +332,7 @@ class Trader:
             q = int(q_map.get(v, q_default)) if isinstance(q_map, dict) else int(q_default)
             # Controlled taking when market is clearly mispriced vs same theo anchor.
             # We still use the same shared regime logic; this only improves execution quality.
-            take_edge = max(1.0, half_vev * self.TAKE_EDGE_MULT)
+            take_edge = max(1.0, half_vev_local * self.TAKE_EDGE_MULT)
             sells = d.sell_orders or {}
             buys = d.buy_orders or {}
             max_take = self.MAX_TAKE_PER_SIDE

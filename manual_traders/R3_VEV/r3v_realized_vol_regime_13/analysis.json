@@ -90,5 +90,16 @@
       "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/leadlag_shock_summary.json"
     ],
     "used_to_decide": "Implemented optional SHOCK_VEV_HALF_ADD on |d log S| between extract mids in trader_v0 (same IV\u2212RV joint width thesis). Tested v37-v39 from v33; aggregate PnL unchanged at 60,627 under worse matching\u2014keep hook for future tapes but prefer v33 as simpler unless re-tuned with per-strike shock factors."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "Up/down asymmetry extension: computed beta_up vs beta_dn and spread-response asymmetry by voucher. Lower strikes (4000\u20135100) show largest positive up-vs-down spread widening asymmetry, consistent with directional stress passing through high-delta contracts. Added per-strike shock widening maps focused on those strikes.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/propagation_asymmetry_by_voucher.csv",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/propagation_asymmetry_summary.json",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v40_worse.log",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v41_worse.log"
+    ],
+    "used_to_decide": "Implemented SHOCK_VEV_HALF_ADD_MAP in base and tested v40-v41 to target low-strike widening under extract shocks. Aggregate PnL tied v33 at 60,627 (no incremental lift under worse fills), so retained v33 as simpler champion tie-break."
   }
 ]

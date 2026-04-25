@@ -1,0 +1,39 @@
+{
+  "method": "Per voucher/day: beta_up, beta_dn from do vs du conditioned on du sign; spread delta after top-decile up/down du shocks; aggregate mean across days.",
+  "top_beta_asym": [
+    {
+      "voucher": "VEV_5500",
+      "beta_asym_up_minus_dn": 5.339287950889326
+    },
+    {
+      "voucher": "VEV_4000",
+      "beta_asym_up_minus_dn": 0.08489002466640327
+    },
+    {
+      "voucher": "VEV_6500",
+      "beta_asym_up_minus_dn": 0.0
+    },
+    {
+      "voucher": "VEV_6000",
+      "beta_asym_up_minus_dn": 0.0
+    }
+  ],
+  "top_spread_asym": [
+    {
+      "voucher": "VEV_4500",
+      "shock_spread_asym_up_minus_dn": 0.09909882006574128
+    },
+    {
+      "voucher": "VEV_4000",
+      "shock_spread_asym_up_minus_dn": 0.0834555657307465
+    },
+    {
+      "voucher": "VEV_5000",
+      "shock_spread_asym_up_minus_dn": 0.0648267585284667
+    },
+    {
+      "voucher": "VEV_5100",
+      "shock_spread_asym_up_minus_dn": 0.051611114414872025
+    }
+  ]
+}

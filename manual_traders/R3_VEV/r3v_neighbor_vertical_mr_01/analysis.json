@@ -41,5 +41,13 @@
       "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/analysis_iv_u_mean_corr.json"
     ],
     "used_to_decide": "Theta as a shrinker is not helpful at strong levels on this backtest; document and set THETA_REF high enough to be inert. IV level co-moves weakly with extract on subsample\u2014does not replace neighbor-gap signal but supports using extract for IV/Greeks."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "Pooled half-spread stats by VEV (book) and BS call gamma at strike nearest extract mid with IV from mids (see analysis_vega_gamma_spread.json). Method: TTE from round3 description mapping, r=0. Documents typical spread friction vs gamma scale for the vertical sleeve.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/analysis_vega_gamma_spread.json"
+    ],
+    "used_to_decide": "v5 ranks edges by |z| per two-leg spread; backtest PnL ties best prior (-908) so the ranking change does not improve aggregate on this run\u2014still grounded in book observables for the two-leg cost thesis."
   }
 ]

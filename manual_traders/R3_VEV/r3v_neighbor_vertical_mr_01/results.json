@@ -38,5 +38,13 @@
     "total_profit": -908,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v4.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 5,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "Parent v2; same mean-revert on neighbor mid gaps, Z_THRESHOLD=2.9, vega/spread sizing, TTE and delta hedge. Edge selection: among |z|>=threshold, maximize opportunity score |z|/(two_leg_half_spreads+eps) instead of max |z| \u2014 size-to-cost at selection time. Backtest total -908 (ties v2 on days 0-2; may differ which edge when scores tie).",
+    "total_profit": -908,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

@@ -1,0 +1,45 @@
+{
+  "tte": "TTE_days = 8 - csv_day for day 0/1/2 files.",
+  "half_spread_by_vev_pooled": {
+    "VEV_4000": {
+      "n": 0
+    },
+    "VEV_4500": {
+      "n": 0
+    },
+    "VEV_5000": {
+      "n": 0
+    },
+    "VEV_5100": {
+      "n": 0
+    },
+    "VEV_5200": {
+      "n": 303,
+      "mean": 1.3927392739273927,
+      "std": 0.21348593950506084
+    },
+    "VEV_5300": {
+      "n": 297,
+      "mean": 1.1094276094276094,
+      "std": 0.21508642742435252
+    },
+    "VEV_5400": {
+      "n": 0
+    },
+    "VEV_5500": {
+      "n": 0
+    },
+    "VEV_6000": {
+      "n": 0
+    },
+    "VEV_6500": {
+      "n": 0
+    }
+  },
+  "bs_gamma_at_nearest_strike": {
+    "n": 600,
+    "mean": 0.0022523403619892418,
+    "std": 0.00011189836829777435
+  },
+  "method": "IV from mid via BS bisection (r=0). Gamma: Black-Scholes call d^2C/dS^2, strike nearest to extract mid at each sample."
+}

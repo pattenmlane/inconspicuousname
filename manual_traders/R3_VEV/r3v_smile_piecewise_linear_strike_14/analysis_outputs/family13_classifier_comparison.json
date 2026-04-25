@@ -1,0 +1,61 @@
+{
+  "method": "Classifier comparison on realized vol from log returns of VELVETFRUIT_EXTRACT (window 120). Fixed uses global rv quantiles q50/q80. Rolling z-score uses rolling mean/std window 400 and cutoffs -0.4/0.9.",
+  "params": {
+    "rv_window": 120,
+    "fixed_q50": 0.00021469955749614658,
+    "fixed_q80": 0.00022910524303011042,
+    "z_window": 400,
+    "z_cut_low": -0.4,
+    "z_cut_high": 0.9
+  },
+  "by_day": {
+    "0": {
+      "n": 9481,
+      "agreement": 0.6783039763738002,
+      "transitions_per_1000_fixed": 46.61955489927223,
+      "transitions_per_1000_z": 53.053475371796225,
+      "dist_fixed": {
+        "low": 0.5313785465668178,
+        "mid": 0.30017930598038184,
+        "high": 0.16844214745280034
+      },
+      "dist_z": {
+        "low": 0.40270013711633795,
+        "mid": 0.3656787258727982,
+        "high": 0.23162113701086384
+      }
+    },
+    "1": {
+      "n": 9481,
+      "agreement": 0.6186056323172661,
+      "transitions_per_1000_fixed": 46.30313258095138,
+      "transitions_per_1000_z": 51.471363780191965,
+      "dist_fixed": {
+        "low": 0.5228351439721548,
+        "mid": 0.2867840945047991,
+        "high": 0.1903807615230461
+      },
+      "dist_z": {
+        "low": 0.40059065499419894,
+        "mid": 0.37506592131631683,
+        "high": 0.22434342368948423
+      }
+    },
+    "2": {
+      "n": 9481,
+      "agreement": 0.6818900959814366,
+      "transitions_per_1000_fixed": 47.357873642020884,
+      "transitions_per_1000_z": 49.256407551946,
+      "dist_fixed": {
+        "low": 0.4556481383820272,
+        "mid": 0.3215905495200928,
+        "high": 0.22276131209787997
+      },
+      "dist_z": {
+        "mid": 0.3924691488239637,
+        "low": 0.3820272123193756,
+        "high": 0.2255036388566607
+      }
+    }
+  }
+}

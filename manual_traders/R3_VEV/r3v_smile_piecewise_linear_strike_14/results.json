@@ -254,5 +254,37 @@
     "total_profit": 0,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v31.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 32,
+    "trader_file": "trader_v32.py",
+    "strategy_description": "Family13 fixed-threshold realized-vol regime classifier; regime-dependent THR_OPEN/IV_SCALPING_THR execution map.",
+    "total_profit": -101,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v32.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/family13_logs/trader_v32_worse.log"
+  },
+  {
+    "iteration": 33,
+    "trader_file": "trader_v33.py",
+    "strategy_description": "Family13 rolling z-score realized-vol regime classifier; same execution map as v32.",
+    "total_profit": -101,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v33.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/family13_logs/trader_v33_worse.log"
+  },
+  {
+    "iteration": 34,
+    "trader_file": "trader_v34.py",
+    "strategy_description": "Family13 rolling z-score classifier with minimal execution retune.",
+    "total_profit": -101,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v34.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/family13_logs/trader_v34_worse.log"
+  },
+  {
+    "iteration": 35,
+    "trader_file": "trader_v35.py",
+    "strategy_description": "Family13 fixed-threshold classifier with stronger regime-coupled execution (spread floor/cap5000 by regime).",
+    "total_profit": -101,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v35.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/family13_logs/trader_v35_worse.log"
   }
 ]

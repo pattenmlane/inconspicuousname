@@ -65,5 +65,18 @@
       "run_vev5000_vega_theta.py"
     ],
     "used_to_decide": "From v23 parent, grid: slightly looser switch gate (v29) improved total to -95 vs v23 -101; stricter gate (v30) -135. Ablation v31 (skip 5000) had zero trades \u2014 other strikes never pass Frankfurt-style gates under this engine. New best: trader_v29."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Family13 pivot (realized_vol_regime): compared fixed rv-threshold classifier vs rolling z-score classifier on extract realized vol (window 120; z-window 400). Data-first comparison in family13_classifier_comparison.json: agreement ~0.62-0.68 across days; z-score classifier is less concentrated in 'low' regime and slightly more transition-heavy. Implemented fixed (v32), z-score (v33), and retuned z-score (v34), plus stronger fixed coupling (v35).",
+    "analysis_outputs": [
+      "analysis_outputs/family13_classifier_comparison.json",
+      "family13_logs/trade_fill_summary_family13.json",
+      "family13_logs/trader_v32_worse.log",
+      "family13_logs/trader_v33_worse.log",
+      "family13_logs/trader_v34_worse.log",
+      "family13_logs/trader_v35_worse.log"
+    ],
+    "used_to_decide": "All classifier variants tie at -101 total on days 0-2 and identical/similar fill profiles. No evidence that rolling z-score beats fixed under current execution wiring; keep simpler fixed-threshold classifier if family13 must be retained. Overall best in branch remains v29 (-95), so family13 did not improve benchmark robustness or PnL this turn."
   }
 ]

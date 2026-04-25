@@ -79,5 +79,16 @@
       "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v12_cli_profit_summary.json"
     ],
     "used_to_decide": "Duplicate risk for hard-gated variant became high after v12b run was logged. Switched to v12c (soft-weighted) as nearby distinct variant. Under worse fills, v12c remained poor (-27,358), indicating current family12 implementation needs deeper risk controls rather than gating tweaks."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "Priority propagation study: underlying (extract) move transmission into vouchers by strike/day. Computed dV~dS beta, return elasticity, up/down asymmetry, spread shock ratio (|z|>=2.2 vs |z|<1), and lead/lag corr over \u00b12 ticks. Added strike-level response ladder used for execution scaling.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/underlying_response_by_strike_day.csv",
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/underlying_leadlag_corr_by_strike_day.csv",
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/underlying_response_summary.json",
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v15_fill_trade_summary.json"
+    ],
+    "used_to_decide": "Findings: best lead/lag is lag=0 across all valid strike/day groups (contemporaneous), beta declines monotonically with strike (4000~0.75 -> 5500~0.055 -> 6000/6500~0), and spread shock ratio is ~1 (no meaningful widening). Therefore v15 keeps contemporaneous quoting but scales edge/size by response (|delta| + beta proxy), cutting low-response strike activity and improving family12 PnL to +7,181 (from v12a +2,058 and v12b/v12c deeply negative)."
   }
 ]

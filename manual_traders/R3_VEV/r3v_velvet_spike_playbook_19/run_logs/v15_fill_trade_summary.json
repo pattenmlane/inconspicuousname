@@ -1,0 +1,34 @@
+{
+  "profit": {
+    "0": 270,
+    "1": 2869,
+    "2": 4042,
+    "total": 7181
+  },
+  "fills": {
+    "submission_trade_count": 42,
+    "submission_filled_abs_qty": 514,
+    "submission_by_symbol": {
+      "VEV_4000": {
+        "trade_count": 5,
+        "filled_abs_qty": 10
+      },
+      "VEV_5000": {
+        "trade_count": 5,
+        "filled_abs_qty": 99
+      },
+      "VEV_5100": {
+        "trade_count": 18,
+        "filled_abs_qty": 268
+      },
+      "VEV_5200": {
+        "trade_count": 4,
+        "filled_abs_qty": 54
+      },
+      "VEV_5300": {
+        "trade_count": 10,
+        "filled_abs_qty": 83
+      }
+    }
+  }
+}

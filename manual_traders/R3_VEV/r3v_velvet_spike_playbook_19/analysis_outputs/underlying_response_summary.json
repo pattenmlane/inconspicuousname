@@ -1,0 +1,7 @@
+{
+  "method": "For each day/strike: OLS beta on mid diffs dV~dS, elasticity on returns, up/down beta asymmetry, spread shock vs normal by extract z-score (window 50). Lead/lag corr over lags -2..2 on diffs.",
+  "files": [
+    "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/underlying_response_by_strike_day.csv",
+    "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/underlying_leadlag_corr_by_strike_day.csv"
+  ]
+}

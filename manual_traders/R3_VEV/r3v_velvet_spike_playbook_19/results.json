@@ -202,5 +202,49 @@
       },
       "total_profit": -45417.0
     }
+  },
+  {
+    "iteration": 15,
+    "trader_file": "trader_v15_spline_delta_beta_scaled.py",
+    "strategy_description": "Family12 spline log-k with analysis-driven delta/beta response scaling: contemporaneous underlying propagation and strike beta ladder used to scale edge and lot size by response strength, reducing weak-response wing churn.",
+    "total_profit": 7181,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v15_spline_delta_beta_scaled.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v15_spline_delta_beta_scaled.json",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v15_spline_delta_beta_scaled.json",
+    "match_trades": "worse",
+    "trades_or_fills_summary": {
+      "profit": {
+        "0": 270,
+        "1": 2869,
+        "2": 4042,
+        "total": 7181
+      },
+      "fills": {
+        "submission_trade_count": 42,
+        "submission_filled_abs_qty": 514,
+        "submission_by_symbol": {
+          "VEV_4000": {
+            "trade_count": 5,
+            "filled_abs_qty": 10
+          },
+          "VEV_5000": {
+            "trade_count": 5,
+            "filled_abs_qty": 99
+          },
+          "VEV_5100": {
+            "trade_count": 18,
+            "filled_abs_qty": 268
+          },
+          "VEV_5200": {
+            "trade_count": 4,
+            "filled_abs_qty": 54
+          },
+          "VEV_5300": {
+            "trade_count": 10,
+            "filled_abs_qty": 83
+          }
+        }
+      }
+    }
   }
 ]

@@ -33,5 +33,11 @@
     "analysis_description": "No new offline tape script: v7 merges v1 (jump pause + hydrogel/extract on pause) with v4 VEV logic (current_theo_diff − mean_theo_diff scalp, bb−1/ba+1). Backtest total 15,353 vs v1 24,318 — VEV adds real PnL but day-2 voucher drawdowns outweighed the hydrogel carry. Conclusion: combining both alpha paths needs separate tuning (e.g. drop extract taker on pause, or v4 params only) before it beats pure-hydrogel v1 on this metric.",
     "analysis_outputs": [],
     "used_to_decide": "Record hybrid attempt; best overall remains v1/v2; next iteration should not blindly stack theo_scalp on top of v1 without ablating extract fade or matching v4 thresholds first."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Ablate-only comparison from backtests: v7 day-0 had +238 on VELVETFRUIT_EXTRACT (light fade on pause) alongside VEV. v8 removes those extract orders. Result: day-0 total 8,294 vs v7 8,542; day-2 total −2,698 vs v7 −4,945 (2.2k better); combined +1,989 vs v7. Still below v1/v2 (24,318) because VEV PnL on this signal does not cover lost Frankfurt-zero hydrogel-only path. No new Greek tape script — v8 reuses the same BS smile/vega path as v4 in compute_option_indicators.",
+    "analysis_outputs": [],
+    "used_to_decide": "Dropping extract taker on pause is a real improvement for the theo-hybrid; next grid could try v4-only VEV (no hydrogel) vs v1, or add spread filter on resumption to cut day-2 wing losses."
   }
 ]

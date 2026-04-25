@@ -1,0 +1,20 @@
+{
+  "note": "Subsampled timestamps every 200; dte=8-csv_day- intraday/10000; T=dte/365; IV from brentq BS; atm band |log(K/S)|<0.04",
+  "per_day": {
+    "0": {
+      "n": 200,
+      "iv_raw_std": 0.0065442751521005635,
+      "iv_ema_std": 0.001033229972587677
+    },
+    "1": {
+      "n": 200,
+      "iv_raw_std": 0.00764017527524962,
+      "iv_ema_std": 0.0013717033462685162
+    },
+    "2": {
+      "n": 201,
+      "iv_raw_std": 0.007064462098236992,
+      "iv_ema_std": 0.0011037434862629183
+    }
+  }
+}

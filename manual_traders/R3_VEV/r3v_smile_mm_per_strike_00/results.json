@@ -54,5 +54,21 @@
     "total_profit": 11471,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v6.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "v6 + EMA (alpha=0.08) on quadratic smile (c,b,a) in traderData each step for days 0-2; on csv day 2 EMA drags voucher PnL from 10 to 0 (aggregate 11461 vs 11471).",
+    "total_profit": 11461,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v7.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 8,
+    "trader_file": "trader_v8.py",
+    "strategy_description": "v7 with hybrid: EMA on csv_day 0-1, raw cross-sectional quad fit (no EMA) on csv_day 2. Restores aggregate +11471 (matches v6).",
+    "total_profit": 11471,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v8.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

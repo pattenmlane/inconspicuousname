@@ -44,5 +44,15 @@
       "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter6_tier_gamma.json"
     ],
     "used_to_decide": "Kept v5 extract hedge; document gamma in tape. Added a spread-conditioned second deep quote layer (wide-book passivity) with limit-safe sizing; do not nudge extract from gamma. Performance ties best total with simpler v5; v6 is the same PnL with the extra structural option for very wide books."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Extended tape greek thread: analyze_tapes.py now also computes BS call theta (annual, r=0) and per-day IV vertical skew IV(4000)-IV(4500) from implied vols at shared timestamps; skew is strongly positive and rises day0->day2 (~0.327 -> ~0.384). Focused v5 parameter sweep (sweep_iter7_focused.json) over spread gate, deep offsets, and passive size found best around shallower deep quotes.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/analyze_tapes.py",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/tape_vev4000_4500_stats.json",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter7_focused.json"
+    ],
+    "used_to_decide": "Shallower passive placement (4000:+4, 4500:+5) materially improved fills and total PnL while preserving wide-book passive behavior; v7 improves 29,147 -> 30,076."
   }
 ]

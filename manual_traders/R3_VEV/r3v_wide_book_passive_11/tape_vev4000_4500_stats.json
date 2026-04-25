@@ -2,6 +2,10 @@
   "day_0": {
     "TTE_calendar_days": 7,
     "T_years": 0.019178082191780823,
+    "iv_skew_pair": {
+      "iv_4000_minus_4500_mean": 0.32697565872948964,
+      "n_ticks": 666
+    },
     "per_vev": {
       "VEV_4000": {
         "spread_mean": 20.7654,
@@ -11,6 +15,7 @@
         "delta_mean": 0.9937785489240036,
         "vega_mean": 12.398106047695455,
         "gamma_mean": 2.8479175563918085e-05,
+        "theta_annual_mean": -269.742492870942,
         "n_ticks": 10000
       },
       "VEV_4500": {
@@ -21,6 +26,7 @@
         "delta_mean": 0.9936265029992727,
         "vega_mean": 12.803311831159194,
         "gamma_mean": 5.299257703580333e-05,
+        "theta_annual_mean": -154.15428838575534,
         "n_ticks": 10000
       }
     }
@@ -28,6 +34,10 @@
   "day_1": {
     "TTE_calendar_days": 6,
     "T_years": 0.01643835616438356,
+    "iv_skew_pair": {
+      "iv_4000_minus_4500_mean": 0.35621441328081266,
+      "n_ticks": 664
+    },
     "per_vev": {
       "VEV_4000": {
         "spread_mean": 20.7745,
@@ -37,6 +47,7 @@
         "delta_mean": 0.9936656987839714,
         "vega_mean": 11.66292659837133,
         "gamma_mean": 2.8851660797425376e-05,
+        "theta_annual_mean": -320.75452014741467,
         "n_ticks": 10000
       },
       "VEV_4500": {
@@ -47,6 +58,7 @@
         "delta_mean": 0.9935819445592923,
         "vega_mean": 11.926124378965365,
         "gamma_mean": 5.302743014965383e-05,
+        "theta_annual_mean": -181.791760023378,
         "n_ticks": 10000
       }
     }
@@ -54,6 +66,10 @@
   "day_2": {
     "TTE_calendar_days": 5,
     "T_years": 0.0136986301369863,
+    "iv_skew_pair": {
+      "iv_4000_minus_4500_mean": 0.38369056743995306,
+      "n_ticks": 735
+    },
     "per_vev": {
       "VEV_4000": {
         "spread_mean": 20.9005,
@@ -63,6 +79,7 @@
         "delta_mean": 0.9938896389374101,
         "vega_mean": 10.335772366584397,
         "gamma_mean": 2.789186075357958e-05,
+        "theta_annual_mean": -373.7569600088236,
         "n_ticks": 10000
       },
       "VEV_4500": {
@@ -73,6 +90,7 @@
         "delta_mean": 0.993562037890756,
         "vega_mean": 10.929034879253509,
         "gamma_mean": 5.2772370308519074e-05,
+        "theta_annual_mean": -220.5323483256652,
         "n_ticks": 10000
       }
     }

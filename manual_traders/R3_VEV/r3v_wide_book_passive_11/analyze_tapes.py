@@ -59,6 +59,15 @@ def bs_gamma(S: float, K: float, T: float, sigma: float) -> float:
     return _N.pdf(d1) / (S * v)
 
 
+def bs_call_theta_annual(S: float, K: float, T: float, sigma: float) -> float:
+    """Call theta ∂C/∂t (r=0), one year clock; for display only (same T convention as greeks)."""
+    if T <= 0 or sigma <= 0:
+        return 0.0
+    v = sigma * math.sqrt(T)
+    d1 = (math.log(S / K) + 0.5 * v * v) / v
+    return -S * _N.pdf(d1) * sigma / (2.0 * math.sqrt(T))
+
+
 def main():
     out = {}
     for day in (0, 1, 2):
@@ -94,6 +103,7 @@ def main():
             deltas = []
             vegas = []
             gammas = []
+            thetas = []
             K = STRIKE[v]
             for ts, d in by_ts.items():
                 if v not in d:
@@ -108,6 +118,7 @@ def main():
                     deltas.append(bs_delta(S, K, T, iv))
                     vegas.append(bs_vega(S, K, T, iv))
                     gammas.append(bs_gamma(S, K, T, iv))
+                    thetas.append(bs_call_theta_annual(S, K, T, iv))
             day_stats[v] = {
                 "spread_mean": sum(spreads) / len(spreads) if spreads else None,
                 "spread_median": sorted(spreads)[len(spreads) // 2] if spreads else None,
@@ -120,9 +131,31 @@ def main():
                 "delta_mean": sum(deltas) / len(deltas) if deltas else None,
                 "vega_mean": sum(vegas) / len(vegas) if vegas else None,
                 "gamma_mean": sum(gammas) / len(gammas) if gammas else None,
+                "theta_annual_mean": sum(thetas) / len(thetas) if thetas else None,
                 "n_ticks": len(spreads),
             }
-        out[f"day_{day}"] = {"TTE_calendar_days": tte_days, "T_years": T, "per_vev": day_stats}
+        # IV(4000) - IV(4500) at each timestamp (smile / vertical skew in IV space; same S,T).
+        iv_skews = []
+        for ts, row in by_ts.items():
+            if "VEV_4000" not in row or "VEV_4500" not in row:
+                continue
+            S = extract_mid.get(ts)
+            if S is None:
+                continue
+            iv4 = implied_vol(S, STRIKE["VEV_4000"], T, row["VEV_4000"]["mid"])
+            iv45 = implied_vol(S, STRIKE["VEV_4500"], T, row["VEV_4500"]["mid"])
+            if iv4 is not None and iv45 is not None:
+                iv_skews.append(iv4 - iv45)
+        skew_payload = {
+            "iv_4000_minus_4500_mean": sum(iv_skews) / len(iv_skews) if iv_skews else None,
+            "n_ticks": len(iv_skews),
+        }
+        out[f"day_{day}"] = {
+            "TTE_calendar_days": tte_days,
+            "T_years": T,
+            "iv_skew_pair": skew_payload,
+            "per_vev": day_stats,
+        }
     with open(
         "manual_traders/R3_VEV/r3v_wide_book_passive_11/tape_vev4000_4500_stats.json",
         "w",

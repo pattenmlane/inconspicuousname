@@ -54,5 +54,13 @@
     "total_profit": 29147,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-out"
+  },
+  {
+    "iteration": 7,
+    "trader_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v7.py",
+    "strategy_description": "Best parent v5 with shallower deep passive quotes from focused sweep: WIDE_SPREAD_MIN=15, offsets 4/5 for VEV_4000/4500, PASSIVE_SIZE=3. Same extract delta+vega skew and hydrogel MM. This keeps the thesis (wide-spread passive capture) but increases fill probability while still posting inside large spreads.",
+    "total_profit": 30076,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-out"
   }
 ]

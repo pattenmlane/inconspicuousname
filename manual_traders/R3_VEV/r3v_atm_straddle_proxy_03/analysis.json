@@ -83,5 +83,13 @@
       "analysis_outputs/extract_propagation_by_strike_family10.json"
     ],
     "used_to_decide": "v18 parent=best local family10 v14. Gates now require price mispricing to exceed vega-appropriate minimum and raise IV-shock bar when |dS| is large, reducing spurious short during pure co-move. Backtest 55009 vs v14 53078 total."
+  },
+  {
+    "iteration": 19,
+    "analysis_description": "Round-3: robust smile (same fit as v18) on each tick, compute |sum(mid5000+mid5100)-smile_fair| vs combined L1 spread. Buckets: tight (ss<=8) show higher median mispricing; wide (ss>11) lower. Corr of mis/spread with ss is negative. Used to set spread_adj on vega floor and small shock bar widening on wide books.",
+    "analysis_outputs": [
+      "analysis_outputs/mispricing_vs_spread_v19.json"
+    ],
+    "used_to_decide": "Tight 5000+5100 books carry larger structural smile residuals per tick, so v19 raises the effective edge floor in those regimes. v19 total 55221 > v18 55009 under worse-match; still far from 800k bar (would need multi-VEV execution and/or parent full smile stack)."
   }
 ]

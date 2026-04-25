@@ -41,5 +41,14 @@
       "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/run_switch_mean_quantiles.py"
     ],
     "used_to_decide": "v8 duplicate of v5 PnL (+14) with no extract: hedge was not the edge driver. v9 (slightly looser gate) was worse (-8) due to extract hedge drag + more wing strikes. Prefer v5 or v8 as parent; if tuning IV gate, use small steps above tape median (~0.23) and below 0.55 unless willing to change EMA window shape."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "v10 set IV gate to 0.25 to align with subsampled switch_mean median (~0.23). That let the *main* Frankfurt scalper run on all strikes, not the quiet-flatten path — wings (VEV_4000/4500) dominated losses. v11 kept gate 0.7 but set QUIET_FLATTEN off: when switch_mean is low, no more forced take/stop of full inventory at the touch (reduces spread-driven hidden liquidation PnL). v11 PnL +96 vs v8 +14, consistent with prior v2 ‘no quiet flatten’ direction but now with v8’s no-hedge baseline.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/results.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/switch_mean_quantiles.json"
+    ],
+    "used_to_decide": "Do **not** use tape median as IV activity gate for the *main* branch without strike filters — it replicates v1-style wing damage. Next parents: v11; optional combine with ATM filter or slightly higher gate than 0.25 for any main-branch experiments."
   }
 ]

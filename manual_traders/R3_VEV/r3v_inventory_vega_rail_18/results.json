@@ -78,5 +78,21 @@
     "total_profit": -8,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v9.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 10,
+    "trader_file": "trader_v10.py",
+    "strategy_description": "Parent v8: IV_SCALPING_THR 0.7 -> 0.25 to match tape switch_mean median. Falsified: main branch trades all strikes including deep OTM; massive wing losses. Total -14402.",
+    "total_profit": -14402,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v10.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 11,
+    "trader_file": "trader_v11.py",
+    "strategy_description": "Parent v8: QUIET_FLATTEN=False — do not take/stop full position at touch when switch_mean is below gate (hides FV/liquidation spread risk in quiet). Best in-branch: +96 (day2 +98, day1 -2).",
+    "total_profit": 96,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v11.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
   }
 ]

@@ -126,5 +126,29 @@
     "total_profit": 10794,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v15.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 16,
+    "trader_file": "trader_v16.py",
+    "strategy_description": "Micro-sweep from v14: WING_SPLINE_WEIGHT 0.57, SPLINE_SMOOTH 0.08.",
+    "total_profit": 11212,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v16.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 17,
+    "trader_file": "trader_v17.py",
+    "strategy_description": "Micro-sweep from v14: WING_SPLINE_WEIGHT 0.60, SPLINE_SMOOTH 0.08.",
+    "total_profit": 10564,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v17.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 18,
+    "trader_file": "trader_v18.py",
+    "strategy_description": "Micro-sweep from v14: WING_SPLINE_WEIGHT 0.62, SPLINE_SMOOTH 0.08.",
+    "total_profit": 10618,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v18.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

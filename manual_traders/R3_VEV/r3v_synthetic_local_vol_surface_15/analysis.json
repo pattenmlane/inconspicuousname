@@ -89,5 +89,18 @@
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/results.json"
     ],
     "used_to_decide": "Best was wing weight 0.58 (v14, total 11,366), beating v8 (10,794). Stronger down-weight (0.50/0.53) reduced day2 capture; smoothness tweak to 0.09 gave no gain over v8. New parent should be v14; next micro-grid near 0.58 (e.g. 0.57/0.60) and possibly small hurdle tweak."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "(1) Micro WLS wing-weight backtests around v14 (0.57/0.60/0.62) \u2014 all trailed v14 (11,366). (2) Tape study on Round 3 prices: at each 200th timestamp per day, compute Newton IV for all 10 strikes, fit the same 10-knot WLS smooth \u03c3\u0302 in log K with (wing weight 0.58, S=0.08) as the live trader, then for core strikes 5000\u20135500 report mean|IV_i \u2212 \u03c3\u0302(x_i)|. This quantifies per-strike IV deviation from the smooth slice; highest mean misfit in our sample: 5400 (\u22480.012) vs 5100 (\u22480.0034). TTE: DTE at open 8\u2212csv day per round3work/round3description; intraday dte_eff = dte_open \u2212 (timestamp//100)/10000; T = dte_eff/365; r=0.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/v14_wing_misfit_by_strike.json",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/_run_wing_misfit_tape.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v16.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v17.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v18.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/results.json"
+    ],
+    "used_to_decide": "Keep v14 as best. Wing weight 0.58 appears near-optimal in this backtest; 0.57 close second (11,212). Misfit stats suggest 5400/5300/5200 are structurally more \u201coff the smooth\u201d than 5100/5500 in-sample \u2014 future optional rule: require slightly higher residual|hurdle at strikes with high historical misfit, but that adds complexity; stay on v14 until a simpler lever appears."
   }
 ]

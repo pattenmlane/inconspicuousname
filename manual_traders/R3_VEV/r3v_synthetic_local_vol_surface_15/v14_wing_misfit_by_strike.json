@@ -1,0 +1,31 @@
+{
+  "WING_SPLINE_WEIGHT": 0.58,
+  "SPLINE_SMOOTH": 0.08,
+  "sampled_snapshot_rows": 150,
+  "core_strikes_5000_5500": {
+    "5000": {
+      "mean_abs_iv_minus_smooth": 0.006857065002376353,
+      "samples": 150
+    },
+    "5100": {
+      "mean_abs_iv_minus_smooth": 0.003437403092209623,
+      "samples": 150
+    },
+    "5200": {
+      "mean_abs_iv_minus_smooth": 0.008652370854992986,
+      "samples": 150
+    },
+    "5300": {
+      "mean_abs_iv_minus_smooth": 0.00960283246946433,
+      "samples": 150
+    },
+    "5400": {
+      "mean_abs_iv_minus_smooth": 0.012329110018626107,
+      "samples": 150
+    },
+    "5500": {
+      "mean_abs_iv_minus_smooth": 0.005316238020112715,
+      "samples": 150
+    }
+  }
+}

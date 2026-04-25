@@ -1,0 +1,149 @@
+{
+  "method": "Consecutive timestamps; r = |log(S_t/S_{t-1})| for extract mid.",
+  "by_day": {
+    "0": {
+      "abs_logret_p90": 0.00038062613457913946,
+      "abs_logret_p95": 0.00038244574517207354,
+      "per_symbol": {
+        "VEV_5000": {
+          "n_base": 8997,
+          "n_shock90": 1002,
+          "spread_median_base": 6.0,
+          "spread_median_shock90": 6.0,
+          "median_widen_ticks": 0.0
+        },
+        "VEV_5100": {
+          "n_base": 8997,
+          "n_shock90": 1002,
+          "spread_median_base": 4.0,
+          "spread_median_shock90": 4.0,
+          "median_widen_ticks": 0.0
+        },
+        "VEV_5200": {
+          "n_base": 8997,
+          "n_shock90": 1002,
+          "spread_median_base": 3.0,
+          "spread_median_shock90": 3.0,
+          "median_widen_ticks": 0.0
+        },
+        "VEV_5300": {
+          "n_base": 8997,
+          "n_shock90": 1002,
+          "spread_median_base": 2.0,
+          "spread_median_shock90": 2.0,
+          "median_widen_ticks": 0.0
+        },
+        "VEV_5400": {
+          "n_base": 8997,
+          "n_shock90": 1002,
+          "spread_median_base": 1.0,
+          "spread_median_shock90": 1.0,
+          "median_widen_ticks": 0.0
+        },
+        "VEV_5500": {
+          "n_base": 8997,
+          "n_shock90": 1002,
+          "spread_median_base": 1.0,
+          "spread_median_shock90": 1.0,
+          "median_widen_ticks": 0.0
+        }
+      }
+    },
+    "1": {
+      "abs_logret_p90": 0.0003806985864956875,
+      "abs_logret_p95": 0.00038266526823024457,
+      "per_symbol": {
+        "VEV_5000": {
+          "n_base": 8994,
+          "n_shock90": 1005,
+          "spread_median_base": 6.0,
+          "spread_median_shock90": 6.0,
+          "median_widen_ticks": 0.0
+        },
+        "VEV_5100": {
+          "n_base": 8994,
+          "n_shock90": 1005,
+          "spread_median_base": 4.0,
+          "spread_median_shock90": 4.0,
+          "median_widen_ticks": 0.0
+        },
+        "VEV_5200": {
+          "n_base": 8994,
+          "n_shock90": 1005,
+          "spread_median_base": 3.0,
+          "spread_median_shock90": 3.0,
+          "median_widen_ticks": 0.0
+        },
+        "VEV_5300": {
+          "n_base": 8994,
+          "n_shock90": 1005,
+          "spread_median_base": 2.0,
+          "spread_median_shock90": 2.0,
+          "median_widen_ticks": 0.0
+        },
+        "VEV_5400": {
+          "n_base": 8994,
+          "n_shock90": 1005,
+          "spread_median_base": 1.0,
+          "spread_median_shock90": 1.0,
+          "median_widen_ticks": 0.0
+        },
+        "VEV_5500": {
+          "n_base": 8994,
+          "n_shock90": 1005,
+          "spread_median_base": 1.0,
+          "spread_median_shock90": 1.0,
+          "median_widen_ticks": 0.0
+        }
+      }
+    },
+    "2": {
+      "abs_logret_p90": 0.0003799392142969027,
+      "abs_logret_p95": 0.00038237262677915176,
+      "per_symbol": {
+        "VEV_5000": {
+          "n_base": 8997,
+          "n_shock90": 1002,
+          "spread_median_base": 6.0,
+          "spread_median_shock90": 6.0,
+          "median_widen_ticks": 0.0
+        },
+        "VEV_5100": {
+          "n_base": 8997,
+          "n_shock90": 1002,
+          "spread_median_base": 4.0,
+          "spread_median_shock90": 4.0,
+          "median_widen_ticks": 0.0
+        },
+        "VEV_5200": {
+          "n_base": 8997,
+          "n_shock90": 1002,
+          "spread_median_base": 3.0,
+          "spread_median_shock90": 3.0,
+          "median_widen_ticks": 0.0
+        },
+        "VEV_5300": {
+          "n_base": 8997,
+          "n_shock90": 1002,
+          "spread_median_base": 2.0,
+          "spread_median_shock90": 2.0,
+          "median_widen_ticks": 0.0
+        },
+        "VEV_5400": {
+          "n_base": 8997,
+          "n_shock90": 1002,
+          "spread_median_base": 1.0,
+          "spread_median_shock90": 1.0,
+          "median_widen_ticks": 0.0
+        },
+        "VEV_5500": {
+          "n_base": 8997,
+          "n_shock90": 1002,
+          "spread_median_base": 1.0,
+          "spread_median_shock90": 1.0,
+          "median_widen_ticks": 0.0
+        }
+      }
+    }
+  }
+}

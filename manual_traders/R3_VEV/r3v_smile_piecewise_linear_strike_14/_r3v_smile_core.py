@@ -68,6 +68,15 @@ def bs_vega(S: float, K: float, T: float, sigma: float, r: float = 0.0) -> float
     return float(S * _npdf(d1) * math.sqrt(T))
 
 
+def bs_gamma(S: float, K: float, T: float, sigma: float, r: float = 0.0) -> float:
+    """Black–Scholes call gamma d²C/dS² (per unit S), r=0 for Prosperity round-3."""
+    if T <= 0 or sigma <= 1e-12 or S <= 0:
+        return 0.0
+    v = sigma * math.sqrt(T)
+    d1 = (math.log(S / K) + (r + 0.5 * sigma * sigma) * T) / v
+    return float(_npdf(d1) / (S * v))
+
+
 def bs_call_theta(
     S: float, K: float, T: float, sigma: float, r: float = 0.0
 ) -> float:

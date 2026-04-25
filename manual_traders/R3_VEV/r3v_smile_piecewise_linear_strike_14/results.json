@@ -478,5 +478,43 @@
       ]
     },
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v47.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v47_worse.log"
+  },
+  {
+    "iteration": 48,
+    "trader_file": "trader_v48.py",
+    "strategy_description": "v41 + extract mid shock: tighten THR_OPEN/THR_CLOSE by BS-gamma-weighted factor when |S-S_prev|>=4 (tape: L1 spread median unchanged on shock windows; gamma thread in _r3v_smile_core.bs_gamma).",
+    "total_profit": -93,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v48_worse.log",
+    "trades_or_fills_summary": {
+      "n_trades": 4184,
+      "notable_symbols": [
+        "VELVETFRUIT_EXTRACT",
+        "HYDROGEL_PACK",
+        "VEV_4000",
+        "VEV_5000"
+      ]
+    },
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v48.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v48_worse.log"
+  },
+  {
+    "iteration": 49,
+    "trader_file": "trader_v49.py",
+    "strategy_description": "v48 grid: shock abs>=3, SHOCK_THR_MULT=0.10 (more shock ticks, gentler tighten).",
+    "total_profit": -93,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v49_worse.log",
+    "trades_or_fills_summary": {
+      "n_trades": 4184,
+      "notable_symbols": [
+        "VELVETFRUIT_EXTRACT",
+        "HYDROGEL_PACK",
+        "VEV_4000",
+        "VEV_5000"
+      ]
+    },
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v49.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v49_worse.log"
   }
 ]

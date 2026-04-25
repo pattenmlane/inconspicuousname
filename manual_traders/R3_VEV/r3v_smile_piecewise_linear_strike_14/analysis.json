@@ -132,5 +132,17 @@
       "backtest_logs/trader_v47_worse.log"
     ],
     "used_to_decide": "Day-conditioned threshold worsened robustness: v46 = -109, v47 = -123 (vs v41=-95), with losses concentrated in day2 where stricter day0 policy did not help. Revert to simpler global THR_OPEN in v41."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "Underlying shock vs voucher spread (tape): run_tape_extract_shock_spread.py compares L1 spread on timestamps where extract |log-ret| is in top decile vs baseline; for VEV_5000/5200/5300 median spread is unchanged (0 tick widen) on all days — book does not widen when extract moves sharply, so model edge is less protected by microstructure. Greek follow-up: added bs_gamma in _r3v_smile_core; v48/v49 scale THR_OPEN/THR_CLOSE up on raw extract mid jumps (|S-S_prev| threshold) with bump capped by gamma*GAMMA_SCALE to reflect convexity risk.",
+    "analysis_outputs": [
+      "run_tape_extract_shock_spread.py",
+      "analysis_outputs/tape_extract_shock_spread_widen.json",
+      "_r3v_smile_core.py",
+      "backtest_logs/trader_v48_worse.log",
+      "backtest_logs/trader_v49_worse.log"
+    ],
+    "used_to_decide": "v48 and v49 both reach -93 total (improved day1 vs v41 -51 vs -53; day0/2 unchanged). Tied at -93: prefer v48 (stricter shock threshold, fewer false shock states) as new lead over v41 (-95)."
   }
 ]

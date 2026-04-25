@@ -43,5 +43,14 @@
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_iv_vs_extract.py"
     ],
     "used_to_decide": "Grid sweep trader_v6 (closest-k=5, else v3): PnL 37412 < v3 39307. Agrees with prior tape result that k=6 was a better local-fit width than k=3; k=5 is in between and did not beat k=6. No pivot; retain v3 as best. Future work could test REFIT/EMA on v3 only, not a global extract-IV rule from this mixed-sign correlation."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Closest-k grid refresh with local smile pricing residuals: for each sampled timestamp/day and each k in {4,5,6,7}, compute bisection IV from mids, fit quadratic local smile on closest-k strikes, then compare BS-theoretical voucher prices vs mids in ticks (median abs and p90 abs). Time convention remains dte_eff/365 with dte_eff = 8-day - intraday progress from round3description mapping.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/local_fit_k_grid.json",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_local_fit_grid.py"
+    ],
+    "used_to_decide": "k=6 remained the most robust local-surface width (best or tied-best p90 abs residual on most days), while k=7 over-smoothed and k=4/5 were less stable in tails. Nonetheless, to keep iteration discipline and parent diversity we tested trader_v7 with k=4 on top of v3 microstructure; it underperformed materially (32864 vs 39307), reinforcing k=6 as current best."
   }
 ]

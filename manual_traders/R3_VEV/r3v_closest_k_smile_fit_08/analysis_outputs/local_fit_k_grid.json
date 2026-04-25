@@ -1,0 +1,77 @@
+{
+  "method": "Compare closest-k local smile fit via median abs pricing residual ticks.",
+  "k_grid": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "by_day": {
+    "0": {
+      "4": {
+        "n": 5440,
+        "median_abs_tick_resid": 0.49999830554865277,
+        "p90_abs_tick_resid": 1.6905925492810032
+      },
+      "5": {
+        "n": 5627,
+        "median_abs_tick_resid": 0.4964416321922626,
+        "p90_abs_tick_resid": 2.2635934052901603
+      },
+      "6": {
+        "n": 5864,
+        "median_abs_tick_resid": 0.4993466995402603,
+        "p90_abs_tick_resid": 1.4410279780325708
+      },
+      "7": {
+        "n": 5864,
+        "median_abs_tick_resid": 0.8882608501655795,
+        "p90_abs_tick_resid": 2.3592376792261347
+      }
+    },
+    "1": {
+      "4": {
+        "n": 4439,
+        "median_abs_tick_resid": 0.6000862989735651,
+        "p90_abs_tick_resid": 3.720454223727262
+      },
+      "5": {
+        "n": 5595,
+        "median_abs_tick_resid": 0.5237354775854328,
+        "p90_abs_tick_resid": 2.4334573837148357
+      },
+      "6": {
+        "n": 5911,
+        "median_abs_tick_resid": 0.5,
+        "p90_abs_tick_resid": 2.32986094420653
+      },
+      "7": {
+        "n": 5913,
+        "median_abs_tick_resid": 0.6718464691030022,
+        "p90_abs_tick_resid": 3.484245677609761
+      }
+    },
+    "2": {
+      "4": {
+        "n": 4377,
+        "median_abs_tick_resid": 0.6913389406745409,
+        "p90_abs_tick_resid": 2.802106524651373
+      },
+      "5": {
+        "n": 5825,
+        "median_abs_tick_resid": 0.5,
+        "p90_abs_tick_resid": 2.00240347713534
+      },
+      "6": {
+        "n": 5857,
+        "median_abs_tick_resid": 0.49999879404357095,
+        "p90_abs_tick_resid": 2.012603942091051
+      },
+      "7": {
+        "n": 5861,
+        "median_abs_tick_resid": 0.695319882755939,
+        "p90_abs_tick_resid": 3.192313953091798
+      }
+    }
+  }
+}

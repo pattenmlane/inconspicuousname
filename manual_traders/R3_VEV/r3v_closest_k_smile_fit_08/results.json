@@ -54,5 +54,13 @@
     "total_profit": 37412,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v6.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
+  },
+  {
+    "iteration": 7,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v7.py",
+    "strategy_description": "Parent v3 random-older-style sweep: CLOSEST_K=4 with all other v3 mechanics unchanged (vega-sized quotes, BASE_EDGE_VEV=2, REFIT_EVERY=50). This tests whether a tighter local subset helps in fast regimes; performance dropped materially, so k=6 remains preferred.",
+    "total_profit": 32864,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v7.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
   }
 ]

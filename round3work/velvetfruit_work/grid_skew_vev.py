@@ -1,5 +1,6 @@
 """
-Grid search over SKEW_FACTOR for trader_vev_model_aware.py.
+Grid search over REGIME_SHIFT for trader_vev_model_aware.py.
+SKEW_FACTOR is fixed at 0.0 (grid-optimal from prior run).
 
 Run from repo root:
   python3 round3work/velvetfruit_work/grid_skew_vev.py
@@ -18,19 +19,18 @@ from prosperity4bt.test_runner import TestRunner
 from prosperity4bt.models.test_options import TradeMatchingMode
 
 TRADER_PATH = Path("round3work/velvetfruit_work/trader_vev_model_aware.py")
-SKEW_VALUES = [0.0, 0.01, 0.02, 0.03, 0.05, 0.08, 0.12, 0.20]
-FLATTEN = 150
+REGIME_SHIFTS = [0.0, 0.1, 0.22, 0.35, 0.5, 0.75, 1.0]
 
 reader = PackageResourcesReader()
 
 results = []
-for skew in SKEW_VALUES:
+for shift in REGIME_SHIFTS:
     spec = importlib.util.spec_from_file_location("trader_vev", TRADER_PATH)
     mod  = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
 
-    mod.SKEW_FACTOR       = skew
-    mod.FLATTEN_THRESHOLD = FLATTEN
+    mod.SKEW_FACTOR    = 0.0
+    mod.REGIME_SHIFT   = shift
 
     total = 0
     for day in [0, 1, 2]:
@@ -41,8 +41,8 @@ for skew in SKEW_VALUES:
         result = runner.run()
         total += sum(row.profit_loss for row in result.final_activities())
 
-    results.append((skew, total))
-    print(f"  skew={skew:.2f}  total={total:,.0f}")
+    results.append((shift, total))
+    print(f"  regime_shift={shift:.2f}  total={total:,.0f}")
 
 best = max(results, key=lambda x: x[1])
-print(f"\nBest: skew={best[0]:.2f}  total={best[1]:,.0f}")
+print(f"\nBest: regime_shift={best[0]:.2f}  total={best[1]:,.0f}")

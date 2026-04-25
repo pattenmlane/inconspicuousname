@@ -118,5 +118,13 @@
     "total_profit": 3861,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v14.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 15,
+    "trader_file": "trader_v15.py",
+    "strategy_description": "Distinct variant: day-1 asymmetric extract hedge around target (larger buffer on buy-side than sell-side) while preserving v13 day-level policy. Underperforms v13.",
+    "total_profit": 3792,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v15.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
   }
 ]

@@ -81,5 +81,15 @@
       "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v13_v14.json"
     ],
     "used_to_decide": "v14 has nearly identical option-side fills and VEV PnL vs v13; the degradation is from extract PnL (v13 +156 vs v14 -140) due to over-softened day-1 hedge. Keep v13 (4157) as best in this family line."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "Duplicate-check motivated variant shift: instead of another scalar day-1 hedge frac/band sweep, tested asymmetric day-1 hedge deadband around target_ex (wider when adding extract than when reducing extract). This is a distinct assumption from prior symmetric sweeps. Saved full run log and parsed fill summary for the run.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v15_round3_worse.log",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v15_round3_worse.stdout.txt",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v15.json"
+    ],
+    "used_to_decide": "v15 total 3792 (day1 795) is below v13 4157 (day1 1160), so asymmetric buffer did not beat the current best. Keep v13 as production candidate."
   }
 ]

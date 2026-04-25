@@ -131,5 +131,15 @@
       "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v14_fill_summary.json"
     ],
     "used_to_decide": "v13 activated VEVs but overtraded core down-moves (14923). v14 reduced adverse fills and improved to 18176, but still below v11/v12 and far below baseline v2. Conclusion: propagation logic directionally sensible for activity quality but current thresholds remain too aggressive for this simulator regime."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "Prior work (spline_vs_poly_edge) showed cubic spline |mid-fair| much smaller than quadratic at quote points, explaining zero VEV fills for v11/v12. v15 implements a single design point in a small two-knob family: (1) blend weight w in {0.35} on BS(spline) vs BS(sticky poly from same node IVs), and (2) looser width floor 0.3*book vs 0.35*book in v12. Per-run backtest log + fill summary for activity check.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analysis_outputs/spline_vs_poly_edge_at_quotes.json",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v15_backtest.log",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v15_fill_summary.json"
+    ],
+    "used_to_decide": "Blend + tighter floor reactivated VEV trading on wing pair VEV_5400/VEV_4000 (no core fills) with net -19 on those VEVs over three days; total 18,968 vs 18,949 for v12 (+19) but still far from v2 (19,255). Suggests poly blend nudged quotes enough for occasional wing fills; next can sweep w in {0.2,0.35,0.5} and/or decouple width floor by strike (ATM vs wing) to limit wing adverse selection while seeking ATM activity."
   }
 ]

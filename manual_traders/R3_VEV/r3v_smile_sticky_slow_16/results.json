@@ -124,5 +124,16 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v14_backtest.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v14_fill_summary.json"
+  },
+  {
+    "iteration": 15,
+    "trader_file": "trader_v15.py",
+    "strategy_description": "v12 family-12 core + price-space blend: BS fair = (1-w)*spline + w*sticky vega-weighted quadratic (EMA coeffs like v2), w=0.35; stickier vega for edge; tighter half_spread floor (0.3*spread, min 0.5) and slightly lower edge mult (0.05) to elicit VEV passive fills without shock/taker logic.",
+    "total_profit": 18968,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v15.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v15_backtest.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v15_fill_summary.json"
   }
 ]

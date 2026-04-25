@@ -108,5 +108,15 @@
       "iter16_entry_tilt_grid_script"
     ],
     "used_to_decide": "Do not deploy entry clip tilt; keep v15 behavior as robust optimum in tested slice. Recorded v16 as analysis-backed ablation/tie benchmark."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "**Microstructure / propagation link:** the v14/v15 relaxed entry spread is keyed off cumulative extract mid drawdown over a short tick window (proxy for stress / wider VEV books in cheap-vol). A **parameter sweep** on Round 3 days 0\u20132 with `prosperity4bt` `--match-trades worse` (same BS IV, log-z, vega clip as v15) over (DROP_THRESH, S_LOOKBACK) and spot checks on Z_EXIT / MAX_SPREAD_RELAXED showed: Z_EXIT in {0.055..0.08} is flat at 18,894; MAX_SPREAD_RELAXED=6 is best among {5,6,7,8}; **DROP_THRESH=1.0 with S_LOOKBACK=10** peaks at **19,780** (vs v15\u2019s 2.0/12 at 18,894). Coarser drops (2.5+) or long lookbacks (14+) hurt by missing relaxed-entry windows. **IV/Greek thread unchanged:** BS implied vol \u2192 log-IV z; vega-scaled clip.",
+    "analysis_outputs": [
+      "iter17_drop_lookback_grid_script",
+      "iter17_zexit_relaxedcap_sanity_script",
+      "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v17_2026-04-25.log"
+    ],
+    "used_to_decide": "Ship v17 as v15 with DROP_THRESH=1.0 and S_LOOKBACK=10 only; keep all other v15 constants."
   }
 ]

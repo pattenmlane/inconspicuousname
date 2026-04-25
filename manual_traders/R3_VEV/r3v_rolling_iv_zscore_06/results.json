@@ -163,5 +163,20 @@
       "vev5000_submission_rows": 182,
       "vev5000_submission_abs_qty": 860
     }
+  },
+  {
+    "iteration": 17,
+    "trader_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v17.py",
+    "strategy_description": "v17 = v15 (log-IV rolling z on VEV_5000, vega-graded clip, asymmetric spread: exit cap 2, entry relaxed to 6 after extract drawdown) with **tuned drawdown gate**: S_LOOKBACK=10, DROP_THRESH=1.0 (was 12/2.0 in v15). Grid on tapes+backtester showed best at this pair (total 19,780 vs v15 18,894); Z_EXIT sweep flat at v15 value.",
+    "total_profit": 19780,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v17.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v17_2026-04-25.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v17_2026-04-25.log",
+    "trades_or_fills_summary": {
+      "total_trade_rows": 4229,
+      "vev5000_submission_rows": 181,
+      "vev5000_submission_abs_qty": 900
+    }
   }
 ]

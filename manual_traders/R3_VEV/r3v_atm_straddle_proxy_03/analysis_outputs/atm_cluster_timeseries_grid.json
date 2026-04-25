@@ -1,0 +1,102 @@
+{
+  "rows": 30000,
+  "grid": {
+    "e2.0_s0.03": {
+      "signal_count": 29948,
+      "tight_count": 17698,
+      "avg_abs_mis": 0.0001,
+      "avg_abs_shock": 0.1783,
+      "avg_delta": 1.7582,
+      "avg_vega": 279.0225
+    },
+    "e2.0_s0.04": {
+      "signal_count": 29933,
+      "tight_count": 17685,
+      "avg_abs_mis": 0.0001,
+      "avg_abs_shock": 0.1784,
+      "avg_delta": 1.7582,
+      "avg_vega": 279.0184
+    },
+    "e2.0_s0.05": {
+      "signal_count": 29909,
+      "tight_count": 17668,
+      "avg_abs_mis": 0.0001,
+      "avg_abs_shock": 0.1785,
+      "avg_delta": 1.7582,
+      "avg_vega": 278.9958
+    },
+    "e2.5_s0.03": {
+      "signal_count": 29948,
+      "tight_count": 17698,
+      "avg_abs_mis": 0.0001,
+      "avg_abs_shock": 0.1783,
+      "avg_delta": 1.7582,
+      "avg_vega": 279.0225
+    },
+    "e2.5_s0.04": {
+      "signal_count": 29933,
+      "tight_count": 17685,
+      "avg_abs_mis": 0.0001,
+      "avg_abs_shock": 0.1784,
+      "avg_delta": 1.7582,
+      "avg_vega": 279.0184
+    },
+    "e2.5_s0.05": {
+      "signal_count": 29909,
+      "tight_count": 17668,
+      "avg_abs_mis": 0.0001,
+      "avg_abs_shock": 0.1785,
+      "avg_delta": 1.7582,
+      "avg_vega": 278.9958
+    },
+    "e3.0_s0.03": {
+      "signal_count": 29948,
+      "tight_count": 17698,
+      "avg_abs_mis": 0.0001,
+      "avg_abs_shock": 0.1783,
+      "avg_delta": 1.7582,
+      "avg_vega": 279.0225
+    },
+    "e3.0_s0.04": {
+      "signal_count": 29933,
+      "tight_count": 17685,
+      "avg_abs_mis": 0.0001,
+      "avg_abs_shock": 0.1784,
+      "avg_delta": 1.7582,
+      "avg_vega": 279.0184
+    },
+    "e3.0_s0.05": {
+      "signal_count": 29909,
+      "tight_count": 17668,
+      "avg_abs_mis": 0.0001,
+      "avg_abs_shock": 0.1785,
+      "avg_delta": 1.7582,
+      "avg_vega": 278.9958
+    },
+    "e3.5_s0.03": {
+      "signal_count": 29948,
+      "tight_count": 17698,
+      "avg_abs_mis": 0.0001,
+      "avg_abs_shock": 0.1783,
+      "avg_delta": 1.7582,
+      "avg_vega": 279.0225
+    },
+    "e3.5_s0.04": {
+      "signal_count": 29933,
+      "tight_count": 17685,
+      "avg_abs_mis": 0.0001,
+      "avg_abs_shock": 0.1784,
+      "avg_delta": 1.7582,
+      "avg_vega": 279.0184
+    },
+    "e3.5_s0.05": {
+      "signal_count": 29909,
+      "tight_count": 17668,
+      "avg_abs_mis": 0.0001,
+      "avg_abs_shock": 0.1785,
+      "avg_delta": 1.7582,
+      "avg_vega": 278.9958
+    }
+  },
+  "notes": "mispricing here is near-zero because theo uses same per-leg IV from mids (identity); edge effectively controlled by IV shock + spread/flow proxy. TTE used: day d->8-d."
+}

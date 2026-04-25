@@ -7,5 +7,13 @@
       "analyze_r3_vev_iv.py"
     ],
     "used_to_decide": "ATM cluster VEV_5000/5100 show similar IV (~0.22-0.24) and combined vega ~230-330 vs wings; tightest quoted spreads at 5000/5100 vs deep OTM supports treating them as the liquid ATM bundle for a straddle-proxy. Informed v1: use per-leg IV for fair and add IV-vs-realized-vol shock alongside price-vs-theo mispricing."
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "ATM-cluster time-series analysis across all round-3 ticks (days 0-2): compute iv5000/iv5100, RV, shock=IVavg-RV, delta/vega, and spread gates. Includes threshold grid over mispricing-edge and shock-edge.",
+    "analysis_outputs": [
+      "analysis_outputs/atm_cluster_timeseries_grid.json"
+    ],
+    "used_to_decide": "Found per-leg-IV mispricing is nearly identity (~0), so v1 signals are driven by IV-vs-RV shock, not price-vs-theo edge. v3 (pure z-score) was falsified with large losses due to one-sided exposure. Chose v4 as safer continuation: retain v1 structure, tighten spread gate and shock threshold, reduce clip."
   }
 ]

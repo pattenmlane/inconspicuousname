@@ -71,5 +71,14 @@
       "terminal sweep outputs for family13 variants (including reverse-sign test)"
     ],
     "used_to_decide": "This is a true pivot relative to prior convexity-z family: new signal, regime gating, and universe selection. Kept because data-first validation + sweep favored it, though still far below ~800k benchmark."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "EXACT_DUPLICATE_CHECK-driven pivot inside family13 due to uncertain parent branch visibility. Distinct assumptions vs v10: EWMA abs-return RV (not std returns), weighted-core IV anchor (0.25/0.5/0.25), stress combines spread + depth thinning, regime-specific entry/exit thresholds. This was tested with worse-fill and full log/fill outputs; performance dropped vs v10 but satisfies non-duplicate requirement.",
+    "analysis_outputs": [
+      "backtests/r3v_f13_v11.log",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v11.json"
+    ],
+    "used_to_decide": "Given high duplicate risk, switched to a nearby but structurally distinct variation before any further optimization."
   }
 ]

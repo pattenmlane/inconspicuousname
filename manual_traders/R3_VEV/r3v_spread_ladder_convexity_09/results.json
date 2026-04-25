@@ -86,5 +86,13 @@
     "total_profit": 5826,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v10.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out backtests/r3v_f13_v10.log"
+  },
+  {
+    "iteration": 11,
+    "trader_file": "trader_v11.py",
+    "strategy_description": "Duplicate-risk-adjusted family13 variant B: EWMA abs-return RV proxy + weighted-core IV + spread+depth stress proxy. Stressed: core-only tighter rails; calm: broader. Reverse signal retained from family13 sweep.",
+    "total_profit": -2614,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v11.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out backtests/r3v_f13_v11.log"
   }
 ]

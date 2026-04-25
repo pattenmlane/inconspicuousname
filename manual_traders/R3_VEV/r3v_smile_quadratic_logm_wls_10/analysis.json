@@ -57,5 +57,14 @@
       "spread_vegaedge_corr_iter10.json"
     ],
     "used_to_decide": "v10: multiply the v9 |theta| gate by an extra 1+0.08*clip((spr-2)/6) (capped) so we are stricter on wide books; v11 sweeps _THETA_REF to 1000; v10 best at 57336 vs v9 57068 on this backtest."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Joint Greek+book analysis (ROUND_3 days 0-2): compute fitted-IV BS |theta|, top-of-book spread, and |mid-fair|/vega per strike/timestamp (subsampled) with T=dte_effective/365. Results in theta_spread_joint_iter12.json: corr(theta, edge/vega) ~ -0.355 and corr(spread, theta) ~ -0.385, suggesting over-penalizing high-theta regimes may suppress edge.",
+    "analysis_outputs": [
+      "theta_spread_joint_iter12.json",
+      "results.json"
+    ],
+    "used_to_decide": "Ablations from v10: weaken theta scaling (v12) and weaken both theta+spread scaling (v13). Both trailed v10, so retain v10 as current best despite negative sample correlations."
   }
 ]

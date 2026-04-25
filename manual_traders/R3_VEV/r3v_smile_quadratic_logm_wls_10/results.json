@@ -94,5 +94,21 @@
     "total_profit": 57140,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v11.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 12,
+    "trader_file": "trader_v12.py",
+    "strategy_description": "Child of v10: weaken theta strictness only (_THETA_EDGE_MULT 0.10), keep spread-aware gate. Joint theta-spread ablation.",
+    "total_profit": 56472,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v12.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 13,
+    "trader_file": "trader_v13.py",
+    "strategy_description": "Child of v10: weaken both theta and spread strictness (_THETA_EDGE_MULT 0.08, _SPREAD_GATE_COEF 0.05). Joint ablation underperforms.",
+    "total_profit": 55846,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v13.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
   }
 ]

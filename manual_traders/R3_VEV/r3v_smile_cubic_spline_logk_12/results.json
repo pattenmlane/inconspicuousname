@@ -1,0 +1,26 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "trader_v0.py",
+    "strategy_description": "Cubic spline IV(log K) from BS IV at each strike vs smoothed extract fair; BS fair from spline IV; robust one-strike drop when IV range >0.35; wall-mid microstructure; extract/hydrogel MM. TTE from tape day via PROSPERITY4_BACKTEST_DAY (8−d days).",
+    "total_profit": 48110,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v0.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 1,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Same as v0 but IV smile and voucher BS fair use live extract wall mid S each tick (not smoothed _fex), so spline aligns with observed mids; _fex retained for extract/hydrogel cash quoting.",
+    "total_profit": 50222,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v1.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 2,
+    "trader_file": "trader_v2.py",
+    "strategy_description": "v1 plus fair-dependent edge ladder (tighter take / wider size on low fair); parameter sweep vs flat edges — same total PnL in this backtest (50,222), so v1 edges retained as simpler tie.",
+    "total_profit": 50222,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v2.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  }
+]

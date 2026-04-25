@@ -86,5 +86,29 @@
       ],
       "comment": "Backtester output indicates fills concentrated in low strikes and underlying hedge leg; many strikes remained inactive at tuned thresholds."
     }
+  },
+  {
+    "iteration": 9,
+    "trader_file": "trader_v9.py",
+    "strategy_description": "Adjusted family10 (non-duplicate): dual-cutoff smile agreement model. Fit two WLS quadratic smiles in log-moneyness each tick using extrinsic cutoffs 0.5 and 1.5; trade only when both residual signs agree, with averaged residual for z-score and conservative execution gates.",
+    "total_profit": -2690,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v9.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+    "backtest_output": {
+      "day0": -252,
+      "day1": -1018,
+      "day2": -1420,
+      "total": -2690
+    },
+    "trade_fill_summary": {
+      "symbols_with_nonzero_pnl": [
+        "VEV_4000",
+        "VEV_4500",
+        "VEV_5100",
+        "VEV_6500",
+        "VELVETFRUIT_EXTRACT"
+      ],
+      "comment": "Dual-cutoff agreement reduced trading breadth versus v8; losses concentrated in low strikes and underlying hedge."
+    }
   }
 ]

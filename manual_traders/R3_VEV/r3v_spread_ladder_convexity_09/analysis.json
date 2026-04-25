@@ -53,5 +53,13 @@
       "terminal output: grid around v7 showing CLIP=6 -> 222"
     ],
     "used_to_decide": "Adopted v8 = v7 with CLIP_QTY 6 only. Tie-break favored minimal code change over jointly changing z_hi."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "IV smile vs underlying (Round 3 CSVs, TTE=(8-d)/365 at open). At rolling z (400) > 2.15, IV-bump b = IV(5100) - 0.5*(IV(5000)+IV(5200)) from mid IVs: mean b day0 +0.00150, day1 -0.00693, day2 -0.00883 (bump flips day-dependent). Also computed Pearson r between one-tick dS (extract) and d(bump) when z>2.15: r ~ 0.17-0.25 (mild comovement). Net vega of short-fly (same BS formula) remains positive in high-z bucket as in prior iterations. Backtester grid on v8: CLIP 5 -> 232, CLIP 6 -> 222, Z_LO 0.81 -> 169, BF 405 -> 94.",
+    "analysis_outputs": [
+      "terminal: bump means by day, corr dS vs d bump, grid scores from trader_v8.py template"
+    ],
+    "used_to_decide": "v9 = v8 with CLIP_QTY 5 only; best in grid, simpler than changing z_hi to 2.1 to tie at same PnL."
   }
 ]

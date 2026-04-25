@@ -70,5 +70,13 @@
     "total_profit": 222,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v8.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 9,
+    "trader_file": "trader_v9.py",
+    "strategy_description": "Parent v8: CLIP 5 (grid best around v8 at same z/window; tie with 2.1/0.8/400/5 in grid we ignored for z simplicity).",
+    "total_profit": 232,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v9.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
   }
 ]

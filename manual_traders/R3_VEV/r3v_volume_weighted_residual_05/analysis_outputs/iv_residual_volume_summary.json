@@ -1,0 +1,23 @@
+{
+  "n_observations": 2508,
+  "mean_residual_iv": -4.8907261357836446e-05,
+  "std_residual_iv": 0.011785971324089473,
+  "corr_abs_residual_log_weight": -0.11419352859783305,
+  "mean_spread_top_of_book": 3.0781499202551834,
+  "mean_vega_at_fit_iv": 133.76732671934326,
+  "timing": {
+    "dte_at_csv_day_open": {
+      "0": 8,
+      "1": 7,
+      "2": 6
+    },
+    "intraday_wind": "dte_eff = dte_open - (timestamp//100)/10000",
+    "T_years": "dte_eff / 365",
+    "r": 0.0
+  },
+  "method": {
+    "iv": "Black\u2013Scholes European call, bisection on sigma",
+    "smile": "WLS quadratic in m_t=log(K/S)/sqrt(T); weights = 1 + bid_vol_1 + ask_vol_1",
+    "residual": "IV - fitted_smile(m_t)"
+  }
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "trader_v0.py",
+    "strategy_description": "Fade IV residual vs volume-WLS quadratic smile (m_t=log(K/S)/sqrt(T)); hydrogel spread capture; vega-scaled size. RESID_ENTER=0.012, MAX_Q=18.",
+    "total_profit": 20,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v0.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 1,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Parameter sweep: no hydrogel, stricter thresholds (ENTER=0.02), spread filter MAX_SPREAD=10, aggressive BS delta hedge on extract vs portfolio option delta.",
+    "total_profit": -20503,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v1.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 2,
+    "trader_file": "trader_v2.py",
+    "strategy_description": "Grid: spread filter on vouchers (<=8), RESID_ENTER=0.015/EXIT=0.005, MAX_Q=12; hydrogel only when spread>=14 with edge 4 and size 5 (lighter than v0).",
+    "total_profit": 4390,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v2.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  }
+]

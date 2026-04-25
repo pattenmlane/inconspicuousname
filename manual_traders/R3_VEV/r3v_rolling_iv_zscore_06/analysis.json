@@ -84,7 +84,7 @@
   },
   {
     "iteration": 14,
-    "analysis_description": "Pivoted back to the rolling log-IV z thesis (family-10 line) after family-13 falsified under worse fills. Re-ran lead/lag and conditional stats on ROUND_3 tapes: cheap-vol tails (very negative z) align with mean-reverting extract down / voucher up in short windows, and VEV_5000 BBO width is often ~3–5 ticks in those states vs ~1–2 in tight-liquid states — motivating **asymmetric** spread gating: keep tight cap on exits, allow wider cap on **new longs** only when extract mid has dropped over a short lookback. **Greek/IV thread unchanged:** implied IV from BS (r=0, T=7/365 ref per round3description day mapping) → log(IV) z. **Parameter sweep (days 0–2, --match-trades worse):** on knobs (MAX_SPREAD_RELAXED, DROP_THRESH, S_LOOKBACK) with MAX_SPREAD_BASE=2, best slice included (6, 2.0, 12) at total 17,247 vs v10 baseline 8,801 and relaxed=5,lookback=10,drop=2.0 at 11,391; v10-tight only (no relax) 8,801.",
+    "analysis_description": "Pivoted back to the rolling log-IV z thesis (family-10 line) after family-13 falsified under worse fills. Re-ran lead/lag and conditional stats on ROUND_3 tapes: cheap-vol tails (very negative z) align with mean-reverting extract down / voucher up in short windows, and VEV_5000 BBO width is often ~3\u20135 ticks in those states vs ~1\u20132 in tight-liquid states \u2014 motivating **asymmetric** spread gating: keep tight cap on exits, allow wider cap on **new longs** only when extract mid has dropped over a short lookback. **Greek/IV thread unchanged:** implied IV from BS (r=0, T=7/365 ref per round3description day mapping) \u2192 log(IV) z. **Parameter sweep (days 0\u20132, --match-trades worse):** on knobs (MAX_SPREAD_RELAXED, DROP_THRESH, S_LOOKBACK) with MAX_SPREAD_BASE=2, best slice included (6, 2.0, 12) at total 17,247 vs v10 baseline 8,801 and relaxed=5,lookback=10,drop=2.0 at 11,391; v10-tight only (no relax) 8,801.",
     "analysis_outputs": [
       "grid_relax_drop_lookback_local_script",
       "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v14_final_2026-04-25.log"
@@ -93,11 +93,20 @@
   },
   {
     "iteration": 15,
-    "analysis_description": "Continued the rolling log-IV z + underlying-drop spread relaxation line (v14). **Smile / cross-strike check (IV Greek thread):** on each timestamp of `prices_round_3_day_{0,1,2}.csv`, BS-implied IV at 5000 vs neighbor strikes 4500/5100/5200/5300 (same S, T=7/365, r=0) — among ticks with cheap-vol signal z < -2.6, **100%** already satisfy IV(5000) \u2264 median(neighbor IVs), so a formal smile filter is redundant and was **not** added. **Vega thread:** reintroduced v7-style `order_q` from `round(VEGA_TARGET / bs_call_vega)` with bounds, applied to v14’s touch logic. **Parameter sweep (Round 3 days 0\u20132, --match-trades worse):** VEGA_TARGET in {800..1500} \u00d7 (Q_MIN,Q_MAX) in {(4,10),(4,8),(5,10)}; best total 18,894 at VEGA_TARGET=1100, Q=[4,10] (ties at 1200+ are wider clips by cap).",
+    "analysis_description": "Continued the rolling log-IV z + underlying-drop spread relaxation line (v14). **Smile / cross-strike check (IV Greek thread):** on each timestamp of `prices_round_3_day_{0,1,2}.csv`, BS-implied IV at 5000 vs neighbor strikes 4500/5100/5200/5300 (same S, T=7/365, r=0) \u2014 among ticks with cheap-vol signal z < -2.6, **100%** already satisfy IV(5000) \u2264 median(neighbor IVs), so a formal smile filter is redundant and was **not** added. **Vega thread:** reintroduced v7-style `order_q` from `round(VEGA_TARGET / bs_call_vega)` with bounds, applied to v14\u2019s touch logic. **Parameter sweep (Round 3 days 0\u20132, --match-trades worse):** VEGA_TARGET in {800..1500} \u00d7 (Q_MIN,Q_MAX) in {(4,10),(4,8),(5,10)}; best total 18,894 at VEGA_TARGET=1100, Q=[4,10] (ties at 1200+ are wider clips by cap).",
     "analysis_outputs": [
       "iter15_smile_vacuous_check_script",
       "iter15_vega_grid_local_script"
     ],
     "used_to_decide": "Ship v15 = v14 + vega-graded Q with VEGA_TARGET=1100, Q_MIN=4, Q_MAX=10; skip smile gate as no-op on this tape for the cheap-vol mask."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "Deepened contract-by-contract propagation analysis on ROUND_3 tapes (day 0/1/2): computed next-tick voucher response and spread deltas conditional on extract shocks (|dS|>=2) across strikes and then conditioned within cheap-vol regime (z<-2.6 for VEV_5000). Findings: (1) expected dC sign follows dS across strikes, but in cheap-vol states the next-tick VEV_5000 rebound is much stronger when previous dS<0 than when dS>0 (e.g. day1 E[dC+1|cheap,dS<0]~1.75 vs dS>0~0.36); (2) spread-widening asymmetry is weak/inconsistent; (3) many directional clip-tilts overfit and reduce total PnL. Sweep on entry multipliers (boost_dn, cut_up) from (1.2,0.9) to (2.0,0.5) showed degradation; best is neutral/no-tilt tie with v15.",
+    "analysis_outputs": [
+      "iter16_contract_propagation_shock_stats_script",
+      "iter16_entry_tilt_grid_script"
+    ],
+    "used_to_decide": "Do not deploy entry clip tilt; keep v15 behavior as robust optimum in tested slice. Recorded v16 as analysis-backed ablation/tie benchmark."
   }
 ]

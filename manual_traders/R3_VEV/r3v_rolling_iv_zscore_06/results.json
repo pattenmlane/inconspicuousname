@@ -148,5 +148,20 @@
       "vev5000_submission_rows": 182,
       "vev5000_submission_abs_qty": 860
     }
+  },
+  {
+    "iteration": 16,
+    "trader_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v16.py",
+    "strategy_description": "Analysis-driven ablation from v15: tested propagation-asymmetry entry-clip tilts (boost when last extract move down, cut when up) on top of v15's log-IV z + dynamic spread + vega clip. Grid showed neutral/no-tilt is best/tied; shipped v16 as no-op-equivalent confirmation of robustness.",
+    "total_profit": 18894,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v16.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v16_2026-04-25.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v16_2026-04-25.log",
+    "trades_or_fills_summary": {
+      "total_trade_rows": 4230,
+      "vev5000_submission_rows": 182,
+      "vev5000_submission_abs_qty": 860
+    }
   }
 ]

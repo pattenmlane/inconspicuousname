@@ -1,0 +1,26 @@
+{
+  "tte": "d->8-d",
+  "signal": [
+    {
+      "day": 0,
+      "n": 10000,
+      "mean_dIV": 0.00273,
+      "pos_ratio": 0.7664,
+      "neg_ratio": 0.2336
+    },
+    {
+      "day": 1,
+      "n": 9999,
+      "mean_dIV": -0.0029,
+      "pos_ratio": 0.2407,
+      "neg_ratio": 0.7593
+    },
+    {
+      "day": 2,
+      "n": 9977,
+      "mean_dIV": -0.00648,
+      "pos_ratio": 0.1567,
+      "neg_ratio": 0.8433
+    }
+  ]
+}

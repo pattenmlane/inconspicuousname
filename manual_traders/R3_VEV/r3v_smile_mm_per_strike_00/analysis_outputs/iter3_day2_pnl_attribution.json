@@ -1,0 +1,12 @@
+{
+  "method": "Backtest per-product PnL from prosperity4bt day summary for trader_v4 on round 3 day 2 only (same command as results.json, days arg 3-2).",
+  "trader_reference": "trader_v4.py",
+  "round_3_csv_day": 2,
+  "tte_at_open_note": "Per round3description: 7-day option, each round = 1 day; historical example maps day index to TTE. Our tape csv_day 2 uses dte_at_open=6 (plot_iv_smile_round3) and intraday wind.",
+  "v4_day2_product_pnl": {
+    "VEV_5500": 10,
+    "VELVETFRUIT_EXTRACT": -6549,
+    "HYDROGEL_PACK": -6138
+  },
+  "interpretation": "Voucher smile-MM adds ~10 on this day; extract and hydrogel together explain essentially all of the -12677 day total. v6 sets csv_day>=2 to skip extract and hydrogel quotes, keeping the smile-MM thesis on vouchers only for that day."
+}

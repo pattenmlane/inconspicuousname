@@ -46,5 +46,13 @@
     "total_profit": -1216,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v5.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 6,
+    "trader_file": "trader_v6.py",
+    "strategy_description": "v4 parent: on historical csv_day 2 (TTE 6d at open per our mapping), skip VELVETFRUIT_EXTRACT and HYDROGEL_PACK quotes — day-2 losses in v4 were fully explained by those products; keep full smile MM on all VEVs every day.",
+    "total_profit": 11471,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v6.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

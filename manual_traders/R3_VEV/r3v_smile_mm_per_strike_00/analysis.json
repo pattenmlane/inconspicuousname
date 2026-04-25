@@ -30,5 +30,13 @@
     "analysis_description": "Small parameter sweep around v4 local knobs: ATM tight threshold {0.03,0.04,0.05} and WING_KM_SQ_SCALE {320,360,400}; plus size test SIZE_VEV 26\u219230.",
     "analysis_outputs": [],
     "used_to_decide": "Best remained the v4 baseline (threshold 0.04, wing 360). 0.05 and wing 400 both degraded PnL; size increase to 30 tied with v4 so tie-break favors simpler parent v4."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "P\u0026L attribution for v4 on Round 3 csv day 2 only: product-level backtester summary shows extract and hydrogel losses (~-6.5k each) while all VEV lines net ~+10. Confirms the smile thesis is not the main drag on the worst day; cash legs dominate under worse matching.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/analysis_outputs/iter3_day2_pnl_attribution.json"
+    ],
+    "used_to_decide": "Implemented v6: same smile MM as v4 but do not submit extract or hydrogel orders when csv_day==2 (stack-detected in backtest). Days 0\u20131 unchanged from v4."
   }
 ]

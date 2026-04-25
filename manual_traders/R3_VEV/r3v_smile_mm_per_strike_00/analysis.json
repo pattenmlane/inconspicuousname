@@ -82,5 +82,13 @@
       "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/analysis_outputs/iter6_iv5300_vs_extract_returns.json"
     ],
     "used_to_decide": "No strong same-tick extract\u2192IV signal to justify a large model change; kept smile-MM focus. Parameter sweeps in iter 11 did not beat v9."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "Family-10 variation analysis: compare full-strike WLS smile vs core-only fit (5000..5400) on tapes. Core-only improves residual MAE/std on core strikes (notably 5100..5400) but worsens extrapolated wings (5500/6000/6500 residual bias) and increases curvature coefficient variance (c2 std) across timestamps.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/analysis_outputs/iter7_core_vs_all_fit_stability.json"
+    ],
+    "used_to_decide": "Implement core-only calibration in v12 first, then retune day2 touch/ATM thresholds only (v13)."
   }
 ]

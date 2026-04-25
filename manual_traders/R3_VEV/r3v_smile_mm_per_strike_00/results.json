@@ -94,5 +94,43 @@
     "total_profit": 11664,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v11.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 12,
+    "trader_file": "trader_v12.py",
+    "strategy_description": "Pivot family 10 variation: quadratic log-moneyness WLS calibrated only on core strikes VEV_5000..VEV_5400 (deep wings excluded from fit), execution close to v9 baseline-10 style; day2 bands unchanged from v9.",
+    "total_profit": 11488,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v12.py 3 --data Prosperity4Data --match-trades worse",
+    "backtest_log_path": "backtests/2026-04-25_15-14-32.log",
+    "trade_fill_summary": {
+      "day_totals": {
+        "0": 5132,
+        "1": 6329,
+        "2": 27
+      },
+      "day2_nonzero_products": {
+        "VEV_5400": 27
+      }
+    }
+  },
+  {
+    "iteration": 13,
+    "trader_file": "trader_v13.py",
+    "strategy_description": "v12 + retuned day2 thresholds after core-only fit change (ATM_TIGHT_KM_D2 0.034\u21920.032, TOUCH_NUDGE_KM_D2 0.030\u21920.028).",
+    "total_profit": 11528,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v13.py 3 --data Prosperity4Data --match-trades worse",
+    "backtest_log_path": "backtests/2026-04-25_15-15-22.log",
+    "trade_fill_summary": {
+      "day_totals": {
+        "0": 5132,
+        "1": 6329,
+        "2": 67
+      },
+      "day2_nonzero_products": {
+        "VEV_5400": 67
+      }
+    }
   }
 ]

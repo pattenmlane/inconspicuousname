@@ -29,7 +29,7 @@
       "analysis_outputs/pwl_residual_stats.json",
       "run_pwl_residual_analysis.py"
     ],
-    "used_to_decide": "Implemented v19 (trade only 5000-5300) — backtest same total as v12 (-265). v18 (stricter switch_mean/THR) improved to -246; v17 periodic csv_day refresh — no change vs v12 (-265)."
+    "used_to_decide": "Implemented v19 (trade only 5000-5300) \u2014 backtest same total as v12 (-265). v18 (stricter switch_mean/THR) improved to -246; v17 periodic csv_day refresh \u2014 no change vs v12 (-265)."
   },
   {
     "iteration": 4,
@@ -42,11 +42,19 @@
   },
   {
     "iteration": 5,
-    "analysis_description": "Book/spread: run_vev_spread_quantiles.py on VEV_5000/5200/5300 — top-of-book spread (ask1-bid1) by day. VEV_5000 is very wide (median ~6 ticks, high frac_ge_5). VEV_5200 is mostly 2-3 ticks; VEV_5300 often 2 ticks (frac_ge_3 ~0.17 day 0). So a global MIN_SPREAD is a coarse filter: higher threshold mainly screens 5200/5300 sessions. Bracketing MIN_SPREAD on v23 base: 6 → total -155, 3 → -215; v23 (-101) remains best. v24 (6) still shows +26 day-0 on VEV_5000 but worse days 1-2; v25 (3) worse overall.",
+    "analysis_description": "Book/spread: run_vev_spread_quantiles.py on VEV_5000/5200/5300 \u2014 top-of-book spread (ask1-bid1) by day. VEV_5000 is very wide (median ~6 ticks, high frac_ge_5). VEV_5200 is mostly 2-3 ticks; VEV_5300 often 2 ticks (frac_ge_3 ~0.17 day 0). So a global MIN_SPREAD is a coarse filter: higher threshold mainly screens 5200/5300 sessions. Bracketing MIN_SPREAD on v23 base: 6 \u2192 total -155, 3 \u2192 -215; v23 (-101) remains best. v24 (6) still shows +26 day-0 on VEV_5000 but worse days 1-2; v25 (3) worse overall.",
     "analysis_outputs": [
       "analysis_outputs/vev_spread_quantiles.json",
       "run_vev_spread_quantiles.py"
     ],
-    "used_to_decide": "Keep v23 as the lead line; do not increase MIN_SPREAD to 6 for all strikes without strike-specific rules. Optional next: per-strike spread floor (e.g. 5000>=5, 5200/5300>=2) — not implemented this turn."
+    "used_to_decide": "Keep v23 as the lead line; do not increase MIN_SPREAD to 6 for all strikes without strike-specific rules. Optional next: per-strike spread floor (e.g. 5000>=5, 5200/5300>=2) \u2014 not implemented this turn."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "Per-strike spread floor refinement on top of PWL smile + v18/v23 logic. Using spread quantiles (VEV_5000 wide, 5200/5300 tighter), tested strike-specific filters rather than one global MIN_SPREAD. Built three mixed-parent variants (v26 from v23, v27 from v18, v28 from v25).",
+    "analysis_outputs": [
+      "analysis_outputs/vev_spread_quantiles.json"
+    ],
+    "used_to_decide": "All three variants tied at -101 (same as v23). By tie-break/simplicity, keep v23 as lead; strike-specific floors did not add value in this backtest regime."
   }
 ]

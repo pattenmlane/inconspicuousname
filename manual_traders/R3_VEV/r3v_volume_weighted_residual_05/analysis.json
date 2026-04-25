@@ -7,5 +7,13 @@
       "analyze_iv_residual_volume.py"
     ],
     "used_to_decide": "Residual IV is roughly mean-zero (mean -4.9e-5); std ~0.012 guides RESID_ENTER scale. Corr(|residual|, log(weight)) ≈ -0.11 supports weighting the smile by book size. Session-open extract mids 5250.0 / 5245.0 / 5267.5 used as backtest csv_day anchors when traderData resets per day."
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "Extended Greek-aware tape analysis on all timestamps for days 0–2: compute IV via BS inversion from top-of-book mid for each VEV, fit per-timestamp volume-WLS smile residual, then profile |residual| against delta, vega, volume, and spread by strike. Timing remains from round3description: day0/1/2 open DTE 8/7/6 with intraday wind dte_eff = dte_open - (timestamp//100)/10000.",
+    "analysis_outputs": [
+      "analysis_outputs/iv_residual_delta_vega_profile.json"
+    ],
+    "used_to_decide": "Residual quality is strike-dependent: VEV_5100..VEV_5500 have tight spreads (about 1.1 to 4.3) and manageable residual magnitudes, while VEV_4000/4500 are much wider (about 15.8 to 20.1) and noisy. This motivated v3/v4 to keep the same residual-fade thesis but restrict active trading to more liquid middle strikes."
   }
 ]

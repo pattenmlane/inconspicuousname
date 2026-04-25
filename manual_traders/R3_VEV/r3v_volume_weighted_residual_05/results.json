@@ -22,5 +22,21 @@
     "total_profit": 4390,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v2.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "Residual fade still based on IV minus volume-WLS smile, but only trade liquid strikes VEV_5000..VEV_5500 and fit smile on those same strikes; RESID_ENTER=0.014, RESID_EXIT=0.004, MAX_SPREAD=8, MAX_Q=12. Hydrogel passive quoting unchanged.",
+    "total_profit": 11926,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v3.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "Parameter sweep from v3: trade/fitting set widened to VEV_5000..VEV_5500 plus VEV_5200/5300/5400 emphasis retained, RESID_ENTER=0.013, RESID_EXIT=0.0045, MAX_SPREAD=9. Same residual-fade thesis and hydrogel passive leg.",
+    "total_profit": 4671,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v4.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
   }
 ]

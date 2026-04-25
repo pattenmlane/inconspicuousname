@@ -1,0 +1,29 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round-3 tapes days 0–2: Black–Scholes implied vol vs m_t=log(K/S)/sqrt(T) with T from round3description (CSV day 0,1,2 → 8,7,6 d at open) and intraday DTE wind-down (timestamps 0..999900 step 100 → ~1 day per session) per round3work/plotting/original_method/combined_analysis/plot_iv_smile_round3.py. Fitted quadratic IV(m_t) per subsample; mean quadratic coefficient a>0 (upward curvature); mean wing IV − core IV > 0; bid-ask width on VEV_5200 and extract mids from CSV.",
+    "analysis_outputs": [
+      "analyze_smile_curvature.py",
+      "smile_curvature_summary.json"
+    ],
+    "used_to_decide": "Positive mean IV quadratic term and wing−core IV premium support fading rich wings vs smooth core; spread filters sized vs ~3-tick VEV and ~5-tick extract widths. Chose v0 thresholds then refined cheap-wing filter in v2 after v1 sweep hurt PnL."
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Implicit grid over thresholds / hedge / m_t filter (trader_v1 vs v0 backtests); confirmed full hedge with tight |m_t| gate reduced wing shorting too much and worsened aggregate PnL versus v0.",
+    "analysis_outputs": [],
+    "used_to_decide": "Steered v2 back toward v0 structure with IV mispricing guard (time-value ratio) instead of m_t-only gate."
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Compared v2 vs v0 PnL decomposition in backtest logs: large losses on VEV_4500 longs in v0; v2’s time-value filter reduced extract hedge bleed while keeping wing shorts.",
+    "analysis_outputs": [],
+    "used_to_decide": "Kept v2 as preferred active curvature implementation for next tuning."
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "v3 sell-only sweep: smile residuals rarely exceeded lowered RICH threshold with spread filter; activity collapsed to incidental position on VEV_6000.",
+    "analysis_outputs": [],
+    "used_to_decide": "Sell-only at this threshold is too passive; future iterations should blend sell-rich with selective inversion or lower RICH_THR with care for fill quality."
+  }
+]

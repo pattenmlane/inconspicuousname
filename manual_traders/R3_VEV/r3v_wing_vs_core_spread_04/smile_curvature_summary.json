@@ -1,0 +1,26 @@
+{
+  "dte_mapping": "CSV `day` 0,1,2 per round3description example maps to TTE 8d,7d,6d at session open; intraday DTE decreases ~1 day over timestamps 0..999900 (step 100) per plot_iv_smile_round3.",
+  "subsample_step": 200,
+  "n_fits": 150,
+  "quadratic_a_iv_vs_m_t": {
+    "mean": 0.13418913250720432,
+    "std": 0.011879302660618941
+  },
+  "mean_wing_iv_minus_core_iv": 0.1380969183401299,
+  "std_wing_iv_minus_core_iv": 0.033644814268076986,
+  "mean_range_quadratic_residual_across_strikes": 0.031926967054670845,
+  "wing_strikes": [
+    4000,
+    4500,
+    5400,
+    5500,
+    6000,
+    6500
+  ],
+  "core_strikes": [
+    5100,
+    5200,
+    5300
+  ],
+  "bs_assumption": "European call, r=0, IV from mid via Brent on BS price; greeks at fitted IV."
+}

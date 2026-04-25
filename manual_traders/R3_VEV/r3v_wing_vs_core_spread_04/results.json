@@ -1,0 +1,34 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "trader_v0.py",
+    "strategy_description": "Quadratic IV fit in m_t=log(K/S)/sqrt(T); fade rich wings (sell) / buy cheap wings vs fitted smile; partial extract hedge + small hydrogel tilt. CSV day inferred from extract open vs tape files for TTE.",
+    "total_profit": -2190,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v0.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 1,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Parameter sweep: higher residual thresholds, |m_t| filter on wings, full delta hedge, tighter spread cap; same quadratic smile core.",
+    "total_profit": -3180,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v1.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 2,
+    "trader_file": "trader_v2.py",
+    "strategy_description": "Parent v0 with stricter cheap-wing entry (min time-value fraction of mid), higher hedge fraction, slightly smaller clips; reduces lossy deep-ITM long wings from v0.",
+    "total_profit": -751,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v2.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "Sell-rich-wings only (no inversion longs); lower RICH threshold. Mostly inactive in backtest; residual short on VEV_6000 dominates PnL.",
+    "total_profit": -450,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v3.py 3 --data Prosperity4Data --match-trades worse"
+  }
+]

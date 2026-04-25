@@ -1,0 +1,221 @@
+{
+  "method": "IV from mid via bisection (r=0); T=t_years_effective(csv_day, ts); knot IVs = same median bands as trader; sigma_pwl(K); residual_iv = IV_mkt - sigma_pwl.",
+  "by_day_strike": {
+    "0": {
+      "4000": {
+        "n": 25,
+        "mean_abs_iv_residual": 0.5251014198460293,
+        "median_abs_iv_residual": 0.5150212550576734,
+        "mean_abs_price_err": 1.4599999999991997,
+        "median_vega": 8.136181794140788e-11
+      },
+      "4500": {
+        "n": 72,
+        "mean_abs_iv_residual": 0.18765205847876446,
+        "median_abs_iv_residual": 0.17555942172274733,
+        "mean_abs_price_err": 0.798301638344406,
+        "median_vega": 0.02409996474956491
+      },
+      "5000": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.0033340959850346272,
+        "median_abs_iv_residual": 0.00270734342943528,
+        "mean_abs_price_err": 0.3556309846879958,
+        "median_vega": 114.69450687934349
+      },
+      "5100": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.0017325996965017298,
+        "median_abs_iv_residual": 0.001636108619989446,
+        "mean_abs_price_err": 0.3610398744273825,
+        "median_vega": 213.84656828190185
+      },
+      "5200": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.0009495256421963396,
+        "median_abs_iv_residual": 0.00019916657905542923,
+        "mean_abs_price_err": 0.2769037054805667,
+        "median_vega": 288.8484831497845
+      },
+      "5300": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.000578435768459899,
+        "median_abs_iv_residual": 0.00036664484440068756,
+        "mean_abs_price_err": 0.1657092235717846,
+        "median_vega": 287.3807021195627
+      },
+      "5400": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.010583959478327416,
+        "median_abs_iv_residual": 0.012810551796467257,
+        "mean_abs_price_err": 2.20659142816699,
+        "median_vega": 212.54851927609656
+      },
+      "5500": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.006333937892198268,
+        "median_abs_iv_residual": 0.006450206270669667,
+        "mean_abs_price_err": 0.7762391989121205,
+        "median_vega": 118.7135700150766
+      },
+      "6000": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.1267900127051437,
+        "median_abs_iv_residual": 0.12741031013928017,
+        "mean_abs_price_err": 0.4977576698664544,
+        "median_vega": 0.15307385870001722
+      },
+      "6500": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.31482148347151334,
+        "median_abs_iv_residual": 0.31505205170609457,
+        "mean_abs_price_err": 0.4999999911739781,
+        "median_vega": 1.1782130389664668e-06
+      }
+    },
+    "1": {
+      "4000": {
+        "n": 24,
+        "mean_abs_iv_residual": 0.5565960737092613,
+        "median_abs_iv_residual": 0.5274265094847908,
+        "mean_abs_price_err": 1.2499999999999243,
+        "median_vega": 4.695424377364865e-13
+      },
+      "4500": {
+        "n": 72,
+        "mean_abs_iv_residual": 0.21342980182939017,
+        "median_abs_iv_residual": 0.20541100204187795,
+        "mean_abs_price_err": 0.6804859549479766,
+        "median_vega": 0.005145666410987744
+      },
+      "5000": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.001117764782737342,
+        "median_abs_iv_residual": 0.0,
+        "mean_abs_price_err": 0.08107429256233445,
+        "median_vega": 89.9944278202547
+      },
+      "5100": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.0049076501954858015,
+        "median_abs_iv_residual": 0.004752937511202662,
+        "mean_abs_price_err": 0.9036319460019422,
+        "median_vega": 188.5834317401174
+      },
+      "5200": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.00044966270979969605,
+        "median_abs_iv_residual": 0.0,
+        "mean_abs_price_err": 0.123096480281587,
+        "median_vega": 268.97041358222947
+      },
+      "5300": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.002401209992928358,
+        "median_abs_iv_residual": 0.001954499564416859,
+        "mean_abs_price_err": 0.6330707696081654,
+        "median_vega": 268.9363397480945
+      },
+      "5400": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.016723411344722203,
+        "median_abs_iv_residual": 0.016632942374994922,
+        "mean_abs_price_err": 3.1437241640567284,
+        "median_vega": 196.64506306839826
+      },
+      "5500": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.003355194056726071,
+        "median_abs_iv_residual": 0.001803195375247535,
+        "mean_abs_price_err": 0.37572983289965545,
+        "median_vega": 105.23416046787783
+      },
+      "6000": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.1469368635286433,
+        "median_abs_iv_residual": 0.14518481593526458,
+        "mean_abs_price_err": 0.49896816740972577,
+        "median_vega": 0.07942306317836009
+      },
+      "6500": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.3489867126740221,
+        "median_abs_iv_residual": 0.34679597861260997,
+        "mean_abs_price_err": 0.499999998542987,
+        "median_vega": 2.2525608283886696e-07
+      }
+    },
+    "2": {
+      "4000": {
+        "n": 29,
+        "mean_abs_iv_residual": 0.6352457937035076,
+        "median_abs_iv_residual": 0.6210867548453246,
+        "mean_abs_price_err": 1.1206896551724137,
+        "median_vega": 3.284743035629629e-15
+      },
+      "4500": {
+        "n": 72,
+        "mean_abs_iv_residual": 0.25872645062926164,
+        "median_abs_iv_residual": 0.24898376991118967,
+        "mean_abs_price_err": 0.7222118452608837,
+        "median_vega": 0.0006657405740905136
+      },
+      "5000": {
+        "n": 249,
+        "mean_abs_iv_residual": 0.0008976894072598961,
+        "median_abs_iv_residual": 0.0,
+        "mean_abs_price_err": 0.04084559493638146,
+        "median_vega": 63.15395880821807
+      },
+      "5100": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.006906390247759531,
+        "median_abs_iv_residual": 0.006601719561740313,
+        "mean_abs_price_err": 1.064543148838511,
+        "median_vega": 154.26920867530282
+      },
+      "5200": {
+        "n": 250,
+        "mean_abs_iv_residual": 7.620640713702797e-05,
+        "median_abs_iv_residual": 0.0,
+        "mean_abs_price_err": 0.01768257372849803,
+        "median_vega": 242.06517213707957
+      },
+      "5300": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.0026057608730930266,
+        "median_abs_iv_residual": 0.0026334476059101525,
+        "mean_abs_price_err": 0.6382556110519799,
+        "median_vega": 245.29686140758255
+      },
+      "5400": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.016903603762656243,
+        "median_abs_iv_residual": 0.01704721238212281,
+        "mean_abs_price_err": 2.8895857852028515,
+        "median_vega": 176.74198060591266
+      },
+      "5500": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.004768183120256289,
+        "median_abs_iv_residual": 0.004317004048118592,
+        "mean_abs_price_err": 0.4125151422939329,
+        "median_vega": 86.57568774591539
+      },
+      "6000": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.17653931076615573,
+        "median_abs_iv_residual": 0.18068989981861105,
+        "mean_abs_price_err": 0.4996994340490638,
+        "median_vega": 0.01629146578056711
+      },
+      "6500": {
+        "n": 250,
+        "mean_abs_iv_residual": 0.3964034869714824,
+        "median_abs_iv_residual": 0.401954846007617,
+        "mean_abs_price_err": 0.49999999990450655,
+        "median_vega": 4.001796266680753e-09
+      }
+    }
+  }
+}

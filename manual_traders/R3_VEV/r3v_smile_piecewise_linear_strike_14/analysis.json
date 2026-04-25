@@ -21,5 +21,14 @@
       "analysis_outputs/iv_signal_quality_by_day.json"
     ],
     "used_to_decide": "Do not add extract delta hedge in this branch line (v15=-547, v16=-852 vs v12=-265). Keep simpler unhedged v12 as best parent; csv-day gate variants were neutral in this setup."
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "Tape: PWL smile fit quality by strike. For each day 0-2, subsampled rows: implied IV from mid (bisect), knot IVs via same median bands as live trader, piecewise-linear sigma(K) between 5000/5200/5400; report mean/median |IV_mkt - sigma_pwl(K)| and |mid - BS(S,K,T,sigma_pwl)| with median vega. Wings (4000/4500) show huge IV residuals; inner band 5000-5300 is tight (e.g. day 0 median |IV res| at 5200 ~ 2e-4). Suggests focusing execution on inner strikes; supports stricter IV-scalping gating to cut noisy triggers.",
+    "analysis_outputs": [
+      "analysis_outputs/pwl_residual_stats.json",
+      "run_pwl_residual_analysis.py"
+    ],
+    "used_to_decide": "Implemented v19 (trade only 5000-5300) — backtest same total as v12 (-265). v18 (stricter switch_mean/THR) improved to -246; v17 periodic csv_day refresh — no change vs v12 (-265)."
   }
 ]

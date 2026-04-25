@@ -39,9 +39,17 @@
   {
     "iteration": 4,
     "analysis_description": "Parameter sweep sanity: compare backtest totals for burst per-order cap 60 (trader_v9) vs 80 (v7) with identical IV-scalp logic and ATM bands. No secondary IV solve \u2014 pure execution grid on existing Frankfurt structure.",
-  "analysis_outputs": [
-    "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/burst_cap_sweep.json"
-  ],
-  "used_to_decide": "Both achieve total 487 and identical day 0/1/2 breakdown in this harness; keep v7 as default (simpler / higher cap). Further burst-size tuning likely needs finer resolution or a different bottleneck than order max (e.g. threshold, not size)."
-}
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/burst_cap_sweep.json"
+    ],
+    "used_to_decide": "Both achieve total 487 and identical day 0/1/2 breakdown in this harness; keep v7 as default (simpler / higher cap). Further burst-size tuning likely needs finer resolution or a different bottleneck than order max (e.g. threshold, not size)."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "Burst strike-level IV Greek + next-tick proxy study: days 0-2, sample every 20th timestamp with extract |z(log-return)|>=2.2, compute BS vega/|delta| at global smile IV and next-tick mid proxy by strike.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/burst_strike_greeks_proxy.json"
+    ],
+    "used_to_decide": "VEV_4500 had the worst burst proxy among active strikes, so v10 excluded it in bursts. Backtest showed large regression (172), meaning that realized fills/profit contribution from 4500 dominates proxy signal; keep it enabled (v7/v9/v8 family)."
+  }
 ]

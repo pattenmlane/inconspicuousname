@@ -78,5 +78,13 @@
     "total_profit": 487,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v9.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
+  },
+  {
+    "iteration": 10,
+    "trader_file": "trader_v10.py",
+    "strategy_description": "v7 + burst-only strike exclusion {VEV_4500} from strike-level burst Greek/pnl proxy analysis. Hypothesis: remove worst burst proxy strike while keeping cluster width.",
+    "total_profit": 172,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v10.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
   }
 ]

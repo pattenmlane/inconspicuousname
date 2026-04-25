@@ -33,7 +33,7 @@
   },
   {
     "iteration": 4,
-    "analysis_description": "P\u0026L attribution for v4 on Round 3 csv day 2 only: product-level backtester summary shows extract and hydrogel losses (~-6.5k each) while all VEV lines net ~+10. Confirms the smile thesis is not the main drag on the worst day; cash legs dominate under worse matching.",
+    "analysis_description": "P&L attribution for v4 on Round 3 csv day 2 only: product-level backtester summary shows extract and hydrogel losses (~-6.5k each) while all VEV lines net ~+10. Confirms the smile thesis is not the main drag on the worst day; cash legs dominate under worse matching.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/analysis_outputs/iter3_day2_pnl_attribution.json"
     ],
@@ -55,16 +55,24 @@
   },
   {
     "iteration": 7,
-    "analysis_description": "BS **vega** and **call theta** (per year, r=0) at inverted IV from mids, six near-ATM strikes, subsample every 200 ts; T=dte/365 with wind. Output: `iter5_vega_theta_by_day_atm6.json` — on csv day 2, 5200-5400 show highest |theta| and still large vega vs days 0-1, motivating a day-2-only quote tweak (not a pivot away from smile MM).",
+    "analysis_description": "BS **vega** and **call theta** (per year, r=0) at inverted IV from mids, six near-ATM strikes, subsample every 200 ts; T=dte/365 with wind. Output: `iter5_vega_theta_by_day_atm6.json` \u2014 on csv day 2, 5200-5400 show highest |theta| and still large vega vs days 0-1, motivating a day-2-only quote tweak (not a pivot away from smile MM).",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/analysis_outputs/iter5_vega_theta_by_day_atm6.json"
     ],
-    "used_to_decide": "Tighten ATM and touch moneyness bands for voucher quotes on csv day 2 only; grid on (atm_km, touch_km) in temp files — best 0.034 / 0.030 in trader_v9."
+    "used_to_decide": "Tighten ATM and touch moneyness bands for voucher quotes on csv day 2 only; grid on (atm_km, touch_km) in temp files \u2014 best 0.034 / 0.030 in trader_v9."
   },
   {
     "iteration": 8,
     "analysis_description": "Micro-grid on day-2 bands only: (0.034,0.030) -> total +11664; (0.035,0.034) -> 11471 (v6); wider base+wing on d2 was worse (11466). v9 keeps best d2-only bands.",
     "analysis_outputs": [],
     "used_to_decide": "Lock trader_v9 constants; days 0-1 match v6."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "Follow-up Greek-to-sizing test: using iter5 day-2 vega/theta ranking (5300/5400 high), tested strike-specific day-2 size increase while keeping smile/MM structure and day-2 cash-leg off switch.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/analysis_outputs/iter5_vega_theta_by_day_atm6.json"
+    ],
+    "used_to_decide": "v10 ties v9 (11664). Tie-break keeps v9 as preferred parent due to lower complexity."
   }
 ]

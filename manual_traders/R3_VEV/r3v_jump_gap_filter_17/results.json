@@ -94,5 +94,13 @@
     "total_profit": 17506,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/voucher_work/5200_work:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v11.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 12,
+    "trader_file": "trader_v12.py",
+    "strategy_description": "family12 smile_cubic_spline_logk: jump-aware immediate smile refit (|\u0394S|>=3) else cadence-40 refit; keep jump pause/resume and late-session entry cutoff; save run log + fill summary.",
+    "total_profit": 18791,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/voucher_work/5200_work:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v12.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

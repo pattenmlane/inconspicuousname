@@ -62,5 +62,15 @@
     "analysis_description": "No new off-line numbers (iteration 10 analysis_time_bucket_dev_vega.json still the basis). v11 is a one-parameter grid on v10: earlier VEV entry cutoff 0.70 instead of 0.75. Backtest 17,506 total vs v10 18,791 \u2014 cutting entries earlier in Q3 also removed profitable early-Q4 theo_scalp, so 0.75 is preferred. Day-2 identical to v10 (-2,379), day-0/1 down.",
     "analysis_outputs": [],
     "used_to_decide": "Keep v10 cutoff at 0.75 for the hybrid; next sweeps if any should nudge 0.78\u20130.80 or add day-2\u2013only stricter cap rather than 0.70."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Family12 pre-analysis (analysis_family12_refit_lag.json): compare fixed refit cadence (40 ticks) vs jump-aware immediate refit for cubic-spline(logK/S) smile from tape IVs. Post-jump MAE improves slightly (0.001542 -> 0.001531), though global MAE worsens. Implemented jump-aware refit in trader_v12 and saved run artifacts (iter12_backtest.log + iter12_fill_summary.json). Backtest PnL is exactly identical to v10 (18,791), implying this variation is behaviorally near-equivalent under current quoting path (signal still dominated by coeff-based indicator branch).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analysis_family12_refit_lag.json",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter12_backtest.log",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter12_fill_summary.json"
+    ],
+    "used_to_decide": "This is not literally pre-existing in this branch, but in practice it behaves like v10 at execution level; further family12 impact likely requires routing entry/exit signal itself through spline-refit deltas (not just auxiliary theo path)."
   }
 ]

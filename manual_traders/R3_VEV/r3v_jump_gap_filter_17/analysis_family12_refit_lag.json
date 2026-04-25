@@ -1,0 +1,15 @@
+{
+  "method": "smile_cubic_spline_logk from tape IVs; fixed cadence vs immediate jump refit",
+  "baseline": {
+    "n": 30000,
+    "mae": 0.0013424641140485586,
+    "post_jump_n": 1895,
+    "post_jump_mae": 0.0015420934837400034
+  },
+  "jump_aware": {
+    "n": 30000,
+    "mae": 0.0015126696956246893,
+    "post_jump_n": 26825,
+    "post_jump_mae": 0.0015313158681009211
+  }
+}

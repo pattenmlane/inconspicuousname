@@ -114,5 +114,17 @@
       "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v13_v17.json"
     ],
     "used_to_decide": "v17 total 4167 (day1 1170) vs v13 4157 (day1 1160); extract PnL improves +39 (195 vs 156) with small VEV_5300 PnL tradeoff. Adopt v17 as new best; v16 remains suboptimal clip direction."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Regime test on extract continuation/reversal: computed corr between past and future extract moves over multiple windows; at 20-step horizon there is day-specific behavior (day1 weak momentum, day2 reversal). Tried mapping this into hedge_frac adaptation. v18 applied it on day1+day2 and blew up day2 extract PnL; v19 constrained adaptation to day1 only but remained below v17.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v18_round3_worse.log",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v18_round3_worse.stdout.txt",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v19_round3_worse.log",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v19_round3_worse.stdout.txt",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v18_v19.json"
+    ],
+    "used_to_decide": "Trend-conditioned hedge fraction was too fragile. Keep v17 as best; future changes should avoid day2 hedge adaptation and focus on richer option-side execution changes."
   }
 ]

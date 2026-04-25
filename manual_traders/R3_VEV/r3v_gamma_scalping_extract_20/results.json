@@ -154,5 +154,27 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v17_round3_worse.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v13_v17.json"
+  },
+  {
+    "iteration": 18,
+    "trader_file": "trader_v18.py",
+    "strategy_description": "Regime-adaptive hedge attempt from day-level continuation test (20-step): adjust hedge_frac by extract trend sign on both day1 and day2. Fails due to large day2 extract loss.",
+    "total_profit": 1206,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v18.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v18_round3_worse.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v18_v19.json"
+  },
+  {
+    "iteration": 19,
+    "trader_file": "trader_v19.py",
+    "strategy_description": "Safer variant: apply trend-adaptive hedge only on day1; keep day2 same as v17. Still below v17 baseline.",
+    "total_profit": 3792,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v19.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v19_round3_worse.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v18_v19.json"
   }
 ]

@@ -126,5 +126,17 @@
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v21_adaptive_corebiased_fill_summary.json"
     ],
     "used_to_decide": "v21 total 11,356 is below uniform v19 (11,399) and near v20 core-biased (11,366). The duplicate-risk pivot was valid (distinct assumption), but adaptive density did not improve under --match-trades worse."
+  },
+  {
+    "iteration": 22,
+    "analysis_description": "Underlying propagation study by strike/day (Round 3 tapes): estimated per-strike voucher response betas to underlying \u0394mid, up/down asymmetry, and post-shock spread ratio after |\u0394S|>=2.5. Core strikes showed monotone beta ladder 5000\u21925500 (0.654,0.577,0.437,0.273,0.129,0.055) with near-zero up/down asymmetry and little average spread widening after shocks. Used this to build a strike-beta post-shock cooldown gate in trader_v22 (hurdle multiplier increases briefly after large underlying jumps, strongest on high-beta strikes).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/_analyze_underlying_propagation.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/underlying_propagation_strike_metrics.json",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v22_beta_shock_gate.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v22_beta_shock_gate.log",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v22_beta_shock_gate_fill_summary.json"
+    ],
+    "used_to_decide": "Despite logical propagation signal, shock gate reduced profitable participation (v22: 9,965 < v19: 11,399). Conclusion: keep family12 uniform baseline and avoid broad shock-cooldown gating; if revisiting, target only the highest-beta strike(s) with tighter trigger to avoid over-filtering."
   }
 ]

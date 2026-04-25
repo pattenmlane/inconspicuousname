@@ -1,0 +1,13 @@
+{
+  "log_file": "trader_v22_beta_shock_gate.log",
+  "submission_trade_count": 2250,
+  "submission_trade_count_by_symbol": {
+    "VEV_5300": 251,
+    "VEV_5500": 988,
+    "VEV_5200": 292,
+    "VEV_5000": 163,
+    "VEV_5100": 282,
+    "VEV_5400": 274
+  },
+  "all_trade_rows": 6298
+}

@@ -1,0 +1,110 @@
+{
+  "method": "per-tick response of voucher mids/spreads to underlying mid changes",
+  "days": [
+    0,
+    1,
+    2
+  ],
+  "by_strike": {
+    "4000": {
+      "samples": 29997,
+      "beta_all": 0.745054615800478,
+      "beta_up": 0.7519435740786868,
+      "beta_down": 0.738252427184466,
+      "beta_asym_up_minus_down": 0.013691146894220796,
+      "mean_half_spread": 10.406724005733906,
+      "mean_half_spread_after_shock_abs_dS_ge_2p5": 10.42674418604651,
+      "spread_widen_ratio_after_shock": 1.0019237735431028
+    },
+    "4500": {
+      "samples": 29997,
+      "beta_all": 0.6617923883095481,
+      "beta_up": 0.6651808539926846,
+      "beta_down": 0.6584466019417475,
+      "beta_asym_up_minus_down": 0.0067342520509370285,
+      "mean_half_spread": 7.926292629262926,
+      "mean_half_spread_after_shock_abs_dS_ge_2p5": 7.9294573643410855,
+      "spread_widen_ratio_after_shock": 1.0003992705324145
+    },
+    "5000": {
+      "samples": 29997,
+      "beta_all": 0.6535202277123894,
+      "beta_up": 0.6539585982668432,
+      "beta_down": 0.6530873786407767,
+      "beta_asym_up_minus_down": 0.0008712196260665106,
+      "mean_half_spread": 3.0216354968830217,
+      "mean_half_spread_after_shock_abs_dS_ge_2p5": 3.028294573643411,
+      "spread_widen_ratio_after_shock": 1.00220379882592
+    },
+    "5100": {
+      "samples": 29997,
+      "beta_all": 0.5773316745588724,
+      "beta_up": 0.577526646302293,
+      "beta_down": 0.5771391585760518,
+      "beta_asym_up_minus_down": 0.000387487726241198,
+      "mean_half_spread": 2.147898123145648,
+      "mean_half_spread_after_shock_abs_dS_ge_2p5": 2.137596899224806,
+      "spread_widen_ratio_after_shock": 0.9952040444517194
+    },
+    "5200": {
+      "samples": 29997,
+      "beta_all": 0.4366593498212041,
+      "beta_up": 0.43608164977647257,
+      "beta_down": 0.4372297734627832,
+      "beta_asym_up_minus_down": -0.0011481236863106203,
+      "mean_half_spread": 1.4440444044404441,
+      "mean_half_spread_after_shock_abs_dS_ge_2p5": 1.4465116279069767,
+      "spread_widen_ratio_after_shock": 1.0017085509690324
+    },
+    "5300": {
+      "samples": 29997,
+      "beta_all": 0.2726881916535854,
+      "beta_up": 0.27229702269360356,
+      "beta_down": 0.27307443365695794,
+      "beta_asym_up_minus_down": -0.0007774109633543747,
+      "mean_half_spread": 1.0534053405340533,
+      "mean_half_spread_after_shock_abs_dS_ge_2p5": 1.0468992248062015,
+      "spread_widen_ratio_after_shock": 0.9938237300709398
+    },
+    "5400": {
+      "samples": 29997,
+      "beta_all": 0.12886984048408423,
+      "beta_up": 0.1282955543610787,
+      "beta_down": 0.1294368932038835,
+      "beta_asym_up_minus_down": -0.00114133884280479,
+      "mean_half_spread": 0.6907024035736907,
+      "mean_half_spread_after_shock_abs_dS_ge_2p5": 0.6887596899224806,
+      "spread_widen_ratio_after_shock": 0.9971873361940562
+    },
+    "5500": {
+      "samples": 29997,
+      "beta_all": 0.05486331394477844,
+      "beta_up": 0.055219791024817444,
+      "beta_down": 0.054511326860841425,
+      "beta_asym_up_minus_down": 0.0007084641639760192,
+      "mean_half_spread": 0.5748741540820749,
+      "mean_half_spread_after_shock_abs_dS_ge_2p5": 0.5763565891472868,
+      "spread_widen_ratio_after_shock": 1.002578712322837
+    },
+    "6000": {
+      "samples": 29997,
+      "beta_all": 0.0,
+      "beta_up": 0.0,
+      "beta_down": 0.0,
+      "beta_asym_up_minus_down": 0.0,
+      "mean_half_spread": 0.5,
+      "mean_half_spread_after_shock_abs_dS_ge_2p5": 0.5,
+      "spread_widen_ratio_after_shock": 1.0
+    },
+    "6500": {
+      "samples": 29997,
+      "beta_all": 0.0,
+      "beta_up": 0.0,
+      "beta_down": 0.0,
+      "beta_asym_up_minus_down": 0.0,
+      "mean_half_spread": 0.5,
+      "mean_half_spread_after_shock_abs_dS_ge_2p5": 0.5,
+      "spread_widen_ratio_after_shock": 1.0
+    }
+  }
+}

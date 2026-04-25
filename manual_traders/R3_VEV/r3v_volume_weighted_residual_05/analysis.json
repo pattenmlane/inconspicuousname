@@ -23,5 +23,13 @@
       "analysis_outputs/extract_atm_iv5300_change_cov.json"
     ],
     "used_to_decide": "Documents IV vs spot co-movement on tape (weak negative OLS/corr in this subsample), kept as context for same thesis—no full delta-hedge leg per failed v1. v5 full-chain WLS was abandoned after backtest; v7 keeps closed 5-strike WLS and drops 5000 as trade candidate."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "BS call **gamma** at IV inverted from mid (S=VELVETFRUIT_EXTRACT mid, r=0, T=dte_eff/365) for VEV_5100..VEV_5500, subsampled every 200 timestamps on days 0–2. Mean gamma peaks near 5200/5300 in this strip (roughly 0.00224) and tapers toward wings; supports vega-scaled sizing and focusing on liquid ATM neighborhood.",
+    "analysis_outputs": [
+      "analysis_outputs/vev_gamma_5100_5500_by_strike.json"
+    ],
+    "used_to_decide": "Reinforces that the 5100–5500 strip is the high-curvature region of the smile for the assigned spot range; paired with v8 EMA + book-depth gate to avoid acting on microstructure noise."
   }
 ]

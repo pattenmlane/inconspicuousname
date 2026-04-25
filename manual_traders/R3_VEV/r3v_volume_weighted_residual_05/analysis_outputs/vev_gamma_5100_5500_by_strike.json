@@ -1,0 +1,18 @@
+{
+  "method": "BS call gamma at fitted IV from mid; S=VELVETFRUIT_EXTRACT mid, T=dte_eff/365, r=0. Subsample every 200 timestamps per day.",
+  "timing": "dte_eff per round3 description + plot_iv_smile wind",
+  "by_strike_mean_gamma": {
+    "VEV_5100": 0.00154409031314114,
+    "VEV_5200": 0.002239598270937804,
+    "VEV_5300": 0.002243993384960543,
+    "VEV_5400": 0.0016438535150104698,
+    "VEV_5500": 0.0008740355152573875
+  },
+  "n_samples_per_strike": {
+    "VEV_5100": 150,
+    "VEV_5200": 150,
+    "VEV_5300": 150,
+    "VEV_5400": 150,
+    "VEV_5500": 150
+  }
+}

@@ -58,9 +58,17 @@
   {
     "iteration": 7,
     "trader_file": "trader_v7.py",
-    "strategy_description": "From v3: self-contained 5-strike WLS on trade strip VEV_5100..VEV_5500 only (omit 5000); same parameters as v3. Best total so far in this run.",
+    "strategy_description": "From v3: self-contained 5-strike WLS on trade strip VEV_5100..VEV_5500 only (omit 5000); same parameters as v3. Superseded by v8 on total PnL.",
     "total_profit": 12144,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 8,
+    "trader_file": "trader_v8.py",
+    "strategy_description": "Parent v7: same 5-strike WLS strip 5100–5500. Add EMA (α=0.12) on raw IV residual per strike for entry signal; exits on raw resid; min top-of-book volume sum 28 for new entries; RESID_ENTER=0.0145, RESID_EXIT=0.0045. New best total in this series.",
+    "total_profit": 13478,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v8.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
   }
 ]

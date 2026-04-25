@@ -16,5 +16,14 @@
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_local_smile_greeks.py"
     ],
     "used_to_decide": "Across days 0–2, k=6 had much tighter p90 abs mispricing than k=3 (~1.53/2.33/2.01 ticks vs ~4.49/4.40/3.75), and vega concentrated around 5100-5400 (median abs vega often ~170-290) while far wings were near zero. Implemented vega-scaled quote size/edge in trader_v2 so central strikes quote larger/tighter and wings smaller/wider while preserving closest-k smile thesis."
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "Per-product median top-of-book spread (ask1−bid1) on full tape for days 0–2, to relate quote edges to typical liquidity by strike. Deep OTM/ITM (e.g. VEV_4000/4500) show 16–21 tick medians; near-money cluster 5100–5200 are 3–4 ticks. Extract and hydrogel medians 5 and 16 ticks. Same CSV columns as backtester tape.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/spread_median_by_product.json",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_spread_by_strike.py"
+    ],
+    "used_to_decide": "Wing strikes are very wide; central strikes match prior ~3-tick context. Swept v3: lower BASE_EDGE_VEV (2) and faster smile refit (50 ticks) on top of v2 vega rules — backtest total PnL improved vs v2 (39307 vs 37230), so v3 is the new best; v2 remains a simpler parent if we need a fallback."
   }
 ]

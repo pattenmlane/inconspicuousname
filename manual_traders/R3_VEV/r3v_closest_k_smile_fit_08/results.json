@@ -22,5 +22,13 @@
     "total_profit": 37230,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v2.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
+  },
+  {
+    "iteration": 3,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v3.py",
+    "strategy_description": "Vega-scaled local-smile MM (parent: v2). Parameter sweep: BASE_EDGE_VEV=2 and REFIT_EVERY=50 (vs 3 and 80) so default quotes are one tick tighter relative to the wide median spreads on deep OTM/ITM strikes (see spread_median_by_product.json) and the fitted surface updates more often as extract moves. Extract/hydrogel and closest-k=6 fit unchanged.",
+    "total_profit": 39307,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v3.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
   }
 ]

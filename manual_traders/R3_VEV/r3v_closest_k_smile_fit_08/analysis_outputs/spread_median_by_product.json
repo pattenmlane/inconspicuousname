@@ -1,0 +1,45 @@
+{
+  "method": "ask_price_1 - bid_price_1 per row; median over full tape per day.",
+  "0": {
+    "VEV_4000": 21.0,
+    "VEV_4500": 16.0,
+    "VEV_5000": 6.0,
+    "VEV_5100": 4.0,
+    "VEV_5200": 3.0,
+    "VEV_5300": 2.0,
+    "VEV_5400": 1.0,
+    "VEV_5500": 1.0,
+    "VEV_6000": 1.0,
+    "VEV_6500": 1.0,
+    "VELVETFRUIT_EXTRACT": 5.0,
+    "HYDROGEL_PACK": 16.0
+  },
+  "1": {
+    "VEV_4000": 21.0,
+    "VEV_4500": 16.0,
+    "VEV_5000": 6.0,
+    "VEV_5100": 4.0,
+    "VEV_5200": 3.0,
+    "VEV_5300": 2.0,
+    "VEV_5400": 1.0,
+    "VEV_5500": 1.0,
+    "VEV_6000": 1.0,
+    "VEV_6500": 1.0,
+    "VELVETFRUIT_EXTRACT": 5.0,
+    "HYDROGEL_PACK": 16.0
+  },
+  "2": {
+    "VEV_4000": 21.0,
+    "VEV_4500": 16.0,
+    "VEV_5000": 6.0,
+    "VEV_5100": 4.0,
+    "VEV_5200": 3.0,
+    "VEV_5300": 2.0,
+    "VEV_5400": 1.0,
+    "VEV_5500": 1.0,
+    "VEV_6000": 1.0,
+    "VEV_6500": 1.0,
+    "VELVETFRUIT_EXTRACT": 5.0,
+    "HYDROGEL_PACK": 16.0
+  }
+}

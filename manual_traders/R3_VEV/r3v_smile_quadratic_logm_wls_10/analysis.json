@@ -93,5 +93,14 @@
       "results.json"
     ],
     "used_to_decide": "Implemented trader_v17 with shock-aware stricter thresholds and reduced size in mid/large |dS| regimes, while tilting size toward high-beta vouchers during shocks. Backtest underperformed v16/v10, suggesting the added gating was too conservative for this tape."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "Execution filter (same extract data as iter17): in extract_propagation_spread_iter17, OLS dC/dS to extract is 0.0 for VEV_6000/VEV_6500; those books are 1-tick wide on tape, so they add pure smile-interpolation noise. trader_v18 skips them while keeping the WLS+theta+microprice edge stack from v15.",
+    "analysis_outputs": [
+      "extract_propagation_spread_iter17.json",
+      "results.json"
+    ],
+    "used_to_decide": "v18: skip VEV_6000/VEV_6500 in run loop and IV buffer. Worse-match total 59368: improves v16 (57336) and v17 (56456) but still below v15 (60947) \u2014 next iteration should not rely on this filter alone; keep v15 as production candidate for PnL on this backtester."
   }
 ]

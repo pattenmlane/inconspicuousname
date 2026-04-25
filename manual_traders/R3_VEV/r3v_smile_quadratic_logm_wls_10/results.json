@@ -266,5 +266,75 @@
         }
       }
     }
+  },
+  {
+    "iteration": 18,
+    "trader_file": "trader_v18.py",
+    "strategy_description": "Child of v15 (best branch line): same WLS quadratic log-m smile + micro mark + theta/spread gates; do not trade VEV_6000/VEV_6500 (tape beta ~0 to extract, 1-tick book \u2014 extract_propagation_spread_iter17).",
+    "total_profit": 59368,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v18.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress",
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/backtest_worse_trader_v18_r3.log",
+    "trades_or_fills_summary": {
+      "note": "stdout per-product/day PnL only; no fill ledger in this mode",
+      "day_total_profit": {
+        "0": 19676,
+        "1": 24322,
+        "2": 15371
+      },
+      "vev_pnl_by_day": {
+        "0": {
+          "VEV_6500": 0,
+          "VEV_6000": 0,
+          "VEV_5500": 2,
+          "VEV_5400": -198,
+          "VEV_5300": 1451,
+          "VEV_5200": -614,
+          "VEV_5100": 5463,
+          "VEV_5000": 489,
+          "VEV_4500": 190,
+          "VEV_4000": -392
+        },
+        "1": {
+          "VEV_6500": 0,
+          "VEV_6000": 0,
+          "VEV_5500": 0,
+          "VEV_5400": -233,
+          "VEV_5300": -1154,
+          "VEV_5200": -1557,
+          "VEV_5100": -274,
+          "VEV_5000": 6305,
+          "VEV_4500": 1050,
+          "VEV_4000": 2828
+        },
+        "2": {
+          "VEV_6500": 0,
+          "VEV_6000": 0,
+          "VEV_5500": 0,
+          "VEV_5400": 232,
+          "VEV_5300": -1954,
+          "VEV_5200": -6050,
+          "VEV_5100": 5035,
+          "VEV_5000": 6641,
+          "VEV_4500": 2594,
+          "VEV_4000": 9661
+        }
+      },
+      "delta1_pnl_by_day": {
+        "0": {
+          "VELVETFRUIT_EXTRACT": 3194,
+          "HYDROGEL_PACK": 10091
+        },
+        "1": {
+          "VELVETFRUIT_EXTRACT": 4084,
+          "HYDROGEL_PACK": 13272
+        },
+        "2": {
+          "VELVETFRUIT_EXTRACT": -672,
+          "HYDROGEL_PACK": -116
+        }
+      }
+    }
   }
 ]

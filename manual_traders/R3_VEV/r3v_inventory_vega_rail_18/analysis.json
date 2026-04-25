@@ -67,5 +67,17 @@
       "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/vega_signal_window_stats.json"
     ],
     "used_to_decide": "Keep **v12** as the leading recipe (QUIET_FLATTEN off, 0.97-0.03 ATM, VEGA_RAIL 650). Next parents: v12; optional micro-sweeps on THR_OPEN only, not widened ATM, unless combining with a wing-exclusion list."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Vega concentration over strikes/time (BS vega weights from tape + TTE rules): top-strike share q95 ~0.254, HHI q95 ~0.183; concentration increases into day2 but remains moderate (no extreme single-strike domination). Added family-12 execution coupling test: stronger skew only when concentration threshold crossed. Also captured full backtest logs + submission-only fill summaries for v16/v17.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/vega_concentration_by_strike_time.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v16_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v17_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v16_fill_summary.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v17_fill_summary.json"
+    ],
+    "used_to_decide": "Because concentration is moderate (HHI << 0.4), aggressive concentration gating gave limited differentiation and did not beat v12 (+130). Family-12 pivot is validated as distinct in implementation, but currently weaker under worse fills; v12 remains best versus our branch and far below 800k benchmark."
   }
 ]

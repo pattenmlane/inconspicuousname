@@ -1,0 +1,26 @@
+{
+  "trader": "trader_v17.py",
+  "n_submission_trade_events": 13,
+  "summary": {
+    "VEV_5200": {
+      "fills": 3,
+      "abs_qty": 6.0,
+      "net_qty": 6.0
+    },
+    "VEV_5100": {
+      "fills": 3,
+      "abs_qty": 6.0,
+      "net_qty": 6.0
+    },
+    "VEV_5300": {
+      "fills": 3,
+      "abs_qty": 6.0,
+      "net_qty": 6.0
+    },
+    "VEV_5400": {
+      "fills": 4,
+      "abs_qty": 8.0,
+      "net_qty": 4.0
+    }
+  }
+}

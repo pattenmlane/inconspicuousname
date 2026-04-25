@@ -140,5 +140,32 @@
     "analysis_description": "Mixed-parent test (older v15 mechanics + v17 thresholds) with MAX_LEG 12; keeps low hedge and larger clip to exploit day2 edge while still curbing extract drag.",
     "analysis_outputs": [],
     "used_to_decide": "v20 is new best (3750), so next iterations should parent from v20 and tune MAX_LEG/thresholds around this regime."
+  },
+  {
+    "iteration": 21,
+    "analysis_description": "analyze_spread_on_smile_triggers_v21.py → spread_on_smile_triggers_v21.json: when v20-style RICH/CHEAP would fire on wing strikes, median bid-ask width is about 1 tick (rich and cheap subsamples); informs spread filter tuning.",
+    "analysis_outputs": [
+      "analyze_spread_on_smile_triggers_v21.py",
+      "spread_on_smile_triggers_v21.json"
+    ],
+    "used_to_decide": "Loosening MIN_SPREAD_SKIP 6→4 or tightening 6→8 left PnL unchanged (3750): active path still passes at width ≤6; v22 larger MAX_LEG hurt (2984) via larger d_net and extract hedge."
+  },
+  {
+    "iteration": 22,
+    "analysis_description": "v22: MAX_LEG 14 vs v20 12 increases option clip and thus |d_net|, so int-rounded extract hedge engages more (day1/2 extract negative), lowering total.",
+    "analysis_outputs": [],
+    "used_to_decide": "Prefer MAX_LEG 12 or lower with HEDGE 0.28; avoid upsizing unless hedge is reduced further."
+  },
+  {
+    "iteration": 23,
+    "analysis_description": "v23 stricter spread cap 8: no PnL change vs v20 because executed paths on this tape already had spread ≤6 at entry.",
+    "analysis_outputs": [],
+    "used_to_decide": "Spread filter is not the binding constraint here; keep simpler v20/v21/v23 tie at 3750."
+  },
+  {
+    "iteration": 24,
+    "analysis_description": "v24 RICH 0.009: no path change vs v20 (same 3750); dominant PnL still from VEV_5400 sequence where residual dynamics already tripped under 0.010.",
+    "analysis_outputs": [],
+    "used_to_decide": "Next sweep: CHEAP grid or hydrogel tilt only if extract hedge re-engages; else stay at v20-class params."
   }
 ]

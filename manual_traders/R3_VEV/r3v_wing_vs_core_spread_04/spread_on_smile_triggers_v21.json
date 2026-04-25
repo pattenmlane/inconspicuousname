@@ -1,0 +1,8 @@
+{
+  "method": "Subsample every 30 ts; v20-style smile; spread = min ask - max bid (first level) from same CSV row as mids",
+  "n_smile_fits": 1002,
+  "n_spreads_when_rich_short": 588,
+  "spread_when_rich_p50": 1.0,
+  "n_spreads_when_cheap_long": 11,
+  "spread_when_cheap_p50": 1.0
+}

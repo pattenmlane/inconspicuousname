@@ -166,5 +166,37 @@
     "total_profit": 3750,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v20.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 21,
+    "trader_file": "trader_v21.py",
+    "strategy_description": "Parent v20: MIN_SPREAD_SKIP 4 (was 6). Tape probe showed median spread near 1 when smile hit RICH/CHEAP on wings. PnL matched v20 (3750).",
+    "total_profit": 3750,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v21.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 22,
+    "trader_file": "trader_v22.py",
+    "strategy_description": "Parent v20: MAX_LEG 14 (was 12). More extract hedge drag; total 2984 vs 3750.",
+    "total_profit": 2984,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v22.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 23,
+    "trader_file": "trader_v23.py",
+    "strategy_description": "Parent v20: MIN_SPREAD_SKIP 8 (stricter). PnL matched v20 (3750) — dominant path still 1-tick wide on VEV_5400.",
+    "total_profit": 3750,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v23.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 24,
+    "trader_file": "trader_v24.py",
+    "strategy_description": "Parent v20: RICH 0.009 (was 0.010). PnL matched v20 (3750) — extra short-rich signals did not change filled path vs v20 on this tape.",
+    "total_profit": 3750,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v24.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

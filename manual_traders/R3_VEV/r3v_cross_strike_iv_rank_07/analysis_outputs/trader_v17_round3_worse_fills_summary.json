@@ -1,0 +1,20 @@
+{
+  "source": "trader_v17_round3_worse.json",
+  "num_own_trades": 4048,
+  "day_cashflow_proxy": {
+    "0": 1264.0,
+    "1": 72.0,
+    "2": 30.0
+  },
+  "day_symbol_net_qty": {
+    "0": {
+      "VEV_4000": -1
+    },
+    "1": {
+      "VEV_5400": -4
+    },
+    "2": {
+      "VEV_5500": -5
+    }
+  }
+}

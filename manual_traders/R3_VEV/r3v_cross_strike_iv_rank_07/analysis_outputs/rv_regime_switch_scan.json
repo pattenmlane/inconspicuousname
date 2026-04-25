@@ -1,0 +1,29 @@
+[
+  {
+    "threshold": 0.015,
+    "cooldown": 10,
+    "switch_count": 24,
+    "signal_p50": 0.15794808614102307,
+    "signal_p90_abs": 0.24395964512409962,
+    "post_switch_ret20_mean": -0.0001871604617138574,
+    "post_switch_ret20_tstat": -1.1233225226428658
+  },
+  {
+    "threshold": 0.02,
+    "cooldown": 15,
+    "switch_count": 29,
+    "signal_p50": 0.15794808614102307,
+    "signal_p90_abs": 0.24395964512409962,
+    "post_switch_ret20_mean": 3.2343255455823783e-05,
+    "post_switch_ret20_tstat": 0.21212435889342782
+  },
+  {
+    "threshold": 0.03,
+    "cooldown": 20,
+    "switch_count": 49,
+    "signal_p50": 0.15794808614102307,
+    "signal_p90_abs": 0.24395964512409962,
+    "post_switch_ret20_mean": -3.5138751151289994e-05,
+    "post_switch_ret20_tstat": -0.31707374163588986
+  }
+]

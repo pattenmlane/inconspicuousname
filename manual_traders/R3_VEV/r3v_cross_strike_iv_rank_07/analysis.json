@@ -64,5 +64,17 @@
       "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/delta_atm_rms_vs_extract_return.json"
     ],
     "used_to_decide": "Stride=1 re-rank (v14) lifted PnL to 4666 vs v10 1858; v15 size bump was identical, so v14 is best+simplest. New analysis shows negative correlation about -0.16 between delta smile-RMS and extract return, suggesting fast residual reshape when S moves, motivating even faster stride."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "Regime-switch analysis required for family13: scan EWMA RV minus ATM-IV thresholds/cooldowns and measure switch frequency plus short-horizon post-switch extract returns before selecting thresholds. Used thresholds/cooldowns {(0.015,10),(0.02,15),(0.03,20)} on sampled timestamps; then backtested v16/v17 under --match-trades worse with full output logs saved.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/rv_regime_switch_scan.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v16_round3_worse.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v17_round3_worse.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v16_round3_worse_fills_summary.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v17_round3_worse_fills_summary.json"
+    ],
+    "used_to_decide": "This exact variation was not previously explored in this branch. Switch scan showed stable low switch counts (~6) for tested thresholds/cooldowns. However, v16/v17 regime traders performed poorly (42 and -19), far below current best v14=4666 and benchmark bar 800k. Keep v14 as active parent while documenting family13 pivot attempt and saved full logs/fills summaries."
   }
 ]

@@ -15,5 +15,13 @@
       "analysis_outputs/atm_cluster_timeseries_grid.json"
     ],
     "used_to_decide": "Found per-leg-IV mispricing is nearly identity (~0), so v1 signals are driven by IV-vs-RV shock, not price-vs-theo edge. v3 (pure z-score) was falsified with large losses due to one-sided exposure. Chose v4 as safer continuation: retain v1 structure, tighten spread gate and shock threshold, reduce clip."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "IV shock (ATM IVavg minus short-window extract RV) vs combined L1 spread on VEV_5000+VEV_5100, all ticks days 0-2. Buckets on spread sum: compare shock distribution in tight (sum<9) vs default ATM (~10) books. TTE per round3description: d->8-d. Method: same bisection IV and RV scaling as traders.",
+    "analysis_outputs": [
+      "analysis_outputs/iv_shock_by_spread_bucket.json"
+    ],
+    "used_to_decide": "Tightest books (spread sum<9) are a small subset (~720/30000 ticks) with slightly more negative median shock; median combined spread is 10, so v5’s gate=9 still captures most near-median liquidity. v5’s slightly lower SHOCK and higher clip raised total PnL vs v4 in backtest without abandoning the ATM bundle thesis."
   }
 ]

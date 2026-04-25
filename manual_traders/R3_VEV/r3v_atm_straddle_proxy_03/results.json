@@ -38,5 +38,13 @@
     "total_profit": 29462,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v4.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 5,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "Parent v4 grid: SPREAD_GATE_SUM 10->9, SHOCK_ABS_EDGE 0.06->0.055, ORDER_CLIP 10->11; same ATM 5000/5100 bundle + extract hedge. TTE hist day d -> 8-d.",
+    "total_profit": 39494,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
   }
 ]

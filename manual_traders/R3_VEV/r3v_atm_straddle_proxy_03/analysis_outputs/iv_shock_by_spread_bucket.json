@@ -1,0 +1,28 @@
+{
+  "method": "Same RV window=50 as trader (approx via rolling 55 mids); shock=IVavg-RV; TTE day d->8-d",
+  "buckets": {
+    "spread_[0,9)": {
+      "count": 720,
+      "shock_p50": -0.1833,
+      "shock_p90": -0.1197,
+      "shock_p95": -0.1069
+    },
+    "spread_[9,11)": {
+      "count": 17012,
+      "shock_p50": -0.1758,
+      "shock_p90": -0.117,
+      "shock_p95": -0.102
+    },
+    "spread_[11,15)": {
+      "count": 12268,
+      "shock_p50": -0.1752,
+      "shock_p90": -0.1173,
+      "shock_p95": -0.1019
+    },
+    "spread_[15,100)": {
+      "count": 0
+    },
+    "all_spread_p50": 10.0,
+    "n_ticks": 30000
+  }
+}

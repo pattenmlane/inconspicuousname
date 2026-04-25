@@ -1,0 +1,25 @@
+{
+  "method": "Pool all 10 VEV; smile-model vega at (S,t,K) vs bid-ask spread; TTE as traders.",
+  "by_bucket": [
+    {
+      "b": "<=2",
+      "mean": 117.59133555622847,
+      "count": 150706
+    },
+    {
+      "b": "3-5",
+      "mean": 219.79300576635572,
+      "count": 62055
+    },
+    {
+      "b": "6-8",
+      "mean": 95.82907278504274,
+      "count": 27654
+    },
+    {
+      "b": ">=9",
+      "mean": 9.508732108024185,
+      "count": 59585
+    }
+  ]
+}

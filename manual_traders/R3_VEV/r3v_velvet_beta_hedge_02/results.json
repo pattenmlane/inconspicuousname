@@ -174,5 +174,29 @@
     "total_profit": 16195,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v21.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 22,
+    "trader_file": "trader_v22.py",
+    "strategy_description": "v20 with tighter spread dampening (0.84/0.64/0.52). New best 16,260.",
+    "total_profit": 16260,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v22.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 23,
+    "trader_file": "trader_v23.py",
+    "strategy_description": "v20 with third bucket starting at spread>7 (CUT3=7). Total 16,246 (ties v20).",
+    "total_profit": 16246,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v23.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 24,
+    "trader_file": "trader_v24.py",
+    "strategy_description": "v20 with VEV_SIZE=17. Total 16,246 (ties v20).",
+    "total_profit": 16246,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v24.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

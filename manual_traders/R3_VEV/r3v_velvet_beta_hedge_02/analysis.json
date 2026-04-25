@@ -49,5 +49,13 @@
       "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analysis_v5_spread_bucket_stats.json"
     ],
     "used_to_decide": "Wider spreads show higher abs mid-step volatility (mean abs step rises from ~0.11 at <=2 to ~0.87 at >=9), supporting stronger dampening for wide books. v19-v21 tested this directly; v20 (0.85/0.66/0.54, VEV_SIZE=18) delivered new best 16,246."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "Greek vs spread: pooled all 10 VEVs; for each (day,timestamp,product) row compute smile-IV vega at (S_t,T,K) and bucket by bid-ask width. (Mean vega in the wide bucket is low largely because that bucket over-represents deep-ITM/OTM names with structurally small vega, not a claim that a single option's vega rises when its spread widens.)",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analysis_v6_vega_by_spread_bucket.json"
+    ],
+    "used_to_decide": "v22 slightly tightened the spread-dampening multipliers again and set a new backtest high (16,260) vs v20. Earlier third-tier threshold shift (v23) and VEV size trim (v24) did not beat v22."
   }
 ]

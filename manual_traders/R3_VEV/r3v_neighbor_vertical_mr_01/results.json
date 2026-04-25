@@ -110,5 +110,31 @@
       ],
       "comment": "Dual-cutoff agreement reduced trading breadth versus v8; losses concentrated in low strikes and underlying hedge."
     }
+  },
+  {
+    "iteration": 10,
+    "trader_file": "trader_v10.py",
+    "strategy_description": "Family10 dual-cutoff consensus (0.5 & 1.5 extrinsic) + empirical strike beta-scaled hedge from underlying propagation analysis. Hedge units use min(BS delta, beta_empirical)*HEDGE_MULT; tuned OPEN_Z and HEDGE_MULT under worse fills.",
+    "total_profit": -599,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v10.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v10_worse.log",
+    "backtest_output": {
+      "day0": -117,
+      "day1": -345,
+      "day2": -137,
+      "total": -599
+    },
+    "trades_or_fills_summary": {
+      "nonzero_symbols": [
+        "VEV_4000",
+        "VEV_4500",
+        "VEV_5100",
+        "VEV_6500"
+      ],
+      "underlying_pnl": 0,
+      "note": "Beta-scaled hedge reduced extract drag to ~0 across all days; losses now concentrated in option legs only."
+    }
   }
 ]

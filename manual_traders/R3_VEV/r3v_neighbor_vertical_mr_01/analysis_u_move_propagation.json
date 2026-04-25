@@ -1,0 +1,126 @@
+{
+  "method": "Per-step dU and dOption using mids from ROUND_3 day0-2. Strike-wise OLS beta dOption~beta*dU, corr(dU,dOption), asymmetry by sign(dU), and spread after |dU|>=4 shocks.",
+  "shock_threshold_abs_dU": 4.0,
+  "by_symbol": {
+    "VEV_4000": {
+      "n": 29997,
+      "beta_dopt_per_du": 0.7450542342912814,
+      "corr_du_dopt": 0.5948738081139473,
+      "mean_dopt_upmove": 0.8916351482100449,
+      "mean_dopt_downmove": -0.8877805486284289,
+      "beta_up": 0.6382659137677523,
+      "beta_down": 0.6178296581603245,
+      "mean_spread_normal": 20.813408157129974,
+      "mean_spread_after_shock": 20.866666666666667,
+      "spread_shock_ratio": 1.002558855769061
+    },
+    "VEV_4500": {
+      "n": 29997,
+      "beta_dopt_per_du": 0.6617918392624007,
+      "corr_du_dopt": 0.5979063819424848,
+      "mean_dopt_upmove": 0.7898671826897704,
+      "mean_dopt_downmove": -0.7878072675454222,
+      "beta_up": 0.5614077882726619,
+      "beta_down": 0.5621650491604692,
+      "mean_spread_normal": 15.852623843404483,
+      "mean_spread_after_shock": 15.866666666666667,
+      "spread_shock_ratio": 1.0008858358970036
+    },
+    "VEV_5000": {
+      "n": 29997,
+      "beta_dopt_per_du": 0.6535198871695396,
+      "corr_du_dopt": 0.7536427220938063,
+      "mean_dopt_upmove": 0.782478670067728,
+      "mean_dopt_downmove": -0.7855806911293196,
+      "beta_up": 0.5348016879412597,
+      "beta_down": 0.5459597741350883,
+      "mean_spread_normal": 6.0432575074322745,
+      "mean_spread_after_shock": 6.083333333333333,
+      "spread_shock_ratio": 1.006631494000011
+    },
+    "VEV_5100": {
+      "n": 29997,
+      "beta_dopt_per_du": 0.5773315651688139,
+      "corr_du_dopt": 0.765330205444534,
+      "mean_dopt_upmove": 0.6888468642800598,
+      "mean_dopt_downmove": -0.6918863555397221,
+      "beta_up": 0.47858459838407685,
+      "beta_down": 0.48896668685430317,
+      "mean_spread_normal": 4.2958212245716005,
+      "mean_spread_after_shock": 4.3,
+      "spread_shock_ratio": 1.0009727535690958
+    },
+    "VEV_5200": {
+      "n": 29997,
+      "beta_dopt_per_du": 0.43665944424715203,
+      "corr_du_dopt": 0.7174150885004524,
+      "mean_dopt_upmove": 0.5198786172926378,
+      "mean_dopt_downmove": -0.5238243676522978,
+      "beta_up": 0.3621201708129513,
+      "beta_down": 0.37136479232640895,
+      "mean_spread_normal": 2.8881317433276545,
+      "mean_spread_after_shock": 2.8666666666666667,
+      "spread_shock_ratio": 0.9925678332677941
+    },
+    "VEV_5300": {
+      "n": 29997,
+      "beta_dopt_per_du": 0.2726884718004518,
+      "corr_du_dopt": 0.6216399087228951,
+      "mean_dopt_upmove": 0.3266778080745888,
+      "mean_dopt_downmove": -0.32770751692198075,
+      "beta_up": 0.22017932716185054,
+      "beta_down": 0.23041009727889658,
+      "mean_spread_normal": 2.1070247519791563,
+      "mean_spread_after_shock": 2.0,
+      "spread_shock_ratio": 0.9492057452677637
+    },
+    "VEV_5400": {
+      "n": 29997,
+      "beta_dopt_per_du": 0.1288701533999408,
+      "corr_du_dopt": 0.5400562735002291,
+      "mean_dopt_upmove": 0.15309174069839035,
+      "mean_dopt_downmove": -0.15594941218382616,
+      "beta_up": 0.10612318797968401,
+      "beta_down": 0.10750104324626443,
+      "mean_spread_normal": 1.3813675384975115,
+      "mean_spread_after_shock": 1.4,
+      "spread_shock_ratio": 1.0134884170817815
+    },
+    "VEV_5500": {
+      "n": 29997,
+      "beta_dopt_per_du": 0.05486345538648153,
+      "corr_du_dopt": 0.3482216271623321,
+      "mean_dopt_upmove": 0.06504529861905181,
+      "mean_dopt_downmove": -0.06670822942643391,
+      "beta_up": 0.04812104453406888,
+      "beta_down": 0.0424075246992178,
+      "mean_spread_normal": 1.1498146106824332,
+      "mean_spread_after_shock": 1.1333333333333333,
+      "spread_shock_ratio": 0.985666143745279
+    },
+    "VEV_6000": {
+      "n": 29997,
+      "beta_dopt_per_du": 0.0,
+      "corr_du_dopt": null,
+      "mean_dopt_upmove": 0.0,
+      "mean_dopt_downmove": 0.0,
+      "beta_up": 0.0,
+      "beta_down": 0.0,
+      "mean_spread_normal": 1.0,
+      "mean_spread_after_shock": 1.0,
+      "spread_shock_ratio": 1.0
+    },
+    "VEV_6500": {
+      "n": 29997,
+      "beta_dopt_per_du": 0.0,
+      "corr_du_dopt": null,
+      "mean_dopt_upmove": 0.0,
+      "mean_dopt_downmove": 0.0,
+      "beta_up": 0.0,
+      "beta_down": 0.0,
+      "mean_spread_normal": 1.0,
+      "mean_spread_after_shock": 1.0,
+      "spread_shock_ratio": 1.0
+    }
+  }
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "hedge_mult": 0.4,
+    "open_z": 3.2,
+    "total": -599
+  },
+  {
+    "hedge_mult": 0.6,
+    "open_z": 3.2,
+    "total": -662
+  },
+  {
+    "hedge_mult": 0.4,
+    "open_z": 3.0,
+    "total": -896
+  },
+  {
+    "hedge_mult": 0.6,
+    "open_z": 3.0,
+    "total": -1006
+  },
+  {
+    "hedge_mult": 0.4,
+    "open_z": 2.8,
+    "total": -1042
+  },
+  {
+    "hedge_mult": 0.6,
+    "open_z": 2.8,
+    "total": -1212
+  },
+  {
+    "hedge_mult": 0.8,
+    "open_z": 3.2,
+    "total": -1766
+  },
+  {
+    "hedge_mult": 0.8,
+    "open_z": 3.0,
+    "total": -2580
+  },
+  {
+    "hedge_mult": 0.8,
+    "open_z": 2.8,
+    "total": -2947
+  }
+]

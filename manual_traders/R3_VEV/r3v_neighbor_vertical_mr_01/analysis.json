@@ -85,5 +85,15 @@
       "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/grid_f10_exec_tune.json"
     ],
     "used_to_decide": "Duplicate risk for v8 relative to parent was high due to overlap in cutoff + threshold logic within same family. Dual-cutoff consensus is a distinct assumption and materially different from parent's single-smile gating path."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "Deep underlying propagation analysis (analysis_u_move_propagation.json): strike-wise dOption/dU betas decline monotonically from ~0.75 (K4000) to ~0.05 (K5500), with weak spread-shock effect ratio near 1.0 after |dU|>=4. Incorporated into family10 by capping hedge sensitivity with empirical beta and tuning HEDGE_MULT + OPEN_Z (grid_v10_betahedge_tune.json).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/analysis_u_move_propagation.json",
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/grid_v10_betahedge_tune.json",
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v10_worse.log"
+    ],
+    "used_to_decide": "Observed option response elasticity by strike is materially below BS delta for traded wings/low strikes in tape. Scaling hedge by empirical beta (and lowering hedge multiplier) removed large extract hedge drag and improved family10 from -2690 to -599 under worse fills."
   }
 ]

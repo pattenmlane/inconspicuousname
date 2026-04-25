@@ -1,0 +1,18 @@
+{
+  "method": "In burst (extract |z|>=2.2, window 50), every 20th tick, compute BS vega and |delta| at global smile IV (coeffs from calibration) with T= effective DTE/365 (round3 + intraday wind).",
+  "by_tier": {
+    "vega": {
+      "core": 186.650019,
+      "ring": 8.921731
+    },
+    "abs_delta": {
+      "core": 0.51111,
+      "ring": 0.506648
+    }
+  },
+  "counts": {
+    "core": 252,
+    "ring": 148
+  },
+  "n_rows": 400
+}

@@ -27,5 +27,13 @@
       "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/vev4000_moneyness_day0.json"
     ],
     "used_to_decide": "On days 0-2, |4000/S-1| is ~0.238 mean; 0% of ticks have |K/S-1|<=0.22 while 62-86% have <=0.24. Tightening burst to 0.22 drops all VEV_4000 quotes (falsifies narrow burst-only wing pull). v7 keeps 0.24 burst band and instead caps burst order size: best PnL so far (487) vs v5 (433)."
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "Greek/moneyness tier in extract burst (|z|>=2.2, rolling 50): sample every 20th timestamp on days 0-2, compute BS call vega and |delta| at global smile IV (5200_work/calibration coeffs) with T= effective DTE/365. Split strikes into core (|K/S-1|<=0.10) vs ring (<=0.24).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/burst_tier_greeks.json"
+    ],
+    "used_to_decide": "Ring mean vega ~9 vs core ~187 on the burst sample; supports smaller lot caps in the outer part of the burst band (trader_v8) without shrinking cluster width. Backtest: v8 equals v7 total (487) \u2014 no gain from tiered caps on this run; v7 left as primary for simplicity."
   }
 ]

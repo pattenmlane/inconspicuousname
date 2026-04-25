@@ -1,0 +1,18 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "TTE from round3description (hist day 1/2/3 -> 8/7/6d mapped to CSV day 0/1/2). Implied vol via BS bisection on ATM-near voucher vs VELVETFRUIT_EXTRACT mid; vega at that IV. Neighbor mid gaps m_i - m_{i+1} pooled stats and spread width in samples.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/analysis_iv_neighbor_summary.json"
+    ],
+    "used_to_decide": "Confirms IV is numerically stable on tapes; neighbor gaps have positive mean (decreasing mids with strike) with dispersion usable for z-score MR; vega scales with TTE."
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Parameter sweep vs v0 (grid on one axis at a time in code): raised Z_THRESHOLD 1.8→2.35, ALPHA 0.02→0.03, smaller BASE_SIZE/MAX_PAIR, TRADE_EVERY=3, added day_idx from timestamp rollback for TTE_days=8-day_idx (per round3description CSV mapping), BS delta hedge on VELVETFRUIT_EXTRACT. Backtest: v0 total -57,517 vs v1 total -7,850 (same prosperity4bt command, worse fills).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/results.json"
+    ],
+    "used_to_decide": "v1 kept the same neighbor-gap thesis but reduced churn and directional bleed; day-aware TTE and delta hedge align greeks with spec timing; still underwater vs ~800k extract+VEV benchmark so further tuning needed."
+  }
+]

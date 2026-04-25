@@ -1,0 +1,40 @@
+{
+  "summary": {
+    "tte_rule": "CSV column day in {0,1,2} maps to TTE_days = 8 - day (per round3description.txt example: historical day 1->8d, 2->7d, 3->6d).",
+    "iv_method": "Bisection on Black-Scholes European call price vs voucher mid; r=0; T = TTE_days/365."
+  },
+  "iv_near_money": {
+    "0": {
+      "mean_iv": 0.23380681614926374,
+      "n": 500,
+      "tte_days": 8.0
+    },
+    "1": {
+      "mean_iv": 0.240668833276589,
+      "n": 500,
+      "tte_days": 7.0
+    },
+    "2": {
+      "mean_iv": 0.24146854643874974,
+      "n": 500,
+      "tte_days": 5.999999999999999
+    }
+  },
+  "neighbor_gap_pooled": {
+    "0": {
+      "mean_gap": 138.3082222222222,
+      "std_gap": 193.3304247763525,
+      "n_gap_samples": 4500
+    },
+    "1": {
+      "mean_gap": 138.65411111111112,
+      "std_gap": 193.74470394726038,
+      "n_gap_samples": 4500
+    },
+    "2": {
+      "mean_gap": 139.8407777777778,
+      "std_gap": 193.88144956462617,
+      "n_gap_samples": 4500
+    }
+  }
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "trader_v0.py",
+    "strategy_description": "EWMA mean/variance on adjacent-strike mid gaps (m_i - m_{i+1}); z-score vs pre-update EWMA; trade widest |z| edge: gap high sells higher strike / buys lower; gap low opposite. Size scales with z, inverse vega (BS at fixed 7d/365 T), inverse two-leg half-spread sum. No underlying hedge.",
+    "total_profit": -57517,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v0.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 1,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Same neighbor-gap MR core; iteration-1 sweep: higher Z_THRESHOLD (2.35), faster EWMA (0.03), smaller clips, trade every 3 ticks after warmup. Day-aware TTE: detect day boundary via timestamp rollback, TTE_days=8-day_idx per round3description mapping to CSV days 0–2; BS IV/delta/vega use that T. Post vertical, hedge VELVETFRUIT_EXTRACT with integer size ~round(net bundle delta).",
+    "total_profit": -7850,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v1.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  }
+]

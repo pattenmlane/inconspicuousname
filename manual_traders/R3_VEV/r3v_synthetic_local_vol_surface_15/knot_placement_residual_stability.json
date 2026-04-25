@@ -1,0 +1,242 @@
+{
+  "timing": {
+    "dte_open": "8-csv_day",
+    "intraday": "dte_eff=dte_open-(ts//100)/10000",
+    "T": "dte_eff/365",
+    "r": 0.0
+  },
+  "by_family": {
+    "uniform": {
+      "0": [
+        {
+          "strike": 5000,
+          "samples": 500,
+          "mean_abs_resid": 0.01817713874627043,
+          "mean_abs_delta_resid": 0.026340276099113907
+        },
+        {
+          "strike": 5100,
+          "samples": 500,
+          "mean_abs_resid": 0.3363542865664986,
+          "mean_abs_delta_resid": 0.20850415147006152
+        },
+        {
+          "strike": 5200,
+          "samples": 500,
+          "mean_abs_resid": 0.7703731003512622,
+          "mean_abs_delta_resid": 0.37889180834777925
+        },
+        {
+          "strike": 5300,
+          "samples": 500,
+          "mean_abs_resid": 1.131658778776735,
+          "mean_abs_delta_resid": 0.45524790109955254
+        },
+        {
+          "strike": 5400,
+          "samples": 500,
+          "mean_abs_resid": 0.8376426671503187,
+          "mean_abs_delta_resid": 0.4931404115821572
+        },
+        {
+          "strike": 5500,
+          "samples": 500,
+          "mean_abs_resid": 0.059680765917306644,
+          "mean_abs_delta_resid": 0.10617651293645701
+        }
+      ],
+      "1": [
+        {
+          "strike": 5000,
+          "samples": 500,
+          "mean_abs_resid": 0.01716937973910717,
+          "mean_abs_delta_resid": 0.025407123142300408
+        },
+        {
+          "strike": 5100,
+          "samples": 500,
+          "mean_abs_resid": 0.2705437849500504,
+          "mean_abs_delta_resid": 0.3638500287365905
+        },
+        {
+          "strike": 5200,
+          "samples": 500,
+          "mean_abs_resid": 0.6962372883883127,
+          "mean_abs_delta_resid": 0.5898889955617597
+        },
+        {
+          "strike": 5300,
+          "samples": 500,
+          "mean_abs_resid": 1.4491041469953676,
+          "mean_abs_delta_resid": 0.48646503549567205
+        },
+        {
+          "strike": 5400,
+          "samples": 500,
+          "mean_abs_resid": 1.0129541699429658,
+          "mean_abs_delta_resid": 0.7147053010409743
+        },
+        {
+          "strike": 5500,
+          "samples": 500,
+          "mean_abs_resid": 0.06827268392312436,
+          "mean_abs_delta_resid": 0.11285000586899366
+        }
+      ],
+      "2": [
+        {
+          "strike": 5000,
+          "samples": 499,
+          "mean_abs_resid": 0.014024030023485652,
+          "mean_abs_delta_resid": 0.02113185917947769
+        },
+        {
+          "strike": 5100,
+          "samples": 500,
+          "mean_abs_resid": 0.23857382554732884,
+          "mean_abs_delta_resid": 0.3435678234043353
+        },
+        {
+          "strike": 5200,
+          "samples": 500,
+          "mean_abs_resid": 0.6815755593207105,
+          "mean_abs_delta_resid": 0.5716868498318345
+        },
+        {
+          "strike": 5300,
+          "samples": 500,
+          "mean_abs_resid": 1.4170141071527704,
+          "mean_abs_delta_resid": 0.5187357088677027
+        },
+        {
+          "strike": 5400,
+          "samples": 500,
+          "mean_abs_resid": 0.9147538598302731,
+          "mean_abs_delta_resid": 0.6385240956763323
+        },
+        {
+          "strike": 5500,
+          "samples": 500,
+          "mean_abs_resid": 0.055549378509994994,
+          "mean_abs_delta_resid": 0.10331791042095881
+        }
+      ]
+    },
+    "core_biased": {
+      "0": [
+        {
+          "strike": 5000,
+          "samples": 500,
+          "mean_abs_resid": 0.005850448191686155,
+          "mean_abs_delta_resid": 0.008680211461516592
+        },
+        {
+          "strike": 5100,
+          "samples": 500,
+          "mean_abs_resid": 0.014238061216709867,
+          "mean_abs_delta_resid": 0.017624746644715743
+        },
+        {
+          "strike": 5200,
+          "samples": 500,
+          "mean_abs_resid": 0.1336745703048091,
+          "mean_abs_delta_resid": 0.03368354192539482
+        },
+        {
+          "strike": 5300,
+          "samples": 500,
+          "mean_abs_resid": 0.19120103249250678,
+          "mean_abs_delta_resid": 0.03583165158151542
+        },
+        {
+          "strike": 5400,
+          "samples": 500,
+          "mean_abs_resid": 0.08130326989539549,
+          "mean_abs_delta_resid": 0.025796380769956842
+        },
+        {
+          "strike": 5500,
+          "samples": 500,
+          "mean_abs_resid": 0.060523738102346444,
+          "mean_abs_delta_resid": 0.016402922807045344
+        }
+      ],
+      "1": [
+        {
+          "strike": 5000,
+          "samples": 500,
+          "mean_abs_resid": 0.001644548438680431,
+          "mean_abs_delta_resid": 0.002628716184442965
+        },
+        {
+          "strike": 5100,
+          "samples": 500,
+          "mean_abs_resid": 0.004946075780214414,
+          "mean_abs_delta_resid": 0.0065252154180871005
+        },
+        {
+          "strike": 5200,
+          "samples": 500,
+          "mean_abs_resid": 0.08250364793784593,
+          "mean_abs_delta_resid": 0.03338503453669091
+        },
+        {
+          "strike": 5300,
+          "samples": 500,
+          "mean_abs_resid": 0.23265430910686838,
+          "mean_abs_delta_resid": 0.045077378053575104
+        },
+        {
+          "strike": 5400,
+          "samples": 500,
+          "mean_abs_resid": 0.12080358712996644,
+          "mean_abs_delta_resid": 0.03328946587178325
+        },
+        {
+          "strike": 5500,
+          "samples": 500,
+          "mean_abs_resid": 0.07812563586648917,
+          "mean_abs_delta_resid": 0.01946265367523631
+        }
+      ],
+      "2": [
+        {
+          "strike": 5000,
+          "samples": 499,
+          "mean_abs_resid": 0.001554037248777655,
+          "mean_abs_delta_resid": 0.0023466210727738127
+        },
+        {
+          "strike": 5100,
+          "samples": 500,
+          "mean_abs_resid": 0.004474521884887508,
+          "mean_abs_delta_resid": 0.006380451418386656
+        },
+        {
+          "strike": 5200,
+          "samples": 500,
+          "mean_abs_resid": 0.06789938133963187,
+          "mean_abs_delta_resid": 0.028604301009812844
+        },
+        {
+          "strike": 5300,
+          "samples": 500,
+          "mean_abs_resid": 0.2395343390564053,
+          "mean_abs_delta_resid": 0.04366626854884908
+        },
+        {
+          "strike": 5400,
+          "samples": 500,
+          "mean_abs_resid": 0.15141641524153054,
+          "mean_abs_delta_resid": 0.032054742370580244
+        },
+        {
+          "strike": 5500,
+          "samples": 500,
+          "mean_abs_resid": 0.09080767457893682,
+          "mean_abs_delta_resid": 0.01862750884090906
+        }
+      ]
+    }
+  }
+}

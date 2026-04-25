@@ -150,5 +150,21 @@
     "total_profit": 10618,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v18.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 19,
+    "trader_file": "trader_v19_uniform.py",
+    "strategy_description": "Family12 baseline: smile cubic spline in logK with uniform pseudo-knot grid over observed x-range; execution/hurdle identical to v14 to isolate spline effect.",
+    "total_profit": 11399,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v19_uniform.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v19_uniform.log"
+  },
+  {
+    "iteration": 20,
+    "trader_file": "trader_v20_corebiased.py",
+    "strategy_description": "Family12 variation: smile cubic spline in logK with core-biased pseudo-knot placement (dense near ATM, sparse wings); execution/hurdle unchanged vs v19.",
+    "total_profit": 11366,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v20_corebiased.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v20_corebiased.log"
   }
 ]

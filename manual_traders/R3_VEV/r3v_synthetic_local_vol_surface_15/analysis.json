@@ -102,5 +102,18 @@
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/results.json"
     ],
     "used_to_decide": "Keep v14 as best. Wing weight 0.58 appears near-optimal in this backtest; 0.57 close second (11,212). Misfit stats suggest 5400/5300/5200 are structurally more \u201coff the smooth\u201d than 5100/5500 in-sample \u2014 future optional rule: require slightly higher residual|hurdle at strikes with high historical misfit, but that adds complexity; stay on v14 until a simpler lever appears."
+  },
+  {
+    "iteration": 19,
+    "analysis_description": "Family 12 knot-placement study (data-analysis-first): using Round-3 tapes, compute Newton IV knots from mids, then compare residual stability (mean|resid| and mean|\u0394resid| by strike/day) for two spline families over logK: uniform pseudo-knot grid vs core-biased pseudo-knot grid (denser ATM, sparse wings). Same timing convention as round3description-based workflow: DTE_open=8\u2212csv_day, dte_eff=DTE_open\u2212(timestamp//100)/10000, T=dte_eff/365, r=0. Analysis file: knot_placement_residual_stability.json.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/_analyze_knot_placement_family12.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/knot_placement_residual_stability.json",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v19_uniform.log",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v20_corebiased.log",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v19_uniform_fill_summary.json",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v20_corebiased_fill_summary.json"
+    ],
+    "used_to_decide": "In tape residual metrics, core-biased looked smoother (lower mean|resid| and |\u0394resid|), but in trading backtest under --match-trades worse, uniform baseline edged core-biased (11,399 vs 11,366). This confirms the variation is real (different spline family) but currently not superior in realized PnL; keep uniform family baseline for now."
   }
 ]

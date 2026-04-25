@@ -1,0 +1,13 @@
+{
+  "log_file": "trader_v20_corebiased.log",
+  "submission_trade_count": 2304,
+  "submission_trade_count_by_symbol": {
+    "VEV_5300": 252,
+    "VEV_5500": 996,
+    "VEV_5200": 293,
+    "VEV_5000": 186,
+    "VEV_5100": 303,
+    "VEV_5400": 274
+  },
+  "all_trade_rows": 6352
+}

@@ -86,5 +86,13 @@
     "total_profit": 18791,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/voucher_work/5200_work:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v10.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 11,
+    "trader_file": "trader_v11.py",
+    "strategy_description": "v10 grid: session entry cutoff 0.70 (vs 0.75) \u2014 no new VEV after 70% session progress; same jump pause, neighbor<=8, theo_diff scalp, hydrogel on pause.",
+    "total_profit": 17506,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/voucher_work/5200_work:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v11.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

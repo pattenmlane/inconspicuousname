@@ -56,5 +56,11 @@
       "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analysis_time_bucket_dev_vega.json"
     ],
     "used_to_decide": "Implemented v10 late-session entry cutoff (q>0.75 no new VEV entries, exits still allowed). Backtest improved over v8 (18,791 vs 17,342), especially day-2 (-2,379 vs -2,698), while keeping the same jump-gap-filter thesis."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "No new off-line numbers (iteration 10 analysis_time_bucket_dev_vega.json still the basis). v11 is a one-parameter grid on v10: earlier VEV entry cutoff 0.70 instead of 0.75. Backtest 17,506 total vs v10 18,791 \u2014 cutting entries earlier in Q3 also removed profitable early-Q4 theo_scalp, so 0.75 is preferred. Day-2 identical to v10 (-2,379), day-0/1 down.",
+    "analysis_outputs": [],
+    "used_to_decide": "Keep v10 cutoff at 0.75 for the hybrid; next sweeps if any should nudge 0.78\u20130.80 or add day-2\u2013only stricter cap rather than 0.70."
   }
 ]

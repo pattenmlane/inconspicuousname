@@ -50,5 +50,11 @@
       "analysis_outputs/strike_edge_greeks_detailed.csv"
     ],
     "used_to_decide": "v11 outperformed v9 (68,908 vs 67,649), while v10 was slightly below v9 (67,882). Looser headroom (0.50) retains enough flow in productive strikes while dampening unstable non-4000 inventory build-up."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "Extension of the v10/v11 delta-headroom grid: DELTA_HEADROOM 0.55 (v12) and 0.65 (v13) on the same LOO spline + vega-spread edge + delta-dependent size taper as v11. No new CSV; backtest-only parameter sweep.",
+    "analysis_outputs": [],
+    "used_to_decide": "Both v12 (68,479) and v13 (68,566) trail v11 (68,908). Suggests the 0.50 headroom is near-optimal on this tape; higher headroom keeps size up but does not improve total PnL here. Keep v11 as the best branch for this family."
   }
 ]

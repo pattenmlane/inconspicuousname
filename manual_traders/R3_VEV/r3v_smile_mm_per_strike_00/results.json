@@ -132,5 +132,24 @@
         "VEV_5400": 67
       }
     }
+  },
+  {
+    "iteration": 14,
+    "trader_file": "trader_v14.py",
+    "strategy_description": "Distinct nearby variant after duplicate check: core-only fit plus clamped km evaluation for non-core strikes (wing extrapolation clamp to core domain). PnL ties v13 at 11528.",
+    "total_profit": 11528,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v14.py 3 --data Prosperity4Data --match-trades worse",
+    "backtest_log_path": "backtests/2026-04-25_15-21-14.log",
+    "trade_fill_summary": {
+      "day_totals": {
+        "0": 5132,
+        "1": 6329,
+        "2": 67
+      },
+      "day2_nonzero_products": {
+        "VEV_5400": 67
+      }
+    }
   }
 ]

@@ -90,5 +90,13 @@
       "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/analysis_outputs/iter7_core_vs_all_fit_stability.json"
     ],
     "used_to_decide": "Implement core-only calibration in v12 first, then retune day2 touch/ATM thresholds only (v13)."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Duplicate-check follow-up: parent already explored core-only fit with threshold retune (v12/v13). New distinct nearby variant tested wing handling by clamping log-moneyness evaluation to core interval when pricing non-core strikes.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/analysis_outputs/iter7_core_vs_all_fit_stability.json"
+    ],
+    "used_to_decide": "v14 (core+clamp) ties v13 at 11528 and remains below v9 (11664); keep v9 as preferred non-duplicate best."
   }
 ]

@@ -56,5 +56,14 @@
       "analysis_outputs/smile_family10_run_summary.json"
     ],
     "used_to_decide": "Robust fit slightly improved p90/p95 residual tails vs plain but worsened extreme tail p99/max in this setup; both robust (v12) and plain control (v13) produced strongly negative PnL, so this family/threshold combo is falsified versus existing v5 baseline."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "Required duplicate-check + adjusted variant test. Parent index-10 branch already explored quadratic-logm WLS with broad gate grids; my adjusted variant applies strict outlier-suppression gates (high residual/shock thresholds, low clip) while comparing robust IRLS-winsorized WLS vs plain WLS under identical strict execution.",
+    "analysis_outputs": [
+      "analysis_outputs/smile_quadratic_logm_wls_residual_tails.json",
+      "analysis_outputs/smile_family10_run_summary.json"
+    ],
+    "used_to_decide": "Because parent already explored broad smile/WLS execution/gate sweeps, duplicate risk on the original request was high. I switched to strict-gated robust/plain controls. On this branch robust (v14) slightly beats plain (v15), but both remain well below class target and only modestly above parent family outcomes (~53k)."
   }
 ]

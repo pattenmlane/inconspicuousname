@@ -110,5 +110,21 @@
     "total_profit": -108558,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v13.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 14,
+    "trader_file": "trader_v14.py",
+    "strategy_description": "Family10 robust smile (quadratic logm WLS with winsorized IRLS) with strict execution gates: MISPRICE_EDGE=25, SHOCK=0.20, CLIP=4 to suppress wing/outlier overtrading.",
+    "total_profit": 53078,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v14.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 15,
+    "trader_file": "trader_v15.py",
+    "strategy_description": "Family10 plain smile control (quadratic logm WLS, non-robust) with same strict gates as v14; robust vs plain downstream PnL comparison.",
+    "total_profit": 52824,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v15.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
   }
 ]

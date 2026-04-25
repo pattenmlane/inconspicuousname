@@ -70,5 +70,14 @@
       "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/burst_strike_greeks_proxy.json"
     ],
     "used_to_decide": "Data shows high quality near ATM (e.g., 5200-5500) and poor quality in deep ITM (4000/4500). Family12 ungated spline lost -2,108.5; gated variant (hard thresholds) lost -24,649.0 by over-pruning and concentrating risk in fewer strikes. This confirms the requested variation is meaningful (not already implemented) and currently underperforms under worse fills."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "REQUIRED duplicate-check and variant adjustment for family12 index split: parent explored ungated spline (v12a) and hard liquidity-gated universe (v12b). New adjusted variant v12c uses soft quality weights in calibration + dynamic execution gate, preserving same family but distinct assumptions.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v12_fill_trade_summary.json",
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v12_cli_profit_summary.json"
+    ],
+    "used_to_decide": "Duplicate risk for hard-gated variant became high after v12b run was logged. Switched to v12c (soft-weighted) as nearby distinct variant. Under worse fills, v12c remained poor (-27,358), indicating current family12 implementation needs deeper risk controls rather than gating tweaks."
   }
 ]

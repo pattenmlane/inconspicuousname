@@ -1,5 +1,5 @@
 {
-  "ungated": {
+  "v12a_ungated": {
     "submission_trade_count": 204,
     "submission_filled_abs_qty": 3202,
     "submission_by_symbol": {
@@ -27,9 +27,15 @@
         "trade_count": 51,
         "filled_abs_qty": 956
       }
-    }
+    },
+    "day_profit": {
+      "0": -1682.5,
+      "1": -2484.0,
+      "2": 2058.0
+    },
+    "total_profit": -2108.5
   },
-  "gated": {
+  "v12b_gated": {
     "submission_trade_count": 143,
     "submission_filled_abs_qty": 2552,
     "submission_by_symbol": {
@@ -45,6 +51,44 @@
         "trade_count": 46,
         "filled_abs_qty": 900
       }
-    }
+    },
+    "day_profit": {
+      "0": -1214.0,
+      "1": -6767.0,
+      "2": -16668.0
+    },
+    "total_profit": -24649.0
+  },
+  "v12c_soft_weighted": {
+    "submission_trade_count": 1162,
+    "submission_filled_abs_qty": 13426,
+    "submission_by_symbol": {
+      "VEV_5000": {
+        "trade_count": 149,
+        "filled_abs_qty": 1087
+      },
+      "VEV_5100": {
+        "trade_count": 114,
+        "filled_abs_qty": 1063
+      },
+      "VEV_5200": {
+        "trade_count": 742,
+        "filled_abs_qty": 9476
+      },
+      "VEV_5300": {
+        "trade_count": 77,
+        "filled_abs_qty": 900
+      },
+      "VEV_5400": {
+        "trade_count": 80,
+        "filled_abs_qty": 900
+      }
+    },
+    "day_profit": {
+      "0": -6015.0,
+      "1": -12044.0,
+      "2": -27358.0
+    },
+    "total_profit": -45417.0
   }
 }

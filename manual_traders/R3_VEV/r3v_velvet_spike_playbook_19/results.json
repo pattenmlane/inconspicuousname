@@ -160,5 +160,47 @@
         }
       }
     }
+  },
+  {
+    "iteration": 14,
+    "trader_file": "trader_v12c_spline_soft_weighted.py",
+    "strategy_description": "Family12 adjusted variant after duplicate-check: soft liquidity-weighted cubic spline calibration (all cluster strikes weighted by quality) + dynamic execution quality floor (burst stricter). Distinct from v12b hard gated universe.",
+    "total_profit": -27358,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v12c_spline_soft_weighted.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v12c_soft_weighted.json",
+    "run_log_path": "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v12c_soft_weighted.json",
+    "run_profit_summary_path": "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v12_cli_profit_summary.json",
+    "fill_summary": {
+      "submission_trade_count": 1162,
+      "submission_filled_abs_qty": 13426,
+      "submission_by_symbol": {
+        "VEV_5000": {
+          "trade_count": 149,
+          "filled_abs_qty": 1087
+        },
+        "VEV_5100": {
+          "trade_count": 114,
+          "filled_abs_qty": 1063
+        },
+        "VEV_5200": {
+          "trade_count": 742,
+          "filled_abs_qty": 9476
+        },
+        "VEV_5300": {
+          "trade_count": 77,
+          "filled_abs_qty": 900
+        },
+        "VEV_5400": {
+          "trade_count": 80,
+          "filled_abs_qty": 900
+        }
+      },
+      "day_profit": {
+        "0": -6015.0,
+        "1": -12044.0,
+        "2": -27358.0
+      },
+      "total_profit": -45417.0
+    }
   }
 ]

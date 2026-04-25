@@ -1,12 +1,12 @@
 [
   {
     "iteration": 0,
-    "analysis_description": "Round 3 tape IV smile diagnostics: Black–Scholes call implied vol from mids (r=0, T=dte_eff/365 with dte_eff from round3work/plotting/original_method/combined_analysis/plot_iv_smile_round3.py — aligns round3description.txt mapping CSV historical day 0→DTE 8 at open, 1→7, 2→6, plus intraday DTE wind-down). On 500 random timestamps per day, compared RMSE of fitted IV vs market IV for quadratic smile fit on closest 3 vs 6 strikes vs flat ATM IV; recorded median top-of-book spread width in ticks for VEV and extract.",
+    "analysis_description": "Round 3 tape IV smile diagnostics: Black\u2013Scholes call implied vol from mids (r=0, T=dte_eff/365 with dte_eff from round3work/plotting/original_method/combined_analysis/plot_iv_smile_round3.py \u2014 aligns round3description.txt mapping CSV historical day 0\u2192DTE 8 at open, 1\u21927, 2\u21926, plus intraday DTE wind-down). On 500 random timestamps per day, compared RMSE of fitted IV vs market IV for quadratic smile fit on closest 3 vs 6 strikes vs flat ATM IV; recorded median top-of-book spread width in ticks for VEV and extract.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/local_smile_iv_rmse.json",
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_local_smile.py"
     ],
-    "used_to_decide": "Median IV RMSE vs mids was lower for k=6 than k=3 on days 0–2 (e.g. day0: k6 0.089 vs k3 0.161 vs flat 0.121), supporting fitting the smile on more local strikes for surface accuracy; small sweep trader_v1 (k=3) underperformed trader_v0 (k=6) in backtest total PnL (33466 vs 36834), so v0 kept. Spread median 3 ticks on vouchers/extract — informs MM_EDGE=2 as inside typical spread."
+    "used_to_decide": "Median IV RMSE vs mids was lower for k=6 than k=3 on days 0\u20132 (e.g. day0: k6 0.089 vs k3 0.161 vs flat 0.121), supporting fitting the smile on more local strikes for surface accuracy; small sweep trader_v1 (k=3) underperformed trader_v0 (k=6) in backtest total PnL (33466 vs 36834), so v0 kept. Spread median 3 ticks on vouchers/extract \u2014 informs MM_EDGE=2 as inside typical spread."
   },
   {
     "iteration": 2,
@@ -15,29 +15,29 @@
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/local_smile_greeks.json",
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_local_smile_greeks.py"
     ],
-    "used_to_decide": "Across days 0–2, k=6 had much tighter p90 abs mispricing than k=3 (~1.53/2.33/2.01 ticks vs ~4.49/4.40/3.75), and vega concentrated around 5100-5400 (median abs vega often ~170-290) while far wings were near zero. Implemented vega-scaled quote size/edge in trader_v2 so central strikes quote larger/tighter and wings smaller/wider while preserving closest-k smile thesis."
+    "used_to_decide": "Across days 0\u20132, k=6 had much tighter p90 abs mispricing than k=3 (~1.53/2.33/2.01 ticks vs ~4.49/4.40/3.75), and vega concentrated around 5100-5400 (median abs vega often ~170-290) while far wings were near zero. Implemented vega-scaled quote size/edge in trader_v2 so central strikes quote larger/tighter and wings smaller/wider while preserving closest-k smile thesis."
   },
   {
     "iteration": 3,
-    "analysis_description": "Per-product median top-of-book spread (ask1−bid1) on full tape for days 0–2, to relate quote edges to typical liquidity by strike. Deep OTM/ITM (e.g. VEV_4000/4500) show 16–21 tick medians; near-money cluster 5100–5200 are 3–4 ticks. Extract and hydrogel medians 5 and 16 ticks. Same CSV columns as backtester tape.",
+    "analysis_description": "Per-product median top-of-book spread (ask1\u2212bid1) on full tape for days 0\u20132, to relate quote edges to typical liquidity by strike. Deep OTM/ITM (e.g. VEV_4000/4500) show 16\u201321 tick medians; near-money cluster 5100\u20135200 are 3\u20134 ticks. Extract and hydrogel medians 5 and 16 ticks. Same CSV columns as backtester tape.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/spread_median_by_product.json",
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_spread_by_strike.py"
     ],
-    "used_to_decide": "Wing strikes are very wide; central strikes match prior ~3-tick context. Swept v3: lower BASE_EDGE_VEV (2) and faster smile refit (50 ticks) on top of v2 vega rules — backtest total PnL improved vs v2 (39307 vs 37230), so v3 is the new best; v2 remains a simpler parent if we need a fallback."
+    "used_to_decide": "Wing strikes are very wide; central strikes match prior ~3-tick context. Swept v3: lower BASE_EDGE_VEV (2) and faster smile refit (50 ticks) on top of v2 vega rules \u2014 backtest total PnL improved vs v2 (39307 vs 37230), so v3 is the new best; v2 remains a simpler parent if we need a fallback."
   },
   {
     "iteration": 4,
-    "analysis_description": "IV level vs |log-moneyness| buckets on Round 3 tapes: bisection IV from mids, r=0, T per dte_eff/365. Median IV rises sharply in the wing bucket (0.10,0.15] and (0.15,1.0] vs near-ATM (0,0.03] and (0.03,0.06] (~0.24 vs ~0.37–0.65), consistent with a steep implied smile at extreme strikes. Output: iv_vs_log_moneyness.json.",
+    "analysis_description": "IV level vs |log-moneyness| buckets on Round 3 tapes: bisection IV from mids, r=0, T per dte_eff/365. Median IV rises sharply in the wing bucket (0.10,0.15] and (0.15,1.0] vs near-ATM (0,0.03] and (0.03,0.06] (~0.24 vs ~0.37\u20130.65), consistent with a steep implied smile at extreme strikes. Output: iv_vs_log_moneyness.json.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/iv_vs_log_moneyness.json",
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_iv_vs_moneyness.py"
     ],
-    "used_to_decide": "Motivated log-moneyness-based quote widening on wings (v4/v5) in addition to vega, since both spread width and market IV level rise off spot. v4 (two-tier bonus) backtest 39036 < v3 39307; v5 (single +2 if |log m|>0.12) 39237 still < v3. Keep v3 as production line; v5 kept as simpler wing tweak than v4. No pivot off local closest-k surface thesis—only microstructure of edges."
+    "used_to_decide": "Motivated log-moneyness-based quote widening on wings (v4/v5) in addition to vega, since both spread width and market IV level rise off spot. v4 (two-tier bonus) backtest 39036 < v3 39307; v5 (single +2 if |log m|>0.12) 39237 still < v3. Keep v3 as production line; v5 kept as simpler wing tweak than v4. No pivot off local closest-k surface thesis\u2014only microstructure of edges."
   },
   {
     "iteration": 6,
-    "analysis_description": "Link between extract level and near-strike implied vol: at each subsampled timestamp, take median IV of the three option mids with smallest |K-S| (bisection IV, r=0, T=dte_eff/365). Spearman correlation between VELVETFRUIT_EXTRACT mid and that near-strike IV: day0 rho≈-0.20, day1≈-0.36, day2≈+0.53 (n=2000 each). Sign and strength vary by historical day, so a simple S→IV fair overlay is not stable; local smile from strip remains the primary handle.",
+    "analysis_description": "Link between extract level and near-strike implied vol: at each subsampled timestamp, take median IV of the three option mids with smallest |K-S| (bisection IV, r=0, T=dte_eff/365). Spearman correlation between VELVETFRUIT_EXTRACT mid and that near-strike IV: day0 rho\u2248-0.20, day1\u2248-0.36, day2\u2248+0.53 (n=2000 each). Sign and strength vary by historical day, so a simple S\u2192IV fair overlay is not stable; local smile from strip remains the primary handle.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/iv_vs_extract_spearman.json",
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_iv_vs_extract.py"
@@ -55,12 +55,12 @@
   },
   {
     "iteration": 8,
-    "analysis_description": "Greek: Black–Scholes call theta (r=0, T=dte_eff/365) at tape-implied IV per row; median |theta| by strike over full tape. Time-decay magnitude peaks around 5200-5300 (e.g. day0 median |theta| ~1680-1690) and is much lower on far wings — consistent with prior vega concentration near spot.",
+    "analysis_description": "Greek: Black\u2013Scholes call theta (r=0, T=dte_eff/365) at tape-implied IV per row; median |theta| by strike over full tape. Time-decay magnitude peaks around 5200-5300 (e.g. day0 median |theta| ~1680-1690) and is much lower on far wings \u2014 consistent with prior vega concentration near spot.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/theta_median_by_strike.json",
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_theta_by_strike.py"
     ],
-    "used_to_decide": "Motivated a refit cadence test: trader_v8 uses REFIT_EVERY=40 vs v3=50, else identical. Backtest total 37603 < v3 39307 — more frequent smile refit did not help. v3 remains best; if retesting refit, use smaller deltas or adjust EMA(S) smoothing instead of only the smile loop."
+    "used_to_decide": "Motivated a refit cadence test: trader_v8 uses REFIT_EVERY=40 vs v3=50, else identical. Backtest total 37603 < v3 39307 \u2014 more frequent smile refit did not help. v3 remains best; if retesting refit, use smaller deltas or adjust EMA(S) smoothing instead of only the smile loop."
   },
   {
     "iteration": 9,
@@ -108,23 +108,43 @@
   },
   {
     "iteration": 13,
-    "analysis_description": "Pooled (days 0–2) |dU| shock vs |dV| by strike: shock = |dU| at pooled p90 (2.0). For each VEV, report mean |dV| on shock vs calm rows, ratio, and Pearson corr at lags -3..3 between dU and dV (voucher_lead_lag_shock.json). Complements OLS betas: contemporaneous lag-0 correlation is very high in 5000–5200 (~0.72–0.75), still ~0.62 at 5300, smaller at 4000/5500; non-zero lags are negligible. Mean |dV| on shocks scales down the chain (e.g. ~1.75 at 4000 vs ~0.12 at 5500) with a roughly uniform 2.2x shock/calm ratio where defined.",
+    "analysis_description": "Pooled (days 0\u20132) |dU| shock vs |dV| by strike: shock = |dU| at pooled p90 (2.0). For each VEV, report mean |dV| on shock vs calm rows, ratio, and Pearson corr at lags -3..3 between dU and dV (voucher_lead_lag_shock.json). Complements OLS betas: contemporaneous lag-0 correlation is very high in 5000\u20135200 (~0.72\u20130.75), still ~0.62 at 5300, smaller at 4000/5500; non-zero lags are negligible. Mean |dV| on shocks scales down the chain (e.g. ~1.75 at 4000 vs ~0.12 at 5500) with a roughly uniform 2.2x shock/calm ratio where defined.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/voucher_lead_lag_shock.json",
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_voucher_lead_lag_shock.py",
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v13.txt",
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v13.json"
     ],
-    "used_to_decide": "trader_v13 tests a parameter grid on the v12 shock: tier extra edge and size by strike using absolute mean |dV| on shock rows (larger for low strikes, tiny for 5500+). Backtest 39906, below v12 39918 — overshooting widen on 4000/4500 and extra cuts likely hurt. Best line remains v12; tiered absolutes are not a clear win over a flat +1 / x0.88 when combined with vega+regime."
+    "used_to_decide": "trader_v13 tests a parameter grid on the v12 shock: tier extra edge and size by strike using absolute mean |dV| on shock rows (larger for low strikes, tiny for 5500+). Backtest 39906, below v12 39918 \u2014 overshooting widen on 4000/4500 and extra cuts likely hurt. Best line remains v12; tiered absolutes are not a clear win over a flat +1 / x0.88 when combined with vega+regime."
   },
   {
     "iteration": 14,
-    "analysis_description": "Same voucher_lead_lag_shock.json evidence; grid point two: keep v12 shock magnitudes but apply only to strikes 5000–5300 (highest same-tick corr(dU,dV)); leave deep ITM/OTM on regime+vega-only quoting during shocks.",
+    "analysis_description": "Same voucher_lead_lag_shock.json evidence; grid point two: keep v12 shock magnitudes but apply only to strikes 5000\u20135300 (highest same-tick corr(dU,dV)); leave deep ITM/OTM on regime+vega-only quoting during shocks.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/voucher_lead_lag_shock.json",
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v14.txt",
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v14.json"
     ],
-    "used_to_decide": "trader_v14: shock overlay only on 5000–5300. Backtest 39915, still below v12 39918. Suggests the flat extract-wide v12 adjustment (including wings) captures useful protection or fill mix; gating the overlay to the high-corr core alone is not an improvement. Retain v12 as best; deep-wing behavior left for a future test (e.g. optional wing-only no-shock) if combined with new tape stats."
+    "used_to_decide": "trader_v14: shock overlay only on 5000\u20135300. Backtest 39915, still below v12 39918. Suggests the flat extract-wide v12 adjustment (including wings) captures useful protection or fill mix; gating the overlay to the high-corr core alone is not an improvement. Retain v12 as best; deep-wing behavior left for a future test (e.g. optional wing-only no-shock) if combined with new tape stats."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "New contract-level shock propagation with IV/Greek thread (shock_greek_weighted.json): per day and strike compute |dV| shock/calm for |dU|>=p90 and a Greek-weighted shock energy score mean|dV|_shock*(1+median_vega/300), where median_vega is from BS tape-IV inversion every 25 ticks. Energy is highest at 5100, then 5000/5200/4000, and decays sharply to 5400/5500; shock/calm ratio remains ~2.2x broadly.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/shock_greek_weighted.json",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_shock_greek_weighted.py",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v15.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v15.json"
+    ],
+    "used_to_decide": "Implemented v15 as a targeted shock overlay instead of global v12: apply +1 edge only on high-energy strikes (5000/5100/5200) plus near-adjacent 4500/5300, and soften size reductions (core x0.92, near x0.95) to avoid over-throttling flow. This improved to 39945 (new best, +27 vs v12). Companion grid point v16 (core-only 5000-5300, x0.90) scored 39915, indicating 4500 inclusion and gentler cuts helped."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "Parameter-sweep companion to iteration 15 from the same shock_greek_weighted evidence: stricter core-only gating (5000-5300) and uniform core size x0.90.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v16.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v16.json"
+    ],
+    "used_to_decide": "v16 underperformed v15 and matched v14-like behavior (~39915), reinforcing that a slightly broader selective overlay with milder size suppression is better than very narrow core-only gating under worse fills."
   }
 ]

@@ -1,0 +1,230 @@
+{
+  "method": "Per day, shock=|dU|>=p90. For each strike compute |dV| shock/calm and a greek-weighted shock energy = mean|dV|_shock*(1+median_vega/300). Tape IV from BS inversion sampled every 25 ticks for stability.",
+  "by_day": {
+    "0": {
+      "shock_abs_ds_p90": 2.0,
+      "per_strike": {
+        "4000": {
+          "mean_abs_dv_shock": 1.766721044045677,
+          "mean_abs_dv_calm": 0.7941411147839964,
+          "shock_over_calm": 2.224694089193731,
+          "median_vega_proxy": 14.916989485482826,
+          "shock_energy_score": 1.8545682415050457
+        },
+        "4500": {
+          "mean_abs_dv_shock": 1.5489396411092986,
+          "mean_abs_dv_calm": 0.7674683688589992,
+          "shock_over_calm": 2.018245577224399,
+          "median_vega_proxy": 10.793393548024424,
+          "shock_energy_score": 1.6046673582047264
+        },
+        "5000": {
+          "mean_abs_dv_shock": 1.433931484502447,
+          "mean_abs_dv_calm": 0.6254416961130742,
+          "shock_over_calm": 2.2926701136395056,
+          "median_vega_proxy": 111.13231085060124,
+          "shock_energy_score": 1.9651185494164136
+        },
+        "5100": {
+          "mean_abs_dv_shock": 1.2292006525285482,
+          "mean_abs_dv_calm": 0.5336258976404878,
+          "shock_over_calm": 2.303487626750604,
+          "median_vega_proxy": 213.88103678142352,
+          "shock_energy_score": 2.1055430191125755
+        },
+        "5200": {
+          "mean_abs_dv_shock": 0.9457585644371941,
+          "mean_abs_dv_calm": 0.40026216801550213,
+          "shock_over_calm": 2.3628477533269265,
+          "median_vega_proxy": 288.42353321030384,
+          "shock_energy_score": 1.8550219868334619
+        },
+        "5300": {
+          "mean_abs_dv_shock": 0.6027732463295269,
+          "mean_abs_dv_calm": 0.2596603214407842,
+          "shock_over_calm": 2.321391435491194,
+          "median_vega_proxy": 287.76086620789056,
+          "shock_energy_score": 1.1809550846319496
+        },
+        "5400": {
+          "mean_abs_dv_shock": 0.3132137030995106,
+          "mean_abs_dv_calm": 0.12566966830046733,
+          "shock_over_calm": 2.4923572038929764,
+          "median_vega_proxy": 206.48818143937638,
+          "shock_energy_score": 0.5287967962825463
+        },
+        "5500": {
+          "mean_abs_dv_shock": 0.14763458401305057,
+          "mean_abs_dv_calm": 0.0599566852843953,
+          "shock_over_calm": 2.4623540029401,
+          "median_vega_proxy": 123.81254171528974,
+          "shock_energy_score": 0.20856462765216813
+        },
+        "6000": {
+          "mean_abs_dv_shock": 0.0,
+          "mean_abs_dv_calm": 0.0,
+          "shock_over_calm": null,
+          "median_vega_proxy": 12.3038162645116,
+          "shock_energy_score": 0.0
+        },
+        "6500": {
+          "mean_abs_dv_shock": 0.0,
+          "mean_abs_dv_calm": 0.0,
+          "shock_over_calm": null,
+          "median_vega_proxy": 8.829988926767381,
+          "shock_energy_score": 0.0
+        }
+      }
+    },
+    "1": {
+      "shock_abs_ds_p90": 2.0,
+      "per_strike": {
+        "4000": {
+          "mean_abs_dv_shock": 1.7505782575173476,
+          "mean_abs_dv_calm": 0.8067111008963457,
+          "shock_over_calm": 2.1700188029794814,
+          "median_vega_proxy": 6.708126422938114,
+          "shock_energy_score": 1.7897219250662577
+        },
+        "4500": {
+          "mean_abs_dv_shock": 1.5223592906707788,
+          "mean_abs_dv_calm": 0.7764881636405424,
+          "shock_over_calm": 1.9605698605027553,
+          "median_vega_proxy": 10.107812647202907,
+          "shock_energy_score": 1.5736516989768754
+        },
+        "5000": {
+          "mean_abs_dv_shock": 1.420585967617579,
+          "mean_abs_dv_calm": 0.636635256262928,
+          "shock_over_calm": 2.231396947691006,
+          "median_vega_proxy": 88.83788749561499,
+          "shock_energy_score": 1.8412588221811117
+        },
+        "5100": {
+          "mean_abs_dv_shock": 1.2478797224363918,
+          "mean_abs_dv_calm": 0.5475752700528614,
+          "shock_over_calm": 2.2789190649824724,
+          "median_vega_proxy": 185.3394495530954,
+          "shock_energy_score": 2.0188175253191596
+        },
+        "5200": {
+          "mean_abs_dv_shock": 0.9498843484965305,
+          "mean_abs_dv_calm": 0.41392783268214206,
+          "shock_over_calm": 2.2948066631362596,
+          "median_vega_proxy": 269.18050061058165,
+          "shock_energy_score": 1.8021854966647046
+        },
+        "5300": {
+          "mean_abs_dv_shock": 0.5828835774865073,
+          "mean_abs_dv_calm": 0.26166398529073776,
+          "shock_over_calm": 2.227603377816244,
+          "median_vega_proxy": 269.16996078496794,
+          "shock_energy_score": 1.105866076467324
+        },
+        "5400": {
+          "mean_abs_dv_shock": 0.2629144178874325,
+          "mean_abs_dv_calm": 0.12301769708113078,
+          "shock_over_calm": 2.1372080938406706,
+          "median_vega_proxy": 186.10296445371236,
+          "shock_energy_score": 0.4260115931090103
+        },
+        "5500": {
+          "mean_abs_dv_shock": 0.11912104857363146,
+          "mean_abs_dv_calm": 0.05245920478051023,
+          "shock_over_calm": 2.270736833927143,
+          "median_vega_proxy": 107.25101888811307,
+          "shock_energy_score": 0.1617072280087727
+        },
+        "6000": {
+          "mean_abs_dv_shock": 0.0,
+          "mean_abs_dv_calm": 0.0,
+          "shock_over_calm": null,
+          "median_vega_proxy": 11.493832235297669,
+          "shock_energy_score": 0.0
+        },
+        "6500": {
+          "mean_abs_dv_shock": 0.0,
+          "mean_abs_dv_calm": 0.0,
+          "shock_over_calm": null,
+          "median_vega_proxy": 8.21849142279515,
+          "shock_energy_score": 0.0
+        }
+      }
+    },
+    "2": {
+      "shock_abs_ds_p90": 2.0,
+      "per_strike": {
+        "4000": {
+          "mean_abs_dv_shock": 1.7409191994069682,
+          "mean_abs_dv_calm": 0.7927167630057803,
+          "shock_over_calm": 2.196142784726597,
+          "median_vega_proxy": 6.060749913469651,
+          "shock_energy_score": 1.7760901190308462
+        },
+        "4500": {
+          "mean_abs_dv_shock": 1.515567086730912,
+          "mean_abs_dv_calm": 0.7727167630057803,
+          "shock_over_calm": 1.9613487881840797,
+          "median_vega_proxy": 9.24819157513466,
+          "shock_energy_score": 1.5622879359410993
+        },
+        "5000": {
+          "mean_abs_dv_shock": 1.4288361749444032,
+          "mean_abs_dv_calm": 0.6469364161849711,
+          "shock_over_calm": 2.2086191767814665,
+          "median_vega_proxy": 63.14599841529413,
+          "shock_energy_score": 1.7295871310735838
+        },
+        "5100": {
+          "mean_abs_dv_shock": 1.293921423276501,
+          "mean_abs_dv_calm": 0.5673988439306359,
+          "shock_over_calm": 2.2804442362146973,
+          "median_vega_proxy": 150.74342218709603,
+          "shock_energy_score": 1.9440885678961604
+        },
+        "5200": {
+          "mean_abs_dv_shock": 0.971830985915493,
+          "mean_abs_dv_calm": 0.42289017341040464,
+          "shock_over_calm": 2.2980694445513983,
+          "median_vega_proxy": 241.96941919956316,
+          "shock_energy_score": 1.7556755833225284
+        },
+        "5300": {
+          "mean_abs_dv_shock": 0.5852483320978502,
+          "mean_abs_dv_calm": 0.2622543352601156,
+          "shock_over_calm": 2.2316059390109784,
+          "median_vega_proxy": 245.36469869377692,
+          "shock_energy_score": 1.063912600985265
+        },
+        "5400": {
+          "mean_abs_dv_shock": 0.26723498888065234,
+          "mean_abs_dv_calm": 0.11578034682080925,
+          "shock_over_calm": 2.308120473107981,
+          "median_vega_proxy": 168.1765587704097,
+          "shock_energy_score": 0.4170438582573084
+        },
+        "5500": {
+          "mean_abs_dv_shock": 0.10044477390659748,
+          "mean_abs_dv_calm": 0.04589595375722543,
+          "shock_over_calm": 2.1885322274359402,
+          "median_vega_proxy": 91.30111698618038,
+          "shock_energy_score": 0.13101384075025313
+        },
+        "6000": {
+          "mean_abs_dv_shock": 0.0,
+          "mean_abs_dv_calm": 0.0,
+          "shock_over_calm": null,
+          "median_vega_proxy": 10.513079723475922,
+          "shock_energy_score": 0.0
+        },
+        "6500": {
+          "mean_abs_dv_shock": 0.0,
+          "mean_abs_dv_calm": 0.0,
+          "shock_over_calm": null,
+          "median_vega_proxy": 7.547638380051227,
+          "shock_energy_score": 0.0
+        }
+      }
+    }
+  }
+}

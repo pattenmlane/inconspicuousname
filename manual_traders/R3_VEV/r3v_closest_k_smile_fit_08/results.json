@@ -42,7 +42,7 @@
   {
     "iteration": 5,
     "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v5.py",
-    "strategy_description": "Parent v3: lighter single-step wing rule — +2 edge ticks only if |log(K/S)|>0.12 (avoids widening the 0.10–0.15 moneyness band that still shows meaningful volume). Simpler than v4; still not beating v3 on total PnL.",
+    "strategy_description": "Parent v3: lighter single-step wing rule \u2014 +2 edge ticks only if |log(K/S)|>0.12 (avoids widening the 0.10\u20130.15 moneyness band that still shows meaningful volume). Simpler than v4; still not beating v3 on total PnL.",
     "total_profit": 39237,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v5.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
@@ -50,7 +50,7 @@
   {
     "iteration": 6,
     "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v6.py",
-    "strategy_description": "Parent v3: grid on closest-k for local surface fit only — CLOSEST_K=5 (between k=3 and k=6). Same vega/edge, REFIT_EVERY, extract/hydrogel as v3. Backtest below v3; k=6 remains best in this line.",
+    "strategy_description": "Parent v3: grid on closest-k for local surface fit only \u2014 CLOSEST_K=5 (between k=3 and k=6). Same vega/edge, REFIT_EVERY, extract/hydrogel as v3. Backtest below v3; k=6 remains best in this line.",
     "total_profit": 37412,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v6.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
@@ -66,7 +66,7 @@
   {
     "iteration": 8,
     "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v8.py",
-    "strategy_description": "Parent v3 (best PnL): only REFIT_EVERY=40 (vs 50) for slightly more frequent local smile refits. Same k=6, vega sizing, edges, extract/hydrogel. Theta tape check (see analysis) showed time-decay risk concentrated near 5200-5300; this sweep tests whether more frequent IV re-fit helps — it did not beat v3.",
+    "strategy_description": "Parent v3 (best PnL): only REFIT_EVERY=40 (vs 50) for slightly more frequent local smile refits. Same k=6, vega sizing, edges, extract/hydrogel. Theta tape check (see analysis) showed time-decay risk concentrated near 5200-5300; this sweep tests whether more frequent IV re-fit helps \u2014 it did not beat v3.",
     "total_profit": 37603,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v8.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
@@ -107,7 +107,7 @@
   {
     "iteration": 12,
     "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v12.py",
-    "strategy_description": "Parent v9: same RV-IV 3-regime + local smile. Add extract shock overlay: when |d extract mid| >= 2 (Round3 tape p90), add 1 tick to voucher edge and scale size x0.88 — motivated by higher mean |dIV| at ATM after shocks and corr(|dS|,|dIV|) ~0.26 (atm_iv_dS_lead_lag.json).",
+    "strategy_description": "Parent v9: same RV-IV 3-regime + local smile. Add extract shock overlay: when |d extract mid| >= 2 (Round3 tape p90), add 1 tick to voucher edge and scale size x0.88 \u2014 motivated by higher mean |dIV| at ATM after shocks and corr(|dS|,|dIV|) ~0.26 (atm_iv_dS_lead_lag.json).",
     "total_profit": 39918,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v12.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis > manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v12.txt 2>&1",
@@ -118,7 +118,7 @@
   {
     "iteration": 13,
     "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v13.py",
-    "strategy_description": "Parent v12. Parameter sweep from voucher_lead_lag_shock.json: on |dU|>=2 shock, add strike-tiered extra edge (+2/5000, +1/5100-5300, 0/5400+5000) and size mult (0.82 / 0.88 / 0.92 / 0.95) by absolute mean |dV| on shock rows — heavier where voucher jump size is largest. Tests whether scaling the flat v12 shock helps.",
+    "strategy_description": "Parent v12. Parameter sweep from voucher_lead_lag_shock.json: on |dU|>=2 shock, add strike-tiered extra edge (+2/5000, +1/5100-5300, 0/5400+5000) and size mult (0.82 / 0.88 / 0.92 / 0.95) by absolute mean |dV| on shock rows \u2014 heavier where voucher jump size is largest. Tests whether scaling the flat v12 shock helps.",
     "total_profit": 39906,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v13.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis > manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v13.txt 2>&1",
@@ -129,12 +129,34 @@
   {
     "iteration": 14,
     "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v14.py",
-    "strategy_description": "Parent v12. Second grid point: same +1 tick and x0.88 as v12, but only on strikes 5000–5300 where pooled same-tick corr(dU,dV) is strongest (~0.62–0.75); other strikes skip shock overlay. Wing strikes still use regime+vega only.",
+    "strategy_description": "Parent v12. Second grid point: same +1 tick and x0.88 as v12, but only on strikes 5000\u20135300 where pooled same-tick corr(dU,dV) is strongest (~0.62\u20130.75); other strikes skip shock overlay. Wing strikes still use regime+vega only.",
     "total_profit": 39915,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v14.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis > manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v14.txt 2>&1",
     "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v14.txt",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v14.json"
+  },
+  {
+    "iteration": 15,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v15.py",
+    "strategy_description": "Parent v12. Shock-energy/Greek-informed selective overlay from shock_greek_weighted: on |dU|>=2 only strikes {5000,5100,5200} plus near {4500,5300} get +1 edge; size cuts softened vs v12 (core x0.92, near x0.95). Other strikes keep regime+vega only. Tests preserving protection where shock_energy is highest while restoring fills elsewhere.",
+    "total_profit": 39945,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v15.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis > manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v15.txt 2>&1",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v15.txt",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v15.json"
+  },
+  {
+    "iteration": 16,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v16.py",
+    "strategy_description": "Parent v12. Narrow core-only variant: on |dU|>=2 only strikes {5000,5100,5200,5300} get +1 edge and softer size cut x0.90; no shock action on 4000/4500/5400+.",
+    "total_profit": 39915,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v16.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis > manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v16.txt 2>&1",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v16.txt",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v16.json"
   }
 ]

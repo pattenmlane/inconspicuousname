@@ -86,5 +86,13 @@
     "total_profit": 11664,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v10.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 11,
+    "trader_file": "trader_v11.py",
+    "strategy_description": "Identical to v9 (best PnL 11664); iteration 11 tried extract hedge beta 0.25/0.4, EXTRACT_HALF 2.2/2.7, BASE_HALF 1.1/1.3, IV fit weight 1/sqrt(spread) \u2014 no improvement; v11 is labeled frozen best copy.",
+    "total_profit": 11664,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v11.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

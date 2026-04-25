@@ -74,5 +74,13 @@
       "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/analysis_outputs/iter5_vega_theta_by_day_atm6.json"
     ],
     "used_to_decide": "v10 ties v9 (11664). Tie-break keeps v9 as preferred parent due to lower complexity."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "IV vs extract (co-movement): BS IV from mid for VEV_5300 vs log return of VELVETFRUIT_EXTRACT mid, step 200, same T; Pearson corr of log(S) with delta(IV) per csv day. Output iter6_iv5300_vs_extract_returns.json \u2014 weak/insignificant on days 0-1; day 2 corr ~0.24 (p~0.1).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/analysis_outputs/iter6_iv5300_vs_extract_returns.json"
+    ],
+    "used_to_decide": "No strong same-tick extract\u2192IV signal to justify a large model change; kept smile-MM focus. Parameter sweeps in iter 11 did not beat v9."
   }
 ]

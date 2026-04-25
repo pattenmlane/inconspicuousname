@@ -1,0 +1,20 @@
+{
+  "method": "per timestamp step 200: log returns of S and of IV(VEV_5300), same T",
+  "by_day": {
+    "0": {
+      "n": 49,
+      "corr_logS_diffIV": -0.07503805890606993,
+      "p_value": 0.6083501373611493
+    },
+    "1": {
+      "n": 49,
+      "corr_logS_diffIV": -0.10760620058594096,
+      "p_value": 0.461767756740192
+    },
+    "2": {
+      "n": 49,
+      "corr_logS_diffIV": 0.23855017887478092,
+      "p_value": 0.09880587704036313
+    }
+  }
+}

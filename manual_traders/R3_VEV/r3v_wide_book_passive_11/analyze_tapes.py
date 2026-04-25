@@ -78,6 +78,7 @@ def main():
         T = tte_days / 365.0
         by_ts: dict[int, dict] = {}
         extract_mid: dict[int, float] = {}
+        hydro_spreads: list[float] = []
         with open(path, newline="") as f:
             r = csv.DictReader(f, delimiter=";")
             for row in r:
@@ -89,7 +90,9 @@ def main():
                     continue
                 mid = (bp + ap) / 2
                 sp = ap - bp
-                if prod == "VELVETFRUIT_EXTRACT":
+                if prod == "HYDROGEL_PACK":
+                    hydro_spreads.append(sp)
+                elif prod == "VELVETFRUIT_EXTRACT":
                     extract_mid[ts] = mid
                 elif prod in STRIKE:
                     if ts not in by_ts:
@@ -150,10 +153,17 @@ def main():
             "iv_4000_minus_4500_mean": sum(iv_skews) / len(iv_skews) if iv_skews else None,
             "n_ticks": len(iv_skews),
         }
+        hs = sorted(hydro_spreads)
+        hydro_payload = {
+            "spread_mean": sum(hydro_spreads) / len(hydro_spreads) if hydro_spreads else None,
+            "spread_median": hs[len(hs) // 2] if hs else None,
+            "n_ticks": len(hydro_spreads),
+        }
         out[f"day_{day}"] = {
             "TTE_calendar_days": tte_days,
             "T_years": T,
             "iv_skew_pair": skew_payload,
+            "hydrogel_pack": hydro_payload,
             "per_vev": day_stats,
         }
     with open(

@@ -54,5 +54,15 @@
       "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter7_focused.json"
     ],
     "used_to_decide": "Shallower passive placement (4000:+4, 4500:+5) materially improved fills and total PnL while preserving wide-book passive behavior; v7 improves 29,147 -> 30,076."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "VEV Greek thread unchanged (BS IV/delta/vega/gamma/theta + IV(4000)-IV(4500) skew in tape_vev4000_4500_stats.json). Added HYDROGEL_PACK order-book spread rollups in analyze_tapes.py: per day k, mean and median of ask1-bid1 across all hydro ticks; mean ~15.70-15.74 and median 16 on days 0-2, supporting a hydro spread gate at or just below 16. Backtest grid on v7 template: HYDRO_WIDE_MIN in {14,15,16,17} by HYDRO_PASSIVE_SIZE in {1,2,3} (sweep_iter8_hydro.json).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/analyze_tapes.py",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/tape_vev4000_4500_stats.json",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter8_hydro.json"
+    ],
+    "used_to_decide": "Median hydro spread is 16, so a gate of 16 leaves roughly half the ticks ineligible; lowering HYDRO_WIDE_MIN to 15 and raising passive size 2->3 (still <<200 limit) raises hydro PnL in the backtest; merged three-day total 30,076 -> 36,500. Kept 15 over 14 to align with the VEV wide-spread threshold."
   }
 ]

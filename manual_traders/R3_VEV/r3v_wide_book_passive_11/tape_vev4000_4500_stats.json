@@ -6,6 +6,11 @@
       "iv_4000_minus_4500_mean": 0.32697565872948964,
       "n_ticks": 666
     },
+    "hydrogel_pack": {
+      "spread_mean": 15.701,
+      "spread_median": 16.0,
+      "n_ticks": 10000
+    },
     "per_vev": {
       "VEV_4000": {
         "spread_mean": 20.7654,
@@ -38,6 +43,11 @@
       "iv_4000_minus_4500_mean": 0.35621441328081266,
       "n_ticks": 664
     },
+    "hydrogel_pack": {
+      "spread_mean": 15.7264,
+      "spread_median": 16.0,
+      "n_ticks": 10000
+    },
     "per_vev": {
       "VEV_4000": {
         "spread_mean": 20.7745,
@@ -69,6 +79,11 @@
     "iv_skew_pair": {
       "iv_4000_minus_4500_mean": 0.38369056743995306,
       "n_ticks": 735
+    },
+    "hydrogel_pack": {
+      "spread_mean": 15.735,
+      "spread_median": 16.0,
+      "n_ticks": 10000
     },
     "per_vev": {
       "VEV_4000": {

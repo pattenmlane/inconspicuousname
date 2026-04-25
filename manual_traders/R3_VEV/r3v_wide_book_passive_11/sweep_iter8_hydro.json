@@ -1,0 +1,24 @@
+{
+  "parent": "trader_v7.py",
+  "grid": "HYDRO_WIDE_MIN in {14,15,16,17} x HYDRO_PASSIVE_SIZE in {1,2,3}, v7 template otherwise",
+  "round3_worse_fill_total_profit": {
+    "14_1": 22698,
+    "14_2": 30450,
+    "14_3": 36500,
+    "15_1": 22698,
+    "15_2": 30450,
+    "15_3": 36500,
+    "16_1": 22511,
+    "16_2": 30076,
+    "16_3": 36053,
+    "17_1": 15318,
+    "17_2": 15690,
+    "17_3": 16026
+  },
+  "best": {
+    "HYDRO_WIDE_MIN": 14,
+    "HYDRO_PASSIVE_SIZE": 3,
+    "total_profit": 36500,
+    "note": "HYDRO_WIDE_MIN 15 with size 3 ties 36,500; trader_v8 uses 15 to align with VEV WIDE_SPREAD_MIN"
+  }
+}

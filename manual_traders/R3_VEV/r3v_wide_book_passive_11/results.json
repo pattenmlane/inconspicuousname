@@ -62,5 +62,13 @@
     "total_profit": 30076,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-out"
+  },
+  {
+    "iteration": 8,
+    "trader_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v8.py",
+    "strategy_description": "Parent v7. Tape: HYDROGEL_PACK L1 spread mean ~15.7 and median 16 (days 0-2) so prior HYDRO_WIDE_MIN=16 quoted only ~half the tape. Grid (sweep_iter8_hydro.json): HYDRO_PASSIVE_SIZE 3 and HYDRO_WIDE_MIN 15 (ties 14 at 36,500; use 15 to match VEV WIDE_SPREAD_MIN). VEV deep passive and extract delta+vega skew unchanged.",
+    "total_profit": 36500,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v8.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-out"
   }
 ]

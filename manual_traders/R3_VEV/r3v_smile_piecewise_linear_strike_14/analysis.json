@@ -10,8 +10,16 @@
   },
   {
     "iteration": 1,
-    "analysis_description": "Backtest attribution: v0 PnL concentrated on VEV_4000/VEV_4500 (deep OTM) while inner strikes rarely fired Frankfurt thresholds; v3 EMA-S reduced noise and moved activity to VEV_5000. Grid sweep on STRIKE_5000_CAP (v6–v12) monotonically improved total PnL with cap=1 best at -265 shells vs -59385 baseline.",
+    "analysis_description": "Backtest attribution: v0 PnL concentrated on VEV_4000/VEV_4500 (deep OTM) while inner strikes rarely fired Frankfurt thresholds; v3 EMA-S reduced noise and moved activity to VEV_5000. Grid sweep on STRIKE_5000_CAP (v6\u2013v12) monotonically improved total PnL with cap=1 best at -265 shells vs -59385 baseline.",
     "analysis_outputs": [],
     "used_to_decide": "Kept PWL smile thesis; added EMA underlying, skip 4000/4500, merge levels, cap wing and 5000 strike size; best cap=1 (trader_v12)."
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Follow-up Greek thread: assessed incremental delta-hedging of net voucher exposure with VELVETFRUIT_EXTRACT while preserving the same PWL strike smile/IV-scaling engine. Also tested inferred csv_day gating variants. Hedge factors swept at 0.35 and 0.60; both degraded total PnL due to extract hedge losses outweighing option improvement.",
+    "analysis_outputs": [
+      "analysis_outputs/iv_signal_quality_by_day.json"
+    ],
+    "used_to_decide": "Do not add extract delta hedge in this branch line (v15=-547, v16=-852 vs v12=-265). Keep simpler unhedged v12 as best parent; csv-day gate variants were neutral in this setup."
   }
 ]

@@ -10,7 +10,7 @@
   {
     "iteration": 1,
     "trader_file": "trader_v1.py",
-    "strategy_description": "v0 variant: trade only 5000–5500, min spread 2, stricter thresholds, vega cap 22; duplicate merge.",
+    "strategy_description": "v0 variant: trade only 5000\u20135500, min spread 2, stricter thresholds, vega cap 22; duplicate merge.",
     "total_profit": 0,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v1.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
@@ -98,9 +98,41 @@
   {
     "iteration": 12,
     "trader_file": "trader_v12.py",
-    "strategy_description": "Grid: STRIKE_5000_CAP=1; best total on Round 3 days 0–2 under worse fills.",
+    "strategy_description": "Grid: STRIKE_5000_CAP=1; best total on Round 3 days 0\u20132 under worse fills.",
     "total_profit": -265,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v12.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 13,
+    "trader_file": "trader_v13.py",
+    "strategy_description": "v12 + inferred csv_day gate ALLOWED_CSV_DAYS={0} (time-to-expiry regime filter).",
+    "total_profit": -265,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v13.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 14,
+    "trader_file": "trader_v14.py",
+    "strategy_description": "v12 + inferred csv_day gate ALLOWED_CSV_DAYS={0,1}.",
+    "total_profit": -265,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v14.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 15,
+    "trader_file": "trader_v15.py",
+    "strategy_description": "v12 + option-delta hedge into VELVETFRUIT_EXTRACT with HEDGE_FACTOR=0.35.",
+    "total_profit": -547,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v15.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 16,
+    "trader_file": "trader_v16.py",
+    "strategy_description": "v12 + option-delta hedge into VELVETFRUIT_EXTRACT with HEDGE_FACTOR=0.60.",
+    "total_profit": -852,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v16.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

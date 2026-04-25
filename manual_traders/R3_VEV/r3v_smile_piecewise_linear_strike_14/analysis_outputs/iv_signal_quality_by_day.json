@@ -1,0 +1,26 @@
+{
+  "day0_vev5000": {
+    "n": 500,
+    "mean_abs_mis": 9.773846709504142e-05,
+    "median_abs_mis": 2.275003043905599e-05,
+    "mean_vega": 111.79903832615805,
+    "p90_abs_mis": 0.00029302945731615184
+  },
+  "day1_vev5000": {
+    "n": 500,
+    "mean_abs_mis": 4.425580905081006e-05,
+    "median_abs_mis": 9.550326012686128e-06,
+    "mean_vega": 87.55890065515668,
+    "p90_abs_mis": 0.00012570360404424725
+  },
+  "day2_vev5000": {
+    "n": 499,
+    "mean_abs_mis": 2.1541066635546452e-05,
+    "median_abs_mis": 7.624543286510743e-06,
+    "mean_vega": 63.22758380476662,
+    "p90_abs_mis": 7.475595193682238e-05
+  },
+  "day0_inner_signal_rate": 0.0,
+  "day1_inner_signal_rate": 0.0,
+  "day2_inner_signal_rate": 0.0
+}

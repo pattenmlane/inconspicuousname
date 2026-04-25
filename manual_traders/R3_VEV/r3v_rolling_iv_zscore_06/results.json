@@ -133,5 +133,20 @@
       "vev5000_submission_rows": 196,
       "vev5000_submission_abs_qty": 801
     }
+  },
+  {
+    "iteration": 15,
+    "trader_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v15.py",
+    "strategy_description": "v15 = v14 (log-IV rolling z on VEV_5000, asymmetric spread: base cap 2 on exit, up to 6 on entry when extract mid dropped 2+ over 12 ticks) plus vega-graded order clip: Q = round(VEGA_TARGET/bs_call_vega) clamped to Q_MIN..Q_MAX. BS IV/vega, r=0, T=7/365. Swept VEGA_TARGET and clip bounds; best VEGA_TARGET=1100, Q_MIN=4, Q_MAX=10 (total 18,894 vs v14 17,247).",
+    "total_profit": 18894,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v15.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v15_2026-04-25.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v15_2026-04-25.log",
+    "trades_or_fills_summary": {
+      "total_trade_rows": 4230,
+      "vev5000_submission_rows": 182,
+      "vev5000_submission_abs_qty": 860
+    }
   }
 ]

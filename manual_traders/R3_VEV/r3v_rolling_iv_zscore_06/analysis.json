@@ -90,5 +90,14 @@
       "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v14_final_2026-04-25.log"
     ],
     "used_to_decide": "Ship v14: keep v10 core thresholds; set MAX_SPREAD_RELAXED=6, S_LOOKBACK=12, DROP_THRESH=2.0 so more cheap-vol entry opportunities pass the book filter when extract just fell, without loosening exit fills."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "Continued the rolling log-IV z + underlying-drop spread relaxation line (v14). **Smile / cross-strike check (IV Greek thread):** on each timestamp of `prices_round_3_day_{0,1,2}.csv`, BS-implied IV at 5000 vs neighbor strikes 4500/5100/5200/5300 (same S, T=7/365, r=0) — among ticks with cheap-vol signal z < -2.6, **100%** already satisfy IV(5000) \u2264 median(neighbor IVs), so a formal smile filter is redundant and was **not** added. **Vega thread:** reintroduced v7-style `order_q` from `round(VEGA_TARGET / bs_call_vega)` with bounds, applied to v14’s touch logic. **Parameter sweep (Round 3 days 0\u20132, --match-trades worse):** VEGA_TARGET in {800..1500} \u00d7 (Q_MIN,Q_MAX) in {(4,10),(4,8),(5,10)}; best total 18,894 at VEGA_TARGET=1100, Q=[4,10] (ties at 1200+ are wider clips by cap).",
+    "analysis_outputs": [
+      "iter15_smile_vacuous_check_script",
+      "iter15_vega_grid_local_script"
+    ],
+    "used_to_decide": "Ship v15 = v14 + vega-graded Q with VEGA_TARGET=1100, Q_MIN=4, Q_MAX=10; skip smile gate as no-op on this tape for the cheap-vol mask."
   }
 ]

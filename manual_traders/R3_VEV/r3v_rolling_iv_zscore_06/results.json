@@ -118,5 +118,20 @@
       "submission_fills": 0,
       "submission_abs_qty": 0
     }
+  },
+  {
+    "iteration": 14,
+    "trader_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v14.py",
+    "strategy_description": "Return to best log-IV rolling-z line (v10): long cheap vol on VEV_5000 at extreme negative log-IV z, exit on mean reversion. Microstructure: underlying-mid lookback; when extract dropped by DROP_THRESH over S_LOOKBACK ticks, relax entry spread cap to MAX_SPREAD_RELAXED (exit/flatten still MAX_SPREAD_BASE=2). IV from BS mids (r=0, T=7/365). Tuned grid: ROLL_WIN=400, Z_ENTRY=2.6, Z_EXIT=0.07, ORDER_Q=6, base cap 2, relaxed cap 6, lookback 12, drop 2.0.",
+    "total_profit": 17247,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v14.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v14_final_2026-04-25.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v14_final_2026-04-25.log",
+    "trades_or_fills_summary": {
+      "total_trade_rows": 4244,
+      "vev5000_submission_rows": 196,
+      "vev5000_submission_abs_qty": 801
+    }
   }
 ]

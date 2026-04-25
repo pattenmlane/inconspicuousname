@@ -81,5 +81,14 @@
       "backtests/2026-04-25_15-49-01.log"
     ],
     "used_to_decide": "Implemented v13 because propagation analysis suggested directional asymmetry from extract moves but no spread widening; encoded this as center-skew while preserving width-scaling-only action. Empirically no fills in worse-fill backtester, so family-13 remains inactive in current market data."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "Pivoted back to the rolling log-IV z thesis (family-10 line) after family-13 falsified under worse fills. Re-ran lead/lag and conditional stats on ROUND_3 tapes: cheap-vol tails (very negative z) align with mean-reverting extract down / voucher up in short windows, and VEV_5000 BBO width is often ~3–5 ticks in those states vs ~1–2 in tight-liquid states — motivating **asymmetric** spread gating: keep tight cap on exits, allow wider cap on **new longs** only when extract mid has dropped over a short lookback. **Greek/IV thread unchanged:** implied IV from BS (r=0, T=7/365 ref per round3description day mapping) → log(IV) z. **Parameter sweep (days 0–2, --match-trades worse):** on knobs (MAX_SPREAD_RELAXED, DROP_THRESH, S_LOOKBACK) with MAX_SPREAD_BASE=2, best slice included (6, 2.0, 12) at total 17,247 vs v10 baseline 8,801 and relaxed=5,lookback=10,drop=2.0 at 11,391; v10-tight only (no relax) 8,801.",
+    "analysis_outputs": [
+      "grid_relax_drop_lookback_local_script",
+      "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v14_final_2026-04-25.log"
+    ],
+    "used_to_decide": "Ship v14: keep v10 core thresholds; set MAX_SPREAD_RELAXED=6, S_LOOKBACK=12, DROP_THRESH=2.0 so more cheap-vol entry opportunities pass the book filter when extract just fell, without loosening exit fills."
   }
 ]

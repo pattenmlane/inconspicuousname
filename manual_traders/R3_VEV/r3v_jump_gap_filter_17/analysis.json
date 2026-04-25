@@ -1,0 +1,23 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round-3 tapes days 0–2: TTE from round3description (8/7/6 d open per csv day) plus intraday winding via plot_iv_smile_round3.t_years_effective (same as voucher_work). Per-timestamp BS implied vol from mid, vega from analytic formula; neighbor metric = max−min of (wall_mid−BS_theo) across strikes within 350 of extract mid. Corr(|ΔS|, neighbor gap) ≈ 0 near zero (no strong linear link); ATM IV medians ~0.24–0.25.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analyze_jump_gap_iv.py",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analysis_jump_gap_stats.json"
+    ],
+    "used_to_decide": "Grounded pause/resume in observables (extract step vs slow EMA in code; neighbor residual spread as alignment gate). Motivated widening OTM after jumps via pause, not a separate product thesis."
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Diagnostic on tape (day 0 sample): Frankfurt get_iv_scalping_orders with default cal produced zero order tuples on 4990/4990 ticks where neighbor compression held — switch_mean EMA of |ctd−mean| stayed below IV_SCALPING_THR 0.7. Informed later iterations to stop relying on that gate alone.",
+    "analysis_outputs": [],
+    "used_to_decide": "Explained zero VEV PnL in v0–v2 despite neighbor gate; led to v4 signal on current_theo_diff vs its EMA instead."
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "Naive mean-reversion on raw (wall_mid−theo) minus its EMA backtested sharply negative (−21k); falsified that specific implementation while keeping jump+neighbor structure.",
+    "analysis_outputs": [],
+    "used_to_decide": "Abandoned raw diff-EMA; retained thesis filters for v4."
+  }
+]

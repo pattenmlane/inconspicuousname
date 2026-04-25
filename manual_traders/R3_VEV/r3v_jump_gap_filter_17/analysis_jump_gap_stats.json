@@ -1,0 +1,35 @@
+{
+  "days": [
+    {
+      "csv_day": 0,
+      "extract_dS_p95": 2.0,
+      "extract_dS_p99": 3.0,
+      "corr_abs_dS_neighbor_gap": 0.0036092901917485327,
+      "neighbor_gap_median": 9.782993970475218e-08,
+      "neighbor_gap_p90": 3.7862535009480783e-07,
+      "iv_atm_median": 0.2401058578130624,
+      "sample_rows": 10000
+    },
+    {
+      "csv_day": 1,
+      "extract_dS_p95": 2.0,
+      "extract_dS_p99": 3.0,
+      "corr_abs_dS_neighbor_gap": -0.004438038624455271,
+      "neighbor_gap_median": 9.456206839786319e-08,
+      "neighbor_gap_p90": 3.3090804834046156e-07,
+      "iv_atm_median": 0.24620814002227792,
+      "sample_rows": 10000
+    },
+    {
+      "csv_day": 2,
+      "extract_dS_p95": 2.0,
+      "extract_dS_p99": 3.0,
+      "corr_abs_dS_neighbor_gap": -0.006521596565810221,
+      "neighbor_gap_median": 9.624532992802415e-08,
+      "neighbor_gap_p90": 3.2028410004159017e-07,
+      "iv_atm_median": 0.24625916849191562,
+      "sample_rows": 10000
+    }
+  ],
+  "method": "BS_call_IV_brentq_r0_T_from_plot_iv_smile_round3"
+}

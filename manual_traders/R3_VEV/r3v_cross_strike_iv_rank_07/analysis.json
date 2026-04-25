@@ -40,5 +40,13 @@
       "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/iv_smile_residual_vs_raw.json"
     ],
     "used_to_decide": "v8 (cap 0.05) and v9 (0.08) both underperformed v6 (0.12) on R3 0-2: 134 and 546 vs 1141 -- cap was too strict relative to live neighbor-gaps after ranking, removing volume without improving edge. Remain on v6 as best parent; do not match cap to p90 without validating strike-adjacent residual gaps."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "Greek check on historical mids: at subsampled timestamps, compute quadratic smile IV residual per strike; correlate absolute residual with Black–Scholes vega at fitted IV. Pool ~6k strike-points across days 0-2. Confirms |resid| is only weakly related to vega (corr about -0.065), so residual mispricing is not simply a high-vega artifact.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/vega_vs_abs_residual_corr.json"
+    ],
+    "used_to_decide": "v10 (ACTION_STRIDE=2) improved total PnL to 1858 vs v6 1141, consistent with more frequent re-ranking catching moving residual deciles. v11 (larger size) reverted to 1141 like v6; next parent v10. Trade-off: ~2x backtest wall time vs v6."
   }
 ]

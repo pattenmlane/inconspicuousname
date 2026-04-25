@@ -1,0 +1,5 @@
+{
+  "method": "per tick (subsample ts step 40): BS IV from mid, quadratic smile residual in m_t, |residual| vs analytical vega at IV; T from round3 DTE+winding",
+  "n_points": 6286,
+  "corr_abs_resid_vega": -0.06543745395413897
+}

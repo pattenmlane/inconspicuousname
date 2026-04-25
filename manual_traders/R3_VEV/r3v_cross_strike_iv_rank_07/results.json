@@ -78,5 +78,21 @@
     "total_profit": 546,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v9.py\" 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 10,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v10.py",
+    "strategy_description": "Same as v6 (smile-residual rank, NEIGHBOR_RESIDUAL_CAP=0.12) but ACTION_STRIDE=2 so rank/IV update twice as often; doubles compute time in backtest.",
+    "total_profit": 1858,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v10.py\" 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 11,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v11.py",
+    "strategy_description": "Grid: v6 with BASE_Q=10 and MAX_CLUSTER_Q=25 (v6: 8/22); PnL matched v6 at 1141, so v10 remains best; prefer v6 on tie with v11 for simpler constants.",
+    "total_profit": 1141,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v11.py\" 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
   }
 ]

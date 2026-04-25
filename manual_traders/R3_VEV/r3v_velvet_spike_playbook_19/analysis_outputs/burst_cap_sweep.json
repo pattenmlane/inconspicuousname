@@ -1,0 +1,18 @@
+{
+  "compare": [
+    {
+      "trader": "trader_v7.py",
+      "BURST_MAX_LOT": 80,
+      "total_profit": 487,
+      "by_day": {"0": 28, "1": 164, "2": 295}
+    },
+    {
+      "trader": "trader_v9.py",
+      "BURST_MAX_LOT": 60,
+      "total_profit": 487,
+      "by_day": {"0": 28, "1": 164, "2": 295}
+    }
+  ],
+  "backtest": "round 3 days 0-2, Prosperity4Data, --match-trades worse, python3 -m prosperity4bt",
+  "note": "No PnL difference in this backtest; effective burst fills may be below 60 or dominated by other constraints."
+}

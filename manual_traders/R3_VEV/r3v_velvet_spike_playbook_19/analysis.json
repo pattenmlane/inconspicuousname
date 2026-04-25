@@ -35,5 +35,13 @@
       "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/burst_tier_greeks.json"
     ],
     "used_to_decide": "Ring mean vega ~9 vs core ~187 on the burst sample; supports smaller lot caps in the outer part of the burst band (trader_v8) without shrinking cluster width. Backtest: v8 equals v7 total (487) \u2014 no gain from tiered caps on this run; v7 left as primary for simplicity."
-  }
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "Parameter sweep sanity: compare backtest totals for burst per-order cap 60 (trader_v9) vs 80 (v7) with identical IV-scalp logic and ATM bands. No secondary IV solve \u2014 pure execution grid on existing Frankfurt structure.",
+  "analysis_outputs": [
+    "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/burst_cap_sweep.json"
+  ],
+  "used_to_decide": "Both achieve total 487 and identical day 0/1/2 breakdown in this harness; keep v7 as default (simpler / higher cap). Further burst-size tuning likely needs finer resolution or a different bottleneck than order max (e.g. threshold, not size)."
+}
 ]

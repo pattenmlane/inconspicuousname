@@ -70,5 +70,13 @@
     "total_profit": 487,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v8.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
+  },
+  {
+    "iteration": 9,
+    "trader_file": "trader_v9.py",
+    "strategy_description": "Grid on best parent (v7): burst BURST_MAX_LOT=60 vs v7=80; else identical. Total 487 (ties v7); per-day PnL unchanged on this run \u2014 cap coarser than effective fill sizes or burst branch rarely hits max.",
+    "total_profit": 487,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v9.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
   }
 ]

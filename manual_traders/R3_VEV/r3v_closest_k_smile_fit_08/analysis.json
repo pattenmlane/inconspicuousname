@@ -25,5 +25,14 @@
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_spread_by_strike.py"
     ],
     "used_to_decide": "Wing strikes are very wide; central strikes match prior ~3-tick context. Swept v3: lower BASE_EDGE_VEV (2) and faster smile refit (50 ticks) on top of v2 vega rules — backtest total PnL improved vs v2 (39307 vs 37230), so v3 is the new best; v2 remains a simpler parent if we need a fallback."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "IV level vs |log-moneyness| buckets on Round 3 tapes: bisection IV from mids, r=0, T per dte_eff/365. Median IV rises sharply in the wing bucket (0.10,0.15] and (0.15,1.0] vs near-ATM (0,0.03] and (0.03,0.06] (~0.24 vs ~0.37–0.65), consistent with a steep implied smile at extreme strikes. Output: iv_vs_log_moneyness.json.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/iv_vs_log_moneyness.json",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_iv_vs_moneyness.py"
+    ],
+    "used_to_decide": "Motivated log-moneyness-based quote widening on wings (v4/v5) in addition to vega, since both spread width and market IV level rise off spot. v4 (two-tier bonus) backtest 39036 < v3 39307; v5 (single +2 if |log m|>0.12) 39237 still < v3. Keep v3 as production line; v5 kept as simpler wing tweak than v4. No pivot off local closest-k surface thesis—only microstructure of edges."
   }
 ]

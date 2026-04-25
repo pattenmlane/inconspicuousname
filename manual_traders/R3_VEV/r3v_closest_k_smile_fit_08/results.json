@@ -30,5 +30,21 @@
     "total_profit": 39307,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v3.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
+  },
+  {
+    "iteration": 4,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v4.py",
+    "strategy_description": "Parent v3: add two-tier log-moneyness edge bonus (|log K/S|>0.10: +2 ticks; >0.15: +1 more) on top of vega-based edge, to match very wide top-of-book spreads on deep wings (see spread_median_by_product.json).",
+    "total_profit": 39036,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v4.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
+  },
+  {
+    "iteration": 5,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v5.py",
+    "strategy_description": "Parent v3: lighter single-step wing rule — +2 edge ticks only if |log(K/S)|>0.12 (avoids widening the 0.10–0.15 moneyness band that still shows meaningful volume). Simpler than v4; still not beating v3 on total PnL.",
+    "total_profit": 39237,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v5.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
   }
 ]

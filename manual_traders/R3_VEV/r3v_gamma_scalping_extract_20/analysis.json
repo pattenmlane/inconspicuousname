@@ -136,5 +136,16 @@
       "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v20.json"
     ],
     "used_to_decide": "v20 total ties v17 (4167); no PnL gain, so per tie-break keep simpler v17 as the preferred candidate. Shock-spread null result rules out a shock-widen policy for now."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "Contract-level efficiency ranking: for each voucher, compute score = |beta(dOpt/dS)| * E|dS| / mean_spread using full-day tapes. Saved response_per_spread_rank.json. Across all days, ranking near ATM is stable: VEV_5200 > VEV_5100 > VEV_5300 > VEV_5000. Tested v21 using top2-by-score (5200+5100) rather than nearest pair.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/response_per_spread_rank.json",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v21_round3_worse.log",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v21_round3_worse.stdout.txt",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v21.json"
+    ],
+    "used_to_decide": "v21 total 3984 < v17 4167. Despite better score on 5100 than 5300, fixed top2 selection reduced day2 VEV_5200 PnL and did not improve extract hedge interaction. Keep nearest-pair structure in v17."
   }
 ]

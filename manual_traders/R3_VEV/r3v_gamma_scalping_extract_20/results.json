@@ -187,5 +187,16 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v20_round3_worse.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v20.json"
+  },
+  {
+    "iteration": 21,
+    "trader_file": "trader_v21.py",
+    "strategy_description": "Data-led strike selection variant from response_per_spread_rank: quote top two near strikes by score (typically 5200+5100) instead of nearest pair. Underperforms v17.",
+    "total_profit": 3984,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v21.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v21_round3_worse.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v21.json"
   }
 ]

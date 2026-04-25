@@ -1,0 +1,26 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v0.py",
+    "strategy_description": "IV rank fade bottom/top decile (2 strikes each) with strike-order neighbor IV cap 0.09, cluster size boost, EMA-S for IV input, passive extract delta hedge from intended voucher delta; action every 4th centisecond bucket after warmup. Hydrogel removed after smoke test.",
+    "total_profit": -12404,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v0.py\" 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 1,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v1.py",
+    "strategy_description": "Same IV-rank decile fade; neighbor IV cap 0.12 (sweep); removed extract hedge (v0 hedge was large negative under worse fills).",
+    "total_profit": -11,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v1.py\" 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 2,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v2.py",
+    "strategy_description": "Grid: neighbor cap 0.15 and BASE_Q=5 vs v1 (0.12, 8). PnL unchanged at -11 on Round 3 days 0–2; tie-break keeps v1 as simpler parent.",
+    "total_profit": -11,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v2.py\" 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  }
+]

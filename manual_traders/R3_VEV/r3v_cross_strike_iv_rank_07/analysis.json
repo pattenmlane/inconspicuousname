@@ -1,0 +1,19 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round-3 tapes (days 0–2): BS implied vol per VEV from mids vs VELVETFRUIT_EXTRACT mid; vega at IV; level-1 bid–ask spread on vouchers; IV smile width and neighbor |ΔIV| gaps; sweep of neighbor IV caps vs whether both strikes in the low-IV and high-IV decile pairs pass the cap (adjacent in strike-sorted order). TTE: csv day 0/1/2 → DTE 8/7/6 at open per round3description; intraday dte_eff = (8−day)−(timestamp//100)/10000; T_years=dte_eff/365 (same as plot_iv_smile_round3). IV solver: bisection on [1e-5,15] with intrinsic bounds.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/iv_rank_summary.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analyze_iv_rank_round3.py"
+    ],
+    "used_to_decide": "Chose initial neighbor cap near mean neighbor gap (~0.065) and below p90 gap (~0.20); cap sweep shows low-decile pairs almost always pass typical caps while high-decile pairs rarely pass when gaps are strike-adjacent—motivated fading high-IV less via cap and testing looser caps in traders. Vega scale informed sizing (median vega ~127). Spread stats ground passive join-bid/offer placement inside the book."
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Empirical parameter grid on live backtester: v1 (cap 0.12, q=8) vs v2 (cap 0.15, q=5) produced identical total_profit (-11); next iteration should change signal (e.g. IV vs pooled smile residual) not only cap/size.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/results.json"
+    ],
+    "used_to_decide": "Stop expanding neighbor cap / shrinking size alone; keep v1 as parent per tie-break (simpler than v2)."
+  }
+]

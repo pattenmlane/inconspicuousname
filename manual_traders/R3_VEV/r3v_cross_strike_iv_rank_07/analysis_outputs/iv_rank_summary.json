@@ -1,0 +1,49 @@
+{
+  "timing_assumptions": {
+    "source": "round3work/round3description.txt + plot_iv_smile_round3 intraday winding",
+    "csv_day_to_dte_at_open": {
+      "0": 8,
+      "1": 7,
+      "2": 6
+    },
+    "dte_effective_formula": "max(8 - csv_day - (timestamp//100)/10000, 1e-6)",
+    "T_years": "dte_effective / 365",
+    "r": 0.0
+  },
+  "iv_method": "Bisection root of BS European call vs mid (bracket 1e-5..15, 50 iters; same no-arbitrage guards as plot_iv_smile_round3)",
+  "greeks": "vega at solved IV (BS analytical)",
+  "subsample_step": 50,
+  "iv_range_across_strikes": {
+    "mean_smile_width": 0.3919109328225525,
+    "p50": 0.3760342629388248
+  },
+  "neighbor_iv_gap_abs": {
+    "mean": 0.06550892341313012,
+    "p90": 0.20193712520507862
+  },
+  "vega_at_iv": {
+    "median": 126.7591551424255,
+    "p10": 8.732321639971756
+  },
+  "voucher_bid_ask_spread_level1": {
+    "mean": 5.616417910447761,
+    "p90": 17.0
+  },
+  "ticks_with_at_least_8_finite_ivs": 603,
+  "neighbor_cap_sweep_decile_pairs": {
+    "eligible_ticks": 603,
+    "fraction_low_decile_tradable": {
+      "0.06": 0.9684908789386402,
+      "0.09": 0.9684908789386402,
+      "0.12": 0.9718076285240465,
+      "0.15": 0.9751243781094527
+    },
+    "fraction_high_decile_tradable": {
+      "0.06": 0.0,
+      "0.09": 0.0,
+      "0.12": 0.0,
+      "0.15": 0.0
+    }
+  },
+  "output_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/iv_rank_summary.json"
+}

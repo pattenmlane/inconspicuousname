@@ -110,5 +110,21 @@
     "total_profit": 61,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v13.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 14,
+    "trader_file": "trader_v14.py",
+    "strategy_description": "Parent v12: ATM band sweep 0.97-1.03 -> 0.96-1.04. Total +96; wider band slightly dilutes best strikes vs v12 +130.",
+    "total_profit": 96,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v14.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 15,
+    "trader_file": "trader_v15.py",
+    "strategy_description": "Parent v12: VEGA_RAIL 650->700 with same 0.97-1.03 ATM filter. Total +128 (day1 -3 vs v12 -2); slightly under v12 +130.",
+    "total_profit": 128,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v15.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
   }
 ]

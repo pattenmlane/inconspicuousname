@@ -58,5 +58,14 @@
       "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/atm_switch_vs_edge.json"
     ],
     "used_to_decide": "Guided v12 (ATM filter + no quiet flatten) which improved PnL to +130. v13 showed over-tight vega rail sacrifices too much edge; keep rail near 650 with ATM filter."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Grid around v12: (v14) widening ATM 0.96-1.04 added marginal strike access but PnL fell to +96 (consistent with vega_signal_window_stats where mid-bucket is riskier than tight ATM). (v15) VEGA_RAIL 700 vs 650: near-tie at +128 vs +130 with slightly worse day-1 frictions (-3 vs -2).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/results.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/vega_signal_window_stats.json"
+    ],
+    "used_to_decide": "Keep **v12** as the leading recipe (QUIET_FLATTEN off, 0.97-0.03 ATM, VEGA_RAIL 650). Next parents: v12; optional micro-sweeps on THR_OPEN only, not widened ATM, unless combining with a wing-exclusion list."
   }
 ]

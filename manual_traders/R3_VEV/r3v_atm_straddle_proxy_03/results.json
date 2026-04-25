@@ -94,5 +94,21 @@
     "total_profit": 29384,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v11.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 12,
+    "trader_file": "trader_v12.py",
+    "strategy_description": "Parent v5: vega-weighted ATM IV for shock ( (v0*iv0+v1*iv1)/(v0+v1) - RV ); else same as v5.",
+    "total_profit": 39494,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v12.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 13,
+    "trader_file": "trader_v13.py",
+    "strategy_description": "Parent v5: micro grid SHOCK_ABS_EDGE 0.055->0.0525; all else as v5.",
+    "total_profit": 39412,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v13.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
   }
 ]

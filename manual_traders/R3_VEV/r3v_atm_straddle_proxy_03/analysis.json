@@ -47,5 +47,13 @@
       "analysis_outputs/atm_leg_tilt_signal.json"
     ],
     "used_to_decide": "Skew sign flips by day (day0 mostly positive, day1/day2 mostly negative), so static tilt is unstable across days. v10 (tilted from best parent) and v11 (tilted from random older parent) both underperform equal-leg v5, so equal coordinated sizing remains preferred."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Distribution of vega-weighted ATM IV minus simple 0.5*(iv5000+iv5100) over ticks (BS vega S*sqrt(T)*phi(d1), TTE d->8-d). Ties to v12 shock change.",
+    "analysis_outputs": [
+      "analysis_outputs/vega_weighted_vs_simple_iv.json"
+    ],
+    "used_to_decide": "Vega-IV and simple-IV differ by a few bps (median -0.00033); on these tapes v12 (vega-weighted shock) backtests to same total PnL as v5, so v5 is preferred (simpler). v13 (slightly looser SHOCK) slightly underperforms v5; keep v5 as canonical."
   }
 ]

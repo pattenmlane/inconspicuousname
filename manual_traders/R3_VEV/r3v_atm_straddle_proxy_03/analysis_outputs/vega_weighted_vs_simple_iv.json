@@ -1,0 +1,8 @@
+{
+  "method": "Vega per BS call: S*sqrt(T)*phi(d1). vega-IV = (v0*iv0+v1*iv1)/(v0+v1); simple-IV = 0.5*(iv0+iv1). RV window matches trader (rolling mids). TTE d->8-d.",
+  "n": 29976,
+  "mean_vw_minus_simple_iv": -0.000377,
+  "p10": -0.002046,
+  "p50": -0.000328,
+  "p90": 0.000965
+}

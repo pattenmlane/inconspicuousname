@@ -29,5 +29,17 @@
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/results.json"
     ],
     "used_to_decide": "v3 outperformed v2 (6313 vs 5820 total), with better day0/day1 while retaining day2 strength; choose v3 as new parent."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "Refinement test: if the implied-vol spline uses only 5000–5500 strike knots, the RBF/spline is fit on 6 points instead of 10. Risk: under-constrained wobble. Backtest: total_profit 302 vs 6313 (v3) — rejected as a thesis pivot; the edge needs global strike context for a stable local slice.",
+    "analysis_outputs": ["manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/results.json"],
+    "used_to_decide": "Do not use knot-only local patch for v3-style spline; when revisiting, keep 10-strike IV knots for σ̂(x) and optionally blend or weight wings instead of dropping them."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "Greek add-on: closed-form call gamma in the same BS framework as vega, expressed as S*|gamma| in the spread hurdle. Method: d2 from d1, gamma = N'(d1)/(S*σ*sqrt(T)) with T from round3 DTE+intraday wind. Tuned scale after an initial overshoot (very large S^2*gamma/100) produced zero PnL by blocking all edges.",
+    "analysis_outputs": ["manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v5.py"],
+    "used_to_decide": "v5 (5347) < v3 (6313): gamma term did not add value in this backtest; keep v3 as parent, drop gamma from production path until a better calibration (or separate wing gate) is justified."
   }
 ]

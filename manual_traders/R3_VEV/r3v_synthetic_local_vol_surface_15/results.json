@@ -30,5 +30,21 @@
     "total_profit": 6313,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v3.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "Same as v3 but IV spline is fit only on ALLOWED_STRIKES knots (6 strikes), not the full 10, to keep the local slice local to 5000–5500. Empirically hurt PnL (underspecified spline).",
+    "total_profit": 302,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v4.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 5,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "Parent v3 + BS call gamma in hurdle: hurdle = 1.28*half_spread + 0.001*vega + 0.08*S*|gamma|. (First scale test killed all edges; re-sized.) Worse PnL than v3 (6313) -> keep v3 for next iteration parent.",
+    "total_profit": 5347,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v5.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

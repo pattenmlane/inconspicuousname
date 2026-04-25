@@ -30,5 +30,13 @@
     "total_profit": 94,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v3.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "Parent v3 + parameter sweep winner: Z_HI 2.2, Z_LO 0.8, BF_WINDOW 400, CLIP_QTY 10; same passive one-tick execution on fly legs.",
+    "total_profit": 124,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v4.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
   }
 ]

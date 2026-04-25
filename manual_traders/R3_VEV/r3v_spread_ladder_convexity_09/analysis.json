@@ -9,5 +9,15 @@
       "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/analyze_spread_ladder.py"
     ],
     "used_to_decide": "High z associates with negative next bf delta on tape (convexity overstated), motivating short-fly fade; monotone vertical on mids holds (no literal arb violations). Chose z entry grid and shorter window in v3 after v0 crossing cost and v1 bump filter blocking volume."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "New IV/Greek-conditioned event study on ROUND_3 days 0-2 (same TTE mapping from round3description: day d -> 8-d at open). For windows 300/400/500 and z thresholds 1.8/2.0/2.2/2.4, measured conditional next-tick butterfly change with IV-bump filters; also segmented by BS delta(5100). Best stability came from window=400 and z around 2.2 with no strict bump gate in execution.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/analysis_summary_meta.json",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/bf_mid_zscore_summary_by_day.csv",
+      "terminal event-study output in this run (win/z/bump grid)"
+    ],
+    "used_to_decide": "Grid showed stronger mean reversion for higher z but sparse samples when over-filtering by IV bump/delta. Selected v4 params Z_HI=2.2, Z_LO=0.8, BF_WINDOW=400, CLIP=10; kept passive one-tick pricing from v3."
   }
 ]

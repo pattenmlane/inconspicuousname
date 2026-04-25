@@ -1,0 +1,106 @@
+{
+  "method": "Subsample every 100 ticks; IV from BS inversion at r=0; per-timestamp quadratic IV(m_t) fit; residual per strike; vega/delta from BS.",
+  "tte": "csv day 0/1/2 -> 8/7/6 open DTE; intraday linear wind-down 1 day over session",
+  "per_voucher": [
+    {
+      "voucher": "VEV_4000",
+      "n": 33,
+      "mean_tv_frac": 0.0012354465688810996,
+      "mean_abs_resid": 0.015448549904640708,
+      "mean_resid": -0.015036127081320039,
+      "mean_abs_mt": 2.0620077426431593,
+      "mean_vega": 13.03252093700034,
+      "mean_delta": 0.9931154380749956
+    },
+    {
+      "voucher": "VEV_4500",
+      "n": 75,
+      "mean_tv_frac": 0.0011827726732057562,
+      "mean_abs_resid": 0.02149144455459865,
+      "mean_resid": 0.02149144455459865,
+      "mean_abs_mt": 1.1553999203213101,
+      "mean_vega": 13.790884453733867,
+      "mean_delta": 0.992759963119847
+    },
+    {
+      "voucher": "VEV_5000",
+      "n": 300,
+      "mean_tv_frac": 0.01953915796737315,
+      "mean_abs_resid": 0.007587489122676372,
+      "mean_resid": -0.007127358104122683,
+      "mean_abs_mt": 0.36826544539568146,
+      "mean_vega": 87.41289541148468,
+      "mean_delta": 0.9361311196219011
+    },
+    {
+      "voucher": "VEV_5100",
+      "n": 300,
+      "mean_tv_frac": 0.10171767508678714,
+      "mean_abs_resid": 0.004684077562835486,
+      "mean_resid": 0.0006036693368481783,
+      "mean_abs_mt": 0.21892018261388538,
+      "mean_vega": 181.59483646786057,
+      "mean_delta": 0.822202321499675
+    },
+    {
+      "voucher": "VEV_5200",
+      "n": 300,
+      "mean_tv_frac": 0.48645035197250175,
+      "mean_abs_resid": 0.0077832468733164215,
+      "mean_resid": 0.007399790384276133,
+      "mean_abs_mt": 0.07247501189617073,
+      "mean_vega": 264.5190327780433,
+      "mean_delta": 0.6230677558207022
+    },
+    {
+      "voucher": "VEV_5300",
+      "n": 300,
+      "mean_tv_frac": 1.0,
+      "mean_abs_resid": 0.008396296285246877,
+      "mean_resid": 0.008236202207711842,
+      "mean_abs_mt": 0.07118055667406949,
+      "mean_vega": 267.6942054222383,
+      "mean_delta": 0.39230934764646347
+    },
+    {
+      "voucher": "VEV_5400",
+      "n": 300,
+      "mean_tv_frac": 1.0,
+      "mean_abs_resid": 0.014099654575470145,
+      "mean_resid": -0.014073425218415357,
+      "mean_abs_mt": 0.21215081657441903,
+      "mean_vega": 184.999096565938,
+      "mean_delta": 0.18306336488383232
+    },
+    {
+      "voucher": "VEV_5500",
+      "n": 300,
+      "mean_tv_frac": 1.0,
+      "mean_abs_resid": 0.006880185575230415,
+      "mean_resid": -0.006573966937726907,
+      "mean_abs_mt": 0.3505343196942344,
+      "mean_vega": 107.48044513490956,
+      "mean_delta": 0.08358264098849927
+    },
+    {
+      "voucher": "VEV_6000",
+      "n": 300,
+      "mean_tv_frac": 1.0,
+      "mean_abs_resid": 0.01163733343325707,
+      "mean_resid": 0.01157007905199904,
+      "mean_abs_mt": 1.006747092230185,
+      "mean_vega": 11.483148431336073,
+      "mean_delta": 0.00577044157544428
+    },
+    {
+      "voucher": "VEV_6500",
+      "n": 300,
+      "mean_tv_frac": 1.0,
+      "mean_abs_resid": 0.004199093501389037,
+      "mean_resid": -0.0037538778802746614,
+      "mean_abs_mt": 1.610404325812364,
+      "mean_vega": 8.229892745380784,
+      "mean_delta": 0.003971124337827144
+    }
+  ]
+}

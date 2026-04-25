@@ -30,5 +30,29 @@
     "total_profit": -450,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v3.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "Parent v2 with focused upper-wing set (5400/5500), richer/cheaper thresholds, explicit short-cover on residual normalization, and moderate hedge ratio.",
+    "total_profit": -2619,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v4.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 5,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "Focused-wing sweep vs v4: stricter rich threshold, stronger hedge, no cheap-wing longs; effectively risk-off short/cover profile.",
+    "total_profit": 0,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v5.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 6,
+    "trader_file": "trader_v6.py",
+    "strategy_description": "Parent v2, keep broad rich-wing shorts but block cheap-wing buys on lower wings (4000/4500) while allowing upper-wing inversion entries; higher rich threshold and hedge.",
+    "total_profit": -2326,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v6.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

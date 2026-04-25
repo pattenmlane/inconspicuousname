@@ -25,5 +25,19 @@
     "analysis_description": "v3 sell-only sweep: smile residuals rarely exceeded lowered RICH threshold with spread filter; activity collapsed to incidental position on VEV_6000.",
     "analysis_outputs": [],
     "used_to_decide": "Sell-only at this threshold is too passive; future iterations should blend sell-rich with selective inversion or lower RICH_THR with care for fill quality."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "Per-strike IV/Greek tradeability study on ROUND_3 tapes (subsample every 100 ticks): BS implied vol from mids (r=0), per-timestamp quadratic IV(m_t) residuals, plus delta/vega summaries by strike. DTE/TTE mapping from round3description interpreted as historical CSV day 0/1/2 -> 8/7/6 at open, with intraday wind-down ~1 day over the session.",
+    "analysis_outputs": [
+      "iv_greek_strike_tradeability_v4.json"
+    ],
+    "used_to_decide": "Found VEV_4000/4500 have near-zero time-value fraction and noisier residuals, while 5400/5500 retain meaningful vega and tradable residual structure; informed focused-wing variants v4/v5 and lower-wing long suppression in v6."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "Variant comparison on same curvature thesis: v4 (focused 5400/5500 with short-cover) was too lossy due to hedge bleed; v5 (stricter + no cheap-wing longs) turned fully passive; v6 (active v2-parent with lower-wing long suppression) remained active but underperformed.",
+    "analysis_outputs": [],
+    "used_to_decide": "Best realized result remains conservative/passy v5 at total 0, but that confirms current residual triggers are too weak under worse fills; next work should re-center residual estimation/entry timing while keeping tradeability filters."
   }
 ]

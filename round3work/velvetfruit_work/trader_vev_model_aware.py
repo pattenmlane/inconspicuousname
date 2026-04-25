@@ -42,6 +42,7 @@ MAF_BID = 0
 
 SKEW_FACTOR = 0.00       # grid best: no skew — VEV is calm enough that inventory self-corrects
 FLATTEN_THRESHOLD = 150  # suppress worsening passive quotes above this
+REGIME_SHIFT = 0.10      # FV correction when Bot B is single-sided; any value ≥0.1 gives same result
 
 
 class VevModelAwareMM:
@@ -66,6 +67,8 @@ class VevModelAwareMM:
 
         bid_wall = min(self.buys)  if self.buys  else None
         ask_wall = max(self.sells) if self.sells else None
+        bid_best = max(self.buys)  if self.buys  else None
+        ask_best = min(self.sells) if self.sells else None
 
         # wall_mid ≈ true_FV (std 0.23) — best FV proxy from live book
         self.wall_mid: float | None = (
@@ -74,9 +77,25 @@ class VevModelAwareMM:
             else None
         )
 
-        # Inventory-skewed fair for passive quoting only
-        self.fair_skewed: float | None = (
-            self.wall_mid - SKEW_FACTOR * self.pos
+        # Bot B regime detection — presence of a second bid/ask level tells us
+        # which part of the integer range FV is in (from bot_calibration.txt):
+        #   only bid2  → frac ∈ [0.1, 0.35): wall_mid underestimates FV by ~0.22
+        #   both       → frac ∈ [0.35, 0.65): wall_mid ≈ FV (accurate)
+        #   only ask2  → frac ∈ [0.65, 0.90): wall_mid overestimates FV by ~0.22
+        #   neither    → frac near 0/1: wall_mid already accurate
+        bid2_present = (bid_wall is not None and bid_best is not None and bid_wall < bid_best)
+        ask2_present = (ask_wall is not None and ask_best is not None and ask_wall > ask_best)
+
+        if bid2_present and not ask2_present:
+            fv_correction = +REGIME_SHIFT   # wall_mid is too low
+        elif ask2_present and not bid2_present:
+            fv_correction = -REGIME_SHIFT   # wall_mid is too high
+        else:
+            fv_correction = 0.0
+
+        # Corrected FV estimate — more accurate than raw wall_mid
+        self.fv_est: float | None = (
+            self.wall_mid + fv_correction
             if self.wall_mid is not None
             else None
         )
@@ -99,11 +118,11 @@ class VevModelAwareMM:
         self.max_sell -= q
 
     def get_orders(self) -> dict[str, list[Order]]:
-        if self.wall_mid is None or self.fair_skewed is None:
+        if self.wall_mid is None or self.fv_est is None:
             return {SYMBOL: self.orders}
 
-        wm   = self.wall_mid     # FV proxy for taking — unbiased
-        fair = self.fair_skewed  # inventory-skewed fair for passive quoting
+        wm   = self.fv_est   # regime-corrected FV for all decisions
+        fair = self.fv_est - SKEW_FACTOR * self.pos  # inventory-skewed fair
 
         # ── 1. TAKING — same Frankfurt logic ───────────────────────────────
         # With ±2–3 tick spread, these fire only when a stale quote is in the book
@@ -168,7 +187,7 @@ class Trader:
                     "ts": state.timestamp,
                     "pos": mm.pos,
                     "wall_mid": mm.wall_mid,
-                    "fair_skewed": round(mm.fair_skewed, 2) if mm.fair_skewed else None,
+                    "fv_est": round(mm.fv_est, 2) if mm.fv_est else None,
                     "skew": round(SKEW_FACTOR * mm.pos, 2),
                     "n_orders": len(result.get(SYMBOL, [])),
                 }

@@ -146,5 +146,16 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter16_backtest.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter16_fill_summary.json"
+  },
+  {
+    "iteration": 17,
+    "trader_file": "trader_v17.py",
+    "strategy_description": "v15 + post-jump cross-strike residual 'compress' gate: on |dS|>=3 snapshot ptp=max(resid)-min(resid) across VEV strikes (resid=mid-LOO BS fair); pause new VEV quotes until ptp<=0.88*snapshot or 100 ticks; extract+hydrogel continue. Motivated by tape p90_jump (138) > p90_nojump (110).",
+    "total_profit": 63106,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v17.py 3 --data Prosperity4Data --match-trades worse --no-vis",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter17_backtest.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter17_fill_summary.json"
   }
 ]

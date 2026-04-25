@@ -1,0 +1,54 @@
+{
+  "source": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter17_backtest.log",
+  "per_day_pnl_from_summary": {
+    "0": {
+      "VEV_6500": 0.0,
+      "VEV_6000": 0.0,
+      "VEV_5500": 750.0,
+      "VEV_5400": -1633.0,
+      "VEV_5300": -1003.0,
+      "VEV_5200": 251.0,
+      "VEV_5100": -1746.0,
+      "VEV_5000": 1343.0,
+      "VEV_4500": -805.0,
+      "VEV_4000": -1169.0,
+      "VELVETFRUIT_EXTRACT": 2514.0,
+      "HYDROGEL_PACK": 9915.0,
+      "Total profit": 8417.0,
+      "VEV_TOTAL": -4012.0
+    },
+    "1": {
+      "VEV_6500": 0.0,
+      "VEV_6000": 0.0,
+      "VEV_5500": 130.0,
+      "VEV_5400": 246.0,
+      "VEV_5300": -2054.0,
+      "VEV_5200": 1686.0,
+      "VEV_5100": 1678.0,
+      "VEV_5000": 170.0,
+      "VEV_4500": 2974.0,
+      "VEV_4000": 3683.0,
+      "VELVETFRUIT_EXTRACT": 3339.0,
+      "HYDROGEL_PACK": 13272.0,
+      "Total profit": 25124.0,
+      "VEV_TOTAL": 8513.0
+    },
+    "2": {
+      "VEV_6500": 0.0,
+      "VEV_6000": 0.0,
+      "VEV_5500": -300.0,
+      "VEV_5400": 817.0,
+      "VEV_5300": -2503.0,
+      "VEV_5200": 4159.0,
+      "VEV_5100": 5411.0,
+      "VEV_5000": 200.0,
+      "VEV_4500": 8934.0,
+      "VEV_4000": 6117.0,
+      "VELVETFRUIT_EXTRACT": 6855.0,
+      "HYDROGEL_PACK": -124.0,
+      "Total profit": 29566.0,
+      "VEV_TOTAL": 22835.0
+    }
+  },
+  "note": "Parsed from iter17_backtest.log, --match-trades worse, --no-vis"
+}

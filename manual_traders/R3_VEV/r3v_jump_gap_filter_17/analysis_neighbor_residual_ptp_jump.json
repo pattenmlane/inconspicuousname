@@ -1,0 +1,10 @@
+{
+  "jump_threshold_abs_dS": 3.0,
+  "n": 30000,
+  "n_jump": 579,
+  "ptp_median_all": 6.466587119279609,
+  "ptp_median_jump": 6.487411848396164,
+  "ptp_median_nojump": 6.466513881770084,
+  "ptp_p90_jump": 138.29839345300238,
+  "ptp_p90_nojump": 110.12470609250158
+}

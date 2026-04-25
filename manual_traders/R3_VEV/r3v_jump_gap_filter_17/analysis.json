@@ -131,5 +131,16 @@
       "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter16_fill_summary.json"
     ],
     "used_to_decide": "Test sign-asymmetric fair tilt multiplier by strike (reduce/reverse down-shock tilt where down follow-through is stronger). This reduced day-0 by ~172 and total to 47,590 (<47,762 v15), so keep v15 as incumbent and treat this as a falsified extension."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "Cross-strike residual range ptp = max_k (wall_mid - LOO BS fair) - min_k (same) on all 30k R3 timestamps (days 0-2), same IV/spline pipeline as family-12. Median ptp is ~flat for |dS|>=3 vs not (\\u22486.47), but tail is worse on jump ticks: p90_jump \\u2248138 vs p90_nojump \\u2248110 (analysis_neighbor_residual_ptp_jump.json). Method: BS IV from mid, robust spline nodes, LOO fair per strike, analytic vega/delta thread unchanged in trader.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analyze_neighbor_residual_spread_around_jumps.py",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analysis_neighbor_residual_ptp_jump.json",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter17_backtest.log",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter17_fill_summary.json"
+    ],
+    "used_to_decide": "Re-embed core thesis 'jump then widen; resume when neighbor residuals compress' on top of v15: after |dS|>=3, pause *new* VEV orders (no flatten), resume when ptp <= 0.88 * ptp at jump or 100 ticks. Backtest 63,106 vs v15 47,762 (largest lift day 2: 11,898 -> 29,566). Still far below ~800k extract+VEV-only bar; next iterations may ablate signed tilt vs this gate or tune 0.88/100."
   }
 ]

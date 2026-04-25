@@ -110,5 +110,21 @@
     "total_profit": 55846,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v13.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 14,
+    "trader_file": "trader_v14.py",
+    "strategy_description": "Child of v10: edge vs fair from L1 microprice only (bid*ask_sz+ask*bid_sz)/(bid_sz+ask_sz); same theta+spread gates and touch fill. Ablation: day-0 regression; total 53102 below v10.",
+    "total_profit": 53102,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v14.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 15,
+    "trader_file": "trader_v15.py",
+    "strategy_description": "Child of v10: edge = (0.75*mid + 0.25*L1_microprice) - BS_fair at WLS sigma(m); IV buffer still from mid. New best on this branch in this backtest run.",
+    "total_profit": 60947,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v15.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
   }
 ]

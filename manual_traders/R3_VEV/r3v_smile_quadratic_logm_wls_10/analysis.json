@@ -66,5 +66,13 @@
       "results.json"
     ],
     "used_to_decide": "Ablations from v10: weaken theta scaling (v12) and weaken both theta+spread scaling (v13). Both trailed v10, so retain v10 as current best despite negative sample correlations."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Microstructure vs smile: on ROUND_3 days 0-2 (subsampled), L1 microprice from bid1,ask1,volumes vs (bid+ask)/2 mid; compare |mark - BS_fair|/vega at pooled WLS sigma(m) with T=dte_effective/365. microprice_smile_mispricing_iter14.json: mean |edge|/vega ~0.0258 for micro vs ~0.0267 for mid; rho(mid,micro on edge/vega) ~0.95.",
+    "analysis_outputs": [
+      "microprice_smile_mispricing_iter14.json"
+    ],
+    "used_to_decide": "v14 micro-only edge regressed; v15 blends 0.25 micro into mark for edge only (v10+ gates) and beat v10 in backtest. IV ridge buffer unchanged (still mid-based)."
   }
 ]

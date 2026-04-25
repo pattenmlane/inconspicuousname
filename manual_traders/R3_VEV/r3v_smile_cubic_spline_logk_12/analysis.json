@@ -75,5 +75,14 @@
       "analyze_extract_updown_asymmetry.py"
     ],
     "used_to_decide": "For several strikes (e.g. VEV_4000\u20135200) beta_down was >= beta_up on large steps, suggesting mild asymmetry; spreads on up vs down steps were nearly identical. Implemented v16 = v11 + momentum shift to fair (K MOMENTUM_K * sum(dS) * BS delta) to lean with extract trend in a delta-consistent way; backtest 67,116 < v11 68,908. Falsified extra fair nudge\u2014revert to v11 for this dataset unless a different mapping is justified."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "Residual alpha test from extract propagation: build residual r_t = dVoucher_t - beta*dExtract_t (beta from same-day fit per strike), then test corr(r_t, dVoucher_{t+1}). residual_alpha.csv showed broad negative correlation (mean reversion) for active strikes, including tight-spread subsets for several strikes.",
+    "analysis_outputs": [
+      "analysis_outputs/propagation_residual_alpha.csv",
+      "analyze_propagation_residual_alpha.py"
+    ],
+    "used_to_decide": "Implemented v17/v18 fair correction using previous residual. Despite apparent signal in tape, backtests degraded materially (61,236 and 29,560 vs 68,908 v11), likely due to execution friction and overreaction in mid strikes (VEV_5000/5100). Conclude this residual correction is not robust under worse-fill regime; keep v11 as leading variant."
   }
 ]

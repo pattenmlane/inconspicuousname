@@ -179,5 +179,51 @@
       "note": "Fill counts not in stdout; nonzero product count parsed from per-product PnL lines in saved log."
     },
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v16.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 17,
+    "trader_file": "trader_v17.py",
+    "strategy_description": "v11 + propagation residual mean-reversion fair shift: fair -= 0.20 * residual_prev, where residual_prev = dV - beta_ref*dS from prior tick (beta_ref from BS delta).",
+    "total_profit": 61236,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "backtest_logs/trader_v17_round3_worse.log",
+    "trades_or_fills_summary": {
+      "day_total_profit": {
+        "day0": 10347,
+        "day1": 31079,
+        "day2": 19810
+      },
+      "non_zero_pnl_products_per_day": {
+        "day0": 11,
+        "day1": 10,
+        "day2": 10
+      },
+      "note": "Fill counts absent in stdout; parsed non-zero product PnL counts from full log."
+    },
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v17.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 18,
+    "trader_file": "trader_v18.py",
+    "strategy_description": "Same as v17 with stronger residual shift k=0.35 (grid).",
+    "total_profit": 29560,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "backtest_logs/trader_v18_round3_worse.log",
+    "trades_or_fills_summary": {
+      "day_total_profit": {
+        "day0": 8985,
+        "day1": 21974,
+        "day2": -1400
+      },
+      "non_zero_pnl_products_per_day": {
+        "day0": 11,
+        "day1": 10,
+        "day2": 10
+      },
+      "note": "Fill counts absent in stdout; parsed non-zero product PnL counts from full log."
+    },
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v18.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

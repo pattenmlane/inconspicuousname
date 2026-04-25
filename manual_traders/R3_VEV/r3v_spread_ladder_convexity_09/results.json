@@ -138,5 +138,27 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f15.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v15.json"
+  },
+  {
+    "iteration": 16,
+    "trader_file": "trader_v16.py",
+    "strategy_description": "Family13 parent v15 + extra stress on signed up-shocks only (ablation from sign-asymmetry tape study).",
+    "total_profit": 18808,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v16.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f16.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f16.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v16.json"
+  },
+  {
+    "iteration": 17,
+    "trader_file": "trader_v17.py",
+    "strategy_description": "Family13 parent v15 + extra stress on signed down-shocks; ties v15 PnL (+20085) \u2014 symmetric effect vs up-only in this simple linear add.",
+    "total_profit": 20085,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v17.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f17.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f17.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v17.json"
   }
 ]

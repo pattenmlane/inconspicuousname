@@ -120,5 +120,25 @@
       "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v15.json"
     ],
     "used_to_decide": "One-step local grid around v14 showed best uplift at (shock_du=2.5, shock_boost=0.10, stress enter/exit 0.60/0.47, calm clip/max 3/80) -> +20,085, preserving the same family assumptions while increasing useful fills."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "Signed-shock study (|\u0394U|>=2.5): next-tick spread change on 5000/5100/5200/5300 differs by sign; 5200 mean dsp positive on up, negative on down. Greek/IV: unchanged v15 pipeline (core IV from mids, T=7/365). v16 added +0.05 stress on up-shocks; backtest PnL fell vs v15, so hypothesis rejected for trading gain.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/analysis_shock_spread_by_sign_v16.json",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f16.log",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v16.json"
+    ],
+    "used_to_decide": "Do not take one-sided positive spread drift as a reason to lean stress harder on up moves; keep best scalar parent v15 until a richer gating model is justified."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "Ablation: down-shock only extra +0.05 (mirror of v16). PnL identical to v15 (+20085), i.e. no improvement \u2014 confirms linear signed bump is a dead end at this magnitude.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f17.log",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v17.json",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/analysis_shock_spread_by_sign_v16.json"
+    ],
+    "used_to_decide": "Prefer simpler v15 as production candidate over v17; next iteration should explore different stress functional (e.g. core smile skew) not another additive shock constant."
   }
 ]

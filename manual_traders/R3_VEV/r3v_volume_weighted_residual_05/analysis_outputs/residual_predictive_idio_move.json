@@ -1,0 +1,175 @@
+{
+  "method": "Residual at t predicts next-tick idiosyncratic move y=dV-beta*dS by symbol (beta from OLS dV~dS).",
+  "symbols": {
+    "VEV_5100": {
+      "n": 29997,
+      "beta_dV_on_dS": 0.5773316745588722,
+      "slope_y_on_resid": -5.523631485139546,
+      "corr_resid_y": -0.06199711462561488,
+      "resid_abs_quantiles": [
+        0.002577529384406224,
+        0.0029922321900816397,
+        0.0033982633604502264,
+        0.0037210828051683475
+      ],
+      "tail_bucket_stats": {
+        "abs_resid_ge_0.00258": {
+          "n": 14999,
+          "mean_y_when_resid_pos": null,
+          "mean_y_when_resid_neg": 0.04182848524010041
+        },
+        "abs_resid_ge_0.00299": {
+          "n": 8999,
+          "mean_y_when_resid_pos": null,
+          "mean_y_when_resid_neg": 0.056623499982327956
+        },
+        "abs_resid_ge_0.00340": {
+          "n": 4500,
+          "mean_y_when_resid_pos": null,
+          "mean_y_when_resid_neg": 0.07057444184627676
+        },
+        "abs_resid_ge_0.00372": {
+          "n": 2100,
+          "mean_y_when_resid_pos": null,
+          "mean_y_when_resid_neg": 0.10897733669926835
+        }
+      }
+    },
+    "VEV_5200": {
+      "n": 29997,
+      "beta_dV_on_dS": 0.43665934982120397,
+      "slope_y_on_resid": -7.805846122475376,
+      "corr_resid_y": -0.10079308614283101,
+      "resid_abs_quantiles": [
+        0.0031335456825363206,
+        0.004038243620360982,
+        0.004975776166554901,
+        0.00569668735744071
+      ],
+      "tail_bucket_stats": {
+        "abs_resid_ge_0.00313": {
+          "n": 14999,
+          "mean_y_when_resid_pos": -0.04233830739267354,
+          "mean_y_when_resid_neg": 0.21031541419160532
+        },
+        "abs_resid_ge_0.00404": {
+          "n": 8999,
+          "mean_y_when_resid_pos": -0.06893275889897829,
+          "mean_y_when_resid_neg": -0.7466373992848159
+        },
+        "abs_resid_ge_0.00498": {
+          "n": 4500,
+          "mean_y_when_resid_pos": -0.099609669815588,
+          "mean_y_when_resid_neg": null
+        },
+        "abs_resid_ge_0.00570": {
+          "n": 2100,
+          "mean_y_when_resid_pos": -0.10503775976119605,
+          "mean_y_when_resid_neg": null
+        }
+      }
+    },
+    "VEV_5300": {
+      "n": 29997,
+      "beta_dV_on_dS": 0.27268819165358527,
+      "slope_y_on_resid": -2.6742564767882677,
+      "corr_resid_y": -0.12546577528166067,
+      "resid_abs_quantiles": [
+        0.006017709419044226,
+        0.00712438070491625,
+        0.008298919225301592,
+        0.009146529172946876
+      ],
+      "tail_bucket_stats": {
+        "abs_resid_ge_0.00602": {
+          "n": 14999,
+          "mean_y_when_resid_pos": -0.04287818492690636,
+          "mean_y_when_resid_neg": null
+        },
+        "abs_resid_ge_0.00712": {
+          "n": 8999,
+          "mean_y_when_resid_pos": -0.05839994193412618,
+          "mean_y_when_resid_neg": null
+        },
+        "abs_resid_ge_0.00830": {
+          "n": 4500,
+          "mean_y_when_resid_pos": -0.07265572324231061,
+          "mean_y_when_resid_neg": null
+        },
+        "abs_resid_ge_0.00915": {
+          "n": 2100,
+          "mean_y_when_resid_pos": -0.1148477218370462,
+          "mean_y_when_resid_neg": null
+        }
+      }
+    },
+    "VEV_5400": {
+      "n": 29997,
+      "beta_dV_on_dS": 0.12886984048408417,
+      "slope_y_on_resid": -0.5315949894115084,
+      "corr_resid_y": -0.08628077951570841,
+      "resid_abs_quantiles": [
+        0.011891650868682657,
+        0.013387741668706276,
+        0.01467748136263549,
+        0.015490712458543781
+      ],
+      "tail_bucket_stats": {
+        "abs_resid_ge_0.01189": {
+          "n": 14999,
+          "mean_y_when_resid_pos": null,
+          "mean_y_when_resid_neg": 0.021131864020308023
+        },
+        "abs_resid_ge_0.01339": {
+          "n": 8999,
+          "mean_y_when_resid_pos": null,
+          "mean_y_when_resid_neg": 0.0335390059098981
+        },
+        "abs_resid_ge_0.01468": {
+          "n": 4500,
+          "mean_y_when_resid_pos": null,
+          "mean_y_when_resid_neg": 0.06898624056716769
+        },
+        "abs_resid_ge_0.01549": {
+          "n": 2100,
+          "mean_y_when_resid_pos": null,
+          "mean_y_when_resid_neg": 0.09365850492561105
+        }
+      }
+    },
+    "VEV_5500": {
+      "n": 29997,
+      "beta_dV_on_dS": 0.054863313944778426,
+      "slope_y_on_resid": -0.5694250071524922,
+      "corr_resid_y": -0.046817869880398946,
+      "resid_abs_quantiles": [
+        0.004990196057767099,
+        0.005597817972308128,
+        0.0061245195938222086,
+        0.006481142037185434
+      ],
+      "tail_bucket_stats": {
+        "abs_resid_ge_0.00499": {
+          "n": 14999,
+          "mean_y_when_resid_pos": -0.008014742891883062,
+          "mean_y_when_resid_neg": null
+        },
+        "abs_resid_ge_0.00560": {
+          "n": 8999,
+          "mean_y_when_resid_pos": -0.014306096265399094,
+          "mean_y_when_resid_neg": null
+        },
+        "abs_resid_ge_0.00612": {
+          "n": 4500,
+          "mean_y_when_resid_pos": -0.024558324521998666,
+          "mean_y_when_resid_neg": null
+        },
+        "abs_resid_ge_0.00648": {
+          "n": 2100,
+          "mean_y_when_resid_pos": -0.03797054465679529,
+          "mean_y_when_resid_neg": null
+        }
+      }
+    }
+  }
+}

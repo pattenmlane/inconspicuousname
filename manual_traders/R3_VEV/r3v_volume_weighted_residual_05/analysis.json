@@ -96,5 +96,15 @@
       "analysis_outputs/v18_size_mult.log"
     ],
     "used_to_decide": "Next iteration should use floor/ceil of adjusted q, or add partial fills via sub-tranches, to make size skew express in trades when desired."
+  },
+  {
+    "iteration": 19,
+    "analysis_description": "Per-symbol predictive test: residual at t vs next-tick idiosyncratic move y=dV-beta*dS, where beta is contract-specific from OLS dV~dS. All traded strikes had negative slope y~resid; strongest at 5200/5100, weaker at 5400/5500. Derived entry thresholds from residual quantiles and side constraints from tail-bucket sign behavior.",
+    "analysis_outputs": [
+      "analysis_outputs/residual_predictive_idio_move.json",
+      "analysis_outputs/v19_fills_summary.json",
+      "analysis_outputs/v19_symbol_thresholds.log"
+    ],
+    "used_to_decide": "Used this to intentionally increase signal usage on 5100/5200 and side-restrict weaker symbols. This produced much higher voucher turnover (e.g., VEV_5300/5200/5100 fill rows increased sharply) but reduced total PnL vs v8, indicating overtrading/noise despite predictive signal direction."
   }
 ]

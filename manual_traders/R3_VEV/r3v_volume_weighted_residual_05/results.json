@@ -155,5 +155,16 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v18_size_mult.log",
     "trades_or_fills_summary": "trade_history_rows=4843, own_fill_rows=4843, own_fill_abs_qty_sum=18099; HYDROGEL_PACK=1207 rows, VEV_5400=823, VEV_5500=267, VEV_5300=121",
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v18.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v18_size_mult.log"
+  },
+  {
+    "iteration": 19,
+    "trader_file": "trader_v19.py",
+    "strategy_description": "Analysis-driven symbol-specific thresholds and side constraints from residual predictive idiosyncratic move study (dV-beta*dS). Lower entry thresholds for 5100/5200 and side-specific gating on 5300/5400/5500; still smile_quadratic_logm_wls with existing guardrails.",
+    "total_profit": 10302,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v19_symbol_thresholds.log",
+    "trades_or_fills_summary": "trade_history_rows=7161, own_fill_rows=7161, own_fill_abs_qty_sum=20417; key rows VEV_5400=802, VEV_5500=671, VEV_5300=774, VEV_5200=621, VEV_5100=680, HYDROGEL_PACK=1207",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v19.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v19_symbol_thresholds.log"
   }
 ]

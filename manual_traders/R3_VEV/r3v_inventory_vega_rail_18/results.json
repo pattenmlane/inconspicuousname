@@ -5,7 +5,8 @@
     "strategy_description": "Frankfurt-style IV scalping on all ten VEVs with BS vega at fitted smile IV; per-strike clip capped by vega rail (700) minus |pos|; partial extract delta hedge and two-sided extract + hydrogel MM. TTE: csv day 0/1/2 -> DTE 8/7/6 at open with intraday wind per plot_iv_smile_round3.",
     "total_profit": -5459,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v0.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v0.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis",
+    "match_trades": "worse"
   },
   {
     "iteration": 1,
@@ -13,7 +14,8 @@
     "strategy_description": "Parameter sweep: IV_SCALPING_THR 0.35, VEGA_RAIL 900, weaker hedge, no hydrogel. Intended to unlock more VEV flow; deep wings traded and total PnL collapsed.",
     "total_profit": -15414,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v1.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v1.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis",
+    "match_trades": "worse"
   },
   {
     "iteration": 2,
@@ -21,7 +23,8 @@
     "strategy_description": "Sweep: restore IV gate 0.7, skip trading when quiet (no flatten branch), ATM band 0.98<=K/S<=1.02 only, VEGA_RAIL 800, no hydrogel. Few VEV fills; extract MM still negative.",
     "total_profit": -8554,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v2.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v2.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis",
+    "match_trades": "worse"
   },
   {
     "iteration": 3,
@@ -29,7 +32,8 @@
     "strategy_description": "Parent v0 with merge_orders on extract/hydrogel to respect 200 limit when hedge and MM stack; VEGA_RAIL grid point 750. Best aggregate in this batch; day 2 still dominated by hydrogel + extract losses.",
     "total_profit": -5439,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v3.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v3.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis",
+    "match_trades": "worse"
   },
   {
     "iteration": 4,
@@ -37,7 +41,8 @@
     "strategy_description": "Parent v3 with MM drag removed (EXTRACT_MM_Q=0, HYDRO_MM_Q=0), lower hedge frac (0.12), higher VEGA_RAIL=850 to test whether pure vega-rail scalp can stand alone. Trades almost only in day 2; near-flat total.",
     "total_profit": -14,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v4.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v4.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis",
+    "match_trades": "worse"
   },
   {
     "iteration": 5,
@@ -45,7 +50,8 @@
     "strategy_description": "Parent v3 without extract/hydro MM (pure vega-rail focus), VEGA_RAIL=650 and THR_OPEN=0.35 sweep. Small positive result from sparse ATM voucher fills on day 2; best in-branch so far.",
     "total_profit": 14,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis",
+    "match_trades": "worse"
   },
   {
     "iteration": 6,
@@ -53,7 +59,8 @@
     "strategy_description": "Parent v5: ATM-only vouchers 0.97<=K/S<=1.03, VEGA_RAIL=700; no extract/hydro MM. Slightly above flat (+2) vs v5; still only day 2 activity.",
     "total_profit": 2,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis",
+    "match_trades": "worse"
   },
   {
     "iteration": 7,
@@ -61,7 +68,8 @@
     "strategy_description": "Parent v5: IV_SCALPING_THR=0.55, THR_OPEN=0.30 sweep to engage main branch more. Small losses on v5500 + extract hedge; total -22. Worse than v5.",
     "total_profit": -22,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis",
+    "match_trades": "worse"
   },
   {
     "iteration": 8,
@@ -69,7 +77,8 @@
     "strategy_description": "Parent v5 with DELTA_HEDGE_FRAC=0 (no VELVETFRUIT_EXTRACT hedge). Pure vega-rail + IV scalp; total +14 matching v5 with zero extract PnL all days.",
     "total_profit": 14,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v8.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v8.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis",
+    "match_trades": "worse"
   },
   {
     "iteration": 9,
@@ -77,7 +86,8 @@
     "strategy_description": "Parent v5 sweep: IV_SCALPING_THR=0.65, THR_OPEN=0.32. More day-2 strikes + small extract hedge losses; total -8 vs v5/v8 +14.",
     "total_profit": -8,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v9.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v9.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis",
+    "match_trades": "worse"
   },
   {
     "iteration": 10,
@@ -85,7 +95,8 @@
     "strategy_description": "Parent v8: IV_SCALPING_THR 0.7 -> 0.25 to match tape switch_mean median. Falsified: main branch trades all strikes including deep OTM; massive wing losses. Total -14402.",
     "total_profit": -14402,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v10.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v10.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis",
+    "match_trades": "worse"
   },
   {
     "iteration": 11,
@@ -93,7 +104,8 @@
     "strategy_description": "Parent v8: QUIET_FLATTEN=False \u2014 do not take/stop full position at touch when switch_mean is below gate (hides FV/liquidation spread risk in quiet). Best in-branch: +96 (day2 +98, day1 -2).",
     "total_profit": 96,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v11.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v11.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis",
+    "match_trades": "worse"
   },
   {
     "iteration": 12,
@@ -101,7 +113,8 @@
     "strategy_description": "Parent v11 (+96): add ATM strike filter 0.97<=K/S<=1.03 while keeping QUIET_FLATTEN=False and no extract hedge. Best so far: +130 total (day2 +132).",
     "total_profit": 130,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v12.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v12.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis",
+    "match_trades": "worse"
   },
   {
     "iteration": 13,
@@ -109,7 +122,8 @@
     "strategy_description": "Parent v11: VEGA_RAIL sweep 650->500 to tighten per-strike liquidation notional. PnL drops to +61 (fewer profitable fills).",
     "total_profit": 61,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v13.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v13.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis",
+    "match_trades": "worse"
   },
   {
     "iteration": 14,
@@ -117,7 +131,8 @@
     "strategy_description": "Parent v12: ATM band sweep 0.97-1.03 -> 0.96-1.04. Total +96; wider band slightly dilutes best strikes vs v12 +130.",
     "total_profit": 96,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v14.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v14.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis",
+    "match_trades": "worse"
   },
   {
     "iteration": 15,
@@ -125,7 +140,8 @@
     "strategy_description": "Parent v12: VEGA_RAIL 650->700 with same 0.97-1.03 ATM filter. Total +128 (day1 -3 vs v12 -2); slightly under v12 +130.",
     "total_profit": 128,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v15.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v15.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis",
+    "match_trades": "worse"
   },
   {
     "iteration": 16,
@@ -133,7 +149,8 @@
     "strategy_description": "Family 12 pivot (smile_cubic_spline_logk proxy): cubic-spline IV-by-logK + vega-concentration-aware skew (stronger de-risk skew when concentration high), with v12 execution scaffold (ATM filter + no quiet flatten). Under worse fills this underperformed v12.",
     "total_profit": 75,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v16.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v16_backtest.log"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v16.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v16_backtest.log",
+    "match_trades": "worse"
   },
   {
     "iteration": 17,
@@ -141,7 +158,8 @@
     "strategy_description": "Family 12 variation sweep from v16: stronger skew parameters (SKEW_STRONG/SOFT and lower concentration trigger). Result identical to v16 under current fill path; still below v12.",
     "total_profit": 75,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v17.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v17_backtest.log"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v17.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v17_backtest.log",
+    "match_trades": "worse"
   },
   {
     "iteration": 18,
@@ -149,7 +167,8 @@
     "strategy_description": "Family12 adjusted variant after duplicate-check: cubic-spline logK smile + continuous skew from OWN inventory-vega concentration share (per-strike), with v12 scaffold. Full logs/fill summary saved.",
     "total_profit": 75,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v18.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v18_backtest.log"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v18.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v18_backtest.log",
+    "match_trades": "worse"
   },
   {
     "iteration": 19,
@@ -157,6 +176,29 @@
     "strategy_description": "Family12 own-vega concentration variant sweep (softer concentration scale). Same realized path under worse fills; total 75.",
     "total_profit": 75,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v19.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v19_backtest.log"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v19.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v19_backtest.log",
+    "match_trades": "worse"
+  },
+  {
+    "iteration": 20,
+    "trader_file": "trader_v20.py",
+    "strategy_description": "Analysis-driven propagation variant from v12: beta-weighted per-strike inventory caps (from extract->voucher beta) + spread-shock guard after large extract moves. Family12 remains in separate line (v16+).",
+    "total_profit": 79,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v20.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v20_backtest.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v20_backtest.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v20_fill_summary.json"
+  },
+  {
+    "iteration": 21,
+    "trader_file": "trader_v21.py",
+    "strategy_description": "Milder propagation gates from v20 (softer spread guard and beta floor). Same realized fills/PnL as v20 under worse matching.",
+    "total_profit": 79,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v21.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v21_backtest.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v21_backtest.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v21_fill_summary.json"
   }
 ]

@@ -1,0 +1,138 @@
+{
+  "method": "contract-level propagation: regress dm_v on du_extract (same-step and lag1), with spread response after |du| shocks (90th pct); days 0-2 combined",
+  "contract_stats": {
+    "VEV_4000": {
+      "beta_all": 0.745054615800478,
+      "beta_up": 0.7519435740786868,
+      "beta_down": 0.738252427184466,
+      "beta_lag1": -0.04252131602430906,
+      "spread_change_mean_shock": -0.01084710743801653,
+      "spread_change_mean_nonshock": 0.002349799732977303,
+      "n": 22597
+    },
+    "VEV_4500": {
+      "beta_all": 0.6617923883095481,
+      "beta_up": 0.6651808539926846,
+      "beta_down": 0.6584466019417475,
+      "beta_lag1": -0.013313965985552654,
+      "spread_change_mean_shock": -0.028409090909090908,
+      "spread_change_mean_nonshock": 0.009238985313751669,
+      "n": 22597
+    },
+    "VEV_5000": {
+      "beta_all": 0.6535202277123894,
+      "beta_up": 0.6539585982668432,
+      "beta_down": 0.6530873786407767,
+      "beta_lag1": -0.023318981520684196,
+      "spread_change_mean_shock": -0.012396694214876033,
+      "spread_change_mean_nonshock": 0.0033644859813084112,
+      "n": 22597
+    },
+    "VEV_5100": {
+      "beta_all": 0.5773316745588724,
+      "beta_up": 0.577526646302293,
+      "beta_down": 0.5771391585760518,
+      "beta_lag1": -0.023169166834936784,
+      "spread_change_mean_shock": -0.00981404958677686,
+      "spread_change_mean_nonshock": 0.0011748998664886515,
+      "n": 22597
+    },
+    "VEV_5200": {
+      "beta_all": 0.4366593498212041,
+      "beta_up": 0.43608164977647257,
+      "beta_down": 0.4372297734627832,
+      "beta_lag1": -0.016740162711776085,
+      "spread_change_mean_shock": 0.0074896694214876035,
+      "spread_change_mean_nonshock": -0.0030440587449933245,
+      "n": 22597
+    },
+    "VEV_5300": {
+      "beta_all": 0.2726881916535854,
+      "beta_up": 0.27229702269360356,
+      "beta_down": 0.27307443365695794,
+      "beta_lag1": -0.00519791822723631,
+      "spread_change_mean_shock": -0.0012913223140495868,
+      "spread_change_mean_nonshock": -0.0020293724966622163,
+      "n": 22597
+    },
+    "VEV_5400": {
+      "beta_all": 0.12886984048408423,
+      "beta_up": 0.1282955543610787,
+      "beta_down": 0.1294368932038835,
+      "beta_lag1": -0.003927750239377813,
+      "spread_change_mean_shock": 0.0007747933884297521,
+      "spread_change_mean_nonshock": 0.0018157543391188252,
+      "n": 22597
+    },
+    "VEV_5500": {
+      "beta_all": 0.05486331394477844,
+      "beta_up": 0.055219791024817444,
+      "beta_down": 0.054511326860841425,
+      "beta_lag1": -0.0016805299531666264,
+      "spread_change_mean_shock": 0.005681818181818182,
+      "spread_change_mean_nonshock": -0.0005874499332443258,
+      "n": 22597
+    },
+    "VEV_6000": {
+      "beta_all": 0.0,
+      "beta_up": 0.0,
+      "beta_down": 0.0,
+      "beta_lag1": 0.0,
+      "spread_change_mean_shock": 0.0,
+      "spread_change_mean_nonshock": 0.0,
+      "n": 22597
+    },
+    "VEV_6500": {
+      "beta_all": 0.0,
+      "beta_up": 0.0,
+      "beta_down": 0.0,
+      "beta_lag1": 0.0,
+      "spread_change_mean_shock": 0.0,
+      "spread_change_mean_nonshock": 0.0,
+      "n": 22597
+    }
+  },
+  "beta_ranking": [
+    [
+      "VEV_4000",
+      0.745054615800478
+    ],
+    [
+      "VEV_4500",
+      0.6617923883095481
+    ],
+    [
+      "VEV_5000",
+      0.6535202277123894
+    ],
+    [
+      "VEV_5100",
+      0.5773316745588724
+    ],
+    [
+      "VEV_5200",
+      0.4366593498212041
+    ],
+    [
+      "VEV_5300",
+      0.2726881916535854
+    ],
+    [
+      "VEV_5400",
+      0.12886984048408423
+    ],
+    [
+      "VEV_5500",
+      0.05486331394477844
+    ],
+    [
+      "VEV_6000",
+      0.0
+    ],
+    [
+      "VEV_6500",
+      0.0
+    ]
+  ],
+  "notes": "Higher beta and lower spread-shock widening suggest better candidates for aggressive inventory de-risk execution."
+}

@@ -90,5 +90,17 @@
       "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v19_fill_summary.json"
     ],
     "used_to_decide": "Distinct variant is implemented and tested, but performance remains 75 (< v12=130 and far below 800k benchmark). Parent-leading recipe still v12."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "Priority propagation analysis requested: measured per-contract response dm_v to extract move du (beta, lead/lag beta_lag1, spread-change conditional on large |du| shocks) in extract_move_propagation_by_contract.json. Findings: strong immediate sensitivity in lower strikes (4000-5100), near-zero lag1, and little positive spread widening in top-response bucket. Used to design risk logic: overweight inventory capacity where propagation is strongest and avoid opening when spread widens after extract shocks.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/extract_move_propagation_by_contract.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v20_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v21_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v20_fill_summary.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v21_fill_summary.json"
+    ],
+    "used_to_decide": "v20/v21 were logical but too restrictive: only 2 submission trade events each and +79 total vs v12 +130. Keep v12 leader; future propagation logic should modulate edge/size continuously rather than hard skipping to avoid starving fills."
   }
 ]

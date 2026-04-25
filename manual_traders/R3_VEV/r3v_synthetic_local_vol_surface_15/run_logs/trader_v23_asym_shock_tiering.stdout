@@ -1,0 +1,50 @@
+running algorithm '/workspace/manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v23_asym_shock_tiering.py'...
+Backtesting /workspace/manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v23_asym_shock_tiering.py for round: 3 day: 0
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 374
+VEV_5400: -412
+VEV_5300: -99
+VEV_5200: 480
+VEV_5100: 262
+VEV_5000: -1,506
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: -902
+Backtesting /workspace/manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v23_asym_shock_tiering.py for round: 3 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 120
+VEV_5400: -379
+VEV_5300: -2,314
+VEV_5200: -2,408
+VEV_5100: 4,368
+VEV_5000: 3,436
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: 2,823
+Backtesting /workspace/manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v23_asym_shock_tiering.py for round: 3 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: -73
+VEV_5400: 330
+VEV_5300: -1,194
+VEV_5200: -4,560
+VEV_5100: 10,834
+VEV_5000: 3,981
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: 9,318
+Profit summary:
+Round 3 day 0: -902
+Round 3 day 1: 2,823
+Round 3 day 2: 9,318
+Total profit: 11,238
+
+Successfully saved backtest results to manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v23_asym_shock_tiering.log

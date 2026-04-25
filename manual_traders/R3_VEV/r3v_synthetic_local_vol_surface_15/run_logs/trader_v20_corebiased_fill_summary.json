@@ -1,5 +1,5 @@
 {
-  "log_file": "trader_v20_corebiased.log",
+  "log_file": "r3v_synthetic_local_vol_surface_15/run_logs/trader_v20_corebiased.log",
   "submission_trade_count": 2304,
   "submission_trade_count_by_symbol": {
     "VEV_5300": 252,

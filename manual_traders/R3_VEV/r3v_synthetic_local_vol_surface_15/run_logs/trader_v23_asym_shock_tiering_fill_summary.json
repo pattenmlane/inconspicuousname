@@ -1,0 +1,13 @@
+{
+  "log_file": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v23_asym_shock_tiering.log",
+  "submission_trade_count": 2284,
+  "submission_trade_count_by_symbol": {
+    "VEV_5300": 252,
+    "VEV_5500": 972,
+    "VEV_5200": 293,
+    "VEV_5000": 190,
+    "VEV_5100": 303,
+    "VEV_5400": 274
+  },
+  "all_trade_rows": 6332
+}

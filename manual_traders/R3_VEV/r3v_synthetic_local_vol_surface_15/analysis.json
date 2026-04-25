@@ -138,5 +138,17 @@
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v22_beta_shock_gate_fill_summary.json"
     ],
     "used_to_decide": "Despite logical propagation signal, shock gate reduced profitable participation (v22: 9,965 < v19: 11,399). Conclusion: keep family12 uniform baseline and avoid broad shock-cooldown gating; if revisiting, target only the highest-beta strike(s) with tighter trigger to avoid over-filtering."
+  },
+  {
+    "iteration": 23,
+    "analysis_description": "Extended underlying→voucher microstructure: same-tick co-movement dominates (mean corr(ΔS,ΔV) lag0 ≈0.35–0.77 by strike; lag1/lag2 near zero in underlying_leadlag_spread_elasticity.json). Spread change vs |ΔS| is weakly correlated (|elasticity| < ~0.005), so widening hurdles broadly on shock is poorly motivated. v23 instead tiers residual hurdle *only* during shock windows: slightly tighten on highest lag-0 co-move strikes (5000/5100) and slightly widen on lowest (5400/5500) relative to the previous blanket v22 approach.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/_analyze_underlying_leadlag_spread.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/underlying_leadlag_spread_elasticity.json",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v23_asym_shock_tiering.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v23_asym_shock_tiering.log",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v23_asym_shock_tiering_fill_summary.json"
+    ],
+    "used_to_decide": "v23 (11,238) beats v22 (9,965) by avoiding uniform widening but still under v19 (11,399). Next iteration should return execution to v19 and treat propagation as a *very light* modulator or explore extract-only pre-condition on 5000/5100 only (not all strikes during shock)."
   }
 ]

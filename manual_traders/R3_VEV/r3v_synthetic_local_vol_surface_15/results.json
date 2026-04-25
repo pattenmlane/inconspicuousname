@@ -157,7 +157,10 @@
     "strategy_description": "Family12 baseline: smile cubic spline in logK with uniform pseudo-knot grid over observed x-range; execution/hurdle identical to v14 to isolate spline effect.",
     "total_profit": 11399,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v19_uniform.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v19_uniform.log"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v19_uniform.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v19_uniform.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v19_uniform.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v19_uniform_fill_summary.json"
   },
   {
     "iteration": 20,
@@ -165,7 +168,10 @@
     "strategy_description": "Family12 variation: smile cubic spline in logK with core-biased pseudo-knot placement (dense near ATM, sparse wings); execution/hurdle unchanged vs v19.",
     "total_profit": 11366,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v20_corebiased.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v20_corebiased.log"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v20_corebiased.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v20_corebiased.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v20_corebiased.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v20_corebiased_fill_summary.json"
   },
   {
     "iteration": 21,
@@ -173,7 +179,10 @@
     "strategy_description": "Family12 adjusted variant after duplicate-check: adaptive core-biased pseudo-knot placement (core density tied to observed core spread tightness), execution unchanged vs v19/v20 to isolate spline assumption.",
     "total_profit": 11356,
     "backtest_round": 3,
-    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v21_adaptive_corebiased.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v21_adaptive_corebiased.log"
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v21_adaptive_corebiased.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v21_adaptive_corebiased.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v21_adaptive_corebiased.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v21_adaptive_corebiased_fill_summary.json"
   },
   {
     "iteration": 22,
@@ -185,5 +194,16 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v22_beta_shock_gate.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v22_beta_shock_gate_fill_summary.json"
+  },
+  {
+    "iteration": 23,
+    "trader_file": "trader_v23_asym_shock_tiering.py",
+    "strategy_description": "v19 (family12 uniform) + asymmetric shock tiering: after |dS|>=2.5, brief cooldown; hurdle *= tier by strike (tighter high lag-0 co-move 5000/5100, wider low co-move 5400/5500). From underlying_leadlag_spread_elasticity.json; avoids v22 blind widening.",
+    "total_profit": 11238,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v23_asym_shock_tiering.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v23_asym_shock_tiering.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v23_asym_shock_tiering.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v23_asym_shock_tiering_fill_summary.json"
   }
 ]

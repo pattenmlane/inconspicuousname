@@ -1,0 +1,3 @@
+{
+  "method": "For each consecutive timestamp pair (100 tick step) on days 0-2, compute extract move dS = S_t - S_{t-1}, mean L1 spread of VEV_4000 and VEV_4500 at t-1 and t, and delta spread. Corr(|dS|, mean spread at t-1) ~ 0.002 (no level effect). Mean delta spread (t - t-1) when |dS| >= 4 is about -0.075 vs ~0 when |dS| < 4: mild post-shock compression of the two-strike book. Implication: after large extract moves, slightly shallower passive (smaller offset from touch) may align with book tightening while keeping v13 center drift shift."
+}

@@ -103,5 +103,14 @@
       "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v13.py"
     ],
     "used_to_decide": "Implemented minimal policy change aligned with original wide-passive thesis: keep depth/size same but shift VEV quote center after large extract moves. Sweep found best at beta=0.55 and shock_min=4, yielding 36,502 (small +2 vs v8 on full logged run). Improvement is tiny but positive and logically tied to observed lead/lag propagation."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Complementary microstructure: aligned consecutive 100-tick steps across days 0-2, computed extract step dS and mean L1 spread of VEV_4000/4500 before and after. Correlation of |dS| with pre-step spread is ~0, but conditional mean *change* in mean spread is slightly negative when |dS|>=4 (~-0.075) vs near zero on quiet steps \u2014 post-shock spread compression. IV/Greek line unchanged: same BS-IV, delta, vega on both strikes as in v8/v13 (T=6/365y proxy in-file).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/analysis_outputs_v13_extract_shock_spread.json",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v14.py"
+    ],
+    "used_to_decide": "Added VEV_SHOCK_TIGHTEN_OFF=1: on shock, subtract 1 from deep offset (floor 1) while keeping v13 center shift. Worse-fill total 36,503 vs 36,502 (v13); effectively tied, one tick better on day 1. Tie-break: nearly identical; v14 is marginally more complex \u2014 only keep if we want the spread-compression narrative; else v13 is simpler."
   }
 ]

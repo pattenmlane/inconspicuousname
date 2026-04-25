@@ -165,5 +165,29 @@
       },
       "sweep_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter13_center_shift.json"
     }
+  },
+  {
+    "iteration": 13,
+    "trader_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v14.py",
+    "strategy_description": "v13 (v8 + center shift on extract shock) plus tape-backed adjustment: when |extract move| >= VEV_SHOCK_MIN, next-tick mean 4000/4500 spread tends to compress slightly vs quiet ticks, so reduce passive offset by 1 (shallower from touch) in addition to the center shift. Constants inherited from v13: beta=0.55, shock_min=4.",
+    "total_profit": 36503,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v14.py 3 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v14_iter13_out.json",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v14_iter13_full.log",
+    "trades_or_fills_summary": {
+      "per_day_profit": {
+        "day_0": 14275,
+        "day_1": 16994,
+        "day_2": 5234
+      },
+      "fills": 1884,
+      "fill_qty": 6514,
+      "fill_qty_by_symbol": {
+        "VEV_4000": 929,
+        "VELVETFRUIT_EXTRACT": 3538,
+        "HYDROGEL_PACK": 2047
+      }
+    }
   }
 ]

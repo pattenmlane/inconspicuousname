@@ -172,5 +172,16 @@
       "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v18_fill_summary.json"
     ],
     "used_to_decide": "Median core spread stays 3 on shocks vs calm; wings stay 16 either way — so shock is not a spread-widening regime for core books. Implemented v18: tiny core-only width/edge nudge only when |dS|>=2. Backtest is bit-for-bit same as v15 (18,968, same 5400/4000 lines): nudge is below integer tick threshold after round(fair\u00b1shift). Next shock-aware iteration needs either larger delta (risk adverse selection) or a non-width lever (e.g. core-only size bump without crossing into v13-style aggressive takes)."
+  },
+  {
+    "iteration": 19,
+    "analysis_description": "On extract shocks (|dS|>=2 vs prior timestamp, step-5 subsample for speed), compare median absolute change in voucher mid for core (5000-5300) vs near-wings (5400/5500) vs deep wings. Same IV/Greek stack as live trader for fair; this block is pure mid propagation stats.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analyze_extract_shock_core_mid_asymmetry.py",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analysis_outputs/extract_shock_core_mid_asymmetry.json",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v19_backtest.log",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v19_fill_summary.json"
+    ],
+    "used_to_decide": "Core median |dm|=2 on up and down shocks; 5400/5500 median 0.5; deep wings 0 — supports core-only shock response. v19 adds +3 clip on core during shock; backtest identical to v15 (18,968): either no extra fills at same prices under worse matching, or core still not crossed. Larger boost or price-level change would be next if chasing core activity; avoid repeating v13 aggressive takes."
   }
 ]

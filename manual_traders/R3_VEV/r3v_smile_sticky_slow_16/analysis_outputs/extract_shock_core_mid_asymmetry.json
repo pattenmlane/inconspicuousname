@@ -1,0 +1,35 @@
+{
+  "timestamp_step": 5,
+  "shock_def": "|dS|>=2 vs prior subsampled timestamp",
+  "core_5000_5300": {
+    "up": {
+      "n": 5312.0,
+      "median_abs_dm": 2.0
+    },
+    "down": {
+      "n": 5344.0,
+      "median_abs_dm": 2.0
+    }
+  },
+  "near_wing_5400_5500": {
+    "up": {
+      "n": 2656.0,
+      "median_abs_dm": 0.5
+    },
+    "down": {
+      "n": 2672.0,
+      "median_abs_dm": 0.5
+    }
+  },
+  "deep_wings": {
+    "up": {
+      "n": 5312.0,
+      "median_abs_dm": 0.0
+    },
+    "down": {
+      "n": 5344.0,
+      "median_abs_dm": 0.0
+    }
+  },
+  "interpretation": "If core |dm| on shocks is larger and more symmetric than near-wings, a core-only passive size bump on |dS|>=2 targets liquidity when co-movement is strongest without touching illiquid deep wings."
+}

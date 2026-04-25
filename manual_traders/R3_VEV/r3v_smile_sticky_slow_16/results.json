@@ -168,5 +168,16 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v18_backtest.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v18_fill_summary.json"
+  },
+  {
+    "iteration": 19,
+    "trader_file": "trader_v19.py",
+    "strategy_description": "v15 + extract shock |dS|>=2: add +3 to passive quote clip (buy and sell caps) for core strikes 5000-5300 only; wings unchanged. Motivation: tape extract_shock_core_mid_asymmetry shows median |dm| on shocks is 2 for core vs 0.5 (5400/5500) and 0 (deep wings) — propagate liquidity where co-movement is real without taker logic.",
+    "total_profit": 18968,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v19.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v19_backtest.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v19_fill_summary.json"
   }
 ]

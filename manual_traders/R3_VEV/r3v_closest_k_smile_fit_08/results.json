@@ -1,0 +1,18 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v0.py",
+    "strategy_description": "Local IV smile: bisection IV on each VEV, quadratic fit in log-moneyness on closest 6 strikes to EMA(S); BS fair per strike with extrapolated wing IV; MM edge 2 on vouchers, extract, hydrogel. DTE from round3description + plot_iv_smile_round3 (CSV day d: DTE_open=8-d, intraday wind-down); csv_day inferred from opening extract mid (5250/5245/5267.5). Smile refit every 80 ticks for runtime.",
+    "total_profit": 36834,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v0.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
+  },
+  {
+    "iteration": 1,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v1.py",
+    "strategy_description": "Same as iteration 0 but CLOSEST_K=3 (parameter sweep); tape analysis suggested k=6 had lower IV RMSE than k=3 but backtest PnL was worse, so k=6 retained for primary line.",
+    "total_profit": 33466,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v1.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
+  }
+]

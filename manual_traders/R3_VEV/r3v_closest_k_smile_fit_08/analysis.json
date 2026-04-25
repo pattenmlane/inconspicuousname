@@ -1,0 +1,11 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round 3 tape IV smile diagnostics: Black–Scholes call implied vol from mids (r=0, T=dte_eff/365 with dte_eff from round3work/plotting/original_method/combined_analysis/plot_iv_smile_round3.py — aligns round3description.txt mapping CSV historical day 0→DTE 8 at open, 1→7, 2→6, plus intraday DTE wind-down). On 500 random timestamps per day, compared RMSE of fitted IV vs market IV for quadratic smile fit on closest 3 vs 6 strikes vs flat ATM IV; recorded median top-of-book spread width in ticks for VEV and extract.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/local_smile_iv_rmse.json",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_local_smile.py"
+    ],
+    "used_to_decide": "Median IV RMSE vs mids was lower for k=6 than k=3 on days 0–2 (e.g. day0: k6 0.089 vs k3 0.161 vs flat 0.121), supporting fitting the smile on more local strikes for surface accuracy; small sweep trader_v1 (k=3) underperformed trader_v0 (k=6) in backtest total PnL (33466 vs 36834), so v0 kept. Spread median 3 ticks on vouchers/extract — informs MM_EDGE=2 as inside typical spread."
+  }
+]

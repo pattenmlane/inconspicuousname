@@ -1,0 +1,26 @@
+{
+  "days": {
+    "0": {
+      "n_samples": 500,
+      "median_rmse_iv_k3_vs_mkt": 0.16129915010842885,
+      "median_rmse_iv_k6_vs_mkt": 0.08892157806367355,
+      "median_rmse_flat_atm_vs_mkt": 0.12138229199291217,
+      "spread_width_median_ticks": 3.0
+    },
+    "1": {
+      "n_samples": 500,
+      "median_rmse_iv_k3_vs_mkt": 0.4330833866543501,
+      "median_rmse_iv_k6_vs_mkt": 0.13439306536417284,
+      "median_rmse_flat_atm_vs_mkt": 0.1379504036952376,
+      "spread_width_median_ticks": 3.0
+    },
+    "2": {
+      "n_samples": 500,
+      "median_rmse_iv_k3_vs_mkt": 0.5960523915215751,
+      "median_rmse_iv_k6_vs_mkt": 0.12324115618945755,
+      "median_rmse_flat_atm_vs_mkt": 0.1591271332893022,
+      "spread_width_median_ticks": 3.0
+    }
+  },
+  "method": "Offline Round-3 tape analysis: local IV smile (closest strikes) vs full chain.\n\nUses the same BS/r=0/DTE conventions as round3work/plotting/.../plot_iv_smile_round3.py\n(CSV day 0->DTE 8 at open, intraday wind-down).\n"
+}

@@ -51,5 +51,13 @@
       "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/burst_strike_greeks_proxy.json"
     ],
     "used_to_decide": "VEV_4500 had the worst burst proxy among active strikes, so v10 excluded it in bursts. Backtest showed large regression (172), meaning that realized fills/profit contribution from 4500 dominates proxy signal; keep it enabled (v7/v9/v8 family)."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "Book/spread by regime on tape: VEV_4500 level-1 spread (ask1-bid1) for all rows on days 0-2, split by same burst flag as the trader (extract |z|>=2.2, window 50). Complements Greek studies \u2014 spread is a microstructure control for how aggressive to quote in spike regime.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/vev4500_spread_burst.json"
+    ],
+    "used_to_decide": "Mean spread ~15.85 in both regime buckets (n burst=851) \u2014 no obvious liquidity widening to justify a spread-only switch in v11. Tried lower BURST_OPEN_MULT 0.82 vs 0.88: backtest total unchanged at 487; keep v7 as simpler tie."
   }
 ]

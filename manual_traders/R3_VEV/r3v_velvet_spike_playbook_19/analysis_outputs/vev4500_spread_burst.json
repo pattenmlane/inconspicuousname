@@ -1,0 +1,14 @@
+{
+  "product": "VEV_4500",
+  "method": "Spread = ask1-bid1; burst=extract|z|>=2.2 window50 (same as trader)",
+  "mean_by_regime": {
+    "mean": {
+      "false": 15.8525,
+      "true": 15.859
+    },
+    "count": {
+      "false": 29149,
+      "true": 851
+    }
+  }
+}

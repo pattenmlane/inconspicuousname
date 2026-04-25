@@ -1,0 +1,42 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "trader_v0.py",
+    "strategy_description": "Velvet spike playbook: Frankfurt IV scalp on all VEV strikes with extract |ΔS|/z burst (lower THR_OPEN + IV_SCALPING_THR) vs calm (tighter). After calibration, IV_SCALPING_THR lowered from 0.7 to tape-aware ~0.37–0.45. TTE: state.csv_day + plot_iv_smile_round3 intraday wind (DTE 8/7/6 by csv day per round3description + combined_analysis).",
+    "total_profit": -499,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v0.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
+  },
+  {
+    "iteration": 1,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Grid: BURST_OPEN_MULT=0.65 vs v0=0.72; same IV threshold scaling. Performance tied with v0 on this tape.",
+    "total_profit": -499,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v1.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
+  },
+  {
+    "iteration": 2,
+    "trader_file": "trader_v2.py",
+    "strategy_description": "ATM cluster filter |K/S-1| ≤ 0.10 calm / 0.24 burst (widen on spike); same IV/open scaling. Avoids deep ITM wings where global smile misprices.",
+    "total_profit": 297,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v2.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "Grid: tighter calm (CALM_OPEN_MULT=1.05, ATM_REL_CALM=0.08). Matched v2 total on this run.",
+    "total_profit": 179,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v3.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
+  },
+  {
+    "iteration": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "Grid: wider burst cluster only ATM_REL_BURST=0.26 (calm 0.10). Best aggregate; more VEV_4000 participation on day 2.",
+    "total_profit": 357,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v4.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
+  }
+]

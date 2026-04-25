@@ -1,0 +1,39 @@
+{
+  "timing_assumptions": "round3description.txt: vouchers 7d from round1; historical example maps csv day to TTE at open (day0->8d, day1->7d, day2->6d). Intraday: DTE_eff = dte_open - (timestamp//100)/10000 (same as round3work/plotting/original_method/combined_analysis/plot_iv_smile_round3.py).",
+  "mean_by_csv_day": {
+    "spread_atm": {
+      "0": 2.614,
+      "1": 2.4932,
+      "2": 2.3372
+    },
+    "iv_atm": {
+      "0": 0.239809,
+      "1": 0.246351,
+      "2": 0.245238
+    },
+    "z_abs_ret": {
+      "0": 0.710492,
+      "1": 0.718345,
+      "2": 0.721968
+    }
+  },
+  "corr_z_vs_iv_cross_std": [
+    {
+      "csv_day": 0,
+      "corr_z_iv_cross_std": 0.06573755306395232
+    },
+    {
+      "csv_day": 1,
+      "corr_z_iv_cross_std": 0.08692877399722082
+    },
+    {
+      "csv_day": 2,
+      "corr_z_iv_cross_std": 0.08348570016575856
+    }
+  ],
+  "panel_rows": 7500,
+  "artifacts": [
+    "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/smile_panel_sampled.csv",
+    "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/smile_summary_by_day.csv"
+  ]
+}

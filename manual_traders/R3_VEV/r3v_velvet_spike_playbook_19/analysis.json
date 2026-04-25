@@ -1,0 +1,12 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round 3 tapes days 0–2: Black–Scholes implied volatility from mid prices (r=0, T = effective DTE/365 with DTE_eff = (8−csv_day) − intraday_progress; intraday_progress = (timestamp//100)/10000 per plot_iv_smile_round3.py, aligned with round3description.txt calendar mapping). Per timestamp: IV at strike nearest S, OTM call minus OTM put IV skew, cross-strike IV std, vega-weight share at ATM (BS vega at fitted IV), bid-ask spread at ATM. Rolling z on extract log returns (window 50) for co-movement with smile width.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/smile_panel_sampled.csv",
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/smile_summary_by_day.csv",
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/smile_summary.json"
+    ],
+    "used_to_decide": "Frankfurt switch_mean (EMA of |theo_diff−mean|) on tape stayed below default IV_SCALPING_THR=0.7 (max ~0.54 on day 0), so traders lower IV_THR_BASE and scale it in burst/calm. ATM bid-ask ~2.3–2.6 by day. Weak corr(|z|, iv_cross_std) ~0.06–0.09 suggests z is a regime switch more than linear smile predictor; still used for burst vs calm quoting. Chose ATM-relative strike filter to drop deep wings where smile model misprices."
+  }
+]

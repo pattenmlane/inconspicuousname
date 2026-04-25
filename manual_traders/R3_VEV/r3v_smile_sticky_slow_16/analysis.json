@@ -101,5 +101,15 @@
       "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v11_fill_summary.json"
     ],
     "used_to_decide": "Lambda=0.15 reduces left-wing slope and left extrapolation IQR vs no regularization with no negative-IV artifacts in stress. However v11 was too conservative in live quoting (0 non-zero VEV PnL products on all days), so quote quality/fill activity failed despite stable wings. Next cubic-spline iteration should loosen quoting aggressiveness while preserving wing-regularized spline."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Duplicate-check-driven variant shift: compare plain wing-regularized spline vs synthetic wing-anchor spline (stress 25% outside observed logk support). Metrics: wing endpoint slopes, extrapolated IV IQR, negative-IV share. Plus run log + fill summary for quote quality under worse fills.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analysis_outputs/spline_wing_anchor_vs_plain.json",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v12_backtest.log",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v12_fill_summary.json"
+    ],
+    "used_to_decide": "Anchor nodes reduced left-wing extrapolation IQR but increased right-wing slope/IQR in stress; backtest unchanged at 18,949 with zero VEV activity. Concludes wing stabilization alone is not the binding issue; next spline variant should focus on quote aggressiveness / edge gates while keeping regularization modest."
   }
 ]

@@ -1,0 +1,21 @@
+{
+  "stress": "25% outside observed logk span",
+  "grid": [
+    {
+      "kind": "plain",
+      "median_abs_slope_l": 0.06286610003648856,
+      "median_abs_slope_r": 0.3715093677477317,
+      "iqr_iv_l_ext": 0.3995955259406865,
+      "iqr_iv_r_ext": 0.09136080485485021,
+      "share_neg_ext": 0.0
+    },
+    {
+      "kind": "anchor",
+      "median_abs_slope_l": 0.07001464502217815,
+      "median_abs_slope_r": 0.44125082581392594,
+      "iqr_iv_l_ext": 0.3831784987203176,
+      "iqr_iv_r_ext": 0.1462949504940496,
+      "share_neg_ext": 0.0
+    }
+  ]
+}

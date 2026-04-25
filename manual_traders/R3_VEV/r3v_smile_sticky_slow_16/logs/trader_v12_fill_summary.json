@@ -1,0 +1,64 @@
+{
+  "trader_file": "trader_v12.py",
+  "log_path": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v12_backtest.log",
+  "summary": [
+    {
+      "day": 0,
+      "total": 6985,
+      "vev_nonzero_pnl_products": 0,
+      "product_pnl": {
+        "VEV_6500": 0,
+        "VEV_6000": 0,
+        "VEV_5500": 0,
+        "VEV_5400": 0,
+        "VEV_5300": 0,
+        "VEV_5200": 0,
+        "VEV_5100": 0,
+        "VEV_5000": 0,
+        "VEV_4500": 0,
+        "VEV_4000": 0,
+        "VELVETFRUIT_EXTRACT": 0,
+        "HYDROGEL_PACK": 6985
+      }
+    },
+    {
+      "day": 1,
+      "total": 9103,
+      "vev_nonzero_pnl_products": 0,
+      "product_pnl": {
+        "VEV_6500": 0,
+        "VEV_6000": 0,
+        "VEV_5500": 0,
+        "VEV_5400": 0,
+        "VEV_5300": 0,
+        "VEV_5200": 0,
+        "VEV_5100": 0,
+        "VEV_5000": 0,
+        "VEV_4500": 0,
+        "VEV_4000": 0,
+        "VELVETFRUIT_EXTRACT": 0,
+        "HYDROGEL_PACK": 9103
+      }
+    },
+    {
+      "day": 2,
+      "total": 2861,
+      "vev_nonzero_pnl_products": 0,
+      "product_pnl": {
+        "VEV_6500": 0,
+        "VEV_6000": 0,
+        "VEV_5500": 0,
+        "VEV_5400": 0,
+        "VEV_5300": 0,
+        "VEV_5200": 0,
+        "VEV_5100": 0,
+        "VEV_5000": 0,
+        "VEV_4500": 0,
+        "VEV_4000": 0,
+        "VELVETFRUIT_EXTRACT": 0,
+        "HYDROGEL_PACK": 2861
+      }
+    }
+  ],
+  "notes": "Backtester stdout used for trade/fill proxy via non-zero per-product pnl"
+}

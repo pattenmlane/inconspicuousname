@@ -94,5 +94,13 @@
     "total_profit": 18949,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v11.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 12,
+    "trader_file": "trader_v12.py",
+    "strategy_description": "Family12 distinct variant after duplicate-check: cubic spline logk with synthetic wing anchor nodes (25% beyond observed span) + lighter regularization (lambda=0.10) + faster sticky node EWMA (0.08) + tighter core spread floor. Same no-taker simple architecture.",
+    "total_profit": 18949,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v12.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
   }
 ]

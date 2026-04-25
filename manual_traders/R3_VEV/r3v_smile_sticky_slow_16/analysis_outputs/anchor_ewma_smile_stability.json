@@ -1,0 +1,43 @@
+{
+  "dte": "8-csv_day at open, intraday -1d/session; t_years = dte_eff/365",
+  "subsample": 100,
+  "note": "Lower sum_std_c2 = less oscillation in smile curvature when S uses that EWMA rate",
+  "grid": [
+    {
+      "alpha": 0.045,
+      "std_c2_day0": 0.06042857676519001,
+      "std_c2_day1": 0.06054721855094975,
+      "std_c2_day2": 0.04397031724342207,
+      "sum_std_c2": 0.16494611255956182
+    },
+    {
+      "alpha": 0.03,
+      "std_c2_day0": 0.06211500420026437,
+      "std_c2_day1": 0.05993125176202672,
+      "std_c2_day2": 0.04475483530143309,
+      "sum_std_c2": 0.16680109126372417
+    },
+    {
+      "alpha": 0.02,
+      "std_c2_day0": 0.06264566462962154,
+      "std_c2_day1": 0.059723291820431346,
+      "std_c2_day2": 0.04533760738698615,
+      "sum_std_c2": 0.16770656383703902
+    },
+    {
+      "alpha": 0.012,
+      "std_c2_day0": 0.062405430407079764,
+      "std_c2_day1": 0.060025697505469086,
+      "std_c2_day2": 0.04737825735059827,
+      "sum_std_c2": 0.16980938526314712
+    },
+    {
+      "alpha": 0.006,
+      "std_c2_day0": 0.06211983876806585,
+      "std_c2_day1": 0.059736419915902804,
+      "std_c2_day2": 0.051486308289925974,
+      "sum_std_c2": 0.17334256697389464
+    }
+  ],
+  "best_alpha_by_smoothness": 0.045
+}

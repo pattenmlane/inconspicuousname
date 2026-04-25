@@ -46,5 +46,13 @@
     "total_profit": 19255,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
+  },
+  {
+    "iteration": 6,
+    "trader_file": "trader_v6.py",
+    "strategy_description": "v2 with EWMA-smoothed extract (S_ema) as sole anchor in IV/m_t, smile fit, BS fair, and vega (alpha=0.045, chosen by offline c2-curvature stability grid); raw mids for voucher quotes. Worse PnL than v2 by 9; prefer v2 as parent (simpler, same v2 S tick anchor). DTE: round3description + intraday winding.",
+    "total_profit": 19246,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress"
   }
 ]

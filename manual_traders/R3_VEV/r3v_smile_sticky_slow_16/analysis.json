@@ -46,5 +46,14 @@
       "backtests/2026-04-25_09-41-13.log"
     ],
     "used_to_decide": "No aggregate gain vs v2 (exact tie). Tie-break by simplicity keeps v2 as preferred parent for next iteration."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "VEV smile curvature stability vs extract EWMA rate: for each alpha, subsample (step 100) per day 0-2, fit vega-weighted quad IV in m_t with S = EWMA of extract mid, record std of poly coeff c2 (curvature) over time. Same BS IV/vega machinery as live trader.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analysis_outputs/anchor_ewma_smile_stability.json",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analyze_anchor_ewma_smile_stability.py"
+    ],
+    "used_to_decide": "Grid selected alpha=0.045 to minimize c2 jiggle; implemented as trader_v6. Backtest: total PnL 19246 vs 19255 for v2, so the smoother anchor did not improve realized PnL here; next iterations should stay on tick-S smile (v2) unless a different smoothing hook is found."
   }
 ]

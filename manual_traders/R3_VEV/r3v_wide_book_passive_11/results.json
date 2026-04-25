@@ -189,5 +189,30 @@
         "HYDROGEL_PACK": 2047
       }
     }
+  },
+  {
+    "iteration": 14,
+    "trader_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v15.py",
+    "strategy_description": "v14 plus strike-specific center-shift beta on extract shocks: VEV_4000 uses larger beta than VEV_4500, motivated by contract-level propagation analysis (4000 beta_up/down generally above 4500). Keeps same wide-spread passive thesis, sizes, and shock tighten logic.",
+    "total_profit": 36503,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v15.py 3 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v15_iter14_out.json",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v15_iter14_full.log",
+    "trades_or_fills_summary": {
+      "per_day_profit": {
+        "day_0": 14275,
+        "day_1": 16994,
+        "day_2": 5234
+      },
+      "fills": 1884,
+      "fill_qty": 6514,
+      "fill_qty_by_symbol": {
+        "VEV_4000": 929,
+        "VELVETFRUIT_EXTRACT": 3538,
+        "HYDROGEL_PACK": 2047
+      },
+      "sweep_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter14_strike_beta.json"
+    }
   }
 ]

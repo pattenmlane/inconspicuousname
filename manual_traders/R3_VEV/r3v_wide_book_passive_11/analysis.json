@@ -112,5 +112,15 @@
       "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v14.py"
     ],
     "used_to_decide": "Added VEV_SHOCK_TIGHTEN_OFF=1: on shock, subtract 1 from deep offset (floor 1) while keeping v13 center shift. Worse-fill total 36,503 vs 36,502 (v13); effectively tied, one tick better on day 1. Tie-break: nearly identical; v14 is marginally more complex \u2014 only keep if we want the spread-compression narrative; else v13 is simpler."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "Contract-by-contract shock asymmetry for propagation (days 0-2): estimated beta_up/beta_down for VEV_4000 and VEV_4500 using next-tick dV over extract dS when |dS|>=3. 4000 is consistently more responsive than 4500 (e.g. day1 beta_up: 0.645 vs 0.561; beta_down: 0.701 vs 0.639). Spread deltas after shocks are mixed by day but small in magnitude. Greek/IV thread remains intact via same BS-IV framework in strategy code.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/analysis_outputs_v14_strike_beta_asym.json",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter14_strike_beta.json",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v15.py"
+    ],
+    "used_to_decide": "Introduced strike-specific center shift betas (4000:0.58, 4500:0.52) with same shock threshold=4 and shock-tighten logic from v14. Outcome ties v14 at 36,503 on worse-fill. Per tie-break, prefer simpler v14/v13 family unless this granularity helps future refinements."
   }
 ]

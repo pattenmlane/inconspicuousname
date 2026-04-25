@@ -1,0 +1,50 @@
+{
+  "ungated": {
+    "submission_trade_count": 204,
+    "submission_filled_abs_qty": 3202,
+    "submission_by_symbol": {
+      "VEV_4000": {
+        "trade_count": 5,
+        "filled_abs_qty": 10
+      },
+      "VEV_5000": {
+        "trade_count": 5,
+        "filled_abs_qty": 99
+      },
+      "VEV_5100": {
+        "trade_count": 43,
+        "filled_abs_qty": 600
+      },
+      "VEV_5200": {
+        "trade_count": 38,
+        "filled_abs_qty": 637
+      },
+      "VEV_5300": {
+        "trade_count": 62,
+        "filled_abs_qty": 900
+      },
+      "VEV_5400": {
+        "trade_count": 51,
+        "filled_abs_qty": 956
+      }
+    }
+  },
+  "gated": {
+    "submission_trade_count": 143,
+    "submission_filled_abs_qty": 2552,
+    "submission_by_symbol": {
+      "VEV_5200": {
+        "trade_count": 44,
+        "filled_abs_qty": 752
+      },
+      "VEV_5300": {
+        "trade_count": 53,
+        "filled_abs_qty": 900
+      },
+      "VEV_5400": {
+        "trade_count": 46,
+        "filled_abs_qty": 900
+      }
+    }
+  }
+}

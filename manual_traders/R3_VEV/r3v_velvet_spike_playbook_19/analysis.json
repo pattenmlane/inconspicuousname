@@ -59,5 +59,16 @@
       "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/vev4500_spread_burst.json"
     ],
     "used_to_decide": "Mean spread ~15.85 in both regime buckets (n burst=851) \u2014 no obvious liquidity widening to justify a spread-only switch in v11. Tried lower BURST_OPEN_MULT 0.82 vs 0.88: backtest total unchanged at 487; keep v7 as simpler tie."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Family12 pivot prep: liquidity-quality by strike/day from ROUND_3 L1 books. Metrics: spread=ask1-bid1, depth=bid_vol1+ask_vol1, quality=depth/spread. Built thresholds for gating tests and compared gated vs ungated spline runs with saved run logs and submission fill summaries.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/liquidity_quality_by_strike_day.csv",
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/liquidity_quality_summary.json",
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v12_fill_trade_summary.json",
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/burst_strike_greeks_proxy.json"
+    ],
+    "used_to_decide": "Data shows high quality near ATM (e.g., 5200-5500) and poor quality in deep ITM (4000/4500). Family12 ungated spline lost -2,108.5; gated variant (hard thresholds) lost -24,649.0 by over-pruning and concentrating risk in fewer strikes. This confirms the requested variation is meaningful (not already implemented) and currently underperforms under worse fills."
   }
 ]

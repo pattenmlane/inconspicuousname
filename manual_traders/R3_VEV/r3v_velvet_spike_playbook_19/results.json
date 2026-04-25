@@ -94,5 +94,71 @@
     "total_profit": 487,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v11.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-out --no-vis"
+  },
+  {
+    "iteration": 12,
+    "trader_file": "trader_v12a_spline_ungated.py",
+    "strategy_description": "Family12 smile_cubic_spline_logk baseline (ungated strike universe): fit cubic IV curve on log(K/S) from cluster strikes, quote around spline-theo with burst/calm edges and burst lot cap.",
+    "total_profit": -2108.5,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v12a_spline_ungated.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v12a_ungated.json",
+    "run_log_path": "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v12a_ungated.json",
+    "fill_summary": {
+      "submission_trade_count": 204,
+      "submission_filled_abs_qty": 3202,
+      "submission_by_symbol": {
+        "VEV_4000": {
+          "trade_count": 5,
+          "filled_abs_qty": 10
+        },
+        "VEV_5000": {
+          "trade_count": 5,
+          "filled_abs_qty": 99
+        },
+        "VEV_5100": {
+          "trade_count": 43,
+          "filled_abs_qty": 600
+        },
+        "VEV_5200": {
+          "trade_count": 38,
+          "filled_abs_qty": 637
+        },
+        "VEV_5300": {
+          "trade_count": 62,
+          "filled_abs_qty": 900
+        },
+        "VEV_5400": {
+          "trade_count": 51,
+          "filled_abs_qty": 956
+        }
+      }
+    }
+  },
+  {
+    "iteration": 13,
+    "trader_file": "trader_v12b_spline_liquidity_gated.py",
+    "strategy_description": "Family12 liquidity-gated variation: same spline logic, but include strike for calibration/execution only when L1 spread/depth quality passes gates (spread<=6.5, depth>=26, quality>=4).",
+    "total_profit": -24649.0,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v12b_spline_liquidity_gated.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v12b_gated.json",
+    "run_log_path": "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v12b_gated.json",
+    "fill_summary": {
+      "submission_trade_count": 143,
+      "submission_filled_abs_qty": 2552,
+      "submission_by_symbol": {
+        "VEV_5200": {
+          "trade_count": 44,
+          "filled_abs_qty": 752
+        },
+        "VEV_5300": {
+          "trade_count": 53,
+          "filled_abs_qty": 900
+        },
+        "VEV_5400": {
+          "trade_count": 46,
+          "filled_abs_qty": 900
+        }
+      }
+    }
   }
 ]

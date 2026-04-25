@@ -1,0 +1,4 @@
+{
+  "method": "L1 liquidity quality by strike/day from ROUND_3 prices: spread=ask1-bid1, depth=bid_vol1+ask_vol1, quality=depth/spread.",
+  "file": "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/liquidity_quality_by_strike_day.csv"
+}

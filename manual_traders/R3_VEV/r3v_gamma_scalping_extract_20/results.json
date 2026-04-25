@@ -86,5 +86,13 @@
     "total_profit": 3456,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v10.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 11,
+    "trader_file": "trader_v11.py",
+    "strategy_description": "Parents: v4 + tape insight. v4 with asymmetric clip (6 vs 4) on the two nearest strikes by instantaneous IV rank (higher IV gets larger clip). Slightly worse total than v4 (3444 vs 3456).",
+    "total_profit": 3444,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v11.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
   }
 ]

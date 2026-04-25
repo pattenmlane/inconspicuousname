@@ -43,5 +43,14 @@
       "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analysis_outputs/iv_deltaS_corr.json"
     ],
     "used_to_decide": "Correlation is weak/mixed (day0 ~-0.04, days1-2 ~+0.28\u20130.31), so IV level from EMA is still a reasonable fair; no strong case to add an extract\u2192IV overlay signal. Global requote speed sweep (v10) did not beat v4."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "IV smile slice on the two strikes used for trading: at each subsampled timestamp (step 500), compute BS IV from mids for the two nearest strikes to extract; record skew = IV(K_high) - IV(K_low). Script analyze_two_strike_iv_skew.py; output two_strike_iv_skew.json (n=20 sample points per tape day).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analyze_two_strike_iv_skew.py",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analysis_outputs/two_strike_iv_skew.json"
+    ],
+    "used_to_decide": "Mean IV of the higher near strike exceeds the lower by a few bp on average, increasing on later tape days (0: ~0.0003, 1: ~0.0031, 2: ~0.0044). Tried v11 to lean size toward higher instantaneous IV; total PnL 3444 < v4 3456, so this tilt is not adopted."
   }
 ]

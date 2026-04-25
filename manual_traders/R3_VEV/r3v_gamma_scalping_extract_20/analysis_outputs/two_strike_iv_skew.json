@@ -1,0 +1,20 @@
+{
+  "method": "step 500; IV from mids; skew = IV(higher K) - IV(lower K) for the two nearest strikes",
+  "by_tape_day": {
+    "0": {
+      "n": 20,
+      "mean_skew": 0.00029540343189869976,
+      "mean_abs_skew": 0.002207476398768904
+    },
+    "1": {
+      "n": 20,
+      "mean_skew": 0.003069939146821307,
+      "mean_abs_skew": 0.003942159777375801
+    },
+    "2": {
+      "n": 20,
+      "mean_skew": 0.004437920765989836,
+      "mean_abs_skew": 0.004537425173728818
+    }
+  }
+}

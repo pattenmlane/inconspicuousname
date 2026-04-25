@@ -252,5 +252,71 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v30.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v30.json"
+  },
+  {
+    "iteration": 31,
+    "trader_file": "trader_v31.py",
+    "strategy_description": "v30 + BS-delta leg caps: trim MAX_LEG for high-|delta| (near-ITM) only; no low-delta bump.",
+    "total_profit": 3754.5,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v31.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v31.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v31.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v31.json"
+  },
+  {
+    "iteration": 32,
+    "trader_file": "trader_v32.py",
+    "strategy_description": "v31 + skip far-OTM (6000/6500) cheap longs on one-tick extract shock (|dS|>=2).",
+    "total_profit": 3754.5,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v32.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v32.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v32.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v32.json"
+  },
+  {
+    "iteration": 33,
+    "trader_file": "trader_v33.py",
+    "strategy_description": "v30 + shock_left counter (3 ticks) for far-OTM cheap-long block; CHEAP shift still on instant |dS| only.",
+    "total_profit": 3754.5,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v33.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v33.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v33.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v33.json"
+  },
+  {
+    "iteration": 34,
+    "trader_file": "trader_v34.py",
+    "strategy_description": "v30 + stricter cheap threshold for 6000/6500 only (CHEAP_THR_FAR_OTM=-0.026 vs -0.022 elsewhere).",
+    "total_profit": 3754.5,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v34.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v34.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v34.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v34.json"
+  },
+  {
+    "iteration": 35,
+    "trader_file": "trader_v35.py",
+    "strategy_description": "v30 + MAX_LEG_CHEAP_FAR=8 for cheap longs on 6000/6500 only (grid vs uniform MAX_LEG=12).",
+    "total_profit": 3754.5,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v35.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v35.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v35.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v35.json"
+  },
+  {
+    "iteration": 36,
+    "trader_file": "trader_v36.py",
+    "strategy_description": "v30 + no inversion (lift-ask) longs on VEV_6000/VEV_6500; rich shorts and smile still use full wing set.",
+    "total_profit": 3754.5,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v36.py 3 --data Prosperity4Data --match-trades worse --out manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v36.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v36.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v36.json"
   }
 ]

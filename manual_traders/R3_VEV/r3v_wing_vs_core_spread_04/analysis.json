@@ -217,5 +217,54 @@
       "fill_summary_v30.json"
     ],
     "used_to_decide": "v30 is marginally best in branch; still far below ~800k bar, but this is a meaningful directed tweak rather than random nudging."
+  },
+  {
+    "iteration": 31,
+    "analysis_description": "v31: Greek leg trim; submission-only stat parse (fill_summary) matches v30: 118 submission trades, VEV_6000 900 qty, total 3754.5. Regenerated via summarize_backtest_log.py (submission rows = non-empty buyer/seller in tradeHistory).",
+    "analysis_outputs": [
+      "summarize_backtest_log.py",
+      "fill_summary_v31.json"
+    ],
+    "used_to_decide": "v31 is not a PnL duplicate of v20 but matches v30 path on this tape; keep v30 as reference for shock experiments."
+  },
+  {
+    "iteration": 32,
+    "analysis_description": "v32: far-OTM cheap block on |dS| shock; fill_summary identical to v30/v31 (118 submission rows, 3754.5) — one-tick shock gate does not alter which orders fill.",
+    "analysis_outputs": [
+      "fill_summary_v32.json"
+    ],
+    "used_to_decide": "Need persistent or threshold-level shock state (v33) or other lever; simple shock bit ineffective."
+  },
+  {
+    "iteration": 33,
+    "analysis_description": "v33: shock_left persistence (3 ticks) for far-OTM cheap block. Parsed log: same 118 submission trades and 3754.5 as v30; shock persistence also does not change filled submission path on this run.",
+    "analysis_outputs": [
+      "fill_summary_v33.json"
+    ],
+    "used_to_decide": "If far-OTM filter never binds at submission, pivot to per-strike CHEAP/clip (v34\u2013v36) or accept VEV_6000 PnL comes from a different trade category."
+  },
+  {
+    "iteration": 34,
+    "analysis_description": "v34: per-strike CHEAP -0.026 on 6000/6500 only. fill_summary: unchanged vs v30 (3754.5, VEV_6000 -450, 900 submission qty). Tighter cheap threshold in band still does not change which submissions cross.",
+    "analysis_outputs": [
+      "fill_summary_v34.json"
+    ],
+    "used_to_decide": "Grid step documented; try clip-only (v35) and hard no long (v36)."
+  },
+  {
+    "iteration": 35,
+    "analysis_description": "v35: MAX_LEG 8 for cheap long on 6000/6500 only. fill_summary again identical: 900 VEV_6000 submission qty, -450 on VEV_6000, total 3754.5 — implied orders were already at or below 8 or clip was not the binding constraint in the worst-fill path we measure.",
+    "analysis_outputs": [
+      "fill_summary_v35.json"
+    ],
+    "used_to_decide": "v36: disable far-OTM long branch entirely to test hypothesis that PnL bucket is not cheap-long."
+  },
+  {
+    "iteration": 36,
+    "analysis_description": "v36: NO_CHEAP_LONG_KS = {6000,6500}. fill_summary still 3754.5, VEV_6000 -450, 75 trades / 900 qty on VEV_6000 in submission parse \u2014 identical to v30. EXACT_DUPLICATE_CHECK: code differs (cheap branch skipped for 6000/6500) but 118-submission path and PnL match v30\u2011class; not byte-duplicate, functionally same outcome, so the ~450 loss on VEV_6000 is not removed by turning off that branch (likely not driven by our cheap-long intent or non-submission path dominates tape PnL at end state).",
+    "analysis_outputs": [
+      "fill_summary_v36.json"
+    ],
+    "used_to_decide": "Next iteration must disambiguate: split submission vs full tape PnL for VEV_6000, or test rich-short-only / different wing set, rather than more cheap-far-OTM gates that do not change submissions."
   }
 ]

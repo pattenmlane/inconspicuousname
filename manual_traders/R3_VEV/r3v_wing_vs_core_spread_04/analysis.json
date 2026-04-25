@@ -275,5 +275,14 @@
       "backtest_v37.log"
     ],
     "used_to_decide": "New branch best is v37; far-OTM was execution-only drag under worse fills, not fixable by CHEAP gating. Next: optional re-add 6500 only if tape shows edge, or micro-tune RICH/CHEAP around v37's path."
+  },
+  {
+    "iteration": 38,
+    "analysis_description": "v38: WING_KS = v37 union {6500}. v30 had zero submission-tagged VEV_6500 trades. fill_summary_v38 matches v37 exactly (4204.5 total, 43 submission rows, VEV_5400+extract only, VEV_6500 PnL 0). Re-adding 6500 as tradable does not change residuals/spread path vs v37 on this tape.",
+    "analysis_outputs": [
+      "fill_summary_v38.json",
+      "backtest_v38.log"
+    ],
+    "used_to_decide": "Keep v37 as simpler canonical (6500 redundant in WING_KS here). Next parent v37 for parameter sweeps or tape-only shock/spread regime tied to extract."
   }
 ]

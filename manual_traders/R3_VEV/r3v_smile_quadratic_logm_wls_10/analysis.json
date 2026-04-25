@@ -15,5 +15,14 @@
       "results.json"
     ],
     "used_to_decide": "Chose v3: pooled prior early + spread>=2 + edge_frac 0.26 + touch-cross; raised Round-3 days 0-2 aggregate PnL vs v2 while keeping same BS-at-fitted-IV concept."
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Edge quality analysis on Round-3 tapes (days 0-2) under fixed pooled smile coefficients: for each timestamp/strike, computed fair via BS(sigma(m)) and features edge_per_spread=|mid-fair|/spread and edge_per_vega=|mid-fair|/vega, using T=dte_effective/365 with dte_effective=(8-csv_day)-floor(ts/100)/10000. Output saved in iv_edge_bucket_analysis_iter4.json.",
+    "analysis_outputs": [
+      "iv_edge_bucket_analysis_iter4.json",
+      "results.json"
+    ],
+    "used_to_decide": "Observed strongest edge_per_spread concentration in VEV_5300/5400/5200 and stable activity in 5000-5400 complex; implemented v4/v5 as strike-selective touch-crossing with vega-normalized edge gate while keeping same WLS quadratic smile fair model."
   }
 ]

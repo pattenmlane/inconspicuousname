@@ -1,0 +1,93 @@
+{
+  "n_rows": 30000,
+  "by_strike": {
+    "VEV_4000": {
+      "edge_per_spread": 0.0691,
+      "edge_per_vega": 0.1034,
+      "vg": 13.841,
+      "spr": 21.0
+    },
+    "VEV_4500": {
+      "edge_per_spread": 0.0234,
+      "edge_per_vega": 0.0479,
+      "vg": 7.8969,
+      "spr": 16.0
+    },
+    "VEV_5000": {
+      "edge_per_spread": 0.2282,
+      "edge_per_vega": 0.0142,
+      "vg": 101.0225,
+      "spr": 6.0
+    },
+    "VEV_5100": {
+      "edge_per_spread": 0.2331,
+      "edge_per_vega": 0.0055,
+      "vg": 186.6948,
+      "spr": 4.0
+    },
+    "VEV_5200": {
+      "edge_per_spread": 0.507,
+      "edge_per_vega": 0.0058,
+      "vg": 268.0199,
+      "spr": 3.0
+    },
+    "VEV_5300": {
+      "edge_per_spread": 1.169,
+      "edge_per_vega": 0.0099,
+      "vg": 267.9395,
+      "spr": 2.0
+    },
+    "VEV_5400": {
+      "edge_per_spread": 1.6593,
+      "edge_per_vega": 0.0111,
+      "vg": 194.8088,
+      "spr": 1.0
+    },
+    "VEV_5500": {
+      "edge_per_spread": 0.3108,
+      "edge_per_vega": 0.0033,
+      "vg": 110.4135,
+      "spr": 1.0
+    },
+    "VEV_6000": {
+      "edge_per_spread": 0.1656,
+      "edge_per_vega": 0.0193,
+      "vg": 8.5876,
+      "spr": 1.0
+    },
+    "VEV_6500": {
+      "edge_per_spread": 0.0506,
+      "edge_per_vega": 0.0059,
+      "vg": 8.8343,
+      "spr": 1.0
+    }
+  },
+  "day_median": {
+    "0": {
+      "edge_per_spread": 0.1337,
+      "edge_per_vega": 0.0068
+    },
+    "1": {
+      "edge_per_spread": 0.2021,
+      "edge_per_vega": 0.0114
+    },
+    "2": {
+      "edge_per_spread": 0.2249,
+      "edge_per_vega": 0.0129
+    }
+  },
+  "top_edge_spread_syms": [
+    "VEV_5400",
+    "VEV_5300",
+    "VEV_5200",
+    "VEV_5500",
+    "VEV_5100"
+  ],
+  "top_edge_vega_syms": [
+    "VEV_4000",
+    "VEV_4500",
+    "VEV_6000",
+    "VEV_5000",
+    "VEV_5400"
+  ]
+}

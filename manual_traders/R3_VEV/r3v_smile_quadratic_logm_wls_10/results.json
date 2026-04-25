@@ -30,5 +30,21 @@
     "total_profit": 46472,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v3.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "Same WLS smile thesis from v3; add strike-selective execution (core 5000-5400 preferred), vega-normalized edge gate (abs(edge)/vega), and wider clip sizing on core strikes.",
+    "total_profit": 47422,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v4.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 5,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "Small grid from v4: slightly stricter edge-per-vega/min-vega and reduced non-core clip size to cut wing noise while keeping touch-cross execution on smile mispricing.",
+    "total_profit": 49178,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
   }
 ]

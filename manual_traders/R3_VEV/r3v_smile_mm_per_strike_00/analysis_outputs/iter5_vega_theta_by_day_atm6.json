@@ -1,0 +1,101 @@
+{
+  "method": "Subsampled ts every 200; 6 near-ATM strikes; IV from brentq on mid; T=dte/365, r=0. Vega and BS call theta (per year) averaged within day then by strike.",
+  "per_day": {
+    "0": {
+      "VEV_5000": {
+        "vega_mean": 111.47624696803881,
+        "call_theta_annualized_mean": -654.4290947127386,
+        "log_moneyness_km": -0.04816794235958706
+      },
+      "VEV_5100": {
+        "vega_mean": 212.9104396511503,
+        "call_theta_annualized_mean": -1263.0212884306984,
+        "log_moneyness_km": -0.028365315063407327
+      },
+      "VEV_5200": {
+        "vega_mean": 288.142358637004,
+        "call_theta_annualized_mean": -1680.4611230505743,
+        "log_moneyness_km": -0.00894722920630575
+      },
+      "VEV_5300": {
+        "vega_mean": 288.27536154170974,
+        "call_theta_annualized_mean": -1680.7111066503642,
+        "log_moneyness_km": 0.010100965764388731
+      },
+      "VEV_5400": {
+        "vega_mean": 207.61240235347626,
+        "call_theta_annualized_mean": -1158.3354117470037,
+        "log_moneyness_km": 0.028793098776541286
+      },
+      "VEV_5500": {
+        "vega_mean": 126.1196075236579,
+        "call_theta_annualized_mean": -755.682286365553,
+        "log_moneyness_km": 0.047142237444737826
+      }
+    },
+    "1": {
+      "VEV_5000": {
+        "vega_mean": 88.03663196304234,
+        "call_theta_annualized_mean": -591.3115341372691,
+        "log_moneyness_km": -0.0482150289764356
+      },
+      "VEV_5100": {
+        "vega_mean": 184.04457125557374,
+        "call_theta_annualized_mean": -1223.7165015793898,
+        "log_moneyness_km": -0.028412401680255897
+      },
+      "VEV_5200": {
+        "vega_mean": 266.8842736653455,
+        "call_theta_annualized_mean": -1827.8630769569534,
+        "log_moneyness_km": -0.008994315823154325
+      },
+      "VEV_5300": {
+        "vega_mean": 267.38317397425527,
+        "call_theta_annualized_mean": -1855.9564595715806,
+        "log_moneyness_km": 0.010053879147540159
+      },
+      "VEV_5400": {
+        "vega_mean": 182.34030814772854,
+        "call_theta_annualized_mean": -1172.5395906234967,
+        "log_moneyness_km": 0.028746012159692743
+      },
+      "VEV_5500": {
+        "vega_mean": 105.45184007230968,
+        "call_theta_annualized_mean": -736.8540364836203,
+        "log_moneyness_km": 0.047095150827889246
+      }
+    },
+    "2": {
+      "VEV_5000": {
+        "vega_mean": 63.100372179838544,
+        "call_theta_annualized_mean": -509.2208714193884,
+        "log_moneyness_km": -0.04980940567275474
+      },
+      "VEV_5100": {
+        "vega_mean": 148.8869513470327,
+        "call_theta_annualized_mean": -1166.9477510714719,
+        "log_moneyness_km": -0.030006778376575016
+      },
+      "VEV_5200": {
+        "vega_mean": 239.37251797279347,
+        "call_theta_annualized_mean": -1927.8297029013047,
+        "log_moneyness_km": -0.010588692519473433
+      },
+      "VEV_5300": {
+        "vega_mean": 247.45154591810896,
+        "call_theta_annualized_mean": -2028.6255144149711,
+        "log_moneyness_km": 0.00845950245122105
+      },
+      "VEV_5400": {
+        "vega_mean": 164.57484999379798,
+        "call_theta_annualized_mean": -1254.350408185732,
+        "log_moneyness_km": 0.027151635463373604
+      },
+      "VEV_5500": {
+        "vega_mean": 90.36775904544707,
+        "call_theta_annualized_mean": -753.8322649810108,
+        "log_moneyness_km": 0.04550077413157016
+      }
+    }
+  }
+}

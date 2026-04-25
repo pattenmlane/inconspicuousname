@@ -52,5 +52,19 @@
     "analysis_description": "Backtest comparison v6 vs v7 on round 3 day 2 only: v6 voucher +10, v7 +0; SMILE_EMA alpha sweep 0.04/0.12/0.2 did not change aggregate. v8 recovers 11471 by disabling EMA on day 2.",
     "analysis_outputs": [],
     "used_to_decide": "Tie on aggregate: v6 and v8 both 11471; prefer v6 (simpler) unless we want EMA smoothing on days 0-1 (v8 adds hybrid complexity for same score)."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "BS **vega** and **call theta** (per year, r=0) at inverted IV from mids, six near-ATM strikes, subsample every 200 ts; T=dte/365 with wind. Output: `iter5_vega_theta_by_day_atm6.json` — on csv day 2, 5200-5400 show highest |theta| and still large vega vs days 0-1, motivating a day-2-only quote tweak (not a pivot away from smile MM).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/analysis_outputs/iter5_vega_theta_by_day_atm6.json"
+    ],
+    "used_to_decide": "Tighten ATM and touch moneyness bands for voucher quotes on csv day 2 only; grid on (atm_km, touch_km) in temp files — best 0.034 / 0.030 in trader_v9."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Micro-grid on day-2 bands only: (0.034,0.030) -> total +11664; (0.035,0.034) -> 11471 (v6); wider base+wing on d2 was worse (11466). v9 keeps best d2-only bands.",
+    "analysis_outputs": [],
+    "used_to_decide": "Lock trader_v9 constants; days 0-1 match v6."
   }
 ]

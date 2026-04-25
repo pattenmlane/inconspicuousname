@@ -198,5 +198,21 @@
     "total_profit": 16246,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v24.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 25,
+    "trader_file": "trader_v22.py",
+    "strategy_description": "Re-run v22 with saved log/fill summary artifacts under --match-trades worse (same params, reproducibility run).",
+    "total_profit": 16260,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v22.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee backtests/r3v_v22_worse.log"
+  },
+  {
+    "iteration": 26,
+    "trader_file": "trader_v24.py",
+    "strategy_description": "Re-run v24 with saved log/fill summary artifacts under --match-trades worse.",
+    "total_profit": 16246,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v24.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee backtests/r3v_v24_worse.log"
   }
 ]

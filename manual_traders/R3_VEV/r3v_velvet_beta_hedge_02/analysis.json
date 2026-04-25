@@ -57,5 +57,15 @@
       "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analysis_v6_vega_by_spread_bucket.json"
     ],
     "used_to_decide": "v22 slightly tightened the spread-dampening multipliers again and set a new backtest high (16,260) vs v20. Earlier third-tier threshold shift (v23) and VEV size trim (v24) did not beat v22."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Operational robustness + fills evidence pass: saved full backtest logs for representative best (v22) and nearby control (v24), then parsed day/product PnL into a compact fills summary JSON. Also confirms multi-day processing under round=3 worse-fills setup.",
+    "analysis_outputs": [
+      "backtests/r3v_v22_worse.log",
+      "backtests/r3v_v24_worse.log",
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v22_v24.json"
+    ],
+    "used_to_decide": "v22 outperforms v24 by +14, driven by VEV_4000 edge (+6 day0, +2 day1, +6 day2) with identical hydrogel path; supports keeping v22 spread multipliers as current best local setting."
   }
 ]

@@ -24,5 +24,13 @@
       "results.json"
     ],
     "used_to_decide": "Observed strongest edge_per_spread concentration in VEV_5300/5400/5200 and stable activity in 5000-5400 complex; implemented v4/v5 as strike-selective touch-crossing with vega-normalized edge gate while keeping same WLS quadratic smile fair model."
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "IV vs extract: on ROUND_3 days 0-2, subsample step-to-step (VEV_5200), IV from bisection on mid, IV_model from pooled WLS sigma(m), dS = change in VELVETFRUIT_EXTRACT mid. Saved iv_extract_comovement_iter6.json (corr(dS, IV) ~ -0.11; IV error vs model similar in high- vs low-move quartiles, so we tested extract-move edge scaling in v6; backtest PnL fell vs v5). Ablation: v7 = smooth prior-to-online WLS blend only (no EMA gating) also trailed v5, so the hard step-120 prior switch in v5 is preferred for this data.",
+    "analysis_outputs": [
+      "iv_extract_comovement_iter6.json"
+    ],
+    "used_to_decide": "Keep production candidate trader_v5.py; v6 and v7 kept as ablations. Future work: optional BS theta in fair sensitivity tests; no thesis change."
   }
 ]

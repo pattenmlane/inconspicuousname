@@ -1,0 +1,9 @@
+{
+  "n": 1200,
+  "corr_dS_iv": -0.10990459060959389,
+  "median_abs_dS": 1.0,
+  "median_iv_err": 0.00652446534814087,
+  "iv_err_high_move": 0.006727740168743085,
+  "iv_err_low_move": 0.006444313942282356,
+  "note": "IV from bisection on mid; iv_model from pooled WLS sigma(m). dS = extract mid change step-to-step (subsampled)."
+}

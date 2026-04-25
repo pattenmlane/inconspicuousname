@@ -46,5 +46,21 @@
     "total_profit": 49178,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 6,
+    "trader_file": "trader_v6.py",
+    "strategy_description": "Child of v5: smooth prior-to-online WLS blend (steps 120-300) plus EMA of extract mid changes to scale edge gates and reduce clips during large |dS|; ablation showed regression vs v5.",
+    "total_profit": 48574,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "Child of v5: smooth prior-to-online blend only (steps 120-280), no extract-move gate; ablation: still below v5 (49178).",
+    "total_profit": 48596,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
   }
 ]

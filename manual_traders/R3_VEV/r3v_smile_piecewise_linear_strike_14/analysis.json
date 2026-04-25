@@ -30,5 +30,14 @@
       "run_pwl_residual_analysis.py"
     ],
     "used_to_decide": "Implemented v19 (trade only 5000-5300) — backtest same total as v12 (-265). v18 (stricter switch_mean/THR) improved to -246; v17 periodic csv_day refresh — no change vs v12 (-265)."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "IV vs extract (tape): consecutive timesteps, corr(d log VELVETFRUIT_EXTRACT, d IV) for VEV_5200 with IV from mid bisection and T=t_years_effective(day,ts). All three historical days show moderate negative correlation (~-0.39 to -0.42), consistent with spot up / IV down in short window. Microstructure: parent v18; added min bid-ask spread on voucher (v22: spread>=4, v23:>=5) to avoid trading when wall_mid fair is less reliable; v23 is best PnL so far (-101 vs v18 -246). v20 (v18+inner only) matches v18 PnL (-246). v21 stricter IV gates worsened (-307).",
+    "analysis_outputs": [
+      "analysis_outputs/iv5200_vs_extract_logdiff.json",
+      "run_iv_vs_extract_corr.py"
+    ],
+    "used_to_decide": "Prefer v23 as new best: keep v18 IV-scalp thresholds and add min spread=5; continue grid from v23 (smaller next step) rather than v21-style gate tightening."
   }
 ]

@@ -1,0 +1,17 @@
+{
+  "description": "Consecutive VEV_5200 row pairs per day: d(log VELVETFRUIT_EXTRACT) vs d(IV) where IV = bisection from mid, T=t_years_effective(day,ts).",
+  "by_csv_day": {
+    "0": {
+      "n": 9999,
+      "corr_logS_div": -0.38613796087317287
+    },
+    "1": {
+      "n": 9999,
+      "corr_logS_div": -0.39826322665496666
+    },
+    "2": {
+      "n": 9999,
+      "corr_logS_div": -0.4212446164130994
+    }
+  }
+}

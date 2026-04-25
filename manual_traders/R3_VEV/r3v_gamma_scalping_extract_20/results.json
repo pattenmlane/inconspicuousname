@@ -110,5 +110,13 @@
     "total_profit": 4157,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v13.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 14,
+    "trader_file": "trader_v14.py",
+    "strategy_description": "v13 follow-up grid: day-1 hedge_frac 0.45, hedge_band 13 (further softening). Full run logs + fill summary saved under run_logs/ and family12_outputs/. Underperforms v13.",
+    "total_profit": 3861,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v14.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
   }
 ]

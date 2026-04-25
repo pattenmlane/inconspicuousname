@@ -69,5 +69,17 @@
       "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analysis_outputs/two_strike_spread_by_day.json"
     ],
     "used_to_decide": "Continued day-1 extract hedge sweeps (parent v12). v13 further reduced day-1 hedge target and widened the deadband; backtest total rose to 4157 from v12=3572; adopt v13 as current best for this line."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Execution artifact analysis from saved full logs: ran v13 and v14 with --match-trades worse and --out to run_logs/*.log, plus captured stdout summaries. Parsed activity/tradeHistory into family12_outputs/run_fill_summary_v13_v14.json (num activity rows, trade rows, pnl by symbol, fill counts, absolute filled qty).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v13_round3_worse.log",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v14_round3_worse.log",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v13_round3_worse.stdout.txt",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v14_round3_worse.stdout.txt",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v13_v14.json"
+    ],
+    "used_to_decide": "v14 has nearly identical option-side fills and VEV PnL vs v13; the degradation is from extract PnL (v13 +156 vs v14 -140) due to over-softened day-1 hedge. Keep v13 (4157) as best in this family line."
   }
 ]

@@ -21,18 +21,18 @@
   },
   {
     "iteration": 2,
-    "analysis_description": "Design note for v5/v6 (no new CSV): after v3/v4 underperformed v1, parent was reset to best PnL trader_v1. Hypothesis: BS vega weights how much 1 tick of mid move in price space is worth in IV space; combine with observed bid-ask width (spread ticks) to modulate required edge—tighter edge when |vega| is large and spread is narrow. Small grid: VEGA_EDGE_SCALE 0.15 (v5) vs 0.25 (v6). TTE unchanged: 8−d days per round3description.",
+    "analysis_description": "Design note for v5/v6 (no new CSV): after v3/v4 underperformed v1, parent was reset to best PnL trader_v1. Hypothesis: BS vega weights how much 1 tick of mid move in price space is worth in IV space; combine with observed bid-ask width (spread ticks) to modulate required edge\u2014tighter edge when |vega| is large and spread is narrow. Small grid: VEGA_EDGE_SCALE 0.15 (v5) vs 0.25 (v6). TTE unchanged: 8\u2212d days per round3description.",
     "analysis_outputs": [],
     "used_to_decide": "v5 and v6 beat v1 in this backtest (50,261 vs 50,222). v5 and v6 tie on PnL; prefer v5 (smaller scale) per tie-break. v3/v4 multi-level aggressor path still recorded as worse than v1 here, so not pursued further without new evidence."
   },
   {
     "iteration": 3,
-    "analysis_description": "Mean |BS vega| and |BS gamma| (using spline implied vol at each strike) by voucher and tape day, subsampled 1/500. Confirms |γ| and |vega| peak near 5200–5300; deep ITM (4000) has very different Greek profile than OTM. Motivates optional gamma-caution in edge (v7/v8); in this backtest, gamma scaling 100 vs 160 did not change total PnL vs v5.",
+    "analysis_description": "Mean |BS vega| and |BS gamma| (using spline implied vol at each strike) by voucher and tape day, subsampled 1/500. Confirms |\u03b3| and |vega| peak near 5200\u20135300; deep ITM (4000) has very different Greek profile than OTM. Motivates optional gamma-caution in edge (v7/v8); in this backtest, gamma scaling 100 vs 160 did not change total PnL vs v5.",
     "analysis_outputs": [
       "analysis_outputs/vega_gamma_by_strike.csv",
       "analyze_vega_gamma_by_strike.py"
     ],
-    "used_to_decide": "Kept v5 as the leading branch; v7/v8 are documented experiments—same 50,261 aggregate PnL, so the simpler v5 (no extra gamma) remains the preferred tie-break v5 family member unless future runs diverge."
+    "used_to_decide": "Kept v5 as the leading branch; v7/v8 are documented experiments\u2014same 50,261 aggregate PnL, so the simpler v5 (no extra gamma) remains the preferred tie-break v5 family member unless future runs diverge."
   },
   {
     "iteration": 4,
@@ -41,6 +41,14 @@
       "analysis_outputs/loo_vs_insample_fair_gap.csv",
       "analyze_loo_vs_insample_fair.py"
     ],
-    "used_to_decide": "Implemented trader_v9 = trader_v5 logic but fair IV at K from leave-one-out spline when five or more nodes (else in-sample). Backtest total 67,649 vs 50,261 for v5 on the same regime—new best; v5/v6 family superseded for this dataset run."
+    "used_to_decide": "Implemented trader_v9 = trader_v5 logic but fair IV at K from leave-one-out spline when five or more nodes (else in-sample). Backtest total 67,649 vs 50,261 for v5 on the same regime\u2014new best; v5/v6 family superseded for this dataset run."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "Using prior strike-edge/vega_iv_err concentration from analysis_outputs/strike_edge_greeks_detailed.csv, edge signal remains concentrated in VEV_4000 while several other strikes have weaker/less stable edge despite active trading under v9. Added a risk-shaping experiment: keep leave-one-out spline fair, but taper order sizes as option delta-utilization grows (symbol-level |position * delta| proxy), stronger taper for non-4000 strikes. Parameter grid: DELTA_HEADROOM 0.35 (v10) vs 0.50 (v11).",
+    "analysis_outputs": [
+      "analysis_outputs/strike_edge_greeks_detailed.csv"
+    ],
+    "used_to_decide": "v11 outperformed v9 (68,908 vs 67,649), while v10 was slightly below v9 (67,882). Looser headroom (0.50) retains enough flow in productive strikes while dampening unstable non-4000 inventory build-up."
   }
 ]

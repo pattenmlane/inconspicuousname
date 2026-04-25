@@ -42,7 +42,7 @@
   {
     "iteration": 5,
     "trader_file": "trader_v5.py",
-    "strategy_description": "trader_v1 + vega–spread–aware take/make: reduce required edge when |vega| is large and top-of-book spread is tight (spline-mid more informative); VEGA_EDGE_SCALE=0.15. Same cubic spline IV(logK) fair and outlier drop.",
+    "strategy_description": "trader_v1 + vega\u2013spread\u2013aware take/make: reduce required edge when |vega| is large and top-of-book spread is tight (spline-mid more informative); VEGA_EDGE_SCALE=0.15. Same cubic spline IV(logK) fair and outlier drop.",
     "total_profit": 50261,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
@@ -66,7 +66,7 @@
   {
     "iteration": 8,
     "trader_file": "trader_v8.py",
-    "strategy_description": "Same as trader_v7 with GAMMA_EDGE_SCALE=160. Ties v5–v7 at 50,261 in this run; prefer v5 (simplest) on tie.",
+    "strategy_description": "Same as trader_v7 with GAMMA_EDGE_SCALE=160. Ties v5\u2013v7 at 50,261 in this run; prefer v5 (simplest) on tie.",
     "total_profit": 50261,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v8.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
@@ -78,5 +78,21 @@
     "total_profit": 67649,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v9.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 10,
+    "trader_file": "trader_v10.py",
+    "strategy_description": "trader_v9 + delta-cap-aware size taper (DELTA_HEADROOM=0.35): scale take/mm size down as |position*delta| utilization rises, with extra taper on non-4000 strikes; same LOO spline fair.",
+    "total_profit": 67882,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v10.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 11,
+    "trader_file": "trader_v11.py",
+    "strategy_description": "Same as v10 with DELTA_HEADROOM=0.50 (parameter sweep). Best so far in this branch/run.",
+    "total_profit": 68908,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v11.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

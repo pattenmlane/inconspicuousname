@@ -1,0 +1,116 @@
+{
+  "timing": "round3description dte mapping + intraday winding, sampled ts step 5",
+  "n_rows": 50322,
+  "per_strike": {
+    "VEV_4000": {
+      "beta_dP_dS": 0.8147904803620967,
+      "beta_up": 1.4102817597627286,
+      "beta_down": 0.5651678408619976,
+      "spread_mean": 20.173202614379086,
+      "spread_shock_p90ret": 20.370967741935484,
+      "spread_nonshock": 20.150909090909092,
+      "delta_median": 0.9968976916063703,
+      "vega_median": 6.982253858641828,
+      "asymmetry_up_minus_down": 0.8451139189007311
+    },
+    "VEV_4500": {
+      "beta_dP_dS": 0.8863297384121156,
+      "beta_up": 1.203174364374906,
+      "beta_down": 0.6910523875753362,
+      "spread_mean": 15.78103448275862,
+      "spread_shock_p90ret": 15.804597701149426,
+      "spread_nonshock": 15.778416347381865,
+      "delta_median": 0.9950657152975898,
+      "vega_median": 10.177225810685048,
+      "asymmetry_up_minus_down": 0.5121219767995698
+    },
+    "VEV_5000": {
+      "beta_dP_dS": 0.8698431297109179,
+      "beta_up": 0.8724948046916277,
+      "beta_down": 0.8672282042375825,
+      "spread_mean": 6.0305458187280925,
+      "spread_shock_p90ret": 6.031613976705491,
+      "spread_nonshock": 6.030426716141002,
+      "delta_median": 0.9364603315297308,
+      "vega_median": 86.68269411348017,
+      "asymmetry_up_minus_down": 0.005266600454045145
+    },
+    "VEV_5100": {
+      "beta_dP_dS": 0.7624399615754083,
+      "beta_up": 0.7670859833444604,
+      "beta_down": 0.7578483122655925,
+      "spread_mean": 4.297648824412206,
+      "spread_shock_p90ret": 4.318333333333333,
+      "spread_nonshock": 4.295349268111914,
+      "delta_median": 0.8214098811327619,
+      "vega_median": 184.51422877130705,
+      "asymmetry_up_minus_down": 0.00923767107886797
+    },
+    "VEV_5200": {
+      "beta_dP_dS": 0.5795214391756178,
+      "beta_up": 0.5838223409114867,
+      "beta_down": 0.5752708709542992,
+      "spread_mean": 2.8881107220276805,
+      "spread_shock_p90ret": 2.885,
+      "spread_nonshock": 2.888456549935149,
+      "delta_median": 0.6206447625776333,
+      "vega_median": 268.8700417405705,
+      "asymmetry_up_minus_down": 0.008551469957187474
+    },
+    "VEV_5300": {
+      "beta_dP_dS": 0.36409920530957995,
+      "beta_up": 0.36389191468428267,
+      "beta_down": 0.3643040700097236,
+      "spread_mean": 2.1053860263465065,
+      "spread_shock_p90ret": 2.085,
+      "spread_nonshock": 2.1076523994811933,
+      "delta_median": 0.39125568880508604,
+      "vega_median": 268.8109764699884,
+      "asymmetry_up_minus_down": -0.0004121553254409216
+    },
+    "VEV_5400": {
+      "beta_dP_dS": 0.17095450179023666,
+      "beta_up": 0.17184370497909274,
+      "beta_down": 0.17007570495902208,
+      "spread_mean": 1.382858095714524,
+      "spread_shock_p90ret": 1.3766666666666667,
+      "spread_nonshock": 1.3835464146748193,
+      "delta_median": 0.1856746343350743,
+      "vega_median": 187.3093830025599,
+      "asymmetry_up_minus_down": 0.0017680000200706592
+    },
+    "VEV_5500": {
+      "beta_dP_dS": 0.0749890839228015,
+      "beta_up": 0.07429986998840438,
+      "beta_down": 0.07567023197666342,
+      "spread_mean": 1.1487410371852593,
+      "spread_shock_p90ret": 1.1566666666666667,
+      "spread_nonshock": 1.1478599221789882,
+      "delta_median": 0.08556114497491002,
+      "vega_median": 108.99180952617213,
+      "asymmetry_up_minus_down": -0.0013703619882590445
+    },
+    "VEV_6000": {
+      "beta_dP_dS": 0.0,
+      "beta_up": 0.0,
+      "beta_down": 0.0,
+      "spread_mean": 1.0,
+      "spread_shock_p90ret": 1.0,
+      "spread_nonshock": 1.0,
+      "delta_median": 0.005765869354160662,
+      "vega_median": 11.494729668931084,
+      "asymmetry_up_minus_down": 0.0
+    },
+    "VEV_6500": {
+      "beta_dP_dS": 0.0,
+      "beta_up": 0.0,
+      "beta_down": 0.0,
+      "spread_mean": 1.0,
+      "spread_shock_p90ret": 1.0,
+      "spread_nonshock": 1.0,
+      "delta_median": 0.0039695613553115605,
+      "vega_median": 8.21912694501441,
+      "asymmetry_up_minus_down": 0.0
+    }
+  }
+}

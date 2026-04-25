@@ -76,5 +76,18 @@
       "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v17_round3_worse_fills_summary.json"
     ],
     "used_to_decide": "This exact variation was not previously explored in this branch. Switch scan showed stable low switch counts (~6) for tested thresholds/cooldowns. However, v16/v17 regime traders performed poorly (42 and -19), far below current best v14=4666 and benchmark bar 800k. Keep v14 as active parent while documenting family13 pivot attempt and saved full logs/fills summaries."
+  },
+  {
+    "iteration": 18,
+    "analysis_description": "Priority underlying-propagation analysis (50k+ sampled step-5 rows): per voucher estimate dP/dS beta, up-vs-down asymmetry, spread shock response to top-decile underlying returns, plus BS IV/delta/vega medians under round3 DTE+winding conventions. Used this to build a distinct post-duplicate-check variant with beta-weighted residual ranking and core-vs-wing IV spread regime against EWMA RV.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/underlying_propagation_iv_greeks.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/rv_regime_switch_scan.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v18_round3_worse.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v19_round3_worse.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v18_round3_worse_fills_summary.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v19_round3_worse_fills_summary.json"
+    ],
+    "used_to_decide": "Deep propagation findings: strong beta gradient (ITM high-beta/low-vega wings to ATM high-vega lower-beta center), limited spread-shock uplift, and asymmetry concentrated in deep ITM. The distinct family13-adjusted design was too restrictive and effectively produced no incremental edge in worse-fill backtests (v18/v19 total 0). Keep v14 (4666) as branch best despite still far from 800k bar; future attempts should relax gating and avoid over-combining regime and residual filters."
   }
 ]

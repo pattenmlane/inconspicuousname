@@ -142,5 +142,27 @@
     "total_profit": -19,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v17.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v17_round3_worse.json"
+  },
+  {
+    "iteration": 18,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v18.py",
+    "strategy_description": "Distinct adjusted variant post-duplicate-check: propagation-aware residual ranking uses strike dP/dS betas from analysis; regime signal uses beta-weighted core-vs-wing IV spread minus EWMA RV with cooldown, then regime-based width/inventory/size.",
+    "total_profit": 0,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v18_round3_worse.json",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v18_round3_worse_fills_summary.json",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v18.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v18_round3_worse.json"
+  },
+  {
+    "iteration": 19,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v19.py",
+    "strategy_description": "Grid on v18 regime thresholds/cooldown: threshold 0.03, cooldown 20 (v18=0.02/15), same propagation-weighted rank and regime action.",
+    "total_profit": 0,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v19_round3_worse.json",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v19_round3_worse_fills_summary.json",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v19.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v19_round3_worse.json"
   }
 ]

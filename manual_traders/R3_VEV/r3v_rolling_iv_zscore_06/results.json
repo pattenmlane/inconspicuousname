@@ -1,0 +1,42 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v0.py",
+    "strategy_description": "VEV_5000 rolling IV z (window includes current IV — biased z); symmetric fade vs touch; light extract flatten when flat on voucher.",
+    "total_profit": -110447,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v0.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 1,
+    "trader_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v1.py",
+    "strategy_description": "Past-only z + BS delta hedge on extract vs VEV_5000 position.",
+    "total_profit": -168980,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v1.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 2,
+    "trader_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v2.py",
+    "strategy_description": "Past-only z, spread<=5, entry hysteresis; symmetric fade (baseline for grid).",
+    "total_profit": -6733,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v2.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 3,
+    "trader_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v3.py",
+    "strategy_description": "Long vol only (buy VEV_5000 on z<<0), exit when z>-Z_EXIT; grid point long_vol_only.",
+    "total_profit": -55841,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v3.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 4,
+    "trader_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v4.py",
+    "strategy_description": "Grid-tuned v2: Z_ENTRY=5.5, HYST=0.12, MAX_SPREAD=5, ROLL_WIN=480 — fewer but more selective mean-reversion entries on rolling IV z.",
+    "total_profit": -300,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v4.py 3 --data Prosperity4Data --match-trades worse"
+  }
+]

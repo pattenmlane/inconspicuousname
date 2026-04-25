@@ -2,7 +2,7 @@
   {
     "iteration": 0,
     "trader_file": "trader_v0.py",
-    "strategy_description": "Jump = |mid−slow EMA|≥12 or |ΔS|≥8; pause VEV when jump; neighbor residual spread (wall_mid−BS_theo)≤6 near ATM; Frankfurt IV scalp when allowed; extract/hydrogel on pause.",
+    "strategy_description": "Jump = |mid\u2212slow EMA|\u226512 or |\u0394S|\u22658; pause VEV when jump; neighbor residual spread (wall_mid\u2212BS_theo)\u22646 near ATM; Frankfurt IV scalp when allowed; extract/hydrogel on pause.",
     "total_profit": 4959,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/voucher_work/5200_work:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v0.py 3 --data Prosperity4Data --match-trades worse"
@@ -10,7 +10,7 @@
   {
     "iteration": 1,
     "trader_file": "trader_v1.py",
-    "strategy_description": "Event jump: |ΔS|≥3 → 120-tick pause on VEV; neighbor spread≤8; Frankfurt IV scalp (touch prices); hydrogel MM + light extract fade while paused.",
+    "strategy_description": "Event jump: |\u0394S|\u22653 \u2192 120-tick pause on VEV; neighbor spread\u22648; Frankfurt IV scalp (touch prices); hydrogel MM + light extract fade while paused.",
     "total_profit": 24318,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/voucher_work/5200_work:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v1.py 3 --data Prosperity4Data --match-trades worse"
@@ -18,7 +18,7 @@
   {
     "iteration": 2,
     "trader_file": "trader_v2.py",
-    "strategy_description": "Grid on v1: neighbor≤10, looser THR_OPEN/IV_SCALPING_THR in cal copy, one-tick aggressive VEV prices (bb−1/ba+1).",
+    "strategy_description": "Grid on v1: neighbor\u226410, looser THR_OPEN/IV_SCALPING_THR in cal copy, one-tick aggressive VEV prices (bb\u22121/ba+1).",
     "total_profit": 24318,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/voucher_work/5200_work:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v2.py 3 --data Prosperity4Data --match-trades worse"
@@ -26,7 +26,7 @@
   {
     "iteration": 3,
     "trader_file": "trader_v3.py",
-    "strategy_description": "Documented pivot: naive EMA on (wall_mid−theo) vs EMA with vega filter; same jump pause + neighbor gate. (Negative PnL — discarded.)",
+    "strategy_description": "Documented pivot: naive EMA on (wall_mid\u2212theo) vs EMA with vega filter; same jump pause + neighbor gate. (Negative PnL \u2014 discarded.)",
     "total_profit": -21056,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/voucher_work/5200_work:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v3.py 3 --data Prosperity4Data --match-trades worse"
@@ -34,7 +34,7 @@
   {
     "iteration": 4,
     "trader_file": "trader_v4.py",
-    "strategy_description": "Replace inactive Frankfurt switch_mean gate with scalp on (current_theo_diff−mean_theo_diff) from compute_option_indicators; neighbor≤8; nearest-ATM strike; bb−1/ba+1.",
+    "strategy_description": "Replace inactive Frankfurt switch_mean gate with scalp on (current_theo_diff\u2212mean_theo_diff) from compute_option_indicators; neighbor\u22648; nearest-ATM strike; bb\u22121/ba+1.",
     "total_profit": 17580,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/voucher_work/5200_work:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v4.py 3 --data Prosperity4Data --match-trades worse"
@@ -58,7 +58,7 @@
   {
     "iteration": 7,
     "trader_file": "trader_v7.py",
-    "strategy_description": "Hybrid: v1 full template (120-tick jump pause, hydrogel MM + light extract on pause) but replace Frankfurt get_iv_scalping_orders (never filled on v1–v2) with v4 theo_diff scalp on nearest-ATM; grid thr 0.40, clip 20, bb−1/ba+1.",
+    "strategy_description": "Hybrid: v1 full template (120-tick jump pause, hydrogel MM + light extract on pause) but replace Frankfurt get_iv_scalping_orders (never filled on v1\u2013v2) with v4 theo_diff scalp on nearest-ATM; grid thr 0.40, clip 20, bb\u22121/ba+1.",
     "total_profit": 15353,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/voucher_work/5200_work:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v7.py 3 --data Prosperity4Data --match-trades worse"
@@ -66,7 +66,7 @@
   {
     "iteration": 8,
     "trader_file": "trader_v8.py",
-    "strategy_description": "v7 ablation: no extract taker on pause (hydrogel-only during pause) + re-match v4 theo scalps (thr 0.42, clip 22). Same jump pause, neighbor spread≤8, nearest-ATM theo_diff−mean, bb−1/ba+1.",
+    "strategy_description": "v7 ablation: no extract taker on pause (hydrogel-only during pause) + re-match v4 theo scalps (thr 0.42, clip 22). Same jump pause, neighbor spread\u22648, nearest-ATM theo_diff\u2212mean, bb\u22121/ba+1.",
     "total_profit": 17342,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/voucher_work/5200_work:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v8.py 3 --data Prosperity4Data --match-trades worse"
@@ -78,5 +78,13 @@
     "total_profit": 16398,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/voucher_work/5200_work:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v9.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 10,
+    "trader_file": "trader_v10.py",
+    "strategy_description": "v8 + orthogonal time-of-session control: after 75% session progress, no new VEV entries (only position-reducing exits). Keeps jump pause, neighbor<=8, theo_diff scalp, hydrogel on pause.",
+    "total_profit": 18791,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/voucher_work/5200_work:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v10.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

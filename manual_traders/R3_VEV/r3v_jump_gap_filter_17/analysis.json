@@ -1,7 +1,7 @@
 [
   {
     "iteration": 0,
-    "analysis_description": "Round-3 tapes days 0–2: TTE from round3description (8/7/6 d open per csv day) plus intraday winding via plot_iv_smile_round3.t_years_effective (same as voucher_work). Per-timestamp BS implied vol from mid, vega from analytic formula; neighbor metric = max−min of (wall_mid−BS_theo) across strikes within 350 of extract mid. Corr(|ΔS|, neighbor gap) ≈ 0 near zero (no strong linear link); ATM IV medians ~0.24–0.25.",
+    "analysis_description": "Round-3 tapes days 0\u20132: TTE from round3description (8/7/6 d open per csv day) plus intraday winding via plot_iv_smile_round3.t_years_effective (same as voucher_work). Per-timestamp BS implied vol from mid, vega from analytic formula; neighbor metric = max\u2212min of (wall_mid\u2212BS_theo) across strikes within 350 of extract mid. Corr(|\u0394S|, neighbor gap) \u2248 0 near zero (no strong linear link); ATM IV medians ~0.24\u20130.25.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analyze_jump_gap_iv.py",
       "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analysis_jump_gap_stats.json"
@@ -10,19 +10,19 @@
   },
   {
     "iteration": 1,
-    "analysis_description": "Diagnostic on tape (day 0 sample): Frankfurt get_iv_scalping_orders with default cal produced zero order tuples on 4990/4990 ticks where neighbor compression held — switch_mean EMA of |ctd−mean| stayed below IV_SCALPING_THR 0.7. Informed later iterations to stop relying on that gate alone.",
+    "analysis_description": "Diagnostic on tape (day 0 sample): Frankfurt get_iv_scalping_orders with default cal produced zero order tuples on 4990/4990 ticks where neighbor compression held \u2014 switch_mean EMA of |ctd\u2212mean| stayed below IV_SCALPING_THR 0.7. Informed later iterations to stop relying on that gate alone.",
     "analysis_outputs": [],
-    "used_to_decide": "Explained zero VEV PnL in v0–v2 despite neighbor gate; led to v4 signal on current_theo_diff vs its EMA instead."
+    "used_to_decide": "Explained zero VEV PnL in v0\u2013v2 despite neighbor gate; led to v4 signal on current_theo_diff vs its EMA instead."
   },
   {
     "iteration": 3,
-    "analysis_description": "Naive mean-reversion on raw (wall_mid−theo) minus its EMA backtested sharply negative (−21k); falsified that specific implementation while keeping jump+neighbor structure.",
+    "analysis_description": "Naive mean-reversion on raw (wall_mid\u2212theo) minus its EMA backtested sharply negative (\u221221k); falsified that specific implementation while keeping jump+neighbor structure.",
     "analysis_outputs": [],
     "used_to_decide": "Abandoned raw diff-EMA; retained thesis filters for v4."
   },
   {
     "iteration": 6,
-    "analysis_description": "Jump-regime IV/Greek check on all ROUND_3 tapes (days 0–2): classify jump timestamps by |Δextract mid| above day-wise 95th percentile. ATM IV and ATM vega are almost unchanged between jump and non-jump regimes (jump_iv_mean 0.2440 vs nonjump 0.2438; jump_vega_mean 271.27 vs nonjump 271.94). This supports making the post-jump pause/neighbor gate mostly microstructure-driven, with only a light vega adjustment.",
+    "analysis_description": "Jump-regime IV/Greek check on all ROUND_3 tapes (days 0\u20132): classify jump timestamps by |\u0394extract mid| above day-wise 95th percentile. ATM IV and ATM vega are almost unchanged between jump and non-jump regimes (jump_iv_mean 0.2440 vs nonjump 0.2438; jump_vega_mean 271.27 vs nonjump 271.94). This supports making the post-jump pause/neighbor gate mostly microstructure-driven, with only a light vega adjustment.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analysis_jump_regime_iv.json"
     ],
@@ -30,23 +30,31 @@
   },
   {
     "iteration": 7,
-    "analysis_description": "No new offline tape script: v7 merges v1 (jump pause + hydrogel/extract on pause) with v4 VEV logic (current_theo_diff − mean_theo_diff scalp, bb−1/ba+1). Backtest total 15,353 vs v1 24,318 — VEV adds real PnL but day-2 voucher drawdowns outweighed the hydrogel carry. Conclusion: combining both alpha paths needs separate tuning (e.g. drop extract taker on pause, or v4 params only) before it beats pure-hydrogel v1 on this metric.",
+    "analysis_description": "No new offline tape script: v7 merges v1 (jump pause + hydrogel/extract on pause) with v4 VEV logic (current_theo_diff \u2212 mean_theo_diff scalp, bb\u22121/ba+1). Backtest total 15,353 vs v1 24,318 \u2014 VEV adds real PnL but day-2 voucher drawdowns outweighed the hydrogel carry. Conclusion: combining both alpha paths needs separate tuning (e.g. drop extract taker on pause, or v4 params only) before it beats pure-hydrogel v1 on this metric.",
     "analysis_outputs": [],
     "used_to_decide": "Record hybrid attempt; best overall remains v1/v2; next iteration should not blindly stack theo_scalp on top of v1 without ablating extract fade or matching v4 thresholds first."
   },
   {
     "iteration": 8,
-    "analysis_description": "Ablate-only comparison from backtests: v7 day-0 had +238 on VELVETFRUIT_EXTRACT (light fade on pause) alongside VEV. v8 removes those extract orders. Result: day-0 total 8,294 vs v7 8,542; day-2 total −2,698 vs v7 −4,945 (2.2k better); combined +1,989 vs v7. Still below v1/v2 (24,318) because VEV PnL on this signal does not cover lost Frankfurt-zero hydrogel-only path. No new Greek tape script — v8 reuses the same BS smile/vega path as v4 in compute_option_indicators.",
+    "analysis_description": "Ablate-only comparison from backtests: v7 day-0 had +238 on VELVETFRUIT_EXTRACT (light fade on pause) alongside VEV. v8 removes those extract orders. Result: day-0 total 8,294 vs v7 8,542; day-2 total \u22122,698 vs v7 \u22124,945 (2.2k better); combined +1,989 vs v7. Still below v1/v2 (24,318) because VEV PnL on this signal does not cover lost Frankfurt-zero hydrogel-only path. No new Greek tape script \u2014 v8 reuses the same BS smile/vega path as v4 in compute_option_indicators.",
     "analysis_outputs": [],
     "used_to_decide": "Dropping extract taker on pause is a real improvement for the theo-hybrid; next grid could try v4-only VEV (no hydrogel) vs v1, or add spread filter on resumption to cut day-2 wing losses."
   },
   {
     "iteration": 9,
-    "analysis_description": "Off-line: analyze_atm_vev_spread.py — for each row timestamp, nearest-ATM VEV to extract mid, width = best_ask_1−best_bid_1, optional ATM vega via get_option_values and t_years_effective. Pooled 30k rows: width p50=2, p90=p95=3 ticks; per-day p95 also 3. Tight two–three tick top-of-book is universal, so a max-width cap would rarely gate (unlike the neighbor-theo misalignment). v9 backtest: tighter neighbor 6.5 + thr 0.45 + clip 18 underperformed v8 (16,398 vs 17,342) — more selectivity did not help day-2 VEV; keep v8/v4-threshold as stronger hybrid.",
+    "analysis_description": "Off-line: analyze_atm_vev_spread.py \u2014 for each row timestamp, nearest-ATM VEV to extract mid, width = best_ask_1\u2212best_bid_1, optional ATM vega via get_option_values and t_years_effective. Pooled 30k rows: width p50=2, p90=p95=3 ticks; per-day p95 also 3. Tight two\u2013three tick top-of-book is universal, so a max-width cap would rarely gate (unlike the neighbor-theo misalignment). v9 backtest: tighter neighbor 6.5 + thr 0.45 + clip 18 underperformed v8 (16,398 vs 17,342) \u2014 more selectivity did not help day-2 VEV; keep v8/v4-threshold as stronger hybrid.",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analyze_atm_vev_spread.py",
       "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analysis_atm_vev_spread.json"
     ],
-    "used_to_decide": "Argued against bid-ask width as the main resume filter; next iteration should either stay at v8 params or test orthogonal filters (e.g. per-day only, or skip VEV in last session segment) rather than neighbor/threshold grids that mirror v5’s miss."
+    "used_to_decide": "Argued against bid-ask width as the main resume filter; next iteration should either stay at v8 params or test orthogonal filters (e.g. per-day only, or skip VEV in last session segment) rather than neighbor/threshold grids that mirror v5\u2019s miss."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "New tape analysis (analysis_time_bucket_dev_vega.json): nearest-ATM |wall_mid\u2212BS_theo| and ATM vega by session quartile, using T=t_years_effective and smile coeffs via get_option_values. Q4 has the worst tails and lowest vega (abs_dev_p90 4.01 vs ~3.18\u20133.50 in Q1\u2013Q3; vega_p50 263.9 vs 270\u2013278; corr(q,abs_dev)=+0.153, corr(q,vega)=-0.329). This supports reducing new VEV risk late-session after jump-pause resumes.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analysis_time_bucket_dev_vega.json"
+    ],
+    "used_to_decide": "Implemented v10 late-session entry cutoff (q>0.75 no new VEV entries, exits still allowed). Backtest improved over v8 (18,791 vs 17,342), especially day-2 (-2,379 vs -2,698), while keeping the same jump-gap-filter thesis."
   }
 ]

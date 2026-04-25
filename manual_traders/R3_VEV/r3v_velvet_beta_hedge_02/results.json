@@ -230,5 +230,27 @@
     "total_profit": 15700,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v26.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee backtests/r3v_v26_worse.log"
+  },
+  {
+    "iteration": 29,
+    "trader_file": "trader_v27.py",
+    "strategy_description": "v22 plus strike-specific tilt response from estimated beta_0 and spread-shock sign (analysis_v8).",
+    "total_profit": 16242,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v27.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee backtests/r3v_v27_worse.log",
+    "backtest_log_file": "backtests/r3v_v27_worse.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v27_v28.json (trader_v27 key)"
+  },
+  {
+    "iteration": 30,
+    "trader_file": "trader_v28.py",
+    "strategy_description": "v27 plus mild lag term from beta_l1 in tilt shift; same spread dampening as v22.",
+    "total_profit": 16234,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v28.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee backtests/r3v_v28_worse.log",
+    "backtest_log_file": "backtests/r3v_v28_worse.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v27_v28.json (trader_v28 key)"
   }
 ]

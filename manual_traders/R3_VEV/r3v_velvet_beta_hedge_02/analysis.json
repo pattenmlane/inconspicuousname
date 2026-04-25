@@ -78,5 +78,16 @@
       "backtests/r3v_v26_worse.log"
     ],
     "used_to_decide": "On tape-level fitting, inverse-spread and hybrid improve weighted RMSE but worsen coefficient stability vs unweighted in this setup. In live backtests, both WLS variants underperform current best v22 (16,260): v25=15,508, v26=15,700. Therefore keep v22 as best for now and document this family-10 variation as explored and non-improving on current architecture."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "Underlying propagation deep-dive by contract: dv regressed on contemporaneous/lagged extract move (du, du_l1, du_l2), up/down asymmetry, spread response after top-decile extract shocks, and mean BS delta from market-implied IV. Built contract-level response maps (beta_0, beta_l1, spread-shock sign) and wired them into strike-specific tilt multipliers.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analysis_v8_underlying_propagation.json",
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v27_v28.json",
+      "backtests/r3v_v27_worse.log",
+      "backtests/r3v_v28_worse.log"
+    ],
+    "used_to_decide": "Low strikes (4000-5100) show strongest immediate beta_0, while 5200+ have weaker response and in some cases positive spread widening after shocks. v27/v28 used these maps to dampen tilt where shock-spread risk is higher and include mild lag where beta_l1 non-trivial. Results did not beat v22 (16260), so v22 remains best local setting."
   }
 ]

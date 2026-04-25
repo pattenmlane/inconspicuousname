@@ -120,5 +120,16 @@
       "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter15_fill_summary.json"
     ],
     "used_to_decide": "parent v15 from v13 (not v14). Apply per-strike \u03bb = mean_resid_up - mean_resid_down from the large-move block: shift BS fair by -sign(dS_ex)*w*\u03bb with w cap 0.45 and |dS| scale to jump threshold 3, gate |dS|>=0.4. Interprets 'pause/widen' regime as *signed* dislocation (buy after up when fair is nudged down vs LSMILE). Day-2 PnL improves vs v14 (11,898 vs 12,084) while day-0 matches v14\u2019s lift on 8,970; three-day total 47,762 > v14 46,996 and v13 47,709. Ops: prosperity4bt defaults to opening the web visualizer; use --no-vis for non-interactive backtests (otherwise process can block after day 1)."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "Lead/lag + spread asymmetry around signed extract shock95 events (analysis_underlying_leadlag_spread_asym.json): estimate same-tick beta and next-tick beta by strike and sign. Down-shock next-tick follow-through is relatively stronger at 5100/5200/5400 (and mildly 4000), while many other strikes have flat or opposite asymmetry. IV/Greek framework unchanged: LOO cubic-spline IV + BS fair with intraday T.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analyze_underlying_leadlag_spread_asym.py",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/analysis_underlying_leadlag_spread_asym.json",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter16_backtest.log",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter16_fill_summary.json"
+    ],
+    "used_to_decide": "Test sign-asymmetric fair tilt multiplier by strike (reduce/reverse down-shock tilt where down follow-through is stronger). This reduced day-0 by ~172 and total to 47,590 (<47,762 v15), so keep v15 as incumbent and treat this as a falsified extension."
   }
 ]

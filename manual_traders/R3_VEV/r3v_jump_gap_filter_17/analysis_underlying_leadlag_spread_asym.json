@@ -1,0 +1,211 @@
+{
+  "meta": {
+    "n_obs_total": 225940,
+    "n_obs_shock95": 38720,
+    "method": "local lead/lag response and next-tick spread change conditioned on signed extract shock95"
+  },
+  "by_strike_sign": {
+    "4000": {
+      "up": {
+        "n": 1905,
+        "beta_same_tick": 0.69661800486618,
+        "beta_next_tick": -0.018369829683698293,
+        "follow_through_ratio_abs": 0.026370018473549375,
+        "mean_dspread_next": -0.01837270341207349
+      },
+      "down": {
+        "n": 1967,
+        "beta_same_tick": 0.6847246891651864,
+        "beta_next_tick": -0.021571468636066182,
+        "follow_through_ratio_abs": 0.03150385687255147,
+        "mean_dspread_next": 0.019318759532282664
+      }
+    },
+    "4500": {
+      "up": {
+        "n": 1905,
+        "beta_same_tick": 0.6145985401459853,
+        "beta_next_tick": 0.023771289537712893,
+        "follow_through_ratio_abs": 0.03867775132265814,
+        "mean_dspread_next": 0.0010498687664041995
+      },
+      "down": {
+        "n": 1967,
+        "beta_same_tick": 0.6105683836589697,
+        "beta_next_tick": 0.015962419369916797,
+        "follow_through_ratio_abs": 0.026143540627038095,
+        "mean_dspread_next": 0.020843924758515507
+      }
+    },
+    "5000": {
+      "up": {
+        "n": 1905,
+        "beta_same_tick": 0.59992700729927,
+        "beta_next_tick": 0.006958637469586373,
+        "follow_through_ratio_abs": 0.011599140184259048,
+        "mean_dspread_next": 0.0
+      },
+      "down": {
+        "n": 1967,
+        "beta_same_tick": 0.6036505562307188,
+        "beta_next_tick": -0.0031317191736000742,
+        "follow_through_ratio_abs": 0.0051879670052273515,
+        "mean_dspread_next": -0.01728520589730554
+      }
+    },
+    "5100": {
+      "up": {
+        "n": 1905,
+        "beta_same_tick": 0.532141119221411,
+        "beta_next_tick": -0.002068126520681265,
+        "follow_through_ratio_abs": 0.0038864249389725185,
+        "mean_dspread_next": 0.01784776902887139
+      },
+      "down": {
+        "n": 1967,
+        "beta_same_tick": 0.5336542955968963,
+        "beta_next_tick": -0.008483687015050947,
+        "follow_through_ratio_abs": 0.01589734603309908,
+        "mean_dspread_next": 0.013218098627351297
+      }
+    },
+    "5200": {
+      "up": {
+        "n": 1905,
+        "beta_same_tick": 0.4030900243309002,
+        "beta_next_tick": 0.004160583941605838,
+        "follow_through_ratio_abs": 0.010321723883369174,
+        "mean_dspread_next": -0.005774278215223097
+      },
+      "down": {
+        "n": 1967,
+        "beta_same_tick": 0.4078947368421052,
+        "beta_next_tick": -0.008623913246704681,
+        "follow_through_ratio_abs": 0.021142496940087938,
+        "mean_dspread_next": -0.00864260294865277
+      }
+    },
+    "5300": {
+      "up": {
+        "n": 1905,
+        "beta_same_tick": 0.24783454987834547,
+        "beta_next_tick": 0.0030900243309002428,
+        "follow_through_ratio_abs": 0.012468093411305847,
+        "mean_dspread_next": 0.0068241469816272965
+      },
+      "down": {
+        "n": 1967,
+        "beta_same_tick": 0.2500233710386089,
+        "beta_next_tick": 0.0018463120501075064,
+        "follow_through_ratio_abs": 0.007384557831747012,
+        "mean_dspread_next": 0.005592272496187087
+      }
+    },
+    "5400": {
+      "up": {
+        "n": 1905,
+        "beta_same_tick": 0.11822384428223842,
+        "beta_next_tick": 0.0009002433090024329,
+        "follow_through_ratio_abs": 0.00761473547788318,
+        "mean_dspread_next": -0.02257217847769029
+      },
+      "down": {
+        "n": 1967,
+        "beta_same_tick": 0.1184911657474058,
+        "beta_next_tick": -0.0018696830887164621,
+        "follow_through_ratio_abs": 0.015779092569002798,
+        "mean_dspread_next": -0.001525165226232842
+      }
+    },
+    "5500": {
+      "up": {
+        "n": 1905,
+        "beta_same_tick": 0.05238442822384427,
+        "beta_next_tick": -0.000705596107055961,
+        "follow_through_ratio_abs": 0.013469577076823216,
+        "mean_dspread_next": -0.0031496062992125984
+      },
+      "down": {
+        "n": 1967,
+        "beta_same_tick": 0.050691782742825084,
+        "beta_next_tick": 0.000631018042441806,
+        "follow_through_ratio_abs": 0.01244813253451789,
+        "mean_dspread_next": -0.0020335536349771225
+      }
+    },
+    "6000": {
+      "up": {
+        "n": 1905,
+        "beta_same_tick": 0.0,
+        "beta_next_tick": 0.0,
+        "follow_through_ratio_abs": 0.0,
+        "mean_dspread_next": 0.0
+      },
+      "down": {
+        "n": 1967,
+        "beta_same_tick": 0.0,
+        "beta_next_tick": 0.0,
+        "follow_through_ratio_abs": 0.0,
+        "mean_dspread_next": 0.0
+      }
+    },
+    "6500": {
+      "up": {
+        "n": 1905,
+        "beta_same_tick": 0.0,
+        "beta_next_tick": 0.0,
+        "follow_through_ratio_abs": 0.0,
+        "mean_dspread_next": 0.0
+      },
+      "down": {
+        "n": 1967,
+        "beta_same_tick": 0.0,
+        "beta_next_tick": 0.0,
+        "follow_through_ratio_abs": 0.0,
+        "mean_dspread_next": 0.0
+      }
+    }
+  },
+  "ranked_follow_through_gap": [
+    {
+      "K": 5100,
+      "down_minus_up_follow_ratio": 0.01201092109412656
+    },
+    {
+      "K": 5200,
+      "down_minus_up_follow_ratio": 0.010820773056718764
+    },
+    {
+      "K": 5400,
+      "down_minus_up_follow_ratio": 0.008164357091119618
+    },
+    {
+      "K": 4000,
+      "down_minus_up_follow_ratio": 0.005133838399002097
+    },
+    {
+      "K": 6000,
+      "down_minus_up_follow_ratio": 0.0
+    },
+    {
+      "K": 6500,
+      "down_minus_up_follow_ratio": 0.0
+    },
+    {
+      "K": 5500,
+      "down_minus_up_follow_ratio": -0.0010214445423053255
+    },
+    {
+      "K": 5300,
+      "down_minus_up_follow_ratio": -0.005083535579558834
+    },
+    {
+      "K": 5000,
+      "down_minus_up_follow_ratio": -0.006411173179031697
+    },
+    {
+      "K": 4500,
+      "down_minus_up_follow_ratio": -0.012534210695620045
+    }
+  ]
+}

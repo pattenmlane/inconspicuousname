@@ -68,6 +68,22 @@ def bs_vega(S: float, K: float, T: float, sigma: float, r: float = 0.0) -> float
     return float(S * _npdf(d1) * math.sqrt(T))
 
 
+def bs_call_theta(
+    S: float, K: float, T: float, sigma: float, r: float = 0.0
+) -> float:
+    """
+    d(option_price)/dT (per year), Black-Scholes call. T in years, r=0 for Prosperity round-3.
+    """
+    if T <= 0 or sigma <= 1e-12:
+        return 0.0
+    v = sigma * math.sqrt(T)
+    d1 = (math.log(S / K) + (r + 0.5 * sigma * sigma) * T) / v
+    d2 = d1 - v
+    term1 = -0.5 * S * _npdf(d1) * sigma / math.sqrt(T)
+    term2 = -r * K * math.exp(-r * T) * _ncdf(d2)
+    return float(term1 + term2)
+
+
 def implied_vol_bisect(
     market: float,
     S: float,

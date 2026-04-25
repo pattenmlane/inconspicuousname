@@ -56,5 +56,14 @@
       "analysis_outputs/vev_spread_quantiles.json"
     ],
     "used_to_decide": "All three variants tied at -101 (same as v23). By tie-break/simplicity, keep v23 as lead; strike-specific floors did not add value in this backtest regime."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Greeks on tape: run_vev5000_vega_theta.py \u2014 for VEV_5000, implied IV from mid (bisect, r=0), T=t_years_effective(day,ts), Black-Scholes vega and theta (added bs_call_theta in _r3v_smile_core). Median vega falls ~111\u219262 across historical days 0\u21922; median theta (per year) around -500 to -660 (time decay nontrivial at ATM).",
+    "analysis_outputs": [
+      "analysis_outputs/vev5000_vega_theta_stats.json",
+      "run_vev5000_vega_theta.py"
+    ],
+    "used_to_decide": "From v23 parent, grid: slightly looser switch gate (v29) improved total to -95 vs v23 -101; stricter gate (v30) -135. Ablation v31 (skip 5000) had zero trades \u2014 other strikes never pass Frankfurt-style gates under this engine. New best: trader_v29."
   }
 ]

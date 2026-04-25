@@ -336,5 +336,75 @@
         }
       }
     }
+  },
+  {
+    "iteration": 19,
+    "trader_file": "trader_v19.py",
+    "strategy_description": "Child of v15: same WLS quadratic log-m smile + micro mark + theta/spread gates; add narrow extract-shock tail gate only (|dS|>=2.0) to increase thresholds and reduce clips during top-shock regime while leaving normal regimes untouched.",
+    "total_profit": 65038,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v19.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress",
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/backtest_worse_trader_v19_r3.log",
+    "trades_or_fills_summary": {
+      "note": "stdout per-product/day PnL only; no explicit fill ledger in this mode",
+      "day_total_profit": {
+        "0": 16803,
+        "1": 27960,
+        "2": 20276
+      },
+      "vev_pnl_by_day": {
+        "0": {
+          "VEV_6500": 0,
+          "VEV_6000": 0,
+          "VEV_5500": -10,
+          "VEV_5400": -1665,
+          "VEV_5300": 1004,
+          "VEV_5200": -841,
+          "VEV_5100": 4722,
+          "VEV_5000": 488,
+          "VEV_4500": 246,
+          "VEV_4000": -426
+        },
+        "1": {
+          "VEV_6500": 0,
+          "VEV_6000": 0,
+          "VEV_5500": 242,
+          "VEV_5400": -213,
+          "VEV_5300": -1035,
+          "VEV_5200": -1868,
+          "VEV_5100": 1402,
+          "VEV_5000": 6024,
+          "VEV_4500": 1440,
+          "VEV_4000": 4612
+        },
+        "2": {
+          "VEV_6500": 0,
+          "VEV_6000": 0,
+          "VEV_5500": 180,
+          "VEV_5400": 236,
+          "VEV_5300": -1920,
+          "VEV_5200": -5901,
+          "VEV_5100": 5122,
+          "VEV_5000": 7141,
+          "VEV_4500": 3990,
+          "VEV_4000": 12215
+        }
+      },
+      "delta1_pnl_by_day": {
+        "0": {
+          "VELVETFRUIT_EXTRACT": 3194,
+          "HYDROGEL_PACK": 10091
+        },
+        "1": {
+          "VELVETFRUIT_EXTRACT": 4084,
+          "HYDROGEL_PACK": 13272
+        },
+        "2": {
+          "VELVETFRUIT_EXTRACT": -672,
+          "HYDROGEL_PACK": -116
+        }
+      }
+    }
   }
 ]

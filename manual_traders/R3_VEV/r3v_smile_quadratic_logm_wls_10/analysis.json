@@ -102,5 +102,14 @@
       "results.json"
     ],
     "used_to_decide": "v18: skip VEV_6000/VEV_6500 in run loop and IV buffer. Worse-match total 59368: improves v16 (57336) and v17 (56456) but still below v15 (60947) \u2014 next iteration should not rely on this filter alone; keep v15 as production candidate for PnL on this backtester."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "shock_regime_gate_iter19.json (ROUND_3 days 0-2): evaluate smile-edge sign quality by extract move quantiles. Using q60=1.0, q80=1.5, q92=2.0, only xhigh bucket (|dS|>=2.0, top ~8%) shows negative mean pnl proxy for both core and wings; low/med/high remain positive. TTE mapping kept from round3description (T=(8-csv_day-floor(ts/100)/10000)/365).",
+    "analysis_outputs": [
+      "shock_regime_gate_iter19.json",
+      "results.json"
+    ],
+    "used_to_decide": "Instead of broad shock gating (v17 overfit/too conservative), v19 adds a narrow tail-only risk gate: in |dS|>=2.0 regime multiply entry thresholds by 1.35 and clip size by 0.7; otherwise unchanged v15 logic. Backtest improved to 65038 (new branch best)."
   }
 ]

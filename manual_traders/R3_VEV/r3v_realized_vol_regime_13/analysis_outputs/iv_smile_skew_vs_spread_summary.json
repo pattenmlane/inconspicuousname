@@ -1,0 +1,6 @@
+{
+  "focal": "VEV_5200",
+  "n_rows": 150,
+  "corr_skew_vs_focal_top_spread": -0.00014217354950010592,
+  "method": "IV per strike from mid (BS, r=0), linear fit IV vs m_t; skew = resid at max m - resid at min m; m=log(K/S)/sqrt(T). Spread = min ask - max bid for focal row."
+}

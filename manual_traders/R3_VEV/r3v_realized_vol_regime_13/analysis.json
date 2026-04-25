@@ -16,5 +16,14 @@
       "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/vega_weighted_iv_vs_rv_summary.json"
     ],
     "used_to_decide": "vega-weighted IV minus RV remains systematically negative on this tape (mean about -0.093), so simple directional short-vol is weak; retained core joint-width thesis but improved execution by taking only local book mispricings around the same smile-theo and keeping shared regime width logic."
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "IV smile shape vs microstructure (days 0–2, subsample 200): per timestamp, fit IV (BS from mid) linearly in m_t=log(K/S)/sqrt(T); report residual skew (IV at max m_t minus at min m_t) and correlate with top-of-book spread on VEV_5200. Confirms no stable linear link between that skew proxy and local spread in this sample.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/iv_smile_skew_vs_spread_5200.csv",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/iv_smile_skew_vs_spread_summary.json"
+    ],
+    "used_to_decide": "Kept the joint RV-vs-ATM-IV width thesis; did not add skew-spread gating. Tried per-tick BS-delta extract hedge (Greek) in code but backtests (v6/v7) trailed v4—disabled by default. Parameter sweep on v4 take edge (v8–v11) nudged PnL; v10 (TAKE_EDGE_MULT=0.63) best in session."
   }
 ]

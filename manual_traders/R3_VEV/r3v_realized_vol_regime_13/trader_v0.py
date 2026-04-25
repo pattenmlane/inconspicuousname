@@ -53,6 +53,14 @@ def bs_call(S: float, K: float, T: float, sigma: float, r: float = 0.0) -> float
     return S * _cdf(d1) - K * math.exp(-r * T) * _cdf(d2)
 
 
+def bs_delta_call(S: float, K: float, T: float, sigma: float, r: float = 0.0) -> float:
+    if T <= 0 or sigma <= 1e-12 or S <= 0 or K <= 0:
+        return 0.0
+    v = sigma * math.sqrt(T)
+    d1 = (math.log(S / K) + (r + 0.5 * sigma * sigma) * T) / v
+    return _cdf(d1)
+
+
 def implied_vol_bisect(price: float, S: float, K: float, T: float, r: float = 0.0) -> float | None:
     intrinsic = max(S - K, 0.0)
     if price <= intrinsic + 1e-9 or price >= S - 1e-9 or S <= 0 or K <= 0 or T <= 0:
@@ -140,6 +148,9 @@ class Trader:
     ORDER_SIZE_H = 10
     TAKE_EDGE_MULT = 0.55
     MAX_TAKE_PER_SIDE = 24
+    # Optional delta hedge vs extract: fraction of -sum(delta_i * pos_i) to offset per tick (0 = disabled).
+    DELTA_HEDGE_STRENGTH = 0.0
+    MAX_D_HEDGE_QTY = 0
 
     def run(self, state: TradingState):
         result: dict[str, list[Order]] = {}
@@ -287,6 +298,38 @@ class Trader:
                 result.setdefault(symv, []).append(Order(symv, bid_p, min(q, lim - p)))
             if p > -lim:
                 result.setdefault(symv, []).append(Order(symv, ask_p, -min(q, lim + p)))
+
+        # Optional: reduce net option delta against VELVETFRUIT_EXTRACT (call deltas × voucher positions).
+        if (
+            self.DELTA_HEDGE_STRENGTH > 0.0
+            and self.MAX_D_HEDGE_QTY > 0
+            and du in depths
+        ):
+            net_call_delta = 0.0
+            for v in VOUCHERS:
+                symv = sym(v)
+                if symv is None:
+                    continue
+                K = float(v.split("_")[1])
+                sig_m = model_iv(S, K, T)
+                dlt = bs_delta_call(S, K, T, sig_m, 0.0)
+                net_call_delta += dlt * float(int(pos.get(symv, 0)))
+            h_raw = -self.DELTA_HEDGE_STRENGTH * net_call_delta
+            hqty = int(round(h_raw))
+            if hqty != 0:
+                hqty = max(-self.MAX_D_HEDGE_QTY, min(self.MAX_D_HEDGE_QTY, hqty))
+                d_u2: OrderDepth = depths[du]
+                bb_h, ba_h = book_walls(d_u2)[2], book_walls(d_u2)[3]
+                lim_uh = LIMITS[U]
+                pu_h = int(pos.get(du, 0))
+                if hqty > 0 and ba_h is not None and pu_h < lim_uh:
+                    q = min(hqty, lim_uh - pu_h)
+                    if q > 0:
+                        result.setdefault(du, []).append(Order(du, int(ba_h), q))
+                elif hqty < 0 and bb_h is not None and pu_h > -lim_uh:
+                    q = min(-hqty, lim_uh + pu_h)
+                    if q > 0:
+                        result.setdefault(du, []).append(Order(du, int(bb_h), -q))
 
         # Underlying extract
         pu = int(pos.get(du, 0))

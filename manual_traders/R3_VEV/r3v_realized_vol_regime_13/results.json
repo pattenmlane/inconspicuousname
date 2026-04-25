@@ -34,7 +34,7 @@
   {
     "iteration": 4,
     "trader_file": "trader_v4.py",
-    "strategy_description": "Child sweep from v2/v3: keep same regime core, more conservative taking (TAKE_EDGE_MULT=0.70, MAX_TAKE_PER_SIDE=16) and extra hydrogel width buffer (BASE_H_HALF=4). Best in this loop.",
+    "strategy_description": "Child sweep from v2/v3: keep same regime core, more conservative taking (TAKE_EDGE_MULT=0.70, MAX_TAKE_PER_SIDE=16) and extra hydrogel width buffer (BASE_H_HALF=4). Prior best in prior loop.",
     "total_profit": 59253,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v4.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
@@ -46,5 +46,53 @@
     "total_profit": 57095,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 6,
+    "trader_file": "trader_v6.py",
+    "strategy_description": "v4 + per-tick delta hedge on VELVETFRUIT_EXTRACT (BS call delta of smile-IV, DELTA_HEDGE_STRENGTH=0.4, MAX_D_HEDGE_QTY=50). Falsified vs v4 on this tape; keep hedge optional off in base.",
+    "total_profit": 31418,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "v4 + lighter delta hedge and larger VEV quote size. Still under v4; no further hedge tuning this round.",
+    "total_profit": 32465,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 8,
+    "trader_file": "trader_v8.py",
+    "strategy_description": "Grid on v4: slightly more aggressive VEV take (TAKE_EDGE_MULT=0.65, MAX_TAKE_PER_SIDE=18). Slight edge vs v4 (59253).",
+    "total_profit": 59416,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v8.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 9,
+    "trader_file": "trader_v9.py",
+    "strategy_description": "Grid on v4: more conservative VEV take (TAKE_EDGE_MULT=0.74, MAX_TAKE_PER_SIDE=14). Regression vs v4/v8.",
+    "total_profit": 58920,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v9.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 10,
+    "trader_file": "trader_v10.py",
+    "strategy_description": "Micro-sweep on v8: TAKE_EDGE_MULT=0.63, MAX_TAKE_PER_SIDE=18. Best in this work session.",
+    "total_profit": 59596,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v10.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 11,
+    "trader_file": "trader_v11.py",
+    "strategy_description": "Micro-sweep on v8: TAKE_EDGE_MULT=0.67, MAX_TAKE_PER_SIDE=18. Under v10.",
+    "total_profit": 58978,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v11.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

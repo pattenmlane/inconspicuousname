@@ -1,0 +1,46 @@
+{
+  "method": "Consecutive-timestamp first differences. Same-step: dU_t, dO_t. Lag+1: dU_t, dO_{t+1}. Spreads: bucket by |dU| at end time of step.",
+  "shock_abs_dU": 3.0,
+  "per_symbol": {
+    "VEV_5000": {
+      "n_d_pairs": 29994,
+      "n_lag_pairs": 29994,
+      "corr_dU_dO_same": 0.7536124767157557,
+      "corr_dU_t_dO_tplus1": -0.006071701164227372,
+      "mean_spread_after_high_absdU": 6.032815198618308,
+      "n_spread_high": 579,
+      "mean_spread_after_low_absdU": 6.043544768509076,
+      "n_spread_low": 29418
+    },
+    "VEV_5200": {
+      "n_d_pairs": 29994,
+      "n_lag_pairs": 29994,
+      "corr_dU_dO_same": 0.7174195941872081,
+      "corr_dU_t_dO_tplus1": -0.008734792755055398,
+      "mean_spread_after_high_absdU": 2.8842832469775477,
+      "n_spread_high": 579,
+      "mean_spread_after_low_absdU": 2.8881637092936296,
+      "n_spread_low": 29418
+    },
+    "VEV_4000": {
+      "n_d_pairs": 29994,
+      "n_lag_pairs": 29994,
+      "corr_dU_dO_same": 0.594835007598189,
+      "corr_dU_t_dO_tplus1": -0.024123963763373165,
+      "mean_spread_after_high_absdU": 20.81692573402418,
+      "n_spread_high": 579,
+      "mean_spread_after_low_absdU": 20.813447549119587,
+      "n_spread_low": 29418
+    },
+    "VEV_6500": {
+      "n_d_pairs": 29994,
+      "n_lag_pairs": 29994,
+      "corr_dU_dO_same": null,
+      "corr_dU_t_dO_tplus1": null,
+      "mean_spread_after_high_absdU": 1.0,
+      "n_spread_high": 579,
+      "mean_spread_after_low_absdU": 1.0,
+      "n_spread_low": 29418
+    }
+  }
+}

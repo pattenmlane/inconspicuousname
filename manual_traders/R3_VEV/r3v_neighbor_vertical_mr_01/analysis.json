@@ -95,5 +95,14 @@
       "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v10_worse.log"
     ],
     "used_to_decide": "Observed option response elasticity by strike is materially below BS delta for traded wings/low strikes in tape. Scaling hedge by empirical beta (and lowering hedge multiplier) removed large extract hedge drag and improved family10 from -2690 to -599 under worse fills."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "Lead/lag and spread-shock work (analysis_lead_lag_spread_ex.json) confirmed synchronous underlying-to-option comovement; no predictive 1-tick lag. Tried parent-style smile axis m=log(K/S)/sqrt(T) for the dual WLS fits. A separate touch-cross entry (|mid-fair|/spread, vega floor, fast cadence) was tested: massive turnover and VELVETFRUIT_EXTRACT losses (~-15k per day) vs ~0 in v10, so that path was dropped. Reverted to v10 execution (EWMA z, OPEN_Z/CLOSE_Z, TRADE_EVERY=5) with m-axis fits only. Backtest ties v10 at -599 (days 0-2, --match-trades worse).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/analysis_lead_lag_spread_ex.json",
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v11_worse.log"
+    ],
+    "used_to_decide": "Standardized m improves smile interpretability; on this historical tape it does not beat log(K/S) in PnL when the rest of the stack matches v10. Friction/touch gating without z/EWMA is unsafe here due to hedge churn."
   }
 ]

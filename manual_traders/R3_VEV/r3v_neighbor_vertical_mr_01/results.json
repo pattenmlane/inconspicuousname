@@ -136,5 +136,31 @@
       "underlying_pnl": 0,
       "note": "Beta-scaled hedge reduced extract drag to ~0 across all days; losses now concentrated in option legs only."
     }
+  },
+  {
+    "iteration": 11,
+    "trader_file": "trader_v11.py",
+    "strategy_description": "Family10 dual-cutoff consensus: WLS quadratic smile in standardized log-moneyness m=log(K/S)/sqrt(T) instead of log(K/S) alone; same EWMA residual z, OPEN_Z/CLOSE_Z, EDGE_SCALE, and beta-capped hedge as v10. A touch-only entry prototype (edge/spread/vega gates, TRADE_EVERY=3) was rejected after backtest: heavy churn and large extract PnL drag (-31,656). Shipped v11 reverts to v10 cadence; axis change ties v10 at -599 on days 0-2 (worse fills).",
+    "total_profit": -599,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v11.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v11_worse.log",
+    "backtest_output": {
+      "day0": -117,
+      "day1": -345,
+      "day2": -137,
+      "total": -599
+    },
+    "trades_or_fills_summary": {
+      "nonzero_symbols": [
+        "VEV_4000",
+        "VEV_4500",
+        "VEV_5100",
+        "VEV_6500"
+      ],
+      "underlying_pnl": 0,
+      "note": "Identical per-day and total PnL to v10; smile axis m=log(K/S)/sqrt(T) did not change the trade set on this run."
+    }
   }
 ]

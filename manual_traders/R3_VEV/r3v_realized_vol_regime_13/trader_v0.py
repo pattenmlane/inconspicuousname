@@ -188,6 +188,9 @@ class Trader:
     # Optional: scale joint regime by normalized ATM call gamma (0 = off).
     GAMMA_REGIME_WEIGHT = 0.0
     GAMMA_REGIME_NORM = 0.0008
+    # Optional: widen joint VEV half-spread when |Δlog S| exceeds threshold (microstructure shock).
+    SHOCK_VEV_HALF_ADD = 0.0
+    SHOCK_ABS_LOG_DU = 0.0012
 
     def run(self, state: TradingState):
         result: dict[str, list[Order]] = {}
@@ -270,6 +273,14 @@ class Trader:
         half_vev = float(
             self.BASE_VEV_HALF + self.K_WIDEN * max(0.0, regime) - self.K_TIGHTEN * max(0.0, -regime)
         )
+        du_inst = 0.0
+        if isinstance(prev, (int, float)) and float(prev) > 0:
+            du_inst = math.log(float(mid_u) / float(prev))
+        td["last_du_extract"] = du_inst
+        if float(getattr(self, "SHOCK_VEV_HALF_ADD", 0.0)) > 0.0:
+            thr = float(getattr(self, "SHOCK_ABS_LOG_DU", 0.0012))
+            if abs(du_inst) >= thr:
+                half_vev += float(self.SHOCK_VEV_HALF_ADD)
         half_vev = max(self.VEV_HALF_MIN, min(half_vev, self.VEV_HALF_MAX))
         half_u = max(1.0, self.BASE_EX_HALF + self.REG_EX_SCALE * abs(regime))
         half_h = max(1.0, self.BASE_H_HALF + self.REG_H_SCALE * abs(regime))

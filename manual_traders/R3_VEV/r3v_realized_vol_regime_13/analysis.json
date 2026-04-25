@@ -80,5 +80,15 @@
       "manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v36_worse.log"
     ],
     "used_to_decide": "v35 (tighter far-OTM de-emphasis + 5200 bump) tied v33 at 60,627; v36 (simplified conservative bucketing) regressed. Kept strike-aware map family as best current branch, with v33/v35 co-best and v33 preferred as simpler baseline map."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "Lead/lag and shock spread: per day, corr(du, do) at lags 0-3 averaged across days 0-2. For focal VEV_5200/5000, contemporaneous correlation du\u2194do is large (~0.72-0.75) while lag-1 is ~0 (no simple lead). Next-tick spread change after large |du| (top 10% within day): VEV_5200 shows +0.011 mean \u0394spread on shock vs calm; VEV_5000 slightly negative\u2014so joint shock widening is most consistent with near-ATM liquidity response in 5200.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/leadlag_du_do_by_voucher.csv",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/shock_spread_response_by_voucher.csv",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/leadlag_shock_summary.json"
+    ],
+    "used_to_decide": "Implemented optional SHOCK_VEV_HALF_ADD on |d log S| between extract mids in trader_v0 (same IV\u2212RV joint width thesis). Tested v37-v39 from v33; aggregate PnL unchanged at 60,627 under worse matching\u2014keep hook for future tapes but prefer v33 as simpler unless re-tuned with per-strike shock factors."
   }
 ]

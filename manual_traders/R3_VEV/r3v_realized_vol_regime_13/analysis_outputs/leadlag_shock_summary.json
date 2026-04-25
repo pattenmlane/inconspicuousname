@@ -1,0 +1,13 @@
+{
+  "method": "Fast path: (timestamp,product)->spread; du/do over consecutive timestamps; per-day corr averaged across 3 days.",
+  "focal_5200_corr_lag0_lag1": [
+    0.7190721064888628,
+    -0.00939792972497376
+  ],
+  "focal_5000_corr_lag0_lag1": [
+    0.7524482225055649,
+    -0.006375547124852949
+  ],
+  "vev5200_shock_minus_calm_dspread": 0.01108836733261155,
+  "vev5000_shock_minus_calm_dspread": -0.00672713015611638
+}

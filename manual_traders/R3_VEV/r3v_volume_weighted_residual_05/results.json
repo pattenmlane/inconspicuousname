@@ -134,5 +134,15 @@
     "total_profit": 13478,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v16.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v16_event_refit.log"
+  },
+  {
+    "iteration": 17,
+    "trader_file": "trader_v17.py",
+    "strategy_description": "Analysis-driven underlying-response gate: only open voucher fades on large |dS| shocks (>=2 ticks) and only for symbols with strong dV~dS response rank (5200/5300/5400 first, 5100 optional). Kept family smile_quadratic_logm_wls + guardrails; reduced voucher activity but lower total PnL than v8.",
+    "total_profit": 10767,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v17_underlying_response_gate.log",
+    "trades_or_fills_summary": "trade_history_rows=4245, own_fill_rows=4245, own_fill_abs_qty_sum=17501; key rows HYDROGEL_PACK=1207, VEV_5400=225, VEV_5500=267, VEV_5300=121"
   }
 ]

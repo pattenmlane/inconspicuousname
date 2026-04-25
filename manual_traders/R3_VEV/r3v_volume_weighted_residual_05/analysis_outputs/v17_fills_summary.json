@@ -1,0 +1,19 @@
+{
+  "trade_history_rows": 4245,
+  "own_fill_rows": 4245,
+  "own_fill_abs_qty_sum": 17501,
+  "own_fill_rows_by_symbol": {
+    "VELVETFRUIT_EXTRACT": 1372,
+    "VEV_5400": 225,
+    "VEV_5500": 267,
+    "VEV_6000": 284,
+    "VEV_6500": 284,
+    "HYDROGEL_PACK": 1207,
+    "VEV_4000": 464,
+    "VEV_5300": 121,
+    "VEV_5200": 18,
+    "VEV_4500": 1,
+    "VEV_5000": 1,
+    "VEV_5100": 1
+  }
+}

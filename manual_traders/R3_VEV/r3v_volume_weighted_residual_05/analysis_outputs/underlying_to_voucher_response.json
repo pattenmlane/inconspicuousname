@@ -1,0 +1,248 @@
+{
+  "method": "Per-day first differences of voucher mids vs extract mid. Beta/elasticity, shock spread response, up/down asymmetry; lead-lag proxy via lagged extract move.",
+  "symbols": {
+    "VEV_4000": {
+      "n_points": 29997,
+      "beta_dV_on_dS": 0.7450546158004788,
+      "corr_dV_dS": 0.5948738081139481,
+      "elasticity_retV_on_retS": 3.1291248446820092,
+      "beta_up_moves": 0.7519435740786866,
+      "beta_down_moves": 0.738252427184467,
+      "beta_lag1_dS_to_dV": -0.030213015438733636,
+      "spread_response_after_shocks": {
+        "mean_dSpr_shock": -0.01084710743801653,
+        "mean_dSpr_calm": 0.0016842105263157896,
+        "mean_spread_shock": 20.81327479338843,
+        "mean_spread_calm": 20.81355023923445,
+        "shock_count": 3872,
+        "calm_count": 26125
+      }
+    },
+    "VEV_4500": {
+      "n_points": 29997,
+      "beta_dV_on_dS": 0.6617923883095481,
+      "corr_dV_dS": 0.5979063819424871,
+      "elasticity_retV_on_retS": 4.633844961167583,
+      "beta_up_moves": 0.6651808539926845,
+      "beta_down_moves": 0.658446601941748,
+      "beta_lag1_dS_to_dV": 0.010728942739886668,
+      "spread_response_after_shocks": {
+        "mean_dSpr_shock": -0.028409090909090908,
+        "mean_dSpr_calm": 0.004287081339712918,
+        "mean_spread_shock": 15.84375,
+        "mean_spread_calm": 15.853971291866028,
+        "shock_count": 3872,
+        "calm_count": 26125
+      }
+    },
+    "VEV_5000": {
+      "n_points": 29997,
+      "beta_dV_on_dS": 0.6535202277123894,
+      "corr_dV_dS": 0.7536427220938081,
+      "elasticity_retV_on_retS": 13.484660971688385,
+      "beta_up_moves": 0.6539585982668431,
+      "beta_down_moves": 0.6530873786407775,
+      "beta_lag1_dS_to_dV": -0.00526350074913686,
+      "spread_response_after_shocks": {
+        "mean_dSpr_shock": -0.012396694214876033,
+        "mean_dSpr_calm": 0.0019138755980861245,
+        "mean_spread_shock": 6.041580578512397,
+        "mean_spread_calm": 6.043598086124402,
+        "shock_count": 3872,
+        "calm_count": 26125
+      }
+    },
+    "VEV_5100": {
+      "n_points": 29997,
+      "beta_dV_on_dS": 0.5773316745588722,
+      "corr_dV_dS": 0.7653302054445336,
+      "elasticity_retV_on_retS": 18.244536099829496,
+      "beta_up_moves": 0.5775266463022929,
+      "beta_down_moves": 0.5771391585760524,
+      "beta_lag1_dS_to_dV": -0.008663930688554493,
+      "spread_response_after_shocks": {
+        "mean_dSpr_shock": -0.00981404958677686,
+        "mean_dSpr_calm": 0.001492822966507177,
+        "mean_spread_shock": 4.27970041322314,
+        "mean_spread_calm": 4.29822009569378,
+        "shock_count": 3872,
+        "calm_count": 26125
+      }
+    },
+    "VEV_5200": {
+      "n_points": 29997,
+      "beta_dV_on_dS": 0.43665934982120397,
+      "corr_dV_dS": 0.7174150885004535,
+      "elasticity_retV_on_retS": 24.117807697490015,
+      "beta_up_moves": 0.43608164977647296,
+      "beta_down_moves": 0.4372297734627836,
+      "beta_lag1_dS_to_dV": -0.005315614617940197,
+      "spread_response_after_shocks": {
+        "mean_dSpr_shock": 0.0074896694214876035,
+        "mean_dSpr_calm": -0.0011100478468899521,
+        "mean_spread_shock": 2.8910123966942147,
+        "mean_spread_calm": 2.8876555023923447,
+        "shock_count": 3872,
+        "calm_count": 26125
+      }
+    },
+    "VEV_5300": {
+      "n_points": 29997,
+      "beta_dV_on_dS": 0.27268819165358527,
+      "corr_dV_dS": 0.6216399087228962,
+      "elasticity_retV_on_retS": 30.864529047592118,
+      "beta_up_moves": 0.272297022693604,
+      "beta_down_moves": 0.2730744336569581,
+      "beta_lag1_dS_to_dV": -0.000697022995244611,
+      "spread_response_after_shocks": {
+        "mean_dSpr_shock": -0.0012913223140495868,
+        "mean_dSpr_calm": 0.00019138755980861245,
+        "mean_spread_shock": 2.1007231404958677,
+        "mean_spread_calm": 2.107712918660287,
+        "shock_count": 3872,
+        "calm_count": 26125
+      }
+    },
+    "VEV_5400": {
+      "n_points": 29997,
+      "beta_dV_on_dS": 0.12886984048408417,
+      "corr_dV_dS": 0.5400562735002293,
+      "elasticity_retV_on_retS": 43.22481020167395,
+      "beta_up_moves": 0.1282955543610789,
+      "beta_down_moves": 0.1294368932038835,
+      "beta_lag1_dS_to_dV": -0.0002540551104162596,
+      "spread_response_after_shocks": {
+        "mean_dSpr_shock": 0.0007747933884297521,
+        "mean_dSpr_calm": -0.00011483253588516746,
+        "mean_spread_shock": 1.378099173553719,
+        "mean_spread_calm": 1.3818947368421053,
+        "shock_count": 3872,
+        "calm_count": 26125
+      }
+    },
+    "VEV_5500": {
+      "n_points": 29997,
+      "beta_dV_on_dS": 0.054863313944778426,
+      "corr_dV_dS": 0.3482216271623333,
+      "elasticity_retV_on_retS": 44.32112767983203,
+      "beta_up_moves": 0.05521979102481748,
+      "beta_down_moves": 0.05451132686084144,
+      "beta_lag1_dS_to_dV": 0.0008468503680541988,
+      "spread_response_after_shocks": {
+        "mean_dSpr_shock": 0.005681818181818182,
+        "mean_dSpr_calm": -0.0008038277511961722,
+        "mean_spread_shock": 1.1554752066115703,
+        "mean_spread_calm": 1.1489377990430623,
+        "shock_count": 3872,
+        "calm_count": 26125
+      }
+    },
+    "VEV_6000": {
+      "n_points": 29997,
+      "beta_dV_on_dS": -0.0,
+      "corr_dV_dS": NaN,
+      "elasticity_retV_on_retS": -0.0,
+      "beta_up_moves": -0.0,
+      "beta_down_moves": 0.0,
+      "beta_lag1_dS_to_dV": -0.0,
+      "spread_response_after_shocks": {
+        "mean_dSpr_shock": 0.0,
+        "mean_dSpr_calm": 0.0,
+        "mean_spread_shock": 1.0,
+        "mean_spread_calm": 1.0,
+        "shock_count": 3872,
+        "calm_count": 26125
+      }
+    },
+    "VEV_6500": {
+      "n_points": 29997,
+      "beta_dV_on_dS": -0.0,
+      "corr_dV_dS": NaN,
+      "elasticity_retV_on_retS": -0.0,
+      "beta_up_moves": -0.0,
+      "beta_down_moves": 0.0,
+      "beta_lag1_dS_to_dV": -0.0,
+      "spread_response_after_shocks": {
+        "mean_dSpr_shock": 0.0,
+        "mean_dSpr_calm": 0.0,
+        "mean_spread_shock": 1.0,
+        "mean_spread_calm": 1.0,
+        "shock_count": 3872,
+        "calm_count": 26125
+      }
+    }
+  },
+  "suggested_trade_order": [
+    {
+      "symbol": "VEV_5200",
+      "score": 1.9347238647085483,
+      "mean_spread_calm": 2.8876555023923447,
+      "abs_corr_dV_dS": 0.7174150885004535,
+      "abs_lag_beta": 0.005315614617940197
+    },
+    {
+      "symbol": "VEV_5300",
+      "score": 1.7432658769858875,
+      "mean_spread_calm": 2.107712918660287,
+      "abs_corr_dV_dS": 0.6216399087228962,
+      "abs_lag_beta": 0.000697022995244611
+    },
+    {
+      "symbol": "VEV_5400",
+      "score": 1.5801074658982504,
+      "mean_spread_calm": 1.3818947368421053,
+      "abs_corr_dV_dS": 0.5400562735002293,
+      "abs_lag_beta": 0.0002540551104162596
+    },
+    {
+      "symbol": "VEV_5100",
+      "score": 1.530487132275296,
+      "mean_spread_calm": 4.29822009569378,
+      "abs_corr_dV_dS": 0.7653302054445336,
+      "abs_lag_beta": 0.008663930688554493
+    },
+    {
+      "symbol": "VEV_5000",
+      "score": 1.5071801741726334,
+      "mean_spread_calm": 6.043598086124402,
+      "abs_corr_dV_dS": 0.7536427220938081,
+      "abs_lag_beta": 0.00526350074913686
+    },
+    {
+      "symbol": "VEV_5500",
+      "score": 1.1964263173173055,
+      "mean_spread_calm": 1.1489377990430623,
+      "abs_corr_dV_dS": 0.3482216271623333,
+      "abs_lag_beta": 0.0008468503680541988
+    },
+    {
+      "symbol": "VEV_4500",
+      "score": 1.1955981850301765,
+      "mean_spread_calm": 15.853971291866028,
+      "abs_corr_dV_dS": 0.5979063819424871,
+      "abs_lag_beta": 0.010728942739886668
+    },
+    {
+      "symbol": "VEV_4000",
+      "score": 1.1891433559191216,
+      "mean_spread_calm": 20.81355023923445,
+      "abs_corr_dV_dS": 0.5948738081139481,
+      "abs_lag_beta": 0.030213015438733636
+    },
+    {
+      "symbol": "VEV_6000",
+      "score": NaN,
+      "mean_spread_calm": 1.0,
+      "abs_corr_dV_dS": NaN,
+      "abs_lag_beta": 0.0
+    },
+    {
+      "symbol": "VEV_6500",
+      "score": NaN,
+      "mean_spread_calm": 1.0,
+      "abs_corr_dV_dS": NaN,
+      "abs_lag_beta": 0.0
+    }
+  ],
+  "shock_threshold_abs_dS": 2.0
+}

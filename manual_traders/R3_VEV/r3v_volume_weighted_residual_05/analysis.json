@@ -76,5 +76,15 @@
       "analysis_outputs/v16_fills_summary.json"
     ],
     "used_to_decide": "This confirms cadence/refit variation is not expressing behavior under current guardrails/policy flow; high duplicate risk remains for this family variant unless assumptions are changed more fundamentally."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "Deep underlying-to-voucher response analysis: first-difference beta/elasticity dV~dS per strike, lag-1 beta proxy, spread widening after |dS| shocks (>=2 ticks), and up/down asymmetry. Results ranked 5200/5300/5400 strongest on immediate response with relatively tight calm spreads. Added event gate using underlying shock + response rank.",
+    "analysis_outputs": [
+      "analysis_outputs/underlying_to_voucher_response.json",
+      "analysis_outputs/v17_fills_summary.json",
+      "analysis_outputs/v17_underlying_response_gate.log"
+    ],
+    "used_to_decide": "Incorporated suggested response-ranked symbols and shock gating directly into v17 entry logic. This produced materially different fill profile (e.g., VEV_5400 fill rows 823 -> 225) but lower total PnL than v8 under worse fills; retain v8 as best for now while keeping this regime mapping as a basis for future variants."
   }
 ]

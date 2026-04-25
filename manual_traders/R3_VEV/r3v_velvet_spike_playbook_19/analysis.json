@@ -90,5 +90,14 @@
       "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v15_fill_trade_summary.json"
     ],
     "used_to_decide": "Findings: best lead/lag is lag=0 across all valid strike/day groups (contemporaneous), beta declines monotonically with strike (4000~0.75 -> 5500~0.055 -> 6000/6500~0), and spread shock ratio is ~1 (no meaningful widening). Therefore v15 keeps contemporaneous quoting but scales edge/size by response (|delta| + beta proxy), cutting low-response strike activity and improving family12 PnL to +7,181 (from v12a +2,058 and v12b/v12c deeply negative)."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "Shock continuation by strike/day: at extract |z|>=2.2 windows, measure frequency that sign(dV)==sign(dS) on next tick (continuation) for strikes 5000-5300. IV thread: same mid series as prior family12 work.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/shock_continuation_by_strike_day.csv",
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/shock_continuation_summary.json"
+    ],
+    "used_to_decide": "Continuation rates are high (e.g. 5000~0.94, 5300~0.70-0.77), motivating a burst fair shift along the extract move. v16 implemented that; backtest total 3,432 vs v15 7,181 \u2014 misfit vs worse-fill execution (shifted fair into adverse cross), so retain v15-style without signed step shift for now; log as negative result."
   }
 ]

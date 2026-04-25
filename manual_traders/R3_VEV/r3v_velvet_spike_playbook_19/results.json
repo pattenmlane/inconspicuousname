@@ -246,5 +246,49 @@
         }
       }
     }
+  },
+  {
+    "iteration": 16,
+    "trader_file": "trader_v16_spline_momentum_bias.py",
+    "strategy_description": "Family12 v15 + burst momentum shift: after shock-continuation analysis, shift execution theo along signed extract step in burst (scaled by response). Falsified on backtest vs v15.",
+    "total_profit": 3432,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v16_spline_momentum_bias.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v16_spline_momentum_bias.json",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v16_spline_momentum_bias.json",
+    "match_trades": "worse",
+    "trades_or_fills_summary": {
+      "profit": {
+        "0": 270,
+        "1": 2190,
+        "2": 972,
+        "total": 3432
+      },
+      "fills": {
+        "submission_trade_count": 34,
+        "submission_filled_abs_qty": 372,
+        "submission_by_symbol": {
+          "VEV_4000": {
+            "trade_count": 5,
+            "filled_abs_qty": 10
+          },
+          "VEV_5000": {
+            "trade_count": 5,
+            "filled_abs_qty": 99
+          },
+          "VEV_5100": {
+            "trade_count": 8,
+            "filled_abs_qty": 110
+          },
+          "VEV_5200": {
+            "trade_count": 5,
+            "filled_abs_qty": 62
+          },
+          "VEV_5300": {
+            "trade_count": 11,
+            "filled_abs_qty": 91
+          }
+        }
+      }
+    }
   }
 ]

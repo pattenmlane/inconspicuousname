@@ -46,5 +46,13 @@
     "total_profit": -908,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 6,
+    "trader_file": "trader_v6.py",
+    "strategy_description": "Parent v5/v2 with same neighbor-gap z-score entry and spread-opportunity edge selection. Adds BS call gamma for both legs and clip factor gamma_scale=GAMMA_REF/(GAMMA_REF+|gamma_hi-gamma_lo|), floored 0.35. Sweep over GAMMA_REF in [0.0004..0.006] leaves total unchanged at -908; keep default 0.0012.",
+    "total_profit": -908,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

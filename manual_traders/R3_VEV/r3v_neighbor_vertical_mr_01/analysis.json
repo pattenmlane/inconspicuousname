@@ -49,5 +49,13 @@
       "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/analysis_vega_gamma_spread.json"
     ],
     "used_to_decide": "v5 ranks edges by |z| per two-leg spread; backtest PnL ties best prior (-908) so the ranking change does not improve aggregate on this run\u2014still grounded in book observables for the two-leg cost thesis."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "Net-gamma scaling test on selected adjacent vertical: compute BS gamma for both legs at implied vols, use |gamma_hi-gamma_lo| as convexity proxy in clip multiplier. Parameter sweep in grid_gamma_ref_sweep.json for GAMMA_REF in {0.0004, 0.0008, 0.0012, 0.002, 0.0035, 0.006}.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/grid_gamma_ref_sweep.json"
+    ],
+    "used_to_decide": "All tested gamma refs produce identical total -908 on this historical run, indicating current fills/trade set are insensitive to this convexity dampener at these levels; kept simpler default while preserving documented Greek thread."
   }
 ]

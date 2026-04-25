@@ -1,0 +1,26 @@
+[
+  {
+    "gamma_ref": 0.0004,
+    "total": -908
+  },
+  {
+    "gamma_ref": 0.0008,
+    "total": -908
+  },
+  {
+    "gamma_ref": 0.0012,
+    "total": -908
+  },
+  {
+    "gamma_ref": 0.002,
+    "total": -908
+  },
+  {
+    "gamma_ref": 0.0035,
+    "total": -908
+  },
+  {
+    "gamma_ref": 0.006,
+    "total": -908
+  }
+]

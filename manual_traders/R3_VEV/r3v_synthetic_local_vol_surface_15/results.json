@@ -1,0 +1,18 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "trader_v0.py",
+    "strategy_description": "Synthetic IV slice: cubic spline in log-moneyness on Newton IV knots each tick; trade VEV when |mid−BS(theo)| > 1.35× half-spread; aggressive prices bb−1 / ba+1 for worse market-trade matching. TTE from backtest_day (8−d DTE at open, intraday wind per plot_iv_smile_round3).",
+    "total_profit": 3883,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v0.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 1,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Same surface/residual idea; parameter sweep: RESID_HURDLE_MULT 1.22, SPLINE_SMOOTH 0.12, MAX_ORDER_PER_VOUCHER 14 (vs v0 1.35 / 0.08 / 18).",
+    "total_profit": 3486,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v1.py 3 --data Prosperity4Data --match-trades worse"
+  }
+]

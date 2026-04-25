@@ -1,0 +1,42 @@
+{
+  "timing": {
+    "source": "round3work/round3description.txt + round3work/plotting/.../plot_iv_smile_round3.py",
+    "csv_day_to_dte_at_open": {
+      "0": 8,
+      "1": 7,
+      "2": 6
+    },
+    "intraday": "dte_eff = dte_open - (timestamp//100)/10000; T = dte_eff/365; r=0"
+  },
+  "bs_convention": "European call, implied vol from mid via Brent on [1e-5,15]",
+  "per_day": [
+    {
+      "csv_day": 0,
+      "dte_open": 8,
+      "sampled_snapshots": 3,
+      "iv_smile_width_mean": 0.31849989411096397,
+      "iv_smile_width_p50": 0.3172539198963016,
+      "half_spread_vouchers_mean": null,
+      "vega_atm_mean": 291.83100545763847
+    },
+    {
+      "csv_day": 1,
+      "dte_open": 7,
+      "sampled_snapshots": 3,
+      "iv_smile_width_mean": 0.49818397832037054,
+      "iv_smile_width_p50": 0.38070429764420877,
+      "half_spread_vouchers_mean": null,
+      "vega_atm_mean": 271.59164125712977
+    },
+    {
+      "csv_day": 2,
+      "dte_open": 6,
+      "sampled_snapshots": 3,
+      "iv_smile_width_mean": 0.4122249071112006,
+      "iv_smile_width_p50": 0.4165309265253238,
+      "half_spread_vouchers_mean": null,
+      "vega_atm_mean": 250.44278661771077
+    }
+  ],
+  "aggregate_iv_smile_width_p50": 0.38070429764420877
+}

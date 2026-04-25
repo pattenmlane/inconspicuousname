@@ -120,12 +120,23 @@
   {
     "iteration": 14,
     "trader_file": "trader_v14.py",
-    "strategy_description": "Family13: parent v10 + data-led shock-boost: when |one-tick Δextract|>=3, add to spread-stress (tape: VEV_5200 spread more likely to widen on shock vs calm; see analysis_shock_spread_v14.json). Same reverse RV-IV+stress signal and core/broad regime.",
+    "strategy_description": "Family13: parent v10 + data-led shock-boost: when |one-tick \u0394extract|>=3, add to spread-stress (tape: VEV_5200 spread more likely to widen on shock vs calm; see analysis_shock_spread_v14.json). Same reverse RV-IV+stress signal and core/broad regime.",
     "total_profit": 17114,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v14.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f14.log",
     "backtest_log_file": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f14.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v14.json"
+  },
+  {
+    "iteration": 15,
+    "trader_file": "trader_v15.py",
+    "strategy_description": "Family13 parent v14 with analysis-led shock calibration: lower shock threshold (2.5), smaller shock boost (0.10), slightly earlier stress hysteresis, and broader calm participation (clip/rails) to increase fills while retaining regime logic.",
+    "total_profit": 20085,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v15.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f15.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f15.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v15.json"
   }
 ]

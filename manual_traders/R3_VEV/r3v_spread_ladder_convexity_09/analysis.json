@@ -102,12 +102,23 @@
   },
   {
     "iteration": 14,
-    "analysis_description": "Shock x spread microstructure (days 0-2, per tick): for |ΔU|>=3, mean next-tick spread change on VEV_5200 is slightly positive (vs ~0 in calm) — small but consistent microstructure link used as additive stress boost. IV/Greek: unchanged v10 path (core BS IV, T=7d/365). Parent v10 best PnL in family; v14 = v10 + shock term only. Still far from ~800k all-VEV benchmark but improves family13 on this tape (17114 vs 5826 v10).",
+    "analysis_description": "Shock x spread microstructure (days 0-2, per tick): for |\u0394U|>=3, mean next-tick spread change on VEV_5200 is slightly positive (vs ~0 in calm) \u2014 small but consistent microstructure link used as additive stress boost. IV/Greek: unchanged v10 path (core BS IV, T=7d/365). Parent v10 best PnL in family; v14 = v10 + shock term only. Still far from ~800k all-VEV benchmark but improves family13 on this tape (17114 vs 5826 v10).",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/analysis_shock_spread_v14.json",
       "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f14.log",
       "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v14.json"
     ],
     "used_to_decide": "Boost stress after large extract ticks to sit in core-only regime more often when microstructure is dislocated; one surgical change to best parent (v10) before broader retuning."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "Follow-up to v14 with deeper propagation lens: contract-by-contract shock elasticity (|\u0394U| bins) confirms strongest response-per-spread in 5200/5100/5300 and near-zero lead/lag. Shock-spread study at threshold 3 showed 5200 spread widening tendency in shocks; retest around thresholds/boost suggested 2.5 + smaller boost works better when paired with slightly broader calm participation. IV/Greek thread retained from family13 core IV proxy and reverse RV-IV signal calibration.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/analysis_underlying_shock_elasticity_v15.json",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/analysis_shock_spread_v14.json",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f15.log",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v15.json"
+    ],
+    "used_to_decide": "One-step local grid around v14 showed best uplift at (shock_du=2.5, shock_boost=0.10, stress enter/exit 0.60/0.47, calm clip/max 3/80) -> +20,085, preserving the same family assumptions while increasing useful fills."
   }
 ]

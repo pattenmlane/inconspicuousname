@@ -285,5 +285,27 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v28_backtest.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v28_fill_summary.json"
+  },
+  {
+    "iteration": 29,
+    "trader_file": "trader_v29.py",
+    "strategy_description": "Parent v25: add mild du_ema-conditioned IV gate scaling (continuous). +142 total.",
+    "total_profit": 142,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v29.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v29_backtest.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v29_backtest.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v29_fill_summary.json"
+  },
+  {
+    "iteration": 30,
+    "trader_file": "trader_v30.py",
+    "strategy_description": "Parent v25: stronger du_ema-conditioned IV gate scaling. +144 total; no new high.",
+    "total_profit": 144,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v30.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v30_backtest.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v30_backtest.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v30_fill_summary.json"
   }
 ]

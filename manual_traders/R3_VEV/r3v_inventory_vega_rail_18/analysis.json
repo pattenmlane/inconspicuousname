@@ -140,6 +140,18 @@
       "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v27_fill_summary.json",
       "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v28_fill_summary.json"
     ],
-    "used_to_decide": "Swept IV_SCALPING_THR: 0.40 (+140) < 0.45 v25 (+146) < tie 0.30 v27 (+146, more events). 0.35 was too open (+65) — not monotonic, model vs worse-fill path matters. No new PnL high; v25 and v27 remain best +146. Prefer v27 for higher submission count at same PnL."
+    "used_to_decide": "Swept IV_SCALPING_THR: 0.40 (+140) < 0.45 v25 (+146) < tie 0.30 v27 (+146, more events). 0.35 was too open (+65) \u2014 not monotonic, model vs worse-fill path matters. No new PnL high; v25 and v27 remain best +146. Prefer v27 for higher submission count at same PnL."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "Propagation-to-quoting extension: analyze du_ema (EMA of |du_extract|, window 100) vs ATM VEV_5100 edge |theo_diff-mean| in du_regime_vs_edge_5100.json. Edge generally increases with du_ema (notably day0/day1 top bucket p90), suggesting dynamic gate can be lowered in higher-motion regimes. Implemented continuous gate scaling in iv_scalp_orders: gate = IV_SCALPING_THR * clamp(1 - k*(du_ema-base), min, max).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/du_regime_vs_edge_5100.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v29_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v30_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v29_fill_summary.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v30_fill_summary.json"
+    ],
+    "used_to_decide": "Dynamic gating preserved the v25 shape but did not exceed best PnL (v29 +142, v30 +144 vs best +146). Keep simpler fixed-gate leaders v25/v27 for tie-break simplicity."
   }
 ]

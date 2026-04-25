@@ -54,5 +54,45 @@
     "total_profit": -2326,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v6.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "Parent v2: 5400/5500 only, sell resid>RICH_THR, short-cover resid<EXIT, hedge 0.65. (Thresholds too high: residuals at those strikes are usually negative vs quadratic — almost no trades.)",
+    "total_profit": 0,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v7.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 8,
+    "trader_file": "trader_v8.py",
+    "strategy_description": "Parent v2: 5400/5500 only, RICH 0.009, hedge 0.82, spread cap 7; same short/cover logic as v7. Still effectively no trades for same residual-sign reason.",
+    "total_profit": 0,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v8.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 9,
+    "trader_file": "trader_v9.py",
+    "strategy_description": "v7 with RICH_THR 0.006 / EXIT 0.003 (lower grid). Still zero trades: 5400/5500 residuals rarely exceed positive RICH under the smile fit.",
+    "total_profit": 0,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v9.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 10,
+    "trader_file": "trader_v10.py",
+    "strategy_description": "v8 with RICH 0.005 / EXIT 0.004. Still zero activity for 5400/5500 short-rich rule.",
+    "total_profit": 0,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v10.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 11,
+    "trader_file": "trader_v11.py",
+    "strategy_description": "Pivot: same quadratic core; VEV_6000 short when resid>RICH (OTM often rich); 5400/5500 long when resid<CHEAP; cover 6000 short when resid<EXIT. Documents signed residuals by strike; backtest underperformed v2 (-3357 vs -751).",
+    "total_profit": -3357,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v11.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

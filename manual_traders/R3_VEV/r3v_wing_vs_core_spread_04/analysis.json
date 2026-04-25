@@ -39,5 +39,44 @@
     "analysis_description": "Variant comparison on same curvature thesis: v4 (focused 5400/5500 with short-cover) was too lossy due to hedge bleed; v5 (stricter + no cheap-wing longs) turned fully passive; v6 (active v2-parent with lower-wing long suppression) remained active but underperformed.",
     "analysis_outputs": [],
     "used_to_decide": "Best realized result remains conservative/passy v5 at total 0, but that confirms current residual triggers are too weak under worse fills; next work should re-center residual estimation/entry timing while keeping tradeability filters."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "v6 vs v2: blocking 4000/4500 cheap longs reduced some loss tail but total PnL worsened vs v2; still valid as a parent for strike-scoped experiments.",
+    "analysis_outputs": [],
+    "used_to_decide": "Preferred parent for next grid remained v2 (−751) over v6 (−2326)."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Signed residual check on tapes (50-tick step, time-value filter): IV−quadratic(m_t) at 5400/5500 is almost always negative (short side of parabola); 6000 often positive. Same TTE mapping as round3description + intraday wind-down. Correlation artifact: analyze_wing_resid_vs_extract_v7.py → wing_resid_vs_extract_v7.json (Δlog S vs Δresid, weak pooled r ~0.05–0.09 for 5400).",
+    "analysis_outputs": [
+      "analyze_wing_resid_vs_extract_v7.py",
+      "wing_resid_vs_extract_v7.json"
+    ],
+    "used_to_decide": "Explains v7–v10 zero activity when entry required resid>RICH on 5400/5500 only; led to v11 signed-strike split (short 6000 rich, long 5400/5500 cheap)."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "n/a — v8 grid vs v7 (same structural issue).",
+    "analysis_outputs": [],
+    "used_to_decide": "No change to signed-residual conclusion."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "n/a — v9 lower RICH/EXIT on 5400/5500-only short rule.",
+    "analysis_outputs": [],
+    "used_to_decide": "Still no positive RICH events at 5400/5500 at scale under quadratic fit."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "n/a — v10 lower-threshold grid vs v8.",
+    "analysis_outputs": [],
+    "used_to_decide": "Same as iteration 9."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "v11 backtest: signed-strike book triggered but total −3357 (extract hedge drag). v2 still best in-folder; pivot documented without abandoning smile-residual concept.",
+    "analysis_outputs": [],
+    "used_to_decide": "Next iterations should branch from v2: strike-specific or cubic smile, or smaller option clips / lower HEDGE_FRAC to reduce extract churn."
   }
 ]

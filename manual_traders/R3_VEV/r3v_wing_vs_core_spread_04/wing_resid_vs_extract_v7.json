@@ -1,0 +1,53 @@
+{
+  "subsample": 20,
+  "method": "Correlate first differences of log(S) and IV residuals; residuals from same-step quadratic in m_t=log(K/S)/sqrt(T)",
+  "by_csv_day": {
+    "0": {
+      "len_series": 500,
+      "n_diffs": 499,
+      "pearson_dlogS_vs_dresid_VEV_5400": [
+        0.13363945317797327,
+        0.002778648785759212
+      ],
+      "pearson_dlogS_vs_dresid_VEV_5500": [
+        0.14117413220654296,
+        0.001569426618888877
+      ]
+    },
+    "1": {
+      "len_series": 500,
+      "n_diffs": 499,
+      "pearson_dlogS_vs_dresid_VEV_5400": [
+        0.07956708227603773,
+        0.0757736920692138
+      ],
+      "pearson_dlogS_vs_dresid_VEV_5500": [
+        0.002814325966854082,
+        0.9499976419231163
+      ]
+    },
+    "2": {
+      "len_series": 500,
+      "n_diffs": 499,
+      "pearson_dlogS_vs_dresid_VEV_5400": [
+        0.08107845123989961,
+        0.07035886931675635
+      ],
+      "pearson_dlogS_vs_dresid_VEV_5500": [
+        0.04749369627272268,
+        0.2896609443235783
+      ]
+    }
+  },
+  "pooled": {
+    "n": 1497,
+    "pearson_5400": [
+      0.08984896982067048,
+      0.0005004946264129531
+    ],
+    "pearson_5500": [
+      0.0500645974986295,
+      0.052788143596923694
+    ]
+  }
+}

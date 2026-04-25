@@ -1,0 +1,17 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round 3 tape calibration: DTE at CSV day open 8/7/6 for days 0/1/2 per round3description.txt; intraday dte_eff = dte_open - (timestamp//100)/10000; T = dte_eff/365; r=0. Inferred csv_day per timestep by minimizing IV variance across strikes (same as live trader). Fitted piecewise-linear knot IV time-series and VEV_5200 median bid-ask spread by day; IV medians by strike from bisection on mids.",
+    "analysis_outputs": [
+      "analysis_outputs/smile_cal_round3.json",
+      "run_smile_calibration.py"
+    ],
+    "used_to_decide": "Confirmed timing convention matches plot_iv_smile_round3; offline knot means were distorted by wing IVs so live strategy uses per-timestep median IV bands around knots instead. VEV_5200 spread median 3 ticks across days."
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Backtest attribution: v0 PnL concentrated on VEV_4000/VEV_4500 (deep OTM) while inner strikes rarely fired Frankfurt thresholds; v3 EMA-S reduced noise and moved activity to VEV_5000. Grid sweep on STRIKE_5000_CAP (v6–v12) monotonically improved total PnL with cap=1 best at -265 shells vs -59385 baseline.",
+    "analysis_outputs": [],
+    "used_to_decide": "Kept PWL smile thesis; added EMA underlying, skip 4000/4500, merge levels, cap wing and 5000 strike size; best cap=1 (trader_v12)."
+  }
+]

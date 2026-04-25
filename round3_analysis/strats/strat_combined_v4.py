@@ -1,8 +1,5 @@
-"""Combined Round 3 strategy:
-  - Hydrogel mean-rev MM (proven $49K)
-  - Inside-the-wall MM on VEV_5100/5200/5300 at full size with inventory skew
-  - Delta hedge net call delta on VELVETFRUIT_EXTRACT
-"""
+"""Combined v4: combined v3 + per-strike taker against the standing book when the
+mid is far from a long EMA reference (5300 mean reversion is real)."""
 from __future__ import annotations
 
 import json
@@ -21,12 +18,13 @@ LIMITS = {UND: 200, HYDRO: 200, "VEV_5100": 300, "VEV_5200": 300, "VEV_5300": 30
 HYDRO_MEAN = 9990.0
 HYDRO_BAND = 10.0
 HYDRO_SKEW = 0.04
-
 VOUCHER_SIZE = 100
 VOUCHER_SOFT_CAP = 250
 VOUCHER_SKEW_PER100 = 2
-UND_MM = True  # also market-make the underlying
-
+TAKER_THR = {"VEV_5100": 1.5, "VEV_5200": 1.0, "VEV_5300": 0.7}
+TAKER_QTY = 50
+EMA_WINDOW = 200
+WARMUP = 50
 PROD_DTE = 5
 ANN = 365 * 10000
 SMILE = (0.029682579827555476, 0.0024113521900090236, 0.23943767718887515)
@@ -64,6 +62,14 @@ def book(depth):
     return buys, sells, bb, ba, bw, aw, wm
 
 
+def ema(store, key, window, value):
+    old = store.get(key, value)
+    a = 2.0 / (window + 1.0)
+    new = a * value + (1.0 - a) * old
+    store[key] = new
+    return new
+
+
 class Trader:
 
     def _trade_hydrogel(self, state, result):
@@ -74,13 +80,10 @@ class Trader:
         if wm is None:
             return
         pos = int(state.position.get(HYDRO, 0))
-        lim = LIMITS[HYDRO]
-        max_buy = lim - pos
-        max_sell = lim + pos
+        max_buy = LIMITS[HYDRO] - pos
+        max_sell = LIMITS[HYDRO] + pos
         passive_fair = wm - HYDRO_SKEW * pos
         ords = []
-
-        # Take stale quotes
         for sp in sorted(sells.keys()):
             if max_buy <= 0: break
             if sp <= wm - 1:
@@ -97,8 +100,6 @@ class Trader:
             elif bp >= wm and pos > 0:
                 q = min(buys[bp], max_sell, pos)
                 if q > 0: ords.append(Order(HYDRO, bp, -q)); max_sell -= q
-
-        # Mean-rev overlay
         dev = wm - HYDRO_MEAN
         if dev <= -HYDRO_BAND and max_buy > 0:
             tgt = int(math.floor(min(wm + 1, HYDRO_MEAN - HYDRO_BAND / 2)))
@@ -106,8 +107,6 @@ class Trader:
         elif dev >= HYDRO_BAND and max_sell > 0:
             tgt = int(math.ceil(max(wm - 1, HYDRO_MEAN + HYDRO_BAND / 2)))
             ords.append(Order(HYDRO, tgt, -max_sell)); max_sell = 0
-
-        # Passive MM
         if max_buy > 0:
             bid_px = int(bw) + 1 if bw is not None else int(math.floor(passive_fair - 1))
             bid_px = min(bid_px, int(math.floor(passive_fair)))
@@ -116,19 +115,21 @@ class Trader:
             ask_px = int(aw) - 1 if aw is not None else int(math.ceil(passive_fair + 1))
             ask_px = max(ask_px, int(math.ceil(passive_fair)))
             ords.append(Order(HYDRO, ask_px, -max_sell))
-
         if ords:
             result.setdefault(HYDRO, []).extend(ords)
 
-    def _trade_vouchers(self, state, result):
+    def _trade_vouchers(self, state, result, store):
         depths = state.order_depths or {}
         u_buys, u_sells, u_bb, u_ba, _, _, _ = book(depths.get(UND))
         if u_bb is None:
-            return 0.0
+            return
         S = 0.5 * (u_bb + u_ba)
         T = t_years(int(state.timestamp))
         positions = state.position or {}
         net_delta = 0.0
+
+        ts100 = int(state.timestamp) // 100
+        in_warmup = ts100 < WARMUP
 
         for sym in TARGETS:
             depth = depths.get(sym)
@@ -137,6 +138,7 @@ class Trader:
             buys, sells, bb, ba, bw, aw, wm = book(depth)
             if bb is None:
                 continue
+            mid = 0.5 * (bb + ba)
             spread = ba - bb
             K = int(sym.split("_")[1])
             sig = smile_iv(S, K, T)
@@ -146,10 +148,13 @@ class Trader:
             lim = LIMITS[sym]
             max_buy = lim - pos
             max_sell = lim + pos
-
             ords = []
 
-            # Take stale quotes (cross-the-wall opportunities)
+            # Track rolling mid for taker
+            roll = ema(store, f"{sym}_roll", EMA_WINDOW, mid)
+            dev = mid - roll
+
+            # Take stale book quotes inside the wall
             wmid = (bb + ba) / 2.0
             for sp in sorted(sells.keys()):
                 if max_buy <= 0: break
@@ -164,6 +169,22 @@ class Trader:
                     ords.append(Order(sym, bp, -q)); max_sell -= q
                     net_delta -= q * d
 
+            # Mean-reversion taker (lift bid when mid is well above EMA, lift ask when below)
+            if not in_warmup:
+                thr = TAKER_THR.get(sym, 1.0)
+                if dev >= thr and max_sell > 0:
+                    qty = min(buys[bb], TAKER_QTY, max_sell)
+                    if qty > 0:
+                        ords.append(Order(sym, int(bb), -qty))
+                        net_delta -= qty * d
+                        max_sell -= qty
+                elif dev <= -thr and max_buy > 0:
+                    qty = min(sells[ba], TAKER_QTY, max_buy)
+                    if qty > 0:
+                        ords.append(Order(sym, int(ba), qty))
+                        net_delta += qty * d
+                        max_buy -= qty
+
             # Inside-the-wall passive MM
             if spread >= 3:
                 bid_px = bb + 1; ask_px = ba - 1
@@ -172,25 +193,21 @@ class Trader:
             else:
                 if ords: result.setdefault(sym, []).extend(ords)
                 continue
-
-            # Inventory skew
             shift = VOUCHER_SKEW_PER100 * (pos // 100)
             bid_px = max(bb, bid_px - shift)
             ask_px = max(ask_px - shift, bb + 1)
             if bid_px >= ask_px:
                 bid_px = bb; ask_px = ba
-
             buy_q = min(VOUCHER_SIZE, max_buy, max(0, VOUCHER_SOFT_CAP - pos))
             sell_q = min(VOUCHER_SIZE, max_sell, max(0, VOUCHER_SOFT_CAP + pos))
             if buy_q > 0:
                 ords.append(Order(sym, bid_px, buy_q))
             if sell_q > 0:
                 ords.append(Order(sym, ask_px, -sell_q))
-
             if ords:
                 result.setdefault(sym, []).extend(ords)
 
-        # Delta hedge underlying
+        # Hedge
         u_target = -int(round(net_delta))
         u_target = max(-LIMITS[UND], min(LIMITS[UND], u_target))
         u_pos = int(positions.get(UND, 0))
@@ -215,15 +232,13 @@ class Trader:
         buys, sells, bb, ba, bw, aw, wm = book(depth)
         if wm is None: return
         pos = int(state.position.get(UND, 0))
-        # account for hedge orders already queued
         queued = sum(o.quantity for o in result.get(UND, []))
         max_buy = max(0, LIMITS[UND] - (pos + queued))
         max_sell = max(0, LIMITS[UND] + (pos + queued))
         ords = []
-        # Take obvious mispricings
         for sp in sorted(sells.keys()):
             if max_buy <= 0: break
-            if sp < bw:  # someone selling below the floor
+            if sp < bw:
                 q = min(sells[sp], max_buy)
                 ords.append(Order(UND, sp, q)); max_buy -= q
         for bp in sorted(buys.keys(), reverse=True):
@@ -231,7 +246,6 @@ class Trader:
             if bp > aw:
                 q = min(buys[bp], max_sell)
                 ords.append(Order(UND, bp, -q)); max_sell -= q
-        # Passive inside-wall
         skew = 0.02 * pos
         passive = wm - skew
         if max_buy > 0 and bw is not None:
@@ -248,16 +262,19 @@ class Trader:
     def run(self, state: TradingState):
         result = {}
         try:
+            store = json.loads(state.traderData) if state.traderData else {}
+        except Exception:
+            store = {}
+        try:
             self._trade_hydrogel(state, result)
         except Exception as e:
             print(f"hydro err {e}")
         try:
-            self._trade_vouchers(state, result)
+            self._trade_vouchers(state, result, store)
         except Exception as e:
             print(f"vouch err {e}")
-        if UND_MM:
-            try:
-                self._mm_underlying(state, result)
-            except Exception as e:
-                print(f"und err {e}")
-        return result, 0, state.traderData or ""
+        try:
+            self._mm_underlying(state, result)
+        except Exception as e:
+            print(f"und err {e}")
+        return result, 0, json.dumps(store, separators=(",", ":"))

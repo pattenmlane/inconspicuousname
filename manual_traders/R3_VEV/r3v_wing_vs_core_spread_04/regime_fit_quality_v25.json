@@ -1,0 +1,23 @@
+{
+  "regime_definition": "stressed if extract spread>=6 OR extract summed depth<=110; else normal",
+  "tte_mapping": "csv day 0/1/2 -> open DTE 8/7/6 + intraday wind-down",
+  "fit_model": "quadratic log-moneyness WLS (w~depth/spread)",
+  "calibration_set_by_regime": {
+    "normal": "all strikes",
+    "stressed": "core only {5100,5200,5300} fallback all if <3 points"
+  },
+  "stats": {
+    "normal": {
+      "n_timestamps": 880,
+      "freq": 0.5866666666666667,
+      "mean_rmse_all_obs": 0.011570798339167307,
+      "mean_abs_resid_wings": 0.007696222340048641
+    },
+    "stressed": {
+      "n_timestamps": 620,
+      "freq": 0.41333333333333333,
+      "mean_rmse_all_obs": 0.16895437735328503,
+      "mean_abs_resid_wings": 0.15311291134745014
+    }
+  }
+}

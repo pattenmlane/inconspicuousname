@@ -143,12 +143,12 @@
   },
   {
     "iteration": 21,
-    "analysis_description": "analyze_spread_on_smile_triggers_v21.py → spread_on_smile_triggers_v21.json: when v20-style RICH/CHEAP would fire on wing strikes, median bid-ask width is about 1 tick (rich and cheap subsamples); informs spread filter tuning.",
+    "analysis_description": "analyze_spread_on_smile_triggers_v21.py \u2192 spread_on_smile_triggers_v21.json: when v20-style RICH/CHEAP would fire on wing strikes, median bid-ask width is about 1 tick (rich and cheap subsamples); informs spread filter tuning.",
     "analysis_outputs": [
       "analyze_spread_on_smile_triggers_v21.py",
       "spread_on_smile_triggers_v21.json"
     ],
-    "used_to_decide": "Loosening MIN_SPREAD_SKIP 6→4 or tightening 6→8 left PnL unchanged (3750): active path still passes at width ≤6; v22 larger MAX_LEG hurt (2984) via larger d_net and extract hedge."
+    "used_to_decide": "Loosening MIN_SPREAD_SKIP 6\u21924 or tightening 6\u21928 left PnL unchanged (3750): active path still passes at width \u22646; v22 larger MAX_LEG hurt (2984) via larger d_net and extract hedge."
   },
   {
     "iteration": 22,
@@ -158,7 +158,7 @@
   },
   {
     "iteration": 23,
-    "analysis_description": "v23 stricter spread cap 8: no PnL change vs v20 because executed paths on this tape already had spread ≤6 at entry.",
+    "analysis_description": "v23 stricter spread cap 8: no PnL change vs v20 because executed paths on this tape already had spread \u22646 at entry.",
     "analysis_outputs": [],
     "used_to_decide": "Spread filter is not the binding constraint here; keep simpler v20/v21/v23 tie at 3750."
   },
@@ -167,5 +167,22 @@
     "analysis_description": "v24 RICH 0.009: no path change vs v20 (same 3750); dominant PnL still from VEV_5400 sequence where residual dynamics already tripped under 0.010.",
     "analysis_outputs": [],
     "used_to_decide": "Next sweep: CHEAP grid or hydrogel tilt only if extract hedge re-engages; else stay at v20-class params."
+  },
+  {
+    "iteration": 25,
+    "analysis_description": "Requested family10 regime analysis: stressed if extract spread>=6 OR extract depth<=110; normal otherwise. Frequency normal~58.7%, stressed~41.3%. Fit quality differs sharply: normal mean RMSE~0.0116 and wing |resid|~0.0077 vs stressed RMSE~0.169 and wing |resid|~0.153. Implemented regime-dependent smile_quadratic_logm_wls calibration set (normal all strikes, stressed core-only) and ran worse-fill backtest.",
+    "analysis_outputs": [
+      "regime_fit_quality_v25.json",
+      "fill_summary_v25.json"
+    ],
+    "used_to_decide": "Regime split is real, but v25 produced heavy fills in VEV_6000/6500 and large losses (-29.6k), far below both local best (3.75k) and the ~800k bar."
+  },
+  {
+    "iteration": 26,
+    "analysis_description": "Stricter stress trigger (v26) increased stressed/core-only calibration usage and further concentrated fills in far wings (fill summary: larger VEV_6000/6500 quantity than v25), worsening losses to -53.9k.",
+    "analysis_outputs": [
+      "fill_summary_v26.json"
+    ],
+    "used_to_decide": "This family10 regime-dependent core-only calibration appears over-aggressive for current signal thresholds in this branch; keep documented pivot result and revert to prior best branch (v20/v21/v23/v24 class) unless re-parameterizing entry logic substantially."
   }
 ]

@@ -186,7 +186,7 @@
   {
     "iteration": 23,
     "trader_file": "trader_v23.py",
-    "strategy_description": "Parent v20: MIN_SPREAD_SKIP 8 (stricter). PnL matched v20 (3750) — dominant path still 1-tick wide on VEV_5400.",
+    "strategy_description": "Parent v20: MIN_SPREAD_SKIP 8 (stricter). PnL matched v20 (3750) \u2014 dominant path still 1-tick wide on VEV_5400.",
     "total_profit": 3750,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v23.py 3 --data Prosperity4Data --match-trades worse"
@@ -194,9 +194,25 @@
   {
     "iteration": 24,
     "trader_file": "trader_v24.py",
-    "strategy_description": "Parent v20: RICH 0.009 (was 0.010). PnL matched v20 (3750) — extra short-rich signals did not change filled path vs v20 on this tape.",
+    "strategy_description": "Parent v20: RICH 0.009 (was 0.010). PnL matched v20 (3750) \u2014 extra short-rich signals did not change filled path vs v20 on this tape.",
     "total_profit": 3750,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v24.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 25,
+    "trader_file": "trader_v25.py",
+    "strategy_description": "family10 smile_quadratic_logm_wls: regime-dependent calibration set (normal all strikes, stressed core-only), regime by extract spread/depth; WLS weights depth/spread.",
+    "total_profit": -29614,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v25.py 3 --data Prosperity4Data --match-trades worse --out backtests/r3v_wing_vs_core_spread_04_v25.log"
+  },
+  {
+    "iteration": 26,
+    "trader_file": "trader_v26.py",
+    "strategy_description": "family10 variation: stricter stress trigger (more core-only calibration) with same WLS regime framework and trading thresholds as v25.",
+    "total_profit": -53946,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v26.py 3 --data Prosperity4Data --match-trades worse --out backtests/r3v_wing_vs_core_spread_04_v26.log"
   }
 ]

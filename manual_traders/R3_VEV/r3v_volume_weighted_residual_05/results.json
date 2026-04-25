@@ -38,5 +38,29 @@
     "total_profit": 4671,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v4.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 5,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "From v3: fit WLS on all ten VEVs; trade 5000–5500; entry spread <=6, RESID 0.0135/0.005. PnL 94 — full-chain fit + 5000 leg hurt day 0 vs v3; superseded by v7.",
+    "total_profit": 94,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 6,
+    "trader_file": "trader_v6.py",
+    "strategy_description": "Drop VEV_5000 from trading; test full-chain fit (all VEV) vs trade 5100–5500. Full-chain refit was worse than v3; dropped for v7.",
+    "total_profit": 285,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "From v3: self-contained 5-strike WLS on trade strip VEV_5100..VEV_5500 only (omit 5000); same parameters as v3. Best total so far in this run.",
+    "total_profit": 12144,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
   }
 ]

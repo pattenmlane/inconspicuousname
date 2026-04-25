@@ -1,0 +1,9 @@
+{
+  "n_diff_pairs": 59,
+  "subsample_step_timestamps": 500,
+  "symbol_atm": "VEV_5300",
+  "strike_K": 5300.0,
+  "method": "Consecutive first differences of extract mid and BS IV(VEV_5300 mid) on subsampled timestamp rows; T from dte_eff/365, r=0 (round3 description timing).",
+  "corr_dS_dIV": -0.15694580919063378,
+  "slope_ols_dIV_on_dS": -1.7953071024967726e-05
+}

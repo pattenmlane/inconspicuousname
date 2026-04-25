@@ -15,5 +15,13 @@
       "analysis_outputs/iv_residual_delta_vega_profile.json"
     ],
     "used_to_decide": "Residual quality is strike-dependent: VEV_5100..VEV_5500 have tight spreads (about 1.1 to 4.3) and manageable residual magnitudes, while VEV_4000/4500 are much wider (about 15.8 to 20.1) and noisy. This motivated v3/v4 to keep the same residual-fade thesis but restrict active trading to more liquid middle strikes."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "Subsampled (timestamp step 500) first differences: VELVETFRUIT_EXTRACT mid vs BS implied vol from VEV_5300 mid with K=5300, r=0, T from dte_eff/365. Exploratory link between spot moves and a near-ATM option IV; small negative corr on subsample.",
+    "analysis_outputs": [
+      "analysis_outputs/extract_atm_iv5300_change_cov.json"
+    ],
+    "used_to_decide": "Documents IV vs spot co-movement on tape (weak negative OLS/corr in this subsample), kept as context for same thesis—no full delta-hedge leg per failed v1. v5 full-chain WLS was abandoned after backtest; v7 keeps closed 5-strike WLS and drops 5000 as trade candidate."
   }
 ]

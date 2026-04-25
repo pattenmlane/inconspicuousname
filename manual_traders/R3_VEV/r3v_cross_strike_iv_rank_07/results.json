@@ -62,5 +62,21 @@
     "total_profit": 1141,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v7.py\" 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 8,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v8.py",
+    "strategy_description": "Same as v6 (smile-residual rank + fade) with NEIGHBOR_RESIDUAL_CAP=0.05 (grid: align with tape residual-range p90 ~0.047 from iv_smile_residual_vs_raw).",
+    "total_profit": 134,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v8.py\" 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 9,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v9.py",
+    "strategy_description": "Same as v6 with NEIGHBOR_RESIDUAL_CAP=0.08 (intermediate grid vs v8 0.05 and v6 0.12).",
+    "total_profit": 546,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v9.py\" 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
   }
 ]

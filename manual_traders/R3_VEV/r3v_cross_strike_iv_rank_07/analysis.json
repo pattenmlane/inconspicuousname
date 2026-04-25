@@ -32,5 +32,13 @@
       "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/iv_smile_residual_vs_raw.json"
     ],
     "used_to_decide": "Motivated ranking residual IV to isolate relative mispricings along the smile; v6 backtest improved to +1141 total (days 0-2) vs v1 at -11. v7 cap sweep 0.15 was identical to v6; keep v6 as parent (simpler constant)."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Parameter grid on smile-residual neighbor cap guided by prior tape summary iv_smile_residual_vs_raw (median cross-strike residual range ~0.03, p90 ~0.047). Tighter caps (0.05, 0.08) are meant to only trade when adjacent-strike residual gaps are small vs typical smile width.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/iv_smile_residual_vs_raw.json"
+    ],
+    "used_to_decide": "v8 (cap 0.05) and v9 (0.08) both underperformed v6 (0.12) on R3 0-2: 134 and 546 vs 1141 -- cap was too strict relative to live neighbor-gaps after ranking, removing volume without improving edge. Remain on v6 as best parent; do not match cap to p90 without validating strike-adjacent residual gaps."
   }
 ]

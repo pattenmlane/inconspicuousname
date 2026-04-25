@@ -52,5 +52,13 @@
       "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analysis_outputs/two_strike_iv_skew.json"
     ],
     "used_to_decide": "Mean IV of the higher near strike exceeds the lower by a few bp on average, increasing on later tape days (0: ~0.0003, 1: ~0.0031, 2: ~0.0044). Tried v11 to lean size toward higher instantaneous IV; total PnL 3444 < v4 3456, so this tilt is not adopted."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "Greek carry and drift context for hedge policy: computed near-strike gamma/theta carry proxy on subsampled points (step 500) as (gamma_sum_two_nearest / |theta_day|_sum_two_nearest), with BS IV from mids and TTE 8/7/6 for days 0/1/2; compared with extract open-close drift. Day 1 and 2 show positive extract drift (+20.5, +28.0), while gamma/theta proxy is similar across days (~4.71e-4 to 4.92e-4), suggesting excess day-1 hedge intensity may hurt more than help.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/analysis_outputs/iv_deltaS_corr.json"
+    ],
+    "used_to_decide": "Motivated a targeted sweep to soften extract hedging on tape day 1 only (keep day 0 hedge and day 2 no-hedge). trader_v12 improved day-1 extract PnL from -726 (v4) to -610 and total PnL from 3456 to 3572."
   }
 ]

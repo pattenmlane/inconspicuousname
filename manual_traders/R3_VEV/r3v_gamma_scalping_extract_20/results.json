@@ -94,5 +94,13 @@
     "total_profit": 3444,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v11.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 12,
+    "trader_file": "trader_v12.py",
+    "strategy_description": "v4 with day-1 softer extract hedge only: hedge_frac 0.55 (vs 0.78) and hedge_band 10 (vs 6) on tape day 1; day 0 unchanged, day 2 no hedge. Improved total to 3572.",
+    "total_profit": 3572,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v12.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
   }
 ]

@@ -67,5 +67,14 @@
       "analysis_outputs/v15_cadence_conditional.log"
     ],
     "used_to_decide": "Implemented cadence variants fast(100), slow(500), conditional(300+gate) with same guardrails. Backtests + fill summaries were identical across all three, indicating this policy currently behaves as if cadence is a no-op (not a meaningful variation in this implementation regime)."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "Hard duplicate-check extension: event-triggered refit (|\u0394S|>=2 ticks) with stale timeout over quadratic_logm_wls. Despite different logic and cadence machinery, backtest outputs, tradeHistory length, and symbol-level fill counts were exactly unchanged vs cadence runs and v8 baseline in this branch.",
+    "analysis_outputs": [
+      "analysis_outputs/v16_event_refit.log",
+      "analysis_outputs/v16_fills_summary.json"
+    ],
+    "used_to_decide": "This confirms cadence/refit variation is not expressing behavior under current guardrails/policy flow; high duplicate risk remains for this family variant unless assumptions are changed more fundamentally."
   }
 ]

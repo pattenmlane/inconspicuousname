@@ -126,5 +126,13 @@
     "total_profit": 13478,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v15.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v15_cadence_conditional.log"
+  },
+  {
+    "iteration": 16,
+    "trader_file": "trader_v16.py",
+    "strategy_description": "Adjusted non-time variant attempt (event-triggered refit + stale timeout) under family10 quadratic_logm_wls. Output remained identical to v8/v13-v15; effectively still duplicate/no-op in this branch. fills: rows=4843, abs_qty=18099, HYDROGEL_PACK=1207 rows, VEV_5400=823, VEV_5500=267",
+    "total_profit": 13478,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v16.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v16_event_refit.log"
   }
 ]

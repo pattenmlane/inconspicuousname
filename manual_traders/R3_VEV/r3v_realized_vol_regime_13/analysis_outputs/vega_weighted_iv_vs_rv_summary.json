@@ -1,0 +1,7 @@
+{
+  "n_rows": 150,
+  "mean_ivw_minus_rv": -0.09315927977754815,
+  "p25_ivw_minus_rv": -0.13804261105387206,
+  "p75_ivw_minus_rv": -0.04095359061470391,
+  "timing_assumption": "CSV day d maps to start-of-day TTE=8-d in Round3 historical tapes; intraday one-day wind-down over 10k steps; T=dte_eff/365."
+}

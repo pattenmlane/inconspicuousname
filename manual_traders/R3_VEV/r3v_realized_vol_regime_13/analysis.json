@@ -1,11 +1,20 @@
 [
   {
     "iteration": 0,
-    "analysis_description": "Round 3 tapes days 0–2: ATM (nearest strike) BS implied vol from voucher mid vs short-horizon realized vol of VELVETFRUIT_EXTRACT; model IV from pooled quadratic smile; mean VEV bid-ask spread from top-of-book. Confirms IV≈model on average (mean iv_minus_model≈0) while mean iv_minus_rv is negative on subsample—co-movement with book width is weak (corr≈-0.06).",
+    "analysis_description": "Round 3 tapes days 0\u20132: ATM (nearest strike) BS implied vol from voucher mid vs short-horizon realized vol of VELVETFRUIT_EXTRACT; model IV from pooled quadratic smile; mean VEV bid-ask spread from top-of-book. Confirms IV\u2248model on average (mean iv_minus_model\u22480) while mean iv_minus_rv is negative on subsample\u2014co-movement with book width is weak (corr\u2248-0.06).",
     "analysis_outputs": [
       "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/rv_iv_atm_subsample200.csv",
       "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/rv_iv_regime_summary.json"
     ],
-    "used_to_decide": "Ground joint VEV width on iv_atm − rv_ann with T from round3description + intraday wind-down (plot_iv_smile_round3). After v0/v1 backtests, hydrogel day-2 losses dominated; v2 cuts hydrogel size/spread sensitivity while keeping the RV-vs-IV VEV thesis."
+    "used_to_decide": "Ground joint VEV width on iv_atm \u2212 rv_ann with T from round3description + intraday wind-down (plot_iv_smile_round3). After v0/v1 backtests, hydrogel day-2 losses dominated; v2 cuts hydrogel size/spread sensitivity while keeping the RV-vs-IV VEV thesis."
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Vega-weighted IV regime pass across all 10 VEV strikes on days 0\u20132 (subsample 200 timestamps): compute BS implied vol per strike from mid, compute vega per strike, then vega-weighted IV minus extract RV proxy. This keeps the strategy anchored to IV/Greeks rather than pure price heuristics.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/vega_weighted_iv_vs_rv.csv",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/vega_weighted_iv_vs_rv_summary.json"
+    ],
+    "used_to_decide": "vega-weighted IV minus RV remains systematically negative on this tape (mean about -0.093), so simple directional short-vol is weak; retained core joint-width thesis but improved execution by taking only local book mispricings around the same smile-theo and keeping shared regime width logic."
   }
 ]

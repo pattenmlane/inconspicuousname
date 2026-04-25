@@ -138,6 +138,8 @@ class Trader:
     ORDER_SIZE_VEV = 12
     ORDER_SIZE_U = 8
     ORDER_SIZE_H = 10
+    TAKE_EDGE_MULT = 0.55
+    MAX_TAKE_PER_SIDE = 24
 
     def run(self, state: TradingState):
         result: dict[str, list[Order]] = {}
@@ -248,6 +250,39 @@ class Trader:
             if bid_p >= ask_p:
                 continue
             q = self.ORDER_SIZE_VEV
+            # Controlled taking when market is clearly mispriced vs same theo anchor.
+            # We still use the same shared regime logic; this only improves execution quality.
+            take_edge = max(1.0, half_vev * self.TAKE_EDGE_MULT)
+            sells = d.sell_orders or {}
+            buys = d.buy_orders or {}
+            if p < lim:
+                rem_buy = min(self.MAX_TAKE_PER_SIDE, lim - p)
+                for ap in sorted(sells.keys()):
+                    if rem_buy <= 0:
+                        break
+                    av = abs(int(sells[ap]))
+                    if float(ap) <= theo - take_edge:
+                        tqty = min(rem_buy, av)
+                        if tqty > 0:
+                            result.setdefault(symv, []).append(Order(symv, int(ap), int(tqty)))
+                            rem_buy -= tqty
+                            p += tqty
+                    else:
+                        break
+            if p > -lim:
+                rem_sell = min(self.MAX_TAKE_PER_SIDE, lim + p)
+                for bp in sorted(buys.keys(), reverse=True):
+                    if rem_sell <= 0:
+                        break
+                    bv = abs(int(buys[bp]))
+                    if float(bp) >= theo + take_edge:
+                        tqty = min(rem_sell, bv)
+                        if tqty > 0:
+                            result.setdefault(symv, []).append(Order(symv, int(bp), -int(tqty)))
+                            rem_sell -= tqty
+                            p -= tqty
+                    else:
+                        break
             if p < lim:
                 result.setdefault(symv, []).append(Order(symv, bid_p, min(q, lim - p)))
             if p > -lim:

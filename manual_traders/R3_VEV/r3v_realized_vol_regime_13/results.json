@@ -22,5 +22,29 @@
     "total_profit": 19027,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v2.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "Child of v2: same ATM IV - RV joint-width thesis, adds controlled VEV mispricing takes around the same BS-smile theo anchor (TAKE_EDGE_MULT=0.60, MAX_TAKE_PER_SIDE=28) and slightly larger VEV clip size.",
+    "total_profit": 56857,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v3.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "Child sweep from v2/v3: keep same regime core, more conservative taking (TAKE_EDGE_MULT=0.70, MAX_TAKE_PER_SIDE=16) and extra hydrogel width buffer (BASE_H_HALF=4). Best in this loop.",
+    "total_profit": 59253,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v4.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 5,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "Child of v4: tighter take trigger and smaller per-side take size (TAKE_EDGE_MULT=0.78, MAX_TAKE_PER_SIDE=12); underperformed v4.",
+    "total_profit": 57095,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

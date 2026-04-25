@@ -102,5 +102,29 @@
     "total_profit": 11013,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v12.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress"
+  },
+  {
+    "iteration": 13,
+    "trader_file": "trader_v13.py",
+    "strategy_description": "Family10 cadence-fast baseline (smile_quadratic_logm_wls): refit every 100 timestamps. Same risk/execution guardrails as v8. fills: rows=4843, abs_qty=18099, key symbols HYDROGEL_PACK=1207 rows, VEV_5400=823, VEV_5500=267, VEV_5300=121",
+    "total_profit": 13478,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v13.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v13_cadence_fast.log"
+  },
+  {
+    "iteration": 14,
+    "trader_file": "trader_v14.py",
+    "strategy_description": "Family10 cadence-slow: refit every 500 timestamps. Same guardrails; identical output to v13 in this environment. fills: rows=4843, abs_qty=18099, key symbols HYDROGEL_PACK=1207 rows, VEV_5400=823, VEV_5500=267, VEV_5300=121",
+    "total_profit": 13478,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v14.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v14_cadence_slow.log"
+  },
+  {
+    "iteration": 15,
+    "trader_file": "trader_v15.py",
+    "strategy_description": "Family10 cadence-conditional: refit every 300 timestamps only when |EMA residual| exceeds gate. Same guardrails; identical output to v13/v14 in this environment. fills: rows=4843, abs_qty=18099, key symbols HYDROGEL_PACK=1207 rows, VEV_5400=823, VEV_5500=267, VEV_5300=121",
+    "total_profit": 13478,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v15.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v15_cadence_conditional.log"
   }
 ]

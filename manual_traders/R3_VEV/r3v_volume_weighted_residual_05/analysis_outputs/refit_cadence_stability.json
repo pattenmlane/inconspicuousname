@@ -1,0 +1,29 @@
+{
+  "n_rows": 30000,
+  "cadence": {
+    "100": {
+      "median_coef_l2_change": 0.013992701230648113,
+      "p90_coef_l2_change": 0.03646338171294584,
+      "mean_coef_l2_change": 0.017370631995893393,
+      "n_pairs": 29997
+    },
+    "300": {
+      "median_coef_l2_change": 0.01581664840733492,
+      "p90_coef_l2_change": 0.040056836985043545,
+      "mean_coef_l2_change": 0.01939318049293593,
+      "n_pairs": 29991
+    },
+    "500": {
+      "median_coef_l2_change": 0.01693459081245236,
+      "p90_coef_l2_change": 0.04177972230270056,
+      "mean_coef_l2_change": 0.020467154920635385,
+      "n_pairs": 29985
+    },
+    "1000": {
+      "median_coef_l2_change": 0.018291744590095832,
+      "p90_coef_l2_change": 0.04404208319279815,
+      "mean_coef_l2_change": 0.021916419031656774,
+      "n_pairs": 29970
+    }
+  }
+}

@@ -55,5 +55,17 @@
       "analysis_outputs/spread_absresid_5100_5500.json"
     ],
     "used_to_decide": "Exploratory microstructure context; v12 tested EMA innovation gating (from lag-1 persistence insight) but reduced voucher PnL vs v8 \u2014 keep v8 entry rule."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Family 10 cadence analysis on smile_quadratic_logm_wls: per-timestamp WLS quadratic coefficients (c2,c1,c0) over VEV_5100..VEV_5500, days 0-2. Coefficient drift is modest between adjacent ticks (median L2 ~0.014 at 100-tick cadence, ~0.017 at 500 ticks), suggesting slower/conditional refit may be viable.",
+    "analysis_outputs": [
+      "analysis_outputs/refit_cadence_stability.json",
+      "analysis_outputs/cadence_fills_summary.json",
+      "analysis_outputs/v13_cadence_fast.log",
+      "analysis_outputs/v14_cadence_slow.log",
+      "analysis_outputs/v15_cadence_conditional.log"
+    ],
+    "used_to_decide": "Implemented cadence variants fast(100), slow(500), conditional(300+gate) with same guardrails. Backtests + fill summaries were identical across all three, indicating this policy currently behaves as if cadence is a no-op (not a meaningful variation in this implementation regime)."
   }
 ]

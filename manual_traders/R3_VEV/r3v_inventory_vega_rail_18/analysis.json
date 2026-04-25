@@ -23,5 +23,14 @@
       "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/vega_signal_window_stats.json"
     ],
     "used_to_decide": "Observed ATM has materially tighter spreads and higher edge-hit rates than wings while wings have very wide spreads and low trigger rates; this justified pivoting away from underlying/hydro MM drag and testing pure vega-rail voucher execution (v4/v5)."
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "Interpreting v6/v7 in light of vega_signal_window_stats.json: ATM q75 switch is ~0.27 (below Frankfurt gate 0.7), so most of the time the quiet flatten branch or no-fill dominates; v7 lowered IV gate toward q75 to increase use of the main branch but reintroduced small wing/extract hedge cost (VEV_5500, extract), net negative vs v5.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/vega_signal_window_stats.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/results.json"
+    ],
+    "used_to_decide": "Best candidate remains v5 (+14 total PnL). v6 ATM filter kept strategy safe but thinned to +2. Next parents: v5 for threshold tuning around switch_mean and THR_OPEN without dropping IV gate as far as v1."
   }
 ]

@@ -46,5 +46,21 @@
     "total_profit": 14,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v5.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 6,
+    "trader_file": "trader_v6.py",
+    "strategy_description": "Parent v5: ATM-only vouchers 0.97<=K/S<=1.03, VEGA_RAIL=700; no extract/hydro MM. Slightly above flat (+2) vs v5; still only day 2 activity.",
+    "total_profit": 2,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v6.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "Parent v5: IV_SCALPING_THR=0.55, THR_OPEN=0.30 sweep to engage main branch more. Small losses on v5500 + extract hedge; total -22. Worse than v5.",
+    "total_profit": -22,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v7.py 3 --data Prosperity4Data --match-trades worse --no-out --no-progress --no-vis"
   }
 ]

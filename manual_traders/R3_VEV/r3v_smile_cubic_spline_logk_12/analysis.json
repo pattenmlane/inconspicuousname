@@ -56,5 +56,15 @@
     "analysis_description": "Extension of the v10/v11 delta-headroom grid: DELTA_HEADROOM 0.55 (v12) and 0.65 (v13) on the same LOO spline + vega-spread edge + delta-dependent size taper as v11. No new CSV; backtest-only parameter sweep.",
     "analysis_outputs": [],
     "used_to_decide": "Both v12 (68,479) and v13 (68,566) trail v11 (68,908). Suggests the 0.50 headroom is near-optimal on this tape; higher headroom keeps size up but does not improve total PnL here. Keep v11 as the best branch for this family."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Underlying propagation deep-dive: contract-level response of voucher mids to extract mid moves (contemporaneous and lag-1 beta/correlation), plus spread behavior under |dExtract| shock regimes (95th percentile by day). Files: underlying_propagation_by_strike.csv and underlying_propagation_shock_regimes.csv. Combined with existing IV/Greek thread (LOO spline fair, vega/delta controls).",
+    "analysis_outputs": [
+      "analysis_outputs/underlying_propagation_by_strike.csv",
+      "analysis_outputs/underlying_propagation_shock_regimes.csv",
+      "analyze_underlying_propagation.py"
+    ],
+    "used_to_decide": "Findings: voucher response is mostly contemporaneous (lag-1 beta ~0), beta declines by strike (e.g., ~0.74 at VEV_4000 to near 0 at 6000/6500), and spreads widen only mildly during large extract shocks. Implemented shock-aware edge widening in v14/v15; both matched v11 total PnL (68,908), implying little incremental benefit in this dataset. Keep v11 as preferred simpler tie-break."
   }
 ]

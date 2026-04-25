@@ -110,5 +110,51 @@
     "total_profit": 68566,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v13.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 14,
+    "trader_file": "trader_v14.py",
+    "strategy_description": "v11 + shock-aware edge widening from recent |dExtract| history (window 6), motivated by propagation analysis showing strong same-step beta and modest spread widening after shocks. SHOCK_SCALE=0.35.",
+    "total_profit": 68908,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "backtest_logs/trader_v14_round3_worse.log",
+    "trades_or_fills_summary": {
+      "day_total_profit": {
+        "day0": 9152,
+        "day1": 36426,
+        "day2": 23330
+      },
+      "non_zero_pnl_products_per_day": {
+        "day0": 10,
+        "day1": 9,
+        "day2": 9
+      },
+      "note": "Backtester output does not print explicit fill counts; summary derived from per-product day PnL lines in saved full log."
+    },
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v14.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
+  },
+  {
+    "iteration": 15,
+    "trader_file": "trader_v15.py",
+    "strategy_description": "Same as v14 with stronger shock widening SHOCK_SCALE=0.60 (grid vs v14=0.35).",
+    "total_profit": 68908,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "backtest_logs/trader_v15_round3_worse.log",
+    "trades_or_fills_summary": {
+      "day_total_profit": {
+        "day0": 9152,
+        "day1": 36426,
+        "day2": 23330
+      },
+      "non_zero_pnl_products_per_day": {
+        "day0": 10,
+        "day1": 9,
+        "day2": 9
+      },
+      "note": "Backtester output does not print explicit fill counts; summary derived from per-product day PnL lines in saved full log."
+    },
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v15.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis"
   }
 ]

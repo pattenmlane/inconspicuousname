@@ -89,5 +89,15 @@
       "backtests/r3v_v28_worse.log"
     ],
     "used_to_decide": "Low strikes (4000-5100) show strongest immediate beta_0, while 5200+ have weaker response and in some cases positive spread widening after shocks. v27/v28 used these maps to dampen tilt where shock-spread risk is higher and include mild lag where beta_l1 non-trivial. Results did not beat v22 (16260), so v22 remains best local setting."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "No new offline tape run; two small v22 ablations: (1) nudge TILT_AMP+W_Z and slightly relax v22 spread-damp multipliers to sit between v20 and v22 on the Pareto border; (2) more mean-reversion emphasis via lower TILT_AMP and higher W_Z. Both backtested round 3 with --match-trades worse and logged fills to JSON.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v29_v30.json",
+      "backtests/r3v_v29_worse.log",
+      "backtests/r3v_v30_worse.log"
+    ],
+    "used_to_decide": "v30 (3.9 amp, 0.57 W_Z) reached 16,248 vs v22 16,260, improving on v21-style higher W_Z alone; day-2 hydrogel drag slightly smaller (-1896 vs -1902 on comparable paths). v29 (0.85/0.65/0.53 mults) fell to 16,232, confirming v22's tighter 0.84/0.64/0.52 ladder. Best candidate remains trader_v22.py."
   }
 ]

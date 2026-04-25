@@ -252,5 +252,27 @@
     "backtest_log_file": "backtests/r3v_v28_worse.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v27_v28.json (trader_v28 key)"
+  },
+  {
+    "iteration": 31,
+    "trader_file": "trader_v29.py",
+    "strategy_description": "v22 border probe: TILT_AMP=4.05, W_Z=0.54, looser spread mults 0.85/0.65/0.53. Total 16,232 (below v22).",
+    "total_profit": 16232,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v29.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee backtests/r3v_v29_worse.log",
+    "backtest_log_file": "backtests/r3v_v29_worse.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v29_v30.json (trader_v29 key)"
+  },
+  {
+    "iteration": 32,
+    "trader_file": "trader_v30.py",
+    "strategy_description": "v22 with lower TILT_AMP=3.9, higher W_Z=0.57 (more z vs ret). Total 16,248: best in this pair but still below v22 16,260.",
+    "total_profit": 16248,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v30.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee backtests/r3v_v30_worse.log",
+    "backtest_log_file": "backtests/r3v_v30_worse.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v29_v30.json (trader_v30 key)"
   }
 ]

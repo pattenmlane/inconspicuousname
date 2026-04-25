@@ -25,5 +25,14 @@
       "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/iv_smile_skew_vs_spread_summary.json"
     ],
     "used_to_decide": "Kept the joint RV-vs-ATM-IV width thesis; did not add skew-spread gating. Tried per-tick BS-delta extract hedge (Greek) in code but backtests (v6/v7) trailed v4—disabled by default. Parameter sweep on v4 take edge (v8–v11) nudged PnL; v10 (TAKE_EDGE_MULT=0.63) best in session."
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "BS theta on focal ATM (VEV_5200): θ = -S·φ(d₁)·σ/(2√T) with r=0, IV from BS inversion of mid at K=5200; carry proxy = max(0,−θ)/S; compared to IV_atm - RV of extract (rolling 30 timesteps) on days 0–2 subsample. Correlation(IV−RV, carry) ≈ -0.11 (weak/negative, not a clean second factor in linear sense).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/theta_atm5200_vs_iv_minus_rv.csv",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/analysis_outputs/theta_atm5200_summary.json"
+    ],
+    "used_to_decide": "Added optional small blend of (carry/S)-scaled time decay into the IV−RV regime in trader_v0; children v12–v15 nest from v10. Micro-sweep: v14 (THETA_REGIME_WEIGHT=0.16) best at 59,976; stronger theta (v13) not better than v12–v14. Still no pivot away from core thesis; benchmark ~800k remains distant."
   }
 ]

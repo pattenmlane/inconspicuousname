@@ -42,6 +42,10 @@ def _cdf(x: float) -> float:
     return 0.5 * (1.0 + math.erf(x / math.sqrt(2.0)))
 
 
+def _pdf(x: float) -> float:
+    return math.exp(-0.5 * x * x) / math.sqrt(2.0 * math.pi)
+
+
 def bs_call(S: float, K: float, T: float, sigma: float, r: float = 0.0) -> float:
     if T <= 0:
         return max(S - K, 0.0)
@@ -59,6 +63,18 @@ def bs_delta_call(S: float, K: float, T: float, sigma: float, r: float = 0.0) ->
     v = sigma * math.sqrt(T)
     d1 = (math.log(S / K) + (r + 0.5 * sigma * sigma) * T) / v
     return _cdf(d1)
+
+
+def bs_theta_call(S: float, K: float, T: float, sigma: float, r: float = 0.0) -> float:
+    """∂C/∂T (years); r=0 => theta = -S·φ(d1)·σ/(2√T) in $/year."""
+    if T <= 0 or sigma <= 1e-12 or S <= 0 or K <= 0:
+        return 0.0
+    sqrtT = math.sqrt(T)
+    v = sigma * sqrtT
+    d1 = (math.log(S / K) + (r + 0.5 * sigma * sigma) * T) / v
+    return -S * _pdf(d1) * sigma / (2.0 * sqrtT) - r * K * math.exp(-r * T) * _cdf(
+        (math.log(S / K) + (r - 0.5 * sigma * sigma) * T) / v
+    )
 
 
 def implied_vol_bisect(price: float, S: float, K: float, T: float, r: float = 0.0) -> float | None:
@@ -151,6 +167,9 @@ class Trader:
     # Optional delta hedge vs extract: fraction of -sum(delta_i * pos_i) to offset per tick (0 = disabled).
     DELTA_HEDGE_STRENGTH = 0.0
     MAX_D_HEDGE_QTY = 0
+    # Optional: blend ATM time-decay (theta) into the IV−RV regime scalar (0 = off).
+    THETA_REGIME_WEIGHT = 0.0
+    THETA_REGIME_NORM = 0.04
 
     def run(self, state: TradingState):
         result: dict[str, list[Order]] = {}
@@ -221,6 +240,11 @@ class Trader:
                     iv_atm = iv0
 
         regime = iv_atm - rv_ann
+        if self.THETA_REGIME_WEIGHT > 0.0 and T > 0 and S > 0:
+            th = bs_theta_call(S, float(K0), T, iv_atm, 0.0)
+            carry = max(0.0, -th) / max(S, 1.0)
+            boost = min(2.0, carry / max(self.THETA_REGIME_NORM, 1e-9))
+            regime = regime * (1.0 + self.THETA_REGIME_WEIGHT * boost)
         half_vev = float(
             self.BASE_VEV_HALF + self.K_WIDEN * max(0.0, regime) - self.K_TIGHTEN * max(0.0, -regime)
         )

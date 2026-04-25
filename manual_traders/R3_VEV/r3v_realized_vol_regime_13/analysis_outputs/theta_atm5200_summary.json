@@ -1,0 +1,7 @@
+{
+  "focal": "VEV_5200",
+  "K": 5200,
+  "n_rows": 150,
+  "corr_iv_minus_rv_vs_carry": -0.10664313141629299,
+  "method": "r=0 BS call; theta = -S*phi(d1)*sig/(2*sqrt(T)); carry=max(0,-theta)/S. IV from mid vs S,K,T. RV: rolling 30-tick (timestamp steps) log vol of extract, annualized with sqrt(252*10000)."
+}

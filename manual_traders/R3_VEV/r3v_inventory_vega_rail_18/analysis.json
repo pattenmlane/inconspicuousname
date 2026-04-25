@@ -115,5 +115,16 @@
       "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v23_fill_summary.json"
     ],
     "used_to_decide": "Replaces v20 spread-shock hard skip with soft threshold scaling from tape betas. v22 and v22-clamp (v23) both reach +132 vs v12 +130; submission-side counts match prior ~3 (path dominated by one day). New leader: v22 (tie with v23; prefer v22 for stronger beta tilt)."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Regime analysis after v22: day0/day1 still mostly inactive despite ATM availability. Practical bottleneck remains Frankfurt switch gate. To keep propagation thread intact, we retained beta-scaled THR_OPEN and swept IV_SCALPING_THR lower (0.55, 0.45) instead of adding hard skips. This is still Greek-linked (vega rail + smile theo diff), but now with higher flow.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v24_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v25_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v24_fill_summary.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v25_fill_summary.json"
+    ],
+    "used_to_decide": "Lower switch gate improved submission events (3 -> 5) and PnL (+132 -> +136/+146), while preserving the propagation-based soft strike modulation. v25 is current best on branch."
   }
 ]

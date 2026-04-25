@@ -1,0 +1,47 @@
+{
+  "all": {
+    "n": 42,
+    "mean_pnl1": -22.9286,
+    "median_pnl1": -16.75
+  },
+  "buy": {
+    "n": 24,
+    "mean_pnl1": -37.5208,
+    "median_pnl1": -24.0
+  },
+  "sell": {
+    "n": 18,
+    "mean_pnl1": -3.4722,
+    "median_pnl1": -2.5
+  },
+  "align": {
+    "n": 12,
+    "mean_pnl1": -10.7917,
+    "median_pnl1": -8.0
+  },
+  "counter": {
+    "n": 30,
+    "mean_pnl1": -27.7833,
+    "median_pnl1": -18.0
+  },
+  "align_buy": {
+    "n": 3,
+    "mean_pnl1": -37.0,
+    "median_pnl1": -29.0
+  },
+  "counter_buy": {
+    "n": 21,
+    "mean_pnl1": -37.5952,
+    "median_pnl1": -24.0
+  },
+  "align_sell": {
+    "n": 9,
+    "mean_pnl1": -2.0556,
+    "median_pnl1": 0.0
+  },
+  "counter_sell": {
+    "n": 9,
+    "mean_pnl1": -4.8889,
+    "median_pnl1": -3.0
+  }
+}

@@ -374,5 +374,89 @@
         }
       }
     }
+  },
+  {
+    "iteration": 19,
+    "trader_file": "trader_v19_spline_sell_take_only.py",
+    "strategy_description": "v15 asymmetric taking test: disable buy-side spread crossing, keep sell-side crossing plus passive quotes both sides (motivated by v15 one-step proxy where buy takes were materially more adverse).",
+    "total_profit": -638,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v19_spline_sell_take_only.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v19_spline_sell_take_only.json",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v19_spline_sell_take_only.json",
+    "match_trades": "worse",
+    "trades_or_fills_summary": {
+      "profit": {
+        "0": 10,
+        "1": 92,
+        "2": -741,
+        "total": -638
+      },
+      "fills": {
+        "submission_trade_count": 20,
+        "submission_filled_abs_qty": 151,
+        "submission_by_symbol": {
+          "VEV_4000": {
+            "trade_count": 5,
+            "filled_abs_qty": 10
+          },
+          "VEV_5100": {
+            "trade_count": 1,
+            "filled_abs_qty": 4
+          },
+          "VEV_5200": {
+            "trade_count": 4,
+            "filled_abs_qty": 54
+          },
+          "VEV_5300": {
+            "trade_count": 10,
+            "filled_abs_qty": 83
+          }
+        }
+      }
+    }
+  },
+  {
+    "iteration": 20,
+    "trader_file": "trader_v19b_spline_conditional_buy_take.py",
+    "strategy_description": "v15 with conditional buy-side crossing: allow buy-taking only in burst and high-response strikes (resp>=0.58), keep sell-taking enabled. Attempts to keep beneficial bursts while cutting toxic calm/low-response buy takes.",
+    "total_profit": 5714,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v19b_spline_conditional_buy_take.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v19b_spline_conditional_buy_take.json",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v19b_spline_conditional_buy_take.json",
+    "match_trades": "worse",
+    "trades_or_fills_summary": {
+      "profit": {
+        "0": 270,
+        "1": 1402,
+        "2": 4042,
+        "total": 5714
+      },
+      "fills": {
+        "submission_trade_count": 37,
+        "submission_filled_abs_qty": 423,
+        "submission_by_symbol": {
+          "VEV_4000": {
+            "trade_count": 5,
+            "filled_abs_qty": 10
+          },
+          "VEV_5000": {
+            "trade_count": 5,
+            "filled_abs_qty": 99
+          },
+          "VEV_5100": {
+            "trade_count": 13,
+            "filled_abs_qty": 177
+          },
+          "VEV_5200": {
+            "trade_count": 4,
+            "filled_abs_qty": 54
+          },
+          "VEV_5300": {
+            "trade_count": 10,
+            "filled_abs_qty": 83
+          }
+        }
+      }
+    }
   }
 ]

@@ -118,5 +118,16 @@
       "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v18_fill_trade_summary.json"
     ],
     "used_to_decide": "A majority of v15 submission prints occur with non-trivial pre-trade inventory; warrants an inventory-skewed execution theo. v18 applies theo_skew = -alpha * (pos/lim) * (1 + k*resp) with resp=|delta|+beta (same as v15), gated by |pos|>=36 so small inventory matches v15. Tuned (alpha/cap/resp/pos gate) on worse fills: best v18 = +6,418 vs v15 +7,181; skew remains a small net loss on this band — log as negative vs v15, keep v15 as primary; inventory overlay needs different mechanism or finer grid later."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Side-conditional take propagation on v15: joined submission takes from backtest tradeHistory with tape mid-prices to compute one-step pnl proxy (next-tick mid minus fill for buys, inverse for sells), plus alignment with immediate extract move sign (dS_prev). IV/Greeks thread remains v15 spline + BS delta/vega framework; this analysis isolates execution asymmetry under the same Greek-aware engine.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/v15_take_ds_alignment.csv",
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/v15_take_ds_alignment_summary.json",
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v19_spline_sell_take_only_fill_trade_summary.json",
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v19b_spline_conditional_buy_take_fill_trade_summary.json"
+    ],
+    "used_to_decide": "v15 proxy indicates buy-side takes are much more adverse than sell-side (buy mean pnl1 ~ -37.5 vs sell ~ -3.47). Tested asymmetric execution: v19 (sell-take only) collapsed to -638 (too restrictive); v19b re-enabled buy takes only in burst/high-response names and recovered to +5,714, but still below v15 +7,181. Conclusion: side-asymmetry is real in proxy data, but hard take suppression undercuts opportunity capture in this harness; keep v15 as primary baseline."
   }
 ]

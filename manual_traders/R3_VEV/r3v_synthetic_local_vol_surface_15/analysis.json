@@ -59,5 +59,17 @@
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/results.json"
     ],
     "used_to_decide": "Adopt v7 as the new best baseline; next sweeps should stay on WLS surface + v3-style vega hurdle, e.g. tune weight 0.55–0.75 or spline smoothness S."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "WLS surface grid (parent v7, 10-knot IV slice, same BS/vega hurdle as v3). Swept wing knot weight in {0.55,0.75} and spline smoothness S in {0.05,0.11} vs v7 baseline (0.65, 0.08). The weight controls how much far-strike implied vol knots influence σ̂(x) in log-moneyness (WLS = weighted residual minimization: higher weight = trust knot more). TTE: unchanged — DTE at open 8−csv_day from round3description, intraday dte_eff = dte_open−(ts//100)/10000, T=dte_eff/365, r=0.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v8.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v9.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v10.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v11.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/results.json"
+    ],
+    "used_to_decide": "v8 (wing weight 0.55, S=0.08) best at 10,794 total vs v7 10,512; v9 (0.75) dropped to 8,467 — wings still carry signal but overweighting them hurts. v10/v11 tied v7 (10,512): changing S alone at 0.65 did not move PnL on this backtest, so the dominant knob is wing WLS weight. Next parent: v8; optional fine-sweep 0.50–0.60."
   }
 ]

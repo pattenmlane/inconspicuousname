@@ -62,5 +62,37 @@
     "total_profit": 10512,
     "backtest_round": 3,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v7.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 8,
+    "trader_file": "trader_v8.py",
+    "strategy_description": "Parent v7: WLS IV spline on 10 strikes; wing weight 0.55, SPLINE_SMOOTH 0.08 (sweep: slightly stronger down-weight of 4000/4500/6000/6500 knot IVs).",
+    "total_profit": 10794,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v8.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 9,
+    "trader_file": "trader_v9.py",
+    "strategy_description": "Parent v7: wing weight 0.75 (nearer to uniform v3), SPLINE_SMOOTH 0.08.",
+    "total_profit": 8467,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v9.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 10,
+    "trader_file": "trader_v10.py",
+    "strategy_description": "Parent v7: wing 0.65, SPLINE_SMOOTH 0.05 (tighter WLS fit).",
+    "total_profit": 10512,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v10.py 3 --data Prosperity4Data --match-trades worse"
+  },
+  {
+    "iteration": 11,
+    "trader_file": "trader_v11.py",
+    "strategy_description": "Parent v7: wing 0.65, SPLINE_SMOOTH 0.11 (smoother WLS).",
+    "total_profit": 10512,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v11.py 3 --data Prosperity4Data --match-trades worse"
   }
 ]

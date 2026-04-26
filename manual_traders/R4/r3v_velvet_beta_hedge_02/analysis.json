@@ -318,5 +318,15 @@
       "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_mark55_aggr_on_extract_loose_pooled.csv"
     ],
     "used_to_decide": "Among extract prints at timestamps with **tight==False**, **~85%** rows (878/1030 pooled) are Mark55 aggressive-touch — dominant flow in loose intervals. **trader_v10** skips **only** soft extract quotes on those ticks (tight path unchanged): sim **+13286** worse=all vs v9 **+12727**; **day2 U** **-80** vs **-723**; day1 U slightly lower (+3988 vs +4084). Counterparty filter is **material** for loose-path MM in this harness."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "Loose-book extract trades: merge Sonic gate; split by Mark55 aggressive touch; forward extract mid at K=5,20 (same row definition as Phase 1) — analyze_r4_extract_loose_fwd_mark55_bucket.py.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/analyze_r4_extract_loose_fwd_mark55_bucket.py",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_extract_loose_fwd_by_m55_touch_pooled.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_extract_loose_fwd_by_m55_touch_by_day.csv"
+    ],
+    "used_to_decide": "**Pooled loose:** non–Mark55-touch rows (n=152) mean **fwd5 +1.83**, **fwd20 +1.67** vs Mark55-touch (n=878) **+0.14 / +0.13** — large forward-mid gap consistent with **avoiding liquidity provision when M55 prints aggressively** under loose gate. By day, M55-touch loose **fwd20** is **~0.33** day1, **~0.00** days 2–3 (small n for non-M55 per day). **trader_v11** (soft U size 14 vs v10’s 8): **+13338** worse=all (**+52** vs v10); day1/day3 U **unchanged** vs v10 (3988, 1742), day2 U **-29** vs **-80** — partial size sensitivity on the filtered loose path only."
   }
 ]

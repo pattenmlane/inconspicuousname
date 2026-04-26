@@ -149,5 +149,15 @@
       "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v20_2026-04-26_r3_worse.log"
     ],
     "used_to_decide": "Ship v20 as second-step filter attempt; PnL still below zero \u2014 next work should explore **post-only / limit** or true **delta** basket when tight, with worse-fill measurement."
+  },
+  {
+    "iteration": 21,
+    "analysis_description": "Reread **STRATEGY.txt** and **ORIGINAL_DISCORD_QUOTES.txt** (Sonic: both 5200+5300 at or below 2, hedge into **tight surface**). **v21 design:** when joint gate **on**, two-sided **passive** orders on VELVETFRUIT_EXTRACT, VEV_5200, VEV_5300; when **off**, flatten those three (regime break). **Implementation lesson:** on tight joint books, 5200/5300 top spreads are often **1-2** ticks, so *bid+1 / ask-1* is often **invalid** (would cross) \u2014 first v21 draft returned **no** 5200/5300 submission fills on **worse**; fixed by quoting at **touch** when sp<3. **Backtest (Round 3 full `3` days 0-3):** worse total **-1,038**; all **-1,717** (worse: extract-only submission PnL in per-day print; 5200+5300 fills appear under **all** mode in parsed tradeHistory). **Gap vs 200k/day goal:** very large; STRATEGY caveat (mid \u2260 bid/ask PnL) + inventory risk on touch MM still dominates.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v21_2026-04-26_r3_worse.log"
+    ],
+    "used_to_decide": "Ship v21 as first joint-gate **market making** on the three tight-surface products; document worse vs all split and the spread-1-2 touch fix; next: reduce quote size, optional single-sided, or K-hold from analysis script before flatten."
   }
 ]

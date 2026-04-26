@@ -290,5 +290,48 @@
         "submission_abs_qty": 20268
       }
     }
+  },
+  {
+    "iteration": 21,
+    "trader_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v21.py",
+    "strategy_description": "vouchers_final_strategy only: joint VEV_5200+VEV_5300 spread <=2 regime (Sonic). When on: two-sided passive quotes on UNDER+5200+5300 (bid+1/ask-1 if spread>=3, else at touch; cap spreads). When off: flatten those three. Fix vs first MM draft: joint-tight VEVs often have spread 1-2, so one-tick-inside is impossible; quote at touch for 5200/5300. Hydrogel untraded.",
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -1038,
+      "per_day_pnl": {
+        "day_0": -239,
+        "day_1": -295,
+        "day_2": -466,
+        "day_3": -38
+      },
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v21_2026-04-26_r3_worse.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v21.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v21_2026-04-26_r3_worse.log",
+      "trades_or_fills_summary": {
+        "total_trade_rows": 4340,
+        "velvet_submission_rows": 345,
+        "velvet_submission_abs_qty": 1978
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -1717,
+      "per_day_pnl": {
+        "day_0": -390,
+        "day_1": -457,
+        "day_2": -832,
+        "day_3": -38
+      },
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v21_2026-04-26_r3_all.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v21.py 3 --data Prosperity4Data --match-trades all --no-vis --no-progress --out manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v21_2026-04-26_r3_all.log",
+      "trades_or_fills_summary": {
+        "total_trade_rows": 4500,
+        "velvet_submission_rows": 384,
+        "vev5200_submission_rows": 36,
+        "vev5200_submission_abs_qty": 126,
+        "vev5300_submission_rows": 246,
+        "vev5300_submission_abs_qty": 858
+      }
+    }
   }
 ]

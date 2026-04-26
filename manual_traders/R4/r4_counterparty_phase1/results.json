@@ -185,5 +185,47 @@
       "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v8_all.log",
       "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v8_all.json"
     }
+  },
+  {
+    "iteration": 9,
+    "trader_file": "trader_v9.py",
+    "strategy_description": "v7 + tight-gate hydro **buy** skip when tape shows aggressive sell (price<=bid1) with passive buyer **Mark 22** only (tape slice n=3, very negative fwd20).",
+    "total_profit": 7582,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v9.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r4_counterparty_phase1/backtest_r4_v9_worse.log",
+    "note_vs_v7": "Terminal PnL parsed from activitiesLog last row (not day-sum console): worse **+7582** vs v7 **+7532** (+50). HYDROGEL **+789** vs v7 **+739** (+50); VELVET/VEV legs unchanged vs v7 in that parse.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 7582,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v9_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v9_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 9976,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v9_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v9_all.json"
+    }
+  },
+  {
+    "iteration": 10,
+    "trader_file": "trader_v10.py",
+    "strategy_description": "v9 + add **Mark 14** to tight-gate hydro buy-skip passive set (aggressive sell through bid; motivated by r4_v9 summary mean fwd20 -0.46, n=126 under tight).",
+    "total_profit": 6793,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v10.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r4_counterparty_phase1/backtest_r4_v10_worse.log",
+    "note_vs_v9": "**Negative ablation:** worse **+6793** vs v9 **+7582** (-789). activitiesLog terminal hydro PnL **0** (hydro bids effectively suppressed). Do not ship Mark14 in this passive-buyer skip set.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 6793,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v10_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v10_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 9187,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v10_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v10_all.json"
+    }
   }
 ]

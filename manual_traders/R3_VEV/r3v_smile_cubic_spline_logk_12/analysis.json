@@ -112,5 +112,15 @@
       "round3work/vouchers_final_strategy/outputs/r3_tight_spread_6panel.png"
     ],
     "used_to_decide": "trader_v23 = v11 + mild gate: tight \u2192 +5% VEV sizes, take_edge mult 0.98, extract skew 0.03; wide \u2192 0.95/1.04/0.02. HYDRO restated like v11. Worse: total 68,304 over 4 backtester days; all: 70,332. Slightly below v11 on comparable head-to-head; joint gate as implemented does not help yet. Next: try gate that only modulates EXTRACT, or only size when both tight, with smaller deltas."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "**Pivot (platform directive):** stop shipping LOO/spline-IV/legacy branch thesis; new work targets **round3work/vouchers_final_strategy** only. Re-read `STRATEGY.txt` and verbatim `ORIGINAL_DISCORD_QUOTES.txt` (Sonic: joint 5200+5300 \u22642; inclineGod: spreads per contract, spread correlations). The 6-panel analysis + `r3_tight_spread_summary` remain the empirical core (K=20 bar forward extract mid, mid\u2260tradable execution).",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt"
+    ],
+    "used_to_decide": "Implemented v24\u2013v27 with **no** HYDROGEL, **no** LOO (IV-free mid/BBO only). v24/25: joint gate for regime; **v25** local spread edge like inclineGod. **Bug:** using `wall_mid` as *fair* for `best_ask \u2264 fair - edge` makes **aggressive take** on vouchers nearly never fire (math: weighted mid is below best ask; edge must exceed half-spread in float space, but v24/25 PnL was dominated by 4000+extract). v26: 1-tick **inside** BBO (passive) \u2014 many strikes trade but PnL weak / extract bleed. v27: **arithmetic mid (bid+ask)/2** for fair like the analysis tape \u2014 still weak vs integer BBO; most ticks need float edge > half spread for same-bar ask hit. Falsified na\u00efve 'same-tick' take. Next: fractional-edge taking, cross-tick state, or combine gate with a working execution layer (e.g. join **inside** in tight only)."
   }
 ]

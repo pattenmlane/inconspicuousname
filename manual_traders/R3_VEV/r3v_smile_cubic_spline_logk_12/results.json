@@ -374,5 +374,105 @@
     },
     "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v23.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
     "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v23.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis"
+  },
+  {
+    "iteration": 24,
+    "trader_file": "trader_v24.py",
+    "strategy_description": "vouchers_final_strategy pivot: joint 5200/5300 gate, mid-based MM/take, no LOO/spline, no HYDROGEL. **Legacy note:** PnL dominated by 4000+extract; wall_mid fair made same-tick aggressive take on most strikes impossible.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 27222,
+      "backtest_log_file": "backtest_logs/trader_v24_round3_worse.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": { "day0": 6901, "day1": 8852, "day2": 10553, "day3": 916 },
+        "non_zero_pnl_products_per_day": { "day0": 2, "day1": 3, "day2": 2, "day3": 2 }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 31310,
+      "backtest_log_file": "backtest_logs/trader_v24_round3_all.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": { "day0": 8279, "day1": 11086, "day2": 10954, "day3": 991 },
+        "non_zero_pnl_products_per_day": { "day0": 6, "day1": 9, "day2": 7, "day3": 6 }
+      }
+    },
+    "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v24.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+    "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v24.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis"
+  },
+  {
+    "iteration": 25,
+    "trader_file": "trader_v25.py",
+    "strategy_description": "Like v24 + local BBO spread penalty (inclineGod). Same PnL as v24 in this run (edge math unchanged re: take availability).",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 27222,
+      "backtest_log_file": "backtest_logs/trader_v25_round3_worse.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": { "day0": 6901, "day1": 8852, "day2": 10553, "day3": 916 },
+        "non_zero_pnl_products_per_day": { "day0": 2, "day1": 3, "day2": 2, "day3": 2 }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 31464,
+      "backtest_log_file": "backtest_logs/trader_v25_round3_all.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": { "day0": 8318, "day1": 11082, "day2": 11066, "day3": 997 },
+        "non_zero_pnl_products_per_day": { "day0": 6, "day1": 9, "day2": 7, "day3": 6 }
+      }
+    },
+    "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v25.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+    "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v25.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis"
+  },
+  {
+    "iteration": 26,
+    "trader_file": "trader_v26.py",
+    "strategy_description": "Passive 1-tick BBO improve (join bid+1 / ask-1 inside spread); sizes from joint tight vs wide. No aggressive take. Low total PnL.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 6868,
+      "backtest_log_file": "backtest_logs/trader_v26_round3_worse.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": { "day0": 3805, "day1": 1623, "day2": 708, "day3": 732 },
+        "non_zero_pnl_products_per_day": { "day0": 6, "day1": 9, "day2": 7, "day3": 4 }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 6868,
+      "backtest_log_file": "backtest_logs/trader_v26_round3_all.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": { "day0": 3805, "day1": 1623, "day2": 708, "day3": 732 },
+        "non_zero_pnl_products_per_day": { "day0": 6, "day1": 9, "day2": 7, "day3": 4 }
+      }
+    },
+    "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v26.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+    "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v26.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis"
+  },
+  {
+    "iteration": 27,
+    "trader_file": "trader_v27.py",
+    "strategy_description": "v25 logic but **fair = arithmetic (bid+ask)/2** to align with STRATEGY mid panel; same joint gate and local spread penalty. Worse: still far below 200k/day on extract+VEV; next: fractional take edge and/or inter-tick memory.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 28136,
+      "backtest_log_file": "backtest_logs/trader_v27_round3_worse.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": { "day0": 6916, "day1": 9666, "day2": 10635, "day3": 919 },
+        "non_zero_pnl_products_per_day": { "day0": 2, "day1": 3, "day2": 2, "day3": 2 }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 32373,
+      "backtest_log_file": "backtest_logs/trader_v27_round3_all.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": { "day0": 8479, "day1": 11800, "day2": 11102, "day3": 991 },
+        "non_zero_pnl_products_per_day": { "day0": 6, "day1": 9, "day2": 7, "day3": 6 }
+      }
+    },
+    "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v27.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+    "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v27.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis"
   }
 ]

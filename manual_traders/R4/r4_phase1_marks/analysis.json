@@ -386,5 +386,19 @@
       "manual_traders/R4/r4_phase1_marks/backtests/iter11_r4d1-3_all.log"
     ],
     "used_to_decide": "Use **v11** when tuning **hydro** alongside **v9** VEV legs; tape shows the duopoly gate signal lives in **single-side** aggression cells, so any **fade/passive** rule should condition on **aggr_sell** vs **aggr_buy** explicitly, not a pooled \u201cany print\u201d story."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "**Tape (LODO):** ``analyze_r4_hydro_duopoly_gate_lodo.py`` \u2014 **2-day** train (hold out one R4 day) **Welch** on **fwd_EXTRACT_20** tight vs loose for **HYDRO** **Mark14\u219238** and **Mark38\u219214**. **14\u219238:** \u03b4 **>0** and **p<0.004** for **each** holdout (train on **2+3**, **1+3**, **1+2**). **38\u219214:** \u03b4 **>0** all three; **p** **0.123** when day1 held out (**nT=25** train), **p\u22480.012\u20130.023** for the other two holds. **Sim (counterparty skip):** ``trader_v12`` = **v11** but **no hydro orders** this step if **market_trades[HYDRO]** has **buyer Mark 14** and **seller Mark 38** (tape proxy for **aggr_sell** duopoly print). **Default** skip on. **`worse`** **4399** vs **v11** **3685** (**HYDRO** line **1017** vs **303**; extract **3382**; **VEV 0**). **`all`** **10444** vs **v11** **9730**. **R4_SKIP_HYDRO_14_38=0** recovers **v12**\u2248**v11** (**worse** **3685**). **Conclusion:** skip rule **fails** the \u201cavoid bad hydro\u201d hypothesis for **`worse`** on this tape; likely **increased** off-touch fills when we pull quotes only on hit timestamps.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_phase1_marks/analyze_r4_hydro_duopoly_gate_lodo.py",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase12_hydro_duopoly_gate_lodo_pooled3d.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase12_hydro_duopoly_gate_lodo.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase12_hydro_duopoly_gate_lodo.txt",
+      "manual_traders/R4/r4_phase1_marks/trader_v12.py",
+      "manual_traders/R4/r4_phase1_marks/backtests/iter12_r4d1-3_worse.log",
+      "manual_traders/R4/r4_phase1_marks/backtests/iter12_r4d1-3_all.log"
+    ],
+    "used_to_decide": "Keep **v11** for hydro+VEV stack; **do not** ship **v12**-style \u201cskip on 14\u219238 print\u201d as **improvement** under **`worse`** \u2014 re-check if matching logic is understood. LODO supports **persistence** of the 14\u219238 gate effect across 2-day windows except 38\u219214 with day1 out (**small-n** train)."
   }
 ]

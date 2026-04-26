@@ -1,0 +1,15 @@
+LODO: 2-day train Welch (fwd_EXTRACT_20 tight vs loose), hydro duopoly only
+
+POOLED 3d:
+  buyer  seller          holdout train_days  n_tight  n_loose  mean_tight  mean_loose  delta_tight_minus_loose  welch_t  welch_p
+Mark 14 Mark 38 none (pooled 3d)      1,2,3      126      370    1.079365   -0.531081                 1.610446 3.422043 0.000749
+Mark 38 Mark 14 none (pooled 3d)      1,2,3      129      378    0.534884   -0.464286                 0.999169 2.478344 0.013888
+
+2-DAY TRAINS:
+  buyer  seller  holdout_day train_days  n_tight  n_loose  mean_tight  mean_loose  delta_tight_minus_loose  welch_t  welch_p
+Mark 14 Mark 38            1        2,3      101      212    0.673267   -1.113208                 1.786475 3.303901 0.001136
+Mark 14 Mark 38            2        1,3       93      261    0.973118   -0.459770                 1.432888 2.651330 0.008845
+Mark 14 Mark 38            3        1,2       58      267    1.956897   -0.138577                 2.095473 3.008991 0.003528
+Mark 38 Mark 14            1        2,3      104      216    0.365385   -0.384259                 0.749644 1.546732 0.123395
+Mark 38 Mark 14            2        1,3      102      244    0.558824   -0.651639                 1.210463 2.520389 0.012515
+Mark 38 Mark 14            3        1,2       52      296    0.826923   -0.368243                 1.195166 2.312690 0.023195

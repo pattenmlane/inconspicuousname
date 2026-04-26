@@ -341,5 +341,24 @@
       "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v32_2026-04-25_r4_worse.log"
     ],
     "used_to_decide": "`trader_v32.py` caps V5300 long at **18** during windows (3x clip 6). Total **+211** worse+all vs **+768** v26 — cap **cuts day-2 upside** more than it fixes day_3; overlapping windows were helping notional on the winning leg. **Keep v26** unless inventory risk mandates a higher cap than 18 or a per-window reset rule."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Tape drill: **merged day 3** v26 triggers only (`r4_phase9_v26_day3_context.py`). **n=15**; mean gap (merged start-to-start) **~61k**; forward **VEV_5300** mid at print: meanK5 **-0.033**, fracposK5 **0.33**, meanK20 **0**, fracposK20 **~0.47** — weak short-horizon edge vs days 1-2 in phase5 table, consistent with sim day_3 drag.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/r4_phase9_v26_day3_context.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/outputs/r4_p9_v26_triggers_day3_detail.txt",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v33_2026-04-25_r4_worse.log"
+    ],
+    "used_to_decide": "`trader_v33.py` (**MAX_Q=36**) total **+532** worse+all vs **+768** v26 — softer cap than v32 recovers some day-2 but still below uncapped v26; day_3 loss **-1044** vs **-6697** v26 (smaller inventory → smaller loss magnitude)."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "`trader_v34.py`: **MAX_Q=24** (between v32 and v33).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v34_2026-04-25_r4_worse.log",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v34_2026-04-25_r4_all.log"
+    ],
+    "used_to_decide": "Total **+288** worse+all. Among capped variants on this three-day run: **v26 uncapped 768** > **v33 (cap 36) 532** > **v29 (Q=4) 377** > **v34 (cap 24) 288** > **v32 (cap 18) 211**. Higher cap tracks closer to v26 but remains below it; none beat uncapped v26."
   }
 ]

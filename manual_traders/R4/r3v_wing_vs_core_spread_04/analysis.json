@@ -380,5 +380,19 @@
       "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v9_worse.log"
     ],
     "used_to_decide": "Keep act gate for **risk** on 67\u219249 if desired, but do not expect more fills from removing it under `worse`; focus on pairs with higher edge (67\u219222) or `all` fill diagnostics."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "**Tape pre-filter for v1:** r4_filter_mark67_signals_tight_at_fire.py keeps **34/164** Mark67 buy-aggr extract prints where 5200+5300 spreads are \u22642 at **print_ts+100** on the price CSV (mark67_buy_aggr_filter_tight_at_fire_meta.json, signals_mark67_buy_aggr_extract_tight_at_fire.json). r4_act_gate_coverage_at_fire.py now also reports **34/164** tight-at-fire for the **full** 164 list (same 34 by construction). trader_v10 = v1 logic on filtered list: worse **+287.5**, **12** SUBMISSION fills vs v1 **+447.5** / **35** \u2014 **Sonic-at-fire tape filter hurts** worse PnL here (many v1 edges come from fires where the tape one step ahead is **wide**).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_filter_mark67_signals_tight_at_fire.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/signals_mark67_buy_aggr_extract_tight_at_fire.json",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/mark67_buy_aggr_filter_tight_at_fire_meta.json",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_act_gate_coverage_at_fire.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/act_gate_tight_at_fire_coverage.json",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v10.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v10_worse.log"
+    ],
+    "used_to_decide": "Do **not** replace v1 with tape-only Sonic-at-fire prefilter for this Mark67 rule; keep v1 or use **counterparty** filters (67\u219222) instead of excluding wide-at-fire prints."
   }
 ]

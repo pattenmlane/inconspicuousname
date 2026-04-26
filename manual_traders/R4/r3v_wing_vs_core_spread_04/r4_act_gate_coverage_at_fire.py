@@ -54,9 +54,12 @@ def load_all_prices() -> pd.DataFrame:
 
 def main() -> None:
     px = load_all_prices()
+    phase2 = Path(__file__).resolve().parent / "outputs" / "phase2" / "signals_mark67_buy_aggr_extract.json"
     sets = [
+        (phase2, "mark67_buy_aggr_extract_all"),
         (OUT_DIR / "signals_mark67_to_mark22_extract_joint_tight_at_print.json", "mark67_to_mark22_tight_print"),
         (OUT_DIR / "signals_mark67_to_mark49_extract_joint_tight_at_print.json", "mark67_to_mark49_tight_print"),
+        (OUT_DIR / "signals_mark67_buy_aggr_extract_tight_at_fire.json", "mark67_buy_aggr_tight_at_fire_filtered"),
     ]
     summ: list[dict] = []
     for path, lab in sets:

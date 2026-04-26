@@ -1,0 +1,9 @@
+{
+  "source": "/workspace/manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/signals_mark67_buy_aggr_extract.json",
+  "n_in": 164,
+  "n_out": 34,
+  "p_kept": 0.2073170731707317,
+  "LAG": 100,
+  "TH": 2,
+  "output": "/workspace/manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/signals_mark67_buy_aggr_extract_tight_at_fire.json"
+}

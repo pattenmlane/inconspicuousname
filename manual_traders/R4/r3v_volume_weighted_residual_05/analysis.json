@@ -154,6 +154,22 @@
         "**Passive adverse (tape):** **Mark 22** / **Mark 49** as **passive_at_bid** (buyer on `sell_agg` prints) show **negative** mean same-symbol fwd@5 (\u2248**-1.4** / **-2.2**, n 36 / 16) \u2014 small-n tails but consistent with \u201chit on bid then drift down\u201d story; **Mark 22/49 passive_at_ask** remain **positive** fwd@5 (n 109 / 104). **Mark 01** passive rows are **~null** at K=5/20 (n large).",
         "**Net notional (buy\u2212sell):** **Mark 67** net +\u22487.9M (only buys in tape); **Mark 22/49** large **negative** net (net sellers) \u2014 aligns with pair-graph roles; use with passive markout table for MM \u201cwho not to lean against\u201d hypotheses."
       ]
+    },
+    "phase1e_graph_reciprocity_u_counterparty": {
+      "script": "manual_traders/R4/r3v_volume_weighted_residual_05/phase1e_r4_reciprocity_u_aggressor_counterparty.py",
+      "outputs": [
+        "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1e_graph_reciprocity_pairs.csv",
+        "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1e_graph_hub_degrees.csv",
+        "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1e_graph_summary_top_pairs.txt",
+        "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1e_u_aggressor_by_passive_counterparty.csv",
+        "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1e_u_sell_agg_passive_buyer_fwd.csv",
+        "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1e_u_buy_agg_passive_seller_by_day.csv"
+      ],
+      "bullets": [
+        "**Reciprocity:** **Mark14\u2194Mark38** is **near-symmetric** (\u22480.98 ratio on 1442 prints); **Mark01\u2192Mark22** is **perfectly one-way** in this tape (1339 vs 0 reverse) \u2014 scheduler spine, not a reciprocal duopoly.",
+        "**Hubs:** **Mark 14** has highest total degree (\u22482172 edge-ends), then **Mark 01**; **Mark 67** is **out-heavy** (165 out, 0 in) \u2014 pure aggressor role on prints.",
+        "**U buy_agg by passive seller:** when **any** buyer lifts U through passive sellers **Mark 22** / **Mark 49**, fwd_u@5 mean **\u22482.0** ticks (n 90 / 104, CI>0); **Mark 14** as passive seller is **weak positive** at K=5 (\u22480.26, n 331); **Mark 01** passive seller slice is **~null** (n 244). Per-day breakdown: `r4_phase1e_u_buy_agg_passive_seller_by_day.csv`."
+      ]
     }
   },
   {
@@ -484,5 +500,19 @@
       "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1d_summary.txt"
     ],
     "used_to_decide": "Documents Phase-1 bullet **spread quantile** + **adverse selection** population proxies without sim inventory. Mark67 U buy_agg occupies only the **tightest** within-day U-spread quartile here. **Mark 22/49** passive-at-bid rows show **negative** short fwd (small n); complements Phase-2 Mark22 seller adverse on VEV_5300. Merged under `round4_phase1_complete.phase1d_spread_quantile_passive`."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "Round 4 **Phase 1e** — **graph reciprocity** (undirected pair aggregation with reverse counts) + **hub degrees**; **U aggressive buys** stratified by **passive seller** identity (and sell_agg by passive buyer); per-day passive-seller table for U buy_agg.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_volume_weighted_residual_05/phase1e_r4_reciprocity_u_aggressor_counterparty.py",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1e_graph_reciprocity_pairs.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1e_graph_hub_degrees.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1e_graph_summary_top_pairs.txt",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1e_u_aggressor_by_passive_counterparty.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1e_u_sell_agg_passive_buyer_fwd.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1e_u_buy_agg_passive_seller_by_day.csv"
+    ],
+    "used_to_decide": "Quantifies Phase-1 **graph** bullet beyond prior `r4_graph_top_pairs.txt`: explicit **reciprocity** (14\u219438 vs 01\u219222). Adds **counterparty-of-passive** view for **U** lift trades: **Mark22/M49** as lifted sellers associate with **~+2 tick** extract fwd@5 (not only Mark67 as buyer). Complements Phase-1 Mark67 row and Phase-1d passive tables. Stored under `round4_phase1_complete.phase1e_graph_reciprocity_u_counterparty`."
   }
 ]

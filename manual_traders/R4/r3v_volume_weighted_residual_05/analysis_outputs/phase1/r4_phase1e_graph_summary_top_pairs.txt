@@ -1,0 +1,11 @@
+Top undirected pairs by total directed count (see CSV for full table).
+Reciprocity_ratio_hi_over_lo = count_hi_to_lo / count_lo_to_hi (canonical lex order).
+
+Mark 14 <-> Mark 38: undirected_count=1442 lo->hi=728 hi->lo=714 recip=0.981
+Mark 01 <-> Mark 22: undirected_count=1339 lo->hi=1339 hi->lo=0 recip=0.000
+Mark 14 <-> Mark 55: undirected_count=647 lo->hi=316 hi->lo=331 recip=1.047
+Mark 01 <-> Mark 55: undirected_count=504 lo->hi=260 hi->lo=244 recip=0.938
+Mark 49 <-> Mark 67: undirected_count=89 lo->hi=0 hi->lo=89 recip=nan
+Mark 14 <-> Mark 22: undirected_count=83 lo->hi=83 hi->lo=0 recip=0.000
+Mark 22 <-> Mark 67: undirected_count=75 lo->hi=0 hi->lo=75 recip=nan
+Mark 22 <-> Mark 38: undirected_count=36 lo->hi=17 hi->lo=19 recip=1.118

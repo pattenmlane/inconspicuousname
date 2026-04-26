@@ -309,5 +309,33 @@
       "fill_summary_v40_all_d0-2.json"
     ],
     "used_to_decide": "On Round 3 days 0\u20132 explicit list (3-0 3-1 3-2) to match v39 scope after day-3 CSV landed on main, worse and both give total 4001.0 vs v39 4229.0 on same window \u2014 the half-clip/hedge in non-tight regime hurt more than the tape mid signal suggests under our execution. Next: only size up in tight (keep v39 base in wide), or TH=3, or apply gate to hedge only not wing clips, or re-test with LOOSE_MAX_LEG_FRAC=0.75."
+  },
+  {
+    "iteration": 41,
+    "analysis_description": "Branch direction change: only round3work/vouchers_final_strategy/ (STRATEGY.txt + new ORIGINAL_DISCORD_QUOTES.txt on merge: inclineGod spread\u2011not\u2011just\u2011price, Sonic 5200+5300 \u22642 joint gate, t-stat in wide). v41: naive long extract when tight (target 32) and flatten when wide \u2014 rebalances every step; STRATEGY caveat (mid not bid/ask) applies. fill_summary: end PnL -215,875 (worse), 7618 submission trade rows 87k+ qty on extract = churn.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "fill_summary_v41_worse_d0-2.json",
+      "backtest_v41_worse_d0-2.log"
+    ],
+    "used_to_decide": "ABANDON v41 pattern; it is a pure taker rebalancer \u2014 not \u201cshort hold\u201d. v42: event-based entry, exit when wide only."
+  },
+  {
+    "iteration": 42,
+    "analysis_description": "v42: rising edge of joint tight \u2192 up to 8 long extract once; every wide step sell 20. Still taker; many gate flips (5200-5300 tight edge counts) \u2192 5925+ submission rows, -116k. STRATEGY layer 1 is risk filter for *other* flow, not a standalone buy-high loop.",
+    "analysis_outputs": [
+      "fill_summary_v42_worse_d0-2.json",
+      "backtest_v42_worse_d0-2.log"
+    ],
+    "used_to_decide": "v43: only enter if extract BBO \u2264 4; clip 3; smaller exit clips to cut worse-fill bleed."
+  },
+  {
+    "iteration": 43,
+    "analysis_description": "v43: joint gate + extract spread \u22644 + ENTRY 3. Worse: -2,454; all same. Still negative (adverse taker) but ~50\u00d7 better than v42 on path count (482 vs 5925). Confirms: mid-forward \u201cfree alpha\u201d does not survive bid/ask + worse without a maker/quote model. Next: risk-on filter (gate only) for a *maker* on VEV core strikes, or passive bid extract only, not taker at ask.",
+    "analysis_outputs": [
+      "fill_summary_v43_worse_d0-2.json",
+      "round3work/vouchers_final_strategy/STRATEGY.txt"
+    ],
+    "used_to_decide": "Deprioritize pure extract taker. Implement gate-gated *quoting* (VEV) or combine gate with v39\u2010style path only for sizing when user allows hybrid \u2014 for now next iteration is maker/quote under tight gate + extract, no smile IV."
   }
 ]

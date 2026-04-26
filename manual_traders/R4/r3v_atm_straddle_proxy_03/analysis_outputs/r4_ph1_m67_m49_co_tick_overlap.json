@@ -1,0 +1,17 @@
+{
+  "1": {
+    "ts_mark67_aggr_buy": 58,
+    "ts_overlap_m49_seller_extract": 26,
+    "frac_overlap": 0.4483
+  },
+  "2": {
+    "ts_mark67_aggr_buy": 61,
+    "ts_overlap_m49_seller_extract": 35,
+    "frac_overlap": 0.5738
+  },
+  "3": {
+    "ts_mark67_aggr_buy": 45,
+    "ts_overlap_m49_seller_extract": 28,
+    "frac_overlap": 0.6222
+  }
+}

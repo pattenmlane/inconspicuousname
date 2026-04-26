@@ -374,5 +374,16 @@
       "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_m49_seller_extract_counts.json"
     ],
     "used_to_decide": "v11 worse 9372 < v8 9673 (all 8562 < 9354). Small overlay clips (3/4) still dilute day-1 Mark67 path under worse fills; day-2 nearly flat vs v8. Confirms v5/v6 lesson: stacking extra extract lifts on counterparty tape without isolating execution quality underperforms v8."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "trader_v12: reuse Phase1 Mark49 seller extract signal without second order — co-tick +2 clip on Mark67 extract when M49 sells extract (days 1-2), cap 18. Offline overlap r4_ph1_m67_m49_co_tick_overlap.json: 26-35 ts/day where Mark67 aggr-buy and M49 seller extract coincide (~45-62% of Mark67 aggr-buy days).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v12_round4_worse.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v12_round4_all.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_m67_m49_co_tick_overlap.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_participant_predictivity.json"
+    ],
+    "used_to_decide": "v12 worse 9503 > v11 9372 but < v8 9673; all 8758 < v8 9354. Larger clips on overlap ticks still hurt under worse fills vs baseline v8 sizing. Best single change after v11 is co-tick boost not separate lift, but v8 remains champion."
   }
 ]

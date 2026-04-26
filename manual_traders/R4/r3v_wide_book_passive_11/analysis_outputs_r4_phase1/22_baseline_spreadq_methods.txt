@@ -1,0 +1,20 @@
+Phase 1 bullet 2 — stratified baseline cells (18_, 19_, 20_)
+
+Cells: groupby (buyer, seller, symbol, spread_q) on merged trade×L1 rows,
+same-symbol fwd_mid_20 as elsewhere.
+
+Minimum count per cell: 25 prints.
+
+Residual_vs_spread_stratum = cell_mean - global_mean_same_spread_q
+where global_mean_same_spread_q is the **unconditional** mean of fwd_mid_20
+over **all** trades in that spread_q tertile (tight/mid/wide), same K=20.
+
+Interpretation: positive residual means this (pair, symbol) bucket beats
+the typical print in the same book-width regime — closer to "(buyer,seller,symbol,regime)"
+baseline than the pooled 03_/04_ tables.
+
+21_mark_touch_aggr_flow_imbalance.csv
+  Per Mark U: sum quantity where U is buyer AND aggressor=buy_aggr (touch buy),
+  minus sum where U is seller AND aggressor=sell_aggr (touch sell).
+  Does **not** count mid_passive or unknown legs — names that only print
+  passive/mid will show zeros on both sides (e.g. if buys are always at bid).

@@ -397,6 +397,47 @@ def main() -> None:
         OUT / "04_pair_symbol_residual_fwd20_top40.csv", index=False
     )
 
+    # --- 2b) Baseline cells stratified by **spread quantile** (buyer, seller, symbol, spread_q) ---
+    cell_q = (
+        m.groupby(["buyer", "seller", "symbol", "spread_q"])[col]
+        .agg(count="count", mean="mean")
+        .reset_index()
+    )
+    cell_q = cell_q[cell_q["count"] >= 25]
+    mean_by_q = m.groupby("spread_q", observed=True)[col].mean().rename("global_mean_same_spread_q")
+    cell_q = cell_q.merge(mean_by_q.reset_index(), on="spread_q", how="left")
+    cell_q["residual_vs_spread_stratum"] = cell_q["mean"] - cell_q["global_mean_same_spread_q"]
+    cell_q = cell_q.sort_values("mean", ascending=False)
+    cell_q.to_csv(OUT / "18_pair_symbol_spreadq_cell_fwd20_n25plus.csv", index=False)
+    lines.append(f"Wrote {OUT / '18_pair_symbol_spreadq_cell_fwd20_n25plus.csv'}")
+    cell_q.sort_values("residual_vs_spread_stratum", ascending=False).head(40).to_csv(
+        OUT / "19_pair_symbol_spreadq_residual_top40.csv", index=False
+    )
+    cell_q.sort_values("residual_vs_spread_stratum", ascending=True).head(40).to_csv(
+        OUT / "20_pair_symbol_spreadq_residual_bottom40.csv", index=False
+    )
+    lines.append(f"Wrote {OUT / '19_pair_symbol_spreadq_residual_top40.csv'} and 20_...bottom40")
+
+    # --- 2c) Volume balance proxy: touch-aggressive signed qty per Mark name ---
+    imb_rows = []
+    for U in marks:
+        sub = m[(m["buyer"] == U) | (m["seller"] == U)]
+        buy_touch = sub[(sub["buyer"] == U) & (sub["aggressor"] == "buy_aggr")]["quantity"].sum()
+        sell_touch = sub[(sub["seller"] == U) & (sub["aggressor"] == "sell_aggr")]["quantity"].sum()
+        imb_rows.append(
+            {
+                "mark": U,
+                "aggr_buy_qty_as_buyer": int(buy_touch),
+                "aggr_sell_qty_as_seller": int(sell_touch),
+                "net_touch_flow": int(buy_touch - sell_touch),
+                "n_prints_any": int(len(sub)),
+            }
+        )
+    pd.DataFrame(imb_rows).sort_values("net_touch_flow", ascending=False).to_csv(
+        OUT / "21_mark_touch_aggr_flow_imbalance.csv", index=False
+    )
+    lines.append(f"Wrote {OUT / '21_mark_touch_aggr_flow_imbalance.csv'}")
+
     # --- 3) Graph edges ---
     edge = m.groupby(["buyer", "seller"]).agg(n=("symbol", "size"), notional=("quantity", "sum"))
     edge = edge.reset_index().sort_values("n", ascending=False)

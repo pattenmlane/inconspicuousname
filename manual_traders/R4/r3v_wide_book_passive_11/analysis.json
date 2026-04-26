@@ -22,7 +22,12 @@
       "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/14_mark_hub_incident_edge_counts.csv",
       "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/15_signed_flow_leadlag_vs_extract_fwd20.csv",
       "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/16_worst_aggressor_pairs_fwd20_n25plus.csv",
-      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/17_signed_flow_leadlag_methods.txt"
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/17_signed_flow_leadlag_methods.txt",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/18_pair_symbol_spreadq_cell_fwd20_n25plus.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/19_pair_symbol_spreadq_residual_top40.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/20_pair_symbol_spreadq_residual_bottom40.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/21_mark_touch_aggr_flow_imbalance.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/22_baseline_spreadq_methods.txt"
     ],
     "used_to_decide": "Phase 1 gate documented under round4_phase1_complete (nested). Phase 2 not started.",
     "round4_phase1_complete": {
@@ -31,6 +36,7 @@
       "supplement_2026_04_26_inference": "`01_participant_fwd_summary.csv`, `02_stratified_mark_symbol_fwd20_top80.csv`, and `08_aggressor_fwd20_same_symbol.csv` now include **median**, **one-sample t** (H0: mean markout=0), and **bootstrap 95% CI** for means (see `10_phase1_inference_methods.txt` for B and formulas). Example Mark 67 any K=20: t_same_sym≈5.97, CI [1.28, 2.49] ticks on same-symbol forward.",
       "supplement_2026_04_26_phase1_strat_graph_burst": "**Participant `mid_passive`:** added role `mid_passive` in `01_` (prints where U is buyer or seller and trade price is strictly inside L1); most Marks have n≈0 — rare mid prints. **`12_stratified_mark_session_fwd20_top80.csv`:** same stratification as `02_` plus **session tertile** (early/mid/late by timestamp rank within day). **`11_burst_orchestrator_timestamps.csv`:** one row per burst `(day,timestamp)` with n_prints, sorted symbol list, modal buyer/seller. **`13_edge_reciprocity_top200_from_top200.csv`:** reverse-edge counts for top 200 directed pairs. **`14_mark_hub_incident_edge_counts.csv`:** hub table = out-degree (as buyer) + in-degree (as seller) print counts — Mark 14 highest incident count on this tape slice.",
       "supplement_2026_04_26_leadlag_burst_vev": "**`15_signed_flow_leadlag_vs_extract_fwd20.csv`:** per-day corr(net signed touch-flow on symbol S, lagged L **trade events** on S, vs extract_fwd_20 at timestamp) for S in {extract,hydro,5300,5200,4000}, L∈{0..5}. **`07_burst_event_study_extract.txt`** extended: burst vs control **VEV_5300** forward — K=20 Welch t≈4.82 (burst mean >> control), stronger than extract-only burst headline at same K. **`16_worst_aggressor_pairs_fwd20_n25plus.csv`:** lowest mean same-symbol fwd20 among **aggressive** prints (n≥25): **Mark14→Mark55** and **Mark38→Mark14** most negative (~−0.24 / −0.19 ticks). **`17_signed_flow_leadlag_methods.txt`** defines signed flow and lag units.",
+      "supplement_2026_04_26_baseline_spreadq": "**`18_`–`20_`:** `(buyer,seller,symbol,spread_q)` cell means (n≥25) and residuals vs **within-spread_q** global mean fwd20; **`21_`:** touch-aggressive buy minus sell quantity per Mark; **`22_`** defines residual formula (touch-aggr imbalance excludes mid_passive legs).",
       "phase1_bullets": [
         {
           "bullet": "1) Participant-level alpha / predictiveness",
@@ -44,9 +50,14 @@
           "bullet": "2) Deviation from bot baseline (cell means + residual vs global mean fwd20)",
           "outputs": [
             "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/03_pair_symbol_mean_fwd20.csv",
-            "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/04_pair_symbol_residual_fwd20_top40.csv"
+            "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/04_pair_symbol_residual_fwd20_top40.csv",
+            "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/18_pair_symbol_spreadq_cell_fwd20_n25plus.csv",
+            "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/19_pair_symbol_spreadq_residual_top40.csv",
+            "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/20_pair_symbol_spreadq_residual_bottom40.csv",
+            "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/21_mark_touch_aggr_flow_imbalance.csv",
+            "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/22_baseline_spreadq_methods.txt"
           ],
-          "conclusion": "Global mean same-symbol fwd_mid_20 ≈ 0.092. Top residuals: Mark 67→Mark 22 / Mark 67→Mark 49 on VELVETFRUIT_EXTRACT; Mark 55→Mark 14 on extract. Mark 01→Mark 22 on deep wings ~zero mean (negative residual vs global)."
+          "conclusion": "Global mean same-symbol fwd_mid_20 ≈ 0.092. Top residuals: Mark 67→Mark 22 / Mark 67→Mark 49 on VELVETFRUIT_EXTRACT; Mark 55→Mark 14 on extract. Mark 01→Mark 22 on deep wings ~zero mean (negative residual vs global). **Spread-stratum baseline (`18_`/`19_`):** Mark67→Mark22 on extract in **tight** book shows residual_vs_spread_stratum ≈ **+1.69** ticks vs mean of all tight-book prints; `21_` shows Mark67 net touch-aggressive buy imbalance +1509 vs Mark22 −4957 (role asymmetry)."
         },
         {
           "bullet": "3) Sequence / graph methods",
@@ -483,5 +494,19 @@
       "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/17_signed_flow_leadlag_methods.txt"
     ],
     "used_to_decide": "Treat **15_** as discrete-time flow–extract coupling (not Granger); combine with Phase 2 `p2_04` panel corr for execution. Burst **5300** continuation strengthens basket-burst story beyond extract-only K=20 null."
+  },
+  {
+    "iteration": 22,
+    "round": 4,
+    "analysis_description": "Phase 1 **bullet 2 baseline+regime**: `r4_phase1_markouts.py` adds **`18_pair_symbol_spreadq_cell_fwd20_n25plus.csv`** — cell means for (buyer,seller,symbol,**spread_q**) with n≥25; **`19_`/`20_`** top/bottom 40 by **residual_vs_spread_stratum** (cell mean minus unconditional mean of fwd20 in that spread tertile). **`21_mark_touch_aggr_flow_imbalance.csv`** — touch-aggressive buy qty as buyer minus touch-aggressive sell qty as seller per Mark (Mark67 +1509 net buy-touch; Mark22 large net sell-touch). **`22_baseline_spreadq_methods.txt`**. Iteration 0 `analysis_outputs` and phase1 bullet 2 paths updated.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wide_book_passive_11/r4_phase1_markouts.py",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/18_pair_symbol_spreadq_cell_fwd20_n25plus.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/19_pair_symbol_spreadq_residual_top40.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/20_pair_symbol_spreadq_residual_bottom40.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/21_mark_touch_aggr_flow_imbalance.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/22_baseline_spreadq_methods.txt"
+    ],
+    "used_to_decide": "Use **19_** for regime-conditioned continuation beyond pooled `04_`; **21_** quantifies ladder-bot buy vs sell asymmetry (touch-only, not economic net position)."
   }
 ]

@@ -1,0 +1,10 @@
+Round 4 tape (CSV): timestamps where **Mark 22** is **passive seller** on **VELVETFRUIT_EXTRACT**
+(trade price <= bid1 at same timestamp) AND **Sonic** (VEV_5200/5300 spread<=2) AND **U** spread<=6.
+
+Counts (unique timestamps per day):
+day 1: 1
+day 2: 0
+day 3: 2
+Total: 3 timestamps in days 1–3.
+
+Overlap with Mark67 buy-aggressive U at same timestamp (under same gate): 0 all days.

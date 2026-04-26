@@ -355,5 +355,16 @@
       "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v8_all.log"
     ],
     "used_to_decide": "**Falsifies** naive \u201clong 5300 on every Burst-B basket tick\u201d under **worse** fills: total PnL **-2,192** (worse/all) vs v7 **+18**; **~513** SUBMISSION rows with **~1.1k** abs qty on **VEV_5300** alone (U fill count still **22**). Phase-2 mid lift on burst rows **does not** carry to this long-and-dump rule \u2014 consistent with Phase-3 note that **Burst-B \u2229 tight** still had **negative** mean fwd@20 for **Mark01\u2192Mark22** subset. **Do not** ship this combined leg without a different exit (fade / inventory / hedge) or stricter burst filter."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "**Tape frequency:** Phase-1 **Mark 22 passive seller on U** (`seller==Mark 22`, `price<=bid1`) under **Sonic + U spread\u22646** hits only **3** timestamps across days 1\u20133 (`analysis_outputs/r9_m22_passive_u_sonic_overlap.txt`); **0** overlap with Mark67 buy_agg at same ts. **Execution:** `trader_v9.py` = **v7** + second entry leg with `ENTRY_Q_M22=3` and separate `_last_m22_entry_ts`.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_volume_weighted_residual_05/trader_v9.py",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r9_m22_passive_u_sonic_overlap.txt",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v9_worse.log",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v9_all.log"
+    ],
+    "used_to_decide": "PnL **-12** (worse=all) vs v7 **+18**; **28** SUBMISSION rows / **40** abs qty vs v7 **22**/**22** \u2014 the Mark22 leg **adds** activity and **worsens** aggregate PnL (day 1 **-23** vs v7 **+7**). So Phase-1 positive **mid** fwd after Mark22 passive sells on U **does not** survive this long-and-exit rule when intersected with Sonic gate in sim. **Prefer v7** as the cleaner U-only baseline; any Mark22 exploitation likely needs different horizon, sizing, or **not** stacking on the same inventory as Mark67."
   }
 ]

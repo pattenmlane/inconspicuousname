@@ -32,6 +32,8 @@ manual_traders/R4/r4_counterparty_phase1/r4_phase3_gate_summary.json
 manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase3_gate_extract_by_day.py
 manual_traders/R4/r4_counterparty_phase1/r4_phase3_gate_extract_by_day.json
 manual_traders/R4/r4_counterparty_phase1/r4_phase3_spread_spread.json
+manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase3_spread_vs_fwd_panels.py
+manual_traders/R4/r4_counterparty_phase1/r4_phase3_spread_vs_fwd_panels.json
 (previous round reference) previous round work/round3work/vouchers_final_strategy/analyze_vev_5200_5300_tight_gate_r3.py
 
 EXTENSIONS — gate × burst × counterparty leg (post Phase 3)

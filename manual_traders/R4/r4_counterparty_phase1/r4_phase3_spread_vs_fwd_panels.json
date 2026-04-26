@@ -1,0 +1,115 @@
+{
+  "TH": 2.0,
+  "K": 20,
+  "definition": "inner_join timestamps 5200+5300+extract; fwd = mid[i+K]-mid[i]; tight = s5200<=TH & s5300<=TH. spread_sum often ==4 when both max-tight \u2014 use pair grid.",
+  "per_day": {
+    "1": {
+      "n_inner_join": 10000,
+      "n_tight_rows_with_fwd": 1381,
+      "corr_spread_sum_fwd_ex_tight": 0.023280675323205373,
+      "corr_spread_sum_abs_fwd_ex_tight": -0.05000969628334598,
+      "corr_spread_sum_fwd_5300_tight": -0.044443506057411895,
+      "corr_extract_spread_fwd_ex_tight": 0.018162259740990703,
+      "corr_extract_spread_abs_fwd_ex_tight": -0.0029291296518785415,
+      "mean_fwd_ex_tight": 0.599203,
+      "mean_fwd_5300_tight": 0.219406,
+      "tight_spread_pair_grid_mean_fwd": {
+        "s5200=1_s5300=1": {
+          "n": 62,
+          "mean_fwd_ex": 0.596774,
+          "mean_fwd_5300": 0.895161
+        },
+        "s5200=1_s5300=2": {
+          "n": 32,
+          "mean_fwd_ex": -0.921875,
+          "mean_fwd_5300": -0.453125
+        },
+        "s5200=2_s5300=1": {
+          "n": 73,
+          "mean_fwd_ex": 0.390411,
+          "mean_fwd_5300": 0.0
+        },
+        "s5200=2_s5300=2": {
+          "n": 1214,
+          "mean_fwd_ex": 0.651977,
+          "mean_fwd_5300": 0.215815
+        }
+      }
+    },
+    "2": {
+      "n_inner_join": 10000,
+      "n_tight_rows_with_fwd": 1727,
+      "corr_spread_sum_fwd_ex_tight": 6.055516005560028e-05,
+      "corr_spread_sum_abs_fwd_ex_tight": -0.006106413639222431,
+      "corr_spread_sum_fwd_5300_tight": -0.045306304713365525,
+      "corr_extract_spread_fwd_ex_tight": -0.021123996626556334,
+      "corr_extract_spread_abs_fwd_ex_tight": -0.0053582364075097835,
+      "mean_fwd_ex_tight": 0.4641,
+      "mean_fwd_5300_tight": 0.154314,
+      "tight_spread_pair_grid_mean_fwd": {
+        "s5200=1_s5300=1": {
+          "n": 53,
+          "mean_fwd_ex": 0.160377,
+          "mean_fwd_5300": 0.641509
+        },
+        "s5200=1_s5300=2": {
+          "n": 40,
+          "mean_fwd_ex": -0.25,
+          "mean_fwd_5300": -0.3
+        },
+        "s5200=2_s5300=1": {
+          "n": 224,
+          "mean_fwd_ex": 0.734375,
+          "mean_fwd_5300": 0.265625
+        },
+        "s5200=2_s5300=2": {
+          "n": 1410,
+          "mean_fwd_ex": 0.452837,
+          "mean_fwd_5300": 0.131206
+        }
+      }
+    },
+    "3": {
+      "n_inner_join": 10000,
+      "n_tight_rows_with_fwd": 4598,
+      "corr_spread_sum_fwd_ex_tight": -0.019042241553544077,
+      "corr_spread_sum_abs_fwd_ex_tight": -0.00773140692070719,
+      "corr_spread_sum_fwd_5300_tight": -0.029277396456150566,
+      "corr_extract_spread_fwd_ex_tight": -0.03857248911680216,
+      "corr_extract_spread_abs_fwd_ex_tight": -0.04073485510669581,
+      "mean_fwd_ex_tight": 0.187908,
+      "mean_fwd_5300_tight": 0.053393,
+      "tight_spread_pair_grid_mean_fwd": {
+        "s5200=1_s5300=1": {
+          "n": 68,
+          "mean_fwd_ex": 0.661765,
+          "mean_fwd_5300": 0.558824
+        },
+        "s5200=1_s5300=2": {
+          "n": 45,
+          "mean_fwd_ex": 0.044444,
+          "mean_fwd_5300": -0.133333
+        },
+        "s5200=2_s5300=1": {
+          "n": 1395,
+          "mean_fwd_ex": 0.27957,
+          "mean_fwd_5300": 0.077778
+        },
+        "s5200=2_s5300=2": {
+          "n": 3090,
+          "mean_fwd_ex": 0.138188,
+          "mean_fwd_5300": 0.033981
+        }
+      }
+    }
+  },
+  "pooled_tight_rows": {
+    "n": 7706,
+    "corr_spread_sum_fwd_ex": -0.0014016137376533116,
+    "corr_spread_sum_abs_fwd_ex": -0.014022914626286027,
+    "corr_spread_sum_fwd_5300": -0.02843592890435044,
+    "corr_extract_spread_fwd_ex": -0.024854149382642368,
+    "corr_extract_spread_abs_fwd_ex": -0.025473015984728786
+  },
+  "interpretation": "Within Sonic-tight, s5200+s5300 is nearly constant at 4 \u2014 tertiles collapse; **pair grid** (integer L1 spreads) separates mean fwd. Pooled corr spread_sum vs fwd is ~0 / slightly negative on this tape; extract spread vs fwd per day in JSON."
+}

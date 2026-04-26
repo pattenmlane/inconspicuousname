@@ -254,5 +254,41 @@
       "m1438_fwd_by_symbol_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m1438_fwd_by_symbol_day.csv",
       "m3814_fwd_by_symbol_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m3814_fwd_by_symbol_day.csv"
     }
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "Joint gate + one-tick MM on extract, VEV_5200, VEV_5300, and HYDROGEL_PACK only (no wing VEVs). Ablation vs v5 to attribute PnL to hydro+core vs full surface.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/backtest_worse_trader_v7_r4_d123.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_quadratic_logm_wls_10/trader_v7.py 4-1 4-2 4-3 --data Prosperity4Data --no-out --no-progress --no-vis --match-trades worse",
+      "backtest_round": 4,
+      "backtest_days": "1-3",
+      "total_profit": 9069,
+      "day_total_profit": {"1": 1814, "2": 3718, "3": 3537},
+      "trades_or_fills_summary": {
+        "note": "worse same as all; hydro PnL matches v5 (1181/1255/3000); wing VEV PnL zero",
+        "hydrogel_pnl_by_day": {"1": 1181, "2": 1255, "3": 3000},
+        "compare_to_v5_total": 11526,
+        "wing_vev_pnl_attribution_vs_v5": "approx +2457 from removed wing MM over d1-3 (v5 minus v7)"
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/backtest_all_trader_v7_r4_d123.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_quadratic_logm_wls_10/trader_v7.py 4-1 4-2 4-3 --data Prosperity4Data --no-out --no-progress --no-vis --match-trades all",
+      "backtest_round": 4,
+      "backtest_days": "1-3",
+      "total_profit": 9069,
+      "day_total_profit": {"1": 1814, "2": 3718, "3": 3537},
+      "trades_or_fills_summary": {
+        "note": "matches worse",
+        "hydrogel_pnl_by_day": {"1": 1181, "2": 1255, "3": 3000}
+      }
+    },
+    "phase3_analysis_extension": {
+      "m0122_symbol_k_overall": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_symbol_k_overall.csv"
+    }
   }
 ]

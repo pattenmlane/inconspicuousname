@@ -95,6 +95,7 @@
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_fwd_by_symbol_day.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m1438_fwd_by_symbol_day.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m3814_fwd_by_symbol_day.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_symbol_k_overall.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_gate.json",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
     ],
@@ -122,6 +123,7 @@
         "m0122_fwd_by_symbol_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_fwd_by_symbol_day.csv",
         "m1438_fwd_by_symbol_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m1438_fwd_by_symbol_day.csv",
         "m3814_fwd_by_symbol_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m3814_fwd_by_symbol_day.csv",
+        "m0122_symbol_k_overall": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_symbol_k_overall.csv",
         "gate_json": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_gate.json",
         "script": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
       },
@@ -203,5 +205,14 @@
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
     ],
     "used_to_decide": "M14→M38 on HYDROGEL under tight: day1 K20 mean≈+2.08 t≈1.34 (n=25); day3 K5/K20 negative means with n=68. Return leg M38→M14 in second CSV for asymmetry. Sim: trader_v6 hydro clip 14 vs v5 clip 8 — identical 11526 and same hydro day PnL (clip not binding vs v5)."
+  },
+  {
+    "iteration": "round4_phase3_m0122_pooled_symbol_k",
+    "analysis_description": "Mark01→Mark22 asof-tight trades pooled across days 1–3 by symbol and K (r4_p3_m0122_symbol_k_overall.csv): n, mean_fwd, std, t_vs_zero, frac_pos, and frac_days_mean_pos among days with n≥5 for that cell.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_symbol_k_overall.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
+    ],
+    "used_to_decide": "VEV_5300 K5 pooled mean negative (t≈-2.29, n=132) but frac_days_mean_pos 0/3 — all daily means negative at K5; K100 pooled mean small positive (t≈0.27). VEV_6000/6500 zero fwd under convention. Sim: trader_v7 (core+extract+hydro only) 9069 vs v5 11526 — ~2457 from wing VEV MM while hydro unchanged."
   }
 ]

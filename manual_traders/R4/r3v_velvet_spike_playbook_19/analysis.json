@@ -334,5 +334,23 @@
       "sim_v7": "trader_v7_r4_burst_extract_skip_day3.py \u2014 identical impulse to v1 but no orders when csv_day==3. **+8,242** worse and all (days 1\u20132 only), vs v1 **+4,834** with day 3 **-3,408**. Shows v1 drag is **concentrated in realized day-3 execution**, not explained by day-3 having the **lowest** mean fwd20 (it has the **highest** among days here).",
       "used_to_decide": "Treat **day-3 burst impulse as structurally toxic in sim** until a tape feature explains it; naive calendar skip is not a legitimate live rule but documents **PnL path vs mid-markout mismatch**. Prefer smaller size or additional filters on day 3 over blind trading."
     }
+  },
+  {
+    "round4_burst_extract_spread_gate_v8": {
+      "tape_evidence": "From r4_burst_m01_m22_rows_with_gate_fwd20.csv, at burst timestamps extract L1 spread is almost always 5 or 6. Day 3: s_ext==6 mean fwd20 \u2248 -0.5 (n=19) vs s_ext==5 \u2248 +0.61 (n=95). Days 1\u20132: s_ext==6 also weaker than 5 (see groupby day,s_ext in study notes).",
+      "trader": "manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v8_r4_burst_extract_max_ext_spread.py \u2014 v1 burst buy only if extract L1 spread <= 5 at the tick.",
+      "backtest_round4_days_1_3": {
+        "worse_total": 7080,
+        "all_total": 7080,
+        "day_profit": {
+          "1": 3442,
+          "2": 6202,
+          "3": -2564
+        },
+        "vs_v1_total_4834": "+2246; day3 loss reduced from -3408 to -2564. Same 102 fills / 600 qty as v1 (gate only drops s_ext==6 bursts).",
+        "vs_v7_calendar_skip_8242": "v8 is a **tape-observable** filter (Phase 2 microstructure) but does not remove day-3 loss; v7 remains upper bound for this impulse family on this slice."
+      },
+      "used_to_decide": "Microstructure gating on **wide extract** at the burst tick is evidence-aligned and **improves** pooled sim vs v1, but **day 3 remains negative** \u2014 combine with size cap, second filter, or accept day risk."
+    }
   }
 ]

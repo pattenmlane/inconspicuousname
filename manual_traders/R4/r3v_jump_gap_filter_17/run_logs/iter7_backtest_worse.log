@@ -1,0 +1,53 @@
+running algorithm '/workspace/manual_traders/R4/r3v_jump_gap_filter_17/trader_v7.py'...
+Backtesting /workspace/manual_traders/R4/r3v_jump_gap_filter_17/trader_v7.py for round: 4 day: 1
+  0%|          | 0/10000 [00:00<?, ?it/s] 20%|#9        | 1990/10000 [00:00<00:00, 19895.75it/s] 40%|###9      | 3980/10000 [00:00<00:00, 19780.59it/s] 60%|#####9    | 5959/10000 [00:00<00:00, 19598.99it/s] 79%|#######9  | 7920/10000 [00:00<00:00, 14754.41it/s] 98%|#########8| 9834/10000 [00:00<00:00, 16052.84it/s]100%|##########| 10000/10000 [00:00<00:00, 16774.13it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: -958
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 4,264
+HYDROGEL_PACK: 0
+Total profit: 3,306
+Backtesting /workspace/manual_traders/R4/r3v_jump_gap_filter_17/trader_v7.py for round: 4 day: 2
+  0%|          | 0/10000 [00:00<?, ?it/s] 20%|#9        | 1961/10000 [00:00<00:00, 19595.35it/s] 39%|###9      | 3921/10000 [00:00<00:00, 19258.00it/s] 58%|#####8    | 5848/10000 [00:00<00:00, 12495.03it/s] 78%|#######7  | 7764/10000 [00:00<00:00, 14439.08it/s] 97%|#########6| 9692/10000 [00:00<00:00, 15856.75it/s]100%|##########| 10000/10000 [00:00<00:00, 15640.60it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: -1,496
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 1,352
+HYDROGEL_PACK: 0
+Total profit: -144
+Backtesting /workspace/manual_traders/R4/r3v_jump_gap_filter_17/trader_v7.py for round: 4 day: 3
+  0%|          | 0/10000 [00:00<?, ?it/s] 20%|#9        | 1995/10000 [00:00<00:00, 19877.70it/s] 40%|###9      | 3983/10000 [00:00<00:00, 19281.08it/s] 59%|#####9    | 5913/10000 [00:00<00:00, 18678.76it/s] 78%|#######7  | 7783/10000 [00:00<00:00, 12125.73it/s] 98%|#########7| 9776/10000 [00:00<00:00, 14168.83it/s]100%|##########| 10000/10000 [00:00<00:00, 15032.44it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 706
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 1,899
+HYDROGEL_PACK: 0
+Total profit: 2,605
+Profit summary:
+Round 4 day 1: 3,306
+Round 4 day 2: -144
+Round 4 day 3: 2,605
+Total profit: 5,766
+
+Successfully saved backtest results to backtests/2026-04-26_17-31-20.log

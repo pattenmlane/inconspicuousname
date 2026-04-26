@@ -258,5 +258,18 @@
       "manual_traders/R4/r3v_jump_gap_filter_17/results.json"
     ],
     "used_to_decide": "**Do not ship** v6 as production: sim falsifies naive translation of tape **short-horizon mid** edge into **repeated bid-side supply** on 5300 — inventory + adverse fills dominate. Keep extract v1 path; park counterparty 5300 fade until execution model or signal timing changes (e.g. post-print delay, size 1, or only when 5300 spread ≥ 2)."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Implemented `trader_v7.py` as **v6 with execution hygiene**: require **VEV_5300 spread ≥ 2** before selling at bid, **500 time-unit cooldown** between fade orders (matches preprocess ±5-tick window scale), **qty 2** instead of 6. Backtest worse **5,766** vs v6 **1,570** and v1 extract-only **7,514** — **VEV_5300 still −1,748** pooled but **day-2 book total −144** vs v6 **−3,914** (churn was the main killer). v7 remains **−1,748** worse vs extract-only on the 5300 leg alone; tape-conditioned fade is **not yet additive** to the joint-gate extract MM under `--match-trades worse`, but throttling validates the diagnosis that v6’s **per-tick** quoting inside wide offline windows was mis-specified for sim.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_jump_gap_filter_17/trader_v7.py",
+      "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter7_backtest_worse.log",
+      "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter7_backtest_all.log",
+      "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter7_fill_summary_worse.json",
+      "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter7_fill_summary_all.json",
+      "manual_traders/R4/r3v_jump_gap_filter_17/results.json"
+    ],
+    "used_to_decide": "Prefer **v1** or **no 5300 overlay** for worse-match shipping until 5300 leg turns ≥0 or signal is retimed to **print-aligned** ticks only. v7 is the best **counterparty-overlay** attempt so far but still **costs ~1.75k** vs extract baseline over 3 days."
   }
 ]

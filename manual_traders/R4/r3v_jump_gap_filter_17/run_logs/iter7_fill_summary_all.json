@@ -1,0 +1,12 @@
+{
+  "source": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter7_backtest_all.log",
+  "match_trades": "all",
+  "per_day": {"1": 2451.0, "2": 670.0, "3": 3127.0},
+  "total_profit": 6248.0,
+  "per_product_total": {
+    "VELVETFRUIT_EXTRACT": 7996.0,
+    "VEV_5300": -1748.0,
+    "HYDROGEL_PACK": 0.0
+  },
+  "note": "5300 PnL matches worse run; extract improves under all match mode"
+}

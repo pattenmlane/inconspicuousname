@@ -658,5 +658,11 @@
         }
       }
     }
+  },
+  {
+    "iteration": 14,
+    "note": "Phase 1 checklist supplement: pooled aggressor cell t-tests + bootstrap CI for K\u2208{5,20,100} (same-symbol fwd) in analysis_outputs/r4_phase1_aggressor_cell_stats_pooled.csv; repro r4_phase1_supplement_cell_stats.py. See analysis.json round4_phase1_complete.checklist_supplement_2026_04_26.",
+    "phase": "round4_phase1_checklist_reinforcement",
+    "analysis_reference": "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis.json"
   }
 ]

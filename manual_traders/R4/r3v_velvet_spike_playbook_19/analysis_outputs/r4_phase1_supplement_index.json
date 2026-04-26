@@ -1,0 +1,12 @@
+{
+  "source_csv": "/workspace/manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_trades_with_markout.csv",
+  "n_cells_written": 39,
+  "K_values": [
+    5,
+    20,
+    100
+  ],
+  "min_n": 30,
+  "n_bootstrap": 2000,
+  "output_csv": "/workspace/manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_aggressor_cell_stats_pooled.csv"
+}

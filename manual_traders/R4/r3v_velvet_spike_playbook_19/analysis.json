@@ -94,8 +94,18 @@
       "no_edge_or_negative_findings": [
         "(buyer,seller,product) cell-mean baseline leaves near-zero residuals for major Mark pairs \u2014 no obvious mis-modeled bot mean to exploit without richer features.",
         "Most aggressor\u00d7product\u00d7tight-bucket cells have |mean fwd_20| \u226a 0.5 mid units or unstable sign across days.",
-        "Hour bucket stratification not yet exported separately (spread bucket already used); marginal gain expected given coarse timestamps."
+        "Hour bucket stratification not yet exported separately (spread bucket already used); marginal gain expected given coarse timestamps.",
+        "Follow-up (round4_extract_aggr_buy_coverage): **Mark 01 has zero aggressive buy prints on VELVETFRUIT_EXTRACT** on days 1\u2013 \u2014 participant-level \u2018informed buy on extract\u2019 narratives for U=Mark 01 are undefined on this tape."
       ],
+      "checklist_supplement_2026_04_26": {
+        "suggested_direction_phase1_bullets": "All five Phase-1 themes are covered by existing CSV/JSON in `analysis_outputs/` (participant markouts, baseline residuals, graph + two-hop motifs, burst event study, adverse proxy) \u2014 see `bullets` above. Cross-asset fwd for extract/hydro on every trade row is in `r4_trades_with_markout.csv` (columns fwd_*_ex / same pattern could filter product for hydro).",
+        "pooled_tstat_bootstrap_outputs": [
+          "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_aggressor_cell_stats_pooled.csv",
+          "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_supplement_index.json"
+        ],
+        "pooled_tstat_bootstrap_repro": "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_supplement_cell_stats.py",
+        "pooled_tstat_bootstrap_note": "For each (U, aggressor side, product, spr_b) with n\u226530, reports mean, median, t-test vs 0, frac_pos, and bootstrap CI for mean (K\u2208{5,20,100} on **same symbol** forward mid). **Not** a discovery engine \u2014 limits multiple-testing over-claims; most |t| are modest."
+      },
       "repro_script": "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_counterparty_study.py"
     }
   },
@@ -136,8 +146,11 @@
         },
         {
           "item": "Vol/smile and inventory MM",
-          "outputs": [],
-          "one_sentence": "Not executed in this pass (no R4 smile calibration wired); inventory-aware MM deferred to Phase 3 gate interaction."
+          "outputs": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v6_inv_mm_worse.json",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v6_inv_mm_all.json"
+          ],
+          "one_sentence": "R4 Black\u2013Scholes smile panel not built; **inventory-aware MM** on joint-tight extract only: `trader_v6_r4_joint_tight_inventory_mm_extract.py` \u2192 +3878 worse / +2585 all days 1\u20133 (improves v4 worse vs all gap)."
         }
       ],
       "top_5_tradeable_edges_phase2": [

@@ -208,5 +208,26 @@
       "trades_or_fills_summary": "trade_history_rows=4309; SUBMISSION rows=28; own_fill_abs_qty_sum=40",
       "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_volume_weighted_residual_05/trader_v9.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v9_all.log"
     }
+  },
+  {
+    "iteration": 10,
+    "trader_file": "trader_v10.py",
+    "strategy_description": "v7 + Mark67 entry filter: only add long U on Mark67 buy_agg signal when mid < EMA(mid)-DIP (DIP=0.5, EMA_ALPHA=0.06). Exits and gate-off liquidation unchanged from v7.",
+    "total_profit": 8,
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 8,
+      "backtest_log_file": "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v10_worse.log",
+      "trades_or_fills_summary": "trade_history_rows=4299; SUBMISSION rows=18; own_fill_abs_qty_sum=18",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_volume_weighted_residual_05/trader_v10.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v10_worse.log"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 8,
+      "backtest_log_file": "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v10_all.log",
+      "trades_or_fills_summary": "trade_history_rows=4299; SUBMISSION rows=18; own_fill_abs_qty_sum=18",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_volume_weighted_residual_05/trader_v10.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v10_all.log"
+    }
   }
 ]

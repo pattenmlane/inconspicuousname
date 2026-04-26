@@ -366,5 +366,16 @@
       "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v9_all.log"
     ],
     "used_to_decide": "PnL **-12** (worse=all) vs v7 **+18**; **28** SUBMISSION rows / **40** abs qty vs v7 **22**/**22** \u2014 the Mark22 leg **adds** activity and **worsens** aggregate PnL (day 1 **-23** vs v7 **+7**). So Phase-1 positive **mid** fwd after Mark22 passive sells on U **does not** survive this long-and-exit rule when intersected with Sonic gate in sim. **Prefer v7** as the cleaner U-only baseline; any Mark22 exploitation likely needs different horizon, sizing, or **not** stacking on the same inventory as Mark67."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "**Parameter sweep (single knob):** `trader_v10.py` = **v7** + require **mid < EMA(mid) \u2212 0.5** before acting on Mark67 buy_agg entry (same `EMA_ALPHA=0.06` as v7). Hypothesis: avoid stacking longs when Mark67 prints into **rich** U vs slow EMA.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_volume_weighted_residual_05/trader_v10.py",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r10_v7_vs_v10_entry_filter.txt",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v10_worse.log",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v10_all.log"
+    ],
+    "used_to_decide": "PnL **+8** (worse=all) vs v7 **+18**; **18** SUBMISSION rows / **18** abs qty vs **22**/**22** \u2014 **four** fewer entry episodes remove **+10** PnL, so the dropped prints were **net contributing** on this tape under v7 exits. **Do not** tighten with this dip rule at DIP=0.5 without retuning exits or scanning DIP grid; **v7 remains best** in this pair. Optional follow-up: sweep DIP \u2208 {0.25,0.75} or use pre-signal EMA (not updated same tick) if retesting."
   }
 ]

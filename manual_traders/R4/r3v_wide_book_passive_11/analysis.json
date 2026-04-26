@@ -13,11 +13,13 @@
       "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/05_directed_edges_buyer_seller.csv",
       "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/06_two_hop_motifs.txt",
       "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/07_burst_event_study_extract.txt",
-      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/08_aggressor_fwd20_same_symbol.csv"
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/08_aggressor_fwd20_same_symbol.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/09_participant_stability_by_day.csv"
     ],
     "used_to_decide": "Phase 1 gate documented under round4_phase1_complete (nested). Phase 2 not started.",
     "round4_phase1_complete": {
       "horizon_definition": "For each trade at (day, timestamp, symbol), forward mid change at horizon K is mid(t+K rows) - mid(t) in the prices CSV for the same day and product, after sorting by timestamp (K consecutive snapshots, not wall-clock seconds).",
+      "supplement_2026_04_26": "Re-ran `r4_phase1_markouts.py`: `01_participant_fwd_summary.csv` now includes **mean_hydro_fwd** / **frac_pos_hydro** (HYDROGEL_PACK forward at trade timestamp, same K-row definition as extract). New **`09_participant_stability_by_day.csv`**: per Mark × K × day mean/median/frac_pos same-symbol (n>=5) for cross-day coarseness check.",
       "phase1_bullets": [
         {
           "bullet": "1) Participant-level alpha / predictiveness",
@@ -411,5 +413,16 @@
       "strategy_continuation": "Post-phase sim track: `trader_r4_v14.py` is current best on R4 days 1–3 worse (`results.json` iteration 16); Tier-A `Mark 67→Mark 22` + Sonic gate + buy-at-ask sizing."
     },
     "used_to_decide": "No Phase 1–3 re-execution required until new ROUND_4 tape days or methodology change; proceed with out-of-sample days or production-hardening of v14 if assigned."
+  },
+  {
+    "iteration": 18,
+    "round": 4,
+    "analysis_description": "Phase 1 **supplement** (spec: cross-asset HYDROGEL + day-stability): extended `r4_phase1_markouts.py` to merge **hydro_fwd_mid_{K}** (same K-row forward on HYDROGEL_PACK at each trade timestamp) into participant summary; added **`09_participant_stability_by_day.csv`** (per Mark, K, day: n, mean/median, frac_pos same-symbol, n>=5). Re-ran script on all ROUND_4 days 1–3. Example: Mark 67 `any` K=20 — mean_hydro_fwd≈+0.39 (HYDRO cross-asset at own-trade timestamps; not same as hydro alpha when 67 prints on VEV). Iteration 0 `analysis_outputs` and `round4_phase1_complete.supplement_2026_04_26` updated; gate structure unchanged.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wide_book_passive_11/r4_phase1_markouts.py",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/01_participant_fwd_summary.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/09_participant_stability_by_day.csv"
+    ],
+    "used_to_decide": "Use **09_** for day-coherence on Mark-level story (e.g. Mark 14 K=20 flips sign day2 vs day1/3); use hydro columns in **01_** for joint extract+hydro picture at print time — not a substitute for symbol-conditioned hydro prints."
   }
 ]

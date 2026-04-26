@@ -108,6 +108,9 @@ def merge_trades_prices(tr: pd.DataFrame, pr: pd.DataFrame) -> pd.DataFrame:
     ren = {f"fwd_mid_{K}": f"extract_fwd_mid_{K}" for K in KS}
     ex = ex.rename(columns=ren)
     m = m.merge(ex, on=["day", "timestamp"], how="left")
+    hy = px.loc[px["symbol"] == HYDRO, ["day", "timestamp"] + [f"fwd_mid_{K}" for K in KS]]
+    hy = hy.rename(columns={f"fwd_mid_{K}": f"hydro_fwd_mid_{K}" for K in KS})
+    m = m.merge(hy, on=["day", "timestamp"], how="left")
     return m
 
 
@@ -190,10 +193,12 @@ def main() -> None:
             for K in KS:
                 col = f"fwd_mid_{K}"
                 ex_col = f"extract_fwd_mid_{K}"
+                hy_col = f"hydro_fwd_mid_{K}"
                 if col not in sub.columns:
                     continue
                 x = pd.to_numeric(sub[col], errors="coerce").dropna()
-                ex = pd.to_numeric(sub[f"extract_{col}"], errors="coerce").dropna()
+                ex = pd.to_numeric(sub[ex_col], errors="coerce").dropna()
+                hy = pd.to_numeric(sub[hy_col], errors="coerce").dropna() if hy_col in sub.columns else pd.Series(dtype=float)
                 rows.append(
                     {
                         "mark": U,
@@ -205,11 +210,38 @@ def main() -> None:
                         "frac_pos_same": float((x > 0).mean()) if len(x) else float("nan"),
                         "mean_extract_fwd": float(ex.mean()) if len(ex) else float("nan"),
                         "frac_pos_extract": float((ex > 0).mean()) if len(ex) else float("nan"),
+                        "mean_hydro_fwd": float(hy.mean()) if len(hy) else float("nan"),
+                        "frac_pos_hydro": float((hy > 0).mean()) if len(hy) else float("nan"),
                     }
                 )
     t1 = pd.DataFrame(rows)
     t1.to_csv(OUT / "01_participant_fwd_summary.csv", index=False)
     lines.append(f"Wrote {OUT / '01_participant_fwd_summary.csv'}")
+
+    # Per-day same-symbol stability (any touch): coarse multi-day check for spec "stability across days"
+    stab_rows: list[dict] = []
+    for U in marks:
+        sub_any = m[(m["buyer"] == U) | (m["seller"] == U)]
+        for K in KS:
+            col = f"fwd_mid_{K}"
+            for day, sd in sub_any.groupby("day"):
+                x = pd.to_numeric(sd[col], errors="coerce").dropna()
+                if len(x) < 5:
+                    continue
+                stab_rows.append(
+                    {
+                        "mark": U,
+                        "K": int(K),
+                        "day": int(day),
+                        "n": int(len(x)),
+                        "mean_same_sym": float(x.mean()),
+                        "median_same_sym": float(x.median()),
+                        "frac_pos": float((x > 0).mean()),
+                    }
+                )
+    if stab_rows:
+        pd.DataFrame(stab_rows).to_csv(OUT / "09_participant_stability_by_day.csv", index=False)
+        lines.append(f"Wrote {OUT / '09_participant_stability_by_day.csv'}")
 
     # Stratified: participant U touched trade (buyer or seller), symbol, spread_q, burst — K=20
     K = 20

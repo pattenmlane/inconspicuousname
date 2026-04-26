@@ -784,5 +784,22 @@
       "total_profit": 11182,
       "backtest_log_file": "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v14_d123_all_full.log"
     }
+  },
+  {
+    "iteration": 18,
+    "round": 4,
+    "trader_file": "manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v14.py",
+    "strategy_description": "No new backtest. Phase 1 script supplement: re-ran `r4_phase1_markouts.py` with HYDROGEL cross-asset columns + `09_participant_stability_by_day.csv` — see `analysis.json` iteration 18.",
+    "analysis_only": true,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 13701,
+      "backtest_log_file": "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v14_d123_worse_full.log"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 11182,
+      "backtest_log_file": "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v14_d123_all_full.log"
+    }
   }
 ]

@@ -42,5 +42,93 @@
     },
     "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v0.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
     "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v0.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis"
+  },
+  {
+    "iteration": 1,
+    "round": 4,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Sonic joint gate: quote **VELVETFRUIT_EXTRACT** only when VEV_5200 & VEV_5300 spreads <= 2; VEV + HYDRO same as v0.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 40594,
+      "backtest_log_file": "backtest_logs/trader_v1_round4_worse.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": {
+          "day1": 18963,
+          "day2": 8758,
+          "day3": 12873
+        },
+        "non_zero_pnl_products_per_day": {
+          "day1": 4,
+          "day2": 3,
+          "day3": 4
+        },
+        "note": "Gated extract reduces worse-fill extract PnL especially day 1."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 45546,
+      "backtest_log_file": "backtest_logs/trader_v1_round4_all.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": {
+          "day1": 20626,
+          "day2": 13822,
+          "day3": 11098
+        },
+        "non_zero_pnl_products_per_day": {
+          "day1": 11,
+          "day2": 10,
+          "day3": 11
+        },
+        "note": "Per-product PnL from saved stdout."
+      }
+    },
+    "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v1.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-merge-pnl",
+    "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v1.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-merge-pnl"
+  },
+  {
+    "iteration": 2,
+    "round": 4,
+    "trader_file": "trader_v2.py",
+    "strategy_description": "v0 + offline Mark01→Mark22 burst ±500 (from r4_burst_events.csv): **VEV_5300** only widens edges / shrinks MM+take in window. Extract unchanged in-window (burst extract widen hurt worse sim). Phase 3 M67→M49×tight variants tried then dropped.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 46795,
+      "backtest_log_file": "backtest_logs/trader_v2_round4_worse.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": {
+          "day1": 22938,
+          "day2": 10511,
+          "day3": 13346
+        },
+        "non_zero_pnl_products_per_day": {
+          "day1": 4,
+          "day2": 3,
+          "day3": 4
+        },
+        "note": "Matches v0 worse total; VEV_5300 burst tweak net-neutral on this run."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 49855,
+      "backtest_log_file": "backtest_logs/trader_v2_round4_all.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": {
+          "day1": 25681,
+          "day2": 13116,
+          "day3": 11058
+        },
+        "non_zero_pnl_products_per_day": {
+          "day1": 11,
+          "day2": 10,
+          "day3": 11
+        },
+        "note": "Slightly below v0 all (50040) due to day 2–3 VEV_5300 shift."
+      }
+    },
+    "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v2.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-merge-pnl",
+    "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v2.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-merge-pnl"
   }
 ]

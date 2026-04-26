@@ -1,0 +1,7 @@
+day,joint_gate_tight,count,mean
+1,False,25,1.9
+1,True,1,-5.0
+2,False,31,1.6935483870967742
+2,True,4,1.25
+3,False,21,1.5476190476190477
+3,True,7,1.8571428571428572

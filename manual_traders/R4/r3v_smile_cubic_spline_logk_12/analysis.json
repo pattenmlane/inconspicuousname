@@ -216,5 +216,19 @@
       ],
       "phase1_interaction_summary": "Phase 2 **refines** Phase 1 burst finding: **unconditional** burst extract forward **+** becomes **negative** for prints **near Mark01→Mark22** basket bursts — counterparty / orchestration matters. Phase 1 **Mark67** extract edges **stand** (not contradicted). Joint-gate-only VEV weakness from Phase 1 **unchanged**; Phase 3 should cross gate × burst × pair."
     }
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "Round 4 trader iteration (counterparty → sim): **trader_v1** Sonic-gated extract hurt worse/all vs v0. **trader_v2** encodes Phase 2 burst window via offline `r4_burst_events.csv` centers ±500; conservative quoting **VEV_5300** only in-window (global VEV shrink zeroed voucher PnL under worse). Widening extract in burst window **hurt** worse-fill sim vs v0 — left extract at v0 in-window. Phase 3 (joint tight × post **Mark 67→Mark 49** buy-aggr extract) sim tweaks **hurt** day-2 worse PnL in trials — **not** shipped in v2.",
+    "analysis_outputs": [
+      "trader_v1.py",
+      "trader_v2.py",
+      "backtest_logs/trader_v1_round4_worse.log",
+      "backtest_logs/trader_v1_round4_all.log",
+      "backtest_logs/trader_v2_round4_worse.log",
+      "backtest_logs/trader_v2_round4_all.log",
+      "results.json"
+    ],
+    "used_to_decide": "Prefer v0 or v2 for worse-fill anchor; v1 gated extract rejected for this tape. Next: stateful burst detection from `state.market_trades` if offline centers drift across tapes, or targeted extract skip only when extract prints co-locate with burst ts."
   }
 ]

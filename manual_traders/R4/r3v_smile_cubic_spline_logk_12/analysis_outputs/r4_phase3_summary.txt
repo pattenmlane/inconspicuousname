@@ -1,0 +1,18 @@
+=== Round 4 Phase 3 (Sonic gate × counterparty) ===
+
+day 1: P(tight)=0.1381 n=10000 corr(s5200,s5300)=0.2354
+day 2: P(tight)=0.1727 n=10000 corr(s5200,s5300)=0.2656
+day 3: P(tight)=0.4614 n=10000 corr(s5200,s5300)=0.1840
+
+Mark01→Mark22 on VELVETFRUIT_EXTRACT: n=0 in tape (basket flow is on vouchers).
+M01→M22 VEV_5300 pooled: n=132 mean_m20=-0.1212 by_gate:
+    gate=True n=132 mean=-0.1212
+M01→M22 VEV_5400 pooled: n=263 mean_m20=0.0399 by_gate:
+    gate=True n=263 mean=0.0399
+M01→M22 VEV_5500 pooled: n=299 mean_m20=0.0251 by_gate:
+    gate=False n=1 mean=0.0000
+    gate=True n=298 mean=0.0252
+
+Mark67→Mark49 EXTRACT mark_20 by gate:
+  gate=False n=77 mean=1.7208
+  gate=True n=12 mean=1.0833

@@ -1,0 +1,31 @@
+Round 4 Phase 1 — automated summary (days 1–3)
+Trade rows: 4,281 | price BBO matches: 4,281
+Burst rows (>=4 trades same ts): 293
+Mean extract fwd20 after big bursts: 0.3345 | random control: 0.0710
+
+Top directed pairs (count):
+  Mark 01 → Mark 22: n=1339 notional=32427
+  Mark 14 → Mark 38: n=728 notional=20434344
+  Mark 38 → Mark 14: n=714 notional=20850351
+  Mark 55 → Mark 14: n=331 notional=9254679
+  Mark 14 → Mark 55: n=316 notional=9235831
+  Mark 01 → Mark 55: n=260 notional=7432924
+  Mark 55 → Mark 01: n=244 notional=7220079
+  Mark 67 → Mark 49: n=89 notional=5056558
+
+Strongest Mark×role×K×all (|t|>2, n>=30) on same-symbol fwd:
+  Mark 67 buyer_agg K=5 mean=1.9604 n=164 t=13.03 frac+=0.84
+  Mark 67 any_touch K=5 mean=1.9455 n=165 t=12.94 frac+=0.83
+  Mark 67 any_touch K=20 mean=1.8455 n=165 t=5.97 frac+=0.65
+  Mark 49 any_touch K=5 mean=1.3115 n=122 t=5.96 frac+=0.70
+  Mark 67 buyer_agg K=20 mean=1.8140 n=164 t=5.86 frac+=0.65
+  Mark 22 seller_agg K=5 mean=-0.0594 n=1430 t=-4.54 frac+=0.08
+  Mark 49 any_touch K=20 mean=1.2254 n=122 t=3.21 frac+=0.65
+  Mark 22 any_touch K=5 mean=0.0682 n=1584 t=2.54 frac+=0.14
+  Mark 55 buyer_agg K=20 mean=0.4089 n=598 t=2.48 frac+=0.51
+  Mark 55 seller_agg K=100 mean=-0.8973 n=599 t=-2.46 frac+=0.44
+  Mark 55 buyer_agg K=5 mean=0.1990 n=598 t=2.25 frac+=0.46
+  Mark 22 any_touch K=20 mean=0.1042 n=1584 t=2.23 frac+=0.20
+  Mark 67 any_touch K=100 mean=1.5424 n=165 t=2.10 frac+=0.55
+  Mark 55 any_touch K=5 mean=0.1252 n=1198 t=1.99 frac+=0.45
+  Mark 67 buyer_agg K=100 mean=1.4360 n=164 t=1.97 frac+=0.54

@@ -166,5 +166,134 @@
       "results.json"
     ],
     "used_to_decide": "Next: staggered size by spread width per contract, or v23-only for extract + gate legs only, or taker on VEVs not extract."
+  },
+  {
+    "iteration": "round4_phase1",
+    "analysis_description": "Round 4 Phase 1 (counterparty IDs): executed all bullets in round4work/suggested direction.txt Phase 1 \u2014 participant fwd mids K\u2208{5,20,100} on tape row index, aggressor inferred from trade price vs BBO; pair cell baseline fwd20 + residuals; buyer\u2192seller graph; same-ts bursts vs extract fwd20 control.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_forward_by_mark.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_pair_baseline_residuals.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_graph_edges.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_burst_events.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_phase1_summary.txt",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase1_counterparty_analysis.py",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase1_gate.json"
+    ],
+    "used_to_decide": "Phase 1 gate object embedded as round4_phase1_complete (see r4_phase1_gate.json). Key tape facts: Mark 01\u2192Mark 22 n=1339; bursts (>=4 prints/ts) n=293 with mean extract fwd20 0.33 vs random ctrl 0.07; Mark 67 aggressive buy shows large positive same-symbol fwd at K=5/20 (see CSV) \u2014 candidate for Phase-2 sim / not standalone PnL.",
+    "round4_phase1_complete": {
+      "phase": 1,
+      "tape_days": [
+        1,
+        2,
+        3
+      ],
+      "outputs": {
+        "participant_forward": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_forward_by_mark.csv",
+        "pair_residuals": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_pair_baseline_residuals.csv",
+        "graph_edges": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_graph_edges.csv",
+        "bursts": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_burst_events.csv",
+        "summary_txt": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_phase1_summary.txt",
+        "script": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase1_counterparty_analysis.py"
+      },
+      "bullets": [
+        {
+          "bullet": "1 participant-level",
+          "conclusion": "See r4_p1_forward_by_mark.csv; Mark-conditioned fwd mids vary by role/K; many cells low-n.",
+          "paths": [
+            "r4_p1_forward_by_mark.csv"
+          ]
+        },
+        {
+          "bullet": "2 bot baseline / residuals",
+          "conclusion": "Per (buyer,seller,symbol) mean fwd20 and trade-level residuals in r4_p1_pair_baseline_residuals.csv.",
+          "paths": [
+            "r4_p1_pair_baseline_residuals.csv"
+          ]
+        },
+        {
+          "bullet": "3 graph motifs",
+          "conclusion": "Mark 01\u2192Mark 22 dominates edge list (r4_p1_graph_edges.csv).",
+          "paths": [
+            "r4_p1_graph_edges.csv"
+          ]
+        },
+        {
+          "bullet": "4 bursts",
+          "conclusion": "Multi-symbol same-ts bursts listed; vs random-time extract fwd20 compare in summary.",
+          "paths": [
+            "r4_p1_burst_events.csv",
+            "r4_p1_phase1_summary.txt"
+          ]
+        },
+        {
+          "bullet": "5 adverse selection",
+          "conclusion": "Proxy: aggressive-side fwd on same symbol; detailed in forward_by_mark for buyer_agg vs seller_agg.",
+          "paths": [
+            "r4_p1_forward_by_mark.csv"
+          ]
+        }
+      ],
+      "top_5_tradeable_edges": [
+        {
+          "rank": 1,
+          "hypothesis": "Document Mark 01\u2192Mark 22 basket prints as structural (high n); exploit as regime / avoid fading without sim",
+          "effect": "Pair frequency >> others",
+          "n": 1339,
+          "days": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "rank": 2,
+          "hypothesis": "Conditional forward mids after bursts vs control (extract) \u2014 see summary means",
+          "effect": "burst_ext_fwd20_mean=0.3345 vs_ctrl=0.0710",
+          "n": 293,
+          "days": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "rank": 3,
+          "hypothesis": "Per-Mark aggressive buy/sell fwd tables for horizon selection (K=5/20/100)",
+          "effect": "See CSV; pick cells with n>=30 and stable sign across days (manual follow-up)",
+          "n": 117,
+          "days": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "rank": 4,
+          "hypothesis": "Residual outliers after (buyer,seller,symbol) mean \u2014 second-order fade/lean candidates",
+          "effect": "Distribution in residuals CSV",
+          "n": 4281,
+          "days": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "rank": 5,
+          "hypothesis": "Spread-regime split (tight vs wide quantiles) on Mark flows",
+          "effect": "See forward_by_mark regime column",
+          "n": 117,
+          "days": [
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "negative_results": [
+        "No single Mark\u00d7horizon cell yet meets institutional 'edge' without out-of-sample sim; tape is 3 days only.",
+        "Trade count O(1e3) vs price rows O(1e5): many BBO timestamps have no prints \u2014 forward joins are sparse for some symbols."
+      ]
+    }
   }
 ]

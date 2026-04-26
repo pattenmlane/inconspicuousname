@@ -1,0 +1,38 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "trader_v0.py",
+    "strategy_description": "Placeholder: no orders. Establishes R4 results.json + worse/all log audit trail for tape days 1–3.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/backtest_worse_trader_v0_r4_d123.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_quadratic_logm_wls_10/trader_v0.py 4-1 4-2 4-3 --data Prosperity4Data --no-out --no-progress --no-vis --match-trades worse",
+      "backtest_round": 4,
+      "backtest_days": "1-3",
+      "total_profit": 0,
+      "day_total_profit": {"1": 0, "2": 0, "3": 0},
+      "trades_or_fills_summary": {
+        "note": "no trades; all product PnL 0",
+        "hydrogel_pnl_by_day": {"1": 0, "2": 0, "3": 0}
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/backtest_all_trader_v0_r4_d123.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_quadratic_logm_wls_10/trader_v0.py 4-1 4-2 4-3 --data Prosperity4Data --no-out --no-progress --no-vis --match-trades all",
+      "backtest_round": 4,
+      "backtest_days": "1-3",
+      "total_profit": 0,
+      "day_total_profit": {"1": 0, "2": 0, "3": 0},
+      "trades_or_fills_summary": {
+        "note": "identical to worse (no orders)",
+        "hydrogel_pnl_by_day": {"1": 0, "2": 0, "3": 0}
+      }
+    },
+    "phase1_analysis": {
+      "script": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase1_counterparty_analysis.py",
+      "gate_json": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase1_gate.json",
+      "summary_txt": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_phase1_summary.txt"
+    }
+  }
+]

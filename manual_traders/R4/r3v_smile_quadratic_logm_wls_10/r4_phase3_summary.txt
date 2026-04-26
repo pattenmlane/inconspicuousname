@@ -12,7 +12,7 @@ Per-day stability (r4_p3_day_stability.csv):
   day 2: ext_fwd20 Welch t=4.238 (mean_tight=0.4641 mean_wide=-0.0181 n_tight=1727 n_wide=8253) | corr_tight=-0.2510 corr_wide=nan
   day 3: ext_fwd20 Welch t=6.781 (mean_tight=0.1879 mean_wide=-0.3950 n_tight=4598 n_wide=5382) | corr_tight=-0.2461 corr_wide=0.0269
 
-Counterparty day tables: r4_p3_mark_fwd_by_day.csv, r4_p3_m0122_fwd20_by_day.csv, r4_p3_burst_echo_by_day.csv
+Counterparty day tables: r4_p3_mark_fwd_by_day.csv, r4_p3_m0122_fwd20_by_day.csv, r4_p3_burst_echo_by_day.csv, r4_p3_top_pair_fwd_by_day.csv
 
 Top spread–spread |r| on inner-join timestamps (inclineGod panel):
   sp_VEV_4000 vs sp_VEV_4500: r=0.8762 n=30000

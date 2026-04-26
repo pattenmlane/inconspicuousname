@@ -19,6 +19,7 @@ Writes:
   r4_p3_mark_fwd_by_day.csv         — per-day Mark×role×gate×K: n, mean_fwd, t_vs_zero
   r4_p3_m0122_fwd20_by_day.csv      — Mark01→Mark22 all symbols: fwd20 by day (asof-tight only)
   r4_p3_burst_echo_by_day.csv       — M01→M22 ≥3VEV burst echo grouped by day
+  r4_p3_top_pair_fwd_by_day.csv     — top graph pairs × day × K (asof-tight trades only)
   r4_phase3_summary.txt
   r4_phase3_gate.json               — fragment for analysis.json
 """
@@ -364,6 +365,62 @@ def main() -> None:
         m122_day.append({"day": int(d), "n": n, "mean_fwd20": mu, "t_vs_zero": t0})
     pd.DataFrame(m122_day).to_csv(OUT / "r4_p3_m0122_fwd20_by_day.csv", index=False)
 
+    # --- Top directed pairs (from Phase 1 graph) × day × horizon, asof-tight only
+    eg_path = OUT / "r4_p1_graph_edges.csv"
+    if eg_path.is_file():
+        eg = pd.read_csv(eg_path).sort_values("n", ascending=False).head(8)
+        top_pairs = [(str(r.buyer), str(r.seller)) for r in eg.itertuples(index=False)]
+    else:
+        top_pairs = [
+            ("Mark 01", "Mark 22"),
+            ("Mark 14", "Mark 38"),
+            ("Mark 38", "Mark 14"),
+            ("Mark 55", "Mark 14"),
+            ("Mark 14", "Mark 55"),
+            ("Mark 01", "Mark 55"),
+            ("Mark 55", "Mark 01"),
+            ("Mark 67", "Mark 49"),
+        ]
+    pair_rows: list[dict] = []
+    mt = md[md["joint_tight"]]
+    for buyer, seller in top_pairs:
+        base = mt[(mt["buyer"] == buyer) & (mt["seller"] == seller)]
+        for d in DAYS:
+            sub = base[base["day"] == d]
+            for k in KS:
+                col = f"fwd_mid_{k}"
+                vals = sub[col].dropna().astype(float).to_numpy()
+                vals = vals[np.isfinite(vals)]
+                n = len(vals)
+                if n < 5:
+                    pair_rows.append(
+                        {
+                            "buyer": buyer,
+                            "seller": seller,
+                            "day": int(d),
+                            "horizon_K": k,
+                            "n": n,
+                            "mean_fwd": float("nan"),
+                            "t_vs_zero": float("nan"),
+                        }
+                    )
+                    continue
+                mu = float(np.mean(vals))
+                sd = float(np.std(vals, ddof=1))
+                t0 = float(mu / (sd / math.sqrt(n))) if n > 1 and sd > 0 else float("nan")
+                pair_rows.append(
+                    {
+                        "buyer": buyer,
+                        "seller": seller,
+                        "day": int(d),
+                        "horizon_K": k,
+                        "n": n,
+                        "mean_fwd": mu,
+                        "t_vs_zero": t0,
+                    }
+                )
+    pd.DataFrame(pair_rows).to_csv(OUT / "r4_p3_top_pair_fwd_by_day.csv", index=False)
+
     # Phase-1 bursts (>=4 trades same ts) × gate
     def _symset(s: pd.Series) -> str:
         return ",".join(sorted({str(x) for x in s}))
@@ -588,7 +645,7 @@ def main() -> None:
     lines.extend(
         [
             "",
-            "Counterparty day tables: r4_p3_mark_fwd_by_day.csv, r4_p3_m0122_fwd20_by_day.csv, r4_p3_burst_echo_by_day.csv",
+            "Counterparty day tables: r4_p3_mark_fwd_by_day.csv, r4_p3_m0122_fwd20_by_day.csv, r4_p3_burst_echo_by_day.csv, r4_p3_top_pair_fwd_by_day.csv",
             "",
             "Top spread–spread |r| on inner-join timestamps (inclineGod panel):",
         ]
@@ -666,6 +723,7 @@ def main() -> None:
                 "r4_p3_mark_fwd_by_day.csv",
                 "r4_p3_m0122_fwd20_by_day.csv",
                 "r4_p3_burst_echo_by_day.csv",
+                "r4_p3_top_pair_fwd_by_day.csv",
                 "r4_phase3_summary.txt",
                 "r4_phase3_analysis.py",
             )},

@@ -91,6 +91,7 @@
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_mark_fwd_by_day.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_fwd20_by_day.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_burst_echo_by_day.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_top_pair_fwd_by_day.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_gate.json",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
     ],
@@ -114,6 +115,7 @@
         "mark_fwd_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_mark_fwd_by_day.csv",
         "m0122_fwd20_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_fwd20_by_day.csv",
         "burst_echo_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_burst_echo_by_day.csv",
+        "top_pair_fwd_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_top_pair_fwd_by_day.csv",
         "gate_json": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_gate.json",
         "script": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
       },
@@ -167,5 +169,14 @@
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
     ],
     "used_to_decide": "M01→M22 fwd20 under asof-tight: day1 mean -0.048 (t≈-1.42), day2 +0.023 (t≈0.75), day3 +0.039 (t≈1.12) — sign not stable across days at K=20. Burst echo fwd5: positive mean all three days (~0.23–0.31) with ~0.50 frac positive. Sim: trader_v3 wing spread cap lowers total vs v2 (3905 vs 6088), so v2 wing PnL was net additive on this tape."
+  },
+  {
+    "iteration": "round4_phase3_top_pairs_by_day",
+    "analysis_description": "Directed buyer→seller pairs from Phase 1 graph (top 8 by count): per-day, per-horizon K∈{5,20,100}, same-symbol forward mid move on asof-tight trades only (r4_p3_top_pair_fwd_by_day.csv). Hydro-heavy pairs (14↔38) have tiny n per day (36–116); M01→M22 has hundreds of prints per day.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_top_pair_fwd_by_day.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
+    ],
+    "used_to_decide": "M01→M22: K=100 on day 3 shows mean_fwd≈0.14 and t≈2.24 (n=549) while K=5 stays negative — horizon matters; day-stability for short K still mixed. Mark14→Mark38 / Mark38→Mark14 cells flip sign by day at K=20 with low n. Sim ablation: trader_v4 (MM 28 vs v1 18) identical PnL 3634 — clip not binding vs v1 on R4 joint-gate MM."
   }
 ]

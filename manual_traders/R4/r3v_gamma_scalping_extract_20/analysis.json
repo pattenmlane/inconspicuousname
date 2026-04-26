@@ -533,5 +533,15 @@
       "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v26.json"
     ],
     "used_to_decide": "Strengthens **round4_phase3_complete** narrative: joint gate is not redundant for **sim PnL** when pairing with aggressive extract follow under adverse fills."
+  },
+  {
+    "iteration": 28,
+    "analysis_description": "**Tape mid markouts vs `v26`:** `r4_mark67_extract_fwdmid_joint_gate_split.py` → pooled `r4_mark67_extract_fwdmid_joint_gate_pooled.csv` + by-day `r4_mark67_extract_fwdmid_joint_gate_by_day.csv`. Same **Mark 67** aggressive-extract definition as sim; **K** = forward steps on sorted unique timestamps (Phase 1 convention). **Pooled n:** joint-tight **27**, not-tight **137**. **Mean Δmid (extract):** at **K=5** tight **1.78** vs loose **2.00**; **K=20** tight **2.06** vs loose **1.77**; **K=100** tight **1.70** vs loose **1.31** — **no** simple “only tight has positive mid edge” story; loose cohort is **similar or larger** at short horizons. **Day 3** both cohorts **negative** at **K=100** (tight **−0.97**, loose **−1.13**). **Interpretation for `v26`:** lifting at **ask** on **every** aggressive print (`worse` fills) is **not** summarized by unconditional mid markouts; **v19**’s gate **thins** trade count to the subset where sim + surface stack worked — **execution / inventory** dominates over mid-only tables.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/r4_mark67_extract_fwdmid_joint_gate_split.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_mark67_extract_fwdmid_joint_gate_pooled.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_mark67_extract_fwdmid_joint_gate_by_day.csv"
+    ],
+    "used_to_decide": "Negative result for **‘mid markout proves always-lift’** under loose books; reinforces **Phase 1 vs sim** gap already seen with **`trader_v1`**. Keep **v19**; cite these CSVs when explaining why **gate stays on extract** despite similar short-horizon mids."
   }
 ]

@@ -1,0 +1,13 @@
+cohort,day,sonic_tight,n,mean_fwd20
+Mark67_any,1,True,5,1.2
+Mark67_any,1,False,53,2.1132075471698113
+Mark67_any,2,True,7,2.142857142857143
+Mark67_any,2,False,54,1.3611111111111112
+Mark67_any,3,True,15,2.3
+Mark67_any,3,False,31,2.0483870967741935
+Mark55_Mark14_extract,1,True,14,2.3214285714285716
+Mark55_Mark14_extract,1,False,83,1.1506024096385543
+Mark55_Mark14_extract,2,True,20,0.45
+Mark55_Mark14_extract,2,False,98,0.4336734693877551
+Mark55_Mark14_extract,3,True,52,-0.0673076923076923
+Mark55_Mark14_extract,3,False,64,0.2265625

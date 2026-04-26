@@ -1,0 +1,5 @@
+Mark 01 -> Mark 22 all symbols pooled:
+  n_all=1339 mean_fwd20=0.0085885
+  n_tight=1336 mean=0.00860778
+  n_loose=3 mean=0
+Welch tight vs loose: (0.008607784431137725, 0.0, 0.43663778356201505, 0.6624446652078051)

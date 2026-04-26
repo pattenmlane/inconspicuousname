@@ -1,0 +1,4 @@
+Pooled days [1, 2, 3]: n_tight=7706 n_loose=22234
+mean_fwd_extract_K20 tight=0.323514 loose=-0.121031 welch_t=7.9351 p=2.268e-15
+P(tight)=0.2574
+corr(s5200,s5300)=0.3071

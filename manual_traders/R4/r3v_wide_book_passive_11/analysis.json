@@ -173,8 +173,74 @@
         "Mid-passive prints (price strictly inside L1 at trade time) are negligible (n≈3) — Phase-2 passive adverse-selection table empty; tape mostly touch trades.",
         "corr(microprice−mid, |Δmid next|) ≈ **0.01** — microprice imbalance does not predict next-step extract volatility here.",
         "Sonic gate does **not** strengthen Mark55→Mark14 or Mark67 Phase-1 highlights on the splits we ran (often opposite sign / small n on tight)."
+      ]
+    }
+  },
+  {
+    "iteration": 2,
+    "round": 4,
+    "analysis_description": "Phase 3 per ping_followup_phases: r4_phase3_sonic_gate.py — R3-style inner join (5200,5300,extract) per day with dedupe per product per timestamp; tight=(s5200<=2)&(s5300<=2); extract K=20 forward on panel; spread–spread correlation matrix on pooled panel; trades merged to panel for sonic_tight at print time; three-way (buyer,seller,symbol,tight) mean fwd20 (min n>=15); Mark01→22 by symbol×gate; key cohorts by day×gate; inclineGod spread matrix s5200,s5300,s_ext.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wide_book_passive_11/r4_phase3_sonic_gate.py",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase3/00_README_PHASE3.txt",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase3/p3_00_pooled_extract_fwd_tight_vs_loose.txt",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase3/p3_01_extract_fwdK_tight_vs_loose_by_day.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase3/p3_02_spread_correlations_panel_by_day.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase3/p3_03_three_way_pair_symbol_gate_fwd20.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase3/p3_04_mark01_22_fwd20_by_symbol_and_gate.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase3/p3_05_key_marks_fwd20_by_day_and_gate.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase3/p3_06_mark01_22_gate_interaction_summary.txt",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase3/p3_07_spread_spread_matrix_pooled.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase3/p3_08_tierA_mark67_mark22_extract_gate.csv"
+    ],
+    "used_to_decide": "round4_phase3_complete documents Sonic replication on R4, spread panels, and whether gate cleans counterparty-conditioned signals vs Phase 1/2.",
+    "round4_phase3_complete": {
+      "r3_convention_match": "Same as analyze_vev_5200_5300_tight_gate_r3.py: inner join timestamps for VEV_5200, VEV_5300, VELVETFRUIT_EXTRACT; first row per (product,timestamp); spread=ask1-bid1; tight=(s5200<=2)&(s5300<=2); fwd_k_extract=m_ext.shift(-K)-m_ext with K=20.",
+      "sonic_extract_forward_replication_r4": {
+        "pooled_days_123": "n_tight=7706 n_loose=22234; mean_fwd_extract_K20 tight=0.324 vs loose=-0.121; Welch t≈7.94 p≈2.3e-15; P(tight)≈0.257. Confirms Sonic-style mid edge on extract in R4 panel (mid-only).",
+        "by_day": "p3_01_extract_fwdK_tight_vs_loose_by_day.csv — tight mean > loose each day; p-values strong days 1–3.",
+        "vs_phase1_2": "Phase 2 showed trade-time Sonic splits did not help Mark55→14 / Mark67 aggregates; **panel-level** extract forward still strongly favors tight gate — distinction: **population timestamp** conditioning vs **sparse trade-time** subset."
+      },
+      "inclineGod_spread_panels": {
+        "spread_spread_matrix": "p3_07_spread_spread_matrix_pooled.csv — corr(s5200,s5300)≈0.31; corr(s5200,s_ext)≈0.009; corr(s5300,s_ext)≈0.005 (extract L1 width nearly orthogonal to voucher gate legs in level correlation).",
+        "spread_vs_fwd_extract": "p3_02: corr(s5200,fwd_k) and corr(s5300,fwd_k) weakly negative (~-0.05 to -0.07) per day — slight tendency for wider legs to associate with worse forward extract step (noise-dominated vs R3 summary magnitude)."
+      },
+      "counterparty_x_gate_synthesis": {
+        "Mark01_Mark22": "Pooled 01→22 all symbols: mean_fwd20≈0.0086; **n_loose=3** at merged trade timestamps (most basket prints occur when panel is tight) — gate does not separate 01→22 at trade time (Welch meaningless). Per-symbol table p3_04: deep wings still ~0 fwd; VEV_5200 shows positive mean only when tight (n=11).",
+        "Mark67_Mark22_EXTRACT": "**Tier-A three-way:** tight mean_fwd20≈2.83 (n=15) vs loose≈1.83 (n=60) — gate **amplifies** this niche pair on extract (p3_08 / p3_03). This **refines** Phase-1 Mark67 story: interaction exists for **67→22** on extract under joint tight books; not visible in Phase-2 coarse Mark67_any split.",
+        "Mark55_Mark14_extract": "Day-stable mixed: day1 tight>loose; day3 tight negative (p3_05) — not Tier-A; aligns Phase-2 finding that Sonic does not universally clean this pair."
+      },
+      "does_gate_clean_signal_sonic_claim": "For **extract mid forward** on the **aligned panel**, yes (large t-stats, all days). For **counterparty-conditioned** edges: **mixed** — global Mark splits often unchanged, but **Mark 67 → Mark 22 on VELVETFRUIT_EXTRACT** shows higher mean fwd20 when tight (small n). Mark 01→22 basket remains structurally tied to tight timestamps so gate does not separate loose/tight at trades.",
+      "ranked_tier_edges_phase3": [
+        {
+          "tier": "A",
+          "edge": "(Mark 67, Mark 22, VELVETFRUIT_EXTRACT) × sonic_tight: mean_fwd20 **2.83** (n=15 tight) vs **1.83** (n=60 loose)",
+          "evidence": "analysis_outputs_r4_phase3/p3_08_tierA_mark67_mark22_extract_gate.csv",
+          "caveat": "Low n tight; validate with execution / hold horizon before sizing"
+        },
+        {
+          "tier": "A",
+          "edge": "Panel extract K=20 forward: **tight** regimes outperform **loose** (pooled + per-day Welch)",
+          "evidence": "p3_00, p3_01",
+          "caveat": "Mid-only; bid/ask PnL may differ (STRATEGY caveat)"
+        },
+        {
+          "tier": "B",
+          "edge": "corr(s5200,s5300)≈0.31 pooled — joint tight region is a real co-movement cluster (inclineGod)",
+          "evidence": "p3_00, p3_07"
+        },
+        {
+          "tier": "B",
+          "edge": "Mark 14→Mark 38 on VEV_4000 when tight: mean_fwd20≈1.1 (n=55) — strong cell in p3_03",
+          "evidence": "p3_03_three_way_pair_symbol_gate_fwd20.csv"
+        },
+        {
+          "tier": "C",
+          "edge": "Mark 01→22 VEV_5200 prints when tight: mean_fwd20≈0.86 (n=11) — tiny n",
+          "evidence": "p3_04"
+        }
       ],
-      "phase3_note": "Not started; requires PHASE3 ping and joint-gate re-runs per instructions."
+      "phase4_note": "Next: encode Tier-A in trader_r4_v1.py with conservative sizing; run worse+all backtests."
     }
   }
 ]

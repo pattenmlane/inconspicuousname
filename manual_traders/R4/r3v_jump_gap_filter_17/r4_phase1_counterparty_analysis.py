@@ -411,8 +411,57 @@ def main() -> None:
         OUT / "adverse_proxy_k20_by_pair.csv", index=False
     )
 
+    # --- 1b) Every distinct name: trade-row coverage (spec: tag each U)
+    tr_names = tr["buyer"].astype(str), tr["seller"].astype(str)
+    all_u = sorted(set(tr_names[0].unique()) | set(tr_names[1].unique()))
+    cov_rows = []
+    for U in all_u:
+        msk = (tr["buyer"] == U) | (tr["seller"] == U)
+        ev_msk = (ev["buyer"] == U) | (ev["seller"] == U)
+        cov_rows.append(
+            {
+                "participant": U,
+                "n_trade_prints": int(msk.sum()),
+                "n_event_horizon_rows": int(ev_msk.sum()),
+            }
+        )
+    pd.DataFrame(cov_rows).sort_values("n_trade_prints", ascending=False).to_csv(
+        OUT / "participant_name_coverage.csv", index=False
+    )
+
+    # --- 1c) Per-day mean fwd (same symbol) for top Phase-1 extract K=5 aggr-buy signals
+    stab_specs: list[tuple[str, str, str, int]] = [
+        ("Mark 67", "buyer", "aggr_buy", 5),
+        ("Mark 22", "seller", "aggr_buy", 5),
+        ("Mark 49", "seller", "aggr_buy", 5),
+    ]
+    stab_rows: list[dict] = []
+    for U, role, ag, K in stab_specs:
+        if role == "buyer":
+            base = ev[(ev["buyer"] == U) & (ev["aggressor"] == ag) & (ev["symbol"] == "VELVETFRUIT_EXTRACT") & (ev["K"] == K)]
+        else:
+            base = ev[(ev["seller"] == U) & (ev["aggressor"] == ag) & (ev["symbol"] == "VELVETFRUIT_EXTRACT") & (ev["K"] == K)]
+        for d in DAYS:
+            g = base[base["day"] == d]
+            n = int(len(g))
+            if n == 0:
+                continue
+            v = g["fwd_same"].astype(float)
+            stab_rows.append(
+                {
+                    "signal_key": f"{U}_{role}_{ag}_EXTRACT_K{K}",
+                    "day": d,
+                    "n": n,
+                    "mean_fwd_same": float(v.mean()),
+                    "median_fwd_same": float(v.median()),
+                    "frac_pos": float((v > 0).mean()),
+                }
+            )
+    pd.DataFrame(stab_rows).to_csv(OUT / "extract_aggrbuy_top3_per_day_stability.csv", index=False)
+
     # Narrative summary for humans
     summ = []
+    summ.append("Also: participant_name_coverage.csv (all names), extract_aggrbuy_top3_per_day_stability.csv")
     summ.append("Round 4 Phase 1 — automated summary (see CSVs in same folder)")
     summ.append(f"Trade rows: {len(tr)} | Event horizons rows: {len(ev)}")
     summ.append("")

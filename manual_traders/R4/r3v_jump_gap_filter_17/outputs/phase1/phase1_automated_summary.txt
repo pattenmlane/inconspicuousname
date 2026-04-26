@@ -1,3 +1,4 @@
+Also: participant_name_coverage.csv (all names), extract_aggrbuy_top3_per_day_stability.csv
 Round 4 Phase 1 — automated summary (see CSVs in same folder)
 Trade rows: 4281 | Event horizons rows: 12843
 

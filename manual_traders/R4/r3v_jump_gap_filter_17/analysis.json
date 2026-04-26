@@ -17,6 +17,8 @@
       "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/burst_vs_control_extract_fwd.csv",
       "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/adverse_proxy_k20_by_pair.csv",
       "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/phase1_automated_summary.txt",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/participant_name_coverage.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/extract_aggrbuy_top3_per_day_stability.csv",
       "round4work/outputs/r4_initial_analysis_summary.txt",
       "round4work/r4_counterparty_initial_sketch.py"
     ],
@@ -108,7 +110,11 @@
         "Most per-participant × VEV cells have too few prints for stable inference outside extract and 01→22 lanes.",
         "Backtester `TradingState.market_trades` is empty during `Trader.run` — tape CSV is authoritative for Mark conditioning until runner exposes trades.",
         "round4work/round4description.txt TTE: only VEV_5000 example; `r4_t_years.py` uses 5−day at open + R3-style intraday wind (confirm if spec updates)."
-      ]
+      ],
+      "phase1_supplement_files_iteration_16": {
+        "participant_name_coverage.csv": "All distinct names on R4 tape with trade-print and event-row counts (8 Mark participants in this data).",
+        "extract_aggrbuy_top3_per_day_stability.csv": "Per-day K=5 mean/median/frac_pos for Mark67/22/49 aggr-buy extract — all days positive (tie-break for multi-day stability)."
+      }
     }
   },
   {
@@ -390,5 +396,16 @@
       "manual_traders/R4/r3v_jump_gap_filter_17/results.json"
     ],
     "used_to_decide": "Treat Phase 1–3 as **closed** on tape evidence for this branch; further work is **sim translation** (precompute + `trader_v*`) and optional **new** tape slices — not re-litigating gate CSVs unless data or TH changes."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "**Phase 1 spec supplement (R4 tape has 8 Mark names only):** Extended `r4_phase1_counterparty_analysis.py` to emit (1) **`participant_name_coverage.csv`** — every distinct **buyer/seller** string with `n_trade_prints` and `n_event_horizon_rows` (3 K × expanded events per print). Addresses “each U” at **coverage** level; the original **stratified t-stats** in `participant_forward_stats.csv` still require n≥8 per cell (rare for low-count names). (2) **`extract_aggrbuy_top3_per_day_stability.csv`** — for Phase-1 Tier-A extract edges Mark67 buyer / Mark22 seller / Mark49 seller (aggr_buy, VELVETFRUIT_EXTRACT, K=5), per-day **mean, median, frac_pos**: all three days show **positive mean_fwd_same** (Mark67 1.75–2.20 tick range; Mark22 1.82–2.27; Mark49 1.65–2.01), supporting **day-stability** of the K=5 long drift on tape (not a single-day fluke). Pointers also added under `round4_phase1_complete.phase1_supplement_files_iteration_16` in iteration 0. R3 community refs in-repo: `round3work/vouchers_final_strategy/` (or `previous round work/round3work/...` if your clone uses that path).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_jump_gap_filter_17/r4_phase1_counterparty_analysis.py",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/participant_name_coverage.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/extract_aggrbuy_top3_per_day_stability.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/phase1_automated_summary.txt"
+    ],
+    "used_to_decide": "Keep **r4_phase1_counterparty_analysis.py** as the regen entrypoint; Phase-1 **cell tables** for thin names remain empty by design (min-n guards) — use **coverage** + **stability** CSVs for “everyone got counted” and top-edge **day** checks. Sim overlay remains **`trader_v13`** for worse-match extract in this folder."
   }
 ]

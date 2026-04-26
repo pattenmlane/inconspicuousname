@@ -55,9 +55,10 @@
           "outputs": [
             "analysis_outputs/r4_burst_summary.json",
             "analysis_outputs/r4_burst_vs_control_extract_fwd20.json",
-            "analysis_outputs/r4_burst_vs_control_by_day.json"
+            "analysis_outputs/r4_burst_vs_control_by_day.json",
+            "analysis_outputs/r4_burst_orchestrator_modes.json"
           ],
-          "conclusion": "Pooled burst extract fwd20 modestly positive vs control; day-split mixed."
+          "conclusion": "Pooled burst extract fwd20 modestly positive vs control; day-split mixed. **Orchestrator (>=3 trades same ts):** **~99.7%** of **318** bursts have **Mark 01** as some buyer and **Mark 22** as some seller; modal top buyer in burst = **Mark 01** (314/318), modal top seller = **Mark 22** (317/318) — bursts are **almost entirely** the M01→M22 basket machine, not a diverse multi-party burst class."
         },
         {
           "bullet": "5) Adverse selection vs inventory",
@@ -125,6 +126,10 @@
       "analysis_outputs/r4_phase2_run_meta.json",
       "run_r4_leadlag_extract_vev_mids.py",
       "analysis_outputs/r4_leadlag_extract_vev_mids_deltas_by_day.json",
+      "run_r4_burst_orchestrator.py",
+      "analysis_outputs/r4_burst_orchestrator_modes.json",
+      "run_r4_hourly_signed_flow_extract_lagcorr.py",
+      "analysis_outputs/r4_hourly_signed_extract_flow_vs_return_lag.json",
       "trader_v1.py",
       "_r3v_smile_core.py",
       "backtest_logs/trader_v1_worse.log",
@@ -138,7 +143,8 @@
         "joint_gate": "Phase 2 joint tight (5200+5300<=2) at M01→M22 burst times: only n=7 tight vs n=310 wide for extract fwd20; tight mean higher (~+0.71 vs ~+0.27) but tiny n — Sonic gate 'cleans' only a rare slice here (partial support, not statistically tight).",
         "microprice": "Orthogonal to counterparty: tight extract spread bin shows large mean fwd10 mid (+2.0 on n=186) vs negative in wide bins — confirms spread regime matters for mid dynamics (inclineGod-style).",
         "residuals": "Signed aggressive net flow vs extract fwd20 corr ~0.12 (n=764) — weak linear link; does not replace pair/burst structure.",
-        "lead_lag_mids_extension": "r4_leadlag_extract_vev_mids_deltas_by_day.json: corr(Δm_extract, Δm_5200/5300) **strong at k=0** (e.g. day 1 ~0.71/0.62), **~0 for k≥1** at snapshot lags — co-movement is **contemporaneous** in this construction, not a clean voucher-**lead** over extract at tape resolution."
+        "lead_lag_mids_extension": "r4_leadlag_extract_vev_mids_deltas_by_day.json: corr(Δm_extract, Δm_5200/5300) **strong at k=0** (e.g. day 1 ~0.71/0.62), **~0 for k≥1** at snapshot lags — co-movement is **contemporaneous** in this construction, not a clean voucher-**lead** over extract at tape resolution.",
+        "hourly_signed_flow_lag": "r4_hourly_signed_extract_flow_vs_return_lag.json: corr(hourly signed aggressive extract **flow**, extract **intra-hour** mid return) **~0.17** at L=0, **~0.11** at L=1–3 (n~63–72 (day,hour) cells) — weak positive link at **hour** grain; not a strong distributed-lag lead."
       },
       "top_5_tradeable_edges": [
         {
@@ -461,6 +467,23 @@
     "round4_post_phase2_notes": {
       "phase1_bullet2_updated": "round4_phase1_complete bullet 2 now references r4_mark_flow_balance_hubs.json.",
       "hybrid_v14": "Slightly wider 5300 without loosening 5200 is empirically inactive vs v2 on this backtester slice."
+    }
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "Phase 1 burst orchestrator modes (modal buyer/seller per burst ts); Phase 2 hourly signed aggressive extract flow vs lagged intra-hour extract return corr. Sim: trader_v15 Q=2 vs v2 Q=4.",
+    "analysis_outputs": [
+      "run_r4_burst_orchestrator.py",
+      "analysis_outputs/r4_burst_orchestrator_modes.json",
+      "run_r4_hourly_signed_flow_extract_lagcorr.py",
+      "analysis_outputs/r4_hourly_signed_extract_flow_vs_return_lag.json",
+      "trader_v15.py",
+      "backtest_logs/trader_v15_worse.log",
+      "backtest_logs/trader_v15_all.log"
+    ],
+    "used_to_decide": "**Burst orchestration (r4_burst_orchestrator_modes.json):** **318** burst timestamps; **~99.7%** have **Mark 01** as *some* buyer and **Mark 22** as *some* seller on that clock; modal **most frequent buyer** in burst = **Mark 01** (314), modal **most frequent seller** = **Mark 22** (317) — bursts are **structurally** the basket pipeline, not a generic multi-party burst class. **Hourly signed flow (r4_hourly_signed_extract_flow_vs_return_lag.json):** weak positive corr (**~0.11–0.17**) between hour **H** signed aggressive extract flow and extract **in-hour** return at H+L (L=0..3); n~63–72 cells — **not** a strong cross-hour lead. **trader_v15** (Q=**2**): worse **6,686** / all **6,692** vs v2 **13,236** — halving clip **cuts** PnL despite more trade rows; **Q=4** remains better on this passive style.",
+    "round4_post_phase1_notes": {
+      "phase1_bullet4_updated": "round4_phase1_complete bullet 4 now includes r4_burst_orchestrator_modes.json."
     }
   }
 ]

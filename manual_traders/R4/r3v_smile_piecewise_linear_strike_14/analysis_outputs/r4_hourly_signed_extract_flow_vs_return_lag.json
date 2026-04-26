@@ -1,0 +1,21 @@
+{
+  "method": "hour=(ts//10000)%24; flow=sum signed qty on extract aggressive trades; return_h = last_mid-first_mid in hour",
+  "lags": {
+    "0": {
+      "n": 72,
+      "corr": 0.17074868995047665
+    },
+    "1": {
+      "n": 69,
+      "corr": 0.11024941401259832
+    },
+    "2": {
+      "n": 66,
+      "corr": 0.10914640401999817
+    },
+    "3": {
+      "n": 63,
+      "corr": 0.11843192530492457
+    }
+  }
+}

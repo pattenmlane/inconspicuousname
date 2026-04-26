@@ -1,0 +1,34 @@
+{
+  "n_burst_timestamps": 318,
+  "frac_burst_with_mark01_as_any_buyer": 0.9968553459119497,
+  "frac_burst_with_mark22_as_any_seller": 0.9968553459119497,
+  "frac_burst_with_mark01_buyer_and_mark22_seller": 0.9968553459119497,
+  "top_mode_buyer_across_bursts": [
+    {
+      "name": "Mark 01",
+      "n_top1": 314
+    },
+    {
+      "name": "Mark 38",
+      "n_top1": 2
+    },
+    {
+      "name": "Mark 14",
+      "n_top1": 1
+    },
+    {
+      "name": "Mark 22",
+      "n_top1": 1
+    }
+  ],
+  "top_mode_seller_across_bursts": [
+    {
+      "name": "Mark 22",
+      "n_top1": 317
+    },
+    {
+      "name": "Mark 38",
+      "n_top1": 1
+    }
+  ]
+}

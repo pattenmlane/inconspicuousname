@@ -388,5 +388,31 @@
       },
       "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R4/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_piecewise_linear_strike_14/trader_v14.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v14_all.log"
     }
+  },
+  {
+    "iteration": 15,
+    "trader_file": "trader_v15.py",
+    "strategy_description": "Sonic joint gate (same as v2) with Q=2 passive buy clip — size sensitivity vs v2 Q=4.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 6686,
+      "backtest_log_file": "manual_traders/R4/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v15_worse.log",
+      "trades_or_fills_summary": {
+        "n_trades": 4441,
+        "notable_symbols": ["VELVETFRUIT_EXTRACT"]
+      },
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R4/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_piecewise_linear_strike_14/trader_v15.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v15_worse.log"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 6692,
+      "backtest_log_file": "manual_traders/R4/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v15_all.log",
+      "trades_or_fills_summary": {
+        "n_trades": 4442,
+        "notable_symbols": ["VELVETFRUIT_EXTRACT"]
+      },
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R4/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_piecewise_linear_strike_14/trader_v15.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v15_all.log"
+    }
   }
 ]

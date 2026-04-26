@@ -415,5 +415,18 @@
       "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v27_2026-04-26_r4_worse_mergedfix.log"
     ],
     "used_to_decide": "Pre-filtered **v26/v38** line remains the only positive Mark67+V5300 branch in this sweep; do not resurrect v27-style forced exits."
+  },
+  {
+    "iteration": 20,
+    "analysis_description": "**EOD_PAD grid** on fixed v26+v38 logic (tape days 1–2 flatten before roll): 200/300 → **+3,231** (same as bare v26); 500 (v38) **+3,253**; 600 **+3,273**; **750 (v42) +3,279**; 1000 **+3,218** (worse: early exit costs day_1). Effect is **not** monotonic; best is a **~750** local-timestamp pre-close band.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v40.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v41.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v42.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v43.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v44.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v42_2026-04-25_r4_worse.log"
+    ],
+    "used_to_decide": "Ship **trader_v42** (+26 vs fixed v26, +26 vs v38) as the tuned EOD variant; v38 (500) remains a simpler near-best if you want one knob."
   }
 ]

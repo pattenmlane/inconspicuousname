@@ -1,0 +1,2 @@
+U microprice/spread vs forward |d_mid| (1 tick ahead, pooled days 1-3)
+corr(spread_t, |dU|_t+1)=-0.2200  corr(micro-mid, |dU|_t+1)=0.0068 n=30000

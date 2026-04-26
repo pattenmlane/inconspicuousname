@@ -18,5 +18,25 @@
       "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v0_all.txt",
       "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v0_all.json"
     }
+  },
+  {
+    "iteration": 1,
+    "trader_file": null,
+    "strategy_description": "Phase 2 offline analysis only (no new trader). See run_phase2_analysis.py and outputs/r4_phase2_*.csv|txt|json; analysis gate round4_phase2_complete in analysis.json.",
+    "backtest_command_base": null,
+    "total_profit": null,
+    "backtest_round": 4,
+    "backtest_worse": null,
+    "backtest_all": null,
+    "phase2_analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_research/run_phase2_analysis.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase2_burst_type_U_fwd.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase2_burst_U_fwd20_by_day.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase2_signed_flow_leadlag_U.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase2_microprice_spread_vs_U.txt",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase2_hydro_vs_U_lagcorr.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase2_vev5300_iv_by_mark.json",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase2_mark22_sell_vev_mark20_burst_vs_not.csv"
+    ]
   }
 ]

@@ -1,0 +1,5 @@
+label,n_events,mean_fwd_U_5,mean_fwd_U_20,mean_fwd_U_100
+burst>=4 AND all prints are Mark01->Mark22,194,0.14175257731958762,0.32989690721649484,0.0234375
+burst>=4 mixed (has 01->22 but not exclusively),98,-0.17857142857142858,0.2857142857142857,1.0
+burst>=4 no Mark01->Mark22 print,1,3.5,6.0,17.0
+control sample non-burst U rows,293,0.006825938566552901,-0.13651877133105803,-0.22602739726027396

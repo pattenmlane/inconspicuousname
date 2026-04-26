@@ -19,9 +19,15 @@
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_bootstrap.json",
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_by_day.csv",
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_burst_vs_non_welch.json",
-      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_mark22_vev_sell_by_session.csv"
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_mark22_vev_sell_by_session.csv",
+      "manual_traders/R4/r4_counterparty_research/run_phase1_burst_random_control_r4.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_burst_vs_session_random.json",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_burst_vs_session_random.txt",
+      "manual_traders/R4/r4_counterparty_research/run_phase1_all_names_markout_rollup_r4.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_name_mark20_rollup.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_name_mark20_rollup.json"
     ],
-    "used_to_decide": "Phase 1 exhaustive pass on ROUND_4 days 1-3; plus statistical supplement (bootstrap CI on mean mark_20, Welch burst vs non on U@20, Mark22 VEV sell by session, per-day participant means). Ready for Phase 2.",
+    "used_to_decide": "Phase 1 exhaustive pass on ROUND_4 days 1-3; plus statistical supplement (bootstrap, Welch, session-matched random null for bursts, per-name markout rollups for all distinct Mark IDs). Phases 2-3 also complete. Ready for sim iteration.",
     "round4_phase1_complete": {
       "bullets": [
         {
@@ -30,9 +36,10 @@
             "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_summary.txt",
             "manual_traders/R4/r4_counterparty_research/outputs/r4_trades_enriched_markouts.csv",
             "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_bootstrap.csv",
-            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_by_day.csv"
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_by_day.csv",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_name_mark20_rollup.csv"
           ],
-          "conclusion": "Aggressive buys: Mark 67 K=20 same-symbol bootstrap CI excludes 0 (n=164). Mark 55 same (n=598). Mark 38 pooled negative but mean_U@20 CI crosses 0; per-day sign flips (r4_phase1_participant_u20_by_day.csv). Aggressive sells: Mark 22 VEV mean mark_20_sym ~-0.026 with CI including 0. All patterns still need sim PnL before trading."
+          "conclusion": "R4 has only 7 buyers / 6 sellers in tape; r4_phase1_name_mark20_rollup.csv lists every name x role (buyer_any, seller_any, aggr_buy, aggr_sell) with mean mark_20 sym/U. Mark 67/55 aggressive buy CIs still exclude 0; Mark 38 CI crosses 0 with day flips. All patterns still need sim PnL before trading."
         },
         {
           "topic": "2) Deviation from bot baseline",
@@ -54,9 +61,10 @@
           "topic": "4) Burst structure",
           "outputs": [
             "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_summary.txt",
-            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_burst_vs_non_welch.json"
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_burst_vs_non_welch.json",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_burst_vs_session_random.json"
           ],
-          "conclusion": "Same-timestamp bursts: mean U@20 ~0.345 vs ~0.095 (n=1395 vs 2884). Welch two-sample t-test (unequal var) two-sided p~0.09 on mark_20_u difference \u2014 large effect but not significant at alpha=0.05 on this sample; Phase 2 burst typing refines stability."
+          "conclusion": "Pooled burst vs all non-burst: Welch p~0.09 (not significant at 0.05). Tighter null: 293 **distinct** burst (day,ts) with U mark, session-matched **isolated** (single-print) random controls, 2000 reps \u2014 mean burst U@20 ~0.33 vs null ~0.07, one-sided p~0.14, two-sided ~0.29. Suggests burst effect is not robust to row-inflation in naive pool and not significant vs session null here."
         },
         {
           "topic": "5) Adverse selection vs inventory",
@@ -72,8 +80,8 @@
         {
           "rank": 1,
           "edge": "Burst timestamps (\u22654 prints at same day+timestamp) predict higher mean forward extract mid move at K=20 ticks vs non-burst control",
-          "effect": "mean_U_mark20 \u2248 +0.25 ticks (0.345 vs 0.095)",
-          "n": "1395 burst vs 2884 non-burst rows",
+          "effect": "naive mean gap ~+0.25 (0.345 vs 0.095) but (a) naive Welch p~0.09; (b) session-matched isolated-print null p~0.14 one-sided for distinct burst times \u2014 use as process cue, not high-confidence stat arb",
+          "n": "1395 rows vs 2884; 293 distinct burst (day,ts) for stricter null",
           "days": "1,2,3 pooled"
         },
         {
@@ -110,7 +118,8 @@
         "Mark 01\u2192Mark 22 on VEV_5300 pooled (all regimes) does not show large unconditional U edge at K=20 (mean small positive); signal lives in regime splits.",
         "Pure 2-hop motif counts alone do not map to extract direction without pairing to forward markout regression (left for Phase 2 sim).",
         "Burst vs non-burst on pooled mark_20_u: Welch p~0.09 two-sided (not significant at 0.05 despite large mean gap).",
-        "Mark 38 aggressive buy mean extract markout @20 is not day-stable (sign flips day 1-3)."
+        "Mark 38 aggressive buy mean extract markout @20 is not day-stable (sign flips day 1-3).",
+        "Session-matched random control for distinct burst timestamps: one-sided p~0.14, two-sided ~0.29 for burst U@20 > null (n_burst_ts=293; see r4_phase1_burst_vs_session_random.json)."
       ],
       "phase1_statistical_supplement": {
         "script": "manual_traders/R4/r4_counterparty_research/run_phase1_participant_ci_bootstrap.py",
@@ -119,7 +128,9 @@
           "mark67_aggbuy_sym20_ci95": [1.216, 2.430],
           "mark55_aggbuy_sym20_ci95": [0.099, 0.737],
           "mark22_aggsell_sym20_ci95": [-0.078, 0.027],
-          "burst_vs_non_welch_p_two_sided": 0.0899
+          "burst_vs_non_welch_p_two_sided": 0.0899,
+          "burst_distinct_ts_session_null_p_one_sided": 0.1445,
+          "burst_distinct_ts_session_null_p_two_sided": 0.289
         }
       }
     }

@@ -1,0 +1,6 @@
+{
+  "distinct_buyers": 7,
+  "distinct_sellers": 6,
+  "rows_in_rollup": 20,
+  "note": "aggr_* rows omitted if n<5 for mark_20_u"
+}

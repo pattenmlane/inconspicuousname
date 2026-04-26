@@ -1,0 +1,5 @@
+Burst n (distinct day,timestamp with mark_20_u): 293
+Mean U mark@20 (burst): 0.334471
+Null mean U mark@20 (session-matched single-print random, 2000 rep): 0.069229  [p5, p50, p95] = [-0.3328, 0.0657, 0.4761]
+One-sided p (null >= burst): 0.1445
+Two-sided p: 0.2890

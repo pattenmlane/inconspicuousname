@@ -310,5 +310,23 @@
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_burst_vs_non_welch.json",
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_mark22_vev_sell_by_session.csv"
     ]
+  },
+  {
+    "iteration": 13,
+    "trader_file": null,
+    "strategy_description": "Phase 1 completion addenda: burst vs session-matched random isolated prints; full name x role mark_20 rollup (7 buyers, 6 sellers in R4 tape).",
+    "backtest_command_base": null,
+    "total_profit": null,
+    "backtest_round": 4,
+    "backtest_worse": null,
+    "backtest_all": null,
+    "phase1_addenda_outputs": [
+      "manual_traders/R4/r4_counterparty_research/run_phase1_burst_random_control_r4.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_burst_vs_session_random.json",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_burst_vs_session_random.txt",
+      "manual_traders/R4/r4_counterparty_research/run_phase1_all_names_markout_rollup_r4.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_name_mark20_rollup.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_name_mark20_rollup.json"
+    ]
   }
 ]

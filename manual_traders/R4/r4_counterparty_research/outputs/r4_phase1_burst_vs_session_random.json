@@ -1,0 +1,19 @@
+{
+  "n_burst_timestamps": 293,
+  "mean_mark20_u_burst": 0.33447098976109213,
+  "n_rep": 2000,
+  "control_pool": {
+    "early": 914,
+    "mid": 855,
+    "late": 902
+  },
+  "random_control_mean_mark20_u": {
+    "mean": 0.06922866894197952,
+    "p5": -0.33276450511945393,
+    "p50": 0.06569965870307168,
+    "p95": 0.4761092150170648
+  },
+  "p_value_one_sided_burst_gt_random": 0.1445,
+  "p_value_two_sided": 0.289,
+  "method": "For each burst (day,ts) take mark_20_u; controls sample one isolated (n_prints==1) print per burst from same session, with replacement over replicates. If session empty, fallback to global isolated pool."
+}

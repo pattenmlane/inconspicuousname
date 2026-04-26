@@ -402,5 +402,35 @@
       "manual_traders/R4/r4_counterparty_gated/backtest_logs/v13_all.log"
     ],
     "used_to_decide": "Worse 30,932 and all 34,188: identical worse PnL and trade summary to v11 (4511 trades, same extract row); all mode +722 vs v11 likely from marginal fill-path tie-breaks without changing worse economics. Conclude 22\u219235 does not move realized worse outcomes here; keep v11 take size."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "trader_v14 = v11 + inventory guard on the joint-gated Mark67 take only: require extract long position \u226485 before placing the aggressive buy at ask (qty 22). Intended to skip takes when already heavily long.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_gated/trader_v14.py",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v14_worse.log",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v14_all.log"
+    ],
+    "used_to_decide": "Worse 30,932 / all 33,466: numerically identical to v11 on this tape (4511 worse trades, same extract stats). So no joint+M67 take tick in the backtest had pu>85 at order time; the guard is inactive here. Keep v11 as champion; v14 documents the null experiment."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "trader_v15 = v11 with joint-gated Mark67 take qty reduced 22\u219216 at best ask.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_gated/trader_v15.py",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v15_worse.log",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v15_all.log"
+    ],
+    "used_to_decide": "Worse still 30,932 (same 4511-trade path as v11); all 33,452 (\u221214 vs v11) with 4532 trades and slightly lower extract notional\u2014smaller takes add noise in all mode without helping worse. Prefer v11 take size 22."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "trader_v16 = v14 logic with stricter long cap M67_TAKE_MAX_LONG=50 before allowing the joint Mark67 take.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_gated/trader_v16.py",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v16_worse.log",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v16_all.log"
+    ],
+    "used_to_decide": "Worse 30,899 (\u221233 vs v11); all 32,554 (\u2212912 vs v11). One fewer worse trade; day3 worse 9,283 vs 9,316. Tighter cap removes some marginal takes and hurts on this slice\u2014do not deploy; champion remains v11."
   }
 ]

@@ -270,5 +270,17 @@
         "tier": "C (falsified / do not ship as-is)"
       }
     ]
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "**Post-Phase 3** iteration: translate Phase 3 **strong joint-gate forward extract mid** finding into a **simple execution knob** \u2014 scale quoted **EXTRACT_HALF** when the Sonic gate is on. Grids on Round 4 `worse`: **size** mult 1.0\u20131.5 unchanged at **3184** (rounded clip 16\u219218); **half** mult 0.95/\u2212216, 1.0/3184, **1.05/3382**, 1.1/530. `all` mode also rises slightly vs v0 (6036 vs 6012). Artifact: ``outputs/post_phase3_extract_half_mult_grid_worse.txt``.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_phase1_marks/trader_v3.py",
+      "manual_traders/R4/r4_phase1_marks/outputs/post_phase3_extract_half_mult_grid_worse.txt",
+      "manual_traders/R4/r4_phase1_marks/backtests/iter3_r4d1-3_worse.log",
+      "manual_traders/R4/r4_phase1_marks/backtests/iter3_r4d1-3_all.log",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase3_joint_gate_summary_r4.txt"
+    ],
+    "used_to_decide": "Ship **trader_v3** with **EXTRACT_HALF_MULT_TIGHT=1.05** as best `worse` in this grid; 1.1 breaks day 1\u20132 under adverse matching. Next: combine with **VEV** legs or counterparty filters only with tape-backed sim uplift."
   }
 ]

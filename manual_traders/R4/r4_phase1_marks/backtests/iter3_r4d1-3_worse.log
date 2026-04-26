@@ -1,0 +1,46 @@
+R4 trader_v3 worse — joint gate + EXTRACT_HALF 2.4*1.05 when tight (Phase3-motivated grid)
+
+Backtesting /workspace/manual_traders/R4/r4_phase1_marks/trader_v3.py for round: 4 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 1,227
+Total profit: 1,227
+Backtesting /workspace/manual_traders/R4/r4_phase1_marks/trader_v3.py for round: 4 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 1,553
+Total profit: 1,553
+Backtesting /workspace/manual_traders/R4/r4_phase1_marks/trader_v3.py for round: 4 day: 3
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 602
+Total profit: 602
+Profit summary:
+Round 4 day 1: 1,227
+Round 4 day 2: 1,553
+Round 4 day 3: 602
+Total profit: 3,382

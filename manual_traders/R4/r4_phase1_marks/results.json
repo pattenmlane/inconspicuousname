@@ -96,5 +96,46 @@
         "vs_iteration_0_all_total": 6012
       }
     }
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "**Post-Phase 3** execution test: same as v0 (joint gate extract-only MM) but under gate scale **EXTRACT_HALF** = 2.4 \u00d7 **EXTRACT_HALF_MULT_TIGHT** (default **1.05**). Grid on `worse`: half mult 0.95\u2192\u2212216, 1.0\u21923184, **1.05\u21923382**, 1.1\u2192530; size mult 1.0\u20131.5 all **3184** (int clip). Motivation: Phase 3 tape shows large fwd-mid edge when joint tight \u2014 slightly **wider** quoted half in sim improves `worse` here; 1.1 overshoots.",
+    "parameter_sweep": {
+      "SIZE_MULT_TIGHT_values_tried": [1.0, 1.125, 1.25, 1.375, 1.5],
+      "worse_total_all_size_mults": 3184,
+      "EXTRACT_HALF_MULT_TIGHT_values_tried": [0.95, 1.0, 1.05, 1.1],
+      "worse_totals_by_half_mult": {
+        "0.95": -216,
+        "1.0": 3184,
+        "1.05": 3382,
+        "1.1": 530
+      },
+      "locked_EXTRACT_HALF_MULT_TIGHT": 1.05
+    },
+    "backtest_worse": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "worse",
+      "total_profit": 3382,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter3_r4d1-3_worse.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v3.py 4 --data Prosperity4Data --match-trades worse --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 1227, "2": 1553, "3": 602 },
+        "vs_iteration_0_worse_total": 3184
+      }
+    },
+    "backtest_all": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "all",
+      "total_profit": 6036,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter3_r4d1-3_all.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v3.py 4 --data Prosperity4Data --match-trades all --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 790, "2": 1834, "3": 3411 },
+        "vs_iteration_0_all_total": 6012
+      }
+    }
   }
 ]

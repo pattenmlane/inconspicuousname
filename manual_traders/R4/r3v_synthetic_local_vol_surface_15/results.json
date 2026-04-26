@@ -712,5 +712,47 @@
     "match_trades": "worse",
     "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v33_r4_m14_m38_vev4000_gate_clip4_worse_stdout.txt",
     "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v33_r4_m14_m38_vev4000_gate_clip4_worse_fill_summary.json"
+  },
+  {
+    "iteration": 35,
+    "trader_file": "trader_v34_r4_m14_m38_vev4000_gate_rollmin038.py",
+    "strategy_description": "v31 + rolling joint-tight fraction (WIN=400) must exceed **0.38** before firing (tape: day3 high-roll prints better fwd20). Sim **fails** vs v31.",
+    "total_profit": -138,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v34_r4_m14_m38_vev4000_gate_rollmin038.py 4 --data Prosperity4Data --match-trades worse --no-out",
+    "backtest_worse": {
+      "total_profit": -138,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v34_r4_m14_m38_vev4000_gate_rollmin038_worse_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v34_r4_m14_m38_vev4000_gate_rollmin038_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "total_profit": -138,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v34_r4_m14_m38_vev4000_gate_rollmin038_all_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v34_r4_m14_m38_vev4000_gate_rollmin038_all_fill_summary.json"
+    },
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v34_r4_m14_m38_vev4000_gate_rollmin038_worse_stdout.txt",
+    "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v34_r4_m14_m38_vev4000_gate_rollmin038_worse_fill_summary.json"
+  },
+  {
+    "iteration": 36,
+    "trader_file": "trader_v35_r4_m14_m38_vev4000_gate_rollmin032.py",
+    "strategy_description": "v34 variant with ROLL_MIN **0.32**.",
+    "total_profit": -667,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v35_r4_m14_m38_vev4000_gate_rollmin032.py 4 --data Prosperity4Data --match-trades worse --no-out",
+    "backtest_worse": {
+      "total_profit": -667,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v35_r4_m14_m38_vev4000_gate_rollmin032_worse_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v35_r4_m14_m38_vev4000_gate_rollmin032_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "total_profit": -667,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v35_r4_m14_m38_vev4000_gate_rollmin032_all_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v35_r4_m14_m38_vev4000_gate_rollmin032_all_fill_summary.json"
+    },
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v35_r4_m14_m38_vev4000_gate_rollmin032_worse_stdout.txt",
+    "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v35_r4_m14_m38_vev4000_gate_rollmin032_worse_fill_summary.json"
   }
 ]

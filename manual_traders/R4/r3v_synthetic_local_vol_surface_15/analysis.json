@@ -230,7 +230,8 @@
       "extension_inclinegod_spread_panels_r4": "`_r4_phase3_inclinegod_spread_extended.py` → `r4_p13_inclinegod_spread_panels_by_day.csv`: per day, subset **all|tight|loose**, level correlations among s5200/s5300/s_ext and vs m_ext; **Δ** on consecutive timestamps (Δ only counted in tight/loose when both endpoints stay in regime). **Finding:** on day 1 **tight** subset, Δs5200–Δs5300 corr **~0.52** (co-movement of leg widths when stuck tight); **d_corr_s_ext_m_ext** ~0.13–0.22 (extract spread step vs mid step). Day 3 tight has high mean |Δs5300| (~0.37) vs day 1–2 — saturation / churn in 5300 width when gate prevalent.",
       "extension_m01_m22_5300_gate_pathology": "Mark 01→Mark 22 on VEV_5300: 132/132 prints at **tight** gate only (`r4_p14_m01_m22_5300_gate_pathology.md`); **Welch tight vs loose N/A** for this pair+product. Short-lean sim v30: **−4,888** total — do not conflate with Tier-A Mark55 lane.",
       "extension_m14_m38_vev4000_gate_amplify": "**Three-way** evidence: Mark14 buy / Mark38 sell / aggr_sell on **VEV_4000** — **tight** gate mean fwd20 **~+1.10** (n≈55) vs **loose ~−0.58** (n≈177), `r4_p15_mark38_vev4000_m14_aggr_sell_by_gate_day.csv`. Live **v31** +1,631 total but **day-3 wing −3,322** — gate **amplifies** tape markout for this duopoly slice but execution on far strike is fragile vs extract Mark55 v15.",
-      "extension_m14_m38_vev4000_welch": "Welch tight vs loose fwd20 pooled **p≈0.0086** (`r4_p16_m14_m38_vev4000_gate_welch_fwd20.csv`); day-3 slice alone **p≈0.082** (underpowered). Sim: v32 skip day-3 **4,953**; v33 clip 4 **886** (day-3 still negative) \u2014 need **data-driven** day-3 control, not only clip halve."
+      "extension_m14_m38_vev4000_welch": "Welch tight vs loose fwd20 pooled **p≈0.0086** (`r4_p16_m14_m38_vev4000_gate_welch_fwd20.csv`); day-3 slice alone **p≈0.082** (underpowered). Sim: v32 skip day-3 **4,953**; v33 clip 4 **886** (day-3 still negative) \u2014 need **data-driven** day-3 control, not only clip halve.",
+      "extension_m14_m38_roll_at_print": "`r4_p17_m14_m38_vev4000_print_roll_fwd20.csv`: at M14/M38 prints, **high** rolling gate prevalence associates with **better** fwd20 on day 3 (opposite sign to Mark55 v7 high-roll skip). Live **v34** (roll>0.38) **\u2212138** total; **v35** (roll>0.32) **\u2212667** \u2014 **reject** roll-min filter for this wing sim; tape conditional means do not survive **ba+1** execution mapping."
     }
   },
   {
@@ -576,5 +577,27 @@
       "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v33_r4_m14_m38_vev4000_gate_clip4_all_stdout.txt"
     ],
     "used_to_decide": "Prefer **roll / saturation** or **skip high wing vol** over naive clip halve for this product; else keep capital on **v15** extract lane."
+  },
+  {
+    "iteration": 35,
+    "analysis_description": "Roll-at-print study for M14/M38 VEV_4000 (`_r4_m14_m38_vev4000_roll_at_print.py` \u2192 `r4_p17_...csv`). Trader **v34** = v31 + **roll_tight_rate > 0.38** before firing.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/_r4_m14_m38_vev4000_roll_at_print.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase3/r4_p17_m14_m38_vev4000_print_roll_fwd20.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v34_r4_m14_m38_vev4000_gate_rollmin038.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v34_r4_m14_m38_vev4000_gate_rollmin038_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v34_r4_m14_m38_vev4000_gate_rollmin038_all_stdout.txt"
+    ],
+    "used_to_decide": "Total **\u2212138** (worse=all) vs v31 **+1,631** \u2014 roll-min filter **hurts** this lane; do not reuse Mark55-style saturation skip inverted as roll-min."
+  },
+  {
+    "iteration": 36,
+    "analysis_description": "Trader **v35**: same as v34 but **ROLL_MIN=0.32** (looser).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v35_r4_m14_m38_vev4000_gate_rollmin032.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v35_r4_m14_m38_vev4000_gate_rollmin032_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v35_r4_m14_m38_vev4000_gate_rollmin032_all_stdout.txt"
+    ],
+    "used_to_decide": "Total **\u2212667** \u2014 still worse than v31; abandon roll-min branch for M14/M38 VEV_4000."
   }
 ]

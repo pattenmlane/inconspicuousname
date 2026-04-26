@@ -479,5 +479,17 @@
       "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v21_fill_summary_worse.json"
     ],
     "used_to_decide": "**Marginal loss vs v19:** worse **21231** vs **21253** (\u221222). Unlike prior size splits that were **exact no-ops**, 12\u21926 on offer **does** bind occasionally but **PnL-neutral/negative** here (day3 extract **-22**). **Conclusion:** M55 sell is **not** a lever worth pulling vs v19; stick to **M67** bid/ask schedule only."
+  },
+  {
+    "iteration": 25,
+    "round": 4,
+    "analysis_description": "**Gate \u00d7 Mark 67** tape accounting + **trader_v22** ablation (M67 bid-size boost 2\u21925).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analyze_r4_mark67_buy_gate_cooccur.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_mark67_buy_gate_cooccur.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v22.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v22_backtest_worse.log"
+    ],
+    "used_to_decide": "**Co-occurrence:** In the **inner-join** panel (30k rows), **16.5%** of M67 **aggressive-buy** extract prints fall on **tight** timestamps (**27/164**); day split **8.6% / 11.5% / 33.3%** \u2014 gate is **not** redundant for *where* M67 lifts occur on tape, even though Phase-3 showed many **other** patterns are already tight. **Sim:** **v22** **\u2261 v19** on worse/all \u2014 **+3** extra bid units vs **+2** still no marginal fills under worse. **Ship v19** (simpler constants)."
   }
 ]

@@ -7,6 +7,7 @@
     "round4_phase3_complete"
   ],
   "sonic_joint_gate": "VEV_5200 and VEV_5300 top-of-book spread both <= 2 (aligned timestamps); see analyze_r4_phase3_sonic_gate.py",
+  "mark67_aggressive_buy_in_sonic_panel": "analysis_outputs/r4_mark67_buy_gate_cooccur.json (164 prints in join panel; 27 tight = 16.5%)",
   "stacked_story": [
     {
       "layer": "Phase 1 counterparty",

@@ -1,0 +1,30 @@
+{
+  "gate": "inner_join_5200_5300_extract_TH_2",
+  "panel_rows": 30000,
+  "panel_tight_rows": 7722,
+  "panel_tight_frac": 0.2574,
+  "extract_mark67_aggressive_buy_rows_in_panel": 164,
+  "of_those_gate_tight": 27,
+  "pct_m67_buys_when_tight": 0.16463414634146342,
+  "by_day": [
+    {
+      "day": 1,
+      "n_m67_buy_agg": 58,
+      "n_tight": 5,
+      "pct_tight": 0.08620689655172414
+    },
+    {
+      "day": 2,
+      "n_m67_buy_agg": 61,
+      "n_tight": 7,
+      "pct_tight": 0.11475409836065574
+    },
+    {
+      "day": 3,
+      "n_m67_buy_agg": 45,
+      "n_tight": 15,
+      "pct_tight": 0.3333333333333333
+    }
+  ],
+  "note": "M67 aggressive buy = buyer Mark 67 and trade price >= extract ask_1 at same (day,timestamp) in inner-join panel only."
+}

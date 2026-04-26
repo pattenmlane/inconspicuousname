@@ -478,5 +478,26 @@
     "backtest_round": 4,
     "match_trades_primary": "worse",
     "note": "**Slightly worse than v19** (21231 vs **21253**, \u221222). Day3 extract **+2168** vs **+2190**; d1/d2 match v19. **Champion: trader_v19.**"
+  },
+  {
+    "iteration": 25,
+    "round": 4,
+    "trader_file": "trader_v22.py",
+    "strategy_description": "Tape: **analyze_r4_mark67_buy_gate_cooccur.py** \u2192 **r4_mark67_buy_gate_cooccur.json** \u2014 among **164** Mark67 **aggressive buy** extract prints in the Phase-3 inner-join panel, only **27** (**16.5%**) occur when Sonic **tight** (day3 **33%**, day1 **8.6%**). Sim: **trader_v22** = **v19** with **BOOST_BID 5** vs **2** on M67 extract bid size.",
+    "backtest_worse": {
+      "total_profit": 21253,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v22.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v22_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v22_fill_summary_worse.json"
+    },
+    "backtest_all": {
+      "total_profit": 14272,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v22.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v22_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v22_fill_summary_all.json"
+    },
+    "backtest_round": 4,
+    "match_trades_primary": "worse",
+    "note": "**trader_v22** ties **v19** (21253 bit-for-bit): larger M67 bid boost still no-op. **Three-way context:** most M67 lift prints on tape are **not** at tight-gate timestamps in the join panel \u2014 sim hooks on `market_trades` fire more often than **tight** gate alone would suggest; tape co-occurrence quantifies the gap."
   }
 ]

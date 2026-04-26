@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v22.py",
+  "match_trades": "worse",
+  "round": 4,
+  "total_profit": 21253,
+  "per_day_total": { "1": 5698, "2": 12741, "3": 2814 },
+  "note": "Identical to trader_v19 worse: BOOST_BID 5 vs 2 is no-op under worse matching."
+}

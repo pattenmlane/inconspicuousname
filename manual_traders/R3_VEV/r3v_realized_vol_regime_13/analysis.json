@@ -133,5 +133,17 @@
       "round3work/vouchers_final_strategy/outputs/r3_tight_spread_6panel.png"
     ],
     "used_to_decide": "Implemented USE_TIGHT_GATE_5200_5300 + bbo_spread() in trader_v0: scales joint IV-RV half_vev, extract/VEV sizes, and extract half_u by tight vs loose regime. TRADE_HYDROGEL=False for v46-v48 (PnL objective = extract + VEV only). v46-v48 with several tight/loose multipliers all trail v33-on-4-days (59,288 worse) and no-hydro v43 (48,055 worse); best gate attempt v47 at 47,710 worse / 44,395 all. Gate not adopted as primary; hooks remain for further tuning. Both match modes logged in results.json per run."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "Authoritative pivot to round3work/vouchers_final_strategy only (per new scope). Reread STRATEGY.txt and ORIGINAL_DISCORD_QUOTES.txt (Sonic: both 5200 and 5300 spread at or below 2; t-stat decays when either widens; inclineGod: spread correlation, not price only). Existing 6-panel outputs and r3_tight_spread_summary.txt remain the quantitative reference (day-0 forward mid K=20).",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v49_worse.log",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v50_worse.log"
+    ],
+    "used_to_decide": "Shipped trader_v49 (gate-only mid MM, no smile) and trader_v50 (gate + BS model_iv fair from trader_v0 math for execution; logs iv_atm_nearest_strike for Greek documentation; regime is joint spread gate only, not IV-RV). Both TRADE_HYDROGEL omitted. Round 3 days 0-3: v49 worse 10,740 / all 12,910; v50 worse 41,285 / all 42,693. Far below 200k/day floor; next work is larger exploration (sizes, K-step directional extract hint, or restrict days) under the same folder thesis."
   }
 ]

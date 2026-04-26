@@ -1595,5 +1595,307 @@
         ]
       }
     }
+  },
+  {
+    "iteration": 49,
+    "trader_file": "trader_v49.py",
+    "strategy_description": "vouchers_final_strategy only: mid-only MM + joint 5200/5300 gate; no hydrogel, no smile. Baseline for pivot.",
+    "total_profit": 10740,
+    "backtest_round": 3,
+    "backtest_worse": {
+      "total_profit": 10740,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v49.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v49_worse.log",
+      "match_trades": "worse",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v49_worse.log",
+      "trades_or_fills_summary": {
+        "n_trades_total": 4419,
+        "gross_notional_total": 87754660.0,
+        "top_symbols_by_notional": [
+          {
+            "symbol": "VELVETFRUIT_EXTRACT",
+            "trades": 1673,
+            "qty": 8575,
+            "notional": 45026165.0
+          },
+          {
+            "symbol": "HYDROGEL_PACK",
+            "trades": 1030,
+            "qty": 4153,
+            "notional": 41490964.0
+          },
+          {
+            "symbol": "VEV_4000",
+            "trades": 472,
+            "qty": 955,
+            "notional": 1193727.0
+          },
+          {
+            "symbol": "VEV_5300",
+            "trades": 124,
+            "qty": 434,
+            "notional": 19335.0
+          },
+          {
+            "symbol": "VEV_5400",
+            "trades": 234,
+            "qty": 819,
+            "notional": 12179.0
+          },
+          {
+            "symbol": "VEV_5500",
+            "trades": 277,
+            "qty": 974,
+            "notional": 5779.0
+          },
+          {
+            "symbol": "VEV_5200",
+            "trades": 18,
+            "qty": 63,
+            "notional": 5390.0
+          },
+          {
+            "symbol": "VEV_4500",
+            "trades": 1,
+            "qty": 1,
+            "notional": 731.0
+          },
+          {
+            "symbol": "VEV_5000",
+            "trades": 1,
+            "qty": 1,
+            "notional": 238.0
+          },
+          {
+            "symbol": "VEV_5100",
+            "trades": 1,
+            "qty": 1,
+            "notional": 152.0
+          }
+        ]
+      }
+    },
+    "backtest_all": {
+      "total_profit": 12910,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v49.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v49_all.log",
+      "match_trades": "all",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v49_all.log",
+      "trades_or_fills_summary": {
+        "n_trades_total": 4511,
+        "gross_notional_total": 87754660.0,
+        "top_symbols_by_notional": [
+          {
+            "symbol": "VELVETFRUIT_EXTRACT",
+            "trades": 1765,
+            "qty": 8575,
+            "notional": 45026165.0
+          },
+          {
+            "symbol": "HYDROGEL_PACK",
+            "trades": 1030,
+            "qty": 4153,
+            "notional": 41490964.0
+          },
+          {
+            "symbol": "VEV_4000",
+            "trades": 472,
+            "qty": 955,
+            "notional": 1193727.0
+          },
+          {
+            "symbol": "VEV_5300",
+            "trades": 124,
+            "qty": 434,
+            "notional": 19335.0
+          },
+          {
+            "symbol": "VEV_5400",
+            "trades": 234,
+            "qty": 819,
+            "notional": 12179.0
+          },
+          {
+            "symbol": "VEV_5500",
+            "trades": 277,
+            "qty": 974,
+            "notional": 5779.0
+          },
+          {
+            "symbol": "VEV_5200",
+            "trades": 18,
+            "qty": 63,
+            "notional": 5390.0
+          },
+          {
+            "symbol": "VEV_4500",
+            "trades": 1,
+            "qty": 1,
+            "notional": 731.0
+          },
+          {
+            "symbol": "VEV_5000",
+            "trades": 1,
+            "qty": 1,
+            "notional": 238.0
+          },
+          {
+            "symbol": "VEV_5100",
+            "trades": 1,
+            "qty": 1,
+            "notional": 152.0
+          }
+        ]
+      }
+    }
+  },
+  {
+    "iteration": 50,
+    "trader_file": "trader_v50.py",
+    "strategy_description": "Gate + BS model_iv/bs_call theo (math from trader_v0), tight/wide size and take; regime is gate only, not IV-RV. No hydrogel.",
+    "total_profit": 41285,
+    "backtest_round": 3,
+    "backtest_worse": {
+      "total_profit": 41285,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v50.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v50_worse.log",
+      "match_trades": "worse",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v50_worse.log",
+      "trades_or_fills_summary": {
+        "n_trades_total": 5305,
+        "gross_notional_total": 89187481.0,
+        "top_symbols_by_notional": [
+          {
+            "symbol": "VELVETFRUIT_EXTRACT",
+            "trades": 1594,
+            "qty": 8575,
+            "notional": 45026153.0
+          },
+          {
+            "symbol": "HYDROGEL_PACK",
+            "trades": 1030,
+            "qty": 4153,
+            "notional": 41490964.0
+          },
+          {
+            "symbol": "VEV_4000",
+            "trades": 671,
+            "qty": 1634,
+            "notional": 2040495.0
+          },
+          {
+            "symbol": "VEV_5000",
+            "trades": 246,
+            "qty": 877,
+            "notional": 223139.0
+          },
+          {
+            "symbol": "VEV_5200",
+            "trades": 169,
+            "qty": 1295,
+            "notional": 121461.0
+          },
+          {
+            "symbol": "VEV_5100",
+            "trades": 155,
+            "qty": 588,
+            "notional": 96834.0
+          },
+          {
+            "symbol": "VEV_4500",
+            "trades": 34,
+            "qty": 106,
+            "notional": 79844.0
+          },
+          {
+            "symbol": "VEV_5300",
+            "trades": 245,
+            "qty": 1556,
+            "notional": 74142.0
+          },
+          {
+            "symbol": "VEV_5400",
+            "trades": 286,
+            "qty": 1722,
+            "notional": 27450.0
+          },
+          {
+            "symbol": "VEV_5500",
+            "trades": 287,
+            "qty": 1161,
+            "notional": 6999.0
+          }
+        ]
+      }
+    },
+    "backtest_all": {
+      "total_profit": 42693,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v50.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v50_all.log",
+      "match_trades": "all",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v50_all.log",
+      "trades_or_fills_summary": {
+        "n_trades_total": 5395,
+        "gross_notional_total": 89263437.0,
+        "top_symbols_by_notional": [
+          {
+            "symbol": "VELVETFRUIT_EXTRACT",
+            "trades": 1670,
+            "qty": 8575,
+            "notional": 45026153.0
+          },
+          {
+            "symbol": "HYDROGEL_PACK",
+            "trades": 1030,
+            "qty": 4153,
+            "notional": 41490964.0
+          },
+          {
+            "symbol": "VEV_4000",
+            "trades": 686,
+            "qty": 1695,
+            "notional": 2116943.0
+          },
+          {
+            "symbol": "VEV_5000",
+            "trades": 246,
+            "qty": 877,
+            "notional": 223139.0
+          },
+          {
+            "symbol": "VEV_5200",
+            "trades": 169,
+            "qty": 1295,
+            "notional": 121461.0
+          },
+          {
+            "symbol": "VEV_5100",
+            "trades": 155,
+            "qty": 588,
+            "notional": 96834.0
+          },
+          {
+            "symbol": "VEV_4500",
+            "trades": 34,
+            "qty": 106,
+            "notional": 79844.0
+          },
+          {
+            "symbol": "VEV_5300",
+            "trades": 245,
+            "qty": 1556,
+            "notional": 74142.0
+          },
+          {
+            "symbol": "VEV_5400",
+            "trades": 285,
+            "qty": 1691,
+            "notional": 26958.0
+          },
+          {
+            "symbol": "VEV_5500",
+            "trades": 287,
+            "qty": 1161,
+            "notional": 6999.0
+          }
+        ]
+      }
+    }
   }
 ]

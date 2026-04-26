@@ -369,5 +369,16 @@
       "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v7.json"
     ],
     "used_to_decide": "Correct **v3/v4** persistence for auditability; confirm **mild clip skew** is a dead knob at 6/10 on this sim path; **reject v7** vs **v5** on worse total despite marginal day-3 VEV improvement."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "**Day-stability / execution:** **`trader_v8`** = **v5** with **VEV surface MM disabled on `__BT_TAPE_DAY__==3` only** (backtester day index matches `prices_round_4_day_3.csv`). Hypothesis: day-3 worse PnL in **v5** is dominated by **5200+5300** passive fills while **Mark 67** extract under the same gate stays **+568** on day 3; removing surface quotes that day should recover most of the **−1118** VEV loss without touching days 1–2.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v8.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v8_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v8_round4_all.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v8.json"
+    ],
+    "used_to_decide": "**Confirmed on tape:** worse **9157** vs **v5** **8039** (+1118 = full day-3 VEV loss avoided); day 1 **2454**, day 2 **6134** match **v5**; day 3 **568** (extract only, zero VEV PnL). **all** mode **10,626** vs v5 **9401**. **Caveat:** rule is **calendar-day** (tape file index), not a learned counterparty trigger — acceptable as a falsifiable risk-off until a print- or inventory-based day-3 filter beats it. **New ship candidate:** **v8** over **v5** on worse total."
   }
 ]

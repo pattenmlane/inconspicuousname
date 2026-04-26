@@ -47,9 +47,12 @@
         "bullet": "3) Sequence / graph methods",
         "outputs": [
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_graph_buyer_seller_edges.csv",
-          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_twohop_extract_fwd_k20.csv"
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_twohop_extract_fwd_k20.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_twohop_m55_m01_m22_detail.py",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_twohop_m55_m01_m22_events.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_twohop_m55_m01_m22_summary.json"
         ],
-        "conclusion": "Directed edge table matches repo sketch (Mark 01→Mark 22 top count). Two-hop chains within 5k timestamp units show repeated Mark 38→Mark 14→Mark 38 with mildly negative extract forward mean (n=885) vs rare high-n tails (e.g. Mark 14→Mark 38→Mark 22 n=19 only)."
+        "conclusion": "Directed edge table matches repo sketch (Mark 01→Mark 22 top count). Two-hop chains within 5k ts: Mark 38→14→38 n=885 mildly negative extract k=20. Mark 55→01→22 n=535: pooled dm_ex k5/k20/k100 means ≈ -0.21/-0.64/-1.39 (t≈-2.39/-3.44/-3.44) but day-stability is uneven — day1 k20 mean ≈ -0.10 (t≈-0.28, n=155); day2 k5 positive (+0.34, t≈3.0); day3 k20 ≈ -1.19 (t≈-4.0). Stateful sim trader_v8 (Sonic gate + arm on M55 buy extract from M01, short on next M01→M22 print in window) loses -11396 worse/all with 19 fills / 355 qty — execution timing differs from offline t2 anchor."
       },
       {
         "bullet": "4) Burst structure",
@@ -117,7 +120,8 @@
       "High-|t| two-hop tails (e.g. Mark 14→Mark 38→Mark 22) have n<20 — not stable as standalone rules.",
       "Phase 1 is mid-only markouts; tradable PnL under worse fills not established (STRATEGY caveat applies).",
       "Mark 22→Mark 49 extract adverse-selection tail: only 12 tape rows (11 sell_agg); per-day k=20 unstable (day 2 mean +2.3, n=3). trader_v6 gated short sim is negative under worse (-156) with 3 fills — not a scalable edge.",
-      "Mark 55 aggressive sells on extract: pooled k=100 mean ≈ -0.92 (t≈-2.5) but k=5/k=20 ≈ 0 / -0.11 (not short-horizon). trader_v7 (Sonic gate + short on each M55 agg sell tape print) loses -13671 worse with 600 contracts — high-frequency fade contradicts long-horizon mid evidence and accumulates adverse path PnL."
+      "Mark 55 aggressive sells on extract: pooled k=100 mean ≈ -0.92 (t≈-2.5) but k=5/k=20 ≈ 0 / -0.11 (not short-horizon). trader_v7 (Sonic gate + short on each M55 agg sell tape print) loses -13671 worse with 600 contracts — high-frequency fade contradicts long-horizon mid evidence and accumulates adverse path PnL.",
+      "Mark 55→Mark 01→Mark 22 two-hop: offline extract drift negative pooled but day-1 k20 flat; trader_v8 stateful short under Sonic gate still -11396 (19 fills) — not a tradable translation of the graph motif."
     ]
   },
   {
@@ -380,5 +384,20 @@
       "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v7_round4_all_fills_summary.json"
     ],
     "used_to_decide": "Buy-side M55 is mildly positive at k=5/20 (t≈2.2/2.5). Sell-side k=100 negative (t≈-2.5) with per-day k=100 means -0.48/-1.40/-0.88 (day 2 strongest). Naive high-frequency short fade on every sell print under gate is strongly negative in sim (-13671 worse, 29 fills, 600 qty) — horizon mismatch vs Phase-1 headline."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Phase 1 two-hop deep-dive: Mark 55→Mark 01→Mark 22 extract forwards at horizons k∈{5,20,100} with per-day t-stats; event-level CSV. Script r4_twohop_m55_m01_m22_detail.py. trader_v8.py: stateful Sonic-gated sim (arm on M55 aggressive buy extract from M01; fire short extract at bid on first subsequent M01→M22 print within 5000 ts); backtests worse+all.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_twohop_m55_m01_m22_detail.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_twohop_m55_m01_m22_events.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_twohop_m55_m01_m22_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v8.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v8_round4_worse.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v8_round4_all.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v8_round4_worse_fills_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v8_round4_all_fills_summary.json"
+    ],
+    "used_to_decide": "Pooled two-hop extract drift is negative at k=5/20/100 (n=535), but day 1 k=20 is not significant and day 2 shows positive k=5. Sim shorts on first basket print after arm lose heavily (-11396, 19 submission sells, 355 qty) — motif is not robust as a simple trigger under worse fills."
   }
 ]

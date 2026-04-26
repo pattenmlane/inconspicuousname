@@ -1,0 +1,13 @@
+Round 4 d1–3 backtest (prosperity4bt, same commands as results.json).
+Hypothesis: v10’s day-3 extract drag vs v8 (−172 worse-fill extract) comes from M67→M22 ask suppression stacking; disable M67→M22 triggers only on tape day 3 (PROSPERITY4_BACKTEST_DAY==3), keep M67→M49.
+
+worse:
+  v8  day totals: 23248, 11999, 13248  total 48495
+  v10 day totals: 23556, 11999, 13076  total 48631
+  v11 day totals: 23556, 11999, 13248  total 48803  (matches v8 on d3; matches v10 on d1–2)
+  v11 extract worse PnL: d1 6674 (same v10 +308 vs v8), d2 9410, d3 3585 (recovers v8 from v10 −172)
+
+all:
+  v10 total 54523; v11 total 54565 (+42 vs v10)
+
+Conclusion: day-3 ablation of M67→M22 is sufficient to remove the sim regression on d3 while preserving v10’s day-1 stack; new best worse+all in this series on R4 d1–3.

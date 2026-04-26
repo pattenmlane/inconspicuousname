@@ -408,5 +408,17 @@
       "round4work/outputs/r4_initial_analysis_summary.txt"
     ],
     "used_to_decide": "`round4_phase1_complete` object updated with `exhaustive_supplement_outputs` + caveats (bootstrap type; triads count-only). Phase 2/3 gates in this file remain authoritative for later phases."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "**v10 day-3 ablation (sim):** **trader_v11** = v10 but **no M67→Mark22** `_m6722_ex_until` updates when `PROSPERITY4_BACKTEST_DAY==3`. Recovers v10’s **entire** day-3 extract worse shortfall vs v8 (extract PnL d3 back to **3,585**; day total **13,248** = v8). R4 d1–3: **worse 48,803** (+172 vs v10 **48,631**, +308 vs v8 **48,495**); **all 54,565** (+42 vs v10). Evidence: `analysis_outputs/r4_v11_m6722_day3_ablation.txt`.",
+    "analysis_outputs": [
+      "trader_v11.py",
+      "analysis_outputs/r4_v11_m6722_day3_ablation.txt",
+      "backtest_logs/trader_v11_round4_worse.log",
+      "backtest_logs/trader_v11_round4_all.log",
+      "results.json"
+    ],
+    "used_to_decide": "Prefer **v11** over v10 for this three-day grid: same Phase-1 M67→M22 stack on d1–2 without d3 sim penalty. **Live** competition without `PROSPERITY4_BACKTEST_DAY` still applies M67→M22 like v10 — add round/day from competition API if a production rule needs tape-day gating. Re-validate v11 if additional R4 days land."
   }
 ]

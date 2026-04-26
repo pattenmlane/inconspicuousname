@@ -486,5 +486,49 @@
     },
     "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v10.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-merge-pnl",
     "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v10.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-merge-pnl"
+  },
+  {
+    "iteration": 11,
+    "round": 4,
+    "trader_file": "trader_v11.py",
+    "strategy_description": "**trader_v10** with **M67→Mark 22** ask-suppression **disabled on tape day 3** only (`PROSPERITY4_BACKTEST_DAY != 3` for `_m6722_ex_until` updates). **M67→M49** + hydro unchanged. Motivation: v10 vs v8 worse extract d3 **−172**; tape mid markouts for M67→M22 are not weakest on d3, so this is a sim-specific mitigation, not a claim that d3 has no M67→M22 edge in prices.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 48803,
+      "backtest_log_file": "backtest_logs/trader_v11_round4_worse.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": {
+          "day1": 23556,
+          "day2": 11999,
+          "day3": 13248
+        },
+        "non_zero_pnl_products_per_day": {
+          "day1": 4,
+          "day2": 3,
+          "day3": 4
+        },
+        "note": "vs v10: +172 total (+308 d1, 0 d2, +172 d3). vs v8: +308 total. Extract worse: d1 6674, d2 9410, d3 3585 (v8 d3 extract 3585, v10 3413)."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 54565,
+      "backtest_log_file": "backtest_logs/trader_v11_round4_all.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": {
+          "day1": 26722,
+          "day2": 17009,
+          "day3": 10834
+        },
+        "non_zero_pnl_products_per_day": {
+          "day1": 11,
+          "day2": 10,
+          "day3": 11
+        },
+        "note": "+42 vs v10 all (54523); d1/d2 same day totals as v10; d3 10834 vs v10 10792 (+42)."
+      }
+    },
+    "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v11.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-merge-pnl",
+    "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v11.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-merge-pnl"
   }
 ]

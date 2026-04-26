@@ -135,5 +135,17 @@
       "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v14_all.log"
     ],
     "used_to_decide": "Joint 5200/5300 tight gate cuts v12-style losses from -138 to -19 over days0-2 (worse) but is far from 200k/day; most ticks are off-gate so next steps may add extract-only or ATM voucher logic when tight, or relax gate for non-wing strikes only."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "Strategic pivot: deprioritize prior family-10 / neighbor work; use only round3work/vouchers_final_strategy. Re-read STRATEGY.txt and ORIGINAL_DISCORD_QUOTES.txt (Sonic: both 5200/5300 spread <=2, t-stat decays if wide; inclineGod: spreads not just prices). Prior analysis outputs/r3_tight_spread_summary.txt shows positive mean forward extract mid when tight. trader_v15 implements 5200-5300 spread D mean-rev under the joint gate, touch execution; no multi-strike smile, no other VEVs. Merged origin/main to pick up the verbatim Discord file from repo. Dropped initial naive extract overlay after worse-fill log showed -27k+ from extract leg alone; shipped pair-only v15.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v15_worse.log",
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v15_all.log"
+    ],
+    "used_to_decide": "v15 = gate + D=mid5200-mid5300 pair MR only. Backtest (worse and all) total -109, sum days0-2 = -2; need larger edge model or size when gate (still far from 200k/day). Next: tune Z/q, or add extract in a way that does not buy every N ticks, or use forward-sign from same-tick momentum."
   }
 ]

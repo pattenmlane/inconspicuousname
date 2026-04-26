@@ -261,5 +261,52 @@
         "note": "Identical to worse on printed days: thin activity under gate; no extract leg PnL."
       }
     }
+  },
+  {
+    "iteration": 15,
+    "trader_file": "trader_v15.py",
+    "strategy_description": "Pivots to vouchers_final_strategy/STRATEGY.txt + ORIGINAL_DISCORD_QUOTES (Sonic joint gate, inclineGod spreads) ONLY — no family10/smile. Trades only VEV_5200+VEV_5300: L1 full spread of both <=2; D=mid(5200)-mid(5300) EWMA+z mean-rev pair at touch; exit on |z| small or gate off. VELVETFRUIT_EXTRACT in limits but not traded (avoids naive long-extract on mid thesis under worse fills). HYDROGEL 0 PnL.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -109,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v15.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v15_worse.log",
+      "backtest_output": {
+        "day0": -34,
+        "day1": 20,
+        "day2": 12,
+        "day3": -107,
+        "sum_days_0_2": -2
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": [
+          "VEV_5200",
+          "VEV_5300"
+        ],
+        "underlying_pnl": 0,
+        "note": "Only 5200+5300; other symbols zero. Far below 200k/day floor."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -109,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v15.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v15_all.log",
+      "backtest_output": {
+        "day0": -34,
+        "day1": 20,
+        "day2": 12,
+        "day3": -107,
+        "sum_days_0_2": -2
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": [
+          "VEV_5200",
+          "VEV_5300"
+        ],
+        "underlying_pnl": 0,
+        "note": "Same PnL line as worse on v15 in this run."
+      }
+    }
   }
 ]

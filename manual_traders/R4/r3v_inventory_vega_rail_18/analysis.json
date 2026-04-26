@@ -263,5 +263,18 @@
       "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v8_worse_backtest.log"
     ],
     "used_to_decide": "**Keep v6** as current best worse PnL among gate-only extract variants; passive bid + selective ask exit (v6 pattern) beats passive bid+bid exit (v7). Further work: conditional ask exit on extract spread or inventory only, or add VEV passive leg under same gate."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "trader_v9 (falling-edge-only ask exit vs v6 every-wide-tick CLIP exit): under --match-trades worse, merged log shows **only one** SUBMISSION trade — passive **buy** filled (buyer SUBMISSION, seller Mark 22, price 5222, qty 7 at ts 2575300); **no** SUBMISSION sell prints. Day 3 cumulative extract PnL **+70** vs v6 **+252** with buy+sell round-trip (Mark 22 on both legs in v6 worse log). Under --match-trades all, v9 total **+12,010** (incremental by csv day 618 / 6716 / 4676) with **262** extract SUBMISSION events and **net_qty +243** (inventory drift vs v6-style repeated exits). Conclusion: a **single** aggressive exit attempt on gate open is **not reliably filled** under worse matching when tape trades do not cross our ask; v6’s repeated wide-tick ask clips are load-bearing for realizing the passive-entry edge.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_inventory_vega_rail_18/trader_v9.py",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/r4_summarize_backtest_log.py",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v9_worse_backtest.log",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v9_all_backtest.log",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v9_worse_fill_summary.json",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v9_all_fill_summary.json"
+    ],
+    "used_to_decide": "Retain **v6** as best worse-fill gate strategy; any falling-edge exit variant must **retry** sells while long and wide (or accept inventory risk), or use state beyond one tick if we still want fewer exit events. Script documents merged-log PnL: sum per-day end-of-day is **not** total when PnL is cumulative across days."
   }
 ]

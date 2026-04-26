@@ -167,5 +167,24 @@
       "backtest_log_file": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v8_all_backtest.log",
       "trades_or_fills_summary": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v8_all_fill_summary.json"
     }
+  },
+  {
+    "iteration": 9,
+    "trader_file": "trader_v9.py",
+    "strategy_description": "v6 passive bid while joint tight + full-position sell at ask **only** on tight→wide falling edge (traderData persists _prev_tight). Intended to cut repeated wide-regime ask exits vs v6.",
+    "backtest_round": 4,
+    "backtest_note": "Round 4 days 1-3. Fill summary via r4_summarize_backtest_log.py (merged --out log: total = last csv day cumulative PnL; incremental_by_day = day-over-day delta).",
+    "backtest_worse": {
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_inventory_vega_rail_18/trader_v9.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v9_worse_backtest.log",
+      "total_profit": 70,
+      "backtest_log_file": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v9_worse_backtest.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v9_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_inventory_vega_rail_18/trader_v9.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v9_all_backtest.log",
+      "total_profit": 12010,
+      "backtest_log_file": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v9_all_backtest.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v9_all_fill_summary.json"
+    }
   }
 ]

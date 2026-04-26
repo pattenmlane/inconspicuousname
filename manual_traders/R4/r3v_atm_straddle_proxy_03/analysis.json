@@ -318,5 +318,16 @@
       "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v6_round4_all.log"
     ],
     "used_to_decide": "v6 worse 8493 < v4 8865 (Mark55 still drags days 1-2 vs pure v4); day3 matches v4 at -586. Keep v4 as primary worse-PnL candidate; Mark55 needs different product or passive logic, not piggyback extract lift."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "trader_v7: v4 + skip Mark67 lift when Mark55 aggressively sells extract same ts (risk-off vs v5/v6 long overlay). Tape scan: only 4 timestamps across days 1-3 have Mark67 presence and Mark55 extract sell.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v7_round4_worse.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v7_round4_all.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_mark55_aggr_sell_extract_cooccurrence_mark67.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_adverse_aggressor_fwd20.json"
+    ],
+    "used_to_decide": "v7 worse 8865 equals v4; all-match 8224 equals v4. Risk-off rule is correct hygiene but negligible frequency on this tape; no PnL gain vs v4."
   }
 ]

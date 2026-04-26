@@ -1,0 +1,5 @@
+{
+  "definition": "Same (day, timestamp) has at least one trade with buyer Mark 67 on any symbol AND at least one VELVETFRUIT_EXTRACT trade with seller Mark 55 and price <= bid1 on extract book at that ts (tape scan)",
+  "co_occurring_timestamps": { "1": 1, "2": 2, "3": 1, "total": 4 },
+  "note": "Rare overlap explains v7 worse PnL matching v4 (8865) in backtest."
+}

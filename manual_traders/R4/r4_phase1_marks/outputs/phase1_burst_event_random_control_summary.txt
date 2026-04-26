@@ -1,0 +1,13 @@
+Burst vs random-matched *non-burst* timestamp controls (per day, k = min(n_burst_ts, n_control_pool_ts))
+Control pool = 1 <= n_prints < 4 (excludes n_prints==0; those have no trade prints in enriched table).
+Random seed: 7 (NumPy default_rng).
+
+day 1: k=84 burst_subsampled=False  burst n=386 mean=-0.068653  ctrl n=91 mean=-0.6978  Welch_t=1.1661
+  isolated n_prints==1: n=930 mean=0.23333
+day 2: k=87 burst_subsampled=False  burst n=402 mean=0.43035  ctrl n=88 mean=-0.28977  Welch_t=1.4399
+  isolated n_prints==1: n=856 mean=0.02979
+day 3: k=122 burst_subsampled=False  burst n=607 mean=0.55189  ctrl n=127 mean=-0.37008  Welch_t=2.0841
+  isolated n_prints==1: n=885 mean=-0.026554
+
+Pooled (all days, all prints at sampled timestamps): burst n=1395 mean=0.34516  ctrl n=306 mean=-0.44444  Welch_t=2.7942
+burst vs isolated (all n_prints==1, not resampled): isolated n=2671 mean=0.081992  Welch_t=1.7658

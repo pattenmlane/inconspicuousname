@@ -26,6 +26,7 @@
     "ops_ping_alignment": "Phase 1 bullets covered by `analyze_phase1.py` + outputs (see `outputs/PHASE1_PING_CHECKLIST.md`). **K** = price-bar / unique-timestamp steps (documented in `PHASE1_SUMMARY.md`). **7** distinct participant strings on tape: counts in `outputs/phase1_participant_print_counts.csv`.",
     "phase1_post_hoc_tape_refinement": "Later scripts (**phase8+**) add **Sonic joint gate \u00d7 (buyer,seller) \u00d7 hydro** tables; the original Phase-1 **participant null** for generic Mark\u00d7symbol markouts is **not** replaced\u2014gate-conditioned hydro is a **separate, stronger** tape signal.",
     "ops_template_supplement_2026": "``analyze_r4_phase1_stability_supplement.py``: **net** aggressor lot imbalance (`phase1_participant_net_aggr_flow_lots.csv`); **pair reciprocity** for all mark pairs (`phase1_pair_reciprocity_all_marks.csv`); **bootstrap 95% CI** (2000) on `fwd_same_K` for cells with **n\u226550** plus per-day means (`phase1_participant_markout_bootstrap_n50plus.csv`); **burst_ge4** split for K=20 (`phase1_participant_markout_x_burst_k20.csv`); `phase1_bootstrap_summary.txt` reports **4 / 36** cells with **ci95_lo>0**; positive-CI cells include **Mark 55 aggr_buy** extract K=5,20 and **Mark 67 aggr_buy** extract K=5,20 (large point estimates; not adjusted for multiple testing; **K=100** and **aggr_sell** paths are mixed).",
+    "ops_template_graph_burst_2026": "``analyze_r4_phase1_graph_hubs_burst_control.py``: **in/out degree** (count and notional) for hub view (`phase1_graph_hub_degree_*.csv`); **orchestrator** rows at every burst (`phase1_orchestrator_at_burst_rows.csv`); **random timestamp control** for burst event study: per day, **k** = min(n burst (n_prints\u22654) timestamps, n control **1\u2264n<4**), sample control **without** replacement, compare **all prints'** `fwd_EXTRACT_20` \u2014 `phase1_burst_event_random_control_summary.txt` (pooled Welch **t\u22482.79** burst vs control on R4d1\u20133; see file for per-day and vs isolated).",
     "bullet_evidence": [
       {
         "bullet": "1) Participant-level alpha / predictiveness",
@@ -48,17 +49,22 @@
         "outputs": [
           "manual_traders/R4/r4_phase1_marks/outputs/directed_pair_counts_notional.csv",
           "manual_traders/R4/r4_phase1_marks/outputs/two_step_chain_counts.txt",
-          "manual_traders/R4/r4_phase1_marks/outputs/lagged_signed_flow_extract_corr.csv"
+          "manual_traders/R4/r4_phase1_marks/outputs/lagged_signed_flow_extract_corr.csv",
+          "manual_traders/R4/r4_phase1_marks/outputs/phase1_graph_hub_degree_counts.csv",
+          "manual_traders/R4/r4_phase1_marks/outputs/phase1_graph_hub_degree_notionals.csv"
         ],
-        "conclusion": "**Mark 01\u2192Mark 22** dominates counts (basket seller), **Mark 14\u2194Mark 38** on hydro notional; tape-order 2-step motifs are mostly **within-pair churn**. Lagged signed-flow vs extract fwd20 correlations are **small |r|** (no strong Granger-style lead in this coarse test)."
+        "conclusion": "**Mark 01\u2192Mark 22** dominates counts (basket seller), **Mark 14\u2194Mark 38** on hydro notional; tape-order 2-step motifs are mostly **within-pair churn**. Lagged signed-flow vs extract fwd20 correlations are **small |r|** (no strong Granger-style lead in this coarse test). **Hub table:** by **in+out print count** **Mark 14** is largest (**2172**), then **01**, **22**, **38** (`phase1_graph_hub_degree_counts.csv`); **67** is buy-only in this cast."
       },
       {
         "bullet": "4) Burst structure",
         "outputs": [
           "manual_traders/R4/r4_phase1_marks/outputs/burst_vs_extract_fwd20.csv",
-          "manual_traders/R4/r4_phase1_marks/outputs/burst_extract_welch_ge4_vs_lt4.txt"
+          "manual_traders/R4/r4_phase1_marks/outputs/burst_extract_welch_ge4_vs_lt4.txt",
+          "manual_traders/R4/r4_phase1_marks/outputs/phase1_orchestrator_at_burst_rows.csv",
+          "manual_traders/R4/r4_phase1_marks/outputs/phase1_burst_event_random_control_summary.txt",
+          "manual_traders/R4/r4_phase1_marks/outputs/phase1_burst_event_random_control_by_day.csv"
         ],
-        "conclusion": "Prints in **same (day,timestamp)** bursts (\u22654 rows) show **higher mean fwd_EXTRACT_20** than isolated prints (**0.345 vs 0.095**) but Welch **t\u22481.70** (p\u22480.09 one-sided) \u2014 **suggestive only**, not a tight statistical edge across days alone."
+        "conclusion": "Prints in **same (day,timestamp)** bursts (\u22654 rows) show **higher mean fwd_EXTRACT_20** than **non-burst** in the same pooled file (**0.345 vs 0.095**). **Random** matched *timestamp* control (1\u2264n<4) vs all burst-matched *timestamps* per day: **pooled Welch t\u22482.79** (burst > control) on **fwd_EXTRACT_20** prints; still not out-of-sample beyond 3 days, overlapping forward windows, and unadjusted for **multiple** tests vs prior burst work."
       },
       {
         "bullet": "5) Adverse selection vs inventory (proxy)",
@@ -428,5 +434,18 @@
       "manual_traders/R4/r4_phase1_marks/outputs/phase1_bootstrap_summary.txt"
     ],
     "used_to_decide": "Marks **55** and **67** aggressive **buy** on **extract** show **raw** forward same-asset means with **bootstrap CIs** above zero at short K on 3 days \u2014 **candidate** for follow-up **execution** tests (not proof of `worse` sim alpha). Most cells still have CIs straddling zero; **phases 2/3** gates unchanged."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "**Phase 1** remaining template gaps closed (graph + burst control). **``analyze_r4_phase1_graph_hubs_burst_control.py``** produces **directed** hub **in/out** counts and notionals; **orchestrator**-style rows for every (day,t) with **\u22654** prints; **per-day** random **matched** control timestamps drawn from **1\u2264n_prints<4** (same k as burst count) and compares all enriched-trade prints' **`fwd_EXTRACT_20`**. Pooled: mean burst **+0.345** vs control **-0.444** (Welch **t\u22482.79**; see `phase1_burst_event_random_control_summary.txt`). **``round4_phase1_complete``** updated (bullets 3+4) with **ops_template_graph_burst_2026**.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_phase1_marks/analyze_r4_phase1_graph_hubs_burst_control.py",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase1_graph_hub_degree_counts.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase1_graph_hub_degree_notionals.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase1_orchestrator_at_burst_rows.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase1_burst_event_random_control_summary.txt",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase1_burst_event_random_control_by_day.csv"
+    ],
+    "used_to_decide": "Bursts are **structurally** associated with more positive **20-bar extract** forward than **random** lighter-traffic same-day timestamps; **caveat:** over overlapping forward windows, 3 day tape, and **not** a trading rule yet. Hubs: **Mark 14** is the largest by **in+out** print count, consistent with the hydro duopoly picture."
   }
 ]

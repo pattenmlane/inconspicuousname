@@ -218,6 +218,56 @@
     }
   },
   {
+    "round4_phase3_complete": {
+      "bullets": [
+        {
+          "name": "1_joint_gate_surface",
+          "outputs": [
+            "analysis_outputs/r4_phase3_summary.txt",
+            "analysis_outputs/r4_phase3_spread_correlations_by_day.csv"
+          ],
+          "conclusion": "P(joint tight) rises day 1→3 (~0.14, 0.17, 0.46 on 10k-tick subsample). **corr(s5200,s5300)** ~0.18–0.27 by day. **corr(s5200,s_ext)** and **corr(s5300,s_ext)** near **zero** (|r| < 0.03 typical) — inclineGod-style spread co-move is **between** core strikes, not extract spread vs voucher spreads on this discretization."
+        },
+        {
+          "name": "2_pair_markout_by_gate",
+          "outputs": [
+            "analysis_outputs/r4_phase3_mark20_by_gate_pair_symbol.csv"
+          ],
+          "conclusion": "**Mark 67→Mark 49** on extract: gate **False** n=77 mean mark_20 **+1.72** vs gate **True** n=12 mean **+1.08** — **negative interaction** (tight surface does not amplify this leg on tape). **Mark 01→Mark 22** on extract: **n=0** (basket on vouchers)."
+        },
+        {
+          "name": "3_m01_m22_voucher_legs",
+          "outputs": [
+            "analysis_outputs/r4_phase3_m01_m22_VEV_5300_mark20_by_gate_day.csv",
+            "analysis_outputs/r4_phase3_m01_m22_VEV_5400_mark20_by_gate_day.csv",
+            "analysis_outputs/r4_phase3_m01_m22_VEV_5500_mark20_by_gate_day.csv"
+          ],
+          "conclusion": "M01→M22 prints are almost entirely under **gate=True**; **VEV_5300** pooled mean mark_20 **−0.12** (n=132). **5400/5500** means small positive ~0.04–0.03 — gate split adds little because **n_off_gate ≈ 0**."
+        },
+        {
+          "name": "4_stack_with_phase2",
+          "outputs": [
+            "analysis_outputs/r4_phase2_burst_window_mark20.csv",
+            "analysis_outputs/r4_phase3_m67_m49_extract_mark20_by_gate_day.csv"
+          ],
+          "conclusion": "Phase 2 burst window already flags **when** extract short-horizon markouts weaken near M01→M22 choreography; Phase 3 shows **joint tight** can **dilute** the strongest Mark67→Mark49 extract signal — three-way design is Tier-A but **sim** (trader_v1/v2 trials) favored **not** gating extract on tight alone."
+        }
+      ],
+      "top_tier_interactions": [
+        "**Joint tight × Mark67→Mark49 extract**: mean mark_20 lower when tight (see r4_phase3_summary.txt) — contradicts naive 'hedgeable surface ⇒ stronger drift' for this pair.",
+        "**M01→M22 × VEV_5300 × gate**: negative short-horizon mark_20 under dominant gate=True mass — aligns Phase 2 fade wing idea."
+      ],
+      "outputs_index": [
+        "r4_phase3_sonic_gate_counterparty.py",
+        "analysis_outputs/r4_phase3_summary.txt",
+        "analysis_outputs/r4_phase3_mark20_by_gate_pair_symbol.csv",
+        "analysis_outputs/r4_phase3_spread_correlations_by_day.csv",
+        "analysis_outputs/r4_phase3_spread_scatter_data.csv",
+        "analysis_outputs/r4_phase3_m67_m49_extract_mark20_by_gate_day.csv"
+      ]
+    }
+  },
+  {
     "iteration": 3,
     "analysis_description": "Round 4 trader iteration (counterparty → sim): **trader_v1** Sonic-gated extract hurt worse/all vs v0. **trader_v2** encodes Phase 2 burst window via offline `r4_burst_events.csv` centers ±500; conservative quoting **VEV_5300** only in-window (global VEV shrink zeroed voucher PnL under worse). Widening extract in burst window **hurt** worse-fill sim vs v0 — left extract at v0 in-window. Phase 3 (joint tight × post **Mark 67→Mark 49** buy-aggr extract) sim tweaks **hurt** day-2 worse PnL in trials — **not** shipped in v2.",
     "analysis_outputs": [
@@ -230,5 +280,15 @@
       "results.json"
     ],
     "used_to_decide": "Prefer v0 or v2 for worse-fill anchor; v1 gated extract rejected for this tape. Next: stateful burst detection from `state.market_trades` if offline centers drift across tapes, or targeted extract skip only when extract prints co-locate with burst ts."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "Round 4 Phase 1 **day-stability supplement**: per-day n/mean/std for headline counterparty slices from existing `r4_trade_markouts_wide.csv` (no tape re-read). Validates K=5/20/100 for Mark67→Mark49 buy-aggr extract; hydro Mark38→Mark14 negative mean all 3 days.",
+    "analysis_outputs": [
+      "analysis_outputs/r4_phase1_top_edges_day_stability_k20.csv",
+      "analysis_outputs/r4_phase1_top_edges_day_stability_summary.txt",
+      "r4_phase1_day_stability_supplement.py"
+    ],
+    "used_to_decide": "Tightens Phase 1 narrative: **Mark 14 as seller** buy-aggr extract mean mark_20 **shrinks** day 1→3 (1.32 → 0.44 → 0.09) while staying positive — high-n but **unstable magnitude**. **Mark67→Mark49** stable ~1.63/day at K=20 (3/3 positive). **Mark67→Mark22** positive all days but **day 2** mean **1.19** vs **2.36/2.68** days 1/3. **M67→M49 K=100**: day 3 mean **+0.11** vs **+2.4/+3.0** days 1/2 — long-horizon sign weak on day 3."
   }
 ]

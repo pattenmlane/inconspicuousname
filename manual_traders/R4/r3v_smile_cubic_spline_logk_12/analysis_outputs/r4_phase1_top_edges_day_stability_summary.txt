@@ -1,0 +1,16 @@
+=== Phase-1 headline cells: per-day mean (extract buy_aggr unless noted) ===
+m67_m49 [mark_20_same]: days n={1: 26, 2: 35, 3: 28} mean={1: 1.6346, 2: 1.6429, 3: 1.625}  positive_mean_days=3/3
+m67_m22 [mark_20_same]: days n={1: 32, 2: 26, 3: 17} mean={1: 2.3594, 2: 1.1923, 3: 2.6765}  positive_mean_days=3/3
+buyaggr_seller_m14 [mark_20_same]: days n={1: 97, 2: 118, 3: 116} mean={1: 1.3196, 2: 0.4364, 3: 0.0948}  positive_mean_days=3/3
+buyaggr_seller22 [mark_20_same]: days n={1: 37, 2: 34, 3: 19} mean={1: 2.5405, 2: 1.25, 3: 2.3947}  positive_mean_days=3/3
+buyaggr_seller49 [mark_20_same]: days n={1: 34, 2: 36, 3: 34} mean={1: 1.8088, 2: 1.6667, 3: 2.0294}  positive_mean_days=3/3
+hydro_m38_m14 [mark_20_same]: days n={1: 187, 2: 161, 3: 159} mean={1: -0.3503, 2: -0.6677, 3: -0.0377}  negative_mean_days=3/3
+m67_m49_m5 [mark_5_same]: days n={1: 26, 2: 35, 3: 28} mean={1: 2.1346, 2: 1.6571, 3: 1.9107}  positive_mean_days=3/3
+m67_m49_m20 [mark_20_same]: days n={1: 26, 2: 35, 3: 28} mean={1: 1.6346, 2: 1.6429, 3: 1.625}  positive_mean_days=3/3
+m67_m49_m100 [mark_100_same]: days n={1: 26, 2: 34, 3: 28} mean={1: 2.4038, 2: 3.0441, 3: 0.1071}  positive_mean_days=3/3
+
+Pooled (all days):
+m67_m49: n=89 mean_m20=1.6348 std=3.7498
+m67_m22: n=75 mean_m20=2.0267 std=4.2202
+buyaggr_seller22: n=90 mean_m20=2.0222 std=4.1039
+buyaggr_seller49: n=104 mean_m20=1.8317 std=3.7718

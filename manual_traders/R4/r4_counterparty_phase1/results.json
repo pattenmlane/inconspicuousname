@@ -118,5 +118,45 @@
         "note": "Same as worse on this run."
       }
     }
+  },
+  {
+    "iteration": 3,
+    "round": 4,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "Sonic joint gate + Mark01→Mark22 burst (>=4 trades at ts) → long VEV_5300 at ask when both; flatten long 5300 at bid when gate or burst ends. Trades keyed (csv_day,timestamp) from ROUND_4 day files. Cooldown 25 ticks.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -1131,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v3.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v3_r4_worse.log",
+      "backtest_output": {
+        "day1": -495,
+        "day2": -270,
+        "day3": -366,
+        "total": -1131
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "Slightly better total than v2 (-1244) but still negative; only 5300 traded."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -1132,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v3.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v3_r4_all.log",
+      "backtest_output": {
+        "day1": -496,
+        "day2": -270,
+        "day3": -366,
+        "total": -1132
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "Day1 one tick worse vs worse-match; rest match."
+      }
+    }
   }
 ]

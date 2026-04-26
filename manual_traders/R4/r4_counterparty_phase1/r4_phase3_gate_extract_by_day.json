@@ -1,0 +1,29 @@
+{
+  "per_day": [
+    {
+      "day": 1,
+      "n_tight": 1381,
+      "n_loose": 8599,
+      "mean_fwd20_tight": 0.599203,
+      "mean_fwd20_loose": -0.04832,
+      "mean_diff_tight_minus_loose": 0.647523
+    },
+    {
+      "day": 2,
+      "n_tight": 1727,
+      "n_loose": 8253,
+      "mean_fwd20_tight": 0.4641,
+      "mean_fwd20_loose": -0.018115,
+      "mean_diff_tight_minus_loose": 0.482214
+    },
+    {
+      "day": 3,
+      "n_tight": 4598,
+      "n_loose": 5382,
+      "mean_fwd20_tight": 0.187908,
+      "mean_fwd20_loose": -0.39502,
+      "mean_diff_tight_minus_loose": 0.582928
+    }
+  ],
+  "K": 20
+}

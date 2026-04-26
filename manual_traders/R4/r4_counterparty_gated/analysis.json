@@ -370,5 +370,17 @@
       "manual_traders/R4/r4_counterparty_gated/backtest_logs/v10_all.log"
     ],
     "used_to_decide": "Large PnL lift vs v9 on Round 4 days 1\u20133: worse 30,256 (+4,060 vs 26,196), all 30,421 (+6,117 vs 24,304). Extract trade count rises (1529 vs 1381 worse; 1573 vs 1381 all) with higher extract notional and gross tape notional; hydro/VEV counts unchanged vs v9. Day splits worse: day1 16,360 (+926), day2 7,878 (+6,660), day3 6,019 (\u22123,525 vs v9) \u2014 day2 dominates the gain. Validates combining Phase-1 Mark67 keyed aggression with existing MM under worse fills; next: tune M67 take size/cap, optional joint_tight gate on the take, or reduce day3 drawdown."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "Tape overlap: run_r4_m67_joint_overlap.py joins signals_mark67_aggr_extract_buy.json keys to price rows; 27/164 keys (16.5%) have VEV_5200 and VEV_5300 BBO spreads both \u22642 at that timestamp (by day: 5/58 day1, 7/61 day2, 15/45 day3). trader_v11 = v10 but aggressive Mark67 take only when extract tight AND joint tight.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_gated/run_r4_m67_joint_overlap.py",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_m67_keys_sonic_joint_overlap.json",
+      "manual_traders/R4/r4_counterparty_gated/trader_v11.py",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v11_worse.log",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v11_all.log"
+    ],
+    "used_to_decide": "Worse total 30,932 (+676 vs v10 30,256); all 33,466 (+3,045 vs v10 30,421). Fewer trades (4511 vs 4632 worse) and lower extract notional than v10; gross_notional 86.43M vs 92.30M. Day splits worse: day1 16,361 (+1 vs v10), day2 5,255 (\u22122,623 vs v10), day3 9,316 (+3,297 vs v10) \u2014 gating the take mostly removes the v10 day-2 bump while improving day 3. New champion for worse and all on this branch; keep v10 as ungated-take reference."
   }
 ]

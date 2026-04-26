@@ -1,0 +1,19 @@
+{
+  "n_mark67_signal_keys": 164,
+  "n_joint_tight_at_key": 27,
+  "frac_joint_tight": 0.16463414634146342,
+  "by_day": {
+    "1": {
+      "n": 58,
+      "joint": 5
+    },
+    "2": {
+      "n": 61,
+      "joint": 7
+    },
+    "3": {
+      "n": 45,
+      "joint": 15
+    }
+  }
+}

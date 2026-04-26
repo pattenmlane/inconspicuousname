@@ -1,0 +1,21 @@
+Mark 22 as seller on aggressive buy (price>=ask1); same-symbol forward mid K=5; R4 days 1-3.
+ALL: n=109 mean=2.07339 median=2 frac_pos=0.8532
+JOINT_TIGHT (5200&5300 spread<=2): n=29 mean=1.63793 median=1 frac_pos=0.7241
+NOT_TIGHT: n=80 mean=2.23125 median=2 frac_pos=0.9000
+--- by symbol (ALL) ---
+HYDROGEL_PACK: n=8 mean=3.1875 median=3.5 frac_pos=0.7500
+VELVETFRUIT_EXTRACT: n=90 mean=2.02222 median=2 frac_pos=0.8667
+VEV_4000: n=2 mean=4.75 median=4.75 frac_pos=1.0000
+VEV_4500: n=2 mean=3 median=3 frac_pos=1.0000
+VEV_5000: n=2 mean=0.75 median=0.75 frac_pos=1.0000
+VEV_5100: n=2 mean=0.25 median=0.25 frac_pos=0.5000
+VEV_5200: n=2 mean=0.25 median=0.25 frac_pos=0.5000
+VEV_5300: n=1 mean=0.5 median=0.5 frac_pos=1.0000
+--- by day (ALL) ---
+day_1: n=45 mean=2 median=2 frac_pos=0.8667
+day_2: n=38 mean=2.06579 median=2 frac_pos=0.8421
+day_3: n=26 mean=2.21154 median=1.75 frac_pos=0.8462
+--- by day x joint_tight ---
+day_1 tight: n=10 mean=1.05 median=1 frac_pos=0.7000 | loose: n=35 mean=2.27143 median=2 frac_pos=0.9143
+day_2 tight: n=6 mean=1.41667 median=0.25 frac_pos=0.5000 | loose: n=32 mean=2.1875 median=2.25 frac_pos=0.9062
+day_3 tight: n=13 mean=2.19231 median=1.5 frac_pos=0.8462 | loose: n=13 mean=2.23077 median=2 frac_pos=0.8462

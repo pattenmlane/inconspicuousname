@@ -260,5 +260,17 @@
       "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v24_2026-04-25_r4_all.log"
     ],
     "used_to_decide": "Tape: joint gate does not strengthen Mark67 extract fwd-mid on R4; keep gate for sim hygiene / fewer bad lifts. Next iterations could gate on extract spread or fade when joint gate breaks mid-position."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "Post–Phase 3 extension: **Mark 22 as seller on aggressive buys** (Phase 1 rank-2 slice). Script `r4_phase4_m22_joint_gate.py` merges trades to BBO, flags buy_aggr, joins Sonic joint gate at trade timestamp, measures **same-symbol** forward mid K=5 on R4 days 1–3. Emits `r4_v25_signals.json` for sim.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/r4_phase4_m22_joint_gate.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/outputs/r4_p4_mark22_buyaggr_fwd5_joint_gate.txt",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/outputs/r4_v25_signals.json",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v25_2026-04-25_r4_worse.log",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v25_2026-04-25_r4_all.log"
+    ],
+    "used_to_decide": "Tape: pooled n=109 mean fwd5 **~2.07** ticks, **~85%** positive — matches Phase 1 direction. **Joint tight** subset n=29 has **lower** mean (**~1.64**) than non-tight (**~2.23**); for **extract-only** Mark22 prints (n=90), tight n=18 mean **~1.61** vs loose n=72 mean **~2.13** — Sonic gate is **not** a positive filter for this counterparty mix (unlike the community story for a different signal). Sim `trader_v25.py` (lift extract after triggers + joint gate) still loses **-19,005** days 1–3 worse+all — **mid markout does not monetize** with touch in/out + window flatten; do not deploy naive piggyback."
   }
 ]

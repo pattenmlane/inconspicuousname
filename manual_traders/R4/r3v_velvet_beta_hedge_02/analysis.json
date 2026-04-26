@@ -257,5 +257,15 @@
       "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_mark55_aggr_buy_tight_by_day.csv"
     ],
     "used_to_decide": "Mark55 aggressive **buy** extract: mean fwd5 **lower when tight** (-0.009, n=162) than **loose** (+0.28, n=436); fwd20 still positive tight (+0.24) but below loose (+0.47). Aggressive **sell**: tight has **positive** fwd5 (+0.20) vs loose ~0 fwd5 and **negative** fwd20 loose (-0.21) — gate **inverts** sign pattern vs buy side; do not assume one-directional counterparty edge under gate. trader_v3: passive extract MM only when joint tight — sim +4218 extract-only, day-monotone positive."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "Full counterparty aggressor table on VELVETFRUIT_EXTRACT × Sonic joint gate: analyze_r4_extract_aggressors_x_gate.py — every Mark with aggressive buy/sell on extract, tight vs loose, mean fwd_5 and fwd_20 (same row-forward definition as Phase 1).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/analyze_r4_extract_aggressors_x_gate.py",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_extract_aggressor_fwd_by_gate.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_extract_aggressor_fwd_by_gate_n15plus.csv"
+    ],
+    "used_to_decide": "Dominant flow is Mark 55 (hundreds of prints per cell). Mark 67 aggr buy: tight vs loose fwd5 similar (1.78 vs 2.0), fwd20 slightly higher tight (2.06 vs 1.77). Mark 22 extract aggressor counts tiny (n<=8) — no stable counterparty edge on extract for Mark22. trader_v4 extends v3 with gated one-tick MM on all VEVs (size 14): sim total 6418 vs v3 4218 (+2200 from VEV_4000/4500/5000/5100 path mostly day3)."
   }
 ]

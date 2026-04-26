@@ -82,5 +82,26 @@
       "trades_or_fills_summary": "Same as worse."
     },
     "total_profit": 4218
+  },
+  {
+    "iteration": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "Sonic joint gate then v3-style extract MM plus one-tick-inside on all ten VEV (size 14 each, extract 18). No hydrogel this run.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 6418,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v4.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v4_worse.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v4_worse.log",
+      "trades_or_fills_summary": "Day1 +674 (VEV_4000 395, U 312, V4500 -34), day2 +1718 (V4000 433, U 1286), day3 +4026 (V4000 1363, U 2620, V4500/5000/5100 small); total 6418; worse=all same."
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 6418,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v4.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v4_all.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v4_all.log",
+      "trades_or_fills_summary": "Same as worse."
+    },
+    "total_profit": 6418
   }
 ]

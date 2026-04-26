@@ -1,0 +1,67 @@
+=== Round 4 counterparty sketch ===
+Rows: 4,281 | days: [1, 2, 3]
+Unique names (buy or sell): 7
+
+Trade-side appearances (each row counts buyer + seller once):
+  Mark 14           2172
+  Mark 01           1843
+  Mark 22           1584
+  Mark 38           1478
+  Mark 55           1198
+  Mark 67            165
+  Mark 49            122
+
+Aggressive buy qty vs sell qty (lot-sum):
+  Mark 14           buy  4510  sell  4208  net +302
+  Mark 01           buy  6053  sell  1375  net +4678
+  Mark 22           buy   206  sell  5683  net -5477
+  Mark 38           buy  2493  sell  2507  net -14
+  Mark 55           buy  3254  sell  3297  net -43
+  Mark 67           buy  1510  sell     0  net +1510
+  Mark 49           buy   115  sell  1071  net -956
+
+Top buyer → seller pair counts:
+  Mark 01 → Mark 22: 1339
+  Mark 14 → Mark 38: 728
+  Mark 38 → Mark 14: 714
+  Mark 55 → Mark 14: 331
+  Mark 14 → Mark 55: 316
+  Mark 01 → Mark 55: 260
+  Mark 55 → Mark 01: 244
+  Mark 67 → Mark 49: 89
+  Mark 14 → Mark 22: 83
+  Mark 67 → Mark 22: 75
+  Mark 38 → Mark 22: 19
+  Mark 22 → Mark 55: 18
+  Mark 22 → Mark 38: 17
+  Mark 55 → Mark 22: 14
+  Mark 49 → Mark 22: 12
+
+Largest same-(day,timestamp) bursts (≥4 prints):
+  day1 t=437100 n=10 buyer=mixed seller=Mark 22 | ['VEV_4000', 'VEV_4500', 'VEV_5000', 'VEV_5100', 'VEV_5200', 'VEV_5300']...
+  day3 t=155400 n=10 buyer=mixed seller=Mark 22 | ['VEV_4000', 'VEV_4500', 'VEV_5000', 'VEV_5100', 'VEV_5200', 'VEV_5300']...
+  day3 t=877600 n=7 buyer=mixed seller=mixed | ['VELVETFRUIT_EXTRACT', 'VEV_5200', 'VEV_5300', 'VEV_5400', 'VEV_5500', 'VEV_6000']...
+  day2 t=423800 n=7 buyer=mixed seller=mixed | ['HYDROGEL_PACK', 'VEV_5200', 'VEV_5300', 'VEV_5400', 'VEV_5500', 'VEV_6000']...
+  day3 t=699400 n=7 buyer=mixed seller=mixed | ['HYDROGEL_PACK', 'VEV_5200', 'VEV_5300', 'VEV_5400', 'VEV_5500', 'VEV_6000']...
+  day3 t=705400 n=6 buyer=mixed seller=Mark 22 | ['VEV_5200', 'VEV_5300', 'VEV_5400', 'VEV_5500', 'VEV_6000', 'VEV_6500']
+  day3 t=431900 n=6 buyer=Mark 01 seller=Mark 22 | ['VEV_5200', 'VEV_5300', 'VEV_5400', 'VEV_5500', 'VEV_6000', 'VEV_6500']
+  day3 t=428900 n=6 buyer=mixed seller=Mark 22 | ['VEV_5200', 'VEV_5300', 'VEV_5400', 'VEV_5500', 'VEV_6000', 'VEV_6500']
+  day1 t=720500 n=6 buyer=mixed seller=mixed | ['VELVETFRUIT_EXTRACT', 'VEV_5300', 'VEV_5400', 'VEV_5500', 'VEV_6000', 'VEV_6500']
+  day1 t=624400 n=6 buyer=mixed seller=Mark 22 | ['VEV_5200', 'VEV_5300', 'VEV_5400', 'VEV_5500', 'VEV_6000', 'VEV_6500']
+
+VELVETFRUIT_EXTRACT (n=1381)
+  buyer share:  {'Mark 55': 0.433, 'Mark 14': 0.229, 'Mark 01': 0.188, 'Mark 67': 0.119}
+  seller share: {'Mark 55': 0.434, 'Mark 14': 0.24, 'Mark 01': 0.177, 'Mark 49': 0.076}
+
+HYDROGEL_PACK (n=1022)
+  buyer share:  {'Mark 38': 0.504, 'Mark 14': 0.485, 'Mark 22': 0.011}
+  seller share: {'Mark 14': 0.496, 'Mark 38': 0.496, 'Mark 22': 0.008}
+
+VEV_5200 (n=47)
+  buyer share:  {'Mark 14': 0.702, 'Mark 01': 0.234, 'Mark 38': 0.043, 'Mark 22': 0.021}
+  seller share: {'Mark 22': 0.979, 'Mark 38': 0.021}
+
+VEV_5300 (n=164)
+  buyer share:  {'Mark 01': 0.805, 'Mark 14': 0.183, 'Mark 38': 0.006, 'Mark 22': 0.006}
+  seller share: {'Mark 22': 0.994, 'Mark 38': 0.006}
+

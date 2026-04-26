@@ -17,6 +17,13 @@ Writes under this folder:
   - r4_p1_pair_baseline_residuals.csv
   - r4_p1_graph_edges.csv
   - r4_p1_burst_events.csv
+  - r4_p1_burst_core_fwd.csv        — per (day,ts) burst: extract + VEV_5200/5300 fwd20 at that timestamp
+  - r4_p1_burst_orchestration.csv   — dominant buyer/seller across symbols in each burst bucket
+  - r4_p1_graph_roles.csv           — hub degrees + reciprocity for top directed pairs
+  - r4_p1_participant_by_hour.csv   — name×role×hour_bin×K (session proxy; regime=all)
+  - r4_p1_inner_mid_diff_leadlag.csv — lagged Pearson corr of consecutive mid changes (extract vs VEV_5300 on inner-join grid)
+  - r4_p1_passive_touch_markout.csv — passive bid/ask provider proxy when U is non-aggressor counterparty
+  - r4_p1_residual_outliers.csv     — largest |residual_fwd20| prints after (buyer,seller,symbol) cell mean
   - r4_p1_phase1_summary.txt
 
 Note: does not overwrite r4_phase1_gate.json (refined in-repo); re-run that block by hand or keep analysis.json
@@ -25,7 +32,7 @@ as the source of truth for the Phase 1 completion object.
 from __future__ import annotations
 
 import math
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
 
 import numpy as np
@@ -116,6 +123,15 @@ def hour_bucket(ts: int) -> int:
     return (ts // 100) % 24
 
 
+def pearson_corr(a: np.ndarray, b: np.ndarray) -> tuple[float, int]:
+    a, b = a[np.isfinite(a) & np.isfinite(b)], b[np.isfinite(a) & np.isfinite(b)]
+    if len(a) < 30:
+        return float("nan"), len(a)
+    if np.std(a, ddof=1) <= 0 or np.std(b, ddof=1) <= 0:
+        return float("nan"), len(a)
+    return float(np.corrcoef(a, b)[0, 1]), len(a)
+
+
 def bootstrap_mean_ci(vals: np.ndarray, *, rng: np.random.Generator, n_boot: int = 800) -> tuple[float, float]:
     v = vals[np.isfinite(vals)]
     if len(v) < 10:
@@ -151,6 +167,7 @@ def main() -> None:
     )
     m = m.merge(ex, on=["day", "timestamp"], how="left")
     m = m.merge(hy, on=["day", "timestamp"], how="left")
+    m["hour_bin"] = m["timestamp"].map(hour_bucket)
 
     all_names = sorted({str(x) for x in m["buyer"]} | {str(x) for x in m["seller"]})
     (OUT / "r4_p1_name_universe.txt").write_text(
@@ -275,6 +292,41 @@ def main() -> None:
                     )
     pd.DataFrame(day_stab).to_csv(OUT / "r4_p1_participant_by_day.csv", index=False)
 
+    # --- 1d) Hour/session proxy (hour_bin = (timestamp//100) % 24; coarse clock on tape)
+    hour_rows: list[dict] = []
+    for u in all_names:
+        for role, mask in (
+            ("buyer_agg", (m["buyer"] == u) & (m["side"] == "buyer_aggressive")),
+            ("seller_agg", (m["seller"] == u) & (m["side"] == "seller_aggressive")),
+            ("any_touch", (m["buyer"] == u) | (m["seller"] == u)),
+        ):
+            for hb in range(24):
+                sub = m.loc[mask & (m["hour_bin"] == hb)]
+                if len(sub) < 8:
+                    continue
+                for k in KS:
+                    col = f"fwd_mid_{k}"
+                    v = sub[col].to_numpy(dtype=float)
+                    v = v[np.isfinite(v)]
+                    if len(v) < 8:
+                        continue
+                    hour_rows.append(
+                        {
+                            "name": u,
+                            "role": role,
+                            "hour_bin": hb,
+                            "horizon_K": k,
+                            "n": len(v),
+                            "mean_fwd": float(np.mean(v)),
+                            "median_fwd": float(np.median(v)),
+                            "frac_pos": float(np.mean(v > 0)),
+                            "t_vs_zero": float(np.mean(v) / (np.std(v, ddof=1) / math.sqrt(len(v))))
+                            if len(v) > 1 and np.std(v, ddof=1) > 0
+                            else float("nan"),
+                        }
+                    )
+    pd.DataFrame(hour_rows).to_csv(OUT / "r4_p1_participant_by_hour.csv", index=False)
+
     # --- 1b) Burst vs isolated (same-symbol fwd) for Mark flows
     ts_n = m.groupby(["day", "timestamp"])["symbol"].transform("count")
     m["burst_multi"] = ts_n >= 4
@@ -390,12 +442,112 @@ def main() -> None:
     m2[["day", "timestamp", "buyer", "seller", "symbol", "side", "fwd_mid_20", "cell_mean_fwd20", "residual_fwd20"]].to_csv(
         OUT / "r4_p1_pair_baseline_residuals.csv", index=False
     )
+    res_sorted = m2[np.isfinite(m2["residual_fwd20"])].copy()
+    res_sorted["abs_res"] = res_sorted["residual_fwd20"].abs()
+    res_sorted.sort_values("abs_res", ascending=False).head(200)[
+        ["day", "timestamp", "buyer", "seller", "symbol", "side", "fwd_mid_20", "cell_mean_fwd20", "residual_fwd20"]
+    ].to_csv(OUT / "r4_p1_residual_outliers.csv", index=False)
+
+    # --- 2b) Passive counterparty at touch: U on resting side when other side aggresses
+    passive_rows: list[dict] = []
+    for u in all_names:
+        for passive_role, mask in (
+            (
+                "passive_bid_counterparty",
+                (m["buyer"] == u) & (m["side"] == "seller_aggressive"),
+            ),
+            (
+                "passive_ask_counterparty",
+                (m["seller"] == u) & (m["side"] == "buyer_aggressive"),
+            ),
+        ):
+            sub = m.loc[mask]
+            if len(sub) < 10:
+                continue
+            for k in KS:
+                col = f"fwd_mid_{k}"
+                v = sub[col].to_numpy(dtype=float)
+                v = v[np.isfinite(v)]
+                if len(v) < 10:
+                    continue
+                passive_rows.append(
+                    {
+                        "name": u,
+                        "passive_role": passive_role,
+                        "horizon_K": k,
+                        "traded_symbol": "same_as_row",
+                        "n": len(v),
+                        "mean_fwd": float(np.mean(v)),
+                        "median_fwd": float(np.median(v)),
+                        "frac_pos": float(np.mean(v > 0)),
+                        "t_vs_zero": float(np.mean(v) / (np.std(v, ddof=1) / math.sqrt(len(v))))
+                        if len(v) > 1 and np.std(v, ddof=1) > 0
+                        else float("nan"),
+                    }
+                )
+    pd.DataFrame(passive_rows).to_csv(OUT / "r4_p1_passive_touch_markout.csv", index=False)
+
+    # --- 2c) Inner-join mid diffs: consecutive-row Δmid extract vs lagged Δmid VEV_5300 (Phase 1 lead–lag on shared timestamps)
+    exs = px.loc[px["symbol"] == "VELVETFRUIT_EXTRACT", ["day", "timestamp", "mid"]].sort_values(["day", "timestamp"])
+    v53 = px.loc[px["symbol"] == "VEV_5300", ["day", "timestamp", "mid"]].sort_values(["day", "timestamp"])
+    jf = exs.merge(v53, on=["day", "timestamp"], how="inner", suffixes=("_ex", "_5300"))
+    jf = jf.sort_values(["day", "timestamp"])
+    jf["d_ex"] = jf.groupby("day")["mid_ex"].diff()
+    jf["d5300"] = jf.groupby("day")["mid_5300"].diff()
+    jf = jf[jf["d_ex"].notna() & jf["d5300"].notna()]
+    ll_rows: list[dict] = []
+    for h in range(-10, 11):
+        yshift = jf.groupby("day")["d5300"].shift(-h)
+        mask = jf["d_ex"].notna() & yshift.notna()
+        x = jf.loc[mask, "d_ex"].to_numpy(dtype=float)
+        y = yshift.loc[mask].to_numpy(dtype=float)
+        r, nn = pearson_corr(x, y)
+        ll_rows.append({"lag_signed_rows": h, "pearson_r": r, "n": nn})
+    pd.DataFrame(ll_rows).to_csv(OUT / "r4_p1_inner_mid_diff_leadlag.csv", index=False)
 
     # --- 3) Graph edges
     m["notional"] = m["price"] * m["quantity"]
     eg = m.groupby(["buyer", "seller"], as_index=False).agg(n=("symbol", "count"), notional=("notional", "sum"))
     eg = eg.sort_values("n", ascending=False)
     eg.to_csv(OUT / "r4_p1_graph_edges.csv", index=False)
+
+    # --- 3a) Hub degrees + reciprocity for top directed pairs (Phase 1 graph / roles)
+    names_graph = sorted({str(x) for x in m["buyer"]} | {str(x) for x in m["seller"]})
+    out_deg = m.groupby("buyer").size().reindex(names_graph, fill_value=0).astype(int)
+    in_deg = m.groupby("seller").size().reindex(names_graph, fill_value=0).astype(int)
+    pair_set = set(zip(m["buyer"].astype(str), m["seller"].astype(str)))
+    node_rows: list[dict] = []
+    for nm in names_graph:
+        node_rows.append(
+            {
+                "row_kind": "node",
+                "name": nm,
+                "out_degree": int(out_deg.get(nm, 0)),
+                "in_degree": int(in_deg.get(nm, 0)),
+                "total_touch": int(out_deg.get(nm, 0) + in_deg.get(nm, 0)),
+                "reciprocity_rev_over_fwd": float("nan"),
+            }
+        )
+    pair_rows: list[dict] = []
+    topn = min(12, len(eg))
+    for i in range(topn):
+        b, s = str(eg.iloc[i]["buyer"]), str(eg.iloc[i]["seller"])
+        rev_n = int(eg.loc[(eg["buyer"] == s) & (eg["seller"] == b), "n"].sum()) if ((s, b) in pair_set) else 0
+        fwd_n = int(eg.iloc[i]["n"])
+        pair_rows.append(
+            {
+                "row_kind": "top_pair",
+                "name": f"{b}->{s}",
+                "out_degree": fwd_n,
+                "in_degree": rev_n,
+                "total_touch": fwd_n + rev_n,
+                "reciprocity_rev_over_fwd": (rev_n / fwd_n) if fwd_n > 0 else float("nan"),
+            }
+        )
+    pd.concat(
+        [pd.DataFrame(node_rows).sort_values("total_touch", ascending=False), pd.DataFrame(pair_rows)],
+        ignore_index=True,
+    ).to_csv(OUT / "r4_p1_graph_roles.csv", index=False)
 
     # --- 3b) 2-hop motifs A→B→C (chain counts where hop1 seller == hop2 buyer)
     hop_rows: list[dict] = []
@@ -431,6 +583,40 @@ def main() -> None:
     # Burst forward extract: merge burst timestamps to extract fwd
     ext = px.loc[px["symbol"] == "VELVETFRUIT_EXTRACT", ["day", "timestamp", "fwd_mid_20"]].rename(columns={"fwd_mid_20": "ext_fwd20"})
     burst_big = burst_big.merge(ext, on=["day", "timestamp"], how="left")
+    for sym_lab, sym in (("vev5200_fwd20", "VEV_5200"), ("vev5300_fwd20", "VEV_5300")):
+        subp = px.loc[px["symbol"] == sym, ["day", "timestamp", "fwd_mid_20"]].rename(columns={"fwd_mid_20": sym_lab})
+        burst_big = burst_big.merge(subp, on=["day", "timestamp"], how="left")
+    burst_big.to_csv(OUT / "r4_p1_burst_core_fwd.csv", index=False)
+
+    orch_rows: list[dict] = []
+    for _, br in burst_big.iterrows():
+        d, ts = int(br["day"]), int(br["timestamp"])
+        sub = m.loc[(m["day"] == d) & (m["timestamp"] == ts)]
+        if len(sub) == 0:
+            continue
+        bc = Counter(sub["buyer"].astype(str))
+        sc = Counter(sub["seller"].astype(str))
+        db, db_c = bc.most_common(1)[0]
+        ds, ds_c = sc.most_common(1)[0]
+        db_sym = int(sub.loc[sub["buyer"] == db, "symbol"].nunique())
+        ds_sym = int(sub.loc[sub["seller"] == ds, "symbol"].nunique())
+        orch_rows.append(
+            {
+                "day": d,
+                "timestamp": ts,
+                "n_trades": int(br["n_trades"]),
+                "symbols": br["symbols"],
+                "dominant_buyer": db,
+                "dominant_buyer_row_count": db_c,
+                "dominant_buyer_n_symbols": db_sym,
+                "dominant_seller": ds,
+                "dominant_seller_row_count": ds_c,
+                "dominant_seller_n_symbols": ds_sym,
+                "n_unique_buyers": int(sub["buyer"].nunique()),
+                "n_unique_sellers": int(sub["seller"].nunique()),
+            }
+        )
+    pd.DataFrame(orch_rows).to_csv(OUT / "r4_p1_burst_orchestration.csv", index=False)
     ctrl = burst.sample(min(500, len(burst)), random_state=0)
     ctrl = ctrl.merge(ext, on=["day", "timestamp"], how="left")
     burst_mean = float(burst_big["ext_fwd20"].dropna().mean()) if len(burst_big) else float("nan")

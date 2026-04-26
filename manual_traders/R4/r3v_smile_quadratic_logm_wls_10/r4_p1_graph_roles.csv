@@ -1,0 +1,20 @@
+row_kind,name,out_degree,in_degree,total_touch,reciprocity_rev_over_fwd
+node,Mark 14,1127,1045,2172,
+node,Mark 01,1599,244,1843,
+node,Mark 22,42,1542,1584,
+node,Mark 38,733,745,1478,
+node,Mark 55,598,600,1198,
+node,Mark 67,165,0,165,
+node,Mark 49,17,105,122,
+top_pair,Mark 01->Mark 22,1339,0,1339,0.0
+top_pair,Mark 14->Mark 38,728,714,1442,0.9807692307692307
+top_pair,Mark 38->Mark 14,714,728,1442,1.0196078431372548
+top_pair,Mark 55->Mark 14,331,316,647,0.9546827794561934
+top_pair,Mark 14->Mark 55,316,331,647,1.0474683544303798
+top_pair,Mark 01->Mark 55,260,244,504,0.9384615384615385
+top_pair,Mark 55->Mark 01,244,260,504,1.0655737704918034
+top_pair,Mark 67->Mark 49,89,0,89,0.0
+top_pair,Mark 14->Mark 22,83,0,83,0.0
+top_pair,Mark 67->Mark 22,75,0,75,0.0
+top_pair,Mark 38->Mark 22,19,17,36,0.8947368421052632
+top_pair,Mark 22->Mark 55,18,14,32,0.7777777777777778

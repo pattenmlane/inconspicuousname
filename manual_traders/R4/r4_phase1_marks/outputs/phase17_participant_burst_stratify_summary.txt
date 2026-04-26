@@ -1,0 +1,28 @@
+Participant × burst_bucket × K (aggressor-only). MIN_CELL for cells:10
+
+Largest |Welch_same| **burst vs isolated** (both n>=8):
+  Mark 38 aggr_sell HYDROGEL_PACK K=20  same: a_mean=-3.222 b_mean=0.3156 Welch=-1.486 (n 9/480)  ext_Welch=0.743
+  Mark 38 aggr_sell HYDROGEL_PACK K=5  same: a_mean=1.167 b_mean=0.06771 Welch=1.256 (n 9/480)  ext_Welch=0.646
+  Mark 38 aggr_sell HYDROGEL_PACK K=100  same: a_mean=-3.5 b_mean=0.7276 Welch=-1.016 (n 9/479)  ext_Welch=0.816
+
+Cells with |Welch_same|>=2 (burst vs isolated, same-asset):
+  (none)
+
+Top |Welch_same| **small_multi vs isolated** (extract + hydro focus):
+  Mark 38 aggr_sell HYDROGEL_PACK K=5 Welch_same=-2.171 n=18/480
+  Mark 38 aggr_buy HYDROGEL_PACK K=100 Welch_same=1.974 n=28/477
+  Mark 38 aggr_sell HYDROGEL_PACK K=20 Welch_same=-1.914 n=18/480
+  Mark 55 aggr_buy VELVETFRUIT_EXTRACT K=20 Welch_same=1.381 n=24/567
+  Mark 67 aggr_buy VELVETFRUIT_EXTRACT K=100 Welch_same=-1.331 n=8/153
+  Mark 55 aggr_buy VELVETFRUIT_EXTRACT K=100 Welch_same=1.162 n=23/565
+  Mark 55 aggr_sell VELVETFRUIT_EXTRACT K=20 Welch_same=0.907 n=30/565
+  Mark 55 aggr_buy VELVETFRUIT_EXTRACT K=5 Welch_same=0.852 n=24/567
+  Mark 55 aggr_sell VELVETFRUIT_EXTRACT K=5 Welch_same=0.737 n=30/565
+  Mark 38 aggr_buy HYDROGEL_PACK K=20 Welch_same=0.524 n=28/480
+  Mark 67 aggr_buy VELVETFRUIT_EXTRACT K=20 Welch_same=0.497 n=8/154
+  Mark 38 aggr_sell HYDROGEL_PACK K=100 Welch_same=-0.396 n=17/479
+  Mark 55 aggr_sell VELVETFRUIT_EXTRACT K=100 Welch_same=-0.198 n=29/561
+  Mark 38 aggr_buy HYDROGEL_PACK K=5 Welch_same=-0.155 n=28/480
+  Mark 67 aggr_buy VELVETFRUIT_EXTRACT K=5 Welch_same=-0.058 n=8/154
+
+Extract-focused: top mean_fwd_extract in **burst** bucket (extract symbol, K=20, n>=30):

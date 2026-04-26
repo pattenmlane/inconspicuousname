@@ -349,5 +349,21 @@
       "m01_m22_vev_extract": "r4_m01_m22_vev_extract_markout_gate.json — by-strike cells when n>=3.",
       "trader_v8_vs_v2": "Pooled-significant hour whitelist underperforms v2; full-clock joint gate wins in sim."
     }
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "Orchestration: Mark01→Mark22 VEV timestamps vs same-timestamp extract prints (lead–lag at dt=0); sim trader_v9 = joint gate + blacklist hours {1,2,10} where pooled Welch had tight<loose p<0.05.",
+    "analysis_outputs": [
+      "run_r4_orchestration_m01_m22_extract.py",
+      "analysis_outputs/r4_orchestration_m01_m22_vev_extract_same_ts.json",
+      "trader_v9.py",
+      "backtest_logs/trader_v9_worse.log",
+      "backtest_logs/trader_v9_all.log"
+    ],
+    "used_to_decide": "**Same-ts orchestration (r4_orchestration_m01_m22_vev_extract_same_ts.json):** **317** unique (day,timestamp) with M01→M22 on some **VEV_***; only **14** (**4.4%**) also have an **extract** trade at the **same** ts. Extract **fwd20** from that clock: mean **~+0.21** when extract co-prints (n=14) vs **~+0.28** when VEV-only at that ts (n=303) — **no** evidence here that co-printing extract predicts **higher** fwd; small-n on overlap. **trader_v9** (skip hours 1,2,10 under joint gate): worse **10,598** vs v2 **13,236** — blacklist **hurts** vs full v2 but **less** than v8 whitelist (**5,820**); still not an improvement over v2.",
+    "round4_post_phase3_notes": {
+      "m01_m22_vev_extract_same_ts": "Phase-1 snap_at + forward_mid K=20 on extract series at the basket timestamp.",
+      "trader_v9_vs_v2_v8": "Bad-hour filter recovers some PnL vs good-hour-only v8 but remains below unconstrained v2."
+    }
   }
 ]

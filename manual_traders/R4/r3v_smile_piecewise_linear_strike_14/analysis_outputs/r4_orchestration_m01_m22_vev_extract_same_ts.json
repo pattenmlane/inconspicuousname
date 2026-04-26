@@ -1,0 +1,16 @@
+{
+  "n_timestamps_m01_m22_vev": 317,
+  "n_timestamps_also_extract_trade": 14,
+  "n_timestamps_vev_only_no_extract_print": 303,
+  "frac_vev_ts_with_extract_print": 0.04416403785488959,
+  "extract_fwd20_at_vev_ts": {
+    "when_extract_also_prints_same_ts": {
+      "n": 14,
+      "mean": 0.21428571428571427
+    },
+    "when_no_extract_print_same_ts": {
+      "n": 303,
+      "mean": 0.2838283828382838
+    }
+  }
+}

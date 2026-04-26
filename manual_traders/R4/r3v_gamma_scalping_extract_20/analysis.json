@@ -497,5 +497,13 @@
       "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v23.json"
     ],
     "used_to_decide": "Keep **`trader_v19`** as **`worse`** champion; document that **inventory cap** interacts with **Mark 67** lift under **`worse`** (Phase 2 inventory-aware theme, measured on sim). Phase 1–3 gate objects unchanged in this repo state."
+  },
+  {
+    "iteration": 24,
+    "analysis_description": "**Index:** `R4_STRATEGY_SNAPSHOT.txt` — single-file map from **round4work/suggested direction.txt** (Phases 1–3) to **scripts + analysis_outputs + backtester hook + current `worse` champion (v19)**. Does not duplicate new statistics; orients readers when Phase blocks are pasted without path context.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/R4_STRATEGY_SNAPSHOT.txt"
+    ],
+    "used_to_decide": "Satisfy audit-style requests to tie **suggested direction** prose to **existing** Phase 1–3 deliverables without re-running pipelines."
   }
 ]

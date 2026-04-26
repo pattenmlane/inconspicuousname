@@ -1,0 +1,11 @@
+VEV_5300 trades: Mark01/Mark22 only; K = forward price-grid rows
+
+=== joint_tight n=132 ===
+  K=5: n=132 mean=-0.1477 median=0.0000 frac_pos=0.250
+  K=20: n=132 mean=-0.1212 median=0.0000 frac_pos=0.394
+  K=100: n=132 mean=0.0795 median=0.0000 frac_pos=0.492
+
+=== joint_loose n=0 ===
+  K=5: n=0 skip
+  K=20: n=0 skip
+  K=100: n=0 skip

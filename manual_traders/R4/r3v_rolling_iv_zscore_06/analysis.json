@@ -260,7 +260,7 @@
         "trader": "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v75.py",
         "interaction": "(Mark67 prefilter + Sonic joint at lift + window exit) x **Q=5** x **FLATTEN_MAX=9** sell clip",
         "r4_days_1_3_total_profit": 3722,
-        "note": "Flatten grid extended below 10: **v75 FLATTEN=9 +3722** > v74=8 +3703 > v70=11 +3699 > v69=10 +3693; **v73=7** +3566 (day_1 crushed). **W≠50k** with Q=5 stays bad — keep JSON **50_000**. Tape: `r4_phase13` — mean **~43%** of price rows inside each v26 window have joint gate tight (execution often off-tight surface)."
+        "note": "Flatten grid extended below 10: **v75 FLATTEN=9 +3722** > v74=8 +3703 > v70=11 +3699 > v69=10 +3693; **v73=7** +3566 (day_1 crushed). **W≠50k** with Q=5 stays bad — keep JSON **50_000**. Tape: `r4_phase13` — mean **~43%** of price rows inside each v26 window have joint gate tight (execution often off-tight surface). Integer bracket **8–10**: v81=8 +3703, **v75=9 +3722**, v82=10 +3693 — **9 is local maximum** on this tape."
       },
       "script": "manual_traders/R4/r3v_rolling_iv_zscore_06/r4_phase3_joint_gate.py"
     }
@@ -493,5 +493,17 @@
       "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v75_2026-04-26_r4_worse_v73grid.log"
     ],
     "used_to_decide": "Default sim candidate → **`trader_v75.py`**; keep **v70** as near-best if you want a round-number flatten cap."
+  },
+  {
+    "iteration": 25,
+    "analysis_description": "**Phase 14 tape:** `r4_phase14_m01_22_v5300_joint_gate.py` — **VEV_5300** trades where counterparty is **Mark 01** and **Mark 22** (either order). **n=132** on R4 days 1–3; **all 132** have Sonic **joint_tight** at print (**0** loose rows) — dominant basket flow on 5300 in this sample only prints when 5200/5300 books are already tight, so **gate does not stratify** this pair (cannot test Mark01→22 loose vs tight here). Forward **VEV_5300** mid: K5 mean **~-0.15**, fracpos **~0.25** (short-horizon negative drift, not a naive buy tail). **Sim:** v78 EOD=790 **+3713**; v79/v80 EOD=810 / MAX_SPREAD=5 tie **v75 +3722**; v81 FLATTEN=8 **+3703**; v82 FLATTEN=10 **+3693**.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/r4_phase14_m01_22_v5300_joint_gate.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/outputs/r4_p14_m01_22_v5300_joint_gate.txt",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/outputs/r4_p14_m01_22_v5300_rows.csv",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v78_2026-04-26_r4_worse_v78grid.log",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v81_2026-04-26_r4_worse_f89.log"
+    ],
+    "used_to_decide": "Tier-A sim unchanged: **`trader_v75`**. Counterparty×gate story for **Mark01↔Mark22 on 5300** is **degenerate** (always tight at print) — look elsewhere for gate×identity interaction on this slice."
   }
 ]

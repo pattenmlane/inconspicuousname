@@ -1,0 +1,9 @@
+Round 4 tape (CSV, days 1–3): among timestamps with Mark67 buyer-aggressive on VELVETFRUIT_EXTRACT
+(price >= ask1) AND Sonic (VEV_5200/5300 spread<=2) AND U spread<=6:
+
+U spread == 1: 11 timestamps
+U spread == 2: 16 timestamps
+U spread >= 3: 0 timestamps
+
+Therefore `MIN_ENTRY_U_SPREAD = 3` in trader_v12.py admits **no** Mark67 entries on this
+historical slice (backtest PnL 0, zero SUBMISSION fills).

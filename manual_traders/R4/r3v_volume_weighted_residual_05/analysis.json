@@ -388,5 +388,16 @@
       "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v11_all.log"
     ],
     "used_to_decide": "After fix: total PnL **+217** (worse=all), **35** SUBMISSION rows, **160** abs qty on **U** vs v7 **+18** / **22** / **22** \u2014 large lift from **actually filling** multi-tick entries while keeping v7 exits. Caveat: more **aggressive** entry (touch ask) increases adverse-selection risk; validate on more days / stress `ENTRY_Q`. **v11** is now the strongest Mark67\u00d7Sonic U-only variant in this branch line."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "**Parameter boundary test:** `trader_v12.py` = **v11** but Mark67 long entries only when **U spread \u2265 3** (`MIN_ENTRY_U_SPREAD`). Precomputed histogram on Round 4 CSV (`analysis_outputs/r12_m67_sonic_u_spread_histogram.txt`).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_volume_weighted_residual_05/trader_v12.py",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r12_m67_sonic_u_spread_histogram.txt",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v12_worse.log",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v12_all.log"
+    ],
+    "used_to_decide": "Among **Mark67 buy_agg \u2229 Sonic \u2229 U spread\u22646** timestamps, **U spread** is only **1** (n=11) or **2** (n=16) in days 1\u20133; **spread\u22653 count = 0**. Backtest **PnL 0**, **0** SUBMISSION fills \u2014 rule is **empty** on this tape. **Falsifies** the hope that \u201conly very wide U\u201d co-occurs with Mark67\u00d7Sonic here; **v11** (spread\u22652) remains the operational upper bound for this intersection without relaxing Sonic or counterparty filters."
   }
 ]

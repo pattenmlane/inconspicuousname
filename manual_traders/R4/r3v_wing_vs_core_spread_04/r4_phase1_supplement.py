@@ -125,7 +125,8 @@ Bullet 3 — Graph: graph_edges.csv, graph_top_pairs.txt, graph_hubs.json; twoho
 Bullet 4 — Bursts: burst_events.csv, burst_forward_extract.csv (extract burst vs control);
   burst_forward_vev5200_vev5300_rows.csv, burst_forward_core_vev_summary.csv (core VEV mids)
 
-Bullet 5 — Passive adverse: passive_adverse_by_pair.csv
+Bullet 5 — Passive adverse: passive_adverse_by_pair.csv; passive_adverse_by_passive_party_k.csv;
+  passive_adverse_by_passive_party_aggressor_k.csv (population rollups)
 
 Summary: phase1_summary.json
 Script: r4_phase1_counterparty_analysis.py, r4_phase1_supplement.py

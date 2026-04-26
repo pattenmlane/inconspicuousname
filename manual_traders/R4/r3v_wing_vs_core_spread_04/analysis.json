@@ -70,9 +70,11 @@
       },
       "bullet_5_adverse_selection": {
         "outputs": [
-          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/passive_adverse_by_pair.csv"
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/passive_adverse_by_pair.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/passive_adverse_by_passive_party_k.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/passive_adverse_by_passive_party_aggressor_k.csv"
         ],
-        "conclusion": "Worst passive-side forward same-symbol markouts (sorted mean) hit pairs involving Mark 49 / Mark 22 bridges at long horizons; Mark 38\u219214 hydro passive (Mark 14) shows mildly negative K=100 markout on huge n\u2014population-level **do not lean passive** into certain bridges without inventory model."
+        "conclusion": "Pair-level **passive_adverse_by_pair** still the primary ranking (worst cells: Mark49 bridges at K=100 on thin n, Mark22 passive in Mark22\u219238 at K=20/100). **Rollups** separate population harm by passive name and **aggressor_side**: e.g. **Mark 49 passive + sell_aggr** (Mark 49 was liquidity **buyer** against aggressive seller) has mean same-symbol fwd **\u2248\u22124.5** at K=100 (n=15); **Mark 49 passive + buy_aggr** is **positive** mean (\u2248+1.8) \u2014 pooling passive_party without aggressor **mixes** adverse vs favorable passive roles. Mark 14 passive hydro still mildly negative at K=100 in huge-n Mark38\u219214 cells (see pair CSV)."
       },
       "top_5_tradeable_edges_ranked": [
         {
@@ -118,7 +120,8 @@
         "**Full-cell** baseline residuals (per pair\u00d7symbol\u00d7regime) sum to 0 by construction; second-order **regime** effects vs a **pair\u00d7symbol** pool are small (see second_order_*.csv).",
         "List of all tape names: **all_participant_names_list.txt** (7 distinct **Mark** names on R4 days 1\u20133) \u2014 exhaustive \u201ceach U\u201d coverage; cells dropped when n<threshold in pooled tables.",
         "**Cross-symbol** signed-flow vs forward-mid lag table (Phase 1 r4_phase1_lead_lag_flow.py): no |pooled corr| \u2265 0.08 for off-diagonal lead/lag cells \u2014 not a substitute for **counterparty-conditioned** Mark67 edge.",
-        "**Mark67 buy-aggr extract (tight, k=20)** conditional **hydro** forward mid: **cross_asset_m67_..._headline.json** shows day-1 positive hydro drift but **days 2\u20133 negative** \u2014 do **not** bundle hydro as same-direction leg without separate hypothesis."
+        "**Mark67 buy-aggr extract (tight, k=20)** conditional **hydro** forward mid: **cross_asset_m67_..._headline.json** shows day-1 positive hydro drift but **days 2\u20133 negative** \u2014 do **not** bundle hydro as same-direction leg without separate hypothesis.",
+        "**Passive_party-only** rollup mixes **buy_aggr** vs **sell_aggr** passive roles (e.g. Mark49 passive mean is **positive** at k=5/20 when pooling); use **passive_adverse_by_passive_party_aggressor_k** or pair-level CSV for execution rules."
       ],
       "reference_scripts": [
         "round4work/r4_counterparty_initial_sketch.py",
@@ -505,5 +508,15 @@
       "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_phase1_supplement.py"
     ],
     "used_to_decide": "Keep Round-4 sim focus on **extract + VEV** legs; do not assume **HYDROGEL** co-moves with Mark67 extract prints without a new hypothesis."
+  },
+  {
+    "iteration": 18,
+    "analysis_description": "**Phase 1 bullet 5:** extended **r4_phase1_counterparty_analysis.py** to write **passive_adverse_by_passive_party_k.csv** (mean/med/n by passive_party\u00d7k) and **passive_adverse_by_passive_party_aggressor_k.csv** (splits **buy_aggr** vs **sell_aggr** who hit passive). Re-ran full Phase1 + supplements. **round4_phase1_complete** bullet_5 conclusion + explicit_no_edge updated: Mark49 passive+sell_aggr shows worst K=100 mean (\u2248\u22124.5, n=15); pooling passive_party alone is misleading.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_phase1_counterparty_analysis.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/passive_adverse_by_passive_party_k.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/passive_adverse_by_passive_party_aggressor_k.csv"
+    ],
+    "used_to_decide": "MM / fade rules should condition on **pair + aggressor_side** (or aggressor split), not passive name alone."
   }
 ]

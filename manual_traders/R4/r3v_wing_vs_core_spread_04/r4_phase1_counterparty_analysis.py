@@ -14,6 +14,7 @@ Outputs under manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/
   - burst_events.csv, burst_forward_extract.csv
   - burst_forward_vev5200_vev5300_rows.csv, burst_forward_core_vev_summary.csv
   - passive_adverse_by_pair.csv
+  - passive_adverse_by_passive_party_k.csv, passive_adverse_by_passive_party_aggressor_k.csv
   - phase1_summary.json
 
 Run from repo root:
@@ -485,6 +486,21 @@ def main() -> None:
             .sort_values("mean_fwd")
         )
         adv_g.to_csv(OUT / "passive_adverse_by_pair.csv", index=False)
+        # Population rollups: who is harmed when passive (bullet 5)
+        adv_by_party = (
+            adv_df.groupby(["passive_party", "k"], dropna=False)
+            .agg(n=("fwd_same", "count"), mean_fwd=("fwd_same", "mean"), med_fwd=("fwd_same", "median"))
+            .reset_index()
+            .sort_values(["k", "mean_fwd"])
+        )
+        adv_by_party.to_csv(OUT / "passive_adverse_by_passive_party_k.csv", index=False)
+        adv_by_party_side = (
+            adv_df.groupby(["passive_party", "aggressor_side", "k"], dropna=False)
+            .agg(n=("fwd_same", "count"), mean_fwd=("fwd_same", "mean"), med_fwd=("fwd_same", "median"))
+            .reset_index()
+            .sort_values(["k", "mean_fwd"])
+        )
+        adv_by_party_side.to_csv(OUT / "passive_adverse_by_passive_party_aggressor_k.csv", index=False)
 
     # --- Summary JSON for analysis.json ---
     def top_candidates(pdf: pd.DataFrame, n: int = 8) -> list[dict]:

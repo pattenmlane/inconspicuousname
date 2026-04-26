@@ -144,5 +144,19 @@
       "backtest_logs/trader_v49_worse.log"
     ],
     "used_to_decide": "v48 and v49 both reach -93 total (improved day1 vs v41 -51 vs -53; day0/2 unchanged). Tied at -93: prefer v48 (stricter shock threshold, fewer false shock states) as new lead over v41 (-95)."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "Read round3work/vouchers_final_strategy/STRATEGY.txt and outputs/r3_tight_spread_summary.txt: tight = both s5200 and s5300 L1 spread <=2; day0 shows higher mean 20-bar forward extract mid change when tight vs not (t-stat in summary) and P(both tight) ~0.10. inclineGod/ Sonic framing: use joint book as regime, not mid-only. Merged main added Round-3 day-3 tape; backtests now run days 0-3. Implemented v50/v51 on v48: multiply existing gamma*shock-scaled THR by 0.92 when joint tight else 1.04 (v51 stronger 0.88/1.08).",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_6panel.png",
+      "backtest_logs/trader_v50_worse.log",
+      "backtest_logs/trader_v50_all.log",
+      "backtest_logs/trader_v51_worse.log",
+      "backtest_logs/trader_v51_all.log"
+    ],
+    "used_to_decide": "v50 (mild 0.92/1.04) matches v48 on worse total (-93 over days 0-3); v51 is worse at -120. Record both match modes: worse and all are identical in these runs. New lead: trader_v50.py (PWL+shock+joint-tight as execution overlay); avoid v51. Still far from 200k/day objective — need extract/VEV-only redesign next."
   }
 ]

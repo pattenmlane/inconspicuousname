@@ -442,5 +442,49 @@
     },
     "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v9.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-merge-pnl",
     "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v9.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-merge-pnl"
+  },
+  {
+    "iteration": 10,
+    "round": 4,
+    "trader_file": "trader_v10.py",
+    "strategy_description": "**trader_v8** + **Mark67→Mark22** buy-aggr extract: same 250-tick **ask suppression** (gate-off) as M67→M49; window `max(until_49, until_22)`. Phase-1 tape means in `analysis_outputs/r4_phase1_extract_buyaggr_m67_m49_m67_m22_day_means.csv`.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 48631,
+      "backtest_log_file": "backtest_logs/trader_v10_round4_worse.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": {
+          "day1": 23556,
+          "day2": 11999,
+          "day3": 13076
+        },
+        "non_zero_pnl_products_per_day": {
+          "day1": 4,
+          "day2": 3,
+          "day3": 4
+        },
+        "note": "+136 vs v8 worse (48495); +1348 vs v4 (47283). Day1 +308, day2 0, day3 −172 vs v8 day totals. Extract worse log: d1 +308, d2 0, d3 −172 vs v8."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 54523,
+      "backtest_log_file": "backtest_logs/trader_v10_round4_all.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": {
+          "day1": 26722,
+          "day2": 17009,
+          "day3": 10792
+        },
+        "non_zero_pnl_products_per_day": {
+          "day1": 11,
+          "day2": 10,
+          "day3": 11
+        },
+        "note": "+1067 vs v8 all (53456); +3995 vs v4 (50528)."
+      }
+    },
+    "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v10.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-merge-pnl",
+    "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v10.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-merge-pnl"
   }
 ]

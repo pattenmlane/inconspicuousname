@@ -373,5 +373,17 @@
       "results.json"
     ],
     "used_to_decide": "No inventory recycle threshold **beats** v8 on this three-day worse grid; defer recycle tuning until more tape days or explicit inventory stress metrics."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "**Phase 1 second leg → sim:** Pooled buy-aggr extract **Mark67→Mark22** mean mark_20 **~2.03** (n=75) with **day-2 dip ~1.19** vs **~2.36 / ~2.68** d1/d3 (`r4_phase1_extract_buyaggr_m67_m49_m67_m22_day_means.csv`). **trader_v10** extends v8’s ask-suppression to fire after **either** M67→**49** or M67→**22** buy-aggr print (250 ts each, `max` merge, gate-off). R4 d1–3: **worse 48,631** (**+136** vs v8 **48,495**); **all 54,523** (**+1,067** vs v8). Extract worse PnL vs v8: day1 **+308**, day2 **0**, day3 **−172** — net sim gain driven by **day1** plus unchanged day2.",
+    "analysis_outputs": [
+      "trader_v10.py",
+      "analysis_outputs/r4_phase1_extract_buyaggr_m67_m49_m67_m22_day_means.csv",
+      "backtest_logs/trader_v10_round4_worse.log",
+      "backtest_logs/trader_v10_round4_all.log",
+      "results.json"
+    ],
+    "used_to_decide": "**v10** is new best worse+all on R4 d1–3 in this series; ship for grid until longer tape. Watch day-3 extract small drag vs v8 when stacking M67→M22."
   }
 ]

@@ -384,5 +384,31 @@
       },
       "used_to_decide": "After v8/v9 extract-spread filter, the Sonic gate is **almost non-binding** for M01\u219222 bursts (same lesson as v2 vs v1, now on the filtered family). Prefer v9 for simplicity unless a future filter creates more wide-gate bursts worth studying."
     }
+  },
+  {
+    "round4_extract_aggr_buy_coverage": {
+      "script": "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_extract_aggr_buyer_coverage_r4.py",
+      "outputs": [
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_extract_aggr_buy_counts_by_buyer_day.csv",
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_extract_aggr_buy_counts_pivot.csv",
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_extract_aggr_buy_coverage_summary.json"
+      ],
+      "definition": "Aggressive buy on VELVETFRUIT_EXTRACT: price >= ask1 at same timestamp.",
+      "finding": "**Mark 01 aggressive buy count = 0** across days 1\u20133. Dominant aggressive buyers: **Mark 55** (598), **Mark 67** (164), trace **Mark 22** (6), **Mark 49** (1). Mark 01 appears on extract as passive counterparty (e.g. vs Mark 55), consistent with basket flow on vouchers.",
+      "used_to_decide": "Do not build \u2018follow Mark 01 aggressive extract lift\u2019 strategies \u2014 the event class is empty on this tape. Keep Mark 01 signal on **VEV** prints / bursts."
+    }
+  },
+  {
+    "round4_mark55_extract_joint_gate_study": {
+      "script": "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_mark55_extract_gate_study.py",
+      "outputs": [
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_mark55_aggr_buy_extract_fwd20_by_gate_day.csv",
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_mark55_extract_gate_summary.json"
+      ],
+      "definition": "Mark 55 buyer on extract, price >= ask1; joint_tight = 5200&5300 L1 spread <=2; fwd20 on extract mid.",
+      "table_mean_fwd20": "Day1 tight n=25 mean 0.88 vs wide n=161 mean 0.52. Day2 tight n=44 mean 0.15 vs wide n=174 mean 0.39. Day3 tight n=93 mean 0.11 vs wide n=101 mean 0.53.",
+      "finding": "Unlike the Mark 67 gate study (where tight did not consistently dominate), **Mark 55** shows **day-dependent** tight vs wide ordering: day 1 tight > wide; days 2\u20133 **wide > tight** on mean fwd20. **Do not** treat Sonic tight as a universal filter for \u2018chase M55 lift\u2019.",
+      "used_to_decide": "If adding a Mark 55 extract follower, gate choice must be **validated per day** or use a non-gate feature; copying the M67+v5 recipe blindly is unsupported."
+    }
   }
 ]

@@ -1,0 +1,48 @@
+{
+  "definition": "Aggressive buy: Mark 55 buyer on extract, price >= ask1 at timestamp; joint_tight from 5200/5300 spreads <=2.",
+  "rows": [
+    {
+      "day": 1,
+      "gate": "tight",
+      "n": 25,
+      "mean_fwd20": 0.88,
+      "median_fwd20": 3.0
+    },
+    {
+      "day": 1,
+      "gate": "wide",
+      "n": 161,
+      "mean_fwd20": 0.5186335403726708,
+      "median_fwd20": 0.5
+    },
+    {
+      "day": 2,
+      "gate": "tight",
+      "n": 44,
+      "mean_fwd20": 0.14772727272727273,
+      "median_fwd20": 0.0
+    },
+    {
+      "day": 2,
+      "gate": "wide",
+      "n": 174,
+      "mean_fwd20": 0.39080459770114945,
+      "median_fwd20": 0.5
+    },
+    {
+      "day": 3,
+      "gate": "tight",
+      "n": 93,
+      "mean_fwd20": 0.11290322580645161,
+      "median_fwd20": 0.0
+    },
+    {
+      "day": 3,
+      "gate": "wide",
+      "n": 101,
+      "mean_fwd20": 0.5346534653465347,
+      "median_fwd20": 0.5
+    }
+  ],
+  "note": "Unlike Mark 67 study, **tight vs wide ordering flips by day** (e.g. day 2\u20133 wide has higher mean_fwd20 than tight). Do not treat Sonic tight as a universal cleaner for M55 lift."
+}

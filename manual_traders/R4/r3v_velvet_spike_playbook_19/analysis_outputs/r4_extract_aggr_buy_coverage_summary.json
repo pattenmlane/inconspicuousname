@@ -1,0 +1,30 @@
+{
+  "definition": "Aggressive buy on VELVETFRUIT_EXTRACT: trade price >= ask1 same timestamp.",
+  "top_buyers_total": {
+    "1": {
+      "Mark 55": 186,
+      "Mark 67": 58,
+      "Mark 22": 4,
+      "Mark 49": 1
+    },
+    "2": {
+      "Mark 55": 218,
+      "Mark 67": 61,
+      "Mark 22": 1,
+      "Mark 49": 0
+    },
+    "3": {
+      "Mark 55": 194,
+      "Mark 67": 45,
+      "Mark 22": 1,
+      "Mark 49": 0
+    },
+    "total": {
+      "Mark 55": 598,
+      "Mark 67": 164,
+      "Mark 22": 6,
+      "Mark 49": 1
+    }
+  },
+  "mark_01_aggr_buy_total": 0
+}

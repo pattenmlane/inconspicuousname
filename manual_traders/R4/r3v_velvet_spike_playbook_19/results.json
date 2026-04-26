@@ -544,5 +544,11 @@
         }
       }
     }
+  },
+  {
+    "iteration": 11,
+    "note": "Round 4 analysis-only: extract aggressive-buyer coverage (Mark 01 has 0 aggr buys on extract) + Mark 55 aggressive buy \u00d7 Sonic joint gate fwd20 tables. See analysis.json round4_extract_aggr_buy_coverage and round4_mark55_extract_joint_gate_study; scripts r4_extract_aggr_buyer_coverage_r4.py and r4_mark55_extract_gate_study.py.",
+    "phase": "counterparty_coverage_mark55_gate",
+    "analysis_reference": "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis.json"
   }
 ]

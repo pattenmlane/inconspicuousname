@@ -334,5 +334,15 @@
       "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v6_all.log"
     ],
     "used_to_decide": "Total PnL **-14** (worse and all, same fill set): **~3\u00d7** smaller loss than v5 (**-42**) with **own_fill_abs_qty_sum=22** vs **66** \u2014 confirms v5 drag was **aggressive sizing** on ask-lift entries and **touch-ask** exits. Still **not** profitable; remaining gap likely **flatten-at-bid** when gate drops (inventory loss) and sparse edge vs costs. Next: optional **hold through** gate-off with stop, or add **VEV_5300** burst-B leg (Phase 2) with explicit adverse filter on Mark01\u2192Mark22 (Phase 2/3)."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Round 4 **v7** = v6 + **gate-off exit**: when Sonic gate fails but U book still readable, sell long inventory at **improved ask** if **U spread\u22652** (else touch bid as v6). Hypothesis from v6 write-up: panic **bid** dumps on regime break were giving away ~**1 tick** vs patient passive offer.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_volume_weighted_residual_05/trader_v7.py",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v7_worse.log",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v7_all.log"
+    ],
+    "used_to_decide": "First **positive** Mark67\u00d7Sonic U-only backtest in this line: total PnL **+18** (worse=all; **22** SUBMISSION rows, **22** abs qty \u2014 same event count as v6). Day breakdown printed by backtester: **+7 / +8 / +3**. Swing **32** ticks vs v6 (**-14**) from exit path alone \u2014 supports that **gate-off bid liquidation** was the dominant leak. Caveat: **tiny** sample (27 signal timestamps in tape overlap file); edge may not survive more days or parameter stress. Next: sweep `PROFIT` / partial exit vs hold-through-gate, or layer **VEV_5300** burst-B with Mark22 adverse filter."
   }
 ]

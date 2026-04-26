@@ -1,0 +1,50 @@
+running algorithm '/workspace/manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v0.py'...
+Backtesting /workspace/manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v0.py for round: 4 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: 0
+Backtesting /workspace/manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v0.py for round: 4 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: 0
+Backtesting /workspace/manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v0.py for round: 4 day: 3
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: 0
+Profit summary:
+Round 4 day 1: 0
+Round 4 day 2: 0
+Round 4 day 3: 0
+Total profit: 0
+
+Successfully saved backtest results to manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v0_round4_worse.log

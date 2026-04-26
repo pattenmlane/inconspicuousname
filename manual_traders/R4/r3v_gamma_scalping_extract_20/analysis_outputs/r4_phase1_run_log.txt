@@ -1,0 +1,17 @@
+Trade rows: 4,281 | markout rows (× horizons): 12,809 | skipped (no mid): 0
+Wrote /workspace/manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_participant_summary.csv (126 aggregates)
+Wrote /workspace/manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_baseline_cells.csv
+Wrote /workspace/manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_baseline_residual_summary.csv
+Wrote /workspace/manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_graph_edges.csv
+Wrote r4_phase1_two_hop_motifs.csv
+Wrote r4_phase1_burst_event_study.csv
+     K   cohort     n  mean_d_extract  mean_d_vev5200
+0    5    burst  1470        0.001701       -0.159574
+1    5  control  2811        0.140164             NaN
+2   20    burst  1470        0.321429        0.297872
+3   20  control  2809        0.101104             NaN
+4  100    burst  1458        0.547668        1.074468
+5  100  control  2791       -0.214798             NaN
+Wrote r4_phase1_adverse_summary.csv (30 rows)
+Wrote r4_phase1_pair_symbol_horizon.csv
+Wrote r4_phase1_mark67_extract_buyagg_k5_by_day.csv

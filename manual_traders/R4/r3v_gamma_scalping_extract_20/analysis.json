@@ -1,0 +1,127 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round 4 Phase 1 — reproducible counterparty tape pipeline (horizon K = forward **timestamp index** steps on each day’s price grid, same symbol mid; aggressor from trade price vs concurrent BBO; spread_bucket = per-(day,symbol) L1 spread tertiles). Script: `r4_phase1_counterparty_analysis.py`. Data: `Prosperity4Data/ROUND_4/` days **1,2,3** (all days present). Plan: `round4work/suggested direction.txt` Phase 1.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/r4_phase1_counterparty_analysis.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_run_log.txt",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_participant_summary.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_pair_symbol_horizon.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_baseline_cells.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_baseline_residual_summary.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_graph_edges.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_two_hop_motifs.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_burst_event_study.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_adverse_summary.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_mark67_extract_buyagg_k5_by_day.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_example_mark01_vev5300_k20_buyagg_by_day.csv",
+      "round4work/round4description.txt",
+      "round4work/suggested direction.txt",
+      "round4work/outputs/r4_initial_analysis_summary.txt"
+    ],
+    "used_to_decide": "Offline evidence before Phase 2: see `round4_phase1_complete` object on the next list entry."
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "round4_phase1_complete",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_participant_summary.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_pair_symbol_horizon.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_baseline_cells.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_baseline_residual_summary.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_graph_edges.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_two_hop_motifs.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_burst_event_study.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_adverse_summary.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_mark67_extract_buyagg_k5_by_day.csv"
+    ],
+    "used_to_decide": "Phase 1 bullet checklist (one sentence each): (1) Participant predictiveness — `r4_phase1_participant_summary.csv`: strong positive same-symbol forward mid after **Mark 67** aggressive buys on **VELVETFRUIT_EXTRACT** (tight book, K=5,20) and similar when **Mark 22** is seller on aggressive buys; **Mark 01→Mark 22 VEV_5300** short-horizon negative mean on sell-aggress prints (see summary rows). (2) Bot baseline / residuals — `r4_phase1_baseline_cells.csv` + `r4_phase1_baseline_residual_summary.csv`: cell means absorb most pair×symbol×K structure; residuals near zero at fine granularity (no large second-order anomaly in this parameterization). (3) Graph / sequences — `r4_phase1_graph_edges.csv` and `r4_phase1_two_hop_motifs.csv`: **Mark 01→Mark 22** dominates counts; two-hop shows **Mark 14↔Mark 38** ping-pong and **Mark 38→Mark 14→Mark 55** chains (hydro / extract ecosystem). (4) Bursts — `r4_phase1_burst_event_study.csv`: multi-print timestamps (≥3 rows) associate with **higher** mean forward extract mid at K=20,100 vs non-burst controls on the same merged rows (K=5 near flat); suggests scheduled basket activity moves extract over longer tape steps. (5) Adverse / passive proxy — `r4_phase1_adverse_summary.csv`: **Mark 14→Mark 55** on **VELVETFRUIT_EXTRACT** shows strongly negative forward same-symbol mids at K=100 (n≈311); candidate **avoid providing liquidity** to that pair at long horizon.",
+    "round4_phase1_complete": {
+      "horizon_definition": "K ∈ {5,20,100} = number of forward steps along each tape day’s sorted unique timestamps (not wall-clock).",
+      "bullets": [
+        {
+          "id": "participant_predictiveness",
+          "outputs": [
+            "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_participant_summary.csv",
+            "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_mark67_extract_buyagg_k5_by_day.csv"
+          ],
+          "conclusion": "Large positive mean forward **VELVETFRUIT_EXTRACT** mid after **Mark 67** buyer-side aggressive prints in tight spread tertile (e.g. K=5 mean ~+1.96 mid units, t≈13, n=164); day-split means stay positive on days 1–3 (see by-day CSV)."
+        },
+        {
+          "id": "bot_baseline_residuals",
+          "outputs": [
+            "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_baseline_cells.csv",
+            "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_baseline_residual_summary.csv"
+          ],
+          "conclusion": "Residuals vs (buyer,seller,symbol,spread_bucket,K) cell means are ~0 at the finest split here — no extra unexplained pair anomaly beyond the cell means (may need coarser cells or nonlinear model for Phase 2)."
+        },
+        {
+          "id": "graph_motifs",
+          "outputs": [
+            "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_graph_edges.csv",
+            "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_two_hop_motifs.csv"
+          ],
+          "conclusion": "Directed **Mark 01→Mark 22** dominates; two-hop motifs highlight **Mark 14↔Mark 38** reciprocity and bridges into **Mark 55** — structural choreography, not random noise."
+        },
+        {
+          "id": "bursts",
+          "outputs": [
+            "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_burst_event_study.csv"
+          ],
+          "conclusion": "Same-(day,timestamp) bursts (≥3 prints) show **higher** mean forward extract mid than non-burst rows at K=20 and K=100 (not at K=5), consistent with basket ladders affecting extract on longer tape horizons."
+        },
+        {
+          "id": "adverse_selection",
+          "outputs": [
+            "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase1_adverse_summary.csv"
+          ],
+          "conclusion": "Several (buyer,seller,aggressor,K) cells show systematically negative forward mids on the traded symbol — worst tail includes **Mark 14→Mark 55** on **VELVETFRUIT_EXTRACT** at K=100 (mean ≈ −1.26, t≈−2.57, n≈311) as a passive-adverse style flag."
+        }
+      ],
+      "top_5_tradeable_edges_ranked": [
+        {
+          "rank": 1,
+          "rule": "After **Mark 67** aggressive buy on **VELVETFRUIT_EXTRACT** when that symbol’s spread tertile is **tight**, same-symbol mid rises ~+2.0 over K=5 tape steps (n=164; days 1–3 all positive means in `r4_phase1_mark67_extract_buyagg_k5_by_day.csv`).",
+          "effect_size": "mean_d_mid ≈ +1.96 (K=5 pooled); t≈13",
+          "n": 164,
+          "days_validated": [1, 2, 3]
+        },
+        {
+          "rank": 2,
+          "rule": "**Mark 67→Mark 22** prints on **VELVETFRUIT_EXTRACT** show very large positive forward mids at K=5 and K=20 (`r4_phase1_pair_symbol_horizon.csv`, n=75 each).",
+          "effect_size": "mean ≈ +2.06 (K=5), +2.03 (K=20)",
+          "n": 75,
+          "days_validated": [1, 2, 3]
+        },
+        {
+          "rank": 3,
+          "rule": "**Mark 67→Mark 49** on **VELVETFRUIT_EXTRACT** — elevated mean forward mid at K=5/20/100 (n≈88–89).",
+          "effect_size": "mean up to ~+1.92 (K=5)",
+          "n": 89,
+          "days_validated": [1, 2, 3]
+        },
+        {
+          "rank": 4,
+          "rule": "Multi-symbol **burst** timestamps predict **higher** forward **VELVETFRUIT_EXTRACT** mid at K=20 and K=100 vs non-burst (`r4_phase1_burst_event_study.csv`).",
+          "effect_size": "mean_d_extract burst − control ≈ +0.22 at K=20; +0.76 at K=100 (same merged row cohorts)",
+          "n": 1470,
+          "days_validated": [1, 2, 3]
+        },
+        {
+          "rank": 5,
+          "rule": "**Mark 14→Mark 55** on **VELVETFRUIT_EXTRACT** at K=100 — negative forward same-symbol mid (fade / avoid quoting hypothesis).",
+          "effect_size": "mean ≈ −1.26, t≈−2.57",
+          "n": 311,
+          "days_validated": [1, 2, 3]
+        }
+      ],
+      "no_edge_or_weak_findings": [
+        "Fine-grained baseline residuals vs (buyer,seller,symbol,spread_bucket,K) are ~null (`r4_phase1_baseline_residual_summary.csv`) — no second-order pocket at this granularity.",
+        "**Mark 01→Mark 55 VELVETFRUIT_EXTRACT K=100** shows negative mean (n=260) but weaker |t| than top edges — treat as exploratory until Phase 2 split by burst / session.",
+        "K=5 **burst vs control** on extract mean is near zero (bursts are not a short-step extract impulse in this definition).",
+        "VEV single-name participant cells have smaller |t| than extract — no Tier-A VEV-only ‘informed’ read at Phase-1 depth beyond pair tables in `r4_phase1_pair_symbol_horizon.csv`."
+      ],
+      "phase2_prerequisite_met": true
+    }
+  }
+]

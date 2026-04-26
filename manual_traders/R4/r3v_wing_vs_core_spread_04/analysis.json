@@ -10,21 +10,28 @@
   },
   {
     "round4_phase1_complete": {
-      "data_scope": "Prosperity4Data/ROUND_4 trades_round_4_day_{1,2,3}.csv (4281 rows); prices same days. Forward mid: K \u2208 {5,20,100} steps on mid_price grid.",
+      "data_scope": "Prosperity4Data/ROUND_4 trades_round_4_day_{1,2,3}.csv (4281 rows); prices same days. Forward mid: K \u2208 {5,20,100} **tape steps** (100 time units per step on 10k grid; same convention as round3work tight-gate script).",
+      "suggested_direction_checklist_artifact_index": "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/phase1_bullet_file_index.txt",
+      "checklist_bootstrap_m67_extract_tight_k20": "Pooled n=162: mean_fwd_same=+1.82, 95% bootstrap CI [+1.22, +2.42], t\u22485.8, 64.8% positive \u2014 file phase1_bootstrap_m67_extract_tight_k20.json and participant_pooled_bootstrap_k20.csv.",
       "bullet_1_participant_predictiveness": {
         "outputs": [
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_markout_pooled.csv",
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_markout_by_day_nosession.csv",
-          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_markout_long.csv"
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_markout_long.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_pooled_bootstrap_k5.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_pooled_bootstrap_k20.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_pooled_bootstrap_k100.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/phase1_bootstrap_m67_extract_tight_k20.json"
         ],
-        "conclusion": "Strongest pooled signal: Mark 67 aggressive buys on VELVETFRUIT_EXTRACT in **tight** BBO regime, K=20, mean forward **same-symbol** mid \u2248 +1.82 (n\u2248162 pooled); **per-day** n\u224845\u201360 each day with mean \u2248+1.49 to +2.02 and t\u22483\u20134 on days 1\u20133 \u2014 stable sign across all tape days. Mark 49 as seller (any) on extract tight K=20 also positive mean (~+1.8, n\u2248105). Voucher-specific participant edges are weaker (smaller n / mixed signs)."
+        "conclusion": "Strongest pooled signal: Mark 67 aggressive buys on VELVETFRUIT_EXTRACT in **tight** BBO regime, K=20, mean forward **same-symbol** mid \u2248 +1.82 (n=162; **95% bootstrap CI** strictly positive on pooled tape); **per-day** n\u224845\u201360 each day with mean \u2248+1.49 to +2.02 and t\u22483\u20134 on days 1\u20133 \u2014 stable sign across all tape days. Mark 49 as seller (any) on extract tight K=20 also positive mean (~+1.8, n\u2248105). Cross-asset (fwd_extract, fwd_hydro) in **participant_markout_long**; **session_q** and **burst** flags straddle cells. Voucher-specific participant edges are weaker (smaller n / mixed signs)."
       },
       "bullet_2_bot_baseline_residuals": {
         "outputs": [
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/per_print_with_baseline.csv",
-          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/pair_baseline_residuals.csv"
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/pair_baseline_residuals.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_flow_balance.csv"
         ],
-        "conclusion": "Cell means by (buyer,seller,symbol,spread_regime) absorb most pair-level structure; residuals highlight **second-order** prints vs dominant basket (Mark 01\u2192Mark 22) baseline\u2014useful for fade rules after Phase 2 conditioning."
+        "conclusion": "Cell means by (buyer,seller,symbol,spread_regime) absorb most pair-level structure; residuals highlight **second-order** prints vs dominant basket (Mark 01\u2192Mark 22) baseline\u2014useful for fade rules after Phase 2 conditioning. **participant_flow_balance** quantifies per-name print counts and net signed quantity (buyer vs seller) for **role** intuition (e.g. Mark 22 volume skew); not a standalone trade rule."
       },
       "bullet_3_graph_motifs": {
         "outputs": [
@@ -419,5 +426,17 @@
       "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v12_worse.json"
     ],
     "used_to_decide": "Phase-2 **mid** forward drift on VEV_5300 after basket bursts is positive at K=5/20, but **lagged taker** buys on every burst fire under `worse` are **not** a free add to v1: burst leg is profitable pooled (+358 over 3 days) but **not** close to mid-implied per fire (64 fills); day-3 VEV_5300 leg MTM is **negative** in sim. Treat burst\u21925300 as a separate hypothesis needing horizon/exit tuning, not a default stack on v1."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Phase 1 **checklist pass** (no re-run of Phases 2/3): added r4_phase1_supplement.py emitting **bootstrap 95% CIs** (B=5000) for pooled participant cells with n\u226520 in participant_pooled_bootstrap_k{5,20,100}.csv; **participant_flow_balance.csv** (per-name print counts and net signed qty as buyer vs seller) for bullet-2 \u201ccluster roles / volume\u201d; **phase1_bullet_file_index.txt** maps suggested-direction bullets to file paths. **round4_phase1_complete** in this file updated to reference these artifacts and the compact Mark67 tight K=20 evidence JSON.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_phase1_supplement.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/phase1_bullet_file_index.txt",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_pooled_bootstrap_k20.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_flow_balance.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/phase1_bootstrap_m67_extract_tight_k20.json"
+    ],
+    "used_to_decide": "Phase 1 completion gate is **documented and auditable** for bootstrap CI and role/balance; existing Phase 1--3 analyses remain the authority for sim-backed edges (v1, Phase 2/3 tables)."
   }
 ]

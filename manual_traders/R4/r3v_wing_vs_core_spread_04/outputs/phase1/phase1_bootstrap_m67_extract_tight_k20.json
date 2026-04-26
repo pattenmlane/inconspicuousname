@@ -1,0 +1,14 @@
+{
+  "name": "Mark 67",
+  "role": "buy_aggr",
+  "symbol": "VELVETFRUIT_EXTRACT",
+  "k": 20,
+  "spread_regime": "tight",
+  "burst": 0,
+  "n": 162,
+  "mean_fwd_same": 1.820987654320988,
+  "ci95_lo": 1.2222222222222223,
+  "ci95_hi": 2.4228395061728394,
+  "t_stat": 5.822888939968094,
+  "frac_pos": 0.6481481481481481
+}

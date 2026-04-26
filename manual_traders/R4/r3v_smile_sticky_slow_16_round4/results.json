@@ -26,5 +26,26 @@
     "backtest_round": 4,
     "match_trades_primary": "worse",
     "note": "Tape days 1-3 only in Prosperity4Data/ROUND_4. Phase 2 analysis in analysis.json round4_phase2_complete."
+  },
+  {
+    "iteration": 3,
+    "round": 4,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Phase 3 sim: same as trader_v0 but **VELVETFRUIT_EXTRACT** quoted only when live **Sonic gate** (VEV_5200 & VEV_5300 BBO spread both <=2). Hydrogel + VEV always on. Mark38/Mark67 hooks unchanged.",
+    "backtest_worse": {
+      "total_profit": 4832,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v1.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v1_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v1_fill_summary_worse.json"
+    },
+    "backtest_all": {
+      "total_profit": 5592,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v1.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v1_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v1_fill_summary_all.json"
+    },
+    "backtest_round": 4,
+    "match_trades_primary": "worse",
+    "note": "vs trader_v0 worse 4664: +168 total but still dominated by hydrogel day2 loss. See round4_phase3_complete."
   }
 ]

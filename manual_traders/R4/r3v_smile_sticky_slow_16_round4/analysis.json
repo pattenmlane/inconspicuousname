@@ -157,5 +157,63 @@
       ],
       "sim_note": "trader_v0.py implements one Phase-2 execution hook (skip extract ask when Mark38 aggressive buy seen in market_trades); backtest worse total **4664** on days 1\u20133 (not a profit goal)."
     }
+  },
+  {
+    "iteration": 3,
+    "round": 4,
+    "analysis_description": "Phase 3: Sonic joint gate (TH=2) on Round 4 aligned panel (inner join 5200/5300/extract per day); inclineGod spread\u2013spread matrix + spread vs |d mid_ext|; gate-conditioned Type-B Mark01\u2192Mark22 bursts; Mark01\u2192Mark22 VEV print fwd; three-way Mark01\u2192Mark22 on VEV_5200; signed-flow vs fwd split tight/wide. Reference: round3work/vouchers_final_strategy/STRATEGY.txt + ORIGINAL_DISCORD_QUOTES.txt.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analyze_r4_phase3_sonic_gate.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase3_gate_fwd_extract.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase3_spread_spread_matrix.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase3_typeB_burst_gated.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase3_m01_m22_vev_gated.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase3_three_way_mark01_m22_vev5200.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase3_signed_flow_gated.json",
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt"
+    ],
+    "used_to_decide": "See round4_phase3_complete for gate vs Phase1/2 comparison and Tier-A notes."
+  },
+  {
+    "round4_phase3_complete": {
+      "comparison_to_phase1_2_without_gate": "**Population extract K=20 fwd** (aligned timestamps): **tight** mean **+0.32** vs **loose** **-0.12** (Welch t\u22487.9, p\u224810\u207b\u00b9\u2075, n_tight=7706, n_loose=22234) \u2014 **strongly confirms** Sonic/R3 story on **R4 tape** at the **mid** horizon. **By day**, tight mean exceeds loose on **all** three days (day3 loose very negative). **Phase-2 signed-flow\u2192fwd**: under gate **tight** corr **+0.078** vs **wide** **+0.143** \u2014 gate **does not** sharpen this particular flow metric (opposite of naive \u2018cleaner\u2019). **Type-B bursts** (217 ts): **all** occur when gate is already **tight** (0 wide-only events) so **no** gate split on burst mean (same **+0.24** as Phase 2). **Mark01\u2192Mark22 VEV** fwd20: **1336/1339** prints in tight gate \u2014 pooled means **unchanged** vs unfiltered (\u2248+0.0086) \u2014 **no** marginal interaction for that aggregate counterparty rule once gate is redundant.",
+      "top_5_tier_edges": [
+        {
+          "rank": 1,
+          "edge": "**Sonic gate \u2192 extract forward mid (K=20)** on population timestamps: **+0.32 vs -0.12** tight vs loose (all R4 days 1\u20133).",
+          "paths": ["manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase3_gate_fwd_extract.json"],
+          "vs_phase1_2": "Phase 1/2 used trade-conditioned paths; Phase 3 shows **unconditional** gate effect on extract mid path is **large and significant**."
+        },
+        {
+          "rank": 2,
+          "edge": "**inclineGod spread vs price move:** extract **spread** correlates **-0.22** with next-row **|d m_ext|** (5200/5300 spreads ~0 vs |dm|).",
+          "paths": ["manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase3_spread_spread_matrix.json"],
+          "vs_phase1_2": "Orthogonal **spread\u2013price** panel not in Phase 1/2 tables."
+        },
+        {
+          "rank": 3,
+          "edge": "**Three-way** Mark01\u2192Mark22 **on VEV_5200** when gate tight: **n=11**, mean fwd20 on **VEV_5200** **+0.86** (all 11 in tight; no wide bucket).",
+          "paths": ["manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase3_three_way_mark01_m22_vev5200.json"],
+          "caveat": "**Tiny n**; exploratory only."
+        },
+        {
+          "rank": 4,
+          "edge": "**Type-B basket bursts** under gate: same pooled extract fwd as Phase 2 because **100%** of bursts sit in **tight** regime.",
+          "paths": ["manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase3_typeB_burst_gated.json"],
+          "vs_phase1_2": "Explains why Phase-2 burst edge **overlaps** Sonic window; does not add a **wide-burst** contrast."
+        },
+        {
+          "rank": 5,
+          "edge": "**Sim:** `trader_v1` (extract only when gate tight + v0 hooks) **worse** total **4832** vs **trader_v0 4664** (+168) on days 1\u20133.",
+          "paths": [
+            "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v1.py",
+            "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v1_backtest_worse.log"
+          ],
+          "caveat": "Still far from profit goal; hydrogel day2 dominates."
+        }
+      ],
+      "synthesis": "Sonic gate **cleans** the **population** extract forward-mid signal on R4 (matches STRATEGY). **Counterparty identity \u00d7 gate** is **redundant** for Mark01\u2192Mark22 VEV prints (almost always already tight). **Signed-flow** correlation is **not** cleaner under tight vs wide for this definition."
+    }
   }
 ]

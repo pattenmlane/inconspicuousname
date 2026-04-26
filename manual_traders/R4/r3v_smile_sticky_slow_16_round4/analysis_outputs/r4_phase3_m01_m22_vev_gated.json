@@ -1,0 +1,15 @@
+{
+  "n_prints": 1339,
+  "fwd20_same_symbol_all": {
+    "n": 1339,
+    "mean": 0.008588498879761016
+  },
+  "fwd20_same_symbol_tight": {
+    "n": 1336,
+    "mean": 0.008607784431137725
+  },
+  "fwd20_same_symbol_wide": {
+    "n": 3,
+    "mean": 0.0
+  }
+}

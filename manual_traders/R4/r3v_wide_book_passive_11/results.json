@@ -1,0 +1,40 @@
+[
+  {
+    "iteration": 0,
+    "round": 4,
+    "trader_file": "manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v0.py",
+    "strategy_description": "Round 4 wiring check: no-op Trader (empty orders) to validate prosperity4bt on ROUND_4 days 1–3. Real strategy will consume Phase 1 counterparty markouts.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v0.py 4-1 4-2 4-3 --data Prosperity4Data --no-vis --out manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v0_d123_worse.json --match-trades worse",
+      "backtest_log_file": "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v0_d123_worse_full.log",
+      "trades_or_fills_summary": {
+        "per_day_profit": {
+          "day_1": 0,
+          "day_2": 0,
+          "day_3": 0
+        },
+        "fills": 0,
+        "fill_qty": 0,
+        "fill_qty_by_symbol": {}
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v0.py 4-1 4-2 4-3 --data Prosperity4Data --no-vis --out manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v0_d123_all.json --match-trades all",
+      "backtest_log_file": "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v0_d123_all_full.log",
+      "trades_or_fills_summary": {
+        "per_day_profit": {
+          "day_1": 0,
+          "day_2": 0,
+          "day_3": 0
+        },
+        "fills": 0,
+        "fill_qty": 0,
+        "fill_qty_by_symbol": {}
+      }
+    }
+  }
+]

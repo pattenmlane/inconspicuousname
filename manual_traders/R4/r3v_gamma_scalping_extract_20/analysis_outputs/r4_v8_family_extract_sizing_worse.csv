@@ -1,0 +1,8 @@
+trader,clip_ex,max_ex_pos,worse_total,worse_d1,worse_d2,worse_d3,notes
+v8,12,80,9157,2454,6134,568,baseline v8
+v18,6,80,7596,2162,4898,536,smaller clip hurts extract
+v19,20,120,9602,2454,6336,812,best worse; higher cap
+v20,16,80,9350,2454,6336,560,
+v21,24,150,9237,2454,6336,447,larger clip worse day3 under worse
+v22,30,200,9237,2454,6336,447,same worse as v21 (cap hit)
+v23,20,80,9350,2454,6336,560,same worse as v20 — MAX 120 vs 80 is binding for v19

@@ -477,5 +477,25 @@
       "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v19.json"
     ],
     "used_to_decide": "**Ship candidate:** **v19** for **`worse`** until inventory risk is modeled; **avoid MM_EDGE=0** on spread-2 surfaces without a width check. Further sweep could grid **MAX_EX_POS**/**CLIP_EX** under caps."
+  },
+  {
+    "iteration": 23,
+    "analysis_description": "**v8-family Mark 67 extract sizing grid (`worse`, days 1–3):** `analysis_outputs/r4_v8_family_extract_sizing_worse.csv` + traders **v20–v23**. **v19** (**CLIP_EX=20**, **MAX_EX_POS=120**) stays **best** at **9602**. **v23** (**CLIP_EX=20**, **MAX_EX_POS=80**) = **9350** (same as **v20** clip 16 / cap 80): raising **cap 80→120** with clip 20 adds **+252** day-3 extract PnL under `worse`, not the clip change alone. **v21/v22** (clip 24/30, higher caps) **9237** `worse` — **worse** than v19; day-3 extract **+447** collapses vs **+812**. **v22** equals **v21** on `worse` (cap 150 vs 200 non-binding). **Conclusion:** for this stack, **`worse`-optimal** lives near **(20,120)**; larger aggressive clips hurt under adverse fills on day 3.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_v8_family_extract_sizing_worse.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v20.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v21.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v22.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v23.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v20_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v21_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v22_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v23_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v20.json",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v21.json",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v22.json",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v23.json"
+    ],
+    "used_to_decide": "Keep **`trader_v19`** as **`worse`** champion; document that **inventory cap** interacts with **Mark 67** lift under **`worse`** (Phase 2 inventory-aware theme, measured on sim). Phase 1–3 gate objects unchanged in this repo state."
   }
 ]

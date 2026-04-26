@@ -398,5 +398,85 @@
       "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v19_round4_all.stdout.txt",
       "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v19.json"
     }
+  },
+  {
+    "iteration": 20,
+    "trader_file": "trader_v20.py",
+    "strategy_description": "**v8** + Mark 67: **CLIP_EX=16**, **MAX_EX_POS=80**. **Worse 9350** (< **v19** 9602). Day 2 extract **+3590** same as **v19** but day 3 extract **+560** vs **+812** — smaller clip hurts day-3 lift under `worse`.",
+    "total_profit": 9350,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v20.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_worse": {
+      "total_profit": 9350,
+      "backtest_log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v20_round4_worse.log",
+      "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v20_round4_worse.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v20.json"
+    },
+    "backtest_all": {
+      "total_profit": 11442,
+      "backtest_log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v20_round4_all.log",
+      "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v20_round4_all.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v20.json"
+    }
+  },
+  {
+    "iteration": 21,
+    "trader_file": "trader_v21.py",
+    "strategy_description": "**v8** + Mark 67: **CLIP_EX=24**, **MAX_EX_POS=150**. **Worse 9237** (< **v19**): day 3 extract **+447** vs **v19** **+812** — larger per-tick clip **worse** on day 3 under adverse matching.",
+    "total_profit": 9237,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v21.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_worse": {
+      "total_profit": 9237,
+      "backtest_log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v21_round4_worse.log",
+      "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v21_round4_worse.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v21.json"
+    },
+    "backtest_all": {
+      "total_profit": 14676,
+      "backtest_log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v21_round4_all.log",
+      "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v21_round4_all.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v21.json"
+    }
+  },
+  {
+    "iteration": 22,
+    "trader_file": "trader_v22.py",
+    "strategy_description": "**v8** + Mark 67: **CLIP_EX=30**, **MAX_EX_POS=200**. **Worse 9237** — **identical** to **v21** on `worse` (day splits match); extra cap above 150 does not bind for this tape under `worse`. **all** 15558 > v21 14676.",
+    "total_profit": 9237,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v22.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_worse": {
+      "total_profit": 9237,
+      "backtest_log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v22_round4_worse.log",
+      "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v22_round4_worse.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v22.json"
+    },
+    "backtest_all": {
+      "total_profit": 15558,
+      "backtest_log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v22_round4_all.log",
+      "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v22_round4_all.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v22.json"
+    }
+  },
+  {
+    "iteration": 23,
+    "trader_file": "trader_v23.py",
+    "strategy_description": "**Ablation:** **CLIP_EX=20** with **MAX_EX_POS=80** (same clip as **v19**, cap back to **v8**). **Worse 9350** — **matches v20** and **−252** vs **v19** (812→560 day-3 extract): **`MAX_EX_POS=120` is necessary** for v19’s `worse` gain, not clip alone.",
+    "total_profit": 9350,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v23.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_worse": {
+      "total_profit": 9350,
+      "backtest_log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v23_round4_worse.log",
+      "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v23_round4_worse.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v23.json"
+    },
+    "backtest_all": {
+      "total_profit": 11986,
+      "backtest_log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v23_round4_all.log",
+      "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v23_round4_all.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v23.json"
+    }
   }
 ]

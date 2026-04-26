@@ -15,6 +15,8 @@ Writes under this folder:
   - r4_p1_mark_product_cross_by_day.csv — same cells split by tape day (day-stability; min n per cell)
   - r4_p1_pair_residual_by_regime.csv — mean/median/t of residual_fwd20 by (buyer,seller,symbol)×spread quantile
   - r4_p1_mark_burst_same_sym.csv    — same-symbol fwd stratified burst vs isolated
+  - r4_p1_mark_burst_cross_fwd.csv   — extract + hydro fwd at print, same Mark×burst strata
+  - r4_p1_top_pairs_fwd.csv          — top-8 directed pairs: same / extract / hydro fwd by K
   - r4_p1_2hop_motifs.csv            — 2-hop buyer→seller→seller2 counts (structural)
   - r4_p1_pair_baseline_residuals.csv
   - r4_p1_graph_edges.csv
@@ -374,6 +376,52 @@ def main() -> None:
                     )
     pd.DataFrame(burst_rows).to_csv(OUT / "r4_p1_mark_burst_same_sym.csv", index=False)
 
+    burst_cross_rows: list[dict] = []
+    for u in marks:
+        for role, mask in (
+            ("buyer_agg", (m["buyer"] == u) & (m["side"] == "buyer_aggressive")),
+            ("seller_agg", (m["seller"] == u) & (m["side"] == "seller_aggressive")),
+        ):
+            sub = m.loc[mask]
+            if len(sub) < 15:
+                continue
+            for burst_lab, bmask in (
+                ("multi_ts_burst", sub["burst_multi"]),
+                ("isolated", ~sub["burst_multi"]),
+            ):
+                bb = sub.loc[bmask]
+                for k in KS:
+                    for tgt, col in (
+                        ("VELVETFRUIT_EXTRACT", f"ex_fwd_{k}"),
+                        ("HYDROGEL_PACK", f"hy_fwd_{k}"),
+                    ):
+                        vals = bb[col].to_numpy(dtype=float)
+                        vals = vals[np.isfinite(vals)]
+                        if len(vals) < 8:
+                            continue
+                        lo, hi = bootstrap_mean_ci(vals, rng=rng)
+                        burst_cross_rows.append(
+                            {
+                                "mark": u,
+                                "role": role,
+                                "burst_stratum": burst_lab,
+                                "horizon_K": k,
+                                "fwd_target": tgt,
+                                "n": len(vals),
+                                "mean_fwd": float(np.mean(vals)),
+                                "median_fwd": float(np.median(vals)),
+                                "frac_pos": float(np.mean(vals > 0)),
+                                "t_vs_zero": float(
+                                    np.mean(vals) / (np.std(vals, ddof=1) / math.sqrt(len(vals)))
+                                )
+                                if len(vals) > 1 and np.std(vals, ddof=1) > 0
+                                else float("nan"),
+                                "ci95_low": lo,
+                                "ci95_high": hi,
+                            }
+                        )
+    pd.DataFrame(burst_cross_rows).to_csv(OUT / "r4_p1_mark_burst_cross_fwd.csv", index=False)
+
     # --- 1c) Mark×role×traded product×K×spread regime: same / extract / hydro forwards
     cross_rows: list[dict] = []
     cross_day_rows: list[dict] = []
@@ -580,6 +628,47 @@ def main() -> None:
     eg = m.groupby(["buyer", "seller"], as_index=False).agg(n=("symbol", "count"), notional=("notional", "sum"))
     eg = eg.sort_values("n", ascending=False)
     eg.to_csv(OUT / "r4_p1_graph_edges.csv", index=False)
+
+    # --- 3c) Top directed pairs: pooled same-symbol + extract + hydro forwards at print (all spreads)
+    pair_fwd_rows: list[dict] = []
+    for _, pr in eg.head(8).iterrows():
+        b, s = str(pr["buyer"]), str(pr["seller"])
+        sub = m.loc[(m["buyer"] == b) & (m["seller"] == s)]
+        if len(sub) < 8:
+            continue
+        for k in KS:
+            same_c = f"fwd_mid_{k}"
+            ex_c = f"ex_fwd_{k}"
+            hy_c = f"hy_fwd_{k}"
+            for tgt, col in (("same_symbol", same_c), ("VELVETFRUIT_EXTRACT", ex_c), ("HYDROGEL_PACK", hy_c)):
+                vals = sub[col].to_numpy(dtype=float)
+                vals = vals[np.isfinite(vals)]
+                if len(vals) < 8:
+                    continue
+                lo, hi = bootstrap_mean_ci(vals, rng=rng)
+                mu = float(np.mean(vals))
+                t0 = (
+                    float(mu / (np.std(vals, ddof=1) / math.sqrt(len(vals))))
+                    if len(vals) > 1 and np.std(vals, ddof=1) > 0
+                    else float("nan")
+                )
+                pair_fwd_rows.append(
+                    {
+                        "buyer": b,
+                        "seller": s,
+                        "pair_n_trades": int(pr["n"]),
+                        "horizon_K": k,
+                        "fwd_target": tgt,
+                        "n": len(vals),
+                        "mean_fwd": mu,
+                        "median_fwd": float(np.median(vals)),
+                        "frac_pos": float(np.mean(vals > 0)),
+                        "t_vs_zero": t0,
+                        "ci95_low": lo,
+                        "ci95_high": hi,
+                    }
+                )
+    pd.DataFrame(pair_fwd_rows).to_csv(OUT / "r4_p1_top_pairs_fwd.csv", index=False)
 
     # --- 3a) Hub degrees + reciprocity for top directed pairs (Phase 1 graph / roles)
     names_graph = sorted({str(x) for x in m["buyer"]} | {str(x) for x in m["seller"]})

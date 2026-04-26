@@ -11,12 +11,14 @@
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_product_cross.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_product_cross_by_day.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_burst_same_sym.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_burst_cross_fwd.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_2hop_motifs.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_pair_baseline_residuals.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_pair_residual_by_regime.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_residual_outliers.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_passive_touch_markout.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_graph_edges.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_top_pairs_fwd.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_graph_roles.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_inner_mid_diff_leadlag.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_burst_events.csv",
@@ -35,10 +37,12 @@
         "mark_product_cross": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_product_cross.csv",
         "mark_product_cross_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_product_cross_by_day.csv",
         "mark_burst_same_sym": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_burst_same_sym.csv",
+        "mark_burst_cross_fwd": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_burst_cross_fwd.csv",
         "two_hop_motifs": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_2hop_motifs.csv",
         "pair_residuals": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_pair_baseline_residuals.csv",
         "pair_residual_by_regime": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_pair_residual_by_regime.csv",
         "graph_edges": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_graph_edges.csv",
+        "top_pairs_fwd": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_top_pairs_fwd.csv",
         "bursts": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_burst_events.csv",
         "summary_txt": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_phase1_summary.txt",
         "name_universe": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_name_universe.txt",
@@ -56,9 +60,9 @@
       "bullets": [
         {"bullet": "1 participant-level", "conclusion": "Seven Mark IDs only (r4_p1_name_universe.txt); pooled+spread regime in r4_p1_forward_by_mark.csv; day-stability in r4_p1_participant_by_day.csv; coarse session proxy hour_bin=(ts//100)%24 in r4_p1_participant_by_hour.csv; structural imbalance in r4_p1_name_flow_balance.csv (Mark 22 net seller, Mark 01 net buyer).", "paths": ["r4_p1_name_universe.txt", "r4_p1_name_flow_balance.csv", "r4_p1_forward_by_mark.csv", "r4_p1_participant_by_day.csv", "r4_p1_participant_by_hour.csv"]},
         {"bullet": "1b cross-asset + per-traded-product", "conclusion": "r4_p1_mark_product_cross.csv pools days; r4_p1_mark_product_cross_by_day.csv repeats each cell by tape day (bootstrap CI, min n) for day-stability — e.g. Mark 67 buyer_agg on traded extract: K5 same_symbol mean fwd positive on days 1–3 (n 58/61/45).", "paths": ["r4_p1_mark_product_cross.csv", "r4_p1_mark_product_cross_by_day.csv"]},
-        {"bullet": "1c burst vs isolated", "conclusion": "r4_p1_mark_burst_same_sym.csv stratifies same-symbol fwd when (day,ts) has ≥4 trades vs isolated prints.", "paths": ["r4_p1_mark_burst_same_sym.csv"]},
+        {"bullet": "1c burst vs isolated", "conclusion": "r4_p1_mark_burst_same_sym.csv: same-symbol fwd by Mark×burst; r4_p1_mark_burst_cross_fwd.csv: **extract and hydro** fwd at the same print timestamps by burst stratum (e.g. Mark 22 seller_agg isolated extract K5 mean≈-0.49 n=86 vs multi_ts_burst ≈0 n=1344).", "paths": ["r4_p1_mark_burst_same_sym.csv", "r4_p1_mark_burst_cross_fwd.csv"]},
         {"bullet": "2 bot baseline / residuals", "conclusion": "Cell mean fwd20 by (buyer,seller,symbol); per-print residuals in r4_p1_pair_baseline_residuals.csv (now includes spread column); r4_p1_pair_residual_by_regime.csv summarizes mean residual by pair×symbol×tight/wide — means are ~0 by construction for large cells; r4_p1_residual_outliers.csv lists tail shocks (hydro-heavy).", "paths": ["r4_p1_pair_baseline_residuals.csv", "r4_p1_pair_residual_by_regime.csv", "r4_p1_residual_outliers.csv"]},
-        {"bullet": "3 graph motifs", "conclusion": "Directed edges r4_p1_graph_edges.csv; hub in/out degrees and top-pair reciprocity (M14↔M38 ≈1) in r4_p1_graph_roles.csv; 2-hop chains r4_p1_2hop_motifs.csv; contemporaneous mid co-move on inner-join timestamps: r4_p1_inner_mid_diff_leadlag.csv shows Pearson r≈0.62 at lag 0 for Δmid_extract vs Δmid_VEV_5300 (n≈3e4), near-zero off-lag.", "paths": ["r4_p1_graph_edges.csv", "r4_p1_graph_roles.csv", "r4_p1_2hop_motifs.csv", "r4_p1_inner_mid_diff_leadlag.csv"]},
+        {"bullet": "3 graph motifs", "conclusion": "Directed edges r4_p1_graph_edges.csv; r4_p1_top_pairs_fwd.csv: top-8 (buyer,seller) rows with same/extract/hydro fwd by K+bootstrap CI (e.g. M01→M22: extract K20 mean≈+0.30 t≈2.38 n=1339; hydro K20 negative mean); hubs/reciprocity r4_p1_graph_roles.csv; 2-hop r4_p1_2hop_motifs.csv; inner-grid Δmid lead–lag r4_p1_inner_mid_diff_leadlag.csv (lag-0 r≈0.62).", "paths": ["r4_p1_graph_edges.csv", "r4_p1_top_pairs_fwd.csv", "r4_p1_graph_roles.csv", "r4_p1_2hop_motifs.csv", "r4_p1_inner_mid_diff_leadlag.csv"]},
         {"bullet": "4 bursts", "conclusion": "Same-(day,ts) buckets in r4_p1_burst_events.csv; extract+VEV_5200/5300 fwd20 at burst time in r4_p1_burst_core_fwd.csv; dominant buyer/seller across symbols in r4_p1_burst_orchestration.csv (Mark 01 or Mark 38 buyer mass vs Mark 22 seller on many multi-VEV bursts); extract fwd20 vs control in r4_p1_phase1_summary.txt.", "paths": ["r4_p1_burst_events.csv", "r4_p1_burst_core_fwd.csv", "r4_p1_burst_orchestration.csv", "r4_p1_phase1_summary.txt"]},
         {"bullet": "5 adverse selection", "conclusion": "Aggressor forwards remain in r4_p1_forward_by_mark.csv; passive resting-side proxy when U is counterparty to aggressive hit in r4_p1_passive_touch_markout.csv (e.g. Mark 22 passive_ask n=109 strong positive K5 mean; Mark 22 passive_bid n=36 only — thin cell).", "paths": ["r4_p1_forward_by_mark.csv", "r4_p1_passive_touch_markout.csv"]}
       ],
@@ -72,8 +76,8 @@
         },
         {
           "rank": 2,
-          "hypothesis": "Multi-symbol same-timestamp bursts (≥4 rows) shift extract forward-20 more than time-matched random controls.",
-          "effect": "mean extract fwd20 after burst prints 0.3345 vs control 0.0710; 293 burst rows (summary + r4_p1_burst_events.csv)",
+          "hypothesis": "Multi-symbol same-timestamp bursts (≥4 rows) shift extract forward-20 more than time-matched random controls; top pair M01→M22 shows positive pooled extract fwd at K=20/100 on all basket prints.",
+          "effect": "Pooled burst timestamps: extract fwd20 mean 0.3345 vs control 0.0710 (r4_p1_phase1_summary.txt); r4_p1_top_pairs_fwd: M01→M22 extract K20 mean≈+0.30 (t≈2.38) n=1339, K100 mean≈+0.41 (t≈1.63) n=1335",
           "n": 293,
           "days": [1, 2, 3]
         },
@@ -100,7 +104,8 @@
         }
       ],
       "negative_results": [
-        "Mark 38 burst stratum: n=16–18 per subcell in r4_p1_mark_burst_same_sym.csv — not enough for stand-alone edge claims despite large point estimates.",
+        "Mark 38 burst stratum: n=16–18 per subcell in r4_p1_mark_burst_same_sym.csv / r4_p1_mark_burst_cross_fwd.csv — not enough for stand-alone edge claims despite large point estimates at K100.",
+        "Mark 22 seller_agg on multi_ts_burst: extract fwd K5 mean≈0 (t≈0.03) n=1344 in r4_p1_mark_burst_cross_fwd.csv — burst-time extract short-horizon signal is in the **event** layer (r4_p1_burst_core_fwd / summary), not in conditioning every M22 print on burst vs isolated at K5.",
         "Mark 22 seller_agg on VELVETFRUIT_EXTRACT as traded_symbol: n=11 in r4_p1_mark_product_cross.csv for extract legs — strong point estimates but too few prints for a sizing rule.",
         "Inner-grid mid-diff lead–lag (r4_p1_inner_mid_diff_leadlag.csv): strong contemporaneous r≈0.62 at lag 0 (extract vs VEV_5300 Δmid); off-lag |r|≪0.02 — no distributed-lag structure beyond same timestamp on this panel.",
         "Pair×symbol cell-mean baseline: r4_p1_pair_residual_by_regime.csv shows mean residual ≈0 for large hydro duopoly cells by construction — 'second-order' signal is in r4_p1_residual_outliers.csv tails, not in average residual after subtracting the cell mean.",
@@ -390,5 +395,15 @@
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase1_counterparty_analysis.py"
     ],
     "used_to_decide": "Mark 67 buyer_agg on traded VELVETFRUIT_EXTRACT: K5 same_symbol positive all three days (cross_by_day). Hydro duopoly M14↔M38: pooled cell mean explains level; mean residual ~0 by construction; large hydro shocks remain in residual_outliers."
+  },
+  {
+    "iteration": "round4_phase1_burst_cross_top_pairs_fwd",
+    "analysis_description": "Phase 1: r4_p1_mark_burst_cross_fwd.csv — for each Mark×role×burst_stratum (multi_ts_burst vs isolated), forward mids on VELVETFRUIT_EXTRACT and HYDROGEL_PACK at the trade timestamp (same K and bootstrap CI as mark_burst_same_sym). r4_p1_top_pairs_fwd.csv — for the top-8 directed (buyer,seller) edges by count, same_symbol + extract + hydro forwards by K.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_burst_cross_fwd.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_top_pairs_fwd.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase1_counterparty_analysis.py"
+    ],
+    "used_to_decide": "M22 seller_agg isolated vs multi_ts: extract/hydro K5 much more negative when isolated (n=86) than in burst mass (n=1344). M01→M22: positive extract fwd K20/K100 on full pair sample aligns burst-level extract lift with basket counterparty flow."
   }
 ]

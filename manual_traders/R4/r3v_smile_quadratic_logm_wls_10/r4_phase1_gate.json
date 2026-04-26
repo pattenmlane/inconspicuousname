@@ -15,12 +15,14 @@
       "mark_product_cross": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_product_cross.csv",
       "mark_product_cross_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_product_cross_by_day.csv",
       "mark_burst_same_sym": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_burst_same_sym.csv",
+      "mark_burst_cross_fwd": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_burst_cross_fwd.csv",
       "two_hop_motifs": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_2hop_motifs.csv",
       "pair_residuals": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_pair_baseline_residuals.csv",
       "pair_residual_by_regime": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_pair_residual_by_regime.csv",
       "residual_outliers": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_residual_outliers.csv",
       "passive_touch_markout": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_passive_touch_markout.csv",
       "graph_edges": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_graph_edges.csv",
+      "top_pairs_fwd": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_top_pairs_fwd.csv",
       "graph_roles": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_graph_roles.csv",
       "inner_mid_diff_leadlag": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_inner_mid_diff_leadlag.csv",
       "bursts": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_burst_events.csv",
@@ -51,9 +53,10 @@
       },
       {
         "bullet": "1c burst vs isolated",
-        "conclusion": "r4_p1_mark_burst_same_sym.csv stratifies same-symbol fwd when (day,ts) has \u22654 trades vs isolated prints.",
+        "conclusion": "Same-symbol r4_p1_mark_burst_same_sym.csv; extract+hydro at print r4_p1_mark_burst_cross_fwd.csv by burst stratum.",
         "paths": [
-          "r4_p1_mark_burst_same_sym.csv"
+          "r4_p1_mark_burst_same_sym.csv",
+          "r4_p1_mark_burst_cross_fwd.csv"
         ]
       },
       {
@@ -67,9 +70,10 @@
       },
       {
         "bullet": "3 graph motifs",
-        "conclusion": "Edges r4_p1_graph_edges.csv; hub/reciprocity r4_p1_graph_roles.csv; 2-hop r4_p1_2hop_motifs.csv; inner-grid \u0394mid lead\u2013lag extract vs VEV_5300 r4_p1_inner_mid_diff_leadlag.csv (lag-0 r\u22480.62, n\u224830k).",
+        "conclusion": "Edges r4_p1_graph_edges.csv; top-8 pair forwards r4_p1_top_pairs_fwd.csv; hub/reciprocity r4_p1_graph_roles.csv; 2-hop r4_p1_2hop_motifs.csv; inner-grid lead\u2013lag r4_p1_inner_mid_diff_leadlag.csv (lag-0 r\u22480.62).",
         "paths": [
           "r4_p1_graph_edges.csv",
+          "r4_p1_top_pairs_fwd.csv",
           "r4_p1_graph_roles.csv",
           "r4_p1_2hop_motifs.csv",
           "r4_p1_inner_mid_diff_leadlag.csv"
@@ -104,8 +108,8 @@
       },
       {
         "rank": 2,
-        "hypothesis": "Multi-symbol same-timestamp bursts (\u22654 rows) shift extract forward-20 more than time-matched random controls.",
-        "effect": "mean extract fwd20 after burst prints 0.3345 vs control 0.0710; 293 burst rows (summary + r4_p1_burst_events.csv)",
+        "hypothesis": "Burst timestamps lift extract fwd20 vs control; M01\u2192M22 basket prints show positive pooled extract fwd at K20/100.",
+        "effect": "Summary 0.3345 vs 0.0710; r4_p1_top_pairs_fwd M01\u2192M22 extract K20 mean\u2248+0.30 t\u22482.38 n=1339",
         "n": 293,
         "days": [1, 2, 3]
       },
@@ -132,7 +136,8 @@
       }
     ],
     "negative_results": [
-      "Mark 38 burst stratum: n=16\u201318 per subcell in r4_p1_mark_burst_same_sym.csv \u2014 not enough for stand-alone edge claims despite large point estimates.",
+      "Mark 38 burst stratum: n=16\u201318 in r4_p1_mark_burst_same_sym.csv / r4_p1_mark_burst_cross_fwd.csv \u2014 not enough for stand-alone edge claims despite large K100 point estimates.",
+      "Mark 22 seller_agg multi_ts_burst extract K5 mean\u22480 in r4_p1_mark_burst_cross_fwd.csv (n=1344) \u2014 short-horizon extract signal is event-level (burst_core_fwd/summary), not per-print burst tag at K5.",
       "Mark 22 seller_agg on VELVETFRUIT_EXTRACT as traded_symbol: n=11 in r4_p1_mark_product_cross.csv \u2014 strong point estimates but too few prints for a sizing rule.",
       "Inner-grid mid-diff lead\u2013lag (r4_p1_inner_mid_diff_leadlag.csv): lag-0 r\u22480.62 extract vs VEV_5300; other lags |r|\u22640.02 \u2014 no distributed lag beyond same timestamp.",
       "Cell-mean residuals average ~0 for large (buyer,seller,symbol) cells (r4_p1_pair_residual_by_regime.csv); anomalies are tail events in r4_p1_residual_outliers.csv.",

@@ -293,5 +293,25 @@
       "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v27_2026-04-25_r4_all.log"
     ],
     "used_to_decide": "**Falsified in sim** for this naive rule: total **-21,200** worse+all vs **+768** v26 — forced exits on transient widening likely hit **worse** bid prints and forfeit continuation that v26 captured by holding until window end. Keep v26-style exit (window-only) unless a smarter unwind (passive join bid / inventory cap) is tested."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Tape: `r4_phase6_joint_persistence.py` — after each **v26** trigger, first price-grid step (100) where joint **not** tight: **median offset 100**, mean **274**, mean sampled fraction of window still tight **~0.43** (see `outputs/r4_p6_joint_tight_persistence_after_v26_triggers.txt`). Explains v27 churn (gate opens quickly) but also shows halving sim window is not automatically optimal.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/r4_phase6_joint_persistence.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/outputs/r4_p6_joint_tight_persistence_after_v26_triggers.txt",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v28_2026-04-25_r4_worse.log",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v28_2026-04-25_r4_all.log"
+    ],
+    "used_to_decide": "`trader_v28.py` (25k window) total **-1,823** worse+all vs **+768** v26 — shorter window cuts profitable day-2 carry despite tape showing joint gate often flickers open soon after print."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "Parameter tweak `trader_v29.py`: same as v26 but lift clip **Q=4** (vs 6) for adverse-selection control.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v29_2026-04-25_r4_worse.log",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v29_2026-04-25_r4_all.log"
+    ],
+    "used_to_decide": "Total **+377** worse+all vs **+768** v26 — smaller clip trims day-3 loss slightly but sacrifices day-2 notional capture; **keep v26** as primary variant unless multi-day grid expands."
   }
 ]

@@ -1,0 +1,6 @@
+v26 triggers n=27 window=50000 step=100
+Per trigger: first tape timestamp offset (from print) where joint NOT tight (nan if tight through min(W, end-of-day-print));
+plus fraction of sampled offsets in [0,W] cap to day end that stay tight.
+first_break_offset_ticks (STEP=100): mean=274 median=100 frac_no_break_through_window_end=0.000  # sentinel 50100=no break on grid
+mean_frac_tight_samples_in_window=0.429 median=0.459
+Interpretation: if joint gate opens often shortly after print, v27-style immediate exit on widen will churn; v26 holds through transient noise.

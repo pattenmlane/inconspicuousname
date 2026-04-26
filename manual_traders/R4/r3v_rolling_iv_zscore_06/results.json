@@ -239,5 +239,85 @@
         "note": "worse_and_all_identical_this_run"
       }
     }
+  },
+  {
+    "iteration": 8,
+    "trader_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v28.py",
+    "strategy_description": "v26 logic but post-trigger window **25_000** (half v26) per tape joint-gate persistence study (median first non-tight offset ~100 ticks).",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -1823,
+      "per_day_pnl": {
+        "day_1": -1536,
+        "day_2": 2133,
+        "day_3": -2420
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v28_2026-04-25_r4_worse.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v28.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v28_2026-04-25_r4_worse.log",
+      "trades_or_fills_summary": {
+        "pnl_by_product_last_day_block": {
+          "VEV_5300": -1823
+        },
+        "note": "vs_v26_768"
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -1823,
+      "per_day_pnl": {
+        "day_1": -1536,
+        "day_2": 2133,
+        "day_3": -2420
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v28_2026-04-25_r4_all.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v28.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v28_2026-04-25_r4_all.log",
+      "trades_or_fills_summary": {
+        "pnl_by_product_last_day_block": {
+          "VEV_5300": -1823
+        },
+        "note": "worse_and_all_identical_this_run"
+      }
+    }
+  },
+  {
+    "iteration": 9,
+    "trader_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v29.py",
+    "strategy_description": "v26 with **Q=4** lift clip (vs 6); same 50k window and r4_v26_signals.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 377,
+      "per_day_pnl": {
+        "day_1": 515,
+        "day_2": 6148,
+        "day_3": -6286
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v29_2026-04-25_r4_worse.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v29.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v29_2026-04-25_r4_worse.log",
+      "trades_or_fills_summary": {
+        "pnl_by_product_last_day_block": {
+          "VEV_5300": 377
+        },
+        "note": "vs_v26_768"
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 377,
+      "per_day_pnl": {
+        "day_1": 515,
+        "day_2": 6148,
+        "day_3": -6286
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v29_2026-04-25_r4_all.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v29.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v29_2026-04-25_r4_all.log",
+      "trades_or_fills_summary": {
+        "pnl_by_product_last_day_block": {
+          "VEV_5300": 377
+        },
+        "note": "worse_and_all_identical_this_run"
+      }
+    }
   }
 ]

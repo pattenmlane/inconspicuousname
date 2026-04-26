@@ -1,0 +1,8 @@
+{
+  "source": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter15_backtest_worse.log",
+  "match_trades": "worse",
+  "per_day": {"1": 4314.0, "2": 1402.0, "3": 1899.0},
+  "total_profit": 7616.0,
+  "per_product_total": {"VELVETFRUIT_EXTRACT": 7616.0},
+  "note": "Mark67 aggr-buy print timestamps (164) same bid+2 as v13 Mark22 — worse PnL identical to v13"
+}

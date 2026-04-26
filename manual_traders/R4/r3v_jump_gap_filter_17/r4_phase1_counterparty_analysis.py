@@ -311,6 +311,19 @@ def main() -> None:
     edges = pair_counts.merge(pair_notional, on=["buyer", "seller"])
     edges.sort_values("count", ascending=False).to_csv(OUT / "graph_edges.csv", index=False)
 
+    rev_edges = edges.assign(rb=edges["seller"], rs=edges["buyer"])[["rb", "rs", "count", "notional"]].rename(
+        columns={"count": "count_rev", "notional": "notional_rev"}
+    )
+    recip = edges.merge(rev_edges, left_on=["buyer", "seller"], right_on=["rb", "rs"], how="left")
+    recip["count_rev"] = recip["count_rev"].fillna(0).astype(int)
+    recip["notional_rev"] = recip["notional_rev"].fillna(0.0)
+    recip["reciprocity_ratio"] = np.where(
+        recip["count"] > 0, recip["count_rev"].astype(float) / recip["count"].astype(float), np.nan
+    )
+    recip.sort_values("count", ascending=False)[
+        ["buyer", "seller", "count", "notional", "count_rev", "notional_rev", "reciprocity_ratio"]
+    ].head(50).to_csv(OUT / "graph_reciprocity_top.csv", index=False)
+
     lines = ["=== Directed pair summary ==="]
     lines.append(f"Unique directed edges: {len(edges)}")
     top = edges.head(15)
@@ -327,6 +340,13 @@ def main() -> None:
     lines.append("Hub (total incident trade count on directed edges):")
     for n, c in hub:
         lines.append(f"  {n}: {c}")
+    lines.append("")
+    lines.append("Reciprocity (reverse edge count / forward count); see graph_reciprocity_top.csv")
+    rt = recip.sort_values("count", ascending=False).head(8)
+    for _, r in rt.iterrows():
+        lines.append(
+            f"  {r['buyer']}->{r['seller']}: fwd={int(r['count'])} rev={int(r['count_rev'])} ratio={r['reciprocity_ratio']:.3f}"
+        )
     (OUT / "graph_summary.txt").write_text("\n".join(lines), encoding="utf-8")
 
     # Weak 2-hop: consecutive rows (time order) with seller_i == buyer_{i+1}

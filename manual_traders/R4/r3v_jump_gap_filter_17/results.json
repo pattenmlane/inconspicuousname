@@ -313,5 +313,26 @@
       "trades_or_fills_summary": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter14_fill_summary_all.json",
       "match_trades": "all"
     }
+  },
+  {
+    "iteration": 15,
+    "trader_file": "trader_v15.py",
+    "strategy_description": "Phase-1 Mark67 aggressive-buy print overlay: same bid+2 / ask base as v13 but signal = `r4_extract_aggr_buy_m67_print.json` (buyer Mark67, 58+61+45 timestamps). Tests buyer-side tape edge vs Mark22 seller prints.",
+    "total_profit": 7616,
+    "backtest_round": 4,
+    "backtest_worse": {
+      "total_profit": 7616,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_jump_gap_filter_17/trader_v15.py 4 --data Prosperity4Data --match-trades worse --no-vis",
+      "backtest_log_file": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter15_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter15_fill_summary_worse.json",
+      "match_trades": "worse"
+    },
+    "backtest_all": {
+      "total_profit": 8178,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_jump_gap_filter_17/trader_v15.py 4 --data Prosperity4Data --match-trades all --no-vis",
+      "backtest_log_file": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter15_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter15_fill_summary_all.json",
+      "match_trades": "all"
+    }
   }
 ]

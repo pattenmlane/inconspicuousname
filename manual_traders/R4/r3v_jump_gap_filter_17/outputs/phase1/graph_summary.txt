@@ -23,3 +23,13 @@ Hub (total incident trade count on directed edges):
   Mark 55: 1198
   Mark 67: 165
   Mark 49: 122
+
+Reciprocity (reverse edge count / forward count); see graph_reciprocity_top.csv
+  Mark 01->Mark 22: fwd=1339 rev=0 ratio=0.000
+  Mark 14->Mark 38: fwd=728 rev=714 ratio=0.981
+  Mark 38->Mark 14: fwd=714 rev=728 ratio=1.020
+  Mark 55->Mark 14: fwd=331 rev=316 ratio=0.955
+  Mark 14->Mark 55: fwd=316 rev=331 ratio=1.047
+  Mark 01->Mark 55: fwd=260 rev=244 ratio=0.938
+  Mark 55->Mark 01: fwd=244 rev=260 ratio=1.066
+  Mark 67->Mark 49: fwd=89 rev=0 ratio=0.000

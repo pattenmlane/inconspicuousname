@@ -6,7 +6,8 @@ Reads precomputed events CSV from Phase-1 pipeline:
   outputs/phase1/events_with_cell_residual.csv
 
 Outputs:
-  outputs/phase1/extract_aggrbuy_k5_bootstrap_ci.csv
+  outputs/phase1/extract_aggrbuy_k5_bootstrap_ci.csv  (pooled days)
+  outputs/phase1/extract_aggrbuy_k5_leaveoneout_bootstrap_ci.csv  (train on 2 days, bootstrap mean)
 
 Run after r4_phase1_counterparty_analysis.py:
   python3 manual_traders/R4/r3v_jump_gap_filter_17/r4_phase1_bootstrap_extract_edges.py
@@ -22,6 +23,7 @@ REPO = Path(__file__).resolve().parents[3]
 OUT = Path(__file__).resolve().parent / "outputs" / "phase1"
 EVENTS = OUT / "events_with_cell_residual.csv"
 OUT_CSV = OUT / "extract_aggrbuy_k5_bootstrap_ci.csv"
+OUT_LOO = OUT / "extract_aggrbuy_k5_leaveoneout_bootstrap_ci.csv"
 
 B = 8000
 RNG = np.random.default_rng(42)
@@ -71,6 +73,31 @@ def main() -> None:
     pd.DataFrame(rows).to_csv(OUT_CSV, index=False)
     print("Wrote", OUT_CSV)
     print(pd.DataFrame(rows).to_string(index=False))
+
+    loo_rows = []
+    for label, role, name in specs:
+        for holdout in (1, 2, 3):
+            if role == "buyer":
+                sub = ev[(ev["buyer"] == name) & (ev["day"] != holdout)]
+            else:
+                sub = ev[(ev["seller"] == name) & (ev["day"] != holdout)]
+            x = sub["fwd_same"].astype(float).values
+            x = x[np.isfinite(x)]
+            n = len(x)
+            mu, lo, hi = boot_mean(x)
+            loo_rows.append(
+                {
+                    "signal": label,
+                    "holdout_day": holdout,
+                    "n_train": n,
+                    "mean_fwd_same_train": mu,
+                    "ci95_low": lo,
+                    "ci95_high": hi,
+                    "B": B,
+                }
+            )
+    pd.DataFrame(loo_rows).to_csv(OUT_LOO, index=False)
+    print("Wrote", OUT_LOO)
 
 
 if __name__ == "__main__":

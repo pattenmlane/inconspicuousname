@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v14.py",
+  "match_trades": "worse",
+  "round": 4,
+  "total_profit": 21228,
+  "per_day_total": { "1": 5698, "2": 12780, "3": 2750 },
+  "note": "Identical to v12 worse: tight extract bid sz 12 / ask sz 8 is no-op vs 12/12 (fills unchanged)."
+}

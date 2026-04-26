@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v15.py",
+  "match_trades": "worse",
+  "round": 4,
+  "total_profit": 18650,
+  "per_day_total": { "1": 3120, "2": 12780, "3": 2750 },
+  "note": "vs v12 21228: -2578. Tape day1 tight ask +2 vs +3 drops day1 extract +2086 vs +4664; d2/d3 match v12."
+}

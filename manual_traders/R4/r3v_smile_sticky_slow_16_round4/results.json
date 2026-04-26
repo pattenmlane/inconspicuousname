@@ -299,5 +299,47 @@
     "backtest_round": 4,
     "match_trades_primary": "worse",
     "note": "**worse ties v10** (19384): +4 ask **integer-clamps** to same prices as +3. **all** **19833** vs v10 **14222** (+5611)."
+  },
+  {
+    "iteration": 16,
+    "round": 4,
+    "trader_file": "trader_v14.py",
+    "strategy_description": "**v12** + Sonic-tight extract **bid size 12** / **ask size 8** (same mid prices as v12). Tests inventory skew on passive ask.",
+    "backtest_worse": {
+      "total_profit": 21228,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v14.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v14_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v14_fill_summary_worse.json"
+    },
+    "backtest_all": {
+      "total_profit": 13858,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v14.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v14_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v14_fill_summary_all.json"
+    },
+    "backtest_round": 4,
+    "match_trades_primary": "worse",
+    "note": "**PnL-identical to v12** under worse/all \u2014 8 vs 12 on ask does not change effective fills in this sim (same as prior size ablations)."
+  },
+  {
+    "iteration": 17,
+    "round": 4,
+    "trader_file": "trader_v15.py",
+    "strategy_description": "**v12** with **tape day 1** tight ask **+2** (not +3); day2 **+3**; day3 **+2** (bid \u22121 unchanged).",
+    "backtest_worse": {
+      "total_profit": 18650,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v15.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v15_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v15_fill_summary_worse.json"
+    },
+    "backtest_all": {
+      "total_profit": 11491,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v15.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v15_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v15_fill_summary_all.json"
+    },
+    "backtest_round": 4,
+    "match_trades_primary": "worse",
+    "note": "**Worse than v12** (18650 vs 21228): day1 total **3120** vs **5698** (extract **+2086** vs **+4664**). Day2/3 unchanged vs v12. **+3** ask on day1 was load-bearing."
   }
 ]

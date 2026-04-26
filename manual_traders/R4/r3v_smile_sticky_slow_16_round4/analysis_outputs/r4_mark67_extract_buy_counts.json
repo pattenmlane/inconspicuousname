@@ -1,0 +1,22 @@
+{
+  "product": "VELVETFRUIT_EXTRACT",
+  "mark_buyer": "Mark 67",
+  "total_prints": 165,
+  "by_day": [
+    {
+      "tape_file": "Prosperity4Data/ROUND_4/trades_round_4_day_1.csv",
+      "day_index": 1,
+      "mark67_buy_prints": 58
+    },
+    {
+      "tape_file": "Prosperity4Data/ROUND_4/trades_round_4_day_2.csv",
+      "day_index": 2,
+      "mark67_buy_prints": 61
+    },
+    {
+      "tape_file": "Prosperity4Data/ROUND_4/trades_round_4_day_3.csv",
+      "day_index": 3,
+      "mark67_buy_prints": 46
+    }
+  ]
+}

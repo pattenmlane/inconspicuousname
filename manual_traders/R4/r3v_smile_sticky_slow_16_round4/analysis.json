@@ -361,5 +361,28 @@
       "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v13_fill_summary_all.json"
     ],
     "used_to_decide": "**No worse-mode gain past +3:** worse **19384** **identical** to v10 (per-day lines match) \u2014 `ba-1` / `bb+1` clamp collapses +4 to same integers as +3. **`all`** rises to **19833** vs v10 **14222**, so +4 matters only under lenient fills. **Ship v12** as best **worse**; v13 not needed for primary metric."
+  },
+  {
+    "iteration": 16,
+    "round": 4,
+    "analysis_description": "Sim: **v14** = v12 with tight-extract **ask size 8** vs **bid 12**. Tape: **Mark 67** as **buyer** on **VELVETFRUIT_EXTRACT** print counts by day (`analyze_r4_mark67_extract_buys_by_day.py`).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v14.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v14_backtest_worse.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analyze_r4_mark67_extract_buys_by_day.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_mark67_extract_buy_counts.json"
+    ],
+    "used_to_decide": "**Size split is a no-op** under worse (and all): **21228** = v12 bit-for-bit \u2014 same phenomenon as v7 (9 vs 12). **Mark 67 buyer** on extract: **58 / 61 / 46** prints days 1\u20133 (165 total) \u2014 counterparty exists on tape; hooks still operate at **touch** not full tape frequency. **Keep v12**; next levers are **price** not **size** unless we jump to very different sizes."
+  },
+  {
+    "iteration": 17,
+    "round": 4,
+    "analysis_description": "Sim: **v15** = v12 but **tape day 1** tight ask **+2** (only day2 keeps **+3**).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v15.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v15_backtest_worse.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v15_fill_summary_worse.json"
+    ],
+    "used_to_decide": "**Hurts vs v12:** worse **18650** (\u22122578). Day1 extract **+2086** vs v12 **+4664** \u2014 **+3** ask on day1 was **not** over-passive; it was **PnL-positive** vs **+2** in this stack. Day2/3 unchanged. **Conclusion:** day-conditioned schedule from v12 (d1\u20132 +3, d3 +2) is better than pulling day1 toward +2."
   }
 ]

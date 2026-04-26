@@ -1,0 +1,10 @@
+{
+  "Mark67_to_Mark22_VELVETFRUIT_EXTRACT_fwd5": {
+    "n_joint_tight_s5200_s5300_le2": 15,
+    "mean_fwd_tight": 2.0,
+    "n_wide_gate": 60,
+    "mean_fwd_wide": 2.075,
+    "t_tight": 3.038218101251,
+    "t_wide": 9.178790225785871
+  }
+}

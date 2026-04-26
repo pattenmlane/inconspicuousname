@@ -1,0 +1,7 @@
+Round 4 Phase 2 summary
+=======================
+Mark01->Mark22 burst centers (multi-print timestamps): 317
+All multi-print burst timestamps: 387
+Joint-gate stratify Mark67->22 extract fwd5: tight n=15 mean=2.0 | wide n=60 mean=2.075
+Mean |mid-BS| at Mark01->Mark22 VEV prints: 15.49881323878862
+See r4_phase2_*.csv/json for full tables.

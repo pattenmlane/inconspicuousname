@@ -97,5 +97,67 @@
         "Only three tape days; all 'stable across days' claims are limited to those csv days — Phase 2 should stress-test with execution sim."
       ]
     }
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Round 4 Phase 2 tape work per round4work/suggested direction.txt and ping_followup_phases.md: named-bot burst windows (±5 ticks of Mark01→Mark22 multi-print centers), microprice/spread regimes on VEV_5300, Pearson lead–lag of signed aggressor flow (extract vs 5300), Sonic joint-gate stratification of Mark67→Mark22 extract, session tercile under gate, R3-style BS smile residual at Mark01→Mark22 VEV prints, worst pair mean fwd table.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_inventory_vega_rail_18/run_r4_phase2_analysis.py",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase2_burst_window_fwd_k5.csv",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase2_microprice_spread_regimes.json",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase2_leadlag_signed_flow.json",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase2_joint_gate_stratify.json",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase2_session_tercile_gate.json",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase2_smile_residual_01_22_vev.json",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase2_worst_mean_fwd_k5_pairs.csv",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase2_summary.txt"
+    ],
+    "used_to_decide": "Phase 2 stresses Phase 1: joint tight gate does not increase Mark67→Mark22 extract short fwd (n small); burst windows do not uniformly amplify Mark55→Mark14; signed-flow lead–lag near zero. Microstructure: tight VEV_5300 BBO spreads associate with lower 5-tick absolute mid movement — orthogonal regime signal. Phase 3 should combine gate with pair conditioning per Sonic."
+  },
+  {
+    "round4_phase2_complete": {
+      "interaction_with_phase1": "Phase 1 Mark67→Mark22 / Mark49 extract forward drift **survives** Phase 2 checks as a **pair-level** effect, but **Sonic joint tight (5200+5300≤2) does not sharpen** it: tight n=15 mean +2.0 vs wide n=60 +2.075 (r4_phase2_joint_gate_stratify.json) — **refines** Phase 1 (do not over-attribute to joint gate for this specific print). Mark01→Mark22 VEV_5300 negative short fwd from Phase 1 **confirms** in worst-pairs table (r4_phase2_worst_mean_fwd_k5_pairs.csv). Burst ±window conditioning **weakens** Mark55→Mark14 extract follow-through vs baseline (burst_window CSV) — **caution** on naive burst-chase.",
+      "top_5_tradeable_edges": [
+        {
+          "rank": 1,
+          "edge": "VEV_5300 micro-regime: when top-of-book spread is in the tightest tertile of the 5300 spread distribution, mean absolute 5-tick forward **mid** change is **lower** than in the wide tertile (~0.62 vs ~0.77 price units; r4_phase2_microprice_spread_regimes.json) — candidate **vol / chop filter** for quoting.",
+          "orthogonal_to_phase1": true,
+          "outputs": ["manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase2_microprice_spread_regimes.json"]
+        },
+        {
+          "rank": 2,
+          "edge": "Adverse / fade list: worst mean 5-tick same-symbol forward for prints includes Mark22→Mark38 hydro, Mark49→Mark22 extract, Mark14→Mark22 VEV_5300 (r4_phase2_worst_mean_fwd_k5_pairs.csv) — **do not lean** passive liquidity into these directions without sim.",
+          "orthogonal_to_phase1": true,
+          "outputs": ["manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase2_worst_mean_fwd_k5_pairs.csv"]
+        },
+        {
+          "rank": 3,
+          "edge": "Mark67→Mark22 extract under **joint tight** gate: late-session tercile shows much higher mean fwd (+2.35 on n=13) vs early (n=2 negative mean) — **session × gate × pair** interaction (r4_phase2_session_tercile_gate.json); needs more early-n data.",
+          "orthogonal_to_phase1": false,
+          "outputs": ["manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase2_session_tercile_gate.json"]
+        },
+        {
+          "rank": 4,
+          "edge": "Smile stress: mean |mid−BS_call| ≈ **15.5** price units on Mark01→Mark22 VEV prints (R3 global quadratic smile; r4_phase2_smile_residual_01_22_vev.json) — model misfit / wide wings; useful for **residual pressure** screens when those prints fire.",
+          "orthogonal_to_phase1": true,
+          "outputs": ["manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase2_smile_residual_01_22_vev.json"]
+        },
+        {
+          "rank": 5,
+          "edge": "Signed-flow lead–lag: Pearson(extract signed flow, VEV_5300 signed flow) near **0** at all lags 0–15 ticks per day (r4_phase2_leadlag_signed_flow.json) — **falsifies** simple linear pipeline alpha; any cross-instrument rule must be nonlinear or pair-conditioned.",
+          "orthogonal_to_phase1": true,
+          "outputs": ["manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase2_leadlag_signed_flow.json"]
+        }
+      ],
+      "phase2_bullets": [
+        {"item": "1 Named-bot + burst", "outputs": ["manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase2_burst_window_fwd_k5.csv"], "conclusion": "±5-tick window around Mark01→Mark22 burst centers: several pairs show **lower** mean fwd in-window vs baseline (e.g. Mark55→Mark14 extract); not a universal amplifier."},
+        {"item": "2 Microstructure", "outputs": ["manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase2_microprice_spread_regimes.json"], "conclusion": "Tight VEV_5300 spreads predict **smaller** short-horizon absolute mid moves."},
+        {"item": "3 Cross-instrument lead–lag", "outputs": ["manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase2_leadlag_signed_flow.json"], "conclusion": "Near-zero linear correlation of signed aggressor flows extract vs 5300 across lags."},
+        {"item": "4 Regime splits", "outputs": ["manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase2_joint_gate_stratify.json", "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase2_session_tercile_gate.json"], "conclusion": "Joint gate stratification for Mark67→Mark22 extract does not separate mean from non-tight; session split under gate suggests late effect (low n early)."},
+        {"item": "5 Vol/smile", "outputs": ["manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase2_smile_residual_01_22_vev.json"], "conclusion": "Large |mid−theo| on Mark01→Mark22 voucher prints — smile misfit or microstructure-dominated mids."},
+        {"item": "6 Execution adverse", "outputs": ["manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase2_worst_mean_fwd_k5_pairs.csv"], "conclusion": "Worst short-horizon mean forwards catalogued for liquidity avoidance heuristics."},
+        {"item": "7 Inventory-aware MM", "outputs": [], "conclusion": "Not simulated this pass (no MM fills); defer to strategy code + backtester once counterparty-conditioned quoting is implemented."}
+      ]
+    }
   }
 ]

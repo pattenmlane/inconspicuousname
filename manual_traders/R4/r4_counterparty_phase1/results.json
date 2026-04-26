@@ -518,5 +518,45 @@
         "note": "+6 day3 vs worse (matcher)."
       }
     }
+  },
+  {
+    "iteration": 13,
+    "round": 4,
+    "trader_file": "trader_v13.py",
+    "strategy_description": "v12 VEV_5300 stack + small VELVETFRUIT_EXTRACT leg: enter extract only on joint tight + basket-only M01→M22 burst (no M01→M22 on VEV_5300); mirror join-buy/ask-1 exit, EX_LOT=2 MAX_EX=24 EX_COOLDOWN=40 MIN_HOLD_EX=10.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 736,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v13.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v13_r4_worse.log",
+      "backtest_output": {
+        "day1": 702,
+        "day2": 34,
+        "day3": 0,
+        "total": 736
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300", "VELVETFRUIT_EXTRACT"],
+        "underlying_pnl": 0,
+        "note": "Extract PnL -8 pooled vs v12 +744; mid-forward basket-only extract edge does not survive worse fills here."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 742,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v13.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v13_r4_all.log",
+      "backtest_output": {
+        "day1": 702,
+        "day2": 34,
+        "day3": 6,
+        "total": 742
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300", "VELVETFRUIT_EXTRACT"],
+        "underlying_pnl": 0,
+        "note": "Same extract -8 vs v12 +750 all; day3 5300 +6 matches v12."
+      }
+    }
   }
 ]

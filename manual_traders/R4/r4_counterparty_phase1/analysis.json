@@ -356,5 +356,17 @@
       "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v12_r4_all.log"
     ],
     "used_to_decide": "Extract forward under burst is **much stronger in basket-only** at K20+ (Phase 2 cross-asset + Phase 3 gate stack); candidate for a **paired** long-extract leg later (not implemented this iteration — v1/v2 showed extract touch is fragile). v12 documents continued linear-ish scale-up of the 5300-only bot under worse fills."
+  },
+  {
+    "iteration": 13,
+    "round": 4,
+    "analysis_description": "**trader_v13**: paired pilot — same **v12** VEV_5300 (any tight+burst) plus **VELVETFRUIT_EXTRACT** long only when **tight + basket-only** M01→M22 burst (tape: r4_tight_burst_extract_fwd_by_5300_leg.json K20 basket +0.525 vs on-5300 +0.046). Extract uses same join-buy / ask-1 exit microstructure as 5300, small size (2 lot, max 24).",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/trader_v13.py",
+      "manual_traders/R4/r4_counterparty_phase1/r4_tight_burst_extract_fwd_by_5300_leg.json",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v13_r4_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v13_r4_all.log"
+    ],
+    "used_to_decide": "Worse **+736** vs v12 **+744**; extract subaccount **-8** over 3 days (day1 -2, day2 -6). **Falsifies** simple \"tape mid edge ⇒ profitable paired touch\" for extract under this execution — keep **v12** 5300-only until extract leg is redesigned (e.g. passive-only when extract spr>=2, or smaller/hold, or separate sim calibration)."
   }
 ]

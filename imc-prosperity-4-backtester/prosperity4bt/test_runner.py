@@ -111,6 +111,16 @@ class TestRunner:
                 plainValueObservations={}, conversionObservations={"MAGNIFICENT_MACARONS": conversion_observation}
             )
 
+        # Expose tape trades at this timestamp before Trader.run (Round 4+ counterparty IDs).
+        # OrderMatchMaker still uses BacktestData.get_market_trades_at; this mirrors that list
+        # so algorithms can read buyer/seller on market prints when matching is enabled.
+        state.market_trades = {}
+        tape_block = data.trades.get(timestamp, {})
+        for product in data.products:
+            lst = tape_block.get(product)
+            if lst:
+                state.market_trades[product] = list(lst)
+
         return state
 
     # def __validate_orders(self, orders: dict[Symbol, list[Order]]) -> None:

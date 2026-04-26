@@ -252,6 +252,17 @@
       "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v1_d123_worse_full.log",
       "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v1_d123_all_full.log"
     ],
-    "used_to_decide": "Gate-only policy is executable and profitable vs no-op on days 1–3 worse (12,203 vs 0); all-mode total 9,684 with weak day 2. Next research: custom replay layer or fork test_runner to populate market_trades at timestamp for Mark logic."
+    "used_to_decide": "Gate-only policy is executable and profitable vs no-op on days 1–3 worse (12,203 vs 0); all-mode total 9,684 with weak day 2. **Update:** `TestRunner` now mirrors tape into `state.market_trades` before each run (see iteration 4); prior claim that field was always empty is superseded."
+  },
+  {
+    "iteration": 4,
+    "round": 4,
+    "analysis_description": "Patched imc-prosperity-4-backtester/prosperity4bt/test_runner.py: after building order_depths, copy `data.trades[timestamp][product]` into `state.market_trades[product]` so Round 4 strategies can read buyer/seller on tape prints. Shipped trader_r4_v2.py (v1 + Sonic_tight AND Mark67→Mark22 on extract → ex_buy min(12,7+2)). Backtest: PnL and merged tradeHistory MD5 **identical** to v1 — `min(ex_buy, buy_room)` almost never exceeds 7 on the sparse signal ticks (inventory long bias). Offline: 4 timestamps/day1 have both tight gate and 67→22 extract print.",
+    "analysis_outputs": [
+      "imc-prosperity-4-backtester/prosperity4bt/test_runner.py",
+      "manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v2.py",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v2_d123_worse_full.log"
+    ],
+    "used_to_decide": "To realize Tier-A tape edge in sim, next step is **not** larger ex_buy when br<=7 — use **second order** (e.g. touch bid), **skew prices**, or **fade** path; or relax position / multi-level quotes. Harness now supports counterparty reads."
   }
 ]

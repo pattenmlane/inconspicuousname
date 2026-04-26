@@ -1,0 +1,42 @@
+[
+  {
+    "iteration": 0,
+    "round": 4,
+    "trader_file": "trader_v0.py",
+    "strategy_description": "No-op placeholder while Phase 1 tape analysis ran; Round 4 counterparty research artifacts in analysis.json and r4_phase1_markout_summary.json.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v0.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v0_r4_worse.log",
+      "backtest_output": {
+        "day1": 0,
+        "day2": 0,
+        "day3": 0,
+        "total": 0
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": [],
+        "underlying_pnl": 0,
+        "note": "No orders; establishes Round 4 backtest wiring."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v0.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v0_r4_all.log",
+      "backtest_output": {
+        "day1": 0,
+        "day2": 0,
+        "day3": 0,
+        "total": 0
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": [],
+        "underlying_pnl": 0,
+        "note": "Matches worse (no trades)."
+      }
+    }
+  }
+]

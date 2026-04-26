@@ -1,0 +1,103 @@
+[
+  {
+    "iteration": 0,
+    "round": 4,
+    "analysis_description": "Phase 1 (suggested direction.txt): counterparty-conditioned forward mids on ROUND_4 days 1-3. Script analyze_r4_phase1_counterparty_edges.py joins trades to L1 books, infers aggressor vs bid/ask, forward K in {5,20,100} price rows (same symbol), cross-asset extract fwd at same ts. Outputs r4_phase1_markout_summary.json + sample CSV.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase1_counterparty_edges.py",
+      "manual_traders/R4/r4_counterparty_phase1/r4_phase1_markout_summary.json",
+      "manual_traders/R4/r4_counterparty_phase1/r4_phase1_trade_markouts_sample.csv",
+      "round4work/outputs/r4_initial_analysis_summary.txt",
+      "round4work/suggested direction.txt"
+    ],
+    "used_to_decide": "Phase 1 completion gate object below; no Phase 2 until reviewed."
+  },
+  {
+    "round4_phase1_complete": true,
+    "phase1_bullets": [
+      {
+        "bullet": "1) Participant-level alpha / predictiveness",
+        "outputs": [
+          "manual_traders/R4/r4_counterparty_phase1/r4_phase1_markout_summary.json (participant_cells_top)",
+          "manual_traders/R4/r4_counterparty_phase1/r4_phase1_trade_markouts_sample.csv"
+        ],
+        "conclusion": "Strongest pooled cell: Mark 67 buyer_agg on VELVETFRUIT_EXTRACT K=5 mean same-symbol fwd mid +1.96 (n=164, t~13) and K=20 +1.81 (t~5.9); stable per day 1-3 (~1.75-2.2 mean fwd5). Mark 55 seller_agg extract K=100 mean -0.92 (n=595, t~-2.5). Many VEV cells for Mark 22 seller are negative short-horizon (e.g. VEV_5300 K=5 t~-3.4) but smaller n."
+      },
+      {
+        "bullet": "2) Deviation from bot baseline (buyer,seller,symbol,spr_q)",
+        "outputs": [
+          "manual_traders/R4/r4_counterparty_phase1/r4_phase1_markout_summary.json (baseline_fwd20_residual_*)"
+        ],
+        "conclusion": "Cell-mean baseline leaves mean residual ~0 but large abs mean (~3.19) — heterogeneity within (buyer,seller,symbol,spread-quartile) buckets; not a single additive misspecification."
+      },
+      {
+        "bullet": "3) Sequence / graph buyer\u2192seller",
+        "outputs": [
+          "manual_traders/R4/r4_counterparty_phase1/r4_phase1_markout_summary.json (top_buyer_seller_pairs, top_2hop_trade_chain_patterns)"
+        ],
+        "conclusion": "Mark 01\u2192Mark 22 dominates counts (1339); 2-hop motifs are mostly Mark14\u219438 and Mark01\u219222 interleaved with hydro prints — structural choreography, not a single clean lead-lag edge from this coarse chain alone."
+      },
+      {
+        "bullet": "4) Burst structure + extract forward",
+        "outputs": [
+          "manual_traders/R4/r4_counterparty_phase1/r4_phase1_markout_summary.json (burst_event_study_extract_fwd20)"
+        ],
+        "conclusion": "Rows at timestamps with burst_n>=4 show higher mean extract fwd20 (+0.35) vs singleton rows (+0.08) — bursts align with larger short-horizon extract mid drift (overlapping windows caveat)."
+      },
+      {
+        "bullet": "5) Adverse selection (buyer_agg forward by buyer)",
+        "outputs": [
+          "manual_traders/R4/r4_counterparty_phase1/r4_phase1_markout_summary.json (buyer_agg_adverse_fwd20_by_buyer)"
+        ],
+        "conclusion": "When buyer is aggressive, Mark 38 shows most negative mean same-symbol fwd20 (-0.14, n=731); Mark 67 most positive (+1.81) — candidate avoid vs lean."
+      }
+    ],
+    "top_5_tradeable_edges": [
+      {
+        "rank": 1,
+        "edge": "After Mark 67 aggressive BUY on VELVETFRUIT_EXTRACT, same-symbol mid rises over next 5-20 price rows (mean ~+1.8 to +2.0; n~164; days 1-3 each positive).",
+        "effect_size": "mean_fwd5 ~ +2.0 ticks",
+        "n": 164,
+        "days_validated": [1, 2, 3],
+        "caveat": "Mid markout not bid/ask PnL; needs sim with worse fills."
+      },
+      {
+        "rank": 2,
+        "edge": "Mark 55 aggressive SELL on extract followed by lower mids at K=100 (mean -0.92, t~-2.5, n=595).",
+        "effect_size": "mean_fwd100 ~ -0.92",
+        "n": 595,
+        "days_validated": [1, 2, 3],
+        "caveat": "Long horizon overlaps; confirm with non-overlapping event study."
+      },
+      {
+        "rank": 3,
+        "edge": "Mark 22 aggressive SELL on VEV_5300: negative short-horizon same-symbol fwd (K=5 mean -0.20, t~-3.4, n=161).",
+        "effect_size": "mean_fwd5 ~ -0.20",
+        "n": 161,
+        "days_validated": [1, 2, 3],
+        "caveat": "Small n vs extract; may be inventory pressure on wing."
+      },
+      {
+        "rank": 4,
+        "edge": "Multi-symbol bursts (>=4 prints same ts) associate with higher extract fwd20 vs singletons (+0.35 vs +0.08).",
+        "effect_size": "delta mean ~ +0.26 ticks",
+        "n_burst_rows": 1395,
+        "days_validated": [1, 2, 3],
+        "caveat": "Overlapping forward windows; use event clustering next."
+      },
+      {
+        "rank": 5,
+        "edge": "Mark 38 buyer_agg prints lean to negative same-symbol fwd20 (-0.14) while Mark 67 buyer_agg strongly positive — liquidity-taking asymmetry.",
+        "effect_size": "spread ~1.95 ticks between buyer_agg means (fwd20)",
+        "n": "731 vs 164",
+        "days_validated": [1, 2, 3],
+        "caveat": "Coarse aggressor inference; refine with trade-through."
+      }
+    ],
+    "negative_or_null_findings": [
+      "Mark 01\u2192Mark 22 on VEV_5300 in burst_ge4 subsample: mean fwd20 slightly negative (-0.12, n=131) — basket ladder not a simple positive drift on that slice.",
+      "M01\u2192M22 VEV_5300 singleton bucket n=0 (all 5300 prints in sample are burst-associated) — cannot compare burst vs singleton for that exact pair.",
+      "Residual mean near zero after rich (buyer,seller,sym,spr_q) cell means — no single global additive anomaly; edges are local/cell-specific."
+    ]
+  }
+]

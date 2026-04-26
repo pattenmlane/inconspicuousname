@@ -1,0 +1,672 @@
+{
+  "n_trades_parsed": 4281,
+  "n_marks_with_fwd": 4281,
+  "participant_cells_top": [
+    {
+      "U": "Mark 67",
+      "side": "buyer_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "K": 5,
+      "n": 164,
+      "mean_fwd_mid": 1.960366,
+      "frac_pos": 0.8354,
+      "t_stat": 13.026
+    },
+    {
+      "U": "Mark 67",
+      "side": "buyer_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "K": 20,
+      "n": 164,
+      "mean_fwd_mid": 1.814024,
+      "frac_pos": 0.6463,
+      "t_stat": 5.86
+    },
+    {
+      "U": "Mark 55",
+      "side": "seller_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "K": 100,
+      "n": 595,
+      "mean_fwd_mid": -0.918487,
+      "frac_pos": 0.437,
+      "t_stat": -2.505
+    },
+    {
+      "U": "Mark 67",
+      "side": "buyer_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "K": 100,
+      "n": 163,
+      "mean_fwd_mid": 1.371166,
+      "frac_pos": 0.5399,
+      "t_stat": 1.874
+    },
+    {
+      "U": "Mark 38",
+      "side": "seller_agg",
+      "symbol": "HYDROGEL_PACK",
+      "K": 100,
+      "n": 505,
+      "mean_fwd_mid": 0.588119,
+      "frac_pos": 0.4851,
+      "t_stat": 0.728
+    },
+    {
+      "U": "Mark 55",
+      "side": "buyer_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "K": 100,
+      "n": 595,
+      "mean_fwd_mid": 0.531092,
+      "frac_pos": 0.4992,
+      "t_stat": 1.404
+    },
+    {
+      "U": "Mark 38",
+      "side": "buyer_agg",
+      "symbol": "HYDROGEL_PACK",
+      "K": 100,
+      "n": 512,
+      "mean_fwd_mid": -0.548828,
+      "frac_pos": 0.4863,
+      "t_stat": -0.677
+    },
+    {
+      "U": "Mark 55",
+      "side": "buyer_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "K": 20,
+      "n": 598,
+      "mean_fwd_mid": 0.408863,
+      "frac_pos": 0.51,
+      "t_stat": 2.479
+    },
+    {
+      "U": "Mark 38",
+      "side": "buyer_agg",
+      "symbol": "HYDROGEL_PACK",
+      "K": 20,
+      "n": 515,
+      "mean_fwd_mid": -0.327184,
+      "frac_pos": 0.4951,
+      "t_stat": -0.87
+    },
+    {
+      "U": "Mark 55",
+      "side": "buyer_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "K": 5,
+      "n": 598,
+      "mean_fwd_mid": 0.198997,
+      "frac_pos": 0.4649,
+      "t_stat": 2.246
+    },
+    {
+      "U": "Mark 22",
+      "side": "seller_agg",
+      "symbol": "VEV_5200",
+      "K": 100,
+      "n": 44,
+      "mean_fwd_mid": 0.625,
+      "frac_pos": 0.5682,
+      "t_stat": 0.662
+    },
+    {
+      "U": "Mark 38",
+      "side": "buyer_agg",
+      "symbol": "VEV_4000",
+      "K": 20,
+      "n": 207,
+      "mean_fwd_mid": 0.26087,
+      "frac_pos": 0.4879,
+      "t_stat": 0.91
+    },
+    {
+      "U": "Mark 38",
+      "side": "buyer_agg",
+      "symbol": "VEV_4000",
+      "K": 100,
+      "n": 205,
+      "mean_fwd_mid": -0.25122,
+      "frac_pos": 0.4878,
+      "t_stat": -0.403
+    },
+    {
+      "U": "Mark 38",
+      "side": "buyer_agg",
+      "symbol": "HYDROGEL_PACK",
+      "K": 5,
+      "n": 515,
+      "mean_fwd_mid": -0.119417,
+      "frac_pos": 0.4583,
+      "t_stat": -0.642
+    },
+    {
+      "U": "Mark 38",
+      "side": "seller_agg",
+      "symbol": "VEV_4000",
+      "K": 20,
+      "n": 233,
+      "mean_fwd_mid": -0.17382,
+      "frac_pos": 0.4464,
+      "t_stat": -0.594
+    },
+    {
+      "U": "Mark 22",
+      "side": "seller_agg",
+      "symbol": "VEV_5300",
+      "K": 5,
+      "n": 161,
+      "mean_fwd_mid": -0.204969,
+      "frac_pos": 0.236,
+      "t_stat": -3.362
+    },
+    {
+      "U": "Mark 55",
+      "side": "seller_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "K": 20,
+      "n": 600,
+      "mean_fwd_mid": -0.105833,
+      "frac_pos": 0.4383,
+      "t_stat": -0.618
+    },
+    {
+      "U": "Mark 38",
+      "side": "seller_agg",
+      "symbol": "VEV_4000",
+      "K": 5,
+      "n": 233,
+      "mean_fwd_mid": -0.169528,
+      "frac_pos": 0.4249,
+      "t_stat": -1.163
+    },
+    {
+      "U": "Mark 38",
+      "side": "buyer_agg",
+      "symbol": "VEV_4000",
+      "K": 5,
+      "n": 209,
+      "mean_fwd_mid": 0.174641,
+      "frac_pos": 0.4785,
+      "t_stat": 1.121
+    },
+    {
+      "U": "Mark 38",
+      "side": "seller_agg",
+      "symbol": "HYDROGEL_PACK",
+      "K": 20,
+      "n": 507,
+      "mean_fwd_mid": 0.101578,
+      "frac_pos": 0.499,
+      "t_stat": 0.262
+    },
+    {
+      "U": "Mark 22",
+      "side": "seller_agg",
+      "symbol": "VEV_5300",
+      "K": 100,
+      "n": 160,
+      "mean_fwd_mid": 0.15625,
+      "frac_pos": 0.5,
+      "t_stat": 0.614
+    },
+    {
+      "U": "Mark 22",
+      "side": "seller_agg",
+      "symbol": "VEV_5300",
+      "K": 20,
+      "n": 161,
+      "mean_fwd_mid": -0.139752,
+      "frac_pos": 0.3851,
+      "t_stat": -1.082
+    },
+    {
+      "U": "Mark 22",
+      "side": "seller_agg",
+      "symbol": "VEV_5200",
+      "K": 5,
+      "n": 44,
+      "mean_fwd_mid": -0.227273,
+      "frac_pos": 0.3182,
+      "t_stat": -1.504
+    },
+    {
+      "U": "Mark 22",
+      "side": "seller_agg",
+      "symbol": "VEV_5200",
+      "K": 20,
+      "n": 44,
+      "mean_fwd_mid": 0.227273,
+      "frac_pos": 0.4773,
+      "t_stat": 0.45
+    },
+    {
+      "U": "Mark 55",
+      "side": "seller_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "K": 5,
+      "n": 600,
+      "mean_fwd_mid": 0.051667,
+      "frac_pos": 0.4433,
+      "t_stat": 0.577
+    },
+    {
+      "U": "Mark 38",
+      "side": "seller_agg",
+      "symbol": "VEV_4000",
+      "K": 100,
+      "n": 232,
+      "mean_fwd_mid": -0.053879,
+      "frac_pos": 0.4526,
+      "t_stat": -0.091
+    },
+    {
+      "U": "Mark 22",
+      "side": "seller_agg",
+      "symbol": "VEV_5400",
+      "K": 100,
+      "n": 272,
+      "mean_fwd_mid": -0.040441,
+      "frac_pos": 0.4154,
+      "t_stat": -0.441
+    },
+    {
+      "U": "Mark 22",
+      "side": "seller_agg",
+      "symbol": "VEV_5500",
+      "K": 100,
+      "n": 304,
+      "mean_fwd_mid": -0.036184,
+      "frac_pos": 0.2336,
+      "t_stat": -0.882
+    },
+    {
+      "U": "Mark 22",
+      "side": "seller_agg",
+      "symbol": "VEV_5400",
+      "K": 5,
+      "n": 275,
+      "mean_fwd_mid": -0.030909,
+      "frac_pos": 0.1636,
+      "t_stat": -1.317
+    },
+    {
+      "U": "Mark 22",
+      "side": "seller_agg",
+      "symbol": "VEV_5500",
+      "K": 5,
+      "n": 306,
+      "mean_fwd_mid": -0.026144,
+      "frac_pos": 0.0556,
+      "t_stat": -1.921
+    },
+    {
+      "U": "Mark 22",
+      "side": "seller_agg",
+      "symbol": "VEV_5400",
+      "K": 20,
+      "n": 275,
+      "mean_fwd_mid": 0.02,
+      "frac_pos": 0.3055,
+      "t_stat": 0.42
+    },
+    {
+      "U": "Mark 38",
+      "side": "seller_agg",
+      "symbol": "HYDROGEL_PACK",
+      "K": 5,
+      "n": 507,
+      "mean_fwd_mid": 0.011834,
+      "frac_pos": 0.4635,
+      "t_stat": 0.059
+    },
+    {
+      "U": "Mark 22",
+      "side": "seller_agg",
+      "symbol": "VEV_5500",
+      "K": 20,
+      "n": 306,
+      "mean_fwd_mid": 0.014706,
+      "frac_pos": 0.1405,
+      "t_stat": 0.61
+    },
+    {
+      "U": "Mark 22",
+      "side": "seller_agg",
+      "symbol": "VEV_6000",
+      "K": 5,
+      "n": 317,
+      "mean_fwd_mid": 0.0,
+      "frac_pos": 0.0,
+      "t_stat": null
+    },
+    {
+      "U": "Mark 22",
+      "side": "seller_agg",
+      "symbol": "VEV_6000",
+      "K": 20,
+      "n": 317,
+      "mean_fwd_mid": 0.0,
+      "frac_pos": 0.0,
+      "t_stat": null
+    },
+    {
+      "U": "Mark 22",
+      "side": "seller_agg",
+      "symbol": "VEV_6500",
+      "K": 5,
+      "n": 317,
+      "mean_fwd_mid": 0.0,
+      "frac_pos": 0.0,
+      "t_stat": null
+    },
+    {
+      "U": "Mark 22",
+      "side": "seller_agg",
+      "symbol": "VEV_6500",
+      "K": 20,
+      "n": 317,
+      "mean_fwd_mid": 0.0,
+      "frac_pos": 0.0,
+      "t_stat": null
+    },
+    {
+      "U": "Mark 22",
+      "side": "seller_agg",
+      "symbol": "VEV_6000",
+      "K": 100,
+      "n": 314,
+      "mean_fwd_mid": 0.0,
+      "frac_pos": 0.0,
+      "t_stat": null
+    },
+    {
+      "U": "Mark 22",
+      "side": "seller_agg",
+      "symbol": "VEV_6500",
+      "K": 100,
+      "n": 314,
+      "mean_fwd_mid": 0.0,
+      "frac_pos": 0.0,
+      "t_stat": null
+    }
+  ],
+  "stratified_baseline_note": [
+    {
+      "bucket": "M01_to_M22_VEV5300_burst_ge4",
+      "n": 131,
+      "mean_fwd20": -0.122137
+    },
+    {
+      "bucket": "M01_to_M22_VEV5300_singleton",
+      "n": 0,
+      "mean_fwd20": null
+    },
+    {
+      "bucket": "all_trades_fwd20",
+      "n": 4279,
+      "mean_fwd20": 0.091844
+    }
+  ],
+  "baseline_fwd20_residual_mean": -0.0,
+  "baseline_fwd20_residual_abs_mean": 3.18698782,
+  "top_buyer_seller_pairs": [
+    {
+      "buyer": "Mark 01",
+      "seller": "Mark 22",
+      "count": 1339
+    },
+    {
+      "buyer": "Mark 14",
+      "seller": "Mark 38",
+      "count": 728
+    },
+    {
+      "buyer": "Mark 38",
+      "seller": "Mark 14",
+      "count": 714
+    },
+    {
+      "buyer": "Mark 55",
+      "seller": "Mark 14",
+      "count": 331
+    },
+    {
+      "buyer": "Mark 14",
+      "seller": "Mark 55",
+      "count": 316
+    },
+    {
+      "buyer": "Mark 01",
+      "seller": "Mark 55",
+      "count": 260
+    },
+    {
+      "buyer": "Mark 55",
+      "seller": "Mark 01",
+      "count": 244
+    },
+    {
+      "buyer": "Mark 67",
+      "seller": "Mark 49",
+      "count": 89
+    },
+    {
+      "buyer": "Mark 14",
+      "seller": "Mark 22",
+      "count": 83
+    },
+    {
+      "buyer": "Mark 67",
+      "seller": "Mark 22",
+      "count": 75
+    },
+    {
+      "buyer": "Mark 38",
+      "seller": "Mark 22",
+      "count": 19
+    },
+    {
+      "buyer": "Mark 22",
+      "seller": "Mark 55",
+      "count": 18
+    },
+    {
+      "buyer": "Mark 22",
+      "seller": "Mark 38",
+      "count": 17
+    },
+    {
+      "buyer": "Mark 55",
+      "seller": "Mark 22",
+      "count": 14
+    },
+    {
+      "buyer": "Mark 49",
+      "seller": "Mark 22",
+      "count": 12
+    },
+    {
+      "buyer": "Mark 55",
+      "seller": "Mark 49",
+      "count": 9
+    },
+    {
+      "buyer": "Mark 22",
+      "seller": "Mark 49",
+      "count": 7
+    },
+    {
+      "buyer": "Mark 49",
+      "seller": "Mark 55",
+      "count": 5
+    },
+    {
+      "buyer": "Mark 67",
+      "seller": "Mark 55",
+      "count": 1
+    }
+  ],
+  "top_2hop_trade_chain_patterns": [
+    {
+      "pattern": [
+        "Mark 01",
+        "Mark 22",
+        "Mark 01",
+        "Mark 22"
+      ],
+      "count": 1027
+    },
+    {
+      "pattern": [
+        "Mark 14",
+        "Mark 38",
+        "Mark 14",
+        "Mark 38"
+      ],
+      "count": 166
+    },
+    {
+      "pattern": [
+        "Mark 14",
+        "Mark 38",
+        "Mark 38",
+        "Mark 14"
+      ],
+      "count": 164
+    },
+    {
+      "pattern": [
+        "Mark 38",
+        "Mark 14",
+        "Mark 14",
+        "Mark 38"
+      ],
+      "count": 160
+    },
+    {
+      "pattern": [
+        "Mark 38",
+        "Mark 14",
+        "Mark 38",
+        "Mark 14"
+      ],
+      "count": 159
+    },
+    {
+      "pattern": [
+        "Mark 38",
+        "Mark 14",
+        "Mark 55",
+        "Mark 14"
+      ],
+      "count": 85
+    },
+    {
+      "pattern": [
+        "Mark 14",
+        "Mark 55",
+        "Mark 38",
+        "Mark 14"
+      ],
+      "count": 80
+    },
+    {
+      "pattern": [
+        "Mark 14",
+        "Mark 22",
+        "Mark 01",
+        "Mark 22"
+      ],
+      "count": 79
+    },
+    {
+      "pattern": [
+        "Mark 14",
+        "Mark 55",
+        "Mark 14",
+        "Mark 38"
+      ],
+      "count": 77
+    },
+    {
+      "pattern": [
+        "Mark 01",
+        "Mark 55",
+        "Mark 14",
+        "Mark 38"
+      ],
+      "count": 77
+    },
+    {
+      "pattern": [
+        "Mark 14",
+        "Mark 38",
+        "Mark 14",
+        "Mark 55"
+      ],
+      "count": 76
+    },
+    {
+      "pattern": [
+        "Mark 01",
+        "Mark 22",
+        "Mark 38",
+        "Mark 14"
+      ],
+      "count": 75
+    },
+    {
+      "pattern": [
+        "Mark 38",
+        "Mark 14",
+        "Mark 14",
+        "Mark 55"
+      ],
+      "count": 75
+    },
+    {
+      "pattern": [
+        "Mark 55",
+        "Mark 14",
+        "Mark 38",
+        "Mark 14"
+      ],
+      "count": 70
+    },
+    {
+      "pattern": [
+        "Mark 55",
+        "Mark 14",
+        "Mark 14",
+        "Mark 38"
+      ],
+      "count": 69
+    }
+  ],
+  "burst_event_study_extract_fwd20": {
+    "n_burst_rows": 1395,
+    "n_control_singleton": 2671,
+    "mean_ex_fwd20_burst": 0.345161,
+    "mean_ex_fwd20_singleton": 0.081992
+  },
+  "buyer_agg_adverse_fwd20_by_buyer": [
+    {
+      "buyer_when_agg": "Mark 38",
+      "n": 731,
+      "mean_fwd20": -0.135431
+    },
+    {
+      "buyer_when_agg": "Mark 55",
+      "n": 598,
+      "mean_fwd20": 0.408863
+    },
+    {
+      "buyer_when_agg": "Mark 67",
+      "n": 164,
+      "mean_fwd20": 1.814024
+    }
+  ]
+}

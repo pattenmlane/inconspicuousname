@@ -1,0 +1,8 @@
+mark,prints_as_buyer,prints_as_seller,qty_as_buyer,qty_as_seller,n_distinct_sellers_bought_from,n_distinct_buyers_sold_to
+Mark 01,1599,244,6053,1375,2,1
+Mark 14,1127,1045,4510,4208,3,2
+Mark 22,42,1542,206,5683,3,6
+Mark 38,733,745,2493,2507,2,2
+Mark 49,17,105,115,1071,2,3
+Mark 55,598,600,3254,3297,4,5
+Mark 67,165,0,1510,0,3,0

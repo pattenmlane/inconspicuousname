@@ -13,6 +13,10 @@ Burst fwd20 vs random-isolated null (pooled): burst_mean=1.201219512195122 one_s
 Unique (buyer,seller,symbol,K) pair cells (n>=5): 84
 Same-timestamp multi-print bursts: 387
 
+Graph (see graph_degree_by_mark.csv, top_edges_reciprocity.csv):
+  Mark 01 prints_as_buyer / seller and distinct_sellers (from degree CSV): check file for exact counts.
+  Motif second-leg extract fwd: see r4_phase1_motif_secondleg_extract_fwd.csv (top chains only).
+
 Top 10 participant-U cells (|t_stat|) with n>=30:
   Mark 67 aggr_buy same VELVETFRUIT_EXTRACT K=5 n=164 mean=1.9604 t=13.026
   Mark 67 as_buyer same VELVETFRUIT_EXTRACT K=5 n=165 mean=1.9455 t=12.941

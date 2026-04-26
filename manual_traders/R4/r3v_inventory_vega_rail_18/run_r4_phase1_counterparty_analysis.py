@@ -16,6 +16,9 @@ Outputs under manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/:
   - r4_phase1_key_pairs_stability_by_day.csv — top-|t| (buyer,seller,symbol) cells × day
   - r4_phase1_mark67_extract_buyer_by_day.csv — Mark 67 buyer on extract, mean fwd by day
   - r4_phase1_burst_extract_fwd20_control.json — burst mean vs **random** isolated-timestamp null (pooled + per day)
+  - r4_phase1_graph_degree_by_mark.csv — out/in print counts + distinct counterparties
+  - r4_phase1_graph_top_edges_reciprocity.csv — top directed edges vs reverse (A→B vs B→A)
+  - r4_phase1_motif_secondleg_extract_fwd.csv — fwd extract after **second leg** of top same-symbol 2-hop motifs
   - r4_phase1_pair_residuals.csv, r4_phase1_graph_edges.csv, r4_phase1_bursts.csv
   - r4_phase1_adverse_extract_after_01_22_5300.csv, r4_phase1_summary.txt
 """
@@ -697,6 +700,67 @@ def main() -> None:
         for (b1, s1, b2, s2, sym), c in hop2.most_common(80):
             w.writerow([b1, s1, b2, s2, sym, c])
 
+    # --- Motif-conditioned **extract** forward at the **second** same-symbol leg (top chains)
+    top_motif_keys = [t[0] for t in hop2.most_common(25)]
+    motif_set = frozenset(top_motif_keys)
+    motif_fwd: dict[tuple, list[float]] = defaultdict(list)
+    by_day_sym: dict[tuple[int, str], list[dict]] = defaultdict(list)
+    for rec in rows_out:
+        by_day_sym[(rec["csv_day"], rec["symbol"])].append(rec)
+    for key, lst in by_day_sym.items():
+        lst.sort(key=lambda r: (r["timestamp"], r.get("buyer"), r.get("seller"), r.get("price")))
+        for i in range(len(lst) - 1):
+            r1, r2 = lst[i], lst[i + 1]
+            sym = r1["symbol"]
+            m = (r1["buyer"], r1["seller"], r2["buyer"], r2["seller"], sym)
+            if m not in motif_set:
+                continue
+            for K in K_HORIZONS:
+                v = r2.get(f"fwd_{K}_VELVETFRUIT_EXTRACT")
+                if v is not None:
+                    motif_fwd[(m, K)].append(float(v))
+    motif_rows: list[dict] = []
+    for (m, K), vals in motif_fwd.items():
+        b1, s1, b2, s2, sym = m
+        if len(vals) < 5:
+            continue
+        motif_rows.append(
+            {
+                "buyer1": b1,
+                "seller1": s1,
+                "buyer2": b2,
+                "seller2": s2,
+                "symbol": sym,
+                "K": K,
+                "n_second_leg": len(vals),
+                "mean_fwd_extract": statistics.mean(vals),
+                "median": statistics.median(vals),
+                "frac_pos": sum(1 for x in vals if x > 0) / len(vals),
+                "t_stat": t_stat(vals),
+                "chain_count_hop2_table": hop2.get(m, 0),
+            }
+        )
+    motif_rows.sort(key=lambda x: (-(abs(x["t_stat"] or 0)), -x["n_second_leg"]))
+    with (OUT / "r4_phase1_motif_secondleg_extract_fwd.csv").open("w", newline="") as f:
+        cols = [
+            "buyer1",
+            "seller1",
+            "buyer2",
+            "seller2",
+            "symbol",
+            "K",
+            "n_second_leg",
+            "mean_fwd_extract",
+            "median",
+            "frac_pos",
+            "t_stat",
+            "chain_count_hop2_table",
+        ]
+        w = csv.DictWriter(f, fieldnames=cols, extrasaction="ignore")
+        w.writeheader()
+        for row in motif_rows:
+            w.writerow({c: ("" if row.get(c) is None else row[c]) for c in cols})
+
     with (OUT / "r4_phase1_pair_forward_summary.csv").open("w", newline="") as f:
         w = csv.DictWriter(
             f,
@@ -763,6 +827,90 @@ def main() -> None:
         w.writerow(["buyer", "seller", "count", "qty"])
         for (b, s), c in edge_c.most_common(200):
             w.writerow([b, s, c, edge_q[(b, s)]])
+
+    # --- Graph hubs + reciprocity (directed buyer→seller)
+    out_cnt: Counter[str] = Counter()
+    in_cnt: Counter[str] = Counter()
+    out_qty: Counter[str] = Counter()
+    in_qty: Counter[str] = Counter()
+    neigh_out: dict[str, set[str]] = defaultdict(set)
+    neigh_in: dict[str, set[str]] = defaultdict(set)
+    for (b, s), c in edge_c.items():
+        out_cnt[b] += c
+        in_cnt[s] += c
+        out_qty[b] += edge_q[(b, s)]
+        in_qty[s] += edge_q[(b, s)]
+        neigh_out[b].add(s)
+        neigh_in[s].add(b)
+    deg_rows: list[dict] = []
+    for U in sorted(all_names):
+        deg_rows.append(
+            {
+                "mark": U,
+                "prints_as_buyer": out_cnt.get(U, 0),
+                "prints_as_seller": in_cnt.get(U, 0),
+                "qty_as_buyer": int(out_qty.get(U, 0)),
+                "qty_as_seller": int(in_qty.get(U, 0)),
+                "n_distinct_sellers_bought_from": len(neigh_out.get(U, ())),
+                "n_distinct_buyers_sold_to": len(neigh_in.get(U, ())),
+            }
+        )
+    with (OUT / "r4_phase1_graph_degree_by_mark.csv").open("w", newline="") as f:
+        w = csv.DictWriter(
+            f,
+            fieldnames=[
+                "mark",
+                "prints_as_buyer",
+                "prints_as_seller",
+                "qty_as_buyer",
+                "qty_as_seller",
+                "n_distinct_sellers_bought_from",
+                "n_distinct_buyers_sold_to",
+            ],
+        )
+        w.writeheader()
+        for row in deg_rows:
+            w.writerow(row)
+
+    recip_rows: list[dict] = []
+    seen_e: set[tuple[str, str]] = set()
+    for (b, s), c_ab in edge_c.most_common(80):
+        if not b or not s:
+            continue
+        if (b, s) in seen_e:
+            continue
+        seen_e.add((b, s))
+        seen_e.add((s, b))
+        c_ba = edge_c.get((s, b), 0)
+        q_ab = edge_q.get((b, s), 0)
+        q_ba = edge_q.get((s, b), 0)
+        recip_rows.append(
+            {
+                "buyer_a": b,
+                "seller_a": s,
+                "count_a_to_b": c_ab,
+                "qty_a_to_b": int(q_ab),
+                "count_b_to_a": int(c_ba),
+                "qty_b_to_a": int(q_ba),
+                "reciprocity_count_ratio": (round(c_ba / c_ab, 4) if c_ab else ""),
+            }
+        )
+    with (OUT / "r4_phase1_graph_top_edges_reciprocity.csv").open("w", newline="") as f:
+        w = csv.DictWriter(
+            f,
+            fieldnames=[
+                "buyer_a",
+                "seller_a",
+                "count_a_to_b",
+                "qty_a_to_b",
+                "count_b_to_a",
+                "qty_b_to_a",
+                "reciprocity_count_ratio",
+            ],
+        )
+        w.writeheader()
+        for row in recip_rows:
+            w.writerow(row)
 
     # Bursts summary
     with (OUT / "r4_phase1_bursts.csv").open("w", newline="") as f:
@@ -842,6 +990,10 @@ def main() -> None:
         burst_ctrl_note,
         f"Unique (buyer,seller,symbol,K) pair cells (n>=5): {len(pair_rows)}",
         f"Same-timestamp multi-print bursts: {len(burst_groups)}",
+        "",
+        "Graph (see graph_degree_by_mark.csv, top_edges_reciprocity.csv):",
+        "  Mark 01 prints_as_buyer / seller and distinct_sellers (from degree CSV): check file for exact counts.",
+        "  Motif second-leg extract fwd: see r4_phase1_motif_secondleg_extract_fwd.csv (top chains only).",
         "",
         "Top 10 participant-U cells (|t_stat|) with n>=30:",
     ]

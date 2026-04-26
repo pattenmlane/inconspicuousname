@@ -1,0 +1,13 @@
+buyer_a,seller_a,count_a_to_b,qty_a_to_b,count_b_to_a,qty_b_to_a,reciprocity_count_ratio
+Mark 01,Mark 22,1339,4636,0,0,0.0
+Mark 14,Mark 38,728,2447,714,2445,0.9808
+Mark 55,Mark 14,331,1763,316,1761,0.9547
+Mark 01,Mark 55,260,1417,244,1375,0.9385
+Mark 67,Mark 49,89,963,0,0,0.0
+Mark 14,Mark 22,83,302,0,0,0.0
+Mark 67,Mark 22,75,546,0,0,0.0
+Mark 38,Mark 22,19,48,17,60,0.8947
+Mark 22,Mark 55,18,92,14,62,0.7778
+Mark 49,Mark 22,12,89,7,54,0.5833
+Mark 55,Mark 49,9,54,5,26,0.5556
+Mark 67,Mark 55,1,1,0,0,0.0

@@ -40,9 +40,12 @@
           "phase1_bullet": "3) Sequence / graph methods",
           "outputs": [
             "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_graph_edges.csv",
-            "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_twohop_same_symbol.csv"
+            "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_graph_degree_by_mark.csv",
+            "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_graph_top_edges_reciprocity.csv",
+            "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_twohop_same_symbol.csv",
+            "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_motif_secondleg_extract_fwd.csv"
           ],
-          "conclusion": "Directed Mark 01->Mark 22 dominates counts (matches initial summary); two-hop counts show repeated same-symbol handoffs mostly within the Mark 01/22 ladder — structural basket, not random."
+          "conclusion": "**Hubs:** Mark 01 is dominant buyer by prints (1599) with only **2** distinct sellers (Mark 22, Mark 55); Mark 22 is dominant seller (1542 prints, 6 distinct buyers). Mark 67 only buys (165 prints, 3 sellers). **Reciprocity:** Mark14↔Mark38 and Mark55↔Mark14 show **~0.95–0.98** reverse/forward count ratios; Mark01→Mark22 has **0** reverse edge (one-way basket). **Motifs→extract:** conditioning on top same-symbol 2-hop chains, second-leg **VELVETFRUIT_EXTRACT** fwd is mixed (e.g. Mark55→Mark14 then Mark01→Mark55 shows +0.93 at K=5, n=58, t~3.7; Mark14→Mark55 self-loop second leg **negative** at K=100, n=76, t~-3.4) — **path-dependent**, not a single scheduler alpha."
         },
         {
           "phase1_bullet": "4) Burst structure",
@@ -105,7 +108,8 @@
         "Only three tape days; all 'stable across days' claims are limited to those csv days — Phase 2 should stress-test with execution sim.",
         "**Wall-clock hour** (e.g. 09:00–12:00) is **not** used: **session** buckets are **tick-index terciles** within each csv day (`r4_phase1_participant_U_session_terc.csv`) — interpret as coarse intraday phase, not clock time.",
         "Bootstrap CIs assume **i.i.d. prints** (not conservative for clustered/burst timing); use with Phase 4 out-of-sample if tape grows.",
-        "**Mark 67 as buyer on extract at K=100**: csv **day 3** mean forward is **negative** (~−0.64, n=46, |t|<1) while days 1–2 stay positive (`r4_phase1_mark67_extract_buyer_by_day.csv`) — long-horizon **buyer-role** aggregate is **not** stable across the three days (pair-conditioned Mark67→22/49 cells remain the cleaner edge)."
+        "**Mark 67 as buyer on extract at K=100**: csv **day 3** mean forward is **negative** (~−0.64, n=46, |t|<1) while days 1–2 stay positive (`r4_phase1_mark67_extract_buyer_by_day.csv`) — long-horizon **buyer-role** aggregate is **not** stable across the three days (pair-conditioned Mark67→22/49 cells remain the cleaner edge).",
+        "**Same-symbol 2-hop motifs** do not imply uniform extract drift at the second leg: `r4_phase1_motif_secondleg_extract_fwd.csv` shows **positive and negative** cells by chain and K — use only **specified** paths, not generic “after any 2-hop.”"
       ]
     }
   },
@@ -371,6 +375,18 @@
       "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/R4_RESEARCH_MANIFEST.txt"
     ],
     "used_to_decide": "Burst edge is **statistically** distinguishable from random isolated timestamps when pooled / on day3, but not a uniform daily effect; prefer **pair-conditioned** Mark67→22/49 over raw Mark67 buyer K=100."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "Phase 1 **graph + motif extension (bullet 3)**: `r4_phase1_graph_degree_by_mark.csv` — per-Mark print counts as buyer/seller, qty sums, distinct counterparties. `r4_phase1_graph_top_edges_reciprocity.csv` — top directed edges with reverse-edge counts (Mark14↔38 and Mark55↔14 ~**0.95–0.98** reciprocity; Mark01→22 **zero** reverse). `r4_phase1_motif_secondleg_extract_fwd.csv` — for each of the **25** most frequent same-symbol 2-hop chains, distribution of **VELVETFRUIT_EXTRACT** forward mid change at the **second** leg timestamp (K=5/20/100); shows **mixed** sign (e.g. positive Mark55→14→01→55 extract K=5; negative Mark14→55 self-loop second leg K=100). `round4_phase1_complete` bullet 3 and explicit_no_edge updated.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_inventory_vega_rail_18/run_r4_phase1_counterparty_analysis.py",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_graph_degree_by_mark.csv",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_graph_top_edges_reciprocity.csv",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_motif_secondleg_extract_fwd.csv",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/R4_RESEARCH_MANIFEST.txt"
+    ],
+    "used_to_decide": "Structural graph facts (one-way 01→22 vs reciprocal hydro) are now tabulated; motif→extract requires **named path** filters, not blanket 2-hop rules."
   },
   {
     "round4_synthesis_2026_04_26": {

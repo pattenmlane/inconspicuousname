@@ -447,5 +447,17 @@
       "results.json"
     ],
     "used_to_decide": "Ship **v14** for worse-fill on R4 d1–3 in this series (stacks Phase-2 burst fade with v12 counterparty stack + session-3 hygiene). **v13** alone is not day-stable."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "**Stack test v2×v14:** **trader_v15** = v14 + **VEV_5300** conservative nudge in the same offline M01→M22 burst ±500 window (constants from v2). R4 d1–3: **worse 50,122** — **identical** to v14 (no worse-fill from 5300 schedule on this tape). **All 54,946** (**−185** vs v14 **55,131**). Evidence: `analysis_outputs/r4_v15_burst_5300_stack.txt`.",
+    "analysis_outputs": [
+      "trader_v15.py",
+      "analysis_outputs/r4_v15_burst_5300_stack.txt",
+      "backtest_logs/trader_v15_round4_worse.log",
+      "backtest_logs/trader_v15_round4_all.log",
+      "results.json"
+    ],
+    "used_to_decide": "Do **not** add v2’s 5300 burst tweak on top of v14 for this objective set; **v14** remains best worse and better all than v15."
   }
 ]

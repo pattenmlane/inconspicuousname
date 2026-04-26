@@ -1,0 +1,8 @@
+trader_v15 = trader_v14 + trader_v2-style VEV_5300 nudge when burst_near (offline M01→M22 ±500):
+  +0.14 take edge, +0.1 make edge, MM/take sizes ×0.88 (floored at 8).
+
+R4 d1–3, --no-merge-pnl:
+  worse total **50,122** — **identical** to v14 (day totals 24,070 / 12,804 / 13,248).
+  all total **54,946** vs v14 **55,131** (**−185**); VEV_5300 all: d1 1,002 vs 991; d2 1,973 vs 2,294; d3 −715 vs −840.
+
+Conclusion: stacking the v2 wing conservatism on top of v14’s extract burst rule does **not** improve worse-fill on this grid and **hurts** all-fill PnL; keep **v14** as the stacked baseline unless a different 5300 schedule is tuned.

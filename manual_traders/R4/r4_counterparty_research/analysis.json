@@ -38,7 +38,11 @@
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_residual_bsr_top_abs_rows.csv",
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_residual_bsr_cell_summary.csv",
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_aggressor_mark20_by_burst_pooled.csv",
-      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_aggressor_mark20_by_burst_by_day.csv"
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_aggressor_mark20_by_burst_by_day.csv",
+      "manual_traders/R4/r4_counterparty_research/run_phase1_passive_adverse_signedflow_r4.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_passive_markout_by_pair.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_signed_extract_flow_per_mark_lagcorr.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_passive_signedflow_summary.json"
     ],
     "used_to_decide": "Phase 1 exhaustive pass on ROUND_4 days 1-3; plus statistical supplement (bootstrap, Welch, session-matched random null for bursts, per-name markout rollups for all distinct Mark IDs). Phases 2-3 also complete. Ready for sim iteration.",
     "round4_phase1_complete": {
@@ -74,9 +78,10 @@
             "manual_traders/R4/r4_counterparty_research/outputs/r4_graph_top_edges.txt",
             "manual_traders/R4/r4_counterparty_research/outputs/r4_twohop_buyer_seller_motifs.txt",
             "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_graph_hubs_by_name.csv",
-            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_graph_reciprocity_top.json"
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_graph_reciprocity_top.json",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_signed_extract_flow_per_mark_lagcorr.csv"
           ],
-          "conclusion": "Dominant edge Mark 01\u2192Mark 22 (1339 prints); hydro duopoly Mark 14\u2194Mark 38 reciprocal. **Hub table:** r4_phase1_graph_hubs_by_name quantifies n_prints and notional as buyer vs seller per name (Mark 22 is heavy seller, Mark 01 heavy buyer). r4_phase1_graph_pair_reciprocity lists reverse edges for top directed pairs. Two-hop motif mass remains Mark01/Mark22 ladder in motifs file."
+          "conclusion": "Dominant edge Mark 01\u2192Mark 22 (1339 prints); hydro duopoly Mark 14\u2194Mark 38 reciprocal. **Hub table:** r4_phase1_graph_hubs_by_name quantifies n_prints and notional as buyer vs seller per name (Mark 22 is heavy seller, Mark 01 heavy buyer). **Per-Mark signed aggressive extract flow** vs future dU: Mark **67** at lag=1 tick corr ~**0.125** (n~30k), stronger than Phase-2 pooled all-Mark flow ~0.074; other Marks near zero at lag 1 (r4_phase1_signed_extract_flow_per_mark_lagcorr.csv). Two-hop motif file unchanged."
         },
         {
           "topic": "4) Burst structure",
@@ -92,9 +97,10 @@
           "outputs": [
             "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_summary.txt",
             "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_mark22_vev_sell_by_session.csv",
-            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_bootstrap.csv"
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_bootstrap.csv",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_passive_markout_by_pair.csv"
           ],
-          "conclusion": "Mark 22 aggressive VEV sells: pooled mean mark_20_sym ~-0.026 with 95% bootstrap CI including 0; session stratification shows higher mean U@20 in mid/late than early but all are noisy markouts vs basket flow. Phase 1 headline 'negative option markout' is not statistically tight at K=20 on same-symbol for M22."
+          "conclusion": "Mark 22 aggressive VEV sells: pooled mean mark_20_sym ~-0.026 with 95% bootstrap CI including 0; session stratification shows higher mean U@20 in mid/late than early but all are noisy markouts vs basket flow. **Passive-side pair proxy** (r4_phase1_passive_markout_by_pair): when **Mark 22 sells** to aggressive buyers on **Mark01\u2192Mark22** prints, **Mark 01** as passive buyer sees mean **U@20 ~+0.30** (n=1339, median 0); passive seller on **Mark38\u219214** hydro flow has mildly negative mean U. Complements aggressor-only summaries."
         }
       ],
       "top_5_tradeable_edges": [
@@ -141,7 +147,8 @@
         "Burst vs non-burst on pooled mark_20_u: Welch p~0.09 two-sided (not significant at 0.05 despite large mean gap).",
         "Mark 38 aggressive buy mean extract markout @20 is not day-stable (sign flips day 1-3).",
         "Session-matched random control for distinct burst timestamps: one-sided p~0.14, two-sided ~0.29 for burst U@20 > null (n_burst_ts=293; see r4_phase1_burst_vs_session_random.json).",
-        "r4_phase1_name_product_sprreg_mark20: many t-tests on Mark x product x spr_regime; treat small p as exploratory unless Bonferroni/FDR applied."
+        "r4_phase1_name_product_sprreg_mark20: many t-tests on Mark x product x spr_regime; treat small p as exploratory unless Bonferroni/FDR applied.",
+        "Per-Mark signed extract flow vs dU: only Mark 67 shows a clearly larger lag-1 correlation (~0.125) than pooled Phase-2 flow; other Marks ~0 at short lags."
       ],
       "phase1_statistical_supplement": {
         "script": "manual_traders/R4/r4_counterparty_research/run_phase1_participant_ci_bootstrap.py",

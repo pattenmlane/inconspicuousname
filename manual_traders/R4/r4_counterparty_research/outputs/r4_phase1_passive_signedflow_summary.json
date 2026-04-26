@@ -1,0 +1,26 @@
+{
+  "pairs_analyzed": [
+    [
+      "Mark 01",
+      "Mark 22"
+    ],
+    [
+      "Mark 14",
+      "Mark 38"
+    ],
+    [
+      "Mark 38",
+      "Mark 14"
+    ],
+    [
+      "Mark 55",
+      "Mark 01"
+    ],
+    [
+      "Mark 01",
+      "Mark 55"
+    ]
+  ],
+  "passive_csv": "/workspace/manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_passive_markout_by_pair.csv",
+  "lagcorr_csv": "/workspace/manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_signed_extract_flow_per_mark_lagcorr.csv"
+}

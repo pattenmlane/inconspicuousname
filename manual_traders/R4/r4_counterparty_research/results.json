@@ -365,5 +365,21 @@
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_aggressor_mark20_by_burst_pooled.csv",
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_aggressor_mark20_by_burst_by_day.csv"
     ]
+  },
+  {
+    "iteration": 16,
+    "trader_file": null,
+    "strategy_description": "Phase 1: passive-side markouts on dominant pairs; per-Mark signed aggressive extract flow vs future dU lagcorr.",
+    "backtest_command_base": null,
+    "total_profit": null,
+    "backtest_round": 4,
+    "backtest_worse": null,
+    "backtest_all": null,
+    "phase1_passive_signedflow_outputs": [
+      "manual_traders/R4/r4_counterparty_research/run_phase1_passive_adverse_signedflow_r4.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_passive_markout_by_pair.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_signed_extract_flow_per_mark_lagcorr.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_passive_signedflow_summary.json"
+    ]
   }
 ]

@@ -332,5 +332,19 @@
       "manual_traders/R4/r4_phase1_marks/backtests/iter7_r4d1-3_all.log"
     ],
     "used_to_decide": "Do not rely on BBO-touch **5300** for **`worse`** edge on this tape; next iterations need a different matching story (e.g. cross-product priority) or accept extract-only **`worse`**."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "**Post-phase (Phases 1\u20133 complete):** **Tape** \u2014 ``analyze_r4_gate_pair_stability.py``: (buyer,seller,symbol) split by **joint tight** vs **loose**; outcome **fwd_EXTRACT_20**. Pooled: **Mark14\u2192Mark38** and **Mark38\u2192Mark14** on **HYDROGEL_PACK** show large tight>loose mean on **fwd_EXTRACT_20** (Welch **p\u22487.5e-4** / **0.014**); **positive delta all 3 days** for both. Voucher/extract Mark pairs in the same table are **not** significant. **Sim** \u2014 ``trader_v8`` = **v3** + **HYDRO** MM when tight (**HYDRO_HALF_BASE=2.2**, size 14). **`worse`** **3685** vs **v3** **3382** (**+303** hydro; extract unchanged). **`all`** **6338** vs **v3** **6036**. Hydro PnL was **out of scope** for the original VEV+extract floor; **VEV** still **0** on **`worse`**.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_phase1_marks/analyze_r4_gate_pair_stability.py",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase8_pair_gate_extract_fwd20_by_day.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase8_pair_gate_extract_fwd20_pooled.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase8_top_pairs_gate_summary.txt",
+      "manual_traders/R4/r4_phase1_marks/trader_v8.py",
+      "manual_traders/R4/r4_phase1_marks/backtests/iter8_r4d1-3_worse.log",
+      "manual_traders/R4/r4_phase1_marks/backtests/iter8_r4d1-3_all.log"
+    ],
+    "used_to_decide": "**Strongest counterparty\u00d7gate tape signal** in phase8 is **hydro duopoly \u00d7 joint gate \u2192 fwd extract mid**; **v8** translates part of that into **positive hydro `worse`** without hurting extract. For **VEV-only** goals, **v3** remains the cleaner baseline until **`worse`** voucher fills exist."
   }
 ]

@@ -1,0 +1,47 @@
+R4 trader_v8 worse — v3 + HYDRO MM when joint tight (phase8 tape signal)
+Backtesting /workspace/manual_traders/R4/r4_phase1_marks/trader_v8.py for round: 4 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 1,227
+HYDROGEL_PACK: 197
+Total profit: 1,424
+Backtesting /workspace/manual_traders/R4/r4_phase1_marks/trader_v8.py for round: 4 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 1,553
+HYDROGEL_PACK: 5
+Total profit: 1,558
+Backtesting /workspace/manual_traders/R4/r4_phase1_marks/trader_v8.py for round: 4 day: 3
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 602
+HYDROGEL_PACK: 101
+Total profit: 703
+Round 4 day 1: 1,424
+Round 4 day 2: 1,558
+Round 4 day 3: 703
+Total profit: 3,685

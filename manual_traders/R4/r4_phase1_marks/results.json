@@ -285,5 +285,43 @@
         "note": "6035 = 790+1834+3411; 2445 = 991+2294-840 (5300 from v7 all log)."
       }
     }
+  },
+  {
+    "iteration": 8,
+    "trader_file": "trader_v8.py",
+    "strategy_description": "**v3** + **HYDROGEL_PACK** mid MM when Sonic joint tight (tape: ``phase8_*`` Mark14\u2194Mark38 hydro \u2192 higher **fwd_EXTRACT_20** tight vs loose). **HYDRO_HALF_BASE=2.2**, **SIZE_HYDRO_BASE=14**. Requires hydro book when quoting. **No VEV** orders.",
+    "tape_note": "``analyze_r4_gate_pair_stability.py`` \u2014 pooled **HYDRO** 14\u219238 / 38\u219214: Welch **p\u22480.00075** / **0.014** on **fwd_EXTRACT_20** tight>loose; same-sign delta all 3 days.",
+    "backtest_worse": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "worse",
+      "total_profit": 3685,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter8_r4d1-3_worse.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v8.py 4 --data Prosperity4Data --match-trades worse --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 1424, "2": 1558, "3": 703 },
+        "per_product_worse_4d": {
+          "VELVETFRUIT_EXTRACT": 3382,
+          "HYDROGEL_PACK": 303,
+          "VEV_5200": 0,
+          "VEV_5300": 0
+        },
+        "vs_iteration_3_worse_total": 3382,
+        "hydro_by_day_worse": { "1": 197, "2": 5, "3": 101 }
+      }
+    },
+    "backtest_all": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "all",
+      "total_profit": 6338,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter8_r4d1-3_all.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v8.py 4 --data Prosperity4Data --match-trades all --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 988, "2": 1839, "3": 3512 },
+        "per_product_all_4d": { "VELVETFRUIT_EXTRACT": 6035, "HYDROGEL_PACK": 303, "VEV_5200": 0, "VEV_5300": 0 },
+        "vs_iteration_3_all_total": 6036
+      }
+    }
   }
 ]

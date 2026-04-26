@@ -1,0 +1,23 @@
+Round 4 — joint gate × (buyer,seller,symbol): fwd_EXTRACT_20 tight vs loose
+MIN_CELL=8 MIN_PAIR_TOTAL=50
+
+Top 25 by pooled Welch p (smallest p first):
+  Mark 14->Mark 38 HYDROGEL_PACK: nT=126 nL=370 meanT=1.0794 meanL=-0.5311 delta=1.6104 t=3.422 p=0.000749 days=1,2,3
+  Mark 38->Mark 14 HYDROGEL_PACK: nT=129 nL=378 meanT=0.5349 meanL=-0.4643 delta=0.9992 t=2.478 p=0.0139 days=1,2,3
+  Mark 14->Mark 55 VELVETFRUIT_EXTRACT: nT=84 nL=232 meanT=0.1786 meanL=-0.3879 delta=0.5665 t=1.043 p=0.299 days=1,2,3
+  Mark 67->Mark 22 VELVETFRUIT_EXTRACT: nT=15 nL=60 meanT=2.8333 meanL=1.8250 delta=1.0083 t=0.751 p=0.462 days=1,2,3
+  Mark 67->Mark 49 VELVETFRUIT_EXTRACT: nT=12 nL=77 meanT=1.0833 meanL=1.7208 delta=-0.6374 t=-0.681 p=0.505 days=1,2,3
+  Mark 01->Mark 55 VELVETFRUIT_EXTRACT: nT=70 nL=190 meanT=0.2429 meanL=-0.0816 delta=0.3244 t=0.530 p=0.597 days=1,2,3
+  Mark 55->Mark 14 VELVETFRUIT_EXTRACT: nT=86 nL=245 meanT=0.4419 meanL=0.6224 delta=-0.1806 t=-0.395 p=0.694 days=1,2,3
+  Mark 55->Mark 01 VELVETFRUIT_EXTRACT: nT=71 nL=173 meanT=-0.0563 meanL=0.0318 delta=-0.0881 t=-0.148 p=0.882 days=1,2,3
+
+Per-day cells with Welch p<0.05: 4 (multiple testing: descriptive only)
+Breakdown by symbol (count of significant day-cells):
+  HYDROGEL_PACK: 4
+
+Sign consistency across days (only keys with 3 day-rows in csv):
+  SAME_SIGN_3D Mark 14->Mark 38 HYDROGEL_PACK: deltas [2.47, 2.0806, 1.8794] p [0.021984942150949344, 0.0356714540963352, 0.005469625587968776]
+  SAME_SIGN_3D Mark 38->Mark 14 HYDROGEL_PACK: deltas [1.811, 0.5676, 1.1486] p [0.019586716953143336, 0.4382368197280261, 0.08806127640279167]
+  SAME_SIGN_3D Mark 55->Mark 01 VELVETFRUIT_EXTRACT: deltas [-0.4331, -0.0386, -0.9002] p [0.7936380999047337, 0.9699538680679854, 0.37260907596615733]
+
+Interpretation: large |delta| with small p on **one** day and mixed signs across days is weak evidence of a tradeable Mark×gate rule; three-day tape is too short for strong LODO. Compare to Phase 3 panel Welch (price bars, not trade-conditioned).

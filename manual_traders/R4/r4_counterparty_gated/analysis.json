@@ -187,7 +187,7 @@
       "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_m67_extract_fwd5_by_tape_decile_pooled.csv",
       "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_m67_tape_time_bucket_summary.json"
     ],
-    "used_to_decide": "Phase 1 completion gate in `round4work/suggested direction.txt` remains satisfied: every bullet has quantitative output; the crosswalk names explicit gaps (bootstrap/medians, true clock hour) and points to the tape-time decile supplement for session-like stratification. Phases 2–3 were already complete in this file; `trader_v11` remains the execution champion vs earlier joint-only sizing experiments."
+    "used_to_decide": "Phase 1 completion gate in `round4work/suggested direction.txt` remains satisfied: every bullet has quantitative output; the crosswalk names explicit gaps (bootstrap/medians, true clock hour) and points to the tape-time decile supplement for session-like stratification. Phases 2–3 were already complete in this file; `trader_v11` remains the execution champion (worse 30,932); `trader_v17` implements Mark14\u2192HYDRO passive-seller bid skew and ties v11 on worse and all in this backtest (see analysis iteration 17)."
   },
   {
     "iteration": 1,
@@ -491,5 +491,16 @@
       "manual_traders/R4/r4_counterparty_gated/backtest_logs/v16_all.log"
     ],
     "used_to_decide": "Worse 30,899 (\u221233 vs v11); all 32,554 (\u2212912 vs v11). One fewer worse trade; day3 worse 9,283 vs 9,316. Tighter cap removes some marginal takes and hurts on this slice\u2014do not deploy; champion remains v11."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "trader_v17 = v11 + Phase-1 \u201cpassive seller\u201d test on HYDROGEL: on ticks where the tape has an aggressive buy on the hydro book with seller==Mark 14 (price >= best ask, tick-classifier aligned with `run_r4_phase1_analysis.classify_aggression`), shift the hydro bid 2 ticks lower (widen) before BBO clamp; ask unchanged. traderData exports `hydro_m14_passive_seller` when active.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_gated/trader_v17.py",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v17_worse.log",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v17_all.log",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_passive_seller_after_aggr_buy_markout_by_name.csv"
+    ],
+    "used_to_decide": "R4 days 1\u20133: worse 30,932 and all 33,466 are identical to v11; trade stats match v11 worse (4511 total trades, 1408 on extract) with +9 all-mode trades and slightly higher extract notional. So the 2-tick bid skew does not change the worse-fill PnL path (likely the skew almost never bound-constrained a fill vs v11, or hydro edge cases are in the PnL noise floor). The Phase-1 Mark14\u00d7HYDRO passive-seller cell remains a caution, not a proven quote-level alpha here; keep v11 as the scalar champion; v17 documents a null for this execution mapping."
   }
 ]

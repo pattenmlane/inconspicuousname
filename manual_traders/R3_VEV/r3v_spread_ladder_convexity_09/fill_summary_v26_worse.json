@@ -1,0 +1,91 @@
+{
+  "source_log": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f26_worse.log",
+  "total_trade_rows_all": 4471,
+  "total_trade_rows_submission_only": 593,
+  "per_symbol_all_rows": {
+    "VELVETFRUIT_EXTRACT": {
+      "count": 1591,
+      "qty": 8575,
+      "notional": 45026146.0,
+      "buy_qty": 8575.0,
+      "sell_qty": 0.0
+    },
+    "VEV_5400": {
+      "count": 261,
+      "qty": 819,
+      "notional": 12354.0,
+      "buy_qty": 819.0,
+      "sell_qty": 0.0
+    },
+    "VEV_5500": {
+      "count": 286,
+      "qty": 974,
+      "notional": 5851.0,
+      "buy_qty": 974.0,
+      "sell_qty": 0.0
+    },
+    "VEV_6000": {
+      "count": 294,
+      "qty": 1039,
+      "notional": 0.0,
+      "buy_qty": 1039.0,
+      "sell_qty": 0.0
+    },
+    "VEV_6500": {
+      "count": 294,
+      "qty": 1039,
+      "notional": 0.0,
+      "buy_qty": 1039.0,
+      "sell_qty": 0.0
+    },
+    "HYDROGEL_PACK": {
+      "count": 1030,
+      "qty": 4153,
+      "notional": 41490964.0,
+      "buy_qty": 4153.0,
+      "sell_qty": 0.0
+    },
+    "VEV_4000": {
+      "count": 502,
+      "qty": 955,
+      "notional": 1193621.0,
+      "buy_qty": 955.0,
+      "sell_qty": 0.0
+    },
+    "VEV_5300": {
+      "count": 182,
+      "qty": 434,
+      "notional": 19664.0,
+      "buy_qty": 434.0,
+      "sell_qty": 0.0
+    },
+    "VEV_5200": {
+      "count": 28,
+      "qty": 63,
+      "notional": 5435.0,
+      "buy_qty": 63.0,
+      "sell_qty": 0.0
+    },
+    "VEV_4500": {
+      "count": 1,
+      "qty": 1,
+      "notional": 732.0,
+      "buy_qty": 1.0,
+      "sell_qty": 0.0
+    },
+    "VEV_5000": {
+      "count": 1,
+      "qty": 1,
+      "notional": 237.0,
+      "buy_qty": 1.0,
+      "sell_qty": 0.0
+    },
+    "VEV_5100": {
+      "count": 1,
+      "qty": 1,
+      "notional": 151.0,
+      "buy_qty": 1.0,
+      "sell_qty": 0.0
+    }
+  }
+}

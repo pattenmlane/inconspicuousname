@@ -284,5 +284,45 @@
       "backtest_log_file": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f24_all.log",
       "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v24_all.json"
     }
+  },
+  {
+    "iteration": 25,
+    "trader_file": "trader_v25.py",
+    "strategy_description": "vouchers_final only: v23+ joint gate + Sonic streak (2 conseq ticks for full clip; 1st tick 50% size) + inclineGod s5200*s5300 tier. TH=2, no HYDROGEL.",
+    "total_profit": 7277,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v25.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f25_worse.log",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 7277,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f25_worse.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v25_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 10449,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f25_all.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v25_all.json"
+    }
+  },
+  {
+    "iteration": 26,
+    "trader_file": "trader_v26.py",
+    "strategy_description": "Grid sweep from v25: STREAK_FULL=3 (1/3,2/3,full), S_PROD_COEF=0.12. Worse 6565 < v25 7277 \u2014 stricter streak hurt.",
+    "total_profit": 6565,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v26.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f26_worse.log",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 6565,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f26_worse.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v26_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 9434,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f26_all.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v26_all.json"
+    }
   }
 ]

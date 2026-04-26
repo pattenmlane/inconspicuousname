@@ -1,0 +1,35 @@
+{
+  "by_day": [
+    {
+      "day": 1,
+      "n_vev_prints": 582,
+      "n_m22_seller": 419,
+      "n_m22_buyer": 0,
+      "frac_m22_seller": 0.7199312714776632,
+      "frac_m22_buyer": 0.0
+    },
+    {
+      "day": 2,
+      "n_vev_prints": 545,
+      "n_m22_seller": 417,
+      "n_m22_buyer": 0,
+      "frac_m22_seller": 0.7651376146788991,
+      "frac_m22_buyer": 0.0
+    },
+    {
+      "day": 3,
+      "n_vev_prints": 751,
+      "n_m22_seller": 597,
+      "n_m22_buyer": 6,
+      "frac_m22_seller": 0.7949400798934754,
+      "frac_m22_buyer": 0.007989347536617843
+    }
+  ],
+  "pooled": {
+    "n_vev_prints": 1878,
+    "n_m22_seller": 1433,
+    "n_m22_buyer": 6,
+    "frac_m22_seller": 0.7630457933972311,
+    "frac_m22_buyer": 0.003194888178913738
+  }
+}

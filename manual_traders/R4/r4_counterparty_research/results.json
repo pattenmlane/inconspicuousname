@@ -91,5 +91,28 @@
       "manual_traders/R4/r4_counterparty_research/analysis.json round4_phase3_complete",
       "Phase 1: Mark 22 sells / adverse selection proxy"
     ]
+  },
+  {
+    "iteration": 4,
+    "trader_file": "manual_traders/R4/r4_counterparty_research/trader_v3.py",
+    "strategy_description": "Same as trader_v2 plus widen after selling VEV to aggressive Mark 22 buyer (prior-tick own_trades: buyer Mark 22, seller SUBMISSION, qty<0). Tape evidence shows Mark 22 is almost never VEV buyer; expect near-identical PnL to v2.",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r4_counterparty_research/trader_v3.py\" 4 --data Prosperity4Data --no-progress --no-out --no-vis",
+    "total_profit": 33870,
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 33870,
+      "daily_profit": [16736, 6599, 10535],
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v3_worse.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v3_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 36284,
+      "daily_profit": [17552, 7458, 11274],
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v3_all.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v3_all.json"
+    },
+    "tape_evidence": "manual_traders/R4/r4_counterparty_research/outputs/r4_mark22_vev_roles_by_day.json"
   }
 ]

@@ -349,5 +349,39 @@
       "all_daily": [17552, 7458, 11274],
       "note": "Counterparty branch uses own_trades from previous tick; market_trades at run() entry is empty so burst-at-timestamp gating is not implemented in sim."
     }
+  },
+  {
+    "iteration": "r4_mark22_vev_roles_tape",
+    "analysis_description": "Tape counts: Mark 22 as buyer vs seller on VEV prints (Round 4 days 1-3); motivates symmetric counterparty handling in trader_v3.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_research/run_mark22_vev_role_counts_r4.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_mark22_vev_roles_by_day.json"
+    ],
+    "used_to_decide": "Mark 22 is passive seller on ~76% of VEV prints (1433/1878); Mark 22 as VEV buyer only 6 prints (0.3%) all on day 3. Bidirectional MM adjustment after sell-to-M22-buyer is correct structurally but inert on this tape.",
+    "counts_summary": {
+      "pooled_vev_prints": 1878,
+      "m22_seller_prints": 1433,
+      "m22_buyer_prints": 6
+    }
+  },
+  {
+    "iteration": "r4_trader_v3_bidirectional_m22",
+    "analysis_description": "trader_v3 = v2 + widen after VEV sell fill to aggressive Mark 22 (prior tick). Backtest identical to v2 because tape rarely has M22 as VEV buyer.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_research/trader_v3.py",
+      "manual_traders/R4/r4_counterparty_research/runlog_v3_worse.txt",
+      "manual_traders/R4/r4_counterparty_research/runlog_v3_all.txt",
+      "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v3_worse.json",
+      "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v3_all.json",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_mark22_vev_roles_by_day.json"
+    ],
+    "used_to_decide": "Falsifies expecting PnL lift from sell-side M22 rule on current R4 slice; keep rule for completeness or drop for simplicity.",
+    "backtest_summary": {
+      "worse_total": 33870,
+      "worse_daily": [16736, 6599, 10535],
+      "all_total": 36284,
+      "all_daily": [17552, 7458, 11274],
+      "vs_trader_v2": "identical totals and daily breakdowns"
+    }
   }
 ]

@@ -281,5 +281,18 @@
       "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v6_r4_all.log"
     ],
     "used_to_decide": "Hold-after-regime does not improve worse PnL at MIN_HOLD=10 vs v5; longer hold (20) hurts — next lever is exit price (improve vs bid) or paired extract when gate on, not only delay."
+  },
+  {
+    "iteration": 7,
+    "round": 4,
+    "analysis_description": "Tape: VEV_5300 spread by regime (analyze_r4_5300_spread_by_gate_burst.py → r4_5300_spread_by_gate_burst.json). Pooled: tight+burst mean spr53 1.43 (42.6% spr>=2); tight NOT burst n=7431 mean 1.77 **76.9%** spr>=2 — after burst ends, Sonic-tight rows often still allow ask-1 style passive sells. trader_v7 mirrors v5 entry with exit max(ask-1,bid) when spr>=2 else ask.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/analyze_r4_5300_spread_by_gate_burst.py",
+      "manual_traders/R4/r4_counterparty_phase1/r4_5300_spread_by_gate_burst.json",
+      "manual_traders/R4/r4_counterparty_phase1/trader_v7.py",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v7_r4_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v7_r4_all.log"
+    ],
+    "used_to_decide": "Phase 3 extension — execution: worse +255 (day1 +231, day2 +24, day3 0), all +262. Resolves prior bottleneck (bid-only exit gave away ~1 tick vs mid-forward edge). Caveat: narrow strategy (5300 only, burst-conditioned); validate robustness / overfit before treating as production alpha."
   }
 ]

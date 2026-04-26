@@ -1,0 +1,75 @@
+{
+  "TH": 2.0,
+  "BURST_MIN": 4,
+  "pooled": {
+    "tight_and_burst": {
+      "n": 291,
+      "mean_spread": 1.426117,
+      "frac_spread_ge_2": 0.426117
+    },
+    "tight_not_burst": {
+      "n": 7431,
+      "mean_spread": 1.769479,
+      "frac_spread_ge_2": 0.769479
+    },
+    "not_tight": {
+      "n": 22278,
+      "mean_spread": 2.048119,
+      "frac_spread_ge_2": 0.93819
+    }
+  },
+  "per_day": {
+    "1": {
+      "tight_and_burst": {
+        "n": 84,
+        "mean_spread": 1.452381,
+        "frac_spread_ge_2": 0.452381
+      },
+      "tight_not_burst": {
+        "n": 1297,
+        "mean_spread": 1.93138,
+        "frac_spread_ge_2": 0.93138
+      },
+      "not_tight": {
+        "n": 8619,
+        "mean_spread": 2.141896,
+        "frac_spread_ge_2": 0.990718
+      }
+    },
+    "2": {
+      "tight_and_burst": {
+        "n": 87,
+        "mean_spread": 1.45977,
+        "frac_spread_ge_2": 0.45977
+      },
+      "tight_not_burst": {
+        "n": 1640,
+        "mean_spread": 1.859756,
+        "frac_spread_ge_2": 0.859756
+      },
+      "not_tight": {
+        "n": 8273,
+        "mean_spread": 2.095129,
+        "frac_spread_ge_2": 0.968814
+      }
+    },
+    "3": {
+      "tight_and_burst": {
+        "n": 120,
+        "mean_spread": 1.383333,
+        "frac_spread_ge_2": 0.383333
+      },
+      "tight_not_burst": {
+        "n": 4494,
+        "mean_spread": 1.689809,
+        "frac_spread_ge_2": 0.689809
+      },
+      "not_tight": {
+        "n": 5386,
+        "mean_spread": 1.825845,
+        "frac_spread_ge_2": 0.807092
+      }
+    }
+  },
+  "interpretation": "If tight_not_burst keeps frac_spread_ge_2 high, ask-1 style passive exits remain placeable after burst ends while Sonic gate still on."
+}

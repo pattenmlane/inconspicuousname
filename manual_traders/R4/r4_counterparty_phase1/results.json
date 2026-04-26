@@ -278,5 +278,45 @@
         "note": "Day 3 small extra loss vs worse (-3) from fill matching on exit."
       }
     }
+  },
+  {
+    "iteration": 7,
+    "round": 4,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "v6 + passive exit improvement: sell at max(ask-1, bid) when VEV_5300 spread>=2 else at ask (symmetric to v5 join-buy). Same gate+burst entry, MIN_HOLD=10.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 255,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v7.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v7_r4_worse.log",
+      "backtest_output": {
+        "day1": 231,
+        "day2": 24,
+        "day3": 0,
+        "total": 255
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "First profitable worse run in this gate+burst line; exit tick vs bid-only v5/v6."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 262,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v7.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v7_r4_all.log",
+      "backtest_output": {
+        "day1": 231,
+        "day2": 24,
+        "day3": 7,
+        "total": 262
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "Slightly better than worse (+7 day3) under all matcher."
+      }
+    }
   }
 ]

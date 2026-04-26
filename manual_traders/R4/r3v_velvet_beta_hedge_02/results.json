@@ -61,5 +61,26 @@
       "trades_or_fills_summary": "Same as worse."
     },
     "total_profit": -3545
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "Sonic joint gate on then one-tick-inside MM on VELVETFRUIT_EXTRACT only (size 18, limit 200). No VEV orders; tests passive liquidity when surface tight per Phase 3 panel.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 4218,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v3.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v3_worse.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v3_worse.log",
+      "trades_or_fills_summary": "VELVETFRUIT_EXTRACT only: day1 +312, day2 +1286, day3 +2620; total 4218; worse=all identical."
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 4218,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v3.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v3_all.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v3_all.log",
+      "trades_or_fills_summary": "Same as worse."
+    },
+    "total_profit": 4218
   }
 ]

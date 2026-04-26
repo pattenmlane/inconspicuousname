@@ -247,5 +247,15 @@
       ],
       "does_gate_clean_signal": "Yes for **extract mid** forward (tight >> loose on mean fwd K=20 across days). **No** for sharpening **Mark 67** aggressive-buy forward (tight mean slightly below loose). **Mark 22** on 5300 is **only** observable under tight, so Phase 1 statistic is inherently gated — not an independent cross-check."
     }
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "Post-Phase-3 follow-up: Mark 55 on VELVETFRUIT_EXTRACT × Sonic joint gate — analyze_r4_mark55_extract_x_gate.py merges gate at (day,timestamp) onto extract trades with aggression flags; outputs JSON + by-day CSV for Mark55 aggr buy when tight.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/analyze_r4_mark55_extract_x_gate.py",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_mark55_extract_fwd_by_gate.json",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_mark55_aggr_buy_tight_by_day.csv"
+    ],
+    "used_to_decide": "Mark55 aggressive **buy** extract: mean fwd5 **lower when tight** (-0.009, n=162) than **loose** (+0.28, n=436); fwd20 still positive tight (+0.24) but below loose (+0.47). Aggressive **sell**: tight has **positive** fwd5 (+0.20) vs loose ~0 fwd5 and **negative** fwd20 loose (-0.21) — gate **inverts** sign pattern vs buy side; do not assume one-directional counterparty edge under gate. trader_v3: passive extract MM only when joint tight — sim +4218 extract-only, day-monotone positive."
   }
 ]

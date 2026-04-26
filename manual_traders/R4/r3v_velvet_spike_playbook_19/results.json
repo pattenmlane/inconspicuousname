@@ -4,5 +4,59 @@
     "note": "Round 4 Phase 1: analysis-only pass (counterparty markouts, graph, bursts). No trader_v*.py backtest yet; Phase 2+ may add strategy and log worse/all here.",
     "phase": "round4_phase1_complete",
     "analysis_reference": "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis.json"
+  },
+  {
+    "iteration": 1,
+    "trader_file": "trader_v1_r4_burst_extract.py",
+    "strategy_description": "Round 4 Phase 2 sim: when tape shows \u22653 Mark01\u2192Mark22 VEV prints this tick, aggressive buy up to 6 lots VELVETFRUIT_EXTRACT at best ask (uses state.market_trades from backtester patch). Tests burst\u2192extract hypothesis under worse/all.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 4834,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v1_r4_burst_extract.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v1_burst_extract_worse.json",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v1_burst_extract_worse.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "1": 3002,
+          "2": 5240,
+          "3": -3408,
+          "total": 4834
+        },
+        "fills": {
+          "submission_trade_count": 102,
+          "submission_filled_abs_qty": 600,
+          "submission_by_symbol": {
+            "VELVETFRUIT_EXTRACT": {
+              "trade_count": 102,
+              "filled_abs_qty": 600
+            }
+          }
+        }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 4834,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v1_r4_burst_extract.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v1_burst_extract_all.json",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v1_burst_extract_all.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "1": 3002,
+          "2": 5240,
+          "3": -3408,
+          "total": 4834
+        },
+        "fills": {
+          "submission_trade_count": 102,
+          "submission_filled_abs_qty": 600,
+          "submission_by_symbol": {
+            "VELVETFRUIT_EXTRACT": {
+              "trade_count": 102,
+              "filled_abs_qty": 600
+            }
+          }
+        }
+      }
+    }
   }
 ]

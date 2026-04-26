@@ -96,6 +96,11 @@ class TestRunner:
             state.order_depths[product] = order_depth
             state.listings[product] = Listing(product, product, 1)
 
+        # Tape trades at this timestamp (Round 4+ counterparty fields). Populated before
+        # OrderMatchMaker runs so agents can read buyer/seller on historical prints.
+        tape = data.trades.get(timestamp, {})
+        state.market_trades = {sym: list(trs) for sym, trs in tape.items()}
+
         observation_row = data.observations.get(state.timestamp)
         if observation_row is None:
             state.observations = Observation({}, {})

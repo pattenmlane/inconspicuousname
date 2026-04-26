@@ -98,5 +98,81 @@
       ],
       "repro_script": "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_counterparty_study.py"
     }
+  },
+  {
+    "round4_phase2_complete": {
+      "prerequisite": "round4_phase1_complete present; Phase 2 extends Phase-1 burst and pair findings with orthogonal microstructure and flow-lag checks.",
+      "backtester_note": "imc-prosperity-4-backtester/prosperity4bt/test_runner.py now assigns state.market_trades from tape trades at each timestamp before trader.run(), so Round 4 strategies can read buyer/seller on historical prints.",
+      "phase2_bullets": [
+        {
+          "item": "Named-bot exploitation (burst \u00d7 pair)",
+          "outputs": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase2_burst_mark01_22_vev_with_extract_fwd.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase2_burst_mark01_22_summary.json"
+          ],
+          "one_sentence": "All 1339 Mark01\u2192Mark22 VEV prints in multi-VEV bursts show mean +20-row extract mid drift \u2248 +0.30 (median 0), aligning with Phase-1 burst\u2192extract lift but still a mid proxy."
+        },
+        {
+          "item": "Microstructure (spread vs short-horizon abs move)",
+          "outputs": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase2_microprice_spread_fwdcorr.json"
+          ],
+          "one_sentence": "Cross-product pooled correlation spread vs |5-row fwd mid| \u2248 +0.47 (n\u2249360k rows) \u2014 wider books associate with larger short-horizon mid moves on this tape (vol proxy, not direction)."
+        },
+        {
+          "item": "Cross-instrument lead\u2013lag (Mark 01 extract buy flow)",
+          "outputs": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase2_extract_mark01_buy_flow_lagcorr.json"
+          ],
+          "one_sentence": "Correlations of Mark-01 buy quantity on extract with same-tick fwd are undefined (degenerate); at lags 1\u201310 correlations are small (\u2248-0.03 to +0.03) \u2014 no strong lead\u2013lag edge."
+        },
+        {
+          "item": "Execution / adverse selection (sim)",
+          "outputs": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v1_burst_extract_worse.json",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v1_burst_extract_all.json"
+          ],
+          "one_sentence": "Naive sim: buy 6 lots at ask on every M01\u2192M22 VEV burst \u2192 +4834 total extract PnL days 1\u20134 worse=all (day 3 large drawdown) \u2014 tape mean-reversion does not survive full execution without sizing/exit; confirms Phase-1 caveat."
+        },
+        {
+          "item": "Vol/smile and inventory MM",
+          "outputs": [],
+          "one_sentence": "Not executed in this pass (no R4 smile calibration wired); inventory-aware MM deferred to Phase 3 gate interaction."
+        }
+      ],
+      "top_5_tradeable_edges_phase2": [
+        {
+          "rank": 1,
+          "edge": "Wider L1 spread predicts larger |5-tick mid move| (pooled products) \u2014 regime filter for vol targeting.",
+          "evidence": "r4_phase2_microprice_spread_fwdcorr.json corr \u2248 0.47",
+          "phase1_relation": "Orthogonal to Phase-1 pair markouts; informs when not to lean on tiny mid edges."
+        },
+        {
+          "rank": 2,
+          "edge": "Mark01\u2192Mark22 VEV basket bursts coincide with modest positive extract mid drift (+20 rows, mean \u2248 0.30).",
+          "evidence": "r4_phase2_burst_mark01_22_summary.json",
+          "phase1_relation": "Refines Phase-1 burst event study (pooled +0.32 vs +0.08) with explicit counterparty conditioning."
+        },
+        {
+          "rank": 3,
+          "edge": "Simulated burst-follow long extract (v1) can be profitable on days 1\u20132 but day 3 wipes \u2014 needs day-stability / risk cap.",
+          "evidence": "r4_v1_burst_extract_worse.json PnL by day",
+          "phase1_relation": "Falsifies naive always-on exploitation; Phase-1 markout is necessary not sufficient."
+        },
+        {
+          "rank": 4,
+          "edge": "Mark 01 extract buy flow shows no reliable lagged correlation with extract returns at 1\u201310 row lags.",
+          "evidence": "r4_phase2_extract_mark01_buy_flow_lagcorr.json",
+          "phase1_relation": "Negative on Phase-1 style \u2018informed buy\u2019 narrative for extract specifically."
+        },
+        {
+          "rank": 5,
+          "edge": "Structural graph (Phase 1) + burst flag \u2192 candidate scheduler detection for gating; not standalone PnL.",
+          "evidence": "r4_graph_edges + burst CSVs",
+          "phase1_relation": "Confirms Phase-1 graph/burst narrative as regime context."
+        }
+      ],
+      "repro_script": "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase2_study.py"
+    }
   }
 ]

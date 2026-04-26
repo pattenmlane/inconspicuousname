@@ -1,4 +1,5 @@
 Also: participant_name_coverage.csv (all names), extract_aggrbuy_top3_per_day_stability.csv
+2-hop→extract: two_hop_chain_fwd_extract.csv (anchor=timestamp of 2nd leg)
 Round 4 Phase 1 — automated summary (see CSVs in same folder)
 Trade rows: 4281 | Event horizons rows: 12843
 

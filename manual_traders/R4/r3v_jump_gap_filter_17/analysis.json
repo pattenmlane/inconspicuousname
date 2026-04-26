@@ -14,6 +14,8 @@
       "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/graph_reciprocity_top.csv",
       "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/graph_summary.txt",
       "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/two_hop_chain_counts.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/two_hop_chain_fwd_extract.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/two_hop_chain_fwd_extract_per_day.csv",
       "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/burst_multi_symbol.csv",
       "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/burst_vs_control_extract_fwd.csv",
       "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/adverse_proxy_k20_by_pair.csv",
@@ -52,9 +54,11 @@
             "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/graph_edges.csv",
             "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/graph_reciprocity_top.csv",
             "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/graph_summary.txt",
-            "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/two_hop_chain_counts.csv"
+            "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/two_hop_chain_counts.csv",
+            "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/two_hop_chain_fwd_extract.csv",
+            "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/two_hop_chain_fwd_extract_per_day.csv"
           ],
-          "conclusion": "Directed graph is sparse (19 edges); Mark 14 is count hub; Mark 01→Mark 22 dominates voucher basket prints; consecutive A→B→C chains reflect same routing. **Reciprocity:** hydro duopoly Mark14↔Mark38 shows ~1:1 reverse flow; Mark01→Mark22 has **zero** reverse edge (strictly one-way)."
+          "conclusion": "Directed graph is sparse (19 edges); Mark 14 is count hub; Mark 01→Mark 22 dominates voucher basket prints; consecutive A→B→C chains reflect same routing. **Reciprocity:** hydro duopoly Mark14↔Mark38 shows ~1:1 reverse flow; Mark01→Mark22 has **zero** reverse edge (strictly one-way). **Motif→extract:** anchor = timestamp of **second** leg; top hydro ping-pong **Mark14→Mark38→Mark14** (n=165) shows only **~+0.20** mean extract Δ at K=5 (median 0, frac_pos≈0.46) — **not** a Tier-A extract scheduler signal; longer K and other top motifs are mixed/negative (see CSVs)."
         },
         {
           "bullet": "4) Burst structure",
@@ -113,14 +117,17 @@
         "K=5 extract forward after bursts is not meaningfully different from random controls; burst signal mainly at K=20.",
         "Most per-participant × VEV cells have too few prints for stable inference outside extract and 01→22 lanes.",
         "Backtester `TradingState.market_trades` is empty during `Trader.run` — tape CSV is authoritative for Mark conditioning until runner exposes trades.",
-        "round4work/round4description.txt TTE: only VEV_5000 example; `r4_t_years.py` uses 5−day at open + R3-style intraday wind (confirm if spec updates)."
+        "round4work/round4description.txt TTE: only VEV_5000 example; `r4_t_years.py` uses 5−day at open + R3-style intraday wind (confirm if spec updates).",
+        "**2-hop consecutive-trade motifs → extract mid:** dominant Mark14↔Mark38 ping-pong chains do **not** produce large stable extract forward at K=5 (small mean, median 0); per-day means flip sign at K=20/100 — not a clean structural lead for extract MM (`two_hop_chain_fwd_extract*.csv`)."
       ],
       "phase1_supplement_files_iteration_16": {
         "participant_name_coverage.csv": "All distinct names on R4 tape with trade-print and event-row counts (8 Mark participants in this data).",
         "extract_aggrbuy_top3_per_day_stability.csv": "Per-day K=5 mean/median/frac_pos for Mark67/22/49 aggr-buy extract — all days positive (tie-break for multi-day stability).",
         "extract_aggrbuy_k5_bootstrap_ci.csv": "Bootstrap 95% CI on pooled mean K=5 fwd_same for all three aggr-buy extract flags (8k resamples; see r4_phase1_bootstrap_extract_edges.py).",
         "extract_aggrbuy_k5_leaveoneout_bootstrap_ci.csv": "Leave-one-day-out train (2 days) bootstrap CI for same three signals — all holdouts keep mean CI strictly >0.",
-        "graph_reciprocity_top.csv": "Directed edge vs reverse edge counts; Mark14↔Mark38 ~0.98–1.02 reciprocity; Mark01→Mark22 rev=0 (one-way basket pipe)."
+        "graph_reciprocity_top.csv": "Directed edge vs reverse edge counts; Mark14↔Mark38 ~0.98–1.02 reciprocity; Mark01→Mark22 rev=0 (one-way basket pipe).",
+        "two_hop_chain_fwd_extract.csv": "Mean/median/frac_pos of extract mid fwd after A→B→C (2nd-leg anchor); min n=15 per motif×K.",
+        "two_hop_chain_fwd_extract_per_day.csv": "Same by day for diagnostics."
       }
     }
   },
@@ -439,6 +446,18 @@
       "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter15_backtest_all.log",
       "manual_traders/R4/r3v_jump_gap_filter_17/results.json"
     ],
-    "used_to_decide": "For **worse** shipping keep **v13** (or v15 — same number); Mark67-specific print set is not a differentiator under adverse matching here. Phase-1 bullet **3** now has explicit reciprocity artifact."
+    "used_to_decide": "For **worse** shipping keep **v13** (or v15 — same number); Mark67-specific print set is not a differentiator under adverse matching here. Phase-1 bullet **3** now has reciprocity CSVs **and** motif→extract follow-through tables (iteration 19)."
+  },
+  {
+    "iteration": 19,
+    "analysis_description": "**Phase 1 bullet 3 (motifs → extract):** `r4_phase1_counterparty_analysis.py` now emits **`two_hop_chain_fwd_extract.csv`** and **`two_hop_chain_fwd_extract_per_day.csv`**. Definition: consecutive tape rows same day with `seller_i == buyer_{i+1}`; anchor timestamp = **second** leg; `fwd_extract = mid_EXTRACT(t+K*100)−mid_EXTRACT(t)` for K∈{5,20,100}. Top motif **Mark14→Mark38→Mark14** (n=165): K=5 mean **+0.20** ticks, **median 0**, frac_pos **0.46** — weak vs participant-level extract edges; K=20/100 means go **negative**. **Negative result:** do **not** treat dominant 2-hop **trade-order** chains as a standalone extract predictor without richer alignment (e.g. same-timestamp bursts or symbol-specific anchors).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_jump_gap_filter_17/r4_phase1_counterparty_analysis.py",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/two_hop_chain_fwd_extract.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/two_hop_chain_fwd_extract_per_day.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/phase1_automated_summary.txt",
+      "manual_traders/R4/r3v_jump_gap_filter_17/analysis.json"
+    ],
+    "used_to_decide": "Phase-2 lead–lag (`leadlag_*.csv`) remains the primary cross-instrument timing evidence; 2-hop **consecutive-print** motif table is a **null** for strong extract scheduling on this tape slice."
   }
 ]

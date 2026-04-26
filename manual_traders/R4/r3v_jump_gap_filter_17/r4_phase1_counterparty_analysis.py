@@ -366,6 +366,77 @@ def main() -> None:
             [{"A": a, "B": b, "C": c, "count": n} for (a, b, c), n in topc]
         ).to_csv(OUT / "two_hop_chain_counts.csv", index=False)
 
+    # --- 3b) 2-hop chain → forward extract mid (anchor = timestamp of **second** leg)
+    EXTRACT_SYM = "VELVETFRUIT_EXTRACT"
+    chain_rows: list[dict] = []
+    trs2 = tr.sort_values(["day", "timestamp"])
+    for _, g in trs2.groupby("day"):
+        g = g.reset_index(drop=True)
+        for i in range(len(g) - 1):
+            a1, s1 = str(g.loc[i, "buyer"]), str(g.loc[i, "seller"])
+            a2, s2 = str(g.loc[i + 1, "buyer"]), str(g.loc[i + 1, "seller"])
+            if s1 != a2:
+                continue
+            d = int(g.loc[i, "day"])
+            t2 = int(g.loc[i + 1, "timestamp"])
+            m0e = mid_index.get((d, EXTRACT_SYM, t2))
+            if m0e is None:
+                continue
+            for K in HORIZONS:
+                fts = min(t2 + K * TICK, MAX_TS)
+                m1e = forward_mid(mid_index, d, EXTRACT_SYM, fts)
+                if m1e is None:
+                    continue
+                chain_rows.append(
+                    {
+                        "day": d,
+                        "t_second_leg": t2,
+                        "A": a1,
+                        "B": s1,
+                        "C": s2,
+                        "K": K,
+                        "fwd_extract": float(m1e - m0e),
+                    }
+                )
+    if chain_rows:
+        ch = pd.DataFrame(chain_rows)
+        ch["motif"] = ch["A"] + "->" + ch["B"] + "->" + ch["C"]
+        summ = []
+        for (mot, K), g in ch.groupby(["motif", "K"]):
+            if len(g) < 15:
+                continue
+            v = g["fwd_extract"].astype(float)
+            summ.append(
+                {
+                    "motif": mot,
+                    "K": int(K),
+                    "n": len(g),
+                    "mean_fwd_extract": float(v.mean()),
+                    "median_fwd_extract": float(v.median()),
+                    "frac_pos": float((v > 0).mean()),
+                }
+            )
+        pd.DataFrame(summ).sort_values(["n", "K"], ascending=[False, True]).to_csv(
+            OUT / "two_hop_chain_fwd_extract.csv", index=False
+        )
+        pd1 = []
+        for (mot, K, day), g in ch.groupby(["motif", "K", "day"]):
+            if len(g) < 5:
+                continue
+            v = g["fwd_extract"].astype(float)
+            pd1.append(
+                {
+                    "motif": mot,
+                    "K": int(K),
+                    "day": int(day),
+                    "n": len(g),
+                    "mean_fwd_extract": float(v.mean()),
+                }
+            )
+        pd.DataFrame(pd1).sort_values(["motif", "K", "day"]).to_csv(
+            OUT / "two_hop_chain_fwd_extract_per_day.csv", index=False
+        )
+
     # --- 4) Bursts ---
     burst_df = (
         tr.groupby(["day", "timestamp"])
@@ -482,6 +553,7 @@ def main() -> None:
     # Narrative summary for humans
     summ = []
     summ.append("Also: participant_name_coverage.csv (all names), extract_aggrbuy_top3_per_day_stability.csv")
+    summ.append("2-hop→extract: two_hop_chain_fwd_extract.csv (anchor=timestamp of 2nd leg)")
     summ.append("Round 4 Phase 1 — automated summary (see CSVs in same folder)")
     summ.append(f"Trade rows: {len(tr)} | Event horizons rows: {len(ev)}")
     summ.append("")

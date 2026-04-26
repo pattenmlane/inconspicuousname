@@ -421,5 +421,17 @@
       "manual_traders/R4/r4_counterparty_phase1/fill_summary_v12_all.json"
     ],
     "used_to_decide": "**Falsified in sim:** terminal worse **+7492.5** vs v11 **+7608.5** (-116); all **+9304** vs **+9992**. Example terminal line: VEV_5300 **1548** vs v11 **1842**. Simple half-clip skew at POS_TH=50 cuts too much good VEV/extract flow. **Keep v11**; if revisiting skew, need state that does not symmetrically shrink the profitable VEV5300 leg (e.g. threshold by product or only VELVET)."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Follow v12 post-mortem: apply **same** |pos|>=50 half-clip rule **only** to VELVETFRUIT_EXTRACT (`trader_v13`); v11 clips unchanged for HYDRO and VEV_5100-5500.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/trader_v13.py",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v13_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v13_all.log",
+      "manual_traders/R4/r4_counterparty_phase1/fill_summary_v13_worse.json",
+      "manual_traders/R4/r4_counterparty_phase1/fill_summary_v13_all.json"
+    ],
+    "used_to_decide": "Still **slightly negative** on worse: **+7593.5** vs v11 **+7608.5** (-15); VELVET terminal **-15**; VEV_5300 matches v11. **all** ties v11 at **+9992**. Conclusion: even velvet-only inventory skew at POS_TH=50 is not worth it on this backtest. **Best remains v11** for headline worse PnL."
   }
 ]

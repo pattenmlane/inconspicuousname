@@ -269,5 +269,26 @@
       "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v12_all.log",
       "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v12_all.json"
     }
+  },
+  {
+    "iteration": 13,
+    "trader_file": "trader_v13.py",
+    "strategy_description": "v11 + v12-style half-clip inventory skew **only for VELVETFRUIT_EXTRACT** when joint tight and |pos|>=50 (HYDRO+VEV clips unchanged; addresses v12 killing VEV5300 PnL).",
+    "total_profit": 7593.5,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v13.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r4_counterparty_phase1/backtest_r4_v13_worse.log",
+    "note_vs_v11": "Terminal activitiesLog: worse **+7593.5** vs v11 **+7608.5** (-15); all **+9992** ties v11. VELVET line -15 vs v11; VEV_5300 unchanged. Marginal harm — **prefer v11**.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 7593.5,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v13_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v13_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 9992,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v13_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v13_all.json"
+    }
   }
 ]

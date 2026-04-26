@@ -747,5 +747,371 @@
         }
       }
     }
+  },
+  {
+    "iteration": 23,
+    "trader_file": "trader_v23.py",
+    "strategy_description": "Pivot to round3work/vouchers_final_strategy: joint tight gate s(VEV_5200)<=2 and s(VEV_5300)<=2; add extract s_ex<=6; then EMA mean-reversion on VELVETFRUIT_EXTRACT only (no hydrogel, no legacy smile/ATM). Per ORIGINAL_DISCORD_QUOTES.txt and STRATEGY.txt (t-stat/edge in tight book; mid vs bid/ask caveat).",
+    "backtest_round": 3,
+    "total_profit": 4912,
+    "match_trades": "worse",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v23.py 3 --data Prosperity4Data --no-vis --no-progress",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 4912,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/backtest_logs/trader_v23_round3_worse.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v23.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+      "trades_or_fills_summary": {
+        "per_day": [
+          {
+            "day": 0,
+            "products": {
+              "VEV_6500": 0,
+              "VEV_6000": 0,
+              "VEV_5500": 0,
+              "VEV_5400": 0,
+              "VEV_5300": 0,
+              "VEV_5200": 0,
+              "VEV_5100": 0,
+              "VEV_5000": 0,
+              "VEV_4500": 0,
+              "VEV_4000": 0,
+              "VELVETFRUIT_EXTRACT": 536,
+              "HYDROGEL_PACK": 0
+            },
+            "day_total_profit": 536
+          },
+          {
+            "day": 1,
+            "products": {
+              "VEV_6500": 0,
+              "VEV_6000": 0,
+              "VEV_5500": 0,
+              "VEV_5400": 0,
+              "VEV_5300": 0,
+              "VEV_5200": 0,
+              "VEV_5100": 0,
+              "VEV_5000": 0,
+              "VEV_4500": 0,
+              "VEV_4000": 0,
+              "VELVETFRUIT_EXTRACT": 1428,
+              "HYDROGEL_PACK": 0
+            },
+            "day_total_profit": 1428
+          },
+          {
+            "day": 2,
+            "products": {
+              "VEV_6500": 0,
+              "VEV_6000": 0,
+              "VEV_5500": 0,
+              "VEV_5400": 0,
+              "VEV_5300": 0,
+              "VEV_5200": 0,
+              "VEV_5100": 0,
+              "VEV_5000": 0,
+              "VEV_4500": 0,
+              "VEV_4000": 0,
+              "VELVETFRUIT_EXTRACT": 2860,
+              "HYDROGEL_PACK": 0
+            },
+            "day_total_profit": 2860
+          },
+          {
+            "day": 3,
+            "products": {
+              "VEV_6500": 0,
+              "VEV_6000": 0,
+              "VEV_5500": 0,
+              "VEV_5400": 0,
+              "VEV_5300": 0,
+              "VEV_5200": 0,
+              "VEV_5100": 0,
+              "VEV_5000": 0,
+              "VEV_4500": 0,
+              "VEV_4000": 0,
+              "VELVETFRUIT_EXTRACT": 88,
+              "HYDROGEL_PACK": 0
+            },
+            "day_total_profit": 88
+          }
+        ],
+        "aggregate_by_product_group": {
+          "vev_sum": 0,
+          "extract": 4912,
+          "hydrogel": 0
+        }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 5555,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/backtest_logs/trader_v23_round3_all.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v23.py 3 --data Prosperity4Data --match-trades all --no-vis --no-progress",
+      "trades_or_fills_summary": {
+        "per_day": [
+          {
+            "day": 0,
+            "products": {
+              "VEV_6500": 0,
+              "VEV_6000": 0,
+              "VEV_5500": 0,
+              "VEV_5400": 0,
+              "VEV_5300": 0,
+              "VEV_5200": 0,
+              "VEV_5100": 0,
+              "VEV_5000": 0,
+              "VEV_4500": 0,
+              "VEV_4000": 0,
+              "VELVETFRUIT_EXTRACT": 536,
+              "HYDROGEL_PACK": 0
+            },
+            "day_total_profit": 536
+          },
+          {
+            "day": 1,
+            "products": {
+              "VEV_6500": 0,
+              "VEV_6000": 0,
+              "VEV_5500": 0,
+              "VEV_5400": 0,
+              "VEV_5300": 0,
+              "VEV_5200": 0,
+              "VEV_5100": 0,
+              "VEV_5000": 0,
+              "VEV_4500": 0,
+              "VEV_4000": 0,
+              "VELVETFRUIT_EXTRACT": 1428,
+              "HYDROGEL_PACK": 0
+            },
+            "day_total_profit": 1428
+          },
+          {
+            "day": 2,
+            "products": {
+              "VEV_6500": 0,
+              "VEV_6000": 0,
+              "VEV_5500": 0,
+              "VEV_5400": 0,
+              "VEV_5300": 0,
+              "VEV_5200": 0,
+              "VEV_5100": 0,
+              "VEV_5000": 0,
+              "VEV_4500": 0,
+              "VEV_4000": 0,
+              "VELVETFRUIT_EXTRACT": 3503,
+              "HYDROGEL_PACK": 0
+            },
+            "day_total_profit": 3503
+          },
+          {
+            "day": 3,
+            "products": {
+              "VEV_6500": 0,
+              "VEV_6000": 0,
+              "VEV_5500": 0,
+              "VEV_5400": 0,
+              "VEV_5300": 0,
+              "VEV_5200": 0,
+              "VEV_5100": 0,
+              "VEV_5000": 0,
+              "VEV_4500": 0,
+              "VEV_4000": 0,
+              "VELVETFRUIT_EXTRACT": 88,
+              "HYDROGEL_PACK": 0
+            },
+            "day_total_profit": 88
+          }
+        ],
+        "aggregate_by_product_group": {
+          "vev_sum": 0,
+          "extract": 5555,
+          "hydrogel": 0
+        }
+      }
+    }
+  },
+  {
+    "iteration": 24,
+    "trader_file": "trader_v24.py",
+    "strategy_description": "Same joint gate; K=20 extract momentum (S_t-S_{t-20}) with |mom|>0.25, equal long/short 5200+5300+extract. Falsified under worse: strong negative; mid-forward edge does not port to this execution. Kept for audit.",
+    "backtest_round": 3,
+    "total_profit": -28430,
+    "match_trades": "worse",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v24.py 3 --data Prosperity4Data --no-vis --no-progress",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -28430,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/backtest_logs/trader_v24_round3_worse.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v24.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+      "trades_or_fills_summary": {
+        "per_day": [
+          {
+            "day": 0,
+            "products": {
+              "VEV_6500": 0,
+              "VEV_6000": 0,
+              "VEV_5500": 0,
+              "VEV_5400": 0,
+              "VEV_5300": -934,
+              "VEV_5200": -1624,
+              "VEV_5100": 0,
+              "VEV_5000": 0,
+              "VEV_4500": 0,
+              "VEV_4000": 0,
+              "VELVETFRUIT_EXTRACT": -431,
+              "HYDROGEL_PACK": 0
+            },
+            "day_total_profit": -2990
+          },
+          {
+            "day": 1,
+            "products": {
+              "VEV_6500": 0,
+              "VEV_6000": 0,
+              "VEV_5500": 0,
+              "VEV_5400": 0,
+              "VEV_5300": -1255,
+              "VEV_5200": -2110,
+              "VEV_5100": 0,
+              "VEV_5000": 0,
+              "VEV_4500": 0,
+              "VEV_4000": 0,
+              "VELVETFRUIT_EXTRACT": -3684,
+              "HYDROGEL_PACK": 0
+            },
+            "day_total_profit": -7050
+          },
+          {
+            "day": 2,
+            "products": {
+              "VEV_6500": 0,
+              "VEV_6000": 0,
+              "VEV_5500": 0,
+              "VEV_5400": 0,
+              "VEV_5300": -969,
+              "VEV_5200": -8507,
+              "VEV_5100": 0,
+              "VEV_5000": 0,
+              "VEV_4500": 0,
+              "VEV_4000": 0,
+              "VELVETFRUIT_EXTRACT": -8472,
+              "HYDROGEL_PACK": 0
+            },
+            "day_total_profit": -17948
+          },
+          {
+            "day": 3,
+            "products": {
+              "VEV_6500": 0,
+              "VEV_6000": 0,
+              "VEV_5500": 0,
+              "VEV_5400": 0,
+              "VEV_5300": 16,
+              "VEV_5200": -210,
+              "VEV_5100": 0,
+              "VEV_5000": 0,
+              "VEV_4500": 0,
+              "VEV_4000": 0,
+              "VELVETFRUIT_EXTRACT": -249,
+              "HYDROGEL_PACK": 0
+            },
+            "day_total_profit": -442
+          }
+        ],
+        "aggregate_by_product_group": {
+          "vev_sum": -15383,
+          "extract": -12836,
+          "hydrogel": 0
+        }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -27702,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/backtest_logs/trader_v24_round3_all.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_atm_straddle_proxy_03/trader_v24.py 3 --data Prosperity4Data --match-trades all --no-vis --no-progress",
+      "trades_or_fills_summary": {
+        "per_day": [
+          {
+            "day": 0,
+            "products": {
+              "VEV_6500": 0,
+              "VEV_6000": 0,
+              "VEV_5500": 0,
+              "VEV_5400": 0,
+              "VEV_5300": -934,
+              "VEV_5200": -1624,
+              "VEV_5100": 0,
+              "VEV_5000": 0,
+              "VEV_4500": 0,
+              "VEV_4000": 0,
+              "VELVETFRUIT_EXTRACT": -359,
+              "HYDROGEL_PACK": 0
+            },
+            "day_total_profit": -2918
+          },
+          {
+            "day": 1,
+            "products": {
+              "VEV_6500": 0,
+              "VEV_6000": 0,
+              "VEV_5500": 0,
+              "VEV_5400": 0,
+              "VEV_5300": -1244,
+              "VEV_5200": -2095,
+              "VEV_5100": 0,
+              "VEV_5000": 0,
+              "VEV_4500": 0,
+              "VEV_4000": 0,
+              "VELVETFRUIT_EXTRACT": -3684,
+              "HYDROGEL_PACK": 0
+            },
+            "day_total_profit": -7024
+          },
+          {
+            "day": 2,
+            "products": {
+              "VEV_6500": 0,
+              "VEV_6000": 0,
+              "VEV_5500": 0,
+              "VEV_5400": 0,
+              "VEV_5300": -1052,
+              "VEV_5200": -8507,
+              "VEV_5100": 0,
+              "VEV_5000": 0,
+              "VEV_4500": 0,
+              "VEV_4000": 0,
+              "VELVETFRUIT_EXTRACT": -7760,
+              "HYDROGEL_PACK": 0
+            },
+            "day_total_profit": -17318
+          },
+          {
+            "day": 3,
+            "products": {
+              "VEV_6500": 0,
+              "VEV_6000": 0,
+              "VEV_5500": 0,
+              "VEV_5400": 0,
+              "VEV_5300": 16,
+              "VEV_5200": -210,
+              "VEV_5100": 0,
+              "VEV_5000": 0,
+              "VEV_4500": 0,
+              "VEV_4000": 0,
+              "VELVETFRUIT_EXTRACT": -249,
+              "HYDROGEL_PACK": 0
+            },
+            "day_total_profit": -442
+          }
+        ],
+        "aggregate_by_product_group": {
+          "vev_sum": -15246,
+          "extract": -12052,
+          "hydrogel": 0
+        }
+      }
+    }
   }
 ]

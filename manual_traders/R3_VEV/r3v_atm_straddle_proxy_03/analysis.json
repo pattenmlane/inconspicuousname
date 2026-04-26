@@ -118,5 +118,23 @@
       "round3work/vouchers_final_strategy/outputs/r3_tight_spread_6panel.png"
     ],
     "used_to_decide": "v22 wires the joint 5200/5300 tight spread as a risk-on sizing signal (clip 4->5 and larger extract hedge cap when both <=2), not a hard trade gate (hard gate + day_3 data test was strongly negative). Hydrogel disabled to focus PnL on VEV+extract. Worse and all match modes recorded; outputs were identical for this run."
+  },
+  {
+    "iteration": 23,
+    "analysis_description": "Authoritative read: round3work/vouchers_final_strategy/STRATEGY.txt + ORIGINAL_DISCORD_QUOTES.txt (Sonic: both 5200/5300 spread at or below 2; inclineGod: spread/spread not just price). Folder outputs: r3_tight_spread_summary.txt (K=20 forward mid higher when joint tight). Implementation: no legacy family10 logic—joint gate on extract spread cap + EMA fade on VELVETFRUIT_EXTRACT in tight regime; voucher legs not used for orders in v23 to respect execution caveat.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt"
+    ],
+    "used_to_decide": "Ship a clean thesis pivot: trade extract only when the Sonic joint gate and tradeable extract spread hold; EMA reversion. backtest_worse 4912 round3 days0-3; all 5555. Far below 200k/day floor—next: add on-voucher execution that uses gate without naive momentum, or calibrate to folder K-step stats under worse fills."
+  },
+  {
+    "iteration": 24,
+    "analysis_description": "Test linking folder K=20 forward-mid narrative to a live rule: S(t)-S(t-20) momentum when joint 5200/5300 tight, with equal 5200+5300+extract direction.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_6panel.png"
+    ],
+    "used_to_decide": "Falsified under worse and all: large negative (worse -28430). Do not use raw signed momentum as a standalone directional rule with this execution; mid-forward result does not transfer. Prefer mean-reversion or a different VEV quoting model in later iterations."
   }
 ]

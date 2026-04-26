@@ -1,0 +1,10 @@
+Round 4 joint gate (inner join 5200+5300+extract, TH=2, K=20)
+day 1: n_valid_fwd=9980 P(tight)=0.1384
+  mean(fwd)|tight=0.599203 mean(fwd)|not=-0.0483196 Welch t=5.3248 p=1.133e-07
+  corr(s5200,s5300)=0.2355 corr(s5200,m_ext)=0.3882 corr(s5300,m_ext)=0.3243
+day 2: n_valid_fwd=9980 P(tight)=0.1730
+  mean(fwd)|tight=0.4641 mean(fwd)|not=-0.0181146 Welch t=4.2382 p=2.336e-05
+  corr(s5200,s5300)=0.2650 corr(s5200,m_ext)=0.4658 corr(s5300,m_ext)=0.4069
+day 3: n_valid_fwd=9980 P(tight)=0.4607
+  mean(fwd)|tight=0.187908 mean(fwd)|not=-0.39502 Welch t=6.7815 p=1.258e-11
+  corr(s5200,s5300)=0.1841 corr(s5200,m_ext)=0.4251 corr(s5300,m_ext)=0.3514

@@ -67,5 +67,34 @@
         "day_totals": { "1": 776, "2": 1834, "3": 3401 }
       }
     }
+  },
+  {
+    "iteration": 2,
+    "trader_file": "trader_v2.py",
+    "strategy_description": "Phase 3 Tier-A **sim test**: same as v0 (joint gate extract MM) but **no orders** for the step if `state.market_trades[VELVETFRUIT_EXTRACT]` contains a trade with **buyer Mark 55** and **seller Mark 01** (tape-derived adverse interaction under gate). **Result: worse PnL than v0** \u2014 rule rejected for this backtester.",
+    "backtest_worse": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "worse",
+      "total_profit": 2494,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter2_r4d1-3_worse.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v2.py 4 --data Prosperity4Data --match-trades worse --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 420, "2": 1553, "3": 521 },
+        "vs_iteration_0_worse_total": 3184
+      }
+    },
+    "backtest_all": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "all",
+      "total_profit": 3932,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter2_r4d1-3_all.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v2.py 4 --data Prosperity4Data --match-trades all --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 140, "2": 1102, "3": 2691 },
+        "vs_iteration_0_all_total": 6012
+      }
+    }
   }
 ]

@@ -200,5 +200,75 @@
       "Bar-grid flow\u2194dmid correlations are **near zero** at most lags (see phase2_cross_leadlag_bar_grid_flow.csv).",
       "Smile-lite tension by pair is descriptive only (phase2_smile_lite_tension_by_pair.csv)."
     ]
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Round 4 **Phase 3**: re-read `round3work/vouchers_final_strategy/STRATEGY.txt` and `ORIGINAL_DISCORD_QUOTES.txt` (inclineGod spread focus; Sonic joint gate). Implemented ``analyze_phase3.py`` \u2014 R4 **inner-join** 5200+5300+extract on ``timestamp``, ``tight`` = both spreads\u22642, K=20 fwd on extract mid (same logic as ``analyze_vev_5200_5300_tight_gate_r3.py``). inclineGod outputs: correlation matrices + ``phase3_r4_inclineGod_panels.png``. Merged gate onto enriched trades: **gate\u00d7burst** extract fwd20, **Mark pair \u00d7 gate** markouts (head sample CSV). Reference R3 paths in ping used ``previous round work/``; this repo uses ``round3work/vouchers_final_strategy/``.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_phase1_marks/analyze_phase3.py",
+      "manual_traders/R4/r4_phase1_marks/outputs/PHASE3_SUMMARY.md",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase3_joint_gate_summary_r4.txt",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase3_spread_spread_only_r4.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase3_spread_mid_correlation_matrix_r4.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase3_r4_inclineGod_panels.png",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase3_gate_x_burst_extract_fwd20.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase3_mark_pair_symbol_gate_markout.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase3_trades_gate_head5000.csv",
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt"
+    ],
+    "used_to_decide": "Append ``round4_phase3_complete``; sim ``trader_v2`` tests one Mark\u00d7gate interaction from tape."
+  },
+  {
+    "round4_phase3_complete": true,
+    "phase": 3,
+    "comparison_to_phase1_2_without_joint_gate": {
+      "mid_forward_extract": "Phase 1 burst-only lift on extract fwd20 was **modest** (Welch t\u22481.7 pooled) and **unstable by day** (Phase 2 LODO). **Joint Sonic gate** on R4 **price bars** yields **much larger** tight vs not mean fwd and **p\u224810\u207b\u2075\u201310\u207b\u00b9\u00b9** all three days (`phase3_joint_gate_summary_r4.txt`) \u2014 **strongly supports** Sonic\u2019s \u201ccleaner signal when both legs tight\u201d for **mid** dynamics.",
+      "burst_under_gate": "`phase3_gate_x_burst_extract_fwd20.csv`: under **joint tight**, **non-burst** timestamps show **higher** mean fwd extract (0.431, n=769) than **burst** (0.338, n=1389). Off-gate burst rows are **rare** (n=6). The gate **re-orders** burst vs quiet relative to Phase-1 burst-only pooling.",
+      "counterparty_x_gate": "`phase3_mark_pair_symbol_gate_markout.csv` shows **interaction** (e.g. Mark14\u219238 hydro: worse fwd20 in **tight** than **loose**). **Sim falsification:** `trader_v2` (skip when Mark55\u2192Mark01 hits extract tape) **lowers** `worse` PnL **3184\u21922494** \u2014 tape-conditional skip is **not** a free execution edge here."
+    },
+    "top_5_tierA_or_ranked_findings": [
+      {
+        "rank": 1,
+        "name": "Joint gate: extract mid forward (K=20) tight vs loose",
+        "paths": ["manual_traders/R4/r4_phase1_marks/outputs/phase3_joint_gate_summary_r4.txt"],
+        "effect": "Days 1\u20133: mean fwd|tight \u2248 **0.19\u20130.60** vs not-tight **\u22120.40\u2013\u22120.05**; Welch t **4.2\u20136.8**, p **2e-5 to 1e-11**",
+        "tier": "A (tape / mid)"
+      },
+      {
+        "rank": 2,
+        "name": "inclineGod spread\u2013spread (R4 pooled bars)",
+        "paths": [
+          "manual_traders/R4/r4_phase1_marks/outputs/phase3_spread_spread_only_r4.csv",
+          "manual_traders/R4/r4_phase1_marks/outputs/phase3_r4_inclineGod_panels.png"
+        ],
+        "effect": "corr(s5200,s5300)\u2248**0.18\u20130.27** per day summary; voucher spreads vs extract spread near **0** in pooled corr matrix",
+        "tier": "B (descriptive)"
+      },
+      {
+        "rank": 3,
+        "name": "Joint tight \u00d7 burst on extract fwd20 (all trades)",
+        "paths": ["manual_traders/R4/r4_phase1_marks/outputs/phase3_gate_x_burst_extract_fwd20.csv"],
+        "effect": "Tight+not-burst mean **0.43** vs tight+burst **0.34** (n 769 vs 1389)",
+        "tier": "B (challenges burst-only narrative under gate)"
+      },
+      {
+        "rank": 4,
+        "name": "Mark pair \u00d7 gate markouts (selected pairs)",
+        "paths": ["manual_traders/R4/r4_phase1_marks/outputs/phase3_mark_pair_symbol_gate_markout.csv"],
+        "effect": "Structured differences by gate for same (buyer,seller,symbol) cells",
+        "tier": "B (tape; small n in places)"
+      },
+      {
+        "rank": 5,
+        "name": "Sim: Mark55\u2192Mark01 skip on extract aggression (`trader_v2`)",
+        "paths": [
+          "manual_traders/R4/r4_phase1_marks/trader_v2.py",
+          "manual_traders/R4/r4_phase1_marks/results.json"
+        ],
+        "effect": "`worse` **2494** vs v0 **3184**; `all` **3932** vs **6012**",
+        "tier": "C (falsified / do not ship as-is)"
+      }
+    ]
   }
 ]

@@ -1,0 +1,5 @@
+joint_tight,burst_ge4,n,mean_fwd_EXTRACT_20
+True,True,1389,0.33801295896328293
+True,False,769,0.43107932379713915
+False,True,6,2.0
+False,False,2115,-0.026713947990543736

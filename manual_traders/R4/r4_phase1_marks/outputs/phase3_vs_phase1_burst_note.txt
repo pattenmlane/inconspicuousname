@@ -1,0 +1,2 @@
+Compare to Phase 1 `burst_extract_welch_ge4_vs_lt4.txt` (no gate).
+Phase 3 adds stratification by `tight` in phase3_gate_x_burst_extract_fwd20.csv.

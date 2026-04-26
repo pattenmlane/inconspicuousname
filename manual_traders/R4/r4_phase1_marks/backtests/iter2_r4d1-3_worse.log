@@ -1,0 +1,46 @@
+R4 trader_v2 worse — skip extract quotes when market_trades show Mark55->Mark01 on extract (Phase3 test)
+
+Backtesting /workspace/manual_traders/R4/r4_phase1_marks/trader_v2.py for round: 4 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 420
+Total profit: 420
+Backtesting /workspace/manual_traders/R4/r4_phase1_marks/trader_v2.py for round: 4 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 1,553
+Total profit: 1,553
+Backtesting /workspace/manual_traders/R4/r4_phase1_marks/trader_v2.py for round: 4 day: 3
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 521
+Total profit: 521
+Profit summary:
+Round 4 day 1: 420
+Round 4 day 2: 1,553
+Round 4 day 3: 521
+Total profit: 2,494

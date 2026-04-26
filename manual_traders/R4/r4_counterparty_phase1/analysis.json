@@ -319,5 +319,29 @@
       "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v9_r4_all.log"
     ],
     "used_to_decide": "**Ship v7** for this line until more days; basket-only filter is tape-rational but sim-destructive here — mid stratification without execution mapping can mis-rank variants."
+  },
+  {
+    "iteration": 10,
+    "round": 4,
+    "analysis_description": "Multi-horizon counterparty split (joint tight + M01→M22 burst): analyze_r4_burst_m01_m22_5300_leg_fwd_multik.py → r4_burst_m01_m22_5300_leg_fwd_multik.json. Pooled means: **on_5300_leg** K5/K10/K20 means **-0.145 / -0.141 / -0.122** (frac_pos 0.25–0.40), K50 crosses slightly +0.031. **basket_only** K5→K50: **+0.54 → +0.79** with frac_pos ~0.61–0.69. **any** burst track matches prior K20 +0.332. Per-day JSON confirms split all three days — basket-only edge strengthens with horizon; on-wing short-horizon underperformance is stable.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/analyze_r4_burst_m01_m22_5300_leg_fwd_multik.py",
+      "manual_traders/R4/r4_counterparty_phase1/r4_burst_m01_m22_5300_leg_fwd_multik.json",
+      "manual_traders/R4/r4_counterparty_phase1/trader_v10.py",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v10_r4_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v10_r4_all.log"
+    ],
+    "used_to_decide": "Horizon evidence reinforces iteration-8 story (on-5300 leg is wrong-way short K); paired with **trader_v10** sizing ablation: worse **+174** vs v7 **+255** — shrinking LOT/MAX hurts roughly proportionally."
+  },
+  {
+    "iteration": 11,
+    "round": 4,
+    "analysis_description": "**trader_v11** scale test: same v7 logic with LOT=5, MAX_POS=60 (vs v7 3/36). Round4 worse **+420**, all **+426** vs v7 +255/+262 — PnL scales ~with effective inventory cap (~1.67× size params, ~1.65× profit), day1-heavy pattern unchanged. Risk: larger notional if edge is overfit to three days.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/trader_v11.py",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v11_r4_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v11_r4_all.log"
+    ],
+    "used_to_decide": "Default **v11** for max PnL on this tape under current execution rules if risk cap allows 60×5300; else **v7** as conservative baseline. Counterparty-conditioned basket-only still not preferred in sim (v9) despite stronger multik mids."
   }
 ]

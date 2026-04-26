@@ -398,5 +398,85 @@
         "note": "Day3 +7 vs worse 0 (matcher difference only)."
       }
     }
+  },
+  {
+    "iteration": 10,
+    "round": 4,
+    "trader_file": "trader_v10.py",
+    "strategy_description": "v7 with LOT=2 and MAX_POS=24 (smaller inventory vs v7 LOT=3, MAX_POS=36); same gate+burst, join-buy, ask-1 exit, MIN_HOLD.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 174,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v10.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v10_r4_worse.log",
+      "backtest_output": {
+        "day1": 158,
+        "day2": 16,
+        "day3": 0,
+        "total": 174
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "Sublinear vs v7 (+255): smaller clips reduce capture on same edge."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 182,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v10.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v10_r4_all.log",
+      "backtest_output": {
+        "day1": 158,
+        "day2": 16,
+        "day3": 8,
+        "total": 182
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "Day3 +8 vs worse 0 under all matcher."
+      }
+    }
+  },
+  {
+    "iteration": 11,
+    "round": 4,
+    "trader_file": "trader_v11.py",
+    "strategy_description": "v7 with LOT=5 and MAX_POS=60 (scale test vs v7 LOT=3, MAX_POS=36); same logic, within 300/strike limit.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 420,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v11.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v11_r4_worse.log",
+      "backtest_output": {
+        "day1": 380,
+        "day2": 40,
+        "day3": 0,
+        "total": 420
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "PnL scales ~superlinearly vs v7 (+255); day profile same shape (heavy day1)."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 426,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v11.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v11_r4_all.log",
+      "backtest_output": {
+        "day1": 380,
+        "day2": 40,
+        "day3": 6,
+        "total": 426
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "Slightly above worse (+6 day3)."
+      }
+    }
   }
 ]

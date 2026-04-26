@@ -1,0 +1,42 @@
+{
+  "('Mark 38', 'Mark 14', 'HYDROGEL_PACK')": {
+    "n": 507,
+    "mean": -0.3530571992110454
+  },
+  "('Mark 55', 'Mark 14', 'VELVETFRUIT_EXTRACT')": {
+    "n": 331,
+    "mean": 0.5755287009063444
+  },
+  "('Mark 55', 'Mark 01', 'VELVETFRUIT_EXTRACT')": {
+    "n": 244,
+    "mean": 0.006147540983606557
+  },
+  "('Mark 38', 'Mark 14', 'VEV_4000')": {
+    "n": 205,
+    "mean": 0.2146341463414634
+  },
+  "('Mark 67', 'Mark 49', 'VELVETFRUIT_EXTRACT')": {
+    "n": 89,
+    "mean": 1.6348314606741574
+  },
+  "('Mark 67', 'Mark 22', 'VELVETFRUIT_EXTRACT')": {
+    "n": 75,
+    "mean": 2.026666666666667
+  },
+  "('Mark 55', 'Mark 22', 'VELVETFRUIT_EXTRACT')": {
+    "n": 14,
+    "mean": 2.0357142857142856
+  },
+  "('Mark 55', 'Mark 49', 'VELVETFRUIT_EXTRACT')": {
+    "n": 9,
+    "mean": 2.6666666666666665
+  },
+  "('Mark 38', 'Mark 22', 'HYDROGEL_PACK')": {
+    "n": 8,
+    "mean": 1.3125
+  },
+  "('Mark 22', 'Mark 49', 'VELVETFRUIT_EXTRACT')": {
+    "n": 6,
+    "mean": 3.5
+  }
+}

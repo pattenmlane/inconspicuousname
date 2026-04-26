@@ -1,0 +1,106 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round 4 Phase 1 complete (counterparty IDs, ROUND_4 days 1-3). Read round4work/suggested direction.txt Phase 1, round4description.txt, outputs/r4_initial_analysis_summary.txt. Ran run_r4_phase1_counterparty.py (forward mids, aggressor inference, bursts, graph, baseline residuals).",
+      "analysis_outputs": [
+      "round4work/suggested direction.txt",
+      "round4work/round4description.txt",
+      "round4work/outputs/r4_initial_analysis_summary.txt",
+      "run_r4_phase1_counterparty.py",
+      "analysis_outputs/r4_participant_screen_k20.json",
+      "analysis_outputs/r4_baseline_buyer_agg_fwd20.json",
+      "analysis_outputs/r4_residuals_buyer_agg_fwd20.json",
+      "analysis_outputs/r4_graph_top_pairs.txt",
+      "analysis_outputs/r4_burst_summary.json",
+      "analysis_outputs/r4_burst_vs_control_extract_fwd20.json",
+      "analysis_outputs/r4_burst_vs_control_by_day.json",
+      "analysis_outputs/r4_focal_pair_vev5300.json",
+      "analysis_outputs/r4_phase1_run_meta.json"
+    ],
+    "used_to_decide": "Phase 1 gate satisfied; see round4_phase1_complete for per-bullet paths, top hypotheses, and nulls. Proceed to Phase 2 burst-conditioned rules + execution tests when instructed.",
+    "round4_phase1_complete": {
+      "phase": 1,
+      "data": "Prosperity4Data/ROUND_4 trades+prices days 1-3; 4281 trade rows.",
+      "methodology": "Forward mid: K-th strictly later price snapshot for same (day,symbol) after trade ts; concurrent book via last snapshot with ts<=trade ts. Aggressor: trade price>=ask => buyer_agg; price<=bid => seller_agg; else ambig. Horizons K in {5,20,100}. Hour bucket = (ts//10000)%24. Spread bin on traded symbol: 0<=2, 1:3-5, 2>=6. Burst = >=3 trades same (day,timestamp).",
+      "bullets": [
+        {
+          "bullet": "1) Participant-level alpha / predictiveness",
+          "outputs": [
+            "analysis_outputs/r4_participant_screen_k20.json",
+            "analysis_outputs/r4_phase1_run_meta.json"
+          ],
+          "conclusion": "Pooled K=20 screen: Mark 67 buyer_agg on VELVETFRUIT_EXTRACT mean fwd mid ~+1.81 (n=164, t~5.86); day-split +2.03 / +1.45 / +2.02 on days 1/2/3. Mark 49 buyer_agg extract n=105 mean ~+1.83. Full stratified-by-hour/spread/burst tables are partially embedded in the script; primary table is the screen JSON."
+        },
+        {
+          "bullet": "2) Deviation from bot baseline (buyer_agg, fwd20, cell mean by buyer,seller,symbol)",
+          "outputs": [
+            "analysis_outputs/r4_baseline_buyer_agg_fwd20.json",
+            "analysis_outputs/r4_residuals_buyer_agg_fwd20.json"
+          ],
+          "conclusion": "Residuals vs cell means: mean ~0, stdev ~6 (n=1465 buyer_agg) — no giant systematic residual in the mean; pair structure in baseline JSON."
+        },
+        {
+          "bullet": "3) Sequence / graph buyer->seller",
+          "outputs": ["analysis_outputs/r4_graph_top_pairs.txt"],
+          "conclusion": "Mark 01 -> Mark 22 dominates directed counts (matches initial summary); motif timing vs extract spikes not auto-scored in this pass."
+        },
+        {
+          "bullet": "4) Burst structure + extract event study",
+          "outputs": [
+            "analysis_outputs/r4_burst_summary.json",
+            "analysis_outputs/r4_burst_vs_control_extract_fwd20.json"
+          ],
+          "conclusion": "318 burst timestamps; pooled extract fwd20 mean ~+0.30 after burst vs ~-0.27 on 200 random non-burst trade-time controls. By day (r4_burst_vs_control_by_day.json): day1 burst mean -0.13 vs ctrl -0.46; day2 +0.33 vs +0.44; day3 +0.62 vs -0.71 — mixed stability."
+        },
+        {
+          "bullet": "5) Adverse selection vs inventory",
+          "outputs": [],
+          "conclusion": "Deferred without full L2 book reconstruction; seller_agg rows in screen JSON hint at weaker follow-through for some names — candidate no-quote list for later."
+        }
+      ],
+      "top_5_tradeable_edges_hypothesis": [
+        {
+          "rank": 1,
+          "edge": "Multi-trade bursts vs random trade-time control on extract fwd20 — pooled mid lift ~0.57, but day-split is mixed (day1 slight negative burst mean vs better control; days 2-3 favor bursts). Treat as hypothesis for Phase 2 with day conditioning.",
+          "effect": "pooled 0.30 vs -0.27; by day see r4_burst_vs_control_by_day.json",
+          "n": "318 burst vs 200 control timestamps",
+          "days": "1,2,3 split + pooled"
+        },
+        {
+          "rank": 2,
+          "edge": "Mark 67 buyer-aggressive extract prints associate with positive short-horizon extract mid; sign holds on each day.",
+          "effect": "pooled mean fwd20 ~+1.8; per-day ~+2.0/+1.5/+2.0",
+          "n": "164 pooled",
+          "days": "1,2,3"
+        },
+        {
+          "rank": 3,
+          "edge": "Mark 49 buyer_agg extract — positive pooled mean fwd20 (~+1.83, n=105).",
+          "effect": "~+1.83",
+          "n": 105,
+          "days": "1-3 pooled"
+        },
+        {
+          "rank": 4,
+          "edge": "Mark 01->Mark 22 graph dominance — structural conditioning for Phase 2 basket/burst rules.",
+          "effect": "descriptive",
+          "n": "see r4_graph_top_pairs.txt",
+          "days": "1-3"
+        },
+        {
+          "rank": 5,
+          "edge": "Negative: VEV_5300 Mark01->Mark22 fwd20 mean ~-0.08 (n=395) — not a naive long tail.",
+          "effect": "~-0.08 mean",
+          "n": 395,
+          "days": "1-3 pooled"
+        }
+      ],
+      "negative_or_null_findings": [
+        "Mean-centered residuals vs (buyer,seller,symbol) buyer_agg baseline ~0 — no single giant mean mis-fit.",
+        "Mark 22 buyer_agg extract has tiny n per day — too sparse to claim stable participant alpha without merging days or loosening aggressor filter.",
+        "No bid/ask or worse-fill PnL proof in Phase 1."
+      ],
+      "phase2_gate": "Phase 1 quantitative bullets documented with output paths; Phase 2 may proceed."
+    }
+  }
+]

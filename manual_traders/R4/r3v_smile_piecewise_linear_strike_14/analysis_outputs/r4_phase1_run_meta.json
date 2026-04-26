@@ -1,0 +1,26 @@
+{
+  "days": [
+    1,
+    2,
+    3
+  ],
+  "horizons_K": [
+    5,
+    20,
+    100
+  ],
+  "definition": "K = K-th later price row for same (day, symbol), timestamps strictly after trade ts",
+  "trades_total": 4281,
+  "skipped_no_snap": 0,
+  "outputs": [
+    "r4_baseline_buyer_agg_fwd20.json",
+    "r4_burst_summary.json",
+    "r4_burst_vs_control_by_day.json",
+    "r4_burst_vs_control_extract_fwd20.json",
+    "r4_focal_pair_vev5300.json",
+    "r4_graph_top_pairs.txt",
+    "r4_participant_screen_k20.json",
+    "r4_phase1_run_meta.json",
+    "r4_residuals_buyer_agg_fwd20.json"
+  ]
+}

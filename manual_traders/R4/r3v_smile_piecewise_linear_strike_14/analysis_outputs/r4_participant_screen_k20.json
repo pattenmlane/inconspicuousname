@@ -1,0 +1,322 @@
+[
+  {
+    "n": 164,
+    "mean": 1.8140243902439024,
+    "median": 1.5,
+    "frac_pos": 0.6463414634146342,
+    "t_approx": 5.86010068131766,
+    "party": "Mark 67",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "role": "buyer_agg"
+  },
+  {
+    "n": 96,
+    "mean": 2.1145833333333335,
+    "median": 1.5,
+    "frac_pos": 0.65625,
+    "t_approx": 4.996861079504694,
+    "party": "Mark 22",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "role": "buyer_agg"
+  },
+  {
+    "n": 105,
+    "mean": 1.8285714285714285,
+    "median": 2.0,
+    "frac_pos": 0.6857142857142857,
+    "t_approx": 4.991637495489857,
+    "party": "Mark 49",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "role": "buyer_agg"
+  },
+  {
+    "n": 331,
+    "mean": 0.5755287009063444,
+    "median": 0.5,
+    "frac_pos": 0.5196374622356495,
+    "t_approx": 2.713686226945129,
+    "party": "Mark 14",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "role": "buyer_agg"
+  },
+  {
+    "n": 598,
+    "mean": 0.4088628762541806,
+    "median": 0.5,
+    "frac_pos": 0.5100334448160535,
+    "t_approx": 2.4788758254472882,
+    "party": "Mark 55",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "role": "buyer_agg"
+  },
+  {
+    "n": 17,
+    "mean": -2.5,
+    "median": -2.0,
+    "frac_pos": 0.4117647058823529,
+    "t_approx": -2.0399918400489594,
+    "party": "Mark 49",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "role": "seller_agg"
+  },
+  {
+    "n": 299,
+    "mean": 0.02508361204013378,
+    "median": 0.0,
+    "frac_pos": 0.14381270903010032,
+    "t_approx": 1.0478169779074455,
+    "party": "Mark 01",
+    "symbol": "VEV_5500",
+    "role": "seller_agg"
+  },
+  {
+    "n": 316,
+    "mean": -0.23734177215189872,
+    "median": 0.0,
+    "frac_pos": 0.4177215189873418,
+    "t_approx": -1.040850794089224,
+    "party": "Mark 14",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "role": "seller_agg"
+  },
+  {
+    "n": 30,
+    "mean": -0.8833333333333333,
+    "median": 0.25,
+    "frac_pos": 0.5,
+    "t_approx": -1.0365257952755635,
+    "party": "Mark 22",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "role": "seller_agg"
+  },
+  {
+    "n": 161,
+    "mean": -0.13354037267080746,
+    "median": 0.0,
+    "frac_pos": 0.38509316770186336,
+    "t_approx": -1.031346333571129,
+    "party": "Mark 22",
+    "symbol": "VEV_5300",
+    "role": "seller_agg"
+  },
+  {
+    "n": 507,
+    "mean": -0.3530571992110454,
+    "median": 0.0,
+    "frac_pos": 0.4930966469428008,
+    "t_approx": -0.9265111759629896,
+    "party": "Mark 14",
+    "symbol": "HYDROGEL_PACK",
+    "role": "buyer_agg"
+  },
+  {
+    "n": 207,
+    "mean": 0.2608695652173913,
+    "median": 0.0,
+    "frac_pos": 0.48792270531400966,
+    "t_approx": 0.9095315900201543,
+    "party": "Mark 38",
+    "symbol": "VEV_4000",
+    "role": "buyer_agg"
+  },
+  {
+    "n": 515,
+    "mean": -0.3271844660194175,
+    "median": 0.0,
+    "frac_pos": 0.49514563106796117,
+    "t_approx": -0.8696490053528438,
+    "party": "Mark 38",
+    "symbol": "HYDROGEL_PACK",
+    "role": "buyer_agg"
+  },
+  {
+    "n": 132,
+    "mean": -0.12121212121212122,
+    "median": 0.0,
+    "frac_pos": 0.3939393939393939,
+    "t_approx": -0.8405868912188258,
+    "party": "Mark 01",
+    "symbol": "VEV_5300",
+    "role": "seller_agg"
+  },
+  {
+    "n": 263,
+    "mean": 0.039923954372623575,
+    "median": 0.0,
+    "frac_pos": 0.30798479087452474,
+    "t_approx": 0.8355168197776018,
+    "party": "Mark 01",
+    "symbol": "VEV_5400",
+    "role": "seller_agg"
+  },
+  {
+    "n": 28,
+    "mean": -0.25,
+    "median": -0.5,
+    "frac_pos": 0.32142857142857145,
+    "t_approx": -0.8260208649387009,
+    "party": "Mark 14",
+    "symbol": "VEV_5300",
+    "role": "seller_agg"
+  },
+  {
+    "n": 205,
+    "mean": 0.2146341463414634,
+    "median": 0.0,
+    "frac_pos": 0.4878048780487805,
+    "t_approx": 0.752523547921182,
+    "party": "Mark 14",
+    "symbol": "VEV_4000",
+    "role": "buyer_agg"
+  },
+  {
+    "n": 600,
+    "mean": -0.10583333333333333,
+    "median": 0.0,
+    "frac_pos": 0.43833333333333335,
+    "t_approx": -0.6181496555114884,
+    "party": "Mark 55",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "role": "seller_agg"
+  },
+  {
+    "n": 306,
+    "mean": 0.014705882352941176,
+    "median": 0.0,
+    "frac_pos": 0.14052287581699346,
+    "t_approx": 0.6103330614689869,
+    "party": "Mark 22",
+    "symbol": "VEV_5500",
+    "role": "seller_agg"
+  },
+  {
+    "n": 232,
+    "mean": -0.1788793103448276,
+    "median": 0.0,
+    "frac_pos": 0.44396551724137934,
+    "t_approx": -0.6090217622057494,
+    "party": "Mark 14",
+    "symbol": "VEV_4000",
+    "role": "seller_agg"
+  },
+  {
+    "n": 45,
+    "mean": 0.3,
+    "median": 0.0,
+    "frac_pos": 0.4888888888888889,
+    "t_approx": 0.6013988159474677,
+    "party": "Mark 22",
+    "symbol": "VEV_5200",
+    "role": "seller_agg"
+  },
+  {
+    "n": 496,
+    "mean": 0.23387096774193547,
+    "median": 0.75,
+    "frac_pos": 0.5040322580645161,
+    "t_approx": 0.5993981179800753,
+    "party": "Mark 14",
+    "symbol": "HYDROGEL_PACK",
+    "role": "seller_agg"
+  },
+  {
+    "n": 233,
+    "mean": -0.17381974248927037,
+    "median": 0.0,
+    "frac_pos": 0.44635193133047213,
+    "t_approx": -0.594263133536499,
+    "party": "Mark 38",
+    "symbol": "VEV_4000",
+    "role": "seller_agg"
+  },
+  {
+    "n": 275,
+    "mean": 0.02,
+    "median": 0.0,
+    "frac_pos": 0.3054545454545455,
+    "t_approx": 0.41965834169991967,
+    "party": "Mark 22",
+    "symbol": "VEV_5400",
+    "role": "seller_agg"
+  },
+  {
+    "n": 507,
+    "mean": 0.10157790927021697,
+    "median": 0.0,
+    "frac_pos": 0.4990138067061144,
+    "t_approx": 0.2624804099548992,
+    "party": "Mark 38",
+    "symbol": "HYDROGEL_PACK",
+    "role": "seller_agg"
+  },
+  {
+    "n": 33,
+    "mean": 0.015151515151515152,
+    "median": -0.5,
+    "frac_pos": 0.42424242424242425,
+    "t_approx": 0.02588739206762294,
+    "party": "Mark 14",
+    "symbol": "VEV_5200",
+    "role": "seller_agg"
+  },
+  {
+    "n": 244,
+    "mean": 0.006147540983606557,
+    "median": 0.0,
+    "frac_pos": 0.47540983606557374,
+    "t_approx": 0.02254841886603109,
+    "party": "Mark 01",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "role": "buyer_agg"
+  },
+  {
+    "n": 260,
+    "mean": 0.0057692307692307696,
+    "median": -0.5,
+    "frac_pos": 0.45384615384615384,
+    "t_approx": 0.021367183292013647,
+    "party": "Mark 01",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "role": "seller_agg"
+  },
+  {
+    "n": 317,
+    "mean": 0.0,
+    "median": 0.0,
+    "frac_pos": 0.0,
+    "t_approx": 0.0,
+    "party": "Mark 01",
+    "symbol": "VEV_6000",
+    "role": "seller_agg"
+  },
+  {
+    "n": 317,
+    "mean": 0.0,
+    "median": 0.0,
+    "frac_pos": 0.0,
+    "t_approx": 0.0,
+    "party": "Mark 22",
+    "symbol": "VEV_6000",
+    "role": "seller_agg"
+  },
+  {
+    "n": 317,
+    "mean": 0.0,
+    "median": 0.0,
+    "frac_pos": 0.0,
+    "t_approx": 0.0,
+    "party": "Mark 01",
+    "symbol": "VEV_6500",
+    "role": "seller_agg"
+  },
+  {
+    "n": 317,
+    "mean": 0.0,
+    "median": 0.0,
+    "frac_pos": 0.0,
+    "t_approx": 0.0,
+    "party": "Mark 22",
+    "symbol": "VEV_6500",
+    "role": "seller_agg"
+  }
+]

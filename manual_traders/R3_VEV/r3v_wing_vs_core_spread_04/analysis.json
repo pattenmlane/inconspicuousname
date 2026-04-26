@@ -337,5 +337,26 @@
       "round3work/vouchers_final_strategy/STRATEGY.txt"
     ],
     "used_to_decide": "Deprioritize pure extract taker. Implement gate-gated *quoting* (VEV) or combine gate with v39\u2010style path only for sizing when user allows hybrid \u2014 for now next iteration is maker/quote under tight gate + extract, no smile IV."
+  },
+  {
+    "iteration": 44,
+    "analysis_description": "Reread STRATEGY.txt and ORIGINAL_DISCORD_QUOTES: layer-1 = risk filter; inclineGod = per-contract spreads. v44: when joint tight (s5200,s5300 \u22642), post join-BBO two-sided on VEV_5200/5300/5400 and two-sided extract if s(U)\u22648; when wide, taker flatten MAX_FLAT. No IV/smile, no HYDRO. backtest d0-2: worse PnL -16, 2 submission rows (extract taker in flatten path); all PnL -486 with 1101 submission rows \u2014 passive asks on vouchers create short inventory that loses vs tape in all-match world.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "fill_summary_v44_worse_d0-2.json",
+      "fill_summary_v44_all_d0-2.json"
+    ],
+    "used_to_decide": "v45: bid-only in tight to avoid warehousing shorts on gate legs; same flatten when wide."
+  },
+  {
+    "iteration": 45,
+    "analysis_description": "v45: same as v44 but bid-only (CLIP 5) on 5200/5300/5400 and U (U_CLIP 4) when tight; s(U)\u22646. Worse: **0** PnL, **0** submission-tagged trade rows (passive at touch does not get submission prints under our parser / or no fills) \u2014 still stable vs v41\u2013v44 taker disasters. all: -289, 887 submission rows, long inventory only but still negative (mark-to-tape on filled bids; not a 200k/day candidate yet). analyze_gate_frequency_v45.py: P(joint s5200,s5300 \u22642) \u2248 0.102 on day-0 price CSV (n=10000), matching ~0.10 in r3_tight_spread_summary.",
+    "analysis_outputs": [
+      "fill_summary_v45_worse_d0-2.json",
+      "fill_summary_v45_all_d0-2.json",
+      "gate_p_joint_tight_day0_v45.json",
+      "analyze_gate_frequency_v45.py"
+    ],
+    "used_to_decide": "Primary ship metric remains worse: v45 is flat; all-mode stress still loses \u2014 need inventory caps, 1-tick improver, or one-sided *sell* to recycle after favorable mid move, still within vouchers_final (no smile)."
   }
 ]

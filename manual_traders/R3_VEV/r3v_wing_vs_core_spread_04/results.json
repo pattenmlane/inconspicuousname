@@ -439,5 +439,49 @@
       "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v43_all_d0-2.log",
       "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v43_all_d0-2.json"
     }
+  },
+  {
+    "iteration": 44,
+    "trader_file": "trader_v44.py",
+    "strategy_description": "vouchers_final only: joint 5200+5300 \u22642 \u2192 passive join BBO two-sided (CLIP=4) on 5200/5300/5400 + two-sided extract if spread \u22648; wide \u2192 taker flatten. No smile, no HYDRO.",
+    "total_profit": -16.0,
+    "backtest_round": 3,
+    "backtest_days": "3-0 3-1 3-2",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -16.0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v44.py 3-0 3-1 3-2 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v44_worse_d0-2.log",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v44_worse_d0-2.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v44_worse_d0-2.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -486.0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v44.py 3-0 3-1 3-2 --data Prosperity4Data --match-trades all --no-vis --out manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v44_all_d0-2.log",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v44_all_d0-2.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v44_all_d0-2.json"
+    }
+  },
+  {
+    "iteration": 45,
+    "trader_file": "trader_v45.py",
+    "strategy_description": "v45: v44 with **bid-only** on core VEVs+extract in tight (no passive asks; optional long-bias from STRATEGY). Wide flatten unchanged.",
+    "total_profit": 0.0,
+    "backtest_round": 3,
+    "backtest_days": "3-0 3-1 3-2",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 0.0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v45.py 3-0 3-1 3-2 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v45_worse_d0-2.log",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v45_worse_d0-2.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v45_worse_d0-2.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -289.0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v45.py 3-0 3-1 3-2 --data Prosperity4Data --match-trades all --no-vis --out manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v45_all_d0-2.log",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v45_all_d0-2.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v45_all_d0-2.json"
+    }
   }
 ]

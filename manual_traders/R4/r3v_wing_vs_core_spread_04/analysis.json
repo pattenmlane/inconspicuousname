@@ -45,9 +45,13 @@
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/graph_hubs.json",
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/graph_reciprocity_top50_forward_edges.csv",
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/twohop_chain_counts.csv",
-          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/twohop_chain_fwd_extract.csv"
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/twohop_chain_fwd_extract.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/cross_symbol_flow_fwd_mid_lag_corr.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/cross_symbol_flow_fwd_mid_lag_corr_pooled.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/cross_symbol_flow_fwd_mid_lag_corr_top12_by_day.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_phase1_lead_lag_flow.py"
         ],
-        "conclusion": "Dominant directed pair Mark 01\u2192Mark 22 (1339; **one-way** vs reverse 0 on tape); **Mark 14\u219238 \u2194 38\u219214** reciprocity \u22480.98. Two-hop chains are frequent (hydro ping-pong) but **forward extract** after chain is near noise at K=5 unless combined with burst/orchestrator filter (Phase 2)."
+        "conclusion": "Dominant directed pair Mark 01\u2192Mark 22 (1339; **one-way** vs reverse 0 on tape); **Mark 14\u219238 \u2194 38\u219214** reciprocity \u22480.98. Two-hop chains are frequent (hydro ping-pong) but **forward extract** after chain is near noise at K=5 unless combined with burst/orchestrator filter (Phase 2). **Tape-aligned lead/lag:** Pearson corr of signed aggressive **flow** (per symbol, per timestamp) vs **forward mid** on extract / hydro / VEV_5200 / VEV_5300 for K\u2208{5,20} and flow lag 0\u20135 steps (**cross_symbol_flow_fwd_mid_lag_corr*.csv**)\u2014pooled |mean_corr| stays **\u22640.06** except same-symbol extract contemporaneous (\u2248+0.04 at K=5); **no** strong cross-lead instrument emerges at this resolution (consistent with Phase 2 signed_flow_lag_corr.csv)."
       },
       "bullet_4_burst_structure": {
         "outputs": [
@@ -108,7 +112,8 @@
         "Mark 01\u219222 voucher basket prints alone do **not** show large signed extract markout in this pass (baseline absorbs); edge is in **residual** prints or other names (67, 49).",
         "Burst forward **extract** at K=20 vs control remains **day-heterogeneous**; **VEV_5200/5300** burst-vs-control K=20 means are **higher than random-timestamp controls on all three tape days** (see burst_forward_core_vev_summary.csv)\u2014still not a fade/mean-revert story without execution test.",
         "**Full-cell** baseline residuals (per pair\u00d7symbol\u00d7regime) sum to 0 by construction; second-order **regime** effects vs a **pair\u00d7symbol** pool are small (see second_order_*.csv).",
-        "List of all tape names: **all_participant_names_list.txt** (7 distinct **Mark** names on R4 days 1\u20133) \u2014 exhaustive \u201ceach U\u201d coverage; cells dropped when n<threshold in pooled tables."
+        "List of all tape names: **all_participant_names_list.txt** (7 distinct **Mark** names on R4 days 1\u20133) \u2014 exhaustive \u201ceach U\u201d coverage; cells dropped when n<threshold in pooled tables.",
+        "**Cross-symbol** signed-flow vs forward-mid lag table (Phase 1 r4_phase1_lead_lag_flow.py): no |pooled corr| \u2265 0.08 for off-diagonal lead/lag cells \u2014 not a substitute for **counterparty-conditioned** Mark67 edge."
       ],
       "reference_scripts": [
         "round4work/r4_counterparty_initial_sketch.py",
@@ -473,5 +478,16 @@
       "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/phase1_summary.json"
     ],
     "used_to_decide": "Phase 1 now documents **core VEV** burst event study explicitly (requested alongside extract); ties to Phase-2 **vev5300_after_01_22_basket_burst_drift** and sim **trader_v12** burst leg."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "**Phase 1 bullet 3 lead/lag:** new **r4_phase1_lead_lag_flow.py** \u2014 Pearson correlation of **signed aggressive flow** (sum +qty buy_aggr / \u2212qty sell_aggr per symbol per timestamp) vs **forward mid** m(t+K)\u2212m(t) on targets VELVETFRUIT_EXTRACT, HYDROGEL_PACK, VEV_5200, VEV_5300 for K\u2208{5,20} and flow lag {0,1,2,3,5} tape steps. Outputs: cross_symbol_flow_fwd_mid_lag_corr.csv (1440 rows), _pooled.csv (mean across days), _top12_by_day.csv. **round4_phase1_complete** bullet_3 + explicit_no_edge updated; phase1_bullet_file_index (via r4_phase1_supplement.py) lists the CSVs.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_phase1_lead_lag_flow.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_phase1_supplement.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/cross_symbol_flow_fwd_mid_lag_corr_pooled.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/cross_symbol_flow_fwd_mid_lag_corr_top12_by_day.csv"
+    ],
+    "used_to_decide": "Population tape-flow lead/lag is **weak** (|corr| \u2264 ~0.06 off-diagonal); **counterparty identity** (Mark67 etc.) remains the main exploitable dimension vs anonymous signed flow."
   }
 ]

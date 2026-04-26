@@ -2,7 +2,7 @@
   {
     "iteration": 0,
     "analysis_description": "Round 4 Phase 1 complete (counterparty IDs, ROUND_4 days 1-3). Read round4work/suggested direction.txt Phase 1, round4description.txt, outputs/r4_initial_analysis_summary.txt. Ran run_r4_phase1_counterparty.py (forward mids, aggressor inference, bursts, graph, baseline residuals).",
-      "analysis_outputs": [
+    "analysis_outputs": [
       "round4work/suggested direction.txt",
       "round4work/round4description.txt",
       "round4work/outputs/r4_initial_analysis_summary.txt",
@@ -29,7 +29,7 @@
             "analysis_outputs/r4_participant_screen_k20.json",
             "analysis_outputs/r4_phase1_run_meta.json"
           ],
-          "conclusion": "Pooled K=20 screen: Mark 67 buyer_agg on VELVETFRUIT_EXTRACT mean fwd mid ~+1.81 (n=164, t~5.86); day-split +2.03 / +1.45 / +2.02 on days 1/2/3. Mark 49 buyer_agg extract n=105 mean ~+1.83. Full stratified-by-hour/spread/burst tables are partially embedded in the script; primary table is the screen JSON."
+          "conclusion": "Pooled K=20 screen: Mark 67 buyer_agg on VELVETFRUIT_EXTRACT mean fwd mid ~+1.81 (n=164, t~5.86); day-split +2.03 / +1.45 / +2.02 on days 1/2/3. Mark 49 buyer_agg extract n=105 mean ~+1.83."
         },
         {
           "bullet": "2) Deviation from bot baseline (buyer_agg, fwd20, cell mean by buyer,seller,symbol)",
@@ -37,70 +37,141 @@
             "analysis_outputs/r4_baseline_buyer_agg_fwd20.json",
             "analysis_outputs/r4_residuals_buyer_agg_fwd20.json"
           ],
-          "conclusion": "Residuals vs cell means: mean ~0, stdev ~6 (n=1465 buyer_agg) — no giant systematic residual in the mean; pair structure in baseline JSON."
+          "conclusion": "Residuals vs cell means: mean ~0, stdev ~6 (n=1465 buyer_agg)."
         },
         {
           "bullet": "3) Sequence / graph buyer->seller",
           "outputs": ["analysis_outputs/r4_graph_top_pairs.txt"],
-          "conclusion": "Mark 01 -> Mark 22 dominates directed counts (matches initial summary); motif timing vs extract spikes not auto-scored in this pass."
+          "conclusion": "Mark 01 -> Mark 22 dominates directed counts."
         },
         {
           "bullet": "4) Burst structure + extract event study",
           "outputs": [
             "analysis_outputs/r4_burst_summary.json",
-            "analysis_outputs/r4_burst_vs_control_extract_fwd20.json"
+            "analysis_outputs/r4_burst_vs_control_extract_fwd20.json",
+            "analysis_outputs/r4_burst_vs_control_by_day.json"
           ],
-          "conclusion": "318 burst timestamps; pooled extract fwd20 mean ~+0.30 after burst vs ~-0.27 on 200 random non-burst trade-time controls. By day (r4_burst_vs_control_by_day.json): day1 burst mean -0.13 vs ctrl -0.46; day2 +0.33 vs +0.44; day3 +0.62 vs -0.71 — mixed stability."
+          "conclusion": "Pooled burst extract fwd20 modestly positive vs control; day-split mixed."
         },
         {
           "bullet": "5) Adverse selection vs inventory",
           "outputs": [],
-          "conclusion": "Deferred without full L2 book reconstruction; seller_agg rows in screen JSON hint at weaker follow-through for some names — candidate no-quote list for later."
+          "conclusion": "Deferred without full L2 book reconstruction."
         }
       ],
       "top_5_tradeable_edges_hypothesis": [
         {
           "rank": 1,
-          "edge": "Multi-trade bursts vs random trade-time control on extract fwd20 — pooled mid lift ~0.57, but day-split is mixed (day1 slight negative burst mean vs better control; days 2-3 favor bursts). Treat as hypothesis for Phase 2 with day conditioning.",
-          "effect": "pooled 0.30 vs -0.27; by day see r4_burst_vs_control_by_day.json",
-          "n": "318 burst vs 200 control timestamps",
-          "days": "1,2,3 split + pooled"
+          "edge": "Burst vs control extract fwd20 (pooled).",
+          "effect": "~+0.57 mid-units pooled",
+          "n": "318 vs 200",
+          "days": "1-3 pooled + split file"
         },
         {
           "rank": 2,
-          "edge": "Mark 67 buyer-aggressive extract prints associate with positive short-horizon extract mid; sign holds on each day.",
-          "effect": "pooled mean fwd20 ~+1.8; per-day ~+2.0/+1.5/+2.0",
-          "n": "164 pooled",
+          "edge": "Mark 67 buyer_agg extract fwd20.",
+          "effect": "~+1.8",
+          "n": "164",
           "days": "1,2,3"
         },
         {
           "rank": 3,
-          "edge": "Mark 49 buyer_agg extract — positive pooled mean fwd20 (~+1.83, n=105).",
+          "edge": "Mark 49 buyer_agg extract fwd20.",
           "effect": "~+1.83",
-          "n": 105,
+          "n": "105",
           "days": "1-3 pooled"
         },
         {
           "rank": 4,
-          "edge": "Mark 01->Mark 22 graph dominance — structural conditioning for Phase 2 basket/burst rules.",
+          "edge": "Mark 01->Mark 22 graph dominance.",
           "effect": "descriptive",
-          "n": "see r4_graph_top_pairs.txt",
+          "n": "graph",
           "days": "1-3"
         },
         {
           "rank": 5,
-          "edge": "Negative: VEV_5300 Mark01->Mark22 fwd20 mean ~-0.08 (n=395) — not a naive long tail.",
-          "effect": "~-0.08 mean",
-          "n": 395,
+          "edge": "Negative: VEV_5300 Mark01->Mark22 fwd20 ~-0.08.",
+          "effect": "~-0.08",
+          "n": "395",
           "days": "1-3 pooled"
         }
       ],
       "negative_or_null_findings": [
-        "Mean-centered residuals vs (buyer,seller,symbol) buyer_agg baseline ~0 — no single giant mean mis-fit.",
-        "Mark 22 buyer_agg extract has tiny n per day — too sparse to claim stable participant alpha without merging days or loosening aggressor filter.",
-        "No bid/ask or worse-fill PnL proof in Phase 1."
+        "Mean-centered residuals vs buyer_agg cell means ~0.",
+        "Mark 22 buyer_agg extract sparse per day.",
+        "No bid/ask PnL in Phase 1."
       ],
-      "phase2_gate": "Phase 1 quantitative bullets documented with output paths; Phase 2 may proceed."
+      "phase2_gate": "Phase 1 documented; Phase 2 may proceed."
+    }
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Round 4 Phase 2: run_r4_phase2_analysis.py — burst×Mark01→Mark22 VEV fwd5300, joint-gate×burst extract fwd20, extract microprice×spread×fwd10, signed aggressive-flow vs fwd20 corr; trader_v1 burst+joint-gate passive extract backtest (day inferred from open mid).",
+    "analysis_outputs": [
+      "run_r4_phase2_analysis.py",
+      "analysis_outputs/r4_p2_burst_m01_m22_vev_fwd5300_k20.json",
+      "analysis_outputs/r4_p2_joint_gate_m01m22burst_extract_fwd20.json",
+      "analysis_outputs/r4_p2_extract_microprice_spread_fwd10.json",
+      "analysis_outputs/r4_p2_extract_signed_flow_fwd20_corr.json",
+      "analysis_outputs/r4_p2_m01_m22_burst_pairs.json",
+      "analysis_outputs/r4_phase2_run_meta.json",
+      "trader_v1.py",
+      "_r3v_smile_core.py",
+      "backtest_logs/trader_v1_worse.log",
+      "backtest_logs/trader_v1_all.log"
+    ],
+    "used_to_decide": "Phase 2 gate: see round4_phase2_complete. v1 sim shows +1023 total (worse=all) — execution layer can be positive but needs more days/out-of-sample and inventory control.",
+    "round4_phase2_complete": {
+      "phase": 2,
+      "interaction_with_phase1": {
+        "burst_extract": "Phase 1 pooled burst vs control showed mild extract mid lift; Phase 2 conditions M01→M22 VEV bursts: VEV_5300 fwd20 mean ~+0.36 (n=317) — refines Phase-1 null on unconditional Mark01→22 5300 (-0.08) by isolating burst timestamps.",
+        "joint_gate": "Phase 2 joint tight (5200+5300<=2) at M01→M22 burst times: only n=7 tight vs n=310 wide for extract fwd20; tight mean higher (~+0.71 vs ~+0.27) but tiny n — Sonic gate 'cleans' only a rare slice here (partial support, not statistically tight).",
+        "microprice": "Orthogonal to counterparty: tight extract spread bin shows large mean fwd10 mid (+2.0 on n=186) vs negative in wide bins — confirms spread regime matters for mid dynamics (inclineGod-style).",
+        "residuals": "Signed aggressive net flow vs extract fwd20 corr ~0.12 (n=764) — weak linear link; does not replace pair/burst structure."
+      },
+      "top_5_tradeable_edges": [
+        {
+          "rank": 1,
+          "edge": "Extract microprice regime: when L1 spread<=2, mean fwd10 extract mid strongly positive vs wide-spread regimes (r4_p2_extract_microprice_spread_fwd10.json).",
+          "effect": "mean fwd10 ~+2.0 (bin <=2) vs ~-0.21 (bins 1-2)",
+          "n": "186 vs 14803+1360",
+          "days": "1-3 pooled tape"
+        },
+        {
+          "rank": 2,
+          "edge": "M01→M22 VEV burst timestamps predict positive VEV_5300 fwd20 mid (K=20) vs Phase-1 unconditional negative.",
+          "effect": "mean fwd5300 ~+0.36 (n=317)",
+          "n": 317,
+          "days": "1-3 pooled"
+        },
+        {
+          "rank": 3,
+          "edge": "Sim: trader_v1 passive long extract on (tape burst list + live joint tight) yields +1023 total PnL Round 4 days 1-3 under worse and all matching.",
+          "effect": "+1023 shells total",
+          "n": "4283 matched trade rows in log",
+          "days": "1-3 backtest"
+        },
+        {
+          "rank": 4,
+          "edge": "Signed aggressive extract flow vs fwd20 mid: small positive correlation (~0.12).",
+          "effect": "corr 0.117",
+          "n": 764,
+          "days": "1-3 pooled"
+        },
+        {
+          "rank": 5,
+          "edge": "Joint-gate×burst extract subsample (n=7 tight) — hypothesis only; do not size trades on this alone.",
+          "effect": "mean fwd20 ~+0.71 vs +0.27 wide",
+          "n": "7 vs 310",
+          "days": "1-3 pooled"
+        }
+      ],
+      "negative_or_null": [
+        "Joint-tight at burst times is rare (7/317); most burst edge is not 'Sonic-cleaned' in this tape slice.",
+        "Day-stability of burst extract lift remains mixed from Phase 1; Phase 2 did not fully re-split every new metric by day.",
+        "trader_v1 relies on tape-derived burst list + open-mid day inference — fragile vs regime drift; Phase 3 should re-evaluate with explicit gate replication from R3 script."
+      ],
+      "phase3_gate": "Phase 2 complete; Phase 3 may run Sonic joint gate replication on R4 with counterparty interaction."
     }
   }
 ]

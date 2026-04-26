@@ -1,0 +1,5 @@
+{
+  "n_ticks_with_extract_trade": 764,
+  "corr_net_aggr_flow_vs_fwd20_mid": 0.11706908398648966,
+  "note": "net = +|notional| if trade price>=ask else -|notional| if price<=bid"
+}

@@ -1,0 +1,9 @@
+{
+  "outputs": [
+    "r4_p2_burst_m01_m22_vev_fwd5300_k20.json",
+    "r4_p2_extract_microprice_spread_fwd10.json",
+    "r4_p2_extract_signed_flow_fwd20_corr.json",
+    "r4_p2_joint_gate_m01m22burst_extract_fwd20.json",
+    "r4_p2_m01_m22_burst_pairs.json"
+  ]
+}

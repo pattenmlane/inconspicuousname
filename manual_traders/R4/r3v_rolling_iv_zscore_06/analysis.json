@@ -257,10 +257,10 @@
         "finding": "R4 has only **~165** V5300 trade rows across three days; **163/165** are already joint-tight (only **1** loose with valid mids). Tight: mean same-symbol fwd K5 **-0.19** (sell-aggr heavy); K100 **+0.26**. Confirms: **Sonic book state is the default** whenever 5300 prints — the gate stratifies almost nothing in aggregate tape stats; PnL edge instead comes from **Who + when** (Mark67+window sim), not from conditioning raw 5300 prints on gate here."
       },
       "tier_a_sim_update": {
-        "trader": "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v50.py",
-        "interaction": "(Mark67 prefilter + Sonic joint at lift + window exit) x **Q=5** clip",
-        "r4_days_1_3_total_profit": 3470,
-        "note": "Beats v46 (+3284) after merged-ts fix; MAX_SPREAD_V sweep unchanged; with Q=5, EOD_PAD 700-820 ties (+3470) — inventory not EOD-limited."
+        "trader": "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v70.py",
+        "interaction": "(Mark67 prefilter + Sonic joint at lift + window exit) x **Q=5** x **FLATTEN_MAX=11** sell clip",
+        "r4_days_1_3_total_profit": 3699,
+        "note": "v50 (+3470) improved by **tighter flatten chunk** vs 30; optimum ~**11** ticks/sell (v69=10 +3693, v70=11 +3699, v65=12 +3667). **W≠50k** with Q=5 is strongly negative (v59 40k **-1294**, v60 45k +1352, v61 55k +2523, v62 60k +2165) — keep **JSON window 50_000**."
       },
       "script": "manual_traders/R4/r3v_rolling_iv_zscore_06/r4_phase3_joint_gate.py"
     }
@@ -472,5 +472,15 @@
       "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v58.py"
     ],
     "used_to_decide": "Tier-A sim candidate: **Mark67 filtered + Sonic exec + lift Q=5** (`v50`/`v56`/`v57`/`v58` equivalent). Prefer **v50** (EOD=800 matches prior tuned band). Keep v46/v49 if you insist on Q=6 for notional."
+  },
+  {
+    "iteration": 23,
+    "analysis_description": "**Post-v50 sweep:** (1) **Post-trigger W** 40k/45k/55k/60k with Q=5 — **40k catastrophic** (day_2 **-3769**), 45k/55k/60k all **below** W=50k baseline; **keep 50k from JSON**. (2) **FLATTEN_MAX** (per sell to bid at window end + EOD): coarse 18→3586, 15→3616, 12→3667; fine **10–14** peaks at **11** (**v70 +3699**), 10 +3693, 12 +3667, 13 +3651, 14 +3615. Smaller clips **slow** unwind → **more favorable** bid fills on this tape. (3) **v63–v68** logged in `results.json` iter 47–52.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v59_2026-04-26_r4_worse_wflat.log",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v70_2026-04-26_r4_worse_f10-14.log",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v70.py"
+    ],
+    "used_to_decide": "Ship **`trader_v70.py`** as current best (+**229** vs v50, +**415** vs v46); do not shrink W without re-validation. Optional: **v69** (+3693) if 11 feels overfit to 3 days. Full flatten-cap grid in **`results.json`** iterations **43–56**."
   }
 ]

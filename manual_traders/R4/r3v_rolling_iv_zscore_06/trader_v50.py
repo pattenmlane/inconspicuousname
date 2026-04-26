@@ -1,6 +1,6 @@
 """
-`trader_v46` line with **Q=5** lift clip (vs 6). **Best R4 total +3,470** days 1-3
-(+186 vs v46 Q=6 +3284). EOD_PAD 700-820 identical with Q=5 (see v56-v58).
+`trader_v46` line with **Q=5** and **FLATTEN_MAX=30** (default). Total **+3,470** R4 days 1-3.
+**Better:** smaller per-tick flatten cap — see **`trader_v70`** (**FLATTEN_MAX=11**, **+3,699**).
 """
 
 from __future__ import annotations

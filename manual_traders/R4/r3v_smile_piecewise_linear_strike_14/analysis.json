@@ -330,5 +330,24 @@
       "hour_gate_stability": "Welch tight vs loose per hour on pooled days 1–3 panel — see JSON for full table.",
       "trader_v7_vs_v2": "Long cap 72 underperforms unconstrained v2 on this backtest."
     }
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Day×hour joint-gate Welch stability (per csv_day); Mark01→Mark22 on any VEV_* → extract fwd markouts × joint-tight; trader_v8 = joint gate only in pooled-significant hours.",
+    "analysis_outputs": [
+      "run_r4_day_hour_gate_stability.py",
+      "analysis_outputs/r4_day_hour_gate_welch_fwd20.json",
+      "run_r4_m01_m22_vev_extract_markout.py",
+      "analysis_outputs/r4_m01_m22_vev_extract_markout_gate.json",
+      "trader_v8.py",
+      "backtest_logs/trader_v8_worse.log",
+      "backtest_logs/trader_v8_all.log"
+    ],
+    "used_to_decide": "**Day×hour (r4_day_hour_gate_welch_fwd20.json):** With min n (tight≥10, loose≥25) per cell, **no hour** has **all three** csv days with Welch **tight>loose** and **p<0.1** — pooled-hour significance is **not** uniformly day-stable at this threshold. Hours where **all 3 days** have tight mean fwd20 **>** loose mean (ignoring p): **3, 5, 9, 11, 13, 21** (subset of pooled winners). **Mark01→Mark22 VEV prints:** n=**1339**; **1336/1339** at joint-tight; K=20 extract fwd mean **~+0.30** when tight vs **+2.0** on n=**3** loose-only prints (Phase 3 overlap story). **trader_v8** (trade only in hours {3,5,6,7,8,11,12,13,14,16,21,22} from pooled p<0.05 table + joint tight): worse **5,820** vs v2 **13,236** — hour filter **removes** too much profitable tight time; do not ship pooled-hour mask without per-day calibration.",
+    "round4_post_phase3_notes": {
+      "day_hour_stability": "rollup_by_hour: days_tight_gt_loose_and_p_lt_0.1 counts 0..3 per hour — none reach 3.",
+      "m01_m22_vev_extract": "r4_m01_m22_vev_extract_markout_gate.json — by-strike cells when n>=3.",
+      "trader_v8_vs_v2": "Pooled-significant hour whitelist underperforms v2; full-clock joint gate wins in sim."
+    }
   }
 ]

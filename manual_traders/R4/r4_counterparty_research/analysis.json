@@ -215,5 +215,120 @@
         "VEV_5300 IV by Mark pair null in this slice."
       ]
     }
+  },
+  {
+    "iteration": "round4_phase3_complete",
+    "analysis_description": "round4_phase3_complete",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_research/run_phase3_sonic_gate_r4.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_spread_correlations_by_day.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_spread_spread_panels.png",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_gate_fwd_u_by_k_pooled.json",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_gate_fwd_u_by_k_by_day.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_gate_fwd_u_k20_pooled.json",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_gate_fwd_u_k20_by_day.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_trades_with_gate.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_participant_mark20u_by_gate.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_mark01_22_all_syms_mark20u_by_gate.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_mark01_22_vev5300_mark20u_by_gate_pooled.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_mark01_22_vev5300_mark20u_by_gate_day.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_burst_gate_mark20u_pooled.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_compare_phase1_burst_vs_gate.json",
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/analyze_vev_5200_5300_tight_gate_r3.py"
+    ],
+    "used_to_decide": "Phase 3 re-runs Sonic joint gate (5200 and 5300 spread <= 2) on R4 aligned panel; inclineGod spread-spread panels; highest-value Phase 1/2 stats (tape forward U, burst, Mark01->Mark22) conditioned on gate; document interaction vs ungated Phase 1/2.",
+    "round4_phase3_complete": {
+      "comparison_to_phase1_phase2_without_gate": "Phase 1 pooled burst vs non-burst on U@20: mean burst ~0.345 vs non ~0.095 (r4_phase1_summary). Phase 2 showed burst U@20 unstable by day and that pure 01->22 bursts still need context. With the joint gate: aligned-panel mean forward U@20 is ~0.324 when tight vs ~-0.121 when loose (diff ~0.445 ticks, n=29940 valid rows; P(tight)~0.257). So the gate does not remove the burst effect (tight+burst mean U@20 ~0.338 vs Phase-1 burst ~0.345; r4_phase3_compare_phase1_burst_vs_gate.json) but it stacks a strong tape-level conditioning signal Sonic described: loose-book rows have negative mean forward U at K=20 and especially K=100 (day 3 loose K=100 mean ~-1.77). Interpretation: gate mainly filters execution-noise regime rather than 'cleaning' burst identity; burst and tight are overlapping bot states.",
+      "bullets": [
+        {
+          "topic": "Sonic joint gate on forward extract (aligned timestamps)",
+          "outputs": [
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_gate_fwd_u_by_k_pooled.json",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_gate_fwd_u_by_k_by_day.csv"
+          ],
+          "conclusion": "Pooled tight minus loose mean forward U: K=5 ~+0.105 ticks, K=20 ~+0.445, K=100 ~+1.95. By day at K=20: day1 tight +0.599 vs loose -0.048; day2 +0.464 vs -0.018; day3 +0.188 vs -0.395 (direction always favorable to tight; loose mean very negative on day 3)."
+        },
+        {
+          "topic": "inclineGod spread-spread and spread vs extract",
+          "outputs": [
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_spread_correlations_by_day.csv",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_spread_spread_panels.png"
+          ],
+          "conclusion": "Daily corr(5200 spread, 5300 spread) ~0.18-0.27. Corr of voucher spreads with extract spread is near zero; corr(s5200,m_u) and corr(s5300,m_u) are moderate positive (~0.32-0.47), consistent with co-movement of book width and level rather than a simple spread-spread extract chain in correlation alone."
+        },
+        {
+          "topic": "Counterparty x gate (Mark 01 -> Mark 22)",
+          "outputs": [
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_mark01_22_all_syms_mark20u_by_gate.csv",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_mark01_22_vev5300_mark20u_by_gate_pooled.csv",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_mark01_22_vev5300_mark20u_by_gate_day.csv"
+          ],
+          "conclusion": "Dominant pair almost always prints when the gate is tight (all symbols n_tight=1336 vs n_loose=3 at trade timestamps). Pooled Mark01->Mark22 on VEV_5300: mean U@20 ~+0.042 (n=132, all tight). By day on VEV_5300 U@20: volatile (day1 mean -1.67, day2 +1.02, day3 +0.40) so pair-specific edge is not day-stable at K=20 despite structural co-location with tight books."
+        },
+        {
+          "topic": "Burst x gate on trade-level U markout",
+          "outputs": [
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_burst_gate_mark20u_pooled.csv"
+          ],
+          "conclusion": "Inside tight gate, non-burst rows actually have higher mean U@20 (~0.431, n=769) than burst rows (~0.338, n=1389). Loose non-burst mean is slightly negative (~-0.027, n=2115). Gate stratifies levels more than burst does once tight."
+        },
+        {
+          "topic": "Phase 1 style participant alpha re-run under gate (aggressive buy/sell, min n=30)",
+          "outputs": [
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_participant_mark20u_by_gate.csv"
+          ],
+          "conclusion": "Mark 38 aggressive buys: loose mean U@20 -0.26 (n=531) vs tight +0.42 (n=200). Mark 38 aggressive sells: loose -0.51 vs tight +1.12 (n=190). Mark 67 remains strongly positive in loose (n=137) with no tight bucket at min_n. Mark 22 aggressive sells exist almost only when tight (n=1419, mean U@20 +0.271). Shows strong three-way interaction (Mark, aggressor, gate) but some cells need wider min_n in future sims."
+        }
+      ],
+      "ranked_edges": [
+        {
+          "rank": 1,
+          "edge": "Joint tight gate on aligned R4 panel: higher mean forward extract mid move at K in {5,20,100} vs loose",
+          "effect": "diff tight-loose (ticks): K5 ~+0.105, K20 ~+0.445, K100 ~+1.95 (pooled)",
+          "n": "29985 / 29940 / 29700 by K",
+          "days": "1-3",
+          "vs_phase12": "Stronger and more monotonic in K than any single counterparty slice in Phase 1; orthogonal to Phase-2 spread->next |dU| correlation which is a different horizon (1 row)."
+        },
+        {
+          "rank": 2,
+          "edge": "(Mark 38, aggressive buy, tight gate) vs loose on U@20",
+          "effect": "mean ~+0.42 tight vs ~-0.26 loose",
+          "n": "200 vs 531",
+          "days": "1-3 pooled",
+          "vs_phase12": "Phase 1 flagged Mark 38 buys negative at K=20 unconditionally; gate splits sign and magnitude."
+        },
+        {
+          "rank": 3,
+          "edge": "(Mark 38, aggressive sell, tight gate) vs loose on U@20",
+          "effect": "mean ~+1.12 tight vs ~-0.51 loose",
+          "n": "190 vs 555",
+          "days": "1-3 pooled",
+          "vs_phase12": "Large interaction; not visible without gate conditioning."
+        },
+        {
+          "rank": 4,
+          "edge": "Mark 01 -> Mark 22 co-located with tight gate (all symbols); pooled U@20 positive when tight",
+          "effect": "mean U@20 ~+0.295 when tight (n=1336); negligible loose sample",
+          "n": "1336 vs 3",
+          "days": "1-3",
+          "vs_phase12": "Confirms structural basket flow runs in tight voucher surface; loose prints are rare for this pair."
+        },
+        {
+          "rank": 5,
+          "edge": "VEV_5200 vs VEV_5300 spread correlation by day (inclineGod)",
+          "effect": "Pearson ~0.18-0.27",
+          "n": "10000 rows per day on aligned panel",
+          "days": "1,2,3",
+          "vs_phase12": "Descriptive regime context for MM quoting; not a standalone PnL rule."
+        }
+      ],
+      "no_edge_or_negative": [
+        "Mark 01 -> Mark 22 on VEV_5300 only: mean U@20 small positive pooled (~+0.042) and day-split unstable (r4_phase3_mark01_22_vev5300_mark20u_by_gate_day.csv).",
+        "Tight gate does not increase burst mean U@20 vs Phase-1 burst mean; non-burst under tight has higher mean than burst under tight.",
+        "Mark 67 tight bucket absent at min_n=30 for aggressive buys (thin tail)."
+      ],
+      "primary_r4_thesis_candidate": "Legitimate stacked signal: tape-level forward extract drift favors Sonic tight joint gate at multiple K; counterparty identity interacts (Mark 38 aggressor flips; Mark01->Mark22 structurally tight). Next step is simulator PnL (MM skew / fade rules) because markouts are not tradeable without execution model."
+    }
   }
 ]

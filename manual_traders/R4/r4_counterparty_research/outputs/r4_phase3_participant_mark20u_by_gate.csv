@@ -1,0 +1,11 @@
+aggressor,name,gate,n,mean_mark_20_u,median_mark_20_u
+buy,Mark 38,loose,531,-0.2608286252354049,-0.5
+buy,Mark 55,loose,436,0.4713302752293578,0.5
+buy,Mark 67,loose,137,1.7664233576642336,1.5
+buy,Mark 38,tight,200,0.42,0.5
+buy,Mark 55,tight,162,0.24074074074074073,0.5
+sell,Mark 38,loose,555,-0.5063063063063064,-1.0
+sell,Mark 55,loose,442,-0.21266968325791855,0.0
+sell,Mark 22,tight,1419,0.2713178294573643,0.0
+sell,Mark 38,tight,190,1.1210526315789473,1.0
+sell,Mark 55,tight,158,0.1930379746835443,0.0

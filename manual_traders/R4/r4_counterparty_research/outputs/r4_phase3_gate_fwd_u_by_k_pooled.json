@@ -1,0 +1,23 @@
+{
+  "5": {
+    "pooled_n": 29985,
+    "P_tight": 0.2573953643488411,
+    "mean_fwd_u_tight": 0.07560248769111169,
+    "mean_fwd_u_loose": -0.028944177482373018,
+    "diff_tight_minus_loose": 0.10454666517348471
+  },
+  "20": {
+    "pooled_n": 29940,
+    "P_tight": 0.25738142952571813,
+    "mean_fwd_u_tight": 0.32351414482221647,
+    "mean_fwd_u_loose": -0.12103085364756679,
+    "diff_tight_minus_loose": 0.44454499846978324
+  },
+  "100": {
+    "pooled_n": 29700,
+    "P_tight": 0.2577104377104377,
+    "mean_fwd_u_tight": 1.364515286124902,
+    "mean_fwd_u_loose": -0.5835752517463485,
+    "diff_tight_minus_loose": 1.9480905378712503
+  }
+}

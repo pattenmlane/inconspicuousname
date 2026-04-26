@@ -38,5 +38,32 @@
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase2_vev5300_iv_by_mark.json",
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase2_mark22_sell_vev_mark20_burst_vs_not.csv"
     ]
+  },
+  {
+    "iteration": 2,
+    "trader_file": "manual_traders/R4/r4_counterparty_research/trader_v1.py",
+    "strategy_description": "No-op placeholder for Round 4 Phase 3 milestone; offline Phase 3 tape analysis (Sonic gate + counterparty x gate) in outputs/r4_phase3_*.",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r4_counterparty_research/trader_v1.py\" 4 --data Prosperity4Data --no-progress --no-out --no-vis",
+    "total_profit": 0,
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 0,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v1_worse.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v1_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 0,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v1_all.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v1_all.json"
+    },
+    "phase3_analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_research/run_phase3_sonic_gate_r4.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_gate_fwd_u_by_k_pooled.json",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_gate_fwd_u_by_k_by_day.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_participant_mark20u_by_gate.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_spread_spread_panels.png"
+    ]
   }
 ]

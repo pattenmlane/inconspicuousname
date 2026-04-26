@@ -1,0 +1,5 @@
+day,n_prints_Mark14_seller_aggr_buy_EXTRACT,notes
+1,97,Phase-1 slice: seller Mark 14 on aggressive-buy prints (price>=ask1) on VELVETFRUIT_EXTRACT
+2,118,
+3,116,
+all,331,r4_p1_participant_fwd_mid_k20: seller Mark14 aggr_buy K=20 mean~0.048 t~0.24 (modest)

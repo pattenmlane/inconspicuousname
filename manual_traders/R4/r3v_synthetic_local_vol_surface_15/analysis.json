@@ -477,5 +477,27 @@
       "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v26_r4_mark55_v15_win500_all_stdout.txt"
     ],
     "used_to_decide": "Slower window also below v15; **v15** (ROLL_WIN 400, SAT 0.72, ROLL 0.20\u20130.40) stays global best on R4 days 1\u20133 in this line."
+  },
+  {
+    "iteration": 27,
+    "analysis_description": "Phase-1 participant row: **seller Mark 14** on **aggr_buy** EXTRACT, n=331, mean fwd_mid_k20 \u2248 **0.048** (weak t vs 0). Counts by day in `r4_p11_mark14_seller_aggr_buy_extract_by_day.csv`. First live sim **v27**: Sonic gate + buy follow (ba+1, clip 12).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_participant_fwd_mid_k20.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase3/r4_p11_mark14_seller_aggr_buy_extract_by_day.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v27_r4_mark14_passive_sell_extract_gate.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v27_r4_mark14_passive_sell_extract_gate_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v27_r4_mark14_passive_sell_extract_gate_all_stdout.txt"
+    ],
+    "used_to_decide": "**14,268** total (worse=all); **beats v4** Mark55 (13,162) but **below v15** (14,971). Day3 **\u2212936** vs v15 +299 \u2014 second **legitimate** gated counterparty lane, not the best headroom."
+  },
+  {
+    "iteration": 28,
+    "analysis_description": "**v28** = v27 trigger **without** Sonic gate (ablation).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v28_r4_mark14_passive_sell_extract_nogate.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v28_r4_mark14_passive_sell_extract_nogate_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v28_r4_mark14_passive_sell_extract_nogate_all_stdout.txt"
+    ],
+    "used_to_decide": "Total **3,888** \u2014 gate is **mandatory** for this Mark14 slice on R4 days 1\u20133; do not deploy ungated."
   }
 ]

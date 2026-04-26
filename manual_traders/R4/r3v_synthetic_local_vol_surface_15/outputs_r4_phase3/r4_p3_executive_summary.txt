@@ -65,3 +65,7 @@ Fine roll band round 2 (`r4_p9_mark55_roll_band_round2.csv`): **v15** remains gl
 
 Secondary sweep on **fixed v15 roll band** (`r4_p10_mark55_v15_secondary_sweep.csv`): SAT_GAIN 0.68–0.76 and ROLL_WIN 300/500.
   **None** beat **v15** (14,971); best runner-up **v23** SAT 0.74 → **14,850**. ROLL_WIN≠400 consistently **lower** total.
+
+Phase-1 **new** counterparty live probe — Mark **14** **seller** on **aggr_buy** EXTRACT (`r4_p11_...` counts; Phase-1 mean fwd20 small +):
+  • **v27** + Sonic gate: total **14,268** (worse=all) vs Mark55 **v4** **13,162** — second viable gated counterparty lane; still **below v15** **14,971**.
+  • **v28** no gate: **3,888** — Sonic gate is **essential** for this slice on the tape.

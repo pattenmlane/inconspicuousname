@@ -302,5 +302,80 @@
       "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v29_round3_all_fills_summary.json",
       "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v29.py\" 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v29_round3_all.json"
     }
+  },
+  {
+    "iteration": 30,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v30.py",
+    "strategy_description": "vouchers_final_strategy ONLY: trade iff VEV_5200 and VEV_5300 L1 spread both <=2; then join-bid long VELVETFRUIT_EXTRACT (120) + all VEVs (5200/5300 100, wings 8). No hydrogel, no IV-rank logic.",
+    "total_profit": 25675,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v30_round3_worse.json",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v30_round3_worse_fills_summary.json",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v30.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v30_round3_worse.json",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 25675,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v30_round3_worse.json",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v30_round3_worse_fills_summary.json",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v30.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v30_round3_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 25775,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v30_round3_all.json",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v30_round3_all_fills_summary.json",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v30.py\" 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v30_round3_all.json"
+    }
+  },
+  {
+    "iteration": 31,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v31.py",
+    "strategy_description": "Grid: larger request sizes (200 extract, 200 anchors, 24 wings) but PnL matches v30 — per-day limits 200/300 and join-bid clip bind before larger quotes matter.",
+    "total_profit": 25675,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v31_round3_worse.json",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v31_round3_worse_fills_summary.json",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v31.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v31_round3_worse.json",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 25675,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v31_round3_worse.json",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v31_round3_worse_fills_summary.json",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v31.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v31_round3_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 25775,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v31_round3_all.json",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v31_round3_all_fills_summary.json",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v31.py\" 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v31_round3_all.json"
+    }
+  },
+  {
+    "iteration": 32,
+    "trader_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v32.py",
+    "strategy_description": "Ablate wings: same gate, only VELVETFRUIT_EXTRACT + VEV_5200 + VEV_5300 (200 each when tight). Worse PnL than v30; wing participation in v30 was not the drag (likely opposite).",
+    "total_profit": 22973,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v32_round3_worse.json",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v32_round3_worse_fills_summary.json",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v32.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v32_round3_worse.json",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 22973,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v32_round3_worse.json",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v32_round3_worse_fills_summary.json",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v32.py\" 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v32_round3_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 23073,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v32_round3_all.json",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v32_round3_all_fills_summary.json",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/trader_v32.py\" 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v32_round3_all.json"
+    }
   }
 ]

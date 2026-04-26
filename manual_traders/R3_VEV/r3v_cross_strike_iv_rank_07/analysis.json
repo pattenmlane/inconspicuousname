@@ -156,5 +156,23 @@
       "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v29_round3_all_fills_summary.json"
     ],
     "used_to_decide": "Soft joint gate (v28) multiplies the existing v27 stack by 1.25 (tight) or 0.45 (wide) and adds a small extract long in tight—total_profit 14390 worse on R3 **days 0–3** (day 3 is new tape). Hard gate (v29) cuts activity too much; total 1160 worse. Next: re-tune WIDE mult vs extract overlay; consider gate-only for the two anchor strikes, not the whole decile; re-run v27 on 4 days for apples-to-apples baseline. Still under 200k/day target."
+  },
+  {
+    "iteration": 30,
+    "analysis_description": "Deprioritized legacy cross-strike IV-rank thesis per new scope. Re-read round3work/vouchers_final_strategy/STRATEGY.txt and ORIGINAL_DISCORD_QUOTES.txt (inclineGod: spreads per contract + spread correlation; Sonic: bot flow gated on 5200/5300 both <=2 ticks, t-stat decays when wide; optional forward-mid edge in tight surface from outputs/r3_tight_spread_summary.txt). Implemented standalone traders v30–v32: only when joint L1 spread gate is on, passive join-bid long extract and VEVs (no hydrogel). v31 was a size grid but hit 200/300 position limits so matched v30 PnL; v32 drops other strikes and underperforms v30. Logged worse+all for v30–v32.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_6panel.png",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v30_round3_worse.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v30_round3_all.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v31_round3_worse.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v32_round3_worse.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v30_round3_worse_fills_summary.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v31_round3_worse_fills_summary.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v32_round3_worse_fills_summary.json"
+    ],
+    "used_to_decide": "Best in this pass: v30/v31 total 25675 worse over Round 3 days 0–3 (6419/day unweighted average) — still far from 200k/day; simple join-bid longs on tight gate are not enough under worse fills. v32 anchors-only 22973. Next: add exit/flatten logic, maker on both sides in tight, or time-decay/theta-aware rotation; consider crossing when spread=1; possibly repeat gate check only when spreads co-tighten (Sonic 'informed' regime) rather than every tick. Legacy IV-residual line stopped."
   }
 ]

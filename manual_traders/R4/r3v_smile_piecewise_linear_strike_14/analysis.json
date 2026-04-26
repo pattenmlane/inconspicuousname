@@ -44,9 +44,10 @@
           "bullet": "3) Sequence / graph buyer->seller",
           "outputs": [
             "analysis_outputs/r4_graph_top_pairs.txt",
-            "analysis_outputs/r4_twohop_adjacent_extract_fwd20.json"
+            "analysis_outputs/r4_twohop_adjacent_extract_fwd20.json",
+            "analysis_outputs/r4_graph_reciprocity_top_edges.json"
           ],
-          "conclusion": "Mark 01 -> Mark 22 dominates directed counts. **Extension (adjacent-trade two-hop):** CSV row order motif A→B→C when trade[i].seller==trade[i+1].buyer; extract fwd20 at second leg ts — pooled motif mean **−0.24** (n=686) vs adjacent-pair control **+0.26** (n=3590): **not** a positive structural lead; top motifs are Mark14↔Mark38 hydro-style chains with near-zero or negative extract fwd."
+          "conclusion": "Mark 01 -> Mark 22 dominates directed counts. **Reciprocity:** Mark14↔Mark38 and Mark14↔Mark55 are **~0.95+** reciprocity (balanced duopoly-style); **Mark01→Mark22** has **0** reverse edges (one-way basket). **Adjacent two-hop (prior extension):** not a positive extract lead. See r4_twohop_adjacent_extract_fwd20.json."
         },
         {
           "bullet": "4) Burst structure + extract event study",
@@ -59,8 +60,8 @@
         },
         {
           "bullet": "5) Adverse selection vs inventory",
-          "outputs": [],
-          "conclusion": "Deferred without full L2 book reconstruction."
+          "outputs": ["analysis_outputs/r4_passive_side_markout_by_party_k20.json"],
+          "conclusion": "**Proxy:** passive side = non-aggressor on traded BBO; K=20 fwd on **traded** mid. **Worst** (n≥20): Mark14 passive on **VEV_5300** mean **−0.25** (n=28); Mark01 passive on **VEV_5300** **−0.12** (n=132). **Best** passive: Mark22/Mark49 on **extract** mean **~+1.2 to +1.7**. Population: avoid quoting as passive into names that are systematically lifted against on 5300 (qualitative)."
         }
       ],
       "top_5_tradeable_edges_hypothesis": [
@@ -104,7 +105,8 @@
         "Mean-centered residuals vs buyer_agg cell means ~0.",
         "Mark 22 buyer_agg extract sparse per day.",
         "No bid/ask PnL in Phase 1.",
-        "Adjacent-trade two-hop middle-match motif: extract fwd20 at second leg **worse** than control (see r4_twohop_adjacent_extract_fwd20.json) — not a tradeable positive chain signal."
+        "Adjacent-trade two-hop middle-match motif: extract fwd20 at second leg **worse** than control (see r4_twohop_adjacent_extract_fwd20.json) — not a tradeable positive chain signal.",
+        "Passive-side proxy: Mark 14 (and 01) on **VEV_5300** as passive show **negative** mean K=20 on traded mid — possible adverse selection to aggressive flow on that strike; extract passive Mark22/Mark49 still positive (same file)."
       ],
       "phase2_gate": "Phase 1 documented; Phase 2 may proceed."
     }
@@ -419,6 +421,24 @@
     "round4_post_phase3_notes": {
       "phase1_gate_update": "round4_phase1_complete iteration-0 bullets 1 and 3 augmented with new output paths and conclusions.",
       "trader_v12": "Identical logic to trader_v2; separate traderData key r4_iter12_gate_only."
+    }
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Phase 1 bullet 5 extension: passive-side (non-aggressor) markout by (Mark, symbol) K=20; graph reciprocity for top directed edges. Sim: trader_v13 relaxes Sonic joint gate to L1<=3 on 5200 and 5300 (ablation vs v2 TH=2).",
+    "analysis_outputs": [
+      "run_r4_passive_side_markout_by_party.py",
+      "analysis_outputs/r4_passive_side_markout_by_party_k20.json",
+      "run_r4_graph_reciprocity.py",
+      "analysis_outputs/r4_graph_reciprocity_top_edges.json",
+      "trader_v13.py",
+      "backtest_logs/trader_v13_worse.log",
+      "backtest_logs/trader_v13_all.log"
+    ],
+    "used_to_decide": "**Passive markouts (r4_passive_side_markout_by_party_k20.json):** Mark14/Mark01 as **passive** on **VEV_5300** show the most **negative** mean forwards on the **traded** mid (worst cell Mark14/5300 **−0.25**, n=28); Mark22/Mark49 passive on **extract** remain strongly **positive** — use as **avoid** vs **OK to get hit** heuristic, not full book L2. **Reciprocity:** **M01→M22** has **no** reverse prints; **14↔38** and **14↔55** ~**0.95+** reciprocity (duopoly). **trader_v13** (both core strikes L1≤**3**): total **6,694** vs v2 **13,236** — **loosening** Sonic’s ≤2 **hurts** sim PnL on this tape; keep **2** for execution.",
+    "round4_post_phase3_notes": {
+      "round4_phase1_complete_updated": "Bullets 3 and 5 in iteration-0 object now list reciprocity + passive markout files.",
+      "sonic_threshold_sensitivity": "v13 worse=all 6694; supports tight ≤2 as in STRATEGY not arbitrary."
     }
   }
 ]

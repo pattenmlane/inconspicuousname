@@ -1,0 +1,175 @@
+{
+  "top_directed_edges_with_reciprocity": [
+    {
+      "forward": "Mark 01->Mark 22",
+      "n_forward": 1339,
+      "n_reverse": 0,
+      "n_total_undir": 1339,
+      "reciprocity_min_max": 0.0,
+      "notional_forward": 32427.0,
+      "notional_reverse": 0.0
+    },
+    {
+      "forward": "Mark 14->Mark 38",
+      "n_forward": 728,
+      "n_reverse": 714,
+      "n_total_undir": 1442,
+      "reciprocity_min_max": 0.9807692307692307,
+      "notional_forward": 20434344.0,
+      "notional_reverse": 20850351.0
+    },
+    {
+      "forward": "Mark 38->Mark 14",
+      "n_forward": 714,
+      "n_reverse": 728,
+      "n_total_undir": 1442,
+      "reciprocity_min_max": 0.9807692307692307,
+      "notional_forward": 20850351.0,
+      "notional_reverse": 20434344.0
+    },
+    {
+      "forward": "Mark 55->Mark 14",
+      "n_forward": 331,
+      "n_reverse": 316,
+      "n_total_undir": 647,
+      "reciprocity_min_max": 0.9546827794561934,
+      "notional_forward": 9254679.0,
+      "notional_reverse": 9235831.0
+    },
+    {
+      "forward": "Mark 14->Mark 55",
+      "n_forward": 316,
+      "n_reverse": 331,
+      "n_total_undir": 647,
+      "reciprocity_min_max": 0.9546827794561934,
+      "notional_forward": 9235831.0,
+      "notional_reverse": 9254679.0
+    },
+    {
+      "forward": "Mark 01->Mark 55",
+      "n_forward": 260,
+      "n_reverse": 244,
+      "n_total_undir": 504,
+      "reciprocity_min_max": 0.9384615384615385,
+      "notional_forward": 7432924.0,
+      "notional_reverse": 7220079.0
+    },
+    {
+      "forward": "Mark 55->Mark 01",
+      "n_forward": 244,
+      "n_reverse": 260,
+      "n_total_undir": 504,
+      "reciprocity_min_max": 0.9384615384615385,
+      "notional_forward": 7220079.0,
+      "notional_reverse": 7432924.0
+    },
+    {
+      "forward": "Mark 67->Mark 49",
+      "n_forward": 89,
+      "n_reverse": 0,
+      "n_total_undir": 89,
+      "reciprocity_min_max": 0.0,
+      "notional_forward": 5056558.0,
+      "notional_reverse": 0.0
+    },
+    {
+      "forward": "Mark 14->Mark 22",
+      "n_forward": 83,
+      "n_reverse": 0,
+      "n_total_undir": 83,
+      "reciprocity_min_max": 0.0,
+      "notional_forward": 14577.0,
+      "notional_reverse": 0.0
+    },
+    {
+      "forward": "Mark 67->Mark 22",
+      "n_forward": 75,
+      "n_reverse": 0,
+      "n_total_undir": 75,
+      "reciprocity_min_max": 0.0,
+      "notional_forward": 2864651.0,
+      "notional_reverse": 0.0
+    },
+    {
+      "forward": "Mark 38->Mark 22",
+      "n_forward": 19,
+      "n_reverse": 17,
+      "n_total_undir": 36,
+      "reciprocity_min_max": 0.8947368421052632,
+      "notional_forward": 327140.0,
+      "notional_reverse": 427078.0
+    },
+    {
+      "forward": "Mark 22->Mark 55",
+      "n_forward": 18,
+      "n_reverse": 14,
+      "n_total_undir": 32,
+      "reciprocity_min_max": 0.7777777777777778,
+      "notional_forward": 482557.0,
+      "notional_reverse": 325980.0
+    },
+    {
+      "forward": "Mark 22->Mark 38",
+      "n_forward": 17,
+      "n_reverse": 19,
+      "n_total_undir": 36,
+      "reciprocity_min_max": 0.8947368421052632,
+      "notional_forward": 427078.0,
+      "notional_reverse": 327140.0
+    },
+    {
+      "forward": "Mark 55->Mark 22",
+      "n_forward": 14,
+      "n_reverse": 18,
+      "n_total_undir": 32,
+      "reciprocity_min_max": 0.7777777777777778,
+      "notional_forward": 325980.0,
+      "notional_reverse": 482557.0
+    },
+    {
+      "forward": "Mark 49->Mark 22",
+      "n_forward": 12,
+      "n_reverse": 7,
+      "n_total_undir": 19,
+      "reciprocity_min_max": 0.5833333333333334,
+      "notional_forward": 467190.0,
+      "notional_reverse": 283215.0
+    },
+    {
+      "forward": "Mark 55->Mark 49",
+      "n_forward": 9,
+      "n_reverse": 5,
+      "n_total_undir": 14,
+      "reciprocity_min_max": 0.5555555555555556,
+      "notional_forward": 283190.0,
+      "notional_reverse": 136283.0
+    },
+    {
+      "forward": "Mark 22->Mark 49",
+      "n_forward": 7,
+      "n_reverse": 12,
+      "n_total_undir": 19,
+      "reciprocity_min_max": 0.5833333333333334,
+      "notional_forward": 283215.0,
+      "notional_reverse": 467190.0
+    },
+    {
+      "forward": "Mark 49->Mark 55",
+      "n_forward": 5,
+      "n_reverse": 9,
+      "n_total_undir": 14,
+      "reciprocity_min_max": 0.5555555555555556,
+      "notional_forward": 136283.0,
+      "notional_reverse": 283190.0
+    },
+    {
+      "forward": "Mark 67->Mark 55",
+      "n_forward": 1,
+      "n_reverse": 0,
+      "n_total_undir": 1,
+      "reciprocity_min_max": 0.0,
+      "notional_forward": 5241.0,
+      "notional_reverse": 0.0
+    }
+  ]
+}

@@ -411,7 +411,7 @@
   },
   {
     "iteration": 9,
-    "analysis_description": "Phase 1 burst orchestrator attribution: at each multi-print (day,timestamp), count buyer/seller names across all symbols; dominant pair = argmax counts (ties broken lexicographically). Join extract dm_ex_k20; merge Sonic gate from r4_p3_trade_enriched_with_gate.csv. Script r4_burst_orchestrator_analysis.py. Offline evidence only — results.json not appended (no new trader backtest).",
+    "analysis_description": "Phase 1 burst orchestrator attribution: at each multi-print (day,timestamp), count buyer/seller names across all symbols; dominant pair = argmax counts (ties broken lexicographically). Join extract dm_ex_k20; merge Sonic gate from r4_p3_trade_enriched_with_gate.csv. Script r4_burst_orchestrator_analysis.py. results.json iteration 9 records analysis-only (null backtests); no new trader_vN.",
     "analysis_outputs": [
       "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_burst_orchestrator_analysis.py",
       "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_orchestrator_events.csv",

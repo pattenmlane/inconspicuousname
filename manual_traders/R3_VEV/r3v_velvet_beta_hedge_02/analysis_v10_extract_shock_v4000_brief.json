@@ -1,0 +1,41 @@
+{
+  "method": "R3 d0-2, aligned extract + VEV_4000; adu=|du|; hi=adu>=p90, lo=adu<=p50 within day",
+  "by_day": [
+    {
+      "csv_day": 0,
+      "n": 9999,
+      "mean_s0": 20.765476547654764,
+      "mean_s0_when_adu_hi": 20.76916802610114,
+      "mean_s0_when_adu_lo": 20.772657450076807,
+      "mean_abs_d0": 0.9133913391339133,
+      "mean_abs_d0_when_adu_hi": 1.766721044045677,
+      "mean_abs_d0_when_adu_lo": 0.7325268817204301,
+      "corr_adu_s0": -0.004367106523739276,
+      "corr_adu_absd0": 0.4268403680297406
+    },
+    {
+      "csv_day": 1,
+      "n": 9999,
+      "mean_s0": 20.774577457745774,
+      "mean_s0_when_adu_hi": 20.7710100231303,
+      "mean_s0_when_adu_lo": 20.76629386810644,
+      "mean_abs_d0": 0.9291429142914291,
+      "mean_abs_d0_when_adu_hi": 1.7505782575173476,
+      "mean_abs_d0_when_adu_lo": 0.7522175086772078,
+      "corr_adu_s0": 0.0032972288161563284,
+      "corr_adu_absd0": 0.4122525985688255
+    },
+    {
+      "csv_day": 2,
+      "n": 9999,
+      "mean_s0": 20.9004900490049,
+      "mean_s0_when_adu_hi": 20.893995552260932,
+      "mean_s0_when_adu_lo": 20.89064729536905,
+      "mean_abs_d0": 0.9206420642064207,
+      "mean_abs_d0_when_adu_hi": 1.7409191994069682,
+      "mean_abs_d0_when_adu_lo": 0.7349202231158386,
+      "corr_adu_s0": 0.00982299123526914,
+      "corr_adu_absd0": 0.41601839582048383
+    }
+  ]
+}

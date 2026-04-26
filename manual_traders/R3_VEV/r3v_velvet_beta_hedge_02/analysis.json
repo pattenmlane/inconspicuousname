@@ -112,5 +112,14 @@
       "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v32_worse_d0d1d2.log"
     ],
     "used_to_decide": "Implemented v22+v31: when both VEV_5200 and VEV_5300 synthetic bid-ask widths are <=2, scale integer tilt by 1.1 (tighter surface/ATM reference). v32 adds the same v9 inventory skew. On days 0-2 worse-matching, v31 and v32 both total 16,254 vs v22 16,260; the tight-gate slightly hurts day-0 VEV_4000 edge. Keep trader_v22.py as the current best; use explicit 3-0 3-1 3-2 in future reports."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Extract-shock co-movement with the deep-ITM VEV_4000 book (R3 d0-2, aligned per timestamp): adu = |u_mid[t]-u_mid[t-1]|. V4000 |mid step| is much larger in top decile of adu (mean ~1.75) vs below-median adu (mean ~0.73); corr(adu, |dv4000|) ~0.41-0.43, while V4000 level spread s4000 is essentially flat across adu (corr near 0). IV/Greek: tilt still uses static smile-vega scale; the shock is about price-step coupling, not book width. Implication: large single-tick |ret1| is a strong joint-move state; a mild down-scale on tilt only in that window can reduce whipsaw without relying on a spread signal that is not there for V4000 on tape.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analyze_v10_extract_shock_spread.py",
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analysis_v10_extract_shock_v4000_brief.json"
+    ],
+    "used_to_decide": "v33: v22 + 0.9x tilt when |ret1|>1.0. v34: v22 + 0.22*clip(ret2) in the tilt (short memory). v33 total 16,273 (beats v22 16,260 and prior best 16,260) on 3-0/1/2 worse. v34 16,213. New best: trader_v33.py."
   }
 ]

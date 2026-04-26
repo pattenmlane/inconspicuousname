@@ -296,5 +296,27 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v32_worse_d0d1d2.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v22_v31_v32_d0d1d2.json (trader_v32)"
+  },
+  {
+    "iteration": 35,
+    "trader_file": "trader_v33.py",
+    "strategy_description": "v22 + extract shock guard: 0.9x tilt when |ret1|>1.0 (analysis_v10: V4000 |dv| tracks extract shock magnitude; spread s4000 flat in shock state). d0-2 worse total 16,273, new best vs v22 16,260.",
+    "total_profit": 16273,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v33.py 3-0 3-1 3-2 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v33_worse_d0d1d2.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v33_worse_d0d1d2.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v33_v34_d0d1d2.json (trader_v33 key)"
+  },
+  {
+    "iteration": 36,
+    "trader_file": "trader_v34.py",
+    "strategy_description": "v22 + 2-tick return term: W_RET2=0.22 on clip(ret2/TILT_RET_SCALE) in tilt blend. d0-2 total 16,213 (worse than v22).",
+    "total_profit": 16213,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v34.py 3-0 3-1 3-2 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v34_worse_d0d1d2.log",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v34_worse_d0d1d2.log",
+    "match_trades": "worse",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v33_v34_d0d1d2.json (trader_v34 key)"
   }
 ]

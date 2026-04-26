@@ -1,0 +1,21 @@
+{
+  "note": "Round 3 explicit days 0-1-2, --match-trades worse (same as v22 baseline runs).",
+  "trader_v33": {
+    "log": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v33_worse_d0d1d2.log",
+    "day_totals": [
+      7141,
+      11018,
+      -1886
+    ],
+    "overall": 16273
+  },
+  "trader_v34": {
+    "log": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v34_worse_d0d1d2.log",
+    "day_totals": [
+      7120,
+      10996,
+      -1903
+    ],
+    "overall": 16213
+  }
+}

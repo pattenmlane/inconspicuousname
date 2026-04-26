@@ -271,5 +271,26 @@
       "trades_or_fills_summary": "trade_history_rows=4281; SUBMISSION rows=0; own_fill_abs_qty_sum=0",
       "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_volume_weighted_residual_05/trader_v12.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v12_all.log"
     }
+  },
+  {
+    "iteration": 13,
+    "trader_file": "trader_v13.py",
+    "strategy_description": "v11 entry broadened: any U buy_agg with passive seller Mark22 or Mark49 (not only Mark67 buyer); Sonic gate, skip U spread==1, buy at ask if spread>=2; same exits as v11. Tests Phase1e passive-seller lift slice.",
+    "total_profit": 208,
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 208,
+      "backtest_log_file": "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v13_worse.log",
+      "trades_or_fills_summary": "trade_history_rows=4316; SUBMISSION rows=44; own_fill_abs_qty_sum=200",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_volume_weighted_residual_05/trader_v13.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v13_worse.log"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 208,
+      "backtest_log_file": "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v13_all.log",
+      "trades_or_fills_summary": "trade_history_rows=4316; SUBMISSION rows=44; own_fill_abs_qty_sum=200",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_volume_weighted_residual_05/trader_v13.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v13_all.log"
+    }
   }
 ]

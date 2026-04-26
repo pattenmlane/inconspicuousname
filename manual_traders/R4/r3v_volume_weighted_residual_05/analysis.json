@@ -514,5 +514,16 @@
       "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1e_u_buy_agg_passive_seller_by_day.csv"
     ],
     "used_to_decide": "Quantifies Phase-1 **graph** bullet beyond prior `r4_graph_top_pairs.txt`: explicit **reciprocity** (14\u219438 vs 01\u219222). Adds **counterparty-of-passive** view for **U** lift trades: **Mark22/M49** as lifted sellers associate with **~+2 tick** extract fwd@5 (not only Mark67 as buyer). Complements Phase-1 Mark67 row and Phase-1d passive tables. Stored under `round4_phase1_complete.phase1e_graph_reciprocity_u_counterparty`."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "**Execution test of Phase 1e signal:** `trader_v13.py` = **v11** but entry on **any** U **buy_agg** with **passive seller** **Mark 22** or **Mark 49** (tape adds **30** events vs Mark67-only **164**; see `analysis_outputs/r13_v11_vs_v13_signal_counts.txt`).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_volume_weighted_residual_05/trader_v13.py",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r13_v11_vs_v13_signal_counts.txt",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v13_worse.log",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v13_all.log"
+    ],
+    "used_to_decide": "Total PnL **208** (worse=all) vs **v11 217**; **44** SUBMISSION rows / **200** abs qty vs **35**/**160** \u2014 extra **Mark55**-driven lifts (\u224823 tape rows) add **notional** but **net \u22129** PnL (day 2 **+31\u2192+16** vs v11). **Conclusion:** mid-only lift on \u201cany buyer vs M22/M49 ask\u201d is **not** strictly better than **Mark67-only** under identical exits on this slice; keep **v11** as default unless filtering non-M67 buyers (e.g. exclude Mark55) in a follow-up."
   }
 ]

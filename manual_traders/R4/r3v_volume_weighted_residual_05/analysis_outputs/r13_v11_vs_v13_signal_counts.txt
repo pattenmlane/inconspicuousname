@@ -1,0 +1,8 @@
+Tape counts (r4_trades_enriched.csv, U, days 1–3):
+
+- Mark67 buyer + buy_agg on U: n=164
+- Any buyer + buy_agg on U with passive seller in {Mark 22, Mark 49}: n=194
+- Non-overlap (buy_agg, seller M22|M49, buyer != Mark 67): n=30
+  (Mark 55: 23, Mark 22: 6, Mark 49: 1)
+
+v13 uses the broader n=194 signal under the same Sonic + execution rules as v11.

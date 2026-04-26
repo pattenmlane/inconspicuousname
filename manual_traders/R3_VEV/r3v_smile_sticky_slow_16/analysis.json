@@ -183,5 +183,15 @@
       "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v19_fill_summary.json"
     ],
     "used_to_decide": "Core median |dm|=2 on up and down shocks; 5400/5500 median 0.5; deep wings 0 — supports core-only shock response. v19 adds +3 clip on core during shock; backtest identical to v15 (18,968): either no extra fills at same prices under worse matching, or core still not crossed. Larger boost or price-level change would be next if chasing core activity; avoid repeating v13 aggressive takes."
+  },
+  {
+    "iteration": 20,
+    "analysis_description": "Tight two-leg gate per shared thesis: on Round 3 tapes (days 0-2) count timestamps where VEV_5200 and VEV_5300 both have ask1-bid1 <= 2. IV/Greeks: unchanged v15 engine (implied vol from mid, BS vega in quote width). round3work/vouchers_final_strategy/ was absent; added STRATEGY.txt with thesis + pointer to this analysis.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analyze_vev5200_5300_tight_gate_freq.py",
+      "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analysis_outputs/vev5200_5300_tight_gate_freq.json"
+    ],
+    "used_to_decide": "~13.8% of timestamps pass the joint tight gate. trader_v20 trades extract + VEV only in that window (no hydrogel). PnL worse=1056 vs v15 18968 — gating out ~86% of time removes the hydrogel carry and most VEV flow; need next iteration: either partial gate (e.g. size/width scale vs binary off), or keep hydrogel out but quote VEV in wide regime with reduced size, or add extract+5200/5300-only layer."
   }
 ]

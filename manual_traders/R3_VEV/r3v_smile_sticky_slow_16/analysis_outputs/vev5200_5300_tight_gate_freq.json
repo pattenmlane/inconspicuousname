@@ -1,0 +1,25 @@
+{
+  "gate": "ask1-bid1 <= 2 for both VEV_5200 and VEV_5300 at same timestamp",
+  "days_0_2_aggregated": {
+    "n_timestamps": 30000,
+    "n_tight": 4128,
+    "share_tight": 0.1376
+  },
+  "by_day": {
+    "day_0": {
+      "n_timestamps_both_bbo": 10000,
+      "n_tight_gate": 1020,
+      "share": 0.102
+    },
+    "day_1": {
+      "n_timestamps_both_bbo": 10000,
+      "n_tight_gate": 1381,
+      "share": 0.1381
+    },
+    "day_2": {
+      "n_timestamps_both_bbo": 10000,
+      "n_tight_gate": 1727,
+      "share": 0.1727
+    }
+  }
+}

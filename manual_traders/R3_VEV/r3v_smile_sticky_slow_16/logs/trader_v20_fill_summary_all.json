@@ -1,0 +1,63 @@
+{
+  "trader_file": "trader_v20.py",
+  "match_trades": "all",
+  "log_path": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v20_backtest_all.log",
+  "total_profit": 2496,
+  "summary": [
+    {
+      "day": 0,
+      "total": 254,
+      "product_pnl": {
+        "VEV_6500": 0,
+        "VEV_6000": 0,
+        "VEV_5500": 12,
+        "VEV_5400": -142,
+        "VEV_5300": 0,
+        "VEV_5200": 0,
+        "VEV_5100": 0,
+        "VEV_5000": 0,
+        "VEV_4500": 0,
+        "VEV_4000": 19,
+        "VELVETFRUIT_EXTRACT": 366,
+        "HYDROGEL_PACK": 0
+      }
+    },
+    {
+      "day": 1,
+      "total": 1158,
+      "product_pnl": {
+        "VEV_6500": 0,
+        "VEV_6000": 0,
+        "VEV_5500": 13,
+        "VEV_5400": 575,
+        "VEV_5300": 0,
+        "VEV_5200": 42,
+        "VEV_5100": 0,
+        "VEV_5000": 0,
+        "VEV_4500": 0,
+        "VEV_4000": -13,
+        "VELVETFRUIT_EXTRACT": 541,
+        "HYDROGEL_PACK": 0
+      }
+    },
+    {
+      "day": 2,
+      "total": 1083,
+      "product_pnl": {
+        "VEV_6500": 0,
+        "VEV_6000": 0,
+        "VEV_5500": 37,
+        "VEV_5400": 1995,
+        "VEV_5300": 0,
+        "VEV_5200": 0,
+        "VEV_5100": 0,
+        "VEV_5000": 0,
+        "VEV_4500": 0,
+        "VEV_4000": -108,
+        "VELVETFRUIT_EXTRACT": -841,
+        "HYDROGEL_PACK": 0
+      }
+    }
+  ],
+  "notes": "Same trader as worse run; all-match fills for comparison only."
+}

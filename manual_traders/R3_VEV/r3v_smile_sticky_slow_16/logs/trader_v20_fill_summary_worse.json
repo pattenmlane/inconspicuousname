@@ -1,0 +1,63 @@
+{
+  "trader_file": "trader_v20.py",
+  "match_trades": "worse",
+  "log_path": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v20_backtest_worse.log",
+  "total_profit": 1056,
+  "summary": [
+    {
+      "day": 0,
+      "total": 284,
+      "product_pnl": {
+        "VEV_6500": 0,
+        "VEV_6000": 0,
+        "VEV_5500": 0,
+        "VEV_5400": -21,
+        "VEV_5300": 0,
+        "VEV_5200": 0,
+        "VEV_5100": 0,
+        "VEV_5000": 0,
+        "VEV_4500": 0,
+        "VEV_4000": 19,
+        "VELVETFRUIT_EXTRACT": 286,
+        "HYDROGEL_PACK": 0
+      }
+    },
+    {
+      "day": 1,
+      "total": 590,
+      "product_pnl": {
+        "VEV_6500": 0,
+        "VEV_6000": 0,
+        "VEV_5500": 0,
+        "VEV_5400": 52,
+        "VEV_5300": 0,
+        "VEV_5200": 0,
+        "VEV_5100": 0,
+        "VEV_5000": 0,
+        "VEV_4500": 0,
+        "VEV_4000": -13,
+        "VELVETFRUIT_EXTRACT": 552,
+        "HYDROGEL_PACK": 0
+      }
+    },
+    {
+      "day": 2,
+      "total": 182,
+      "product_pnl": {
+        "VEV_6500": 0,
+        "VEV_6000": 0,
+        "VEV_5500": 0,
+        "VEV_5400": 102,
+        "VEV_5300": 0,
+        "VEV_5200": 0,
+        "VEV_5100": 0,
+        "VEV_5000": 0,
+        "VEV_4500": 0,
+        "VEV_4000": -108,
+        "VELVETFRUIT_EXTRACT": 188,
+        "HYDROGEL_PACK": 0
+      }
+    }
+  ],
+  "notes": "Trades only when VEV_5200 and VEV_5300 BBO spread both <=2; no hydrogel."
+}

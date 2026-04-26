@@ -179,5 +179,24 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v19_backtest.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v19_fill_summary.json"
+  },
+  {
+    "iteration": 20,
+    "trader_file": "trader_v20.py",
+    "strategy_description": "Joint book gate + sticky smile (pivot to team thesis): no HYDROGEL. Trade VELVETFRUIT_EXTRACT (EWMA mid ±2, size 18) + same spline+poly VEV fairing as v15 only when VEV_5200 and VEV_5300 both have top spread <=2. Otherwise no orders. (round3work/vouchers_final_strategy/STRATEGY.txt added; upstream folder was missing.)",
+    "backtest_worse": {
+      "total_profit": 1056,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v20.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v20_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v20_fill_summary_worse.json"
+    },
+    "backtest_all": {
+      "total_profit": 2496,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v20.py 3 --data Prosperity4Data --match-trades all --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v20_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v20_fill_summary_all.json"
+    },
+    "backtest_round": 3,
+    "match_trades_primary": "worse"
   }
 ]

@@ -1,0 +1,24 @@
+# Voucher + extract — tight two-leg gate (Round 3)
+
+## Thesis (reconstructed in-repo)
+
+When **VEV_5200** and **VEV_5300** both have top-of-book spread **ask1 − bid1 ≤ 2** (same tick units as
+`Prosperity4Data/ROUND_3` tapes) at the **same timestamp**, the joint book is a **risk-on / tradable
+microstructure** regime: short-horizon **VELVETFRUIT_EXTRACT** mid behavior is more favorable than when
+either book is wide. Use this as a **regime filter** and/or to **size** extract + VEV activity.
+
+- **Sonic-style:** edge statistics should be **gated** on voucher BBO state; widening past the threshold =
+  different regime.
+- **inclineGod-style:** use **per-contract spreads** and **joint** spread conditions, not mids alone.
+
+## Reproduction in this branch
+
+- Frequency check (days 0–2): `manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analyze_vev5200_5300_tight_gate_freq.py`
+  → `analysis_outputs/vev5200_5300_tight_gate_freq.json` (~13.8% of timestamps with both BBOs tight in one run).
+- If the upstream six-panel script exists in your checkout, run `analyze_vev_5200_5300_tight_gate_r3.py` and compare.
+
+## PnL objective (team)
+
+Optimize **VEV_*** + **VELVETFRUIT_EXTRACT** only; **no HYDROGEL_PACK** in the objective unless debugging.
+
+DTE / limits: `round3work/round3description.txt`.

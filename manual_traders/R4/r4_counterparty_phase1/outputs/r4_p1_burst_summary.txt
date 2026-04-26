@@ -1,0 +1,4 @@
+=== Burst vs control: forward extract mid change ===
+K=5 burst n=387 mean=0.07752 | control n=500 mean=0.06700
+K=20 burst n=387 mean=0.32946 | control n=500 mean=0.13500
+K=100 burst n=382 mean=0.11780 | control n=497 mean=0.00302

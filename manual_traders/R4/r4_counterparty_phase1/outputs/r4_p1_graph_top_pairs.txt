@@ -1,0 +1,21 @@
+=== buyer -> seller edge counts (all days) ===
+unique pairs: 19
+Mark 01 -> Mark 22: 1327
+Mark 14 -> Mark 38: 725
+Mark 38 -> Mark 14: 708
+Mark 55 -> Mark 14: 328
+Mark 14 -> Mark 55: 311
+Mark 01 -> Mark 55: 260
+Mark 55 -> Mark 01: 244
+Mark 67 -> Mark 49: 88
+Mark 14 -> Mark 22: 83
+Mark 67 -> Mark 22: 75
+Mark 38 -> Mark 22: 18
+Mark 22 -> Mark 55: 18
+Mark 22 -> Mark 38: 17
+Mark 55 -> Mark 22: 14
+Mark 49 -> Mark 22: 11
+Mark 55 -> Mark 49: 9
+Mark 22 -> Mark 49: 7
+Mark 49 -> Mark 55: 5
+Mark 67 -> Mark 55: 1

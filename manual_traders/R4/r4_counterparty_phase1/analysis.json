@@ -1,0 +1,125 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round 4 Phase 1 counterparty tape study (days 1–3): merge trades to prices at (day,timestamp,symbol); forward mid = K rows ahead in same symbol tape (K\u2208{5,20,100}); aggressive side vs BBO at print. Outputs in outputs/.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/r4_phase1_counterparty_analysis.py",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_trades_enriched.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_participant_markout_by_symbol_K.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_cross_extract_forward.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_residuals_K5.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_residuals_K20.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_residuals_K100.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_pair_residual_summary.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_graph_top_pairs.txt",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_graph_2hop_local.txt",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_burst_forward_extract.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_control_forward_extract.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_burst_summary.txt",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_adverse_aggrbuy_fwd20_by_passive_seller.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_top_tstat_cells.csv",
+      "round4work/round4description.txt",
+      "round4work/suggested direction.txt",
+      "round4work/outputs/r4_initial_analysis_summary.txt"
+    ],
+    "used_to_decide": "Phase 1 gate object appended as next JSON element; trader_v0 is no-op until Phase 2 encodes executable rules from ranked edges."
+  },
+  {
+    "round4_phase1_complete": {
+      "phase": "Round 4 Phase 1 (counterparty IDs, days 1–3)",
+      "method_note": "Forward horizons are **K tape rows** forward per (day,symbol) after sorting prices by timestamp (not wall-clock ms). Aggressive buy if trade price >= ask1; aggressive sell if price <= bid1; else inside/unknown.",
+      "bullet_outputs": [
+        {
+          "bullet": "1) Participant-level alpha / predictiveness",
+          "paths": [
+            "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_participant_markout_by_symbol_K.csv",
+            "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_cross_extract_forward.csv",
+            "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_top_tstat_cells.csv"
+          ],
+          "conclusion": "Strongest pooled cells are **aggressive buys** on **VELVETFRUIT_EXTRACT** in **tight spread_q=0** (spread \u2264 ~25%ile) with **positive same-symbol fwd_5/fwd_20** and high |t| for passive sellers Mark 22 / Mark 49 when Mark 67 is buyer (and Mark 67 as buyer generally); n per cell often 20–45 so interpret cautiously."
+        },
+        {
+          "bullet": "2) Deviation from bot baseline (pair,symbol,regime cell means)",
+          "paths": [
+            "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_residuals_K5.csv",
+            "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_residuals_K20.csv",
+            "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_residuals_K100.csv",
+            "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_pair_residual_summary.csv"
+          ],
+          "conclusion": "Residual CSVs list per-print deviation from (buyer\u2192seller,symbol,spread-regime) mean; use for second-order fades after Phase 2 regularization\u2014not yet converted to PnL."
+        },
+        {
+          "bullet": "3) Sequence / graph methods",
+          "paths": [
+            "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_graph_top_pairs.txt",
+            "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_graph_2hop_local.txt"
+          ],
+          "conclusion": "Mark 01\u2192Mark 22 dominates edge counts (basket ladder); local 500-tick two-trade hop file shows repeated adjacent choreography\u2014structural, not insider-like single names."
+        },
+        {
+          "bullet": "4) Burst structure",
+          "paths": [
+            "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_burst_forward_extract.csv",
+            "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_control_forward_extract.csv",
+            "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_burst_summary.txt"
+          ],
+          "conclusion": "Same-(day,timestamp) multi-print bursts show **higher mean forward extract mid** at K=20 vs random single-trade controls (0.33 vs 0.14); K=100 not elevated\u2014short-horizon event, not slow trend."
+        },
+        {
+          "bullet": "5) Adverse selection vs inventory (population proxy)",
+          "paths": [
+            "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_adverse_aggrbuy_fwd20_by_passive_seller.csv"
+          ],
+          "conclusion": "Ranks passive sellers by mean same-symbol fwd_20 after aggressive buys hit them; use to label who tends to be picked off when lifting offers (Mark 22 on extract appears in high-fwd cells\u2014consistent with informed lift against passive MM)."
+        }
+      ],
+      "top5_tradeable_edges": [
+        {
+          "rank": 1,
+          "rule": "After **multi-symbol burst** timestamps, **VELVETFRUIT_EXTRACT** mid tends **+0.33** by K=20 rows vs **+0.14** control (n\u2248387 bursts vs 500 controls); K=5 small positive; K=100 flat.",
+          "effect_size": "fwd20_mean_burst_minus_control \u2248 +0.19 extract mid units",
+          "n": "387 burst events (K=20); 382 (K=100)",
+          "days": "1,2,3 pooled",
+          "evidence": "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_burst_summary.txt"
+        },
+        {
+          "rank": 2,
+          "rule": "**Mark 67 aggressive buy** on **VELVETFRUIT_EXTRACT** (price \u2265 ask) \u2192 same-symbol **fwd_5** positive all three days (day1 mean ~2.20, day2 ~1.75, day3 ~1.93; n\u224858/60/45).",
+          "effect_size": "~+2 mid units at K=5 (same tape indexing)",
+          "n": "163 prints pooled",
+          "days": "1,2,3 each same sign",
+          "evidence": "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_participant_markout_by_symbol_K.csv + ad-hoc day split"
+        },
+        {
+          "rank": 3,
+          "rule": "**Mark 01\u2192Mark 22** multi-VEV prints at identical timestamps (initial summary + graph): structural basket; combine with burst forward extract edge for **scheduler** detection.",
+          "effect_size": "1339+ pair rows (see round4work sketch); not a scalar markout",
+          "n": "high",
+          "days": "1–3",
+          "evidence": "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_graph_top_pairs.txt"
+        },
+        {
+          "rank": 4,
+          "rule": "When **Mark 22** is **passive seller** on extract and trade is **aggressive buy**, **fwd_5** cells in **tight book** (spread_q=0) show large positive means (n\u224821–26 per session bucket in top-t table).",
+          "effect_size": "mean fwd_5 ~ +2.1 mid units in top cells",
+          "n": "20–43 per stratified cell",
+          "days": "pooled; stratified by sess_q",
+          "evidence": "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_top_tstat_cells.csv"
+        },
+        {
+          "rank": 5,
+          "rule": "**Mark 14\u2194Mark 38** hydro duopoly (from initial summary) \u2014 confirm in pair graph; candidate for **fade** or **avoid quoting** on HYDROGEL when opposite side is known aggressor (needs Phase 2 execution).",
+          "effect_size": "qualitative structure",
+          "n": "see round4work/outputs/r4_initial_analysis_summary.txt",
+          "days": "1–3",
+          "evidence": "round4work/outputs/r4_initial_analysis_summary.txt"
+        }
+      ],
+      "no_edge_or_weak": [
+        "Long-horizon **K=100** forward extract after bursts is **not** elevated vs control (mean ~0.12 vs ~0.003)\u2014burst signal is **short** not slow mean-reversion.",
+        "Many **VEV** strikes have **thin** aggressive-labeled prints per Mark\u00d7day; high |t| cells concentrate on **VELVETFRUIT_EXTRACT** where BBO exists at every trade timestamp.",
+        "Phase 1 does **not** yet prove **PnL** under `--match-trades worse`; `trader_v0` baseline is zero by design until Phase 2 encodes rules."
+      ]
+    }
+  }
+]

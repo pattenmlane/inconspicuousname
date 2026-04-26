@@ -1,0 +1,22 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "trader_v0.py",
+    "strategy_description": "Round 4 Phase 1 placeholder: no orders. Evidence lives in analysis.json (round4_phase1_complete) and outputs/*. Phase 2 will attach counterparty-conditioned execution.",
+    "total_profit": 0,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v0.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r4_counterparty_phase1/backtest_r4_v0_worse.log",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 0,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v0_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v0_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 0,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v0_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v0_all.json"
+    }
+  }
+]

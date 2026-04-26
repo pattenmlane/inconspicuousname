@@ -1,0 +1,100 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Merged origin/main for Prosperity4Data/ROUND_4 (days 1–3) and round4work/. Phase 1 counterparty script: r4_phase1_counterparty_analysis.py → outputs/phase1/. Horizon K = K tape timestamp steps (10k grid per day).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_phase1_counterparty_analysis.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/phase1_summary.json"
+    ],
+    "used_to_decide": "Phase 1 gate documented below; no Phase 2 until ops requests."
+  },
+  {
+    "round4_phase1_complete": {
+      "data_scope": "Prosperity4Data/ROUND_4 trades_round_4_day_{1,2,3}.csv (4281 rows); prices same days. Forward mid: K \u2208 {5,20,100} steps on mid_price grid.",
+      "bullet_1_participant_predictiveness": {
+        "outputs": [
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_markout_pooled.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_markout_by_day_nosession.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_markout_long.csv"
+        ],
+        "conclusion": "Strongest pooled signal: Mark 67 aggressive buys on VELVETFRUIT_EXTRACT in **tight** BBO regime, K=20, mean forward **same-symbol** mid \u2248 +1.82 (n\u2248162 pooled); **per-day** n\u224845\u201360 each day with mean \u2248+1.49 to +2.02 and t\u22483\u20134 on days 1\u20133 \u2014 stable sign across all tape days. Mark 49 as seller (any) on extract tight K=20 also positive mean (~+1.8, n\u2248105). Voucher-specific participant edges are weaker (smaller n / mixed signs)."
+      },
+      "bullet_2_bot_baseline_residuals": {
+        "outputs": [
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/per_print_with_baseline.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/pair_baseline_residuals.csv"
+        ],
+        "conclusion": "Cell means by (buyer,seller,symbol,spread_regime) absorb most pair-level structure; residuals highlight **second-order** prints vs dominant basket (Mark 01\u2192Mark 22) baseline\u2014useful for fade rules after Phase 2 conditioning."
+      },
+      "bullet_3_graph_motifs": {
+        "outputs": [
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/graph_edges.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/graph_top_pairs.txt",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/graph_hubs.json",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/twohop_chain_counts.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/twohop_chain_fwd_extract.csv"
+        ],
+        "conclusion": "Dominant edge Mark 01\u2192Mark 22 (1339 prints); hydro duopoly Mark 14\u219438 and 38\u219414. Two-hop chains are frequent (hydro ping-pong) but **forward extract** after chain is near noise at K=5 unless combined with burst/orchestrator filter (Phase 2)."
+      },
+      "bullet_4_burst_structure": {
+        "outputs": [
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/burst_events.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/burst_forward_extract.csv"
+        ],
+        "conclusion": "293 burst timestamps (\u22654 prints). Mean forward extract K=20: day1 burst **beats** random control (-0.08 vs -0.68); day2 modest (+0.33 vs +0.14); day3 burst strongly positive (+0.63 vs -0.30)\u2014**day-heterogeneous**; not a single stable direction rule without day-specific calibration or Phase 3 gate."
+      },
+      "bullet_5_adverse_selection": {
+        "outputs": [
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/passive_adverse_by_pair.csv"
+        ],
+        "conclusion": "Worst passive-side forward same-symbol markouts (sorted mean) hit pairs involving Mark 49 / Mark 22 bridges at long horizons; Mark 38\u219214 hydro passive (Mark 14) shows mildly negative K=100 markout on huge n\u2014population-level **do not lean passive** into certain bridges without inventory model."
+      },
+      "top_5_tradeable_edges_ranked": [
+        {
+          "rank": 1,
+          "edge": "After Mark 67 **buy-aggressive** print on VELVETFRUIT_EXTRACT when that symbol\u2019s BBO is **tight** (tertile), extract mid rises over the next **20** tape steps (~+1.5 to +2.0 mid points; ~65% positive).",
+          "effect_size": "mean fwd_same K=20 ~ +1.82 pooled; per-day mean +1.49\u2013+2.02",
+          "n": "~162 pooled; 45\u201360 per day (by_day_nosession)",
+          "days": "1, 2, 3"
+        },
+        {
+          "rank": 2,
+          "edge": "Mark 49 as **seller** (any side tag) on extract in **tight** regime: positive K=20 same-symbol markout (~+1.8, n\u2248105)\u2014complements 67 flow (liquidity provision interpretation).",
+          "effect_size": "mean ~ +1.80",
+          "n": "105",
+          "days": "1\u20133 pooled"
+        },
+        {
+          "rank": 3,
+          "edge": "Same-timestamp **burst** (\u22654 prints) event study on extract: day 3 mean K=20 forward **+0.63** vs random-timestamp control **-0.30** (122 vs 122 samples)\u2014candidate **volatility / schedule** trigger for that day only.",
+          "effect_size": "+0.93 vs control on day 3 K=20",
+          "n": "122+122",
+          "days": "strongest on day 3; weak day 1"
+        },
+        {
+          "rank": 4,
+          "edge": "Mark 22 as seller on extract tight K=20: smaller but positive mean (~+1.47, n=99, t\u22483.2)\u2014consistent with basket seller sitting on voucher ladder; use as **context** when layering voucher signals.",
+          "effect_size": "mean ~ +1.47",
+          "n": "99",
+          "days": "pooled"
+        },
+        {
+          "rank": 5,
+          "edge": "Passive adverse ranking: avoid treating Mark 49\u219255 / Mark 22\u219238 prints as \u2018noise\u2019\u2014passive party forward markouts skew **negative** at K=100 (see CSV); execution rule = **widen or pull quotes** when these pairs hit with aggression (needs sim in Phase 2).",
+          "effect_size": "mean_fwd down to ~-4.8 on thin-n pairs at K=100",
+          "n": "varies; see passive_adverse_by_pair.csv",
+          "days": "1\u20133"
+        }
+      ],
+      "explicit_no_edge_or_weak": [
+        "Two-hop Mark 14\u219238\u219214 on forward extract at K=5 is ~+0.2 mean with n=165\u2014too small vs tick noise to trade standalone.",
+        "Mark 01\u219222 voucher basket prints alone do **not** show large signed extract markout in this pass (baseline absorbs); edge is in **residual** prints or other names (67, 49).",
+        "Burst forward extract: **inconsistent** sign day-to-day at K=20 without further stratification."
+      ],
+      "reference_scripts": [
+        "round4work/r4_counterparty_initial_sketch.py",
+        "round4work/outputs/r4_initial_analysis_summary.txt"
+      ]
+    }
+  }
+]

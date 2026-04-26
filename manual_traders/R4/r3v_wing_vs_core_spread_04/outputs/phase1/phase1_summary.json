@@ -1,0 +1,169 @@
+{
+  "n_trade_rows": 4281,
+  "n_participant_cells_pooled": 471,
+  "burst_event_count": 293,
+  "top_positive_markout_candidates_k20": [
+    {
+      "name": "Mark 67",
+      "role": "buyer_any",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "k": 20,
+      "spread_regime": "tight",
+      "burst": 0,
+      "n": 163.0,
+      "mean": 1.852760736196319,
+      "median": 1.5,
+      "t_stat": 5.930265724683843,
+      "frac_pos": 0.6503067484662577
+    },
+    {
+      "name": "Mark 67",
+      "role": "buy_aggr",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "k": 20,
+      "spread_regime": "tight",
+      "burst": 0,
+      "n": 162.0,
+      "mean": 1.8209876543209877,
+      "median": 1.5,
+      "t_stat": 5.822888939968094,
+      "frac_pos": 0.6481481481481481
+    },
+    {
+      "name": "Mark 49",
+      "role": "seller_any",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "k": 20,
+      "spread_regime": "tight",
+      "burst": 0,
+      "n": 105.0,
+      "mean": 1.7952380952380953,
+      "median": 2.0,
+      "t_stat": 4.876686926034512,
+      "frac_pos": 0.6761904761904762
+    },
+    {
+      "name": "Mark 22",
+      "role": "seller_any",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "k": 20,
+      "spread_regime": "tight",
+      "burst": 0,
+      "n": 99.0,
+      "mean": 1.4696969696969697,
+      "median": 1.5,
+      "t_stat": 3.2162400617210936,
+      "frac_pos": 0.6262626262626263
+    },
+    {
+      "name": "Mark 14",
+      "role": "seller_any",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "k": 20,
+      "spread_regime": "wide",
+      "burst": 0,
+      "n": 316.0,
+      "mean": 0.5427215189873418,
+      "median": 0.5,
+      "t_stat": 2.4950569953044957,
+      "frac_pos": 0.5126582278481012
+    },
+    {
+      "name": "Mark 55",
+      "role": "buy_aggr",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "k": 20,
+      "spread_regime": "tight",
+      "burst": 0,
+      "n": 41.0,
+      "mean": 1.2560975609756098,
+      "median": 1.5,
+      "t_stat": 2.0193361322183527,
+      "frac_pos": 0.6341463414634146
+    },
+    {
+      "name": "Mark 55",
+      "role": "buyer_any",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "k": 20,
+      "spread_regime": "tight",
+      "burst": 0,
+      "n": 41.0,
+      "mean": 1.2560975609756098,
+      "median": 1.5,
+      "t_stat": 2.0193361322183527,
+      "frac_pos": 0.6341463414634146
+    },
+    {
+      "name": "Mark 55",
+      "role": "buy_aggr",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "k": 20,
+      "spread_regime": "wide",
+      "burst": 0,
+      "n": 550.0,
+      "mean": 0.3390909090909091,
+      "median": 0.0,
+      "t_stat": 1.9671559923156479,
+      "frac_pos": 0.49818181818181817
+    }
+  ],
+  "burst_vs_control_extract_k20": [
+    {
+      "tape_day": 1,
+      "kind": "burst",
+      "mean": -0.08333333333333333,
+      "count": 84
+    },
+    {
+      "tape_day": 1,
+      "kind": "control",
+      "mean": -0.6785714285714286,
+      "count": 84
+    },
+    {
+      "tape_day": 2,
+      "kind": "burst",
+      "mean": 0.3275862068965517,
+      "count": 87
+    },
+    {
+      "tape_day": 2,
+      "kind": "control",
+      "mean": 0.14367816091954022,
+      "count": 87
+    },
+    {
+      "tape_day": 3,
+      "kind": "burst",
+      "mean": 0.6270491803278688,
+      "count": 122
+    },
+    {
+      "tape_day": 3,
+      "kind": "control",
+      "mean": -0.29918032786885246,
+      "count": 122
+    }
+  ],
+  "edges_top3": [
+    {
+      "buyer": "Mark 01",
+      "seller": "Mark 22",
+      "count": 1339,
+      "notional": 32427.0
+    },
+    {
+      "buyer": "Mark 14",
+      "seller": "Mark 38",
+      "count": 728,
+      "notional": 20434344.0
+    },
+    {
+      "buyer": "Mark 38",
+      "seller": "Mark 14",
+      "count": 714,
+      "notional": 20850351.0
+    }
+  ]
+}

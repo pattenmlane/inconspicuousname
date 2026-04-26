@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Mark 14",
+    "out": 1127,
+    "in": 1045,
+    "total": 2172
+  },
+  {
+    "name": "Mark 01",
+    "out": 1599,
+    "in": 244,
+    "total": 1843
+  },
+  {
+    "name": "Mark 22",
+    "out": 42,
+    "in": 1542,
+    "total": 1584
+  },
+  {
+    "name": "Mark 38",
+    "out": 733,
+    "in": 745,
+    "total": 1478
+  },
+  {
+    "name": "Mark 55",
+    "out": 598,
+    "in": 600,
+    "total": 1198
+  },
+  {
+    "name": "Mark 67",
+    "out": 165,
+    "in": 0,
+    "total": 165
+  },
+  {
+    "name": "Mark 49",
+    "out": 17,
+    "in": 105,
+    "total": 122
+  }
+]

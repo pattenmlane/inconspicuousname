@@ -368,5 +368,50 @@
         "note": "Product lines from log sum to **9729**; engine **Total profit** **9730** (likely display rounding). **VEV** totals match **v4**; hydro matches **v8**."
       }
     }
+  },
+  {
+    "iteration": 10,
+    "trader_file": "trader_v10.py",
+    "strategy_description": "**v8** with **R4_HYDRO_HALF** (default 2.2) and **R4_HYDRO_SIZE** (default 14) from **env** for sweeps. Logic identical to **v8** at defaults.",
+    "parameter_sweep": {
+      "script": "manual_traders/R4/r4_phase1_marks/run_v10_hydro_grid_worse.py",
+      "output_tsv": "manual_traders/R4/r4_phase1_marks/outputs/phase10_v10_hydro_grid_worse.tsv",
+      "grid": "R4_HYDRO_HALF in [1.6,1.8,2.0,2.2,2.4,2.6,2.8,3.0], R4_HYDRO_SIZE in [8,12,16,20], match-trades worse, --no-progress",
+      "worse_VELVETFRUIT_EXTRACT_total_all_cells": 3382,
+      "worse_total_profit_range": { "min": 3639, "max": 4709 },
+      "worse_HYDROGEL_PACK_range": { "min": 274, "max": 1327 },
+      "note_at_half_2.2": "total 3685 hydro 303 (matches v8); size 8/12/16/20 identical within each half"
+    },
+    "backtest_worse": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "worse",
+      "total_profit": 3685,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter10_r4d1-3_worse.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v10.py 4 --data Prosperity4Data --match-trades worse --no-out --no-vis --no-progress",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 1424, "2": 1558, "3": 703 },
+        "per_product_worse_4d": {
+          "VELVETFRUIT_EXTRACT": 3382,
+          "HYDROGEL_PACK": 303,
+          "VEV_5200": 0,
+          "VEV_5300": 0
+        },
+        "vs_iteration_8_worse_total": 3685
+      }
+    },
+    "backtest_all": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "all",
+      "total_profit": 6338,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter10_r4d1-3_all.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v10.py 4 --data Prosperity4Data --match-trades all --no-out --no-vis --no-progress",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 988, "2": 1839, "3": 3512 },
+        "per_product_all_4d": { "VELVETFRUIT_EXTRACT": 6035, "HYDROGEL_PACK": 303, "VEV_5200": 0, "VEV_5300": 0 },
+        "vs_iteration_8_all_total": 6338
+      }
+    }
   }
 ]

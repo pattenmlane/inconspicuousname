@@ -1,0 +1,29 @@
+HYDRO duopoly × joint gate vs fwd_EXTRACT_K
+
+=== Mark 14 -> Mark 38, HYDROGEL_PACK (n=496) ===
+Mark 14->Mark 38 day=all K=5: nT=126 nL=370 meanT=0.54762 meanL=-0.28649 delta=0.83411 Welch_t=3.6058 p=0.0003867
+  Mark 14->Mark 38 day=1 K=5: nT=25 nL=158 meanT=1.08 meanL=-0.041139 delta=1.1211 Welch_t=1.9788 p=0.05744
+  Mark 14->Mark 38 day=2 K=5: nT=33 nL=109 meanT=0.34848 meanL=-0.25229 delta=0.60078 Welch_t=1.3489 p=0.1828
+  Mark 14->Mark 38 day=3 K=5: nT=68 nL=103 meanT=0.44853 meanL=-0.69903 delta=1.1476 Welch_t=3.4301 p=0.0007788
+Mark 14->Mark 38 day=all K=20: nT=126 nL=370 meanT=1.0794 meanL=-0.53108 delta=1.6104 Welch_t=3.4220 p=0.0007489
+  Mark 14->Mark 38 day=1 K=20: nT=25 nL=158 meanT=2.72 meanL=0.25 delta=2.47 Welch_t=2.4153 p=0.02198
+  Mark 14->Mark 38 day=2 K=20: nT=33 nL=109 meanT=1.3788 meanL=-0.70183 delta=2.0806 Welch_t=2.1597 p=0.03567
+  Mark 14->Mark 38 day=3 K=20: nT=68 nL=103 meanT=0.33088 meanL=-1.5485 delta=1.8794 Welch_t=2.8208 p=0.00547
+Mark 14->Mark 38 day=all K=100: nT=126 nL=368 meanT=3.1865 meanL=-1.5829 delta=4.7694 Welch_t=5.2729 p=2.83e-07
+  Mark 14->Mark 38 day=1 K=100: nT=25 nL=158 meanT=3.4 meanL=-0.41456 delta=3.8146 Welch_t=1.9934 p=0.05366
+  Mark 14->Mark 38 day=2 K=100: nT=33 nL=107 meanT=4.303 meanL=-1.1449 delta=5.4479 Welch_t=3.3238 p=0.001514
+  Mark 14->Mark 38 day=3 K=100: nT=68 nL=103 meanT=2.5662 meanL=-3.8301 delta=6.3963 Welch_t=4.5861 p=9.187e-06
+
+=== Mark 38 -> Mark 14, HYDROGEL_PACK (n=507) ===
+Mark 38->Mark 14 day=all K=5: nT=129 nL=378 meanT=0.054264 meanL=-0.1336 delta=0.18786 Welch_t=0.8306 p=0.4072
+  Mark 38->Mark 14 day=1 K=5: nT=25 nL=162 meanT=0.18 meanL=-0.30864 delta=0.48864 Welch_t=0.9082 p=0.3711
+  Mark 38->Mark 14 day=2 K=5: nT=27 nL=134 meanT=-0.25926 meanL=-0.089552 delta=-0.16971 Welch_t=-0.3747 p=0.71
+  Mark 38->Mark 14 day=3 K=5: nT=77 nL=82 meanT=0.12338 meanL=0.14024 delta=-0.016867 Welch_t=-0.0505 p=0.9598
+Mark 38->Mark 14 day=all K=20: nT=129 nL=378 meanT=0.53488 meanL=-0.46429 delta=0.99917 Welch_t=2.4783 p=0.01389
+  Mark 38->Mark 14 day=1 K=20: nT=25 nL=162 meanT=1.24 meanL=-0.57099 delta=1.811 Welch_t=2.4404 p=0.01959
+  Mark 38->Mark 14 day=2 K=20: nT=27 nL=134 meanT=0.44444 meanL=-0.12313 delta=0.56758 Welch_t=0.7820 p=0.4382
+  Mark 38->Mark 14 day=3 K=20: nT=77 nL=82 meanT=0.33766 meanL=-0.81098 delta=1.1486 Welch_t=1.7164 p=0.08806
+Mark 38->Mark 14 day=all K=100: nT=128 nL=377 meanT=1.6406 meanL=-0.91512 delta=2.5557 Welch_t=2.6149 p=0.009566
+  Mark 38->Mark 14 day=1 K=100: nT=25 nL=162 meanT=4.1 meanL=-0.66358 delta=4.7636 Welch_t=2.2514 p=0.03138
+  Mark 38->Mark 14 day=2 K=100: nT=27 nL=133 meanT=1.037 meanL=-0.2218 delta=1.2588 Welch_t=0.5313 p=0.5989
+  Mark 38->Mark 14 day=3 K=100: nT=76 nL=82 meanT=1.0461 meanL=-2.5366 delta=3.5826 Welch_t=2.5014 p=0.0134

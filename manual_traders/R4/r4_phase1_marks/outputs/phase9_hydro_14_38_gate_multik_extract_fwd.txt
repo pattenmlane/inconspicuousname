@@ -1,6 +1,0 @@
-Mark 14 -> Mark 38, HYDROGEL_PACK: mean fwd_EXTRACT_K | tight vs loose
-n total prints with gate flag: 496
-
-K=5: n_tight=126 n_loose=370 mean_tight=0.54762 mean_loose=-0.28649 delta=0.83411 Welch_t=3.6058 p=0.0003867
-K=20: n_tight=126 n_loose=370 mean_tight=1.0794 mean_loose=-0.53108 delta=1.6104 Welch_t=3.4220 p=0.0007489
-K=100: n_tight=126 n_loose=368 mean_tight=3.1865 mean_loose=-1.5829 delta=4.7694 Welch_t=5.2729 p=2.83e-07

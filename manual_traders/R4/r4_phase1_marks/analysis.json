@@ -349,15 +349,28 @@
   },
   {
     "iteration": 9,
-    "analysis_description": "**Tape (horizon check):** ``analyze_r4_hydro_duopoly_gate_multik.py`` \u2014 **Mark14\u2192Mark38** **HYDROGEL_PACK** prints: mean **fwd_EXTRACT_K** tight vs loose is **positive** at **K=5, 20, 100** price-bar steps (Welch **p\u22483.9e-4**, **7.5e-4**, **2.8e-7**); **K=100** delta **\u2248+4.77** vs **+1.61** at K=20. **Sim:** ``trader_v9`` = **v8** + **v4** **VEV_5200/5300** legs. **`worse`** **3685** (same per-product lines as **v8**; **VEV** **0**). **`all`** **9730** vs **v8** **6338** / **v4** **9427** \u2014 hydro **+303** adds on top of **v4**-style voucher **`all`** PnL; product lines sum **9729** vs engine total **9730** (rounding). **Conclusion:** hydro and voucher legs are **orthogonal** in this sim; **`worse`** still shows **no** voucher attribution.",
+    "analysis_description": "**Tape (horizon + direction):** ``analyze_r4_hydro_duopoly_gate_multik.py`` \u2014 **Mark14\u2192Mark38** **HYDROGEL_PACK**: tight>loose on **fwd_EXTRACT_K** for **K=5,20,100** (pooled Welch **p\u22483.9e-4**, **7.5e-4**, **2.8e-7**); **K=100** delta **\u2248+4.77**. **Per-day** for **14\u219238**: **K=20** positive delta **all 3 days** (day2 **p\u22480.036**). **Mark38\u219214**: pooled **K=5** **not** significant (**p\u22480.41**); **K=20** and **K=100** pooled still **tight>loose** (**p\u22480.014**, **0.0096**) but **day-stability is mixed** (day2 K=20 **not** sig). **Sim:** ``trader_v9`` = **v8** + **v4** VEV legs. **`worse`** **3685** (same as **v8**). **`all`** **9730** vs **v8** **6338** / **v4** **9427**.",
     "analysis_outputs": [
       "manual_traders/R4/r4_phase1_marks/analyze_r4_hydro_duopoly_gate_multik.py",
-      "manual_traders/R4/r4_phase1_marks/outputs/phase9_hydro_14_38_gate_multik_extract_fwd.txt",
-      "manual_traders/R4/r4_phase1_marks/outputs/phase9_hydro_14_38_gate_multik_extract_fwd.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase9_hydro_duopoly_gate_multik_extract_fwd.txt",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase9_hydro_duopoly_gate_multik_extract_fwd_pooled.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase9_hydro_duopoly_gate_multik_extract_fwd_by_day.csv",
       "manual_traders/R4/r4_phase1_marks/trader_v9.py",
       "manual_traders/R4/r4_phase1_marks/backtests/iter9_r4d1-3_worse.log",
       "manual_traders/R4/r4_phase1_marks/backtests/iter9_r4d1-3_all.log"
     ],
     "used_to_decide": "For **`all`**, **v9** is the **full** tight-regime stack (extract + hydro + **5200/5300**). For **`worse`**, **v9** adds **no** voucher PnL over **v8**; keep **v8** if hydro is allowed, else **v3** for extract-only."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "**Execution sensitivity (hydro only):** ``trader_v10`` = **v8** with **R4_HYDRO_HALF** / **R4_HYDRO_SIZE** env overrides. ``run_v10_hydro_grid_worse.py`` grid (half **1.6\u20133.0**, size **8/12/16/20**, **`worse`**, **\u2013no-progress**): **VELVETFRUIT_EXTRACT** line stays **3382** for **all** half/size cells (day splits unchanged vs **v8**); **HYDROGEL_PACK** **`worse`** rises from **274** (half 1.6) to **333** (2.4) then **\u22481296** (2.6\u20133.0) \u2014 **total** **3639\u21924709** driven **entirely** by hydro in this grid (**size** had **no** effect in the tested range). Defaults **2.2/14** match **v8**. **``trader_v10``** default backtests duplicate **v8** (**`worse`** **3685**, **`all`** **6338**).",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_phase1_marks/trader_v10.py",
+      "manual_traders/R4/r4_phase1_marks/run_v10_hydro_grid_worse.py",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase10_v10_hydro_grid_worse.tsv",
+      "manual_traders/R4/r4_phase1_marks/backtests/iter10_r4d1-3_worse.log",
+      "manual_traders/R4/r4_phase1_marks/backtests/iter10_r4d1-3_all.log"
+    ],
+    "used_to_decide": "Keep **HYDRO_HALF=2.2** for **conservative** stack (**v8**/default **v10**) unless explicitly exploring **wider** hydro (higher **`worse`** total but different extract path). **v10** exists for sweeps without editing **v8**."
   }
 ]

@@ -252,5 +252,16 @@
       "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v6_all_fill_summary.json"
     ],
     "used_to_decide": "First **positive worse-fill** R4 strategy in this folder; still not counterparty-ID causal — gate-only passive MM slice. Next: combine passive bids with **fade** or **skip ask exits** when worst-pair flow, or scale clip with spread depth."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "Exit ablation vs v6 (+252 worse): trader_v7 uses **limit sell at bid** when wide (passive exit). Worse **-28**, all **-51** — passive sells at bid under worse matching flip the small v6 gain (likely crossing bid with adverse tape). trader_v8 keeps v6 ask exit but only every 25 ticks when wide: worse **+70** (1 submission fill), all **+18416** — slightly worse than v6 on worse-fill bar; throttling reduced exit count but did not beat v6.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_inventory_vega_rail_18/trader_v7.py",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/trader_v8.py",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v7_worse_backtest.log",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v8_worse_backtest.log"
+    ],
+    "used_to_decide": "**Keep v6** as current best worse PnL among gate-only extract variants; passive bid + selective ask exit (v6 pattern) beats passive bid+bid exit (v7). Further work: conditional ask exit on extract spread or inventory only, or add VEV passive leg under same gate."
   }
 ]

@@ -1,0 +1,4 @@
+tape_day,n_unique_timestamps_prices,n_joint_tight_timestamps,share_joint_tight
+1,10000,1381,0.1381
+2,10000,1727,0.1727
+3,10000,4614,0.4614

@@ -4,8 +4,12 @@ Round 4 Phase 1 — counterparty-conditioned forward mids (tape-only).
 
 Horizon K: K * 100 in raw timestamp units (price rows step by 100).
 Mid at t: exact (day, product, timestamp) match. Forward at t+K*100: exact row or NaN.
+hour_cs = (timestamp // 100) // 3600 (contiguous 1-hour buckets from first tick of the day in this tape;
+on R4 days 1–3 this field only attains 0,1,2 so wide “session” labels collapse for key marks).
 
 Aggression at trade time: compare trade price to concurrent L1 bid/ask on that symbol.
+Session stratification: session_bin in {H00_07, H08_15, H16_23} from hour_cs; written to
+r4_p1_participant_forward_by_session.csv (requires n≥10 per cell).
 """
 from __future__ import annotations
 
@@ -189,6 +193,55 @@ def main() -> None:
     pd.DataFrame(participant_rows).to_csv(
         os.path.join(OUT_DIR, "r4_p1_participant_forward_stats.csv"), index=False
     )
+
+    def _session(h: int) -> str:
+        h = int(h)
+        if h < 8:
+            return "H00_07"
+        if h < 16:
+            return "H08_15"
+        return "H16_23"
+
+    session_rows: list[dict[str, Any]] = []
+    for side_key, col_side in [("buy_agg", "buyer"), ("sell_agg", "seller")]:
+        sub = df[df["agg"] == side_key].copy()
+        sub["session_bin"] = sub["hour_cs"].map(_session)
+        marks = sorted({m for m in sub[col_side].unique() if str(m).startswith("Mark")})
+        for u in marks:
+            g = sub[sub[col_side] == u]
+            if len(g) < 20:
+                continue
+            for sym in g["symbol"].unique():
+                gs = g[g["symbol"] == sym]
+                for spb in ["tight", "mid", "wide", "all"]:
+                    if spb == "all":
+                        gg = gs
+                    else:
+                        gg = gs[gs["spread_bin"] == spb]
+                    if len(gg) < 10:
+                        continue
+                    for sess in sorted(gg["session_bin"].unique()):
+                        g3 = gg[gg["session_bin"] == sess]
+                        if len(g3) < 10:
+                            continue
+                        for k in K_LIST:
+                            col = f"dm_self_k{k}"
+                            st = summarize(g3[col])
+                            session_rows.append(
+                                {
+                                    **st,
+                                    "mark": u,
+                                    "side": side_key,
+                                    "symbol": sym,
+                                    "spread_bin": spb,
+                                    "session_bin": sess,
+                                    "horizon_k": k,
+                                }
+                            )
+    if session_rows:
+        pd.DataFrame(session_rows).to_csv(
+            os.path.join(OUT_DIR, "r4_p1_participant_forward_by_session.csv"), index=False
+        )
 
     sub20 = df[df["agg"].isin(["buy_agg", "sell_agg"])].copy()
     sub20["dm"] = sub20["dm_self_k20"]

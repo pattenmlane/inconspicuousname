@@ -6,7 +6,8 @@ Uses r4_p1_trade_enriched.csv (rebuild if missing from Phase 1 script).
 
 Outputs under analysis_outputs/:
 - r4_p2_burst_pair_mark67_extract_k20.csv — Mark67|extract within ±W of Mark01|Mark22 burst
-- r4_p2_leadlag_signed_flow.csv — lagged corr extract vs signed flow by Mark
+- r4_p2_leadlag_m67_signed_flow_vs_extract_fwd.csv — Mark 67 signed flow vs next extract mid change
+- r4_p2_leadlag_signed_flow_by_mark.csv (from r4_phase2_leadlag_multi_mark_flow.py) — same for multiple marks
 - r4_p2_sonic_gate_mark67_k5_by_day.csv — joint 5200+5300 spread<=2 vs Mark67 buy_agg extract k=5
 - r4_p2_microprice_touch_rate.csv — touch rate when spread==2 on 5200/5300
 """

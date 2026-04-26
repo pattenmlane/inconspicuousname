@@ -31,9 +31,10 @@
         "bullet": "1) Participant-level alpha / predictiveness",
         "outputs": [
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_participant_forward_stats.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_participant_forward_by_session.csv",
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_phase1_machine_summary.json"
         ],
-        "conclusion": "Strongest cell: Mark 67 aggressive buys on VELVETFRUIT_EXTRACT show large positive self-mid change at k=5 (n=164, mean≈1.96 ticks, t≈13) stable in tight/all bins; Mark 22 aggressive sells on VEV_5300 show negative k=5 self-mid (n=160, mean≈-0.20, t≈-3.3). Mark 55 on extract is horizon-sensitive — tabulated in r4_p1_mark55_extract_summary.json: buy_agg k5/k20 means ≈ +0.20/+0.41 (t≈2.2/2.5); sell_agg k5/k20 ≈ +0.05/-0.11 (t n.s.), k100 ≈ -0.92 (t≈-2.5)."
+        "conclusion": "Strongest cell: Mark 67 aggressive buys on VELVETFRUIT_EXTRACT show large positive self-mid change at k=5 (n=164, mean≈1.96 ticks, t≈13) stable in tight/all bins; Mark 22 aggressive sells on VEV_5300 show negative k=5 self-mid (n=160, mean≈-0.20, t≈-3.3). Mark 55 on extract is horizon-sensitive — tabulated in r4_p1_mark55_extract_summary.json: buy_agg k5/k20 means ≈ +0.20/+0.41 (t≈2.2/2.5); sell_agg k5/k20 ≈ +0.05/-0.11 (t n.s.), k100 ≈ -0.92 (t≈-2.5). **Session buckets** (H00_07 / H08_15 / H16_23 from `hour_cs`): for Mark67|VELVET|buy_agg|all|k=5 only H00_07 meets n≥10 (n=164; other sessions empty) because R4 tape’s `hour_cs` only takes values 0–2, so 8-hour / full-day seasonality is not separately identifiable in this cut."
       },
       {
         "bullet": "2) Deviation from bot baseline (pair cell means + residuals)",
@@ -133,7 +134,8 @@
       "Burst orchestrator (dominant buyer|seller per multi-print ts): Mark 01|Mark 22 dominates but extract k=20 forward means flip positive days 2–3 after slightly negative day 1 — not a monotone fade target without further conditioning.",
       "Hydro duopoly (Mark38 agg buy HYDROGEL_PACK from Mark14): Sonic-tight rows show **positive** mean extract k=20 (+0.53, n=129) vs loose negative (-0.46, n=378) — contradicts using joint voucher gate to justify shorting extract on that flow; trader_v9 sim -14281.",
       "Reverse hydro leg (M38 sell to M14 at bid): tight subset strongly positive extract k20/k100 offline but day3 mean k20 negative; trader_v10 long sim +11633 total yet still << 200k/day bar and day3 PnL disagrees with naive extrapolation from tight-only means.",
-      "Mark 22 VEV sell-pressure EMA + extract inventory trim (trader_v11 on top of v3) lowers worse/all totals vs v3 (+4764 / +5058 vs +5304 / +10953) with fewer taker fills — this MM-sketch is not a PnL upgrade at tested thresholds."
+      "Mark 22 VEV sell-pressure EMA + extract inventory trim (trader_v11 on top of v3) lowers worse/all totals vs v3 (+4764 / +5058 vs +5304 / +10953) with fewer taker fills — this MM-sketch is not a PnL upgrade at tested thresholds.",
+      "8-hour / full-day ‘session’ splits on Phase-1 participant tables are degenerate: `hour_cs` in r4_p1_trade_enriched.csv only 0,1,2 (example: Mark 67|extract|k=5 populates a single r4_p1_participant_forward_by_session.csv row) — not a disproof of time-of-day effects, a **data-coverage** limit for this run."
     ]
   },
   {
@@ -172,11 +174,13 @@
         "bullet": "3) Cross-instrument lead–lag (Mark67 signed flow vs extract)",
         "outputs": [
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_leadlag_m67_signed_flow_vs_extract_fwd.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_phase2_leadlag_multi_mark_flow.py",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_leadlag_signed_flow_by_mark.csv",
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_hydro_duopoly_extract.py",
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2c_hydro_m38_m14_summary.json",
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2c_hydro_m38_m14_by_gate.csv"
         ],
-        "conclusion": "Mark67 grid: lags 1–2 price rows (~100–200 ts) corr ~0.12 / ~0.095 vs signed M67 extract flow (decays at longer lag). Hydro duopoly (Mark38 agg buy hydro from Mark14, n=507): pooled extract k20 ≈ -0.21 (weak |t|); **tight** subset mean k20 **+0.53** vs **loose -0.46** — inverts a naive short under gate (trader_v9 -14281). Reverse leg (Mark14 buyer, Mark38 seller — all sell_agg, M38 hitting bid, n=496): pooled k20 ≈ -0.12 (n.s.); **tight** mean k20 **+1.08** (t≈2.62, n=126), k100 **+3.19** (t≈4.32) vs **loose** k20 **-0.53** (t≈-2.33). trader_v10 (gate + long extract on that hydro print) +11633 worse/all (36 fills, 600 qty) — profitable vs v9 but day3 sim negative (-3044) while offline day3 k20 for this slice is ≈ -0.80 (t≈-2.41); path PnL ≠ mid-only table."
+        "conclusion": "Mark67 grid: lags 1–2 price rows (~100–200 ts) corr ~0.12 / ~0.095 vs signed M67 extract flow (decays at longer lag). **Multi-mark** signed extract notional vs next-row extract Δmid (r4_p2_leadlag_signed_flow_by_mark.csv): M67 lags 1–5 still strongest (corr ~0.06–0.12); M22 lags 1–5 ~0.02–0.04; M55/M49 ~0.003–0.013; M01/M14/M38 have **zero pooled flow variance** on extract (no aggressive prints on that symbol in R4) so corr is undefined — lead–lag is only meaningful for names with extract tape participation. Hydro duopoly (Mark38 agg buy hydro from Mark14, n=507): pooled extract k20 ≈ -0.21 (weak |t|); **tight** subset mean k20 **+0.53** vs **loose -0.46** — inverts a naive short under gate (trader_v9 -14281). Reverse leg (Mark14 buyer, Mark38 seller — all sell_agg, M38 hitting bid, n=496): pooled k20 ≈ -0.12 (n.s.); **tight** mean k20 **+1.08** (t≈2.62, n=126), k100 **+3.19** (t≈4.32) vs **loose** k20 **-0.53** (t≈-2.33). trader_v10 (gate + long extract on that hydro print) +11633 worse/all (36 fills, 600 qty) — profitable vs v9 but day3 sim negative (-3044) while offline day3 k20 for this slice is ≈ -0.80 (t≈-2.41); path PnL ≠ mid-only table."
       },
       {
         "bullet": "4) Regime splits (Sonic gate × Mark67)",
@@ -482,5 +486,17 @@
       "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v11_round4_all_fills_summary.json"
     ],
     "used_to_decide": "Incline spread–price block no longer has spurious 1.0 self-corrs. Inventory-aware M22 overlay on Mark67+gate taker is worse than v3 in total PnL and fill volume — 'skew away from new risk when a repeated seller is active' is testable but this parameterization is not a near-term PnL upgrade vs baseline v3."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Plan-spec gap-fill (Phase 1 + Phase 2 cross-instrument, no new sim). Extended r4_phase1_counterparty_analysis.py: `r4_p1_participant_forward_by_session.csv` (Mark × side × symbol × spread_bin × session_bin H00_07/H08_15/H16_23, horizons k∈5,20,100). Re-ran Phase 1. New r4_phase2_leadlag_multi_mark_flow.py → r4_p2_leadlag_signed_flow_by_mark.csv (signed extract notional per Mark vs next extract mid, lags 1–20 price rows; documents zero-variance marks). Updated phase bullet conclusions for session degeneracy and multi-mark lead-lag evidence.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_phase1_counterparty_analysis.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_participant_forward_by_session.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_phase2_leadlag_multi_mark_flow.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_leadlag_signed_flow_by_mark.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_phase2_analysis.py"
+    ],
+    "used_to_decide": "Phase 1 “session stratify” is now explicit evidence: 8h buckets do not sub-split the dominant M67|extract|k5 cell in this R4 cut (only 3 `hour_cs` values exist). Lead–lag table shows M67 remains the dominant extract flow signal on grid; M01/M14/M38 have no extract aggressor variance so **corr undefined** in this construction — not ‘no lead-lag in general’ but no extract-local signed flow to correlate for those names."
   }
 ]

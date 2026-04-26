@@ -328,5 +328,16 @@
       "results.json"
     ],
     "used_to_decide": "Ship **v4** as best worse-fill combo so far; **v5** not an upgrade. Next stack candidate: Mark67→Mark49 **directional** extract (tape positive) vs sim adverse-selection risk — needs careful size."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "**trader_v6** tests Phase-1 **Mark67→Mark49 buy-aggr extract** as a **+1** fair-anchor lift for **250** ticks after the print, gated **off** Sonic joint tight (Phase 3 interaction). Stacked on **v4** hydro rule. R4 d1–3: **worse 47,271** (−12 vs v4 47,283) — small **day-2** extract regression under worse. **All 51,920** (+1,392 vs v4) driven largely by **day2 extract** — confirms tape mid drift ≠ worse-fill extract PnL for this nudge.",
+    "analysis_outputs": [
+      "trader_v6.py",
+      "backtest_logs/trader_v6_round4_worse.log",
+      "backtest_logs/trader_v6_round4_all.log",
+      "results.json"
+    ],
+    "used_to_decide": "Do **not** ship v6 for worse-fill objective; keep **v4**. Optional: shrink bias window or bias strength; or only bias **bids** not asks if revisiting."
   }
 ]

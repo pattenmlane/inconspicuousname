@@ -240,7 +240,18 @@
           "evidence": "p3_04"
         }
       ],
-      "phase4_note": "Next: encode Tier-A in trader_r4_v1.py with conservative sizing; run worse+all backtests."
+      "phase4_note": "trader_r4_v1.py implements Sonic gate sizing (not Mark-conditioned); see iteration 3."
     }
+  },
+  {
+    "iteration": 3,
+    "round": 4,
+    "analysis_description": "Shipped trader_r4_v1.py: live Sonic joint gate (5200+5300 spread<=2) drives extract passive size and optional deep passive on wide VEV_4000 when gate tight. Documented backtest harness limitation: TradingState.market_trades is {} during Trader.run in prosperity4bt test_runner — counterparty-conditioned triggers from Phase 3 (e.g. Mark67→Mark22 on extract) cannot be evaluated in-sim without injecting tape trades before each decision or extending the runner.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v1.py",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v1_d123_worse_full.log",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v1_d123_all_full.log"
+    ],
+    "used_to_decide": "Gate-only policy is executable and profitable vs no-op on days 1–3 worse (12,203 vs 0); all-mode total 9,684 with weak day 2. Next research: custom replay layer or fork test_runner to populate market_trades at timestamp for Mark logic."
   }
 ]

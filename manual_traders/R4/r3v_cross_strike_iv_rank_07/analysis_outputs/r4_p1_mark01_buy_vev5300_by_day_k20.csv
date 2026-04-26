@@ -1,4 +1,4 @@
-day,n,mean,t,pos_frac
-1,0,,,
-2,0,,,
-3,0,,,
+day,n,mean,median,t,pos_frac,mean_ci95_lo,mean_ci95_hi
+1,0,,,,,,
+2,0,,,,,,
+3,0,,,,,,

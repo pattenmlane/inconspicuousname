@@ -365,5 +365,23 @@
     ],
     "backtest_worse": null,
     "backtest_all": null
+  },
+  {
+    "iteration": 14,
+    "trader_file": "(none — Phase 1 script extension)",
+    "strategy_description": "r4_phase1_counterparty_analysis.py: median + bootstrap CI on mean in participant stats; r4_p1_participant_forward_by_burst.csv; r4_p1_burst_matched_control_ex_k20.json (burst vs nearest isolated timestamp extract k=20). No backtest.",
+    "total_profit": null,
+    "backtest_round": 4,
+    "match_trades": null,
+    "backtest_log_file": null,
+    "trades_or_fills_summary": null,
+    "analysis_only_outputs": [
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_phase1_counterparty_analysis.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_participant_forward_stats.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_participant_forward_by_burst.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_matched_control_ex_k20.json"
+    ],
+    "backtest_worse": null,
+    "backtest_all": null
   }
 ]

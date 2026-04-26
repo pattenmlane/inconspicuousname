@@ -10,6 +10,11 @@ on R4 days 1–3 this field only attains 0,1,2 so wide “session” labels coll
 Aggression at trade time: compare trade price to concurrent L1 bid/ask on that symbol.
 Session stratification: session_bin in {H00_07, H08_15, H16_23} from hour_cs; written to
 r4_p1_participant_forward_by_session.csv (requires n≥10 per cell).
+
+Participant tables also include median, bootstrap 95% CI on mean (400 resamples, seed 42),
+and r4_p1_participant_forward_by_burst.csv (multi_print_burst vs isolated_print).
+r4_p1_burst_matched_control_ex_k20.json: paired extract k=20 at burst timestamps vs nearest
+same-day isolated price timestamp (control).
 """
 from __future__ import annotations
 
@@ -71,18 +76,45 @@ def classify_agg(price: float, bid: float, ask: float) -> str:
     return "passive_mid"
 
 
-def summarize(series: pd.Series) -> dict[str, Any]:
-    x = series.dropna()
+def summarize(series: pd.Series, rng: np.random.Generator | None = None, n_boot: int = 400) -> dict[str, Any]:
+    """Mean, median, t on mean, fraction positive, bootstrap 95% CI on mean (if n>=30)."""
+    x = series.dropna().astype(float).values
     n = int(len(x))
     if n < 30:
-        return {"n": n, "mean": float("nan"), "t": float("nan"), "pos_frac": float("nan")}
-    m = float(x.mean())
-    s = float(x.std(ddof=1)) if n > 1 else float("nan")
+        return {
+            "n": n,
+            "mean": float("nan"),
+            "median": float("nan"),
+            "t": float("nan"),
+            "pos_frac": float("nan"),
+            "mean_ci95_lo": float("nan"),
+            "mean_ci95_hi": float("nan"),
+        }
+    m = float(np.mean(x))
+    med = float(np.median(x))
+    s = float(np.std(x, ddof=1)) if n > 1 else float("nan")
     tstat = float(m / (s / np.sqrt(n))) if s and s == s and s > 1e-12 else float("nan")
-    return {"n": n, "mean": m, "t": tstat, "pos_frac": float((x > 0).mean())}
+    pos_frac = float(np.mean(x > 0))
+    lo, hi = float("nan"), float("nan")
+    if rng is not None and n_boot > 0:
+        nb = min(n_boot, 800)
+        idx = rng.integers(0, n, size=(nb, n))
+        boot_means = np.mean(x[idx], axis=1)
+        lo = float(np.quantile(boot_means, 0.025))
+        hi = float(np.quantile(boot_means, 0.975))
+    return {
+        "n": n,
+        "mean": m,
+        "median": med,
+        "t": tstat,
+        "pos_frac": pos_frac,
+        "mean_ci95_lo": lo,
+        "mean_ci95_hi": hi,
+    }
 
 
 def main() -> None:
+    rng = np.random.default_rng(42)
     os.makedirs(OUT_DIR, exist_ok=True)
     all_prices = pd.concat([load_prices(d) for d in DAYS], ignore_index=True)
     all_trades = pd.concat([load_trades(d) for d in DAYS], ignore_index=True)
@@ -178,7 +210,7 @@ def main() -> None:
                         continue
                     for k in K_LIST:
                         col = f"dm_self_k{k}"
-                        st = summarize(gg[col])
+                        st = summarize(gg[col], rng=rng)
                         participant_rows.append(
                             {
                                 **st,
@@ -226,7 +258,7 @@ def main() -> None:
                             continue
                         for k in K_LIST:
                             col = f"dm_self_k{k}"
-                            st = summarize(g3[col])
+                            st = summarize(g3[col], rng=rng)
                             session_rows.append(
                                 {
                                     **st,
@@ -241,6 +273,49 @@ def main() -> None:
     if session_rows:
         pd.DataFrame(session_rows).to_csv(
             os.path.join(OUT_DIR, "r4_p1_participant_forward_by_session.csv"), index=False
+        )
+
+    burst_rows: list[dict[str, Any]] = []
+    for side_key, col_side in [("buy_agg", "buyer"), ("sell_agg", "seller")]:
+        sub = df[df["agg"] == side_key].copy()
+        marks = sorted({m for m in sub[col_side].unique() if str(m).startswith("Mark")})
+        for u in marks:
+            g = sub[sub[col_side] == u]
+            if len(g) < 20:
+                continue
+            for sym in g["symbol"].unique():
+                gs = g[g["symbol"] == sym]
+                for spb in ["tight", "mid", "wide", "all"]:
+                    if spb == "all":
+                        gg = gs
+                    else:
+                        gg = gs[gs["spread_bin"] == spb]
+                    if len(gg) < 10:
+                        continue
+                    for burst_label, burst_mask in [
+                        ("multi_print_burst", gg["burst"]),
+                        ("isolated_print", ~gg["burst"]),
+                    ]:
+                        g2 = gg[burst_mask]
+                        if len(g2) < 10:
+                            continue
+                        for k in K_LIST:
+                            col = f"dm_self_k{k}"
+                            st = summarize(g2[col], rng=rng)
+                            burst_rows.append(
+                                {
+                                    **st,
+                                    "mark": u,
+                                    "side": side_key,
+                                    "symbol": sym,
+                                    "spread_bin": spb,
+                                    "burst_stratum": burst_label,
+                                    "horizon_k": k,
+                                }
+                            )
+    if burst_rows:
+        pd.DataFrame(burst_rows).to_csv(
+            os.path.join(OUT_DIR, "r4_p1_participant_forward_by_burst.csv"), index=False
         )
 
     sub20 = df[df["agg"].isin(["buy_agg", "sell_agg"])].copy()
@@ -266,10 +341,72 @@ def main() -> None:
     burst_es = []
     for is_b in [True, False]:
         g = df[df["burst"] == is_b]
-        st = summarize(g["dm_ex_k20"])
+        st = summarize(g["dm_ex_k20"], rng=rng)
         st["burst"] = is_b
         burst_es.append(st)
     pd.DataFrame(burst_es).to_csv(os.path.join(OUT_DIR, "r4_p1_burst_extract_fwd_k20.csv"), index=False)
+
+    # Matched-time control: each multi-print (day,ts) vs nearest same-day isolated timestamp extract k=20
+    burst_keys = (
+        df.loc[df["burst"], ["day", "timestamp"]]
+        .drop_duplicates()
+        .sort_values(["day", "timestamp"])
+        .to_records(index=False)
+    )
+    iso_by_day: dict[int, np.ndarray] = {}
+    for d in DAYS:
+        ts_iso = (
+            df.loc[(df["day"] == d) & (~df["burst"]), "timestamp"].drop_duplicates().sort_values().astype(int).values
+        )
+        iso_by_day[int(d)] = ts_iso
+
+    pairs_dm: list[float] = []
+    pairs_ctrl: list[float] = []
+    for day, ts_b in burst_keys:
+        ex0 = mid_at(lookup, int(day), "VELVETFRUIT_EXTRACT", int(ts_b))
+        exk = mid_fwd(lookup, int(day), "VELVETFRUIT_EXTRACT", int(ts_b), 20)
+        if ex0 is None or exk is None:
+            continue
+        dm_b = float(exk - ex0)
+        arr = iso_by_day.get(int(day))
+        if arr is None or len(arr) == 0:
+            continue
+        pos = int(np.searchsorted(arr, int(ts_b)))
+        candidates: list[int] = []
+        if pos < len(arr):
+            candidates.append(int(arr[pos]))
+        if pos > 0:
+            candidates.append(int(arr[pos - 1]))
+        if not candidates:
+            continue
+        ts_c = min(candidates, key=lambda t: abs(t - int(ts_b)))
+        if ts_c == int(ts_b):
+            continue
+        c0 = mid_at(lookup, int(day), "VELVETFRUIT_EXTRACT", ts_c)
+        ck = mid_fwd(lookup, int(day), "VELVETFRUIT_EXTRACT", ts_c, 20)
+        if c0 is None or ck is None:
+            continue
+        dm_c = float(ck - c0)
+        pairs_dm.append(dm_b)
+        pairs_ctrl.append(dm_c)
+
+    mc_summary: dict[str, Any] = {"n_burst_timestamps_matched": len(pairs_dm)}
+    if len(pairs_dm) >= 30:
+        b_arr = np.array(pairs_dm, dtype=float)
+        c_arr = np.array(pairs_ctrl, dtype=float)
+        diff = b_arr - c_arr
+        mc_summary["mean_burst_ex_k20"] = float(np.mean(b_arr))
+        mc_summary["mean_control_ex_k20"] = float(np.mean(c_arr))
+        mc_summary["mean_diff_burst_minus_control"] = float(np.mean(diff))
+        mc_summary["t_diff"] = float(
+            np.mean(diff) / (np.std(diff, ddof=1) / np.sqrt(len(diff)))
+        ) if np.std(diff, ddof=1) > 1e-12 else float("nan")
+        idx = rng.integers(0, len(diff), size=(400, len(diff)))
+        boot = np.mean(diff[idx], axis=1)
+        mc_summary["diff_mean_ci95_lo"] = float(np.quantile(boot, 0.025))
+        mc_summary["diff_mean_ci95_hi"] = float(np.quantile(boot, 0.975))
+    with open(os.path.join(OUT_DIR, "r4_p1_burst_matched_control_ex_k20.json"), "w", encoding="utf-8") as f:
+        json.dump(mc_summary, f, indent=2)
 
     sub20[sub20["seller"] == "Mark 22"].groupby("buyer")["dm_self_k20"].agg(["mean", "count"]).reset_index().sort_values(
         "mean"
@@ -278,7 +415,7 @@ def main() -> None:
     stab = []
     for d in DAYS:
         g = df[(df["day"] == d) & (df["buyer"] == "Mark 01") & (df["agg"] == "buy_agg") & (df["symbol"] == "VEV_5300")]
-        stab.append({"day": d, **summarize(g["dm_self_k20"])})
+        stab.append({"day": d, **summarize(g["dm_self_k20"], rng=rng)})
     pd.DataFrame(stab).to_csv(os.path.join(OUT_DIR, "r4_p1_mark01_buy_vev5300_by_day_k20.csv"), index=False)
 
     # 2-hop: Mark A -> Mark B at t1, then Mark B -> Mark C at t2, 0 < t2-t1 <= 5000; correlate extract fwd from t2, k=20

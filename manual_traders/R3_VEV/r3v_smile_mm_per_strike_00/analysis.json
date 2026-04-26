@@ -168,5 +168,15 @@
       "duplicate_risk": "low",
       "new_adjusted_variant": "n/a"
     }
+  },
+  {
+    "iteration": 18,
+    "analysis_description": "Scope pivot: deprioritize legacy smile-MM thesis. Reread `STRATEGY.txt` and `ORIGINAL_DISCORD_QUOTES.txt` (inclineGod: spreads per contract; Sonic: t-stat decays when 5200/5300 widen past 2, hedge into tight surface, \u201cfree alpha\u201d only when both \u22642).",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt"
+    ],
+    "used_to_decide": "v21: pure **gate-first** — no IV, no smile fit. Tight: mid-touch on all 10 VEVs + extract; **wide: flat**. v22: same tight path; wide uses 0.3\u00d7 size + wider half. **Worse** 4-day for v21 and v22 both **-92** (one bad day-2; sparse gate-off may matter less than fills). **All** 4-day v21=7546, v22=13834. 200k/day goal **not** met in this backtester. Next: gate-conditioned extract only, or re-enable modest quoting off-gate with stronger hedge; avoid returning to full smile stack."
   }
 ]

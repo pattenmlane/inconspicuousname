@@ -1,0 +1,23 @@
+v21 all
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v21.py for round: 3 day: 0
+VELVETFRUIT_EXTRACT: 578
+HYDROGEL_PACK: 0
+Total profit: 790
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v21.py for round: 3 day: 1
+VELVETFRUIT_EXTRACT: 770
+HYDROGEL_PACK: 0
+Total profit: 2,102
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v21.py for round: 3 day: 2
+VELVETFRUIT_EXTRACT: 1,788
+HYDROGEL_PACK: 0
+Total profit: 4,745
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v21.py for round: 3 day: 3
+VELVETFRUIT_EXTRACT: -106
+HYDROGEL_PACK: 0
+Total profit: -90
+Profit summary:
+Round 3 day 0: 790
+Round 3 day 1: 2,102
+Round 3 day 2: 4,745
+Round 3 day 3: -90
+Total profit: 7,546

@@ -63,8 +63,8 @@
       },
       {
         "rank": 2,
-        "edge": "Spread\u2013spread correlations (VEV legs) on shared timestamps",
-        "effect": "See r4_p3_spread_correlations.csv; top rows in summary",
+        "edge": "Spread\u2013spread and spread-vs-mid panels on inner-join timestamps",
+        "effect": "See r4_p3_spread_correlations.csv (corr_kind spread and spread_vs_mid)",
         "paths": [
           "r4_p3_spread_correlations.csv"
         ],

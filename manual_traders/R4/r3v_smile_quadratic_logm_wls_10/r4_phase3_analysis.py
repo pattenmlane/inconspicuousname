@@ -8,7 +8,7 @@ Tape: Prosperity4Data/ROUND_4 days 1–3.
 
 Writes:
   r4_p3_gate_panel.csv              — aligned mids/spreads + joint_tight + extract fwd20
-  r4_p3_spread_correlations.csv     — mid–mid and spread–spread (full sample + gate-only)
+  r4_p3_spread_correlations.csv     — mid–mid, spread–spread, spread_vs_mid cross pairs (full + tight subsample)
   r4_p3_forward_by_mark_gated.csv   — Phase-1-style Mark×role×K, split joint_tight on/off
   r4_p3_burst_extract_gated.csv     — Phase-1 big bursts × gate at burst ts
   r4_p3_burst_echo_gated.csv        — Phase-2 Mark01→Mark22 ≥3VEV bursts × gate
@@ -188,6 +188,28 @@ def spread_spread_correlations(px: pd.DataFrame, gate_panel_df: pd.DataFrame) ->
                             "n_pair": int(subm[[ci, cj]].dropna().shape[0]),
                         }
                     )
+        # inclineGod: spread of one product vs mid of another (cross pairs)
+        for i, si in enumerate(CORR_SYMS):
+            for j, sj in enumerate(CORR_SYMS):
+                if i == j:
+                    continue
+                cx, cy = f"sp_{si}", f"mid_{sj}"
+                if cx not in wide.columns or cy not in wide.columns:
+                    continue
+                pair = wide[[cx, cy]].apply(pd.to_numeric, errors="coerce").dropna()
+                if len(pair) < 100:
+                    continue
+                r = float(pair[cx].corr(pair[cy]))
+                rows.append(
+                    {
+                        "sample": sample_name,
+                        "corr_kind": "spread_vs_mid",
+                        "x": cx,
+                        "y": cy,
+                        "pearson_r": r if np.isfinite(r) else float("nan"),
+                        "n_pair": int(len(pair)),
+                    }
+                )
     return pd.DataFrame(rows)
 
 
@@ -891,8 +913,8 @@ def main() -> None:
         },
         {
             "rank": 2,
-            "edge": "Spread–spread correlations (VEV legs) on shared timestamps",
-            "effect": "See r4_p3_spread_correlations.csv; top rows in summary",
+            "edge": "Spread–spread and spread-vs-mid panels on inner-join timestamps",
+            "effect": "See r4_p3_spread_correlations.csv (corr_kind spread and spread_vs_mid)",
             "paths": ["r4_p3_spread_correlations.csv"],
             "vs_phase2": "Phase2 emphasized mid paths; Phase3 adds inclineGod spread–spread panel.",
         },

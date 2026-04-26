@@ -8,6 +8,9 @@
     ],
     "outputs": {
       "participant_forward": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_forward_by_mark.csv",
+      "mark_product_cross": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_product_cross.csv",
+      "mark_burst_same_sym": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_burst_same_sym.csv",
+      "two_hop_motifs": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_2hop_motifs.csv",
       "pair_residuals": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_pair_baseline_residuals.csv",
       "graph_edges": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_graph_edges.csv",
       "bursts": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_burst_events.csv",
@@ -23,6 +26,20 @@
         ]
       },
       {
+        "bullet": "1b cross-asset + per-traded-product",
+        "conclusion": "r4_p1_mark_product_cross.csv: same-symbol vs extract vs hydro fwd at print time by Mark\u00d7role\u00d7product\u00d7K\u00d7spread regime with bootstrap 95% CI on mean.",
+        "paths": [
+          "r4_p1_mark_product_cross.csv"
+        ]
+      },
+      {
+        "bullet": "1c burst vs isolated",
+        "conclusion": "r4_p1_mark_burst_same_sym.csv stratifies same-symbol fwd when (day,ts) has \u22654 trades vs isolated prints.",
+        "paths": [
+          "r4_p1_mark_burst_same_sym.csv"
+        ]
+      },
+      {
         "bullet": "2 bot baseline / residuals",
         "conclusion": "Per (buyer,seller,symbol) mean fwd20 and trade-level residuals in r4_p1_pair_baseline_residuals.csv.",
         "paths": [
@@ -31,9 +48,10 @@
       },
       {
         "bullet": "3 graph motifs",
-        "conclusion": "Mark 01\u2192Mark 22 dominates edge list (r4_p1_graph_edges.csv).",
+        "conclusion": "Mark 01\u2192Mark 22 dominates edge list (r4_p1_graph_edges.csv); 2-hop chain enumeration r4_p1_2hop_motifs.csv.",
         "paths": [
-          "r4_p1_graph_edges.csv"
+          "r4_p1_graph_edges.csv",
+          "r4_p1_2hop_motifs.csv"
         ]
       },
       {

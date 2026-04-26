@@ -8,6 +8,9 @@ Horizon K = K *next observation rows* per symbol after sorting by (day, timestam
 
 Writes under this folder:
   - r4_p1_forward_by_mark.csv
+  - r4_p1_mark_product_cross.csv   — Mark×role×traded symbol×K×spread regime: same/extract/hydro fwd + bootstrap CI
+  - r4_p1_mark_burst_same_sym.csv    — same-symbol fwd stratified burst vs isolated
+  - r4_p1_2hop_motifs.csv            — 2-hop buyer→seller→seller2 counts (structural)
   - r4_p1_pair_baseline_residuals.csv
   - r4_p1_graph_edges.csv
   - r4_p1_burst_events.csv
@@ -113,6 +116,17 @@ def hour_bucket(ts: int) -> int:
     return (ts // 100) % 24
 
 
+def bootstrap_mean_ci(vals: np.ndarray, *, rng: np.random.Generator, n_boot: int = 800) -> tuple[float, float]:
+    v = vals[np.isfinite(vals)]
+    if len(v) < 10:
+        return (float("nan"), float("nan"))
+    if len(v) == 1:
+        return (float(v[0]), float(v[0]))
+    idx = rng.integers(0, len(v), size=(n_boot, len(v)))
+    means = v[idx].mean(axis=1)
+    return (float(np.percentile(means, 2.5)), float(np.percentile(means, 97.5)))
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     px = load_prices()
@@ -127,6 +141,16 @@ def main() -> None:
     m["side"] = classify_side_vec(m["price"], m["bid1"], m["ask1"])
     for k in KS:
         m[f"fwd_mid_{k}"] = m[f"fwd_mid_{k}"].astype(float)
+
+    # Cross-asset forwards at trade timestamp (extract + hydro)
+    ex = px.loc[px["symbol"] == "VELVETFRUIT_EXTRACT", ["day", "timestamp"] + [f"fwd_mid_{k}" for k in KS]].rename(
+        columns={f"fwd_mid_{k}": f"ex_fwd_{k}" for k in KS}
+    )
+    hy = px.loc[px["symbol"] == "HYDROGEL_PACK", ["day", "timestamp"] + [f"fwd_mid_{k}" for k in KS]].rename(
+        columns={f"fwd_mid_{k}": f"hy_fwd_{k}" for k in KS}
+    )
+    m = m.merge(ex, on=["day", "timestamp"], how="left")
+    m = m.merge(hy, on=["day", "timestamp"], how="left")
 
     # --- 1) Participant-level: Mark U as buyer aggressor vs seller aggressor
     rows = []
@@ -175,6 +199,110 @@ def main() -> None:
     df_mark = pd.DataFrame(rows)
     df_mark.to_csv(OUT / "r4_p1_forward_by_mark.csv", index=False)
 
+    # --- 1b) Burst vs isolated (same-symbol fwd) for Mark flows
+    ts_n = m.groupby(["day", "timestamp"])["symbol"].transform("count")
+    m["burst_multi"] = ts_n >= 4
+
+    rng = np.random.default_rng(0)
+    burst_rows: list[dict] = []
+    marks = sorted(set(m["buyer"]) | set(m["seller"]))
+    marks = [x for x in marks if str(x).startswith("Mark ")]
+    for u in marks:
+        for role, mask in (
+            ("buyer_agg", (m["buyer"] == u) & (m["side"] == "buyer_aggressive")),
+            ("seller_agg", (m["seller"] == u) & (m["side"] == "seller_aggressive")),
+        ):
+            sub = m.loc[mask]
+            if len(sub) < 15:
+                continue
+            for burst_lab, bmask in (
+                ("multi_ts_burst", sub["burst_multi"]),
+                ("isolated", ~sub["burst_multi"]),
+            ):
+                bb = sub.loc[bmask]
+                for k in KS:
+                    col = f"fwd_mid_{k}"
+                    vals = bb[col].to_numpy(dtype=float)
+                    vals = vals[np.isfinite(vals)]
+                    if len(vals) < 8:
+                        continue
+                    lo, hi = bootstrap_mean_ci(vals, rng=rng)
+                    burst_rows.append(
+                        {
+                            "mark": u,
+                            "role": role,
+                            "burst_stratum": burst_lab,
+                            "horizon_K": k,
+                            "n": len(vals),
+                            "mean_fwd_same": float(np.mean(vals)),
+                            "t_vs_zero": float(np.mean(vals) / (np.std(vals, ddof=1) / math.sqrt(len(vals))))
+                            if len(vals) > 1 and np.std(vals, ddof=1) > 0
+                            else float("nan"),
+                            "ci95_low": lo,
+                            "ci95_high": hi,
+                        }
+                    )
+    pd.DataFrame(burst_rows).to_csv(OUT / "r4_p1_mark_burst_same_sym.csv", index=False)
+
+    # --- 1c) Mark×role×traded product×K×spread regime: same / extract / hydro forwards
+    cross_rows: list[dict] = []
+    for u in marks:
+        for role, mask in (
+            ("buyer_agg", (m["buyer"] == u) & (m["side"] == "buyer_aggressive")),
+            ("seller_agg", (m["seller"] == u) & (m["side"] == "seller_aggressive")),
+        ):
+            sub = m.loc[mask]
+            if len(sub) < 12:
+                continue
+            for traded in PRODUCTS:
+                sp = sub.loc[sub["symbol"] == traded]
+                if len(sp) < 10:
+                    continue
+                spr = sp["spread"].to_numpy(dtype=float)
+                spr_q = np.nanquantile(spr, [0.33, 0.66]) if np.any(np.isfinite(spr)) else (np.nan, np.nan)
+                for regime, rmask in (
+                    ("all", np.ones(len(sp), dtype=bool)),
+                    ("tight_spread", sp["spread"].notna() & (sp["spread"] <= spr_q[0])),
+                    ("wide_spread", sp["spread"].notna() & (sp["spread"] >= spr_q[1])),
+                ):
+                    bb = sp.loc[rmask]
+                    if len(bb) < 8:
+                        continue
+                    for k in KS:
+                        same_c = f"fwd_mid_{k}"
+                        ex_c = f"ex_fwd_{k}"
+                        hy_c = f"hy_fwd_{k}"
+                        for tgt, col in (("same_symbol", same_c), ("VELVETFRUIT_EXTRACT", ex_c), ("HYDROGEL_PACK", hy_c)):
+                            vals = bb[col].to_numpy(dtype=float)
+                            vals = vals[np.isfinite(vals)]
+                            if len(vals) < 8:
+                                continue
+                            lo, hi = bootstrap_mean_ci(vals, rng=rng)
+                            mu = float(np.mean(vals))
+                            t0 = (
+                                float(mu / (np.std(vals, ddof=1) / math.sqrt(len(vals))))
+                                if len(vals) > 1 and np.std(vals, ddof=1) > 0
+                                else float("nan")
+                            )
+                            cross_rows.append(
+                                {
+                                    "mark": u,
+                                    "role": role,
+                                    "traded_symbol": traded,
+                                    "spread_regime": regime,
+                                    "horizon_K": k,
+                                    "fwd_target": tgt,
+                                    "n": len(vals),
+                                    "mean_fwd": mu,
+                                    "median_fwd": float(np.median(vals)),
+                                    "frac_pos": float(np.mean(vals > 0)),
+                                    "t_vs_zero": t0,
+                                    "ci95_low": lo,
+                                    "ci95_high": hi,
+                                }
+                            )
+    pd.DataFrame(cross_rows).to_csv(OUT / "r4_p1_mark_product_cross.csv", index=False)
+
     # --- 2) Pair baseline: cell mean fwd20 by (buyer, seller, symbol), residual
     cell = m.groupby(["buyer", "seller", "symbol"], as_index=False).agg(
         cell_mean_fwd20=("fwd_mid_20", "mean"),
@@ -192,6 +320,25 @@ def main() -> None:
     eg = m.groupby(["buyer", "seller"], as_index=False).agg(n=("symbol", "count"), notional=("notional", "sum"))
     eg = eg.sort_values("n", ascending=False)
     eg.to_csv(OUT / "r4_p1_graph_edges.csv", index=False)
+
+    # --- 3b) 2-hop motifs A→B→C (chain counts where hop1 seller == hop2 buyer)
+    hop_rows: list[dict] = []
+    for _, r1 in eg.head(20).iterrows():
+        b1, s1 = str(r1["buyer"]), str(r1["seller"])
+        sub2 = eg[eg["buyer"] == s1]
+        for _, r2 in sub2.head(25).iterrows():
+            s2 = str(r2["seller"])
+            hop_rows.append(
+                {
+                    "hop1_buyer": b1,
+                    "hop1_seller": s1,
+                    "hop2_seller": s2,
+                    "n_hop1": int(r1["n"]),
+                    "n_hop2": int(r2["n"]),
+                    "min_n": int(min(r1["n"], r2["n"])),
+                }
+            )
+    pd.DataFrame(hop_rows).to_csv(OUT / "r4_p1_2hop_motifs.csv", index=False)
 
     # --- 4) Bursts
     def _symset(s: pd.Series) -> str:
@@ -242,6 +389,9 @@ def main() -> None:
             "tape_days": DAYS,
             "outputs": {
                 "participant_forward": _rel(OUT / "r4_p1_forward_by_mark.csv"),
+                "mark_product_cross": _rel(OUT / "r4_p1_mark_product_cross.csv"),
+                "mark_burst_same_sym": _rel(OUT / "r4_p1_mark_burst_same_sym.csv"),
+                "two_hop_motifs": _rel(OUT / "r4_p1_2hop_motifs.csv"),
                 "pair_residuals": _rel(OUT / "r4_p1_pair_baseline_residuals.csv"),
                 "graph_edges": _rel(OUT / "r4_p1_graph_edges.csv"),
                 "bursts": _rel(OUT / "r4_p1_burst_events.csv"),
@@ -250,8 +400,10 @@ def main() -> None:
             },
             "bullets": [
                 {"bullet": "1 participant-level", "conclusion": "See r4_p1_forward_by_mark.csv; Mark-conditioned fwd mids vary by role/K; many cells low-n.", "paths": ["r4_p1_forward_by_mark.csv"]},
+                {"bullet": "1b cross-asset + per-traded-product", "conclusion": "r4_p1_mark_product_cross.csv: same-symbol vs extract vs hydro fwd at print time by Mark×role×product×K×spread regime with bootstrap 95% CI on mean.", "paths": ["r4_p1_mark_product_cross.csv"]},
+                {"bullet": "1c burst vs isolated", "conclusion": "r4_p1_mark_burst_same_sym.csv stratifies same-symbol fwd when (day,ts) has ≥4 trades vs isolated prints.", "paths": ["r4_p1_mark_burst_same_sym.csv"]},
                 {"bullet": "2 bot baseline / residuals", "conclusion": "Per (buyer,seller,symbol) mean fwd20 and trade-level residuals in r4_p1_pair_baseline_residuals.csv.", "paths": ["r4_p1_pair_baseline_residuals.csv"]},
-                {"bullet": "3 graph motifs", "conclusion": "Mark 01→Mark 22 dominates edge list (r4_p1_graph_edges.csv).", "paths": ["r4_p1_graph_edges.csv"]},
+                {"bullet": "3 graph motifs", "conclusion": "Mark 01→Mark 22 dominates edge list (r4_p1_graph_edges.csv); 2-hop chain enumeration r4_p1_2hop_motifs.csv.", "paths": ["r4_p1_graph_edges.csv", "r4_p1_2hop_motifs.csv"]},
                 {"bullet": "4 bursts", "conclusion": "Multi-symbol same-ts bursts listed; vs random-time extract fwd20 compare in summary.", "paths": ["r4_p1_burst_events.csv", "r4_p1_phase1_summary.txt"]},
                 {"bullet": "5 adverse selection", "conclusion": "Proxy: aggressive-side fwd on same symbol; detailed in forward_by_mark for buyer_agg vs seller_agg.", "paths": ["r4_p1_forward_by_mark.csv"]},
             ],

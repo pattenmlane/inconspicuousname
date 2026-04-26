@@ -1,0 +1,77 @@
+Round 4 — initial summary / analysis (counterparty IDs + bot structure)
+======================================================================
+
+Source: round4description.txt, Prosperity4Data/ROUND_4 trades (days 1–3), and
+prior Round 3 “insider” style work (inferred flow without buyer/seller fields).
+
+
+What round4description.txt adds
+--------------------------------
+Round 4 keeps the same products and position limits as Round 3, but Trade.buyer
+and Trade.seller are populated with participant names. You can identify every
+other participant in the market and study their behavior on the public tape.
+
+So the old “insider” question — who is leaning on the tape — can move from
+inference from size / regime / Sonic-style gates (Round 3 scripts such as
+identify_vev_insider_fingerprint_r3.py, extract informed-flow evidence, etc.)
+to direct labeling of counterparties on each print.
+
+
+Initial analysis (ROUND_4 days 1–3)
+------------------------------------
+Tape: Prosperity4Data/ROUND_4/trades_round_4_day_{1,2,3}.csv (semicolon-separated).
+
+Only seven named participants appear: Mark 01, 14, 22, 38, 49, 55, 67 — a small
+fixed cast of bots, consistent with the “Hello, I’m Mark” framing.
+
+Flow roles (lot sums over all symbols in this slice):
+  • Mark 01: very net buyer (+4678 lots bought vs sold as seller).
+  • Mark 22: very net seller (−5477) — natural liquidity sink on the other side
+    of many prints.
+  • Mark 14 ↔ Mark 38: large two-way flow (714 vs 728 prints in opposite
+    directions) — paired-bot behavior on HYDROGEL_PACK (each side ~50% buyer /
+    seller share).
+  • Mark 67 → Mark 49 and Mark 67 → Mark 22 appear as smaller but sharp directed
+    motifs.
+
+Dominant directed pair:
+  • Mark 01 → Mark 22 is the single most common buyer–seller pair (1339 rows),
+    consistent with basket / synchronized voucher selling. Multi-symbol bursts
+    at one timestamp often show Mark 22 as seller (and sometimes Mark 01).
+
+Same-timestamp bursts:
+  • Up to 10 prints at one (day, timestamp) across VEV_4000, … — Mark 22 (and
+    sometimes Mark 01). That reads as cross-product bot ladders, not human
+    one-offs.
+
+Per-product concentration (from the same three-day slice):
+  • VELVETFRUIT_EXTRACT: Mark ~55 ~43% on both buy and sell sides — balanced
+    market-maker style participation.
+  • HYDROGEL_PACK: Mark 38 vs Mark 14 split ~50/50 on buyer and seller —
+    two-sided bot duopoly.
+  • VEV_5300: ~80% of buys from Mark 01, ~99% of sells from Mark 22 — almost a
+    dedicated pipe; useful for “who is the forced seller at the touch” logic.
+
+Connection to Round 3 “insider” intuition:
+  Round 3 inferred structured / possibly informed flow from public fields only.
+  Round 4 makes the same idea explicit: much of the structure is named bot
+  choreography you can cluster and condition on (pair identity, bursts,
+  per-symbol who always sells).
+
+
+Reproducible artifact in this repo
+---------------------------------
+  round4work/r4_counterparty_initial_sketch.py
+    → writes round4work/outputs/r4_counterparty_sketch.txt (tables / counts).
+
+Run from repo root:
+  python3 round4work/r4_counterparty_initial_sketch.py
+
+
+Next useful directions (deeper work)
+------------------------------------
+  • Mark-conditional forward mid moves (does a print predict short-horizon price
+    change given buyer/seller identity?).
+  • Lead–lag between Mark pairs and VELVETFRUIT_EXTRACT.
+  • Whether Mark 01 prints predict moves conditional on Mark 22 being the seller
+    — a Round 4 analogue of gated informed-flow tests, but with explicit IDs.

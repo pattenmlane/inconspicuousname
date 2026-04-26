@@ -1,0 +1,23 @@
+Passive adverse proxy at K=20 price bars (see module docstring for sign).
+Higher mean_adverse = worse for passive liquidity on that side.
+
+VELVETFRUIT_EXTRACT — all passive parties with n>=25 (sorted worst first):
+  Mark 49 n=120 mean=1.925 frac>0=0.667 d1=1.923 d2=1.393 d3=2.5
+  Mark 22 n=109 mean=1.6009 frac>0=0.596 d1=2.36 d2=0.9405 d3=1.396
+  Mark 14 n=647 mean=0.41036 frac>0=0.501 d1=0.6422 d2=0.3786 d3=0.2235
+  Mark 01 n=504 mean=0 frac>0=0.492 d1=-0.6592 d2=0.4781 d3=0.09756
+
+Worst 15 any symbol:
+  Mark 49 VELVETFRUIT_EXTRACT n=120 mean=1.925
+  Mark 22 VELVETFRUIT_EXTRACT n=109 mean=1.6009
+  Mark 14 VELVETFRUIT_EXTRACT n=647 mean=0.41036
+  Mark 14 VEV_5300 n=28 mean=0.25
+  Mark 14 VEV_4000 n=437 mean=0.19565
+  Mark 01 VEV_5300 n=132 mean=0.12121
+  Mark 01 VEV_6500 n=317 mean=0
+  Mark 01 VEV_6000 n=317 mean=0
+  Mark 01 VELVETFRUIT_EXTRACT n=504 mean=0
+  Mark 14 VEV_5200 n=33 mean=-0.015152
+  Mark 01 VEV_5500 n=299 mean=-0.025084
+  Mark 01 VEV_5400 n=263 mean=-0.039924
+  Mark 14 HYDROGEL_PACK n=1003 mean=-0.29412

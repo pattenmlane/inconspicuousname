@@ -27,6 +27,7 @@
     "phase1_post_hoc_tape_refinement": "Later scripts (**phase8+**) add **Sonic joint gate \u00d7 (buyer,seller) \u00d7 hydro** tables; the original Phase-1 **participant null** for generic Mark\u00d7symbol markouts is **not** replaced\u2014gate-conditioned hydro is a **separate, stronger** tape signal.",
     "ops_template_supplement_2026": "``analyze_r4_phase1_stability_supplement.py``: **net** aggressor lot imbalance (`phase1_participant_net_aggr_flow_lots.csv`); **pair reciprocity** for all mark pairs (`phase1_pair_reciprocity_all_marks.csv`); **bootstrap 95% CI** (2000) on `fwd_same_K` for cells with **n\u226550** plus per-day means (`phase1_participant_markout_bootstrap_n50plus.csv`); **burst_ge4** split for K=20 (`phase1_participant_markout_x_burst_k20.csv`); `phase1_bootstrap_summary.txt` reports **4 / 36** cells with **ci95_lo>0**; positive-CI cells include **Mark 55 aggr_buy** extract K=5,20 and **Mark 67 aggr_buy** extract K=5,20 (large point estimates; not adjusted for multiple testing; **K=100** and **aggr_sell** paths are mixed).",
     "ops_template_graph_burst_2026": "``analyze_r4_phase1_graph_hubs_burst_control.py``: **in/out degree** (count and notional) for hub view (`phase1_graph_hub_degree_*.csv`); **orchestrator** rows at every burst (`phase1_orchestrator_at_burst_rows.csv`); **random timestamp control** for burst event study: per day, **k** = min(n burst (n_prints\u22654) timestamps, n control **1\u2264n<4**), sample control **without** replacement, compare **all prints'** `fwd_EXTRACT_20` \u2014 `phase1_burst_event_random_control_summary.txt` (pooled Welch **t\u22482.79** burst vs control on R4d1\u20133; see file for per-day and vs isolated).",
+    "ops_template_phase16_baseline_passive": "``analyze_r4_phase1_baseline_passive_supplement.py``: **(2)** Residual = `fwd_EXTRACT_20` minus mean in **(symbol, spread_bin)** pool only (`phase16_baseline_fwd_extract_residual_by_pair.csv`, summary txt). **(5)** Passive adverse = `fwd_same_20` for passive seller after **aggr_buy**, **-fwd_same_20** for passive buyer after **aggr_sell** (`phase16_passive_adverse_by_party_symbol.csv`, summary txt).",
     "bullet_evidence": [
       {
         "bullet": "1) Participant-level alpha / predictiveness",
@@ -40,9 +41,11 @@
         "bullet": "2) Deviation from bot baseline (cell mean fwd_same_20 by buyer,seller,symbol,spread_bin)",
         "outputs": [
           "manual_traders/R4/r4_phase1_marks/outputs/baseline_fwd20_residuals.csv",
-          "manual_traders/R4/r4_phase1_marks/outputs/top_abs_residual_pairs.csv"
+          "manual_traders/R4/r4_phase1_marks/outputs/top_abs_residual_pairs.csv",
+          "manual_traders/R4/r4_phase1_marks/outputs/phase16_baseline_fwd_extract_residual_by_pair.csv",
+          "manual_traders/R4/r4_phase1_marks/outputs/phase16_baseline_fwd_extract_residual_summary.txt"
         ],
-        "conclusion": "Residual means are **~0** at scale of rounding; dominant structure is explained by the cell means (**no** large stable second-order anomaly in fwd_same_20)."
+        "conclusion": "**Same-asset** cell baseline (`fwd_same_20` vs buyer,seller,symbol,spread_bin) leaves residuals **~0** by construction. **Cross-asset** uplift: residualizing `fwd_EXTRACT_20` against a **coarser** pool (**symbol, spread_bin** only) surfaces **Mark 55\u2192Mark 14** on extract mean residual **+0.49** (n=331, daily means same sign) and **Mark 14\u2192Mark 55** **\u22120.38** (n=316) \u2014 **candidate** counterparty timing vs product-wide extract drift; most other high-volume pairs stay **|mean_res|<0.15** (see summary)."
       },
       {
         "bullet": "3) Sequence / graph methods",
@@ -69,9 +72,11 @@
       {
         "bullet": "5) Adverse selection vs inventory (proxy)",
         "outputs": [
-          "manual_traders/R4/r4_phase1_marks/outputs/extract_passive_party_fwd20_proxy.csv"
+          "manual_traders/R4/r4_phase1_marks/outputs/extract_passive_party_fwd20_proxy.csv",
+          "manual_traders/R4/r4_phase1_marks/outputs/phase16_passive_adverse_by_party_symbol.csv",
+          "manual_traders/R4/r4_phase1_marks/outputs/phase16_passive_adverse_summary.txt"
         ],
-        "conclusion": "Party-conditioned mean **fwd_same_20** on extract prints is near **0** for all Marks in this proxy; **no** clear \u201cwho systematically picks off mid\u201d ranking beyond noise at K=20."
+        "conclusion": "The **unconditional** party column in `extract_passive_party_fwd20_proxy.csv` mixes aggressor and passive roles, so means cluster near **0**. **Sign-corrected** passive counterparty metric (**phase16_***) ranks **Mark 49** then **Mark 22** worst on **VELVETFRUIT_EXTRACT** passive adverse (~**1.9** / **~1.6** mean proxy, n\u2248120/109), then **Mark 14** (~**0.41**, n=647) vs **Mark 01** ~**0** \u2014 interpret as **who tends to be lifted against** when the tape runs against passive inventory at K=20 (same bar units as mid markouts)."
       }
     ],
     "top_5_tradeable_edges_ranked": [
@@ -124,7 +129,7 @@
     "no_edge_findings": [
       "Aggressor-tagged **participant \u00d7 symbol \u00d7 K** markouts: **no** |t|\u22652 with n\u226540 vs spread-matched pool.",
       "Baseline-adjusted fwd_same_20 residuals show **no** persistent pair-level alpha.",
-      "Passive-party extract fwd20 proxy: **flat** across Marks.",
+      "Unconditional party column on extract (`extract_passive_party_fwd20_proxy`) is **near flat** (~0) because it does not separate passive vs aggressive; **sign-corrected** passive metric (**phase16_passive_adverse_***) is **not** flat and ranks **49 > 22 > 14** on extract.",
       "Bootstrap n\u226550: only **4 / 36** cells with **entire 95% CI** above 0; **16/36** have same-sign daily means (others flip sign by day) \u2014 see `phase1_bootstrap_summary.txt`."
     ],
     "next_phase": "Phase 2 may condition the burst hint and pair structure on **finer windows**, **microprice**, and **Mark\u00d7burst** interactions; Phase 3 will re-test inside Sonic gate on R4."
@@ -447,5 +452,17 @@
       "manual_traders/R4/r4_phase1_marks/outputs/phase1_burst_event_random_control_by_day.csv"
     ],
     "used_to_decide": "Bursts are **structurally** associated with more positive **20-bar extract** forward than **random** lighter-traffic same-day timestamps; **caveat:** over overlapping forward windows, 3 day tape, and **not** a trading rule yet. Hubs: **Mark 14** is the largest by **in+out** print count, consistent with the hydro duopoly picture."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "**Phase 1** bullets **2** and **5** deepened. **``analyze_r4_phase1_baseline_passive_supplement.py``**: (1) **Cross-asset** baseline residual = `fwd_EXTRACT_20` minus mean in **(symbol, spread_bin)** pool only; aggregate by **(buyer,seller,symbol)** \u2014 avoids tautological zero residuals from pair-identical cells. (2) **Passive adverse** proxy: after **aggr_buy** use passive seller +`fwd_same_20`; after **aggr_sell** passive buyer **\u2212**`fwd_same_20`. **`round4_phase1_complete`** amended: bullet-2/5 output lists, conclusions, **no_edge** line on unconditional passive CSV, new **ops_template_phase16_baseline_passive**.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_phase1_marks/analyze_r4_phase1_baseline_passive_supplement.py",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase16_baseline_fwd_extract_residual_by_pair.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase16_baseline_fwd_extract_residual_summary.txt",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase16_passive_adverse_by_party_symbol.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase16_passive_adverse_summary.txt"
+    ],
+    "used_to_decide": "**55\u219214** extract prints coincide with **+0.49** mean extra extract fwd20 vs symbol\u00d7spread pool (n=331, 3-day same-sign); **14\u219255** **\u22120.38** (n=316). Passive liquidity pain on extract ranks **49, 22, 14** (not 01). Still **not** `worse`-PnL validated; complements bootstrap rank-4 narrative."
   }
 ]

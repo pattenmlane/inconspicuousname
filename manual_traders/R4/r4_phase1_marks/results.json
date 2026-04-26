@@ -532,5 +532,12 @@
     "strategy_description": "Phase 1 **graph hubs + random-control burst** study: `analyze_r4_phase1_graph_hubs_burst_control.py` \u2192 `phase1_graph_hub_degree_*.csv`, `phase1_orchestrator_at_burst_rows.csv`, `phase1_burst_event_random_control_*.txt|csv` (pooled Welch burst vs **random non-burst** timestamps on `fwd_EXTRACT_20` prints). **`round4_phase1_complete`** bullets 3-4 path lists updated; field **ops_template_graph_burst_2026**.",
     "backtest_worse": null,
     "backtest_all": null
+  },
+  {
+    "iteration": 16,
+    "trader_file": "N/A",
+    "strategy_description": "Phase 1 **baseline + passive adverse** supplement: `analyze_r4_phase1_baseline_passive_supplement.py` \u2192 `phase16_baseline_fwd_extract_residual_*` (residual vs **symbol\u00d7spread** pool), `phase16_passive_adverse_*` (sign-corrected passive counterparty). **`round4_phase1_complete`** bullets 2+5 and **no_edge** amended.",
+    "backtest_worse": null,
+    "backtest_all": null
   }
 ]

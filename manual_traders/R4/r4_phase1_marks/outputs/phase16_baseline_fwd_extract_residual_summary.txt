@@ -1,0 +1,21 @@
+Residual = fwd_EXTRACT_20(print) - mean(fwd_EXTRACT_20) in same (symbol, spread_bin) pool (n_pool>=5).
+Pooled rows with residual: 4269 / 4281
+
+Top |mean_residual| among (buyer,seller,symbol) with n>=25:
+  Mark 55->Mark 14 VELVETFRUIT_EXTRACT n=331 mean_res=0.4947 d1=1.237 d2=0.3566 d3=0.01474 same_sign=True
+  Mark 14->Mark 22 VEV_5200 n=33 mean_res=-0.43875 d1=-3.371 d2=3.9 d3=-1.34 same_sign=False
+  Mark 14->Mark 55 VELVETFRUIT_EXTRACT n=316 mean_res=-0.37706 d1=-0.1754 d2=-0.4608 d3=-0.5159 same_sign=True
+  Mark 67->Mark 22 VELVETFRUIT_EXTRACT n=75 mean_res=0.29006 d1=0.6228 d2=-0.5443 d3=0.9399 same_sign=False
+  Mark 38->Mark 14 VEV_4000 n=205 mean_res=0.2656 d1=-0.3353 d2=0.9931 d3=0.221 same_sign=False
+  Mark 14->Mark 38 VEV_4000 n=232 mean_res=-0.25564 d1=-0.03011 d2=-1.211 d3=0.2716 same_sign=False
+  Mark 01->Mark 55 VELVETFRUIT_EXTRACT n=260 mean_res=-0.13061 d1=0.5458 d2=-0.9927 d3=0.1601 same_sign=False
+  Mark 67->Mark 49 VELVETFRUIT_EXTRACT n=89 mean_res=-0.10178 d1=-0.102 d2=-0.09375 d3=-0.1116 same_sign=True
+  Mark 01->Mark 22 VEV_5300 n=132 mean_res=-0.07183 d1=-1.785 d2=0.9026 d3=0.2851 same_sign=False
+  Mark 55->Mark 01 VELVETFRUIT_EXTRACT n=244 mean_res=-0.05954 d1=-0.6459 d2=0.05931 d3=0.4554 same_sign=False
+  Mark 01->Mark 22 VEV_5400 n=263 mean_res=0.048975 d1=-0.09354 d2=-0.003623 d3=0.186 same_sign=False
+  Mark 14->Mark 38 HYDROGEL_PACK n=496 mean_res=0.04604 d1=0.7556 d2=-0.05081 d3=-0.6329 same_sign=False
+  Mark 14->Mark 22 VEV_5300 n=29 mean_res=-0.044531 d1=1.47 d2=-1.149 d3=0.6643 same_sign=False
+  Mark 38->Mark 14 HYDROGEL_PACK n=507 mean_res=-0.041802 d1=-0.1614 d2=0.1403 d3=-0.08561 same_sign=False
+  Mark 01->Mark 22 VEV_5500 n=299 mean_res=-0.013974 d1=-0.4946 d2=-0.1119 d3=0.4204 same_sign=False
+  Mark 01->Mark 22 VEV_6000 n=317 mean_res=-1.2328e-16 d1=-0.4134 d2=0.04556 d3=0.2918 same_sign=False
+  Mark 01->Mark 22 VEV_6500 n=317 mean_res=-1.2328e-16 d1=-0.4134 d2=0.04556 d3=0.2918 same_sign=False

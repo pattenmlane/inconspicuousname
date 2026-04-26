@@ -1,0 +1,4 @@
+day,live_burst_ticks,offline_burst_ticks_500,live_and_offline,live_only,offline_only
+1,75,887,74,1,813
+2,81,918,81,0,837
+3,117,1258,117,0,1141

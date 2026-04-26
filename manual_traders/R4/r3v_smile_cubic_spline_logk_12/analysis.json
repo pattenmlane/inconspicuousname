@@ -290,5 +290,20 @@
       "r4_phase1_day_stability_supplement.py"
     ],
     "used_to_decide": "Tightens Phase 1 narrative: **Mark 14 as seller** buy-aggr extract mean mark_20 **shrinks** day 1→3 (1.32 → 0.44 → 0.09) while staying positive — high-n but **unstable magnitude**. **Mark67→Mark49** stable ~1.63/day at K=20 (3/3 positive). **Mark67→Mark22** positive all days but **day 2** mean **1.19** vs **2.36/2.68** days 1/3. **M67→M49 K=100**: day 3 mean **+0.11** vs **+2.4/+3.0** days 1/2 — long-horizon sign weak on day 3."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "**Backtest engine:** `TestRunner.__initialize_trade_state` now copies this tick’s public `Trade` rows into `state.market_trades` before `trader.run` (Round 4 buyer/seller visible at decision time). **Tape evidence:** `r4_burst_live_vs_offline_ticks.csv` counts timestamps where live burst (≥4 Mark01→Mark22 prints same ts) vs offline ±500 window from `r4_burst_events.csv` — offline dominates (813–1141 ticks/day) because choreography affects neighbors; live-only gap is **1 tick day1, 0 day2–3**. **trader_v3.py** uses live OR offline (same VEV_5300 nudge as v2); worse/all **46,795 / 49,855** match v2 on d1–3.",
+    "analysis_outputs": [
+      "imc-prosperity-4-backtester/prosperity4bt/test_runner.py",
+      "trader_v3.py",
+      "analysis_outputs/r4_burst_live_vs_offline_ticks.csv",
+      "backtest_logs/trader_v3_round4_worse.log",
+      "backtest_logs/trader_v3_round4_all.log",
+      "backtest_logs/trader_v0_round4_worse.log",
+      "backtest_logs/trader_v0_round4_all.log",
+      "results.json"
+    ],
+    "used_to_decide": "Future counterparty-conditioned traders can read `state.market_trades` without forking data readers. For **burst neighborhood** (Phase 2), offline ±500 or rolling tape scan still needed — live same-ts burst is a **subset** of the Phase-2 window."
   }
 ]

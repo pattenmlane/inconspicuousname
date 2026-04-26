@@ -19,7 +19,8 @@
           "day2": 3,
           "day3": 4
         },
-        "note": "Round 4 days 1–3 only in data_reader; per-product lines parsed from log."
+        "note": "Round 4 days 1–3 only in data_reader; per-product lines parsed from log.",
+        "backtest_engine_note": "TestRunner pre-fills state.market_trades each tick (Round 4 counterparty tape visible before trader.run)."
       }
     },
     "backtest_all": {
@@ -37,7 +38,8 @@
           "day2": 10,
           "day3": 11
         },
-        "note": "Per-product PnL from saved stdout."
+        "note": "Per-product PnL from saved stdout.",
+        "backtest_engine_note": "imc-prosperity-4-backtester TestRunner fills state.market_trades before trader.run (Round 4 tape); v0 does not read it — PnL unchanged vs prior run."
       }
     },
     "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v0.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
@@ -63,7 +65,8 @@
           "day2": 3,
           "day3": 4
         },
-        "note": "Gated extract reduces worse-fill extract PnL especially day 1."
+        "note": "Gated extract reduces worse-fill extract PnL especially day 1.",
+        "backtest_engine_note": "TestRunner pre-fills state.market_trades each tick (v1 does not use it)."
       }
     },
     "backtest_all": {
@@ -107,7 +110,8 @@
           "day2": 3,
           "day3": 4
         },
-        "note": "Matches v0 worse total; VEV_5300 burst tweak net-neutral on this run."
+        "note": "Matches v0 worse total; VEV_5300 burst tweak net-neutral on this run.",
+        "backtest_engine_note": "TestRunner pre-fills state.market_trades each tick (v2 uses offline burst only)."
       }
     },
     "backtest_all": {
@@ -130,5 +134,49 @@
     },
     "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v2.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-merge-pnl",
     "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v2.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-merge-pnl"
+  },
+  {
+    "iteration": 3,
+    "round": 4,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "v0 + **live** M01→M22 burst: ≥4 such prints at current ts in state.market_trades ⇒ same VEV_5300 nudge as v2; else offline ±500 fallback. Requires TestRunner market_trades pre-fill.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 46795,
+      "backtest_log_file": "backtest_logs/trader_v3_round4_worse.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": {
+          "day1": 22938,
+          "day2": 10511,
+          "day3": 13346
+        },
+        "non_zero_pnl_products_per_day": {
+          "day1": 4,
+          "day2": 3,
+          "day3": 4
+        },
+        "note": "Identical to v0/v2 worse on R4 d1–3; live+dominant offline overlap ~99% of offline burst ticks (see r4_burst_live_vs_offline_ticks.csv)."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 49855,
+      "backtest_log_file": "backtest_logs/trader_v3_round4_all.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": {
+          "day1": 25681,
+          "day2": 13116,
+          "day3": 11058
+        },
+        "non_zero_pnl_products_per_day": {
+          "day1": 11,
+          "day2": 10,
+          "day3": 11
+        },
+        "note": "Matches v2 all total after engine change."
+      }
+    },
+    "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v3.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-merge-pnl",
+    "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v3.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-merge-pnl"
   }
 ]

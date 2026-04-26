@@ -115,6 +115,11 @@ class TestRunner:
                 plainValueObservations={}, conversionObservations={"MAGNIFICENT_MACARONS": conversion_observation}
             )
 
+        # Round 4+: expose public tape prints at this timestamp (buyer/seller) before the
+        # strategy runs, so algorithms can condition on counterparty flow at the decision tick.
+        trades_here = data.trades.get(state.timestamp, {})
+        state.market_trades = {sym: list(lst) for sym, lst in trades_here.items()}
+
         return state
 
     # def __validate_orders(self, orders: dict[Symbol, list[Order]]) -> None:

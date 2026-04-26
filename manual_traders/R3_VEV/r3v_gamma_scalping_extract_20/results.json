@@ -198,5 +198,65 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v21_round3_worse.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v21.json"
+  },
+  {
+    "iteration": 22,
+    "trader_file": "trader_v22.py",
+    "strategy_description": "Joint tight two-leg gate (VEV_5200 & VEV_5300 BBO spread ≤2, STRATEGY.txt TH=2): **hard** risk filter — skip VEV MM quotes unless gate on; v20 hedge + day1 GAMMA_THRESH; TTE 8/7/6/5 for tape days 0..3 after data merge. Total 4169 (worse), effectively same path as v20 when gate almost always true after gamma filter.",
+    "total_profit": 4169,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v22.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_worse": {
+      "total_profit": 4169,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v22_round3_worse.log",
+      "backtest_stdout_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v22_round3_worse.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v22_v23_v24.json"
+    },
+    "backtest_all": {
+      "total_profit": 4065,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v22_round3_all.log",
+      "backtest_stdout_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v22_round3_all.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v22_v23_v24.json"
+    }
+  },
+  {
+    "iteration": 23,
+    "trader_file": "trader_v23.py",
+    "strategy_description": "Soft gate: 1.0× clip when both legs tight, 0.5× when wide (round). With day-1 clips 4/6 and default 5, rounding matches unscaled 5/6 on half the grid; backtest equals v20/v22 (4169 worse).",
+    "total_profit": 4169,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v23.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_worse": {
+      "total_profit": 4169,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v23_round3_worse.log",
+      "backtest_stdout_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v23_round3_worse.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v22_v23_v24.json"
+    },
+    "backtest_all": {
+      "total_profit": 4065,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v23_round3_all.log",
+      "backtest_stdout_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v23_round3_all.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v22_v23_v24.json"
+    }
+  },
+  {
+    "iteration": 24,
+    "trader_file": "trader_v24.py",
+    "strategy_description": "v23 variant: wide regime uses floor(base*0.39) for option clips; still 4169 worse vs v20 — when gamma filter passes, joint gate is almost always satisfied so wide scaling rarely applies.",
+    "total_profit": 4169,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v24.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_worse": {
+      "total_profit": 4169,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v24_round3_worse.log",
+      "backtest_stdout_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v24_round3_worse.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v22_v23_v24.json"
+    },
+    "backtest_all": {
+      "total_profit": 4065,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v24_round3_all.log",
+      "backtest_stdout_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v24_round3_all.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v22_v23_v24.json"
+    }
   }
 ]

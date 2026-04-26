@@ -147,5 +147,22 @@
       "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v21.json"
     ],
     "used_to_decide": "v21 total 3984 < v17 4167. Despite better score on 5100 than 5300, fixed top2 selection reduced day2 VEV_5200 PnL and did not improve extract hedge interaction. Keep nearest-pair structure in v17."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "Shared 'joint tight book' thesis (round3work/vouchers_final_strategy/STRATEGY.txt + outputs/r3_tight_spread_summary.txt): when VEV_5200 and VEV_5300 both have L1 spread ≤2, forward extract mid (K=20 steps) is more favorable than when either is wide; P(both tight)≈0.10 on day 0 in the packaged summary. Merged origin/main: Round 3 now includes day_3 tape; TTE extended to 8/7/6/5 for historical days 0..3. Implemented gate logic on v20-class traders: v22 = hard no-VEV-MM unless joint tight; v23 = 0.5× clip when wide; v24 = floor(0.39×) wide clips to get integer separation from 5/6. Full logs + stdout for worse and all; parsed activity/tradeHistory via parse_backtest_log.py into family12_outputs/run_fill_summary_v22_v23_v24.json. Empirically, after the gamma entry filter, the joint spread gate is almost always on (5200+5300 are the quoted pair near spot), so v22–v24 match v20 total (4169 worse / 4065 all) and do not move toward the 200k/day extract+VEV floor.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/parse_backtest_log.py",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v22_v23_v24.json",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v22_round3_worse.log",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v22_round3_all.log",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v23_round3_worse.log",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v23_round3_all.log",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v24_round3_worse.log",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v24_round3_all.log"
+    ],
+    "used_to_decide": "Keep v17/v20 class as the performance anchor; the STRATEGY.txt gate is better used as a **hypothesis** for future work that applies **before** the gamma filter, sizes extract **conditional** on gate, or widens the gate to wing strikes — current nearest-pair+gamma-threshold path rarely sees the 'wide' state at decision time. Next iteration should try gate-first sizing on extract and/or a lower gamma threshold in wide regime rather than gating the already-rare VEV quote path."
   }
 ]

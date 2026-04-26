@@ -360,5 +360,15 @@
       "manual_traders/R4/r4_counterparty_gated/backtest_logs/v9_all.log"
     ],
     "used_to_decide": "First measurable deviation from the v1/v6 plateau: worse total 26,196 (+2 vs 26,194), all 24,304 (+3 vs 24,301). Trade count unchanged (4484/4486); gross_notional slightly lower; VEV_4000 notional 1,092,534 vs 1,092,611 — skew moved some voucher fills. Day 1 worse PnL +2 (15,434 vs 15,432). Treat as small win; next sweep could tune step/max or apply skew to extract when |pos_u| is large, or combine with Mark67 aggressive buy (take) per Phase 1 edge."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "trader_v10 extends v9 (voucher inventory skew step 25 max 8; M01\u2192M22 5300 fade; Mark67 JSON half-width lift) with (a) extract bid/ask shifted by min(3, |pos_u|//40) ticks vs inventory sign, (b) extra aggressive extract buy Order(price=best_ask, qty=22) when extract BBO tight AND day:timestamp in signals_mark67_aggr_extract_buy.json and room under 200 limit.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_gated/trader_v10.py",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v10_worse.log",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v10_all.log"
+    ],
+    "used_to_decide": "Large PnL lift vs v9 on Round 4 days 1\u20133: worse 30,256 (+4,060 vs 26,196), all 30,421 (+6,117 vs 24,304). Extract trade count rises (1529 vs 1381 worse; 1573 vs 1381 all) with higher extract notional and gross tape notional; hydro/VEV counts unchanged vs v9. Day splits worse: day1 16,360 (+926), day2 7,878 (+6,660), day3 6,019 (\u22123,525 vs v9) \u2014 day2 dominates the gain. Validates combining Phase-1 Mark67 keyed aggression with existing MM under worse fills; next: tune M67 take size/cap, optional joint_tight gate on the take, or reduce day3 drawdown."
   }
 ]

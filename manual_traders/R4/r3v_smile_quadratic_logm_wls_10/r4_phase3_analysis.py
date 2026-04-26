@@ -16,6 +16,9 @@ Writes:
   r4_p3_leadlag_gated.csv           — signed-flow corr extract vs 5300, tight vs wide rows
   r4_p3_passive_m22_gated.csv       — Mark22 seller_agg fwd20 split by gate at print ts
   r4_p3_day_stability.csv           — per-day: extract fwd20 tight vs wide, signed-flow corr, burst counts
+  r4_p3_mark_fwd_by_day.csv         — per-day Mark×role×gate×K: n, mean_fwd, t_vs_zero
+  r4_p3_m0122_fwd20_by_day.csv      — Mark01→Mark22 all symbols: fwd20 by day (asof-tight only)
+  r4_p3_burst_echo_by_day.csv       — M01→M22 ≥3VEV burst echo grouped by day
   r4_phase3_summary.txt
   r4_phase3_gate.json               — fragment for analysis.json
 """
@@ -308,6 +311,59 @@ def main() -> None:
                     )
     pd.DataFrame(rows_fm).to_csv(OUT / "r4_p3_forward_by_mark_gated.csv", index=False)
 
+    # --- Per-day Mark × role × gate × horizon (counterparty day-stability)
+    md = m.loc[m["gate_aligned"]].copy()
+    day_mark_rows: list[dict] = []
+    for d in DAYS:
+        subd = md[md["day"] == d]
+        for u in marks:
+            for role, rmask in (
+                ("buyer_agg", (subd["buyer"] == u) & (subd["side"] == "buyer_aggressive")),
+                ("seller_agg", (subd["seller"] == u) & (subd["side"] == "seller_aggressive")),
+                ("any_touch", (subd["buyer"] == u) | (subd["seller"] == u)),
+            ):
+                for jt in (True, False):
+                    base = subd.loc[rmask & (subd["joint_tight"] == jt)]
+                    for k in KS:
+                        col = f"fwd_mid_{k}"
+                        vals = base[col].dropna().astype(float).to_numpy()
+                        vals = vals[np.isfinite(vals)]
+                        n = len(vals)
+                        if n < 8:
+                            continue
+                        mu = float(np.mean(vals))
+                        sd = float(np.std(vals, ddof=1))
+                        t0 = float(mu / (sd / math.sqrt(n))) if n > 1 and sd > 0 else float("nan")
+                        day_mark_rows.append(
+                            {
+                                "day": int(d),
+                                "mark": u,
+                                "role": role,
+                                "joint_tight": jt,
+                                "horizon_K": k,
+                                "n": n,
+                                "mean_fwd": mu,
+                                "t_vs_zero": t0,
+                            }
+                        )
+    pd.DataFrame(day_mark_rows).to_csv(OUT / "r4_p3_mark_fwd_by_day.csv", index=False)
+
+    # Mark01→Mark22: mean fwd20 by day (trade-level, asof-tight only)
+    m122 = md[(md["buyer"] == "Mark 01") & (md["seller"] == "Mark 22") & md["joint_tight"]]
+    m122_day: list[dict] = []
+    for d in DAYS:
+        v = m122.loc[m122["day"] == d, "fwd_mid_20"].dropna().astype(float).to_numpy()
+        v = v[np.isfinite(v)]
+        n = len(v)
+        if n < 5:
+            m122_day.append({"day": int(d), "n": n, "mean_fwd20": float("nan"), "t_vs_zero": float("nan")})
+            continue
+        mu = float(np.mean(v))
+        sd = float(np.std(v, ddof=1))
+        t0 = float(mu / (sd / math.sqrt(n))) if n > 1 and sd > 0 else float("nan")
+        m122_day.append({"day": int(d), "n": n, "mean_fwd20": mu, "t_vs_zero": t0})
+    pd.DataFrame(m122_day).to_csv(OUT / "r4_p3_m0122_fwd20_by_day.csv", index=False)
+
     # Phase-1 bursts (>=4 trades same ts) × gate
     def _symset(s: pd.Series) -> str:
         return ",".join(sorted({str(x) for x in s}))
@@ -375,6 +431,20 @@ def main() -> None:
         )
     echo_df = pd.DataFrame(echo_rows)
     echo_df.to_csv(OUT / "r4_p3_burst_echo_gated.csv", index=False)
+    if len(echo_df):
+        gbe = echo_df.loc[echo_df["gate_aligned"]].copy()
+        eb_day = gbe.groupby("day", as_index=False).agg(
+            n_bursts=("fwd5", "count"),
+            mean_fwd5=("fwd5", "mean"),
+            std_fwd5=("fwd5", "std"),
+        )
+        fr = gbe.groupby("day")["fwd5"].apply(lambda s: float((s.dropna() > 0).mean()) if s.notna().any() else float("nan"))
+        eb_day["frac_fwd5_pos"] = eb_day["day"].map(fr)
+        eb_day.to_csv(OUT / "r4_p3_burst_echo_by_day.csv", index=False)
+    else:
+        pd.DataFrame(columns=["day", "n_bursts", "mean_fwd5", "std_fwd5", "frac_fwd5_pos"]).to_csv(
+            OUT / "r4_p3_burst_echo_by_day.csv", index=False
+        )
     echo_al = echo_df.loc[echo_df["gate_aligned"]]
     e_on = echo_al.loc[echo_al["joint_tight"], "fwd5"].dropna()
     e_off = echo_al.loc[~echo_al["joint_tight"], "fwd5"].dropna()
@@ -518,6 +588,8 @@ def main() -> None:
     lines.extend(
         [
             "",
+            "Counterparty day tables: r4_p3_mark_fwd_by_day.csv, r4_p3_m0122_fwd20_by_day.csv, r4_p3_burst_echo_by_day.csv",
+            "",
             "Top spread–spread |r| on inner-join timestamps (inclineGod panel):",
         ]
     )
@@ -591,6 +663,9 @@ def main() -> None:
                 "r4_p3_leadlag_gated.csv",
                 "r4_p3_passive_m22_gated.csv",
                 "r4_p3_day_stability.csv",
+                "r4_p3_mark_fwd_by_day.csv",
+                "r4_p3_m0122_fwd20_by_day.csv",
+                "r4_p3_burst_echo_by_day.csv",
                 "r4_phase3_summary.txt",
                 "r4_phase3_analysis.py",
             )},

@@ -88,10 +88,13 @@
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_leadlag_gated.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_passive_m22_gated.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_day_stability.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_mark_fwd_by_day.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_fwd20_by_day.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_burst_echo_by_day.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_gate.json",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
     ],
-    "used_to_decide": "Inner-join extract fwd20 tight vs wide Welch t≈7.94 (matches Phase2 strength). Signed-flow extract vs VEV_5300 lag-0 corr is much more negative on tight timestamps (-0.23) than wide (+0.013) — gate concentrates a cross-asset flow structure. Mark01→Mark22 burst fwd5 vs wide-book VEV_5300 fwd5 pool remains significant (t≈3.23) but almost all bursts are asof-tight (no clean Mark×tight×wide three-way split on tape). Per-day table r4_p3_day_stability.csv added for day-stability audit. Sim: trader_v2 (joint gate + full VEV surface MM) total 6088 worse/all d1–3 vs v1 3634.",
+    "used_to_decide": "Inner-join extract fwd20 tight vs wide Welch t≈7.94 (matches Phase2 strength). Signed-flow extract vs VEV_5300 lag-0 corr is much more negative on tight timestamps (-0.23) than wide (+0.013) — gate concentrates a cross-asset flow structure. Mark01→Mark22 burst fwd5 vs wide-book VEV_5300 fwd5 pool remains significant (t≈3.23) but almost all bursts are asof-tight (no clean Mark×tight×wide three-way split on tape). Per-day tables: r4_p3_day_stability.csv, r4_p3_mark_fwd_by_day.csv, r4_p3_m0122_fwd20_by_day.csv, r4_p3_burst_echo_by_day.csv. Sim: v2 full-surface gate MM 6088; v3 wing spread<=4 cap 3905 (wing cap hurt vs v2 on this tape).",
     "round4_phase3_complete": {
       "phase": 3,
       "tape_days": [1, 2, 3],
@@ -108,6 +111,9 @@
         "leadlag_gated": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_leadlag_gated.csv",
         "passive_m22_gated": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_passive_m22_gated.csv",
         "day_stability": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_day_stability.csv",
+        "mark_fwd_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_mark_fwd_by_day.csv",
+        "m0122_fwd20_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_fwd20_by_day.csv",
+        "burst_echo_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_burst_echo_by_day.csv",
         "gate_json": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_gate.json",
         "script": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
       },
@@ -150,5 +156,16 @@
       ],
       "sonic_gate_cleans_signal": "Partially for cross-asset signed-flow structure (tight vs wide timestamp corr). Not as a separator for Mark01→Mark22 burst echo or Mark22 passive markout on this sample — those live almost entirely in the tight regime, so the gate does not carve independent wide-bucket controls."
     }
+  },
+  {
+    "iteration": "round4_phase3_counterparty_day_tables",
+    "analysis_description": "Per-day counterparty evidence under merge_asof joint gate: Mark×role×tight×horizon (r4_p3_mark_fwd_by_day.csv); Mark01→Mark22 all-symbol fwd20 mean by day when asof-tight (r4_p3_m0122_fwd20_by_day.csv); M01→M22 ≥3VEV burst VEV_5300 fwd5 stats by day (r4_p3_burst_echo_by_day.csv). Produced by r4_phase3_analysis.py.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_mark_fwd_by_day.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_fwd20_by_day.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_burst_echo_by_day.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
+    ],
+    "used_to_decide": "M01→M22 fwd20 under asof-tight: day1 mean -0.048 (t≈-1.42), day2 +0.023 (t≈0.75), day3 +0.039 (t≈1.12) — sign not stable across days at K=20. Burst echo fwd5: positive mean all three days (~0.23–0.31) with ~0.50 frac positive. Sim: trader_v3 wing spread cap lowers total vs v2 (3905 vs 6088), so v2 wing PnL was net additive on this tape."
   }
 ]

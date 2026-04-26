@@ -111,5 +111,42 @@
       "day_stability_csv": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_day_stability.csv",
       "note": "Per-day extract fwd20 tight vs wide Welch t and signed-flow corr; see r4_phase3_summary.txt tail"
     }
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "Like v2 (joint gate + full VEV + extract one-tick MM) but wing strikes (not 5200/5300) quoted only when that symbol spread <= 4; core and extract unchanged. Tests whether cutting wide-wing MM helps under worse fills.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/backtest_worse_trader_v3_r4_d123.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_quadratic_logm_wls_10/trader_v3.py 4-1 4-2 4-3 --data Prosperity4Data --no-out --no-progress --no-vis --match-trades worse",
+      "backtest_round": 4,
+      "backtest_days": "1-3",
+      "total_profit": 3905,
+      "day_total_profit": {"1": 613, "2": 2920, "3": 372},
+      "trades_or_fills_summary": {
+        "note": "worse same as all; hydrogel 0; VEV_4000/4500 zero PnL (spread cap skipped those wings vs v2)",
+        "hydrogel_pnl_by_day": {"1": 0, "2": 0, "3": 0},
+        "compare_to_v2_total": 6088
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/backtest_all_trader_v3_r4_d123.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_quadratic_logm_wls_10/trader_v3.py 4-1 4-2 4-3 --data Prosperity4Data --no-out --no-progress --no-vis --match-trades all",
+      "backtest_round": 4,
+      "backtest_days": "1-3",
+      "total_profit": 3905,
+      "day_total_profit": {"1": 613, "2": 2920, "3": 372},
+      "trades_or_fills_summary": {
+        "note": "totals match worse",
+        "hydrogel_pnl_by_day": {"1": 0, "2": 0, "3": 0}
+      }
+    },
+    "phase3_counterparty_by_day": {
+      "mark_fwd_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_mark_fwd_by_day.csv",
+      "m0122_fwd20_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_fwd20_by_day.csv",
+      "burst_echo_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_burst_echo_by_day.csv"
+    }
   }
 ]

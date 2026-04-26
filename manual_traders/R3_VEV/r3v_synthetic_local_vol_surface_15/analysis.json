@@ -174,5 +174,28 @@
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v25_high_signal_only_fill_summary.json"
     ],
     "used_to_decide": "Drop 5200 from v24 subset; v25 PnL 21,633 > v24 15,145 under worse fills. New parent v25; day0 is worse (-1166 vs -686) but day1+2 gains dominate\u2014optional next step is day0-only micro-gate, not random hurdle nudges."
+  },
+  {
+    "iteration": 26,
+    "analysis_description": "Read round3work/vouchers_final_strategy/STRATEGY.txt and outputs/r3_tight_spread_summary.txt. Joint tight gate (both s5200 and s5300 \u22642) shows higher mean K-step forward extract mid change (day 0 example: Welch t-stat 4.69). Caveat in STRATEGY: mid edge may vanish with bid/ask and worse matching. v26 tests gate + 5200 re-enable + extract momentum; backtest refutes as primary layer.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_6panel.png",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v26_joint_tight_gate.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v26_joint_tight_gate_worse.log",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v26_joint_tight_gate_all.log"
+    ],
+    "used_to_decide": "v26 PnL -16,794: VELVETFRUIT_EXTRACT momentum + 5200 re-listing are toxic under --match-trades worse (aggressive crossing). Aligns with STRATEGY mid vs execution caveat. Next: use gate only to modulate the proven v25 residual strategy on 5000/5100, no extract."
+  },
+  {
+    "iteration": 27,
+    "analysis_description": "Greek/IV thread unchanged: same Newton IV + UnivariateSpline then family12 uniform CubicSpline on 10-strike IV knots, BS theo, vega in hurdle. Regime = spreads on VEV_5200 and VEV_5300 (book state, inclineGod/Sonic) \u2014 if both \u22642, slightly lower composite hurdle and larger clip; else raise hurdle and shrink clip. Still IV-residual \u00d7 spread thesis.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v27_gate_sizing_v25.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v27_gate_sizing_v25_worse.log",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v27_gate_sizing_v25_all.log"
+    ],
+    "used_to_decide": "v27 total 22,350 > v25 21,633 on the same 4 day backtest (merge added day_3; v25 three-day 21,610 comparable). Keep joint gate as sizing/hurdle modulator, not 5200 re-entry. Profit/day on strong days 1-2 is still \u00ab 200k \u2014 more work: scale orders, or combine with other edges; do not add hydrogel unless thesis expands."
   }
 ]

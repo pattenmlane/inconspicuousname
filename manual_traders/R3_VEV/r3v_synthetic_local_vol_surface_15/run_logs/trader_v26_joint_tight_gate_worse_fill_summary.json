@@ -1,0 +1,13 @@
+{
+  "match_trades": "worse",
+  "trader_file": "trader_v26_joint_tight_gate.py",
+  "round_3_days": [0, 1, 2, 3],
+  "total_profit": -16794,
+  "per_day_profit": {
+    "day_0": -9156,
+    "day_1": -5517,
+    "day_2": -198,
+    "day_3": -1924
+  },
+  "note": "Abandoned variant: re-enabled 5200 in tight gate + extract momentum; large VELVETFRUIT_EXTRACT losses under worse fills."
+}

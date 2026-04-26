@@ -1,0 +1,13 @@
+{
+  "match_trades": "all",
+  "trader_file": "trader_v27_gate_sizing_v25.py",
+  "round_3_days": [0, 1, 2, 3],
+  "total_profit": 22350,
+  "per_day_profit": {
+    "day_0": -1193,
+    "day_1": 8056,
+    "day_2": 15548,
+    "day_3": -61
+  },
+  "note": "Same realized PnL as worse for this trader in the current backtest run (identical cross match path for these orders)."
+}

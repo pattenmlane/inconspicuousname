@@ -1,0 +1,13 @@
+{
+  "match_trades": "worse",
+  "trader_file": "trader_v27_gate_sizing_v25.py",
+  "round_3_days": [0, 1, 2, 3],
+  "total_profit": 22350,
+  "per_day_profit": {
+    "day_0": -1193,
+    "day_1": 8056,
+    "day_2": 15548,
+    "day_3": -61
+  },
+  "note": "PnL from VEV_5000 and VEV_5100 only; joint 5200/5300 spread gate modulates hurdle/size (no extract orders)."
+}

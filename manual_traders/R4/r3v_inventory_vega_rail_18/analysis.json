@@ -311,5 +311,17 @@
       "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v12_all_fill_summary.json"
     ],
     "used_to_decide": "Phase 1 Mark67 edge does not improve v6 worse PnL when implemented as a **wide** post-print arming window + same execution; keep v6 unless we shrink ARM_MS to a testable trade-off or add orthogonal state (e.g. burst flag)."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "**trader_v13** (Phase 2 **fade / risk-off** overlay on v6): same passive extract + joint gate as v6, but **suppress** tight-regime bid quotes on any tick whose `market_trades` includes **Mark 01** buying **VEV_5300** from **Mark 22** (Phase 1/2 adverse 5300 pipe). **Worse** **+252**, **2** extract SUBMISSION fills, **net_qty 0** — **identical** to v6 (v6’s worse-fill path does not hit a risk-off tick). **All** **+10,768** vs v6 **+10,834** (**320** vs **323** fills): small turnover reduction only. Tape table (tight ticks with ≥1 such 5300 print / all tight ticks): day1 **32/1381** (2.32%), day2 **31/1727** (1.80%), day3 **69/4614** (1.50%). **Conclusion:** this same-tick cross-instrument counterparty veto is **orthogonal** to the sparse worse-fill realization on days 1–3; it does not add PnL here but documents a deployable causal filter with bounded skip rate.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_inventory_vega_rail_18/trader_v13.py",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v13_worse_backtest.log",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v13_all_backtest.log",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v13_worse_fill_summary.json",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v13_all_fill_summary.json"
+    ],
+    "used_to_decide": "Keep v6 as baseline; v13 is optional risk overlay for live if we want to avoid quoting extract into simultaneous 01→22 5300 tape without hurting this backtest slice. Next: multi-tick armed risk-off after 01→22 (symmetric to v12) or burst-conditioned skip."
   }
 ]

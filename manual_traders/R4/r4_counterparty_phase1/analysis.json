@@ -426,5 +426,17 @@
       "manual_traders/R4/r4_counterparty_phase1/r4_phase_deliverables_registry.txt"
     ],
     "used_to_decide": "Supports Sonic **gate** as primary state variable; **within** tight, **which** of the two voucher spreads is tight matters for mean fwd (geometry). Spread_sum linear corr to fwd is weak — prefer **2D book state** or extract spread overlays over scalar sum for next sim features."
+  },
+  {
+    "iteration": 18,
+    "round": 4,
+    "analysis_description": "**trader_v16**: operationalizes pair-grid insight — v12 stack but **no entry** when rounded L1 (s5200,s5300)=(1,2) at burst+tight tick (exclude cell with worst 5300 fwd20 in days 1–2 table).",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/trader_v16.py",
+      "manual_traders/R4/r4_counterparty_phase1/r4_phase3_spread_vs_fwd_panels.json",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v16_r4_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v16_r4_all.log"
+    ],
+    "used_to_decide": "Worse **+185** / all **+191** vs v12 **+744**/**+750** — **falsifies** using this single mid-table cell as a buy veto in the current burst bot; profitable sim path overlaps (1,2) ticks. Tier-A sim remains **v12**; pair grid is descriptive, not a drop-in filter without joint optimization."
   }
 ]

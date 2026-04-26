@@ -638,5 +638,45 @@
         "note": "Matches v14 all; confirms ablation."
       }
     }
+  },
+  {
+    "iteration": 18,
+    "round": 4,
+    "trader_file": "trader_v16.py",
+    "strategy_description": "v12 + Phase3 pair-grid: under joint tight+burst, skip buys when integer (s5200,s5300)=(1,2) — tape mean fwd20 5300 negative days 1-2 in r4_phase3_spread_vs_fwd_panels.json.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 185,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v16.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v16_r4_worse.log",
+      "backtest_output": {
+        "day1": 185,
+        "day2": 0,
+        "day3": 0,
+        "total": 185
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "Far below v12 +744 — mid-based (1,2) cell filter misaligns with profitable sim fills / burst overlap."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 191,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v16.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v16_r4_all.log",
+      "backtest_output": {
+        "day1": 185,
+        "day2": 0,
+        "day3": 6,
+        "total": 191
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "+6 day3 vs worse; still not competitive vs v12."
+      }
+    }
   }
 ]

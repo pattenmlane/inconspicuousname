@@ -55,4 +55,4 @@ manual_traders/R4/r4_counterparty_phase1/r4_tight_burst_extract_fwd_by_5300_leg.
 
 SIM TIER (prosperity4bt Round 4; primary worse, also all) — results.json iterations
 -----------------------------------------------------------------------------------
-trader_v0.py … trader_v13.py and matching backtest_trader_v*_r4_{worse,all}.log under same folder.
+trader_v0.py … trader_v16.py and matching backtest_trader_v*_r4_{worse,all}.log under same folder.

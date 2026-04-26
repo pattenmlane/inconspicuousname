@@ -510,5 +510,13 @@
         "vs_iteration_11_all_total": 9730
       }
     }
+  },
+  {
+    "iteration": 13,
+    "trader_file": "N/A (documentation / Phase 1 compliance tables)",
+    "strategy_description": "No new trader. Added ``analyze_r4_phase1_compliance_table.py`` \u2192 `outputs/PHASE1_PING_CHECKLIST.md` (maps `suggested direction` Phase-1 bullets to `analyze_phase1` outputs) and `outputs/phase1_participant_print_counts.csv` (7 Marks, full tape enumeration). **Updated** `round4_phase1_complete` in `analysis.json` with `ops_ping_alignment`, refined rank-3 edge (phase8+), and `phase1_post_hoc_tape_refinement`.",
+    "note": "Phases 1\u20133 completion gates in `analysis.json` remain **satisfied**; this iteration aligns the on-disk gate with the expanded Phase-1 ops template.",
+    "backtest_worse": null,
+    "backtest_all": null
   }
 ]

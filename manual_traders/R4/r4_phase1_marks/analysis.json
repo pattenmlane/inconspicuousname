@@ -23,6 +23,8 @@
     "round4_phase1_complete": true,
     "phase": 1,
     "data": "Prosperity4Data/ROUND_4 trades_round_4_day_{1,2,3}.csv + prices same days",
+    "ops_ping_alignment": "Phase 1 bullets covered by `analyze_phase1.py` + outputs (see `outputs/PHASE1_PING_CHECKLIST.md`). **K** = price-bar / unique-timestamp steps (documented in `PHASE1_SUMMARY.md`). **7** distinct participant strings on tape: counts in `outputs/phase1_participant_print_counts.csv`.",
+    "phase1_post_hoc_tape_refinement": "Later scripts (**phase8+**) add **Sonic joint gate \u00d7 (buyer,seller) \u00d7 hydro** tables; the original Phase-1 **participant null** for generic Mark\u00d7symbol markouts is **not** replaced\u2014gate-conditioned hydro is a **separate, stronger** tape signal.",
     "bullet_evidence": [
       {
         "bullet": "1) Participant-level alpha / predictiveness",
@@ -86,12 +88,12 @@
       },
       {
         "rank": 3,
-        "name": "Hydro duopoly Mark 14 \u2194 Mark 38",
-        "rule_sketch": "Two-sided hydro flow for regime detection / cross-hedge timing.",
-        "effect": "~50/50 buyer-seller split on HYDRO in prior sketch; large notionals",
-        "n": "700+ prints each direction",
-        "days": "1,2,3",
-        "caveat": "No extract markout lift isolated here."
+        "name": "Hydro duopoly Mark 14 \u2194 Mark 38 \u00d7 joint gate \u2192 forward extract (refined)",
+        "rule_sketch": "**phase8+**: conditional on **Sonic joint tight** vs loose, **HYDRO** 14\u219238 / 38\u219214 shows **higher mean fwd_EXTRACT_20** (pooled); **phase11** shows single aggressor type per direction; **phase12** LODO: 14\u219238 stable on 2-day trains.",
+        "effect": "Pooled \u03b4(tight\u2212loose) \u2248 **+1.6** (14\u219238) and **+1.0** (38\u219214) on **fwd_EXTRACT_20**; K=5/20/100 in `phase9_*`",
+        "n": "496+507 prints with gate merge (varies by K valid)",
+        "days": "1,2,3; LODO = hold one day",
+        "caveat": "Supersedes the pre-gate **rank-3** hydro line; see **phase8+** for gate-conditioned markouts. **Sim** (v8/v9/v12) does not yet translate this into **VEV** **`worse`** PnL."
       },
       {
         "rank": 4,
@@ -400,5 +402,15 @@
       "manual_traders/R4/r4_phase1_marks/backtests/iter12_r4d1-3_all.log"
     ],
     "used_to_decide": "Keep **v11** for hydro+VEV stack; **do not** ship **v12**-style \u201cskip on 14\u219238 print\u201d as **improvement** under **`worse`** \u2014 re-check if matching logic is understood. LODO supports **persistence** of the 14\u219238 gate effect across 2-day windows except 38\u219214 with day1 out (**small-n** train)."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "**Phase-1 template alignment (no re-run of `analyze_phase1` required for stats):** ``analyze_r4_phase1_compliance_table.py`` writes **PHASE1_PING_CHECKLIST.md** (each Phase-1 bullet from `suggested direction.txt` \u2192 file paths + function names) and **phase1_participant_print_counts.csv** (all **7** Mark strings: buyer/seller/print counts + product list from raw trades). The existing **`round4_phase1_complete`** object was **amended in place** (same element id): added **ops_ping_alignment**, **phase1_post_hoc_tape_refinement**, and **replaced rank-3** in **top_5_tradeable_edges_ranked** with the **Sonic-gate \u00d7 hydro duopoly** evidence (phase8\u2013phase12) so the ranked list no longer claims \u201cno extract lift\u201d for that motif.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_phase1_marks/analyze_r4_phase1_compliance_table.py",
+      "manual_traders/R4/r4_phase1_marks/outputs/PHASE1_PING_CHECKLIST.md",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase1_participant_print_counts.csv"
+    ],
+    "used_to_decide": "Treat **round4work** Phase-1 ops checklist as **covered** by the mapped artifacts; new work continues under **r4_phase1_marks/outputs/phase8+** and sim **trader_v*** without reopening the Phase-2/3 gate objects."
   }
 ]

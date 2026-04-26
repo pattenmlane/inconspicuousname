@@ -1,0 +1,106 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round 4 Phase 1 tape work: `_r4_phase1_counterparty_analysis.py` on ROUND_4 days 1–3 (4281 trades enriched). Defines K-step forward mids, aggressor vs BBO, burst flag, stratified tables, pair baseline residuals, directed graph + 2-hop scores, adverse-selection ranks. Executive narrative in `r4_p1_phase1_executive_summary.txt`.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/_r4_phase1_counterparty_analysis.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_manifest.json",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_trades_enriched.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_participant_fwd_mid_k5.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_participant_fwd_mid_k20.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_participant_fwd_mid_k100.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_baseline_cells_fwd20.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_residual_top_pairs_fwd20.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_directed_edges_buyer_seller.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_twohop_chain_scores.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_burst_vs_control_extract.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_aggr_buy_fwd5_by_seller.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_aggr_sell_fwd5_by_buyer.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_stratified_fwd20_by_day.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/r4_p1_phase1_executive_summary.txt"
+    ],
+    "used_to_decide": "Phase 1 completion gate is the next JSON object (`round4_phase1_complete`). Phase 2 is blocked until that object exists — now satisfied."
+  },
+  {
+    "round4_phase1_complete": {
+      "phase": 1,
+      "tape_days": [1, 2, 3],
+      "bullet_outputs": [
+        {
+          "bullet": "1) Participant-level alpha / predictiveness (K=5,20,100; stratified)",
+          "paths": [
+            "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_participant_fwd_mid_k5.csv",
+            "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_participant_fwd_mid_k20.csv",
+            "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_participant_fwd_mid_k100.csv",
+            "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_stratified_fwd20_by_day.csv"
+          ],
+          "one_line": "Mark 67 aggressive buys on extract show large positive K=20 fwd mid (t~5.9, n=164) stable days 1–3; Mark 55 aggr_buy extract weaker but positive (t~2.5); many high-n Mark01/Mk22 legs are near-zero mean fwd."
+        },
+        {
+          "bullet": "2) Deviation from bot baseline (cell means + residuals)",
+          "paths": [
+            "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_baseline_cells_fwd20.csv",
+            "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_residual_top_pairs_fwd20.csv"
+          ],
+          "one_line": "Residuals vs (buyer,seller,symbol,burst) cell means are ~0 for dominant pairs — no strong second-order mis-modeling in this simple baseline."
+        },
+        {
+          "bullet": "3) Sequence / graph (buyer→seller, 2-hop)",
+          "paths": [
+            "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_directed_edges_buyer_seller.csv",
+            "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_twohop_chain_scores.csv"
+          ],
+          "one_line": "Mark 01→Mark 22 dominates edge count; two-hop weight products echo basket choreography without a new predictive motif beyond pair structure."
+        },
+        {
+          "bullet": "4) Burst structure + extract forward study",
+          "paths": [
+            "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_burst_vs_control_extract.txt"
+          ],
+          "one_line": "Extract trades in multi-print bursts show higher mean fwd_mid_k20 (+1.20 vs +0.28) than isolated prints (n_burst=82 vs 1299)."
+        },
+        {
+          "bullet": "5) Adverse selection vs aggressor counterparty",
+          "paths": [
+            "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_aggr_buy_fwd5_by_seller.csv",
+            "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_aggr_sell_fwd5_by_buyer.csv"
+          ],
+          "one_line": "Rank tables identify counterparties on the passive side of aggressive prints with worst short-horizon fwd mids — candidate do-not-quote-into list (population-level)."
+        }
+      ],
+      "top_5_tradeable_edges": [
+        {
+          "rank": 1,
+          "rule": "After Mark 67 aggressive BUY on VELVETFRUIT_EXTRACT, same-symbol mid +K ticks (K=20) rises ~+1.8 (t~5.9, n=164); days 1–3 means ~2.0/1.45/2.0",
+          "evidence": "outputs_r4_phase1/r4_p1_participant_fwd_mid_k20.csv; day breakdown in r4_p1_phase1_executive_summary.txt"
+        },
+        {
+          "rank": 2,
+          "rule": "Mark 55 aggressive BUY on extract: positive K=20 fwd mid ~+0.41 (t~2.5, n=598), consistent all days but smaller",
+          "evidence": "outputs_r4_phase1/r4_p1_participant_fwd_mid_k20.csv"
+        },
+        {
+          "rank": 3,
+          "rule": "Mark 49 as seller when trade is aggressive buy (counterparty): positive K=20 fwd mid ~+1.83 (n=104, t~5.0) — smaller n",
+          "evidence": "outputs_r4_phase1/r4_p1_participant_fwd_mid_k20.csv"
+        },
+        {
+          "rank": 4,
+          "rule": "Multi-symbol-time bursts on VELVETFRUIT_EXTRACT coincide with larger +fwd_mid_k20 vs non-burst control in event study",
+          "evidence": "outputs_r4_phase1/r4_p1_burst_vs_control_extract.txt"
+        },
+        {
+          "rank": 5,
+          "rule": "Use r4_p1_aggr_* CSVs to avoid providing liquidity to counterparties with most negative mean fwd_mid_k5 after aggressive hits (adverse-selection map)",
+          "evidence": "outputs_r4_phase1/r4_p1_aggr_buy_fwd5_by_seller.csv, outputs_r4_phase1/r4_p1_aggr_sell_fwd5_by_buyer.csv"
+        }
+      ],
+      "explicit_no_edge_findings": [
+        "Mark 01→Mark 22 on VEV_5300 alone: fwd_mid_k20 mean ~−0.12, |t|<1 (n=132) — not a standalone directional edge.",
+        "Residuals after (buyer,seller,symbol,burst) cell-mean baseline for fwd20 are ~0 for top Mark01→22 / hydro cells — no residual fade signal in that specification.",
+        "Dominant Mark 01 buyer / Mark 22 seller mass at K=20 is near-zero mean fwd in several high-n buckets — no naive always-follow basket seller."
+      ],
+      "methodology_note": "Forward mid: K steps on sorted distinct timestamps per (day,symbol). Cross-asset extract/hydro: align extract/hydro mids to trade symbol timestamp grid endpoints. Aggressor: price vs bid1/ask1 at trade time."
+    }
+  }
+]

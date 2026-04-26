@@ -1,0 +1,25 @@
+{
+  "days": [
+    1,
+    2,
+    3
+  ],
+  "n_trades": 4281,
+  "horizon_definition": "K steps on distinct timestamps per (day,symbol), mid change",
+  "outputs": [
+    "outputs_r4_phase1/r4_p1_aggr_buy_fwd5_by_seller.csv",
+    "outputs_r4_phase1/r4_p1_aggr_sell_fwd5_by_buyer.csv",
+    "outputs_r4_phase1/r4_p1_baseline_cells_fwd20.csv",
+    "outputs_r4_phase1/r4_p1_burst_vs_control_extract.txt",
+    "outputs_r4_phase1/r4_p1_directed_edges_buyer_seller.csv",
+    "outputs_r4_phase1/r4_p1_example_stability_mark01_vev5300.csv",
+    "outputs_r4_phase1/r4_p1_manifest.json",
+    "outputs_r4_phase1/r4_p1_participant_fwd_mid_k100.csv",
+    "outputs_r4_phase1/r4_p1_participant_fwd_mid_k20.csv",
+    "outputs_r4_phase1/r4_p1_participant_fwd_mid_k5.csv",
+    "outputs_r4_phase1/r4_p1_residual_top_pairs_fwd20.csv",
+    "outputs_r4_phase1/r4_p1_stratified_fwd20_by_day.csv",
+    "outputs_r4_phase1/r4_p1_trades_enriched.csv",
+    "outputs_r4_phase1/r4_p1_twohop_chain_scores.csv"
+  ]
+}

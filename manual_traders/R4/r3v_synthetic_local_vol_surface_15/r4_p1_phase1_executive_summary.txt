@@ -1,0 +1,48 @@
+Round 4 Phase 1 — executive summary (days 1–3, 4281 trades after enrichment)
+================================================================================
+
+Horizon: K ∈ {5,20,100} = K steps forward on distinct price timestamps per (day,symbol).
+Aggressor: trade price vs BBO at trade time (aggr_buy / aggr_sell / inside).
+
+1) Participant-level predictiveness
+------------------------------------
+Strongest systematic positive same-symbol forward mids (K=20, |t|>2, n≥100):
+  • Mark 67 as **buyer**, aggressive **buy** on VELVETFRUIT_EXTRACT: mean fwd_mid_k20 ≈ +1.81, t≈5.86, n=164; **stable by day** (means ~2.03 / 1.45 / 2.02 on days 1/2/3).
+  • Mark 49 as **seller**, aggressive **buy** hitting them: mean ≈ +1.83, t≈4.95, n=104 (smaller n).
+  • Mark 55 as **buyer**, aggressive **buy** on extract: mean ≈ +0.41, t≈2.48, n=598; positive all three days but smaller effect.
+
+Many large-n cells (Mark 01 buyer aggr_sell, Mark 22 seller) show near-zero mean fwd — **no** “always informed” one-sided story at K=20.
+
+2) Bot baseline / residuals
+----------------------------
+Cell-mean baseline on (buyer, seller, symbol, burst) for fwd_mid_k20: **residual means are ~0**
+for top pairs (Mark 01→22 on wings, hydro duopoly pairs) — see r4_p1_residual_top_pairs_fwd20.csv
+(numerical noise scale). **No** large stable second-order residual cluster beyond floating-point dust.
+
+3) Graph / sequence
+---------------------
+Directed edges: Mark 01→Mark 22 dominates (1339 prints); Mark 14↔Mark 38 hydro loop (728/714).
+Two-hop score table: Mark 01→Mark 22→* chains dominate by weight product — consistent with
+basket seller choreography, not a new predictive path beyond pair-conditioned means.
+
+4) Bursts
+---------
+Same-timestamp multi-print bursts on VELVETFRUIT_EXTRACT: burst=1 (n=82) mean fwd_mid_k20 **+1.20**
+vs burst=0 (n=1299) mean **+0.28** — bursts coincide with larger short-horizon upward drift on extract
+in this slice (event-study style; n_burst moderate).
+
+5) Adverse selection (population)
+------------------------------------
+Aggressive buys: sellers with **most negative** mean fwd_mid_k5 (passive seller hurt if price mean-reverts down)
+cluster on high-flow names — use CSV r4_p1_aggr_buy_fwd5_by_seller.csv for ranks.
+Aggressive sells: symmetric file r4_p1_aggr_sell_fwd5_by_buyer.csv.
+
+Top “no edge” findings
+-----------------------
+• Mark 01 → Mark 22 on **VEV_5300** alone: fwd20 mean ≈ −0.12, t≈−0.84 (n=132) — **not** a standalone lift.
+• Baseline residuals ≈ 0 for dominant basket/hydro cells — fading the mean pair is not supported by residual table.
+
+Artifacts
+-----------
+All under: manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/
+Re-run: python3 manual_traders/R4/r3v_synthetic_local_vol_surface_15/_r4_phase1_counterparty_analysis.py

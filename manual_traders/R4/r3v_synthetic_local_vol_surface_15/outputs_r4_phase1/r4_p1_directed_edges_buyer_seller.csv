@@ -1,0 +1,20 @@
+buyer,seller,n,notional
+Mark 01,Mark 22,1339,4636
+Mark 14,Mark 38,728,2447
+Mark 38,Mark 14,714,2445
+Mark 55,Mark 14,331,1763
+Mark 14,Mark 55,316,1761
+Mark 01,Mark 55,260,1417
+Mark 55,Mark 01,244,1375
+Mark 67,Mark 49,89,963
+Mark 14,Mark 22,83,302
+Mark 67,Mark 22,75,546
+Mark 38,Mark 22,19,48
+Mark 22,Mark 55,18,92
+Mark 22,Mark 38,17,60
+Mark 55,Mark 22,14,62
+Mark 49,Mark 22,12,89
+Mark 55,Mark 49,9,54
+Mark 22,Mark 49,7,54
+Mark 49,Mark 55,5,26
+Mark 67,Mark 55,1,1

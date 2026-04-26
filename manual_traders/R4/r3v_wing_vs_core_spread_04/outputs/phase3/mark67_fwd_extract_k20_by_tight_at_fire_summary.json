@@ -1,0 +1,14 @@
+[
+  {
+    "subset": "tight_at_fire",
+    "n": 34,
+    "mean": 2.75,
+    "median": 4.0
+  },
+  {
+    "subset": "wide_at_fire",
+    "n": 130,
+    "mean": 1.5692307692307692,
+    "median": 1.5
+  }
+]

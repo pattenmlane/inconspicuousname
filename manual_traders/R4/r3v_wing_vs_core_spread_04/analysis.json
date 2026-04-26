@@ -394,5 +394,18 @@
       "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v10_worse.log"
     ],
     "used_to_decide": "Do **not** replace v1 with tape-only Sonic-at-fire prefilter for this Mark67 rule; keep v1 or use **counterparty** filters (67\u219222) instead of excluding wide-at-fire prints."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "r4_mark67_fwd_extract_by_tight_at_fire.py: on the **164** Mark67 buy-aggr extract prints, K=20 **tape** forward extract mid mean is **+2.75** when joint tight at fire_ts (n=34) vs **+1.57** when wide at fire (n=130) \u2014 mid-only favors tight-at-fire. Emitted wide list + row CSV + summary JSON. trader_v11 trades only **wide-at-fire** subset: worse **+160** / **23** SUBMISSION fills. **v10+v11** reproduces v1 exactly: fills **12+23=35**, PnL **287.5+160=447.5** \u2014 tape split is a **partition** of v1 under same act gate; v10 underperforms alone because it drops the larger wide-at-fire branch that still clears the execution gate.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_mark67_fwd_extract_by_tight_at_fire.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/mark67_fwd_extract_k20_by_tight_at_fire_summary.json",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/mark67_fwd_extract_k20_by_tight_at_fire_rows.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/signals_mark67_buy_aggr_extract_wide_at_fire.json",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v11.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v11_worse.log"
+    ],
+    "used_to_decide": "Tape tight-at-fire is **not** a sufficient statistic for sim PnL without act-time state; use v1 or explicit pair filters rather than mid-only Sonic-at-fire gating alone."
   }
 ]

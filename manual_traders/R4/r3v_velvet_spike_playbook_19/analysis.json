@@ -352,5 +352,24 @@
       },
       "used_to_decide": "Microstructure gating on **wide extract** at the burst tick is evidence-aligned and **improves** pooled sim vs v1, but **day 3 remains negative** \u2014 combine with size cap, second filter, or accept day risk."
     }
+  },
+  {
+    "round4_burst_v9_spread_gate_day3_half_size": {
+      "trader": "manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v9_r4_burst_extract_spread_gate_scaled_d3.py",
+      "logic": "Same as v8 (burst M01\u219222 + extract L1 spread <= 5); **LOT=3 on csv_day==3**, LOT=6 on days 1\u20132. Still participates day 3 but halves impulse size (same 34 burst events on day 3 as v8, smaller clips).",
+      "backtest_round4_days_1_3": {
+        "worse_total": 9491,
+        "all_total": 9491,
+        "day_profit": {
+          "1": 3442,
+          "2": 6202,
+          "3": -153
+        },
+        "fills": "135 submission trades, 600 abs qty on extract (more partial fills on day 3 with lot 3).",
+        "vs_v8_7080": "+2411 total; day 3 PnL -2564 \u2192 -153 while keeping tape gate + counterparty burst thesis on all days.",
+        "vs_v7_8242": "v7 upper bound by skipping day 3 entirely; v9 trades day 3 with controlled risk and lands between v8 and v7 on total."
+      },
+      "used_to_decide": "Confirms day-3 drag is **scale-dominated** in sim for this signal family: halving day-3 size nearly removes that day\u2019s loss without dropping the microstructure filter from v8."
+    }
   }
 ]

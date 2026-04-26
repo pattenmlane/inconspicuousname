@@ -1,0 +1,61 @@
+{
+  "spread_spread": {
+    "n": 30000,
+    "corr_s5200_s5300": 0.3076,
+    "corr_s5200_s_ext": 0.0086,
+    "corr_s5300_s_ext": 0.0054
+  },
+  "sonic_extract_fwd": {
+    "K": 20,
+    "TH": 2,
+    "mean_fwd_tight": 0.318765,
+    "mean_fwd_not_tight": -0.124899,
+    "n_tight": 7722,
+    "n_not_tight": 22278,
+    "per_day": [
+      {
+        "day": 1,
+        "p_tight": 0.1381,
+        "n_tight": 1381,
+        "mean_fwd_extract": 0.599203,
+        "n_loose": 8619,
+        "mean_fwd_extract_loose": -0.055169
+      },
+      {
+        "day": 2,
+        "p_tight": 0.1727,
+        "n_tight": 1727,
+        "mean_fwd_extract": 0.4641,
+        "n_loose": 8273,
+        "mean_fwd_extract_loose": -0.021032
+      },
+      {
+        "day": 3,
+        "p_tight": 0.4614,
+        "n_tight": 4614,
+        "mean_fwd_extract": 0.180429,
+        "n_loose": 5386,
+        "mean_fwd_extract_loose": -0.396027
+      }
+    ]
+  },
+  "mark67_gated": {
+    "n_joint_tight_at_trade": 27,
+    "mean_fwd20": 2.055556,
+    "n_not_tight": 137,
+    "mean_fwd20_not_tight": 1.766423
+  },
+  "mark01_5300_gated": {
+    "n_tight": 132,
+    "mean_fwd5_vev5300": -0.147727,
+    "n_not_tight": 0,
+    "mean_fwd5_not_tight": null
+  },
+  "burst_5300_gated": {
+    "n_bursts_tight": 316,
+    "mean_fwd5_5300": 0.257911,
+    "n_bursts_loose": 1,
+    "mean_fwd5_5300_loose": -0.5
+  },
+  "comparison_to_phase1": "Mark67 n=164 all had extract spread<=8 (ph2); ph3 shows same trades split by joint 5200+5300<=2 vs wider co-movement of wing spreads."
+}

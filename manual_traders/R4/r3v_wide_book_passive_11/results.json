@@ -252,5 +252,51 @@
         "trade_history_md5_same_as_v1_all": true
       }
     }
+  },
+  {
+    "iteration": 6,
+    "round": 4,
+    "trader_file": "manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v4.py",
+    "strategy_description": "v1 + Tier-A **price skew** when Sonic tight AND Mark67→Mark22 extract tape: bid bb+2 (vs bb+1), ask anchored ceil(fair)+2 (vs +1), buy size +1 cap 12, sell size max(2,base-2). First variant to change merged tradeHistory vs v1.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 12185,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v4.py 4-1 4-2 4-3 --data Prosperity4Data --no-vis --out manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v4_d123_worse.json --match-trades worse",
+      "backtest_log_file": "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v4_d123_worse_full.log",
+      "trades_or_fills_summary": {
+        "per_day_profit": {
+          "day_1": 4388,
+          "day_2": 1884,
+          "day_3": 5913
+        },
+        "fills": 2240,
+        "fill_qty": 9079,
+        "fill_qty_by_symbol": {
+          "VELVETFRUIT_EXTRACT": 8203,
+          "VEV_4000": 876
+        },
+        "trade_history_md5_same_as_v1_worse": false
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 9666,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v4.py 4-1 4-2 4-3 --data Prosperity4Data --no-vis --out manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v4_d123_all.json --match-trades all",
+      "backtest_log_file": "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v4_d123_all_full.log",
+      "trades_or_fills_summary": {
+        "per_day_profit": {
+          "day_1": 4428,
+          "day_2": -100,
+          "day_3": 5338
+        },
+        "fills": 2306,
+        "fill_qty": 9079,
+        "fill_qty_by_symbol": {
+          "VELVETFRUIT_EXTRACT": 8203,
+          "VEV_4000": 876
+        },
+        "trade_history_md5_same_as_v1_all": false
+      }
+    }
   }
 ]

@@ -275,5 +275,16 @@
       "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v3_d123_all_full.log"
     ],
     "used_to_decide": "Next sim experiments: signal-triggered **fair skew** (move bid/ask vs EMA), **reduce sell** on sig, or **take** small lift when tape prints at ask — each needs explicit worse-fill risk budget."
+  },
+  {
+    "iteration": 6,
+    "round": 4,
+    "analysis_description": "trader_r4_v4: Tier-A tick uses **different prices** than v1 (bb+2 bid, ask from ceil(fair)+2) plus asymmetric sizes (+1 buy cap 12, sell max(2,base-2)). Backtest: merged tradeHistory **differs** from v1 (4698 vs 4697 rows worse; +1 extract-side row). Worse PnL **12,185** vs v1 **12,203** (−18); day 3 extract line **5,289** vs **5,307**. All-mode total **9,666** vs **9,684**. Conclusion: skew binds on some signal ticks and **hurts** under worse matching here — next try smaller skew (bid+2 only, keep ask v1) or inventory-conditioned skew.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v4.py",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v4_d123_worse_full.log",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v4_d123_all_full.log"
+    ],
+    "used_to_decide": "Confirms analysis iteration 5: **price** change was required to move fills; v2/v3 order-split at same prices was a dead end."
   }
 ]

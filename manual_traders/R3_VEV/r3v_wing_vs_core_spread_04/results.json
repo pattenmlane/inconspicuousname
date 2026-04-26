@@ -483,5 +483,49 @@
       "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v45_all_d0-2.log",
       "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v45_all_d0-2.json"
     }
+  },
+  {
+    "iteration": 46,
+    "trader_file": "trader_v46.py",
+    "strategy_description": "v46: v45 + 1-tick bid improver (only if spread \u22652 so bb+1<ask) + at-ask **recycle sells** up to long inventory on 5200/5300/5400/U. Wide flatten unchanged. Hypothesis: recycle without net shorts; actual: asks still bleed under `worse`.",
+    "total_profit": -1183.0,
+    "backtest_round": 3,
+    "backtest_days": "3-0 3-1 3-2",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -1183.0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v46.py 3-0 3-1 3-2 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v46_worse_d0-2.log",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v46_worse_d0-2.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v46_worse_d0-2.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -1247.0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v46.py 3-0 3-1 3-2 --data Prosperity4Data --match-trades all --no-vis --out manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v46_all_d0-2.log",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v46_all_d0-2.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v46_all_d0-2.json"
+    }
+  },
+  {
+    "iteration": 47,
+    "trader_file": "trader_v47.py",
+    "strategy_description": "v47: same behavior as v45 (touch bid-only, wide flatten) with explicit long targets (12 VEV, 20 extract) in code. 1-tick improver path reverted: stepping inside on 1-tick books set price to best ask (taker) and bled \u2014 not used.",
+    "total_profit": 0.0,
+    "backtest_round": 3,
+    "backtest_days": "3-0 3-1 3-2",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 0.0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v47.py 3-0 3-1 3-2 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v47_worse_d0-2.log",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v47_worse_d0-2.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v47_worse_d0-2.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -289.0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v47.py 3-0 3-1 3-2 --data Prosperity4Data --match-trades all --no-vis --out manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v47_all_d0-2.log",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v47_all_d0-2.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v47_all_d0-2.json"
+    }
   }
 ]

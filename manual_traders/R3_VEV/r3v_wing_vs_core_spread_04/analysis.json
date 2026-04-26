@@ -358,5 +358,29 @@
       "analyze_gate_frequency_v45.py"
     ],
     "used_to_decide": "Primary ship metric remains worse: v45 is flat; all-mode stress still loses \u2014 need inventory caps, 1-tick improver, or one-sided *sell* to recycle after favorable mid move, still within vouchers_final (no smile)."
+  },
+  {
+    "iteration": 46,
+    "analysis_description": "v46: joint tight + bid (improve +1 only if spread\u22652 so bb+1<ask) + recycle at best ask (sell qty \u2264 long) on 5200/5300/5400/U; wide flatten. EXACT_DUPLICATE_CHECK: distinct from v44 (no uncapped two-sided) and v45 (adds capped sells + improver). Backtest 3-0..3-2: worse -1183 (545 submission rows) \u2014 passive **asks** in tight still lose under `worse`.",
+    "analysis_outputs": [
+      "trader_v46.py",
+      "backtest_v46_worse_d0-2.log",
+      "backtest_v46_all_d0-2.log",
+      "fill_summary_v46_worse_d0-2.json",
+      "fill_summary_v46_all_d0-2.json"
+    ],
+    "used_to_decide": "Abandon at-ask recycling for next; v47 returns to v45 touch bid-only. Bugfix noted: `bb+1` on 1-tick spread hits best ask; require `ba\u2265bb+2` to improver-bid passively."
+  },
+  {
+    "iteration": 47,
+    "analysis_description": "v47: documents soft long targets (12 VEV, 20 extract) but final logic matches v45 (touch bid-only, wide flatten). Worse: 0, 0 submission rows; all: -289, 887 rows (same as v45 on 3-0..3-2) \u2014 duplicate economic outcome to v45 once improver taker path removed.",
+    "analysis_outputs": [
+      "trader_v47.py",
+      "backtest_v47_worse_d0-2.log",
+      "backtest_v47_all_d0-2.log",
+      "fill_summary_v47_worse_d0-2.json",
+      "fill_summary_v47_all_d0-2.json"
+    ],
+    "used_to_decide": "Touch-only passives do not print under worse; 200k/day not reachable on this sub-strategy alone. Next: try gate-gated taker extract on tight **rising** edge with strict extract spread + min clip, or full tape, or layer gate on a proven positive strategy."
   }
 ]

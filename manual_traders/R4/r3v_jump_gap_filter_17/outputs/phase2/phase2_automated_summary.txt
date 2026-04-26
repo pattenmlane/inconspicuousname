@@ -1,0 +1,22 @@
+Round 4 Phase 2 — key tables written to outputs/phase2/
+Extract |Δmid| over 5 ticks by joint_tight:
+day  joint_tight
+1    False          1.711619
+     True           1.727371
+2    False          1.737761
+     True           1.730168
+3    False          1.730440
+     True           1.694541
+
+Best |mean_cross| lead–lag rows:
+            day          other  lag_ticks  mean_cross      n
+mean_cross                                                  
+9             1  HYDROGEL_PACK          9   -0.031653   9991
+22            1       VEV_5200          0    0.556350  10000
+11            1       VEV_5300          0    0.349000  10000
+35            2  HYDROGEL_PACK          2   -0.040333   9998
+55            2       VEV_5200          0    0.579800  10000
+44            2       VEV_5300          0    0.354075  10000
+74            3  HYDROGEL_PACK          8   -0.028898   9992
+88            3       VEV_5200          0    0.560250  10000
+77            3       VEV_5300          0    0.309025  10000

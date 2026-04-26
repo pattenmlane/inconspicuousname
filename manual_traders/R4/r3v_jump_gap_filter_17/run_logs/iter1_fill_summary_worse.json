@@ -1,0 +1,8 @@
+{
+  "source": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter1_backtest_worse.log",
+  "match_trades": "worse",
+  "per_day": {"1": 4264.0, "2": 1352.0, "3": 1898.0},
+  "total_profit": 7514.0,
+  "note": "Matches backtest Profit summary total"
+  "note": "trader_v1 extract-only; joint gate + microprice skew"
+}

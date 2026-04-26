@@ -1,0 +1,53 @@
+running algorithm '/workspace/manual_traders/R4/r3v_jump_gap_filter_17/trader_v1.py'...
+Backtesting /workspace/manual_traders/R4/r3v_jump_gap_filter_17/trader_v1.py for round: 4 day: 1
+  0%|          | 0/10000 [00:00<?, ?it/s] 22%|##1       | 2178/10000 [00:00<00:00, 21775.09it/s] 44%|####3     | 4356/10000 [00:00<00:00, 20885.93it/s] 64%|######4   | 6448/10000 [00:00<00:00, 16445.79it/s] 84%|########4 | 8441/10000 [00:00<00:00, 17609.35it/s]100%|##########| 10000/10000 [00:00<00:00, 18293.64it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 3,409
+HYDROGEL_PACK: 0
+Total profit: 3,409
+Backtesting /workspace/manual_traders/R4/r3v_jump_gap_filter_17/trader_v1.py for round: 4 day: 2
+  0%|          | 0/10000 [00:00<?, ?it/s] 22%|##2       | 2207/10000 [00:00<00:00, 22069.55it/s] 44%|####4     | 4414/10000 [00:00<00:00, 21690.94it/s] 66%|######5   | 6584/10000 [00:00<00:00, 15925.39it/s] 86%|########6 | 8621/10000 [00:00<00:00, 17353.27it/s]100%|##########| 10000/10000 [00:00<00:00, 18075.32it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 2,166
+HYDROGEL_PACK: 0
+Total profit: 2,166
+Backtesting /workspace/manual_traders/R4/r3v_jump_gap_filter_17/trader_v1.py for round: 4 day: 3
+  0%|          | 0/10000 [00:00<?, ?it/s] 22%|##2       | 2211/10000 [00:00<00:00, 22109.39it/s] 44%|####4     | 4422/10000 [00:00<00:00, 21583.43it/s] 66%|######5   | 6582/10000 [00:00<00:00, 20773.67it/s] 87%|########6 | 8663/10000 [00:00<00:00, 13997.59it/s]100%|##########| 10000/10000 [00:00<00:00, 16351.71it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 2,421
+HYDROGEL_PACK: 0
+Total profit: 2,421
+Profit summary:
+Round 4 day 1: 3,409
+Round 4 day 2: 2,166
+Round 4 day 3: 2,421
+Total profit: 7,996
+
+Successfully saved backtest results to backtests/2026-04-26_16-53-01.log

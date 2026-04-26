@@ -110,5 +110,68 @@
         "round4work/round4description.txt TTE: only VEV_5000 example; `r4_t_years.py` uses 5−day at open + R3-style intraday wind (confirm if spec updates)."
       ]
     }
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Phase 2 script `r4_phase2_analysis.py`: (1) named-bot burst window ±5 ticks around Mark01→Mark22 timestamps — VEV_5300 fwd5/fwd20 MR fraction ~0.14 (not a clean fade); (2) microstructure — extract spread quartiles vs |Δmid|5 are flat (`extract_spread_quartile_vs_fwd_vol.csv`); joint gate vs short vol shows only day-3 slightly lower vol when tight; (3) lead–lag signed product Δ×lag: VEV_5200/5300 contemporaneous with extract dominates (`leadlag_best_lag_by_day.csv`); hydro weak negative cross at odd lags; (4) Phase-1 extract aggr_buy×Mark22/49 split by **Sonic joint gate** (`phase1_extract_signal_by_joint_gate.csv`) — **refines** Phase-1: when gate tight, day-1 Mark22 mean +0.75 on n=4 (tiny n); pooled pattern is still buyer-side drift but gate slices are count-starved; (5) rough IV residual Mark01→22 by VEV (`iv_residual_*`); (6) worst markouts tail from Phase-1 CSV (`worst_markouts_k20_tail.csv`); (7) Mark55 rolling flow terciles vs extract fwd5 (`mark55_flow_imbalance_vs_extract_fwd5.csv`) — mixed by day.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_jump_gap_filter_17/r4_phase2_analysis.py",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase2/phase2_automated_summary.txt",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase2/joint_gate_vs_extract_short_vol.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase2/extract_spread_quartile_vs_fwd_vol.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase2/extract_depth_quartile_vs_fwd_vol.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase2/microprice_skew_vs_fwd_vol_extract.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase2/leadlag_signed_extract_x_other.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase2/leadlag_best_lag_by_day.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase2/burst01_22_near_vev5300_mr_summary.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase2/phase1_extract_signal_by_joint_gate.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase2/iv_residual_mark01_mark22_by_symbol.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase2/mark55_flow_imbalance_vs_extract_fwd5.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase2/worst_markouts_k20_tail.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter1_backtest_worse.log",
+      "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter1_backtest_all.log"
+    ],
+    "used_to_decide": "Phase 2 gate in `round4_phase2_complete`. `trader_v1.py` implements orthogonal live microstructure + joint gate (sim); counterparty edges remain tape-only until engine exposes trades.",
+    "round4_phase2_complete": {
+      "phase": 2,
+      "interaction_with_phase1": "Phase-1 aggressive extract buy + Mark22/49 seller **still positive** in wide-book majority of prints; conditioning on **Sonic joint tight** yields **very small n** (e.g. day-1 Mark22 n=4, mean +0.75) — does **not** refute Phase-1 but shows the tape edge is **not** cleanly gated by 5200+5300≤2 on this slice (often opposite sign / low count). Phase-1 burst K=20 lift **confirmed** orthogonal (micro vol vs burst timing). Mark 01→22 VEV_5300 near-burst **does not** show high mean-revert rate (~14%).",
+      "top_5_tradeable_edges_phase2": [
+        {
+          "rank": 1,
+          "edge": "Contemporaneous co-move: extract tick Δ aligns with VEV_5200 and VEV_5300 tick Δ (same timestamp); strongest cross-moment at lag 0 all three days",
+          "evidence": "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase2/leadlag_best_lag_by_day.csv",
+          "orthogonal_to_phase1": true
+        },
+        {
+          "rank": 2,
+          "edge": "Avoid passive liquidity in worst tail: aggr_sell Mark49→Mark22 and Mark22→Mark38 show large negative k20 fwd on printed symbol",
+          "evidence": "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase2/worst_markouts_k20_tail.csv (from Phase-1 adverse_proxy)",
+          "orthogonal_to_phase1": true
+        },
+        {
+          "rank": 3,
+          "edge": "Extract-only sim with joint gate + microprice skew — positive PnL vs v0 zero (sanity that micro+gate can be wired live)",
+          "evidence": "manual_traders/R4/r3v_jump_gap_filter_17/results.json iteration 1; trader_v1.py",
+          "orthogonal_to_phase1": true
+        },
+        {
+          "rank": 4,
+          "edge": "Joint tight vs wide: slightly lower short-horizon extract |Δmid| on day 3 when gate tight (regime split)",
+          "evidence": "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase2/joint_gate_vs_extract_short_vol.csv",
+          "orthogonal_to_phase1": true
+        },
+        {
+          "rank": 5,
+          "edge": "Rough IV residual at Mark01→Mark22 VEV prints — strike-level skew vs ATM IV (for future smile/MM); file iv_residual_mark01_mark22_by_symbol.csv",
+          "evidence": "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase2/iv_residual_mark01_mark22_by_symbol.csv",
+          "orthogonal_to_phase1": true
+        }
+      ],
+      "phase2_negative": [
+        "Extract TOB spread quartile vs forward |Δmid|5 is flat — no spread-compression directional vol edge in this binning.",
+        "Burst-window (±5 ticks of 01→22) VEV_5300: mean-revert fraction only ~14%; not a standalone fade rule.",
+        "Mark55 signed-flow terciles vs extract fwd5 flip sign by day — weak inventory signal without more structure."
+      ]
+    }
   }
 ]

@@ -1,0 +1,13 @@
+day,joint_tight,seller,mean,count
+1,False,Mark 22,2.4545454545454546,33
+1,False,Mark 49,2.015625,32
+1,True,Mark 22,0.75,4
+1,True,Mark 49,2.0,2
+2,False,Mark 22,1.9642857142857142,28
+2,False,Mark 49,1.59375,32
+2,True,Mark 22,1.4166666666666667,6
+2,True,Mark 49,2.125,4
+3,False,Mark 22,1.5454545454545454,11
+3,False,Mark 49,2.16,25
+3,True,Mark 22,2.1875,8
+3,True,Mark 49,1.1111111111111112,9

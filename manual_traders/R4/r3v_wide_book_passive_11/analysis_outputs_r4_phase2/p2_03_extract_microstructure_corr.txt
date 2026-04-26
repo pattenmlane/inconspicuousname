@@ -1,0 +1,3 @@
+EXTRACT: corr(spread, |Δmid next row|) = -0.2160
+EXTRACT: corr(microprice-mid, |Δmid next row|) = 0.0104
+(next row = consecutive timestamp row per day)

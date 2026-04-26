@@ -22,31 +22,45 @@
       "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_passive_seller_markout_aggr_buy.csv",
       "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_mark67_aggr_extract_fwd5_by_day.csv",
       "round4work/outputs/r4_initial_analysis_summary.txt",
-      "round4work/outputs/r4_counterparty_sketch.txt"
+      "round4work/outputs/r4_counterparty_sketch.txt",
+      "manual_traders/R4/r4_counterparty_gated/run_r4_phase1_stratify_markouts.py",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_stratified_markout_by_session_spread_burst.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_stratified_markout_mark67_extract_tight_allK.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_stratified_markout_cells_n20_t2.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_stratify_markouts_summary.json",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_participant_net_flow_r4.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_baseline_resid_pos_tail_n20.csv"
     ],
     "phase1_extras_against_prompt": {
       "per_trade_event_file": "r4_phase1_trade_events.csv — all 4281 events with K∈{5,20,100} fwd_mids, fwd_ext, ts_bucket, spread_bucket, burst_ge4, aggression (stratify in pandas without re-joining).",
       "median_and_bootstrap_95": "r4_participant_fwd_by_symbol.csv now includes median_fwd and boot_ci95_mean_lo/hi (2000 resamples) per participant×role×symbol×K; n≥20 for bootstrap. Example Mark67 extract K=5: mean 1.96, CI [1.67,2.25], median 2.0.",
       "day_stability": "r4_participant_fwd_by_symbol_by_day.csv: same cells with n≥5 in a single day (compare across days 1–3).",
+      "stratified_session_spread_burst": "r4_stratified_markout_by_session_spread_burst.csv (n≥10 per cell): (participant, U_aggr_buy/sell, product)×K×ts_bucket×spread_bucket×burst_ge4; mean, median, t, bootstrap CI, frac_pos. 258 cells; run_r4_phase1_stratify_markouts.py. Mark 67 extract aggr buy K=5 stays positive in tight-spread + non-burst + every ts_bucket with enough n. r4_stratified_markout_cells_n20_t2.csv = |t|≥2, n≥20 for screening.",
       "graph_reciprocity_hubs": "r4_edge_pairs_with_reciprocity.csv (reverse pair counts, reciprocity ratio), r4_node_degree_in_out_top30.csv, r4_top20_directed_edge_pairs.csv. gross_notional = sum |price*qty| per directed pair.",
-      "burst_orchestrator": "r4_burst_orchestrator_by_timestamp.csv: mode buyer/seller on each (day,timestamp) with ≥2 prints; Mark01/Mark22 dominate most multi-print ticks on this slice."
+      "cluster_volume_balance": "r4_participant_net_flow_r4.csv: per-name buy vs sell row counts and sum(|p*q|) — Mark 14 near symmetric MM; Mark 67 buy-only in tape rows (0 sell-side).",
+      "burst_orchestrator": "r4_burst_orchestrator_by_timestamp.csv: mode buyer/seller on each (day,timestamp) with ≥2 prints; Mark01/Mark22 dominate most multi-print ticks on this slice.",
+      "residual_positive_tail": "r4_baseline_resid_pos_tail_n20.csv: top mean residual (buyer,seller,symbol) with n_cell≥20 after global pair×symbol mean baseline (supplements trade-level r4_trade_level_residual_fwd20.csv)."
     },
     "phase1_bullets": [
       {
         "bullet": "1) Participant-level alpha / predictiveness",
         "outputs": [
           "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_participant_fwd_by_symbol.csv",
-          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_mark67_aggr_extract_fwd5_by_day.csv"
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_mark67_aggr_extract_fwd5_by_day.csv",
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_stratified_markout_by_session_spread_burst.csv",
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_stratified_markout_mark67_extract_tight_allK.csv"
         ],
-        "conclusion": "Mark 67 aggressive buys on VELVETFRUIT_EXTRACT show strongly positive mean forward mid at K=5,20 (n≈164, t≈13 and 5.8) with ~64–84% positive at short horizons; stable positive mean across days 1–3 (see r4_mark67_aggr_extract_fwd5_by_day.csv). Mark 22 aggressive sells on VEV_5300 at K=5 show negative mean fwd (−0.20, t≈−3.3, n=160) but Mark01→Mark22 on VEV_5300 reverses sign by day (day1 mean −0.70 vs day2 +0.18 in r4_cell_mean_fwd20_by_day_pair_symbol.csv) — not day-stable as a simple fade."
+        "conclusion": "Mark 67 aggressive buys on VELVETFRUIT_EXTRACT show strongly positive mean forward mid at K=5,20 (n≈164, t≈13 and 5.8) with ~64–84% positive at short horizons; stable positive mean across days 1–3 (see r4_mark67_aggr_extract_fwd5_by_day.csv). Stratified table (tight BBO, isolated vs burst) confirms positive K=5 in each ts_bucket where n≥10 (see r4_stratified_markout_mark67_extract_tight_allK.csv). Mark 22 aggressive sells on VEV_5300 at K=5 show negative mean fwd (−0.20, t≈−3.3, n=160) but Mark01→Mark22 on VEV_5300 reverses sign by day (day1 mean −0.70 vs day2 +0.18 in r4_cell_mean_fwd20_by_day_pair_symbol.csv) — not day-stable as a simple fade."
       },
       {
         "bullet": "2) Deviation from bot baseline (pair×symbol cell means + residuals)",
         "outputs": [
           "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_trade_level_residual_fwd20.csv",
-          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_cell_mean_fwd20_by_day_pair_symbol.csv"
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_cell_mean_fwd20_by_day_pair_symbol.csv",
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_baseline_resid_pos_tail_n20.csv",
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_participant_net_flow_r4.csv"
         ],
-        "conclusion": "Residual file supports second-order checks; dominant Mark01→Mark22 cells on wings are near zero on average with day heterogeneity on VEV_5300 — no large uniform positive residual after simple cell baseline across all days."
+        "conclusion": "Residual file supports second-order checks; r4_baseline_resid_pos_tail_n20.csv lists largest positive mean residuals by (buyer,seller,symbol) with n_cell≥20 (none dominate as uniform alpha without regime). r4_participant_net_flow_r4.csv: pair-count / gross-notional role sketch (e.g. Mark 14 high two-sided flow, Mark 67 buy-only in tape). Dominant Mark01→Mark22 cells on wings are near zero on average with day heterogeneity on VEV_5300 — no large uniform positive residual after simple cell baseline across all days."
       },
       {
         "bullet": "3) Sequence / graph (directed buyer→seller + 2-hop motifs vs extract fwd20)",
@@ -147,7 +161,7 @@
     "title": "round4_suggested_direction_phase1_crosswalk",
     "analysis_description": "Cross-walk: `round4work/suggested direction.txt` Phase 1 bullets vs `run_r4_phase1_analysis.py` + supplements. K ∈ {5,20,100} = number of *price-tape* row steps forward for the same (day, symbol) after the trade’s timestamp; `fwd_mid_K` = mid(t+K)−mid(t) on that series; `fwd_ext_K` = same for VELVETFRUIT_EXTRACT. Concurrent BBO = price row at/just before trade ts (aggression: aggr_buy / aggr_sell / passive_mid). Spread quantile: per (day, symbol) quartile. Session: per-day *timestamp* quartile (`ts_bucket` 0–3), not wall-clock — R4 `timestamp` is tape index (0,100,…,999900). HYDROGEL forward for trade rows uses same-symbol series. **Median + bootstrap 95% CI for mean** are in `r4_participant_fwd_by_symbol.csv` (n≥20 for bootstrap CIs; see also `r4_participant_fwd_by_symbol_by_day.csv`).",
     "suggested_direction_txt_bullet_status": {
-      "1_participant_alpha_K_and_strata": "Implemented: `r4_phase1_trade_events.csv` (full 4281-row table with strata), `r4_participant_fwd_by_symbol.csv` (aggr_buy/sell per U×symbol×K with mean/median/bootstrap CI), `r4_participant_fwd_by_symbol_by_day.csv` (n≥5 per day).",
+      "1_participant_alpha_K_and_strata": "Implemented: `r4_phase1_trade_events.csv`; pooled `r4_participant_fwd_by_symbol.csv`; by-day `r4_participant_fwd_by_symbol_by_day.csv`; **stratified** `r4_stratified_markout_by_session_spread_burst.csv` + `run_r4_phase1_stratify_markouts.py` (session ts_bucket × spread quartile × burst_ge4, n≥10; mean/median/t/boot CI).",
       "1_cross_asset_extract": "Implemented: `fwd_ext_{K}` columns in trade-level data used in two-hop and burst summaries; top-line participant table is per-trade symbol; Mark67 extract day stability in `r4_mark67_aggr_extract_fwd5_by_day.csv`.",
       "1_median_bootstrap": "Automated: `r4_participant_fwd_by_symbol.csv` includes median_fwd, boot_ci95_mean_lo/hi (2000 resamples, min n=20 for CI). t_stat still requires n≥30 in script.",
       "1_hour_real_clock": "Not used; tape time deciles added separately: `run_r4_phase1_m67_tape_time_buckets.py` → `r4_m67_extract_fwd5_by_tape_decile_pooled.csv` (Mark67 extract aggr buy fwd5 by `timestamp//100000` 0..9) — M67 long signal stays >0 in every decile on days 1–3.",

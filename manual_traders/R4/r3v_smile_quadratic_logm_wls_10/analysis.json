@@ -92,6 +92,7 @@
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_fwd20_by_day.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_burst_echo_by_day.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_top_pair_fwd_by_day.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_fwd_by_symbol_day.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_gate.json",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
     ],
@@ -116,6 +117,7 @@
         "m0122_fwd20_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_fwd20_by_day.csv",
         "burst_echo_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_burst_echo_by_day.csv",
         "top_pair_fwd_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_top_pair_fwd_by_day.csv",
+        "m0122_fwd_by_symbol_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_fwd_by_symbol_day.csv",
         "gate_json": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_gate.json",
         "script": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
       },
@@ -169,6 +171,15 @@
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
     ],
     "used_to_decide": "M01→M22 fwd20 under asof-tight: day1 mean -0.048 (t≈-1.42), day2 +0.023 (t≈0.75), day3 +0.039 (t≈1.12) — sign not stable across days at K=20. Burst echo fwd5: positive mean all three days (~0.23–0.31) with ~0.50 frac positive. Sim: trader_v3 wing spread cap lowers total vs v2 (3905 vs 6088), so v2 wing PnL was net additive on this tape."
+  },
+  {
+    "iteration": "round4_phase3_m0122_symbol_horizon",
+    "analysis_description": "Mark01→Mark22 basket prints decomposed by traded symbol, day, and K∈{5,20,100} on asof-tight trades (r4_p3_m0122_fwd_by_symbol_day.csv). Identifies which legs contribute to pooled mean (e.g. VEV_5300 short-K negative on day1; VEV_6500 flat zero fwd from one-tick books).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_fwd_by_symbol_day.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
+    ],
+    "used_to_decide": "Pooled M01→M22 masks offsetting wing vs core dynamics; K=100 on VEV_5300 day3 t≈1.07 (n=69). Sim: trader_v5 (v2 + hydro MM clip 8 at joint gate) total 11526 worse/all vs v2 6088 — hydro MM is strongly additive on this tape under the same voucher gate."
   },
   {
     "iteration": "round4_phase3_top_pairs_by_day",

@@ -20,6 +20,7 @@ Writes:
   r4_p3_m0122_fwd20_by_day.csv      — Mark01→Mark22 all symbols: fwd20 by day (asof-tight only)
   r4_p3_burst_echo_by_day.csv       — M01→M22 ≥3VEV burst echo grouped by day
   r4_p3_top_pair_fwd_by_day.csv     — top graph pairs × day × K (asof-tight trades only)
+  r4_p3_m0122_fwd_by_symbol_day.csv — Mark01→Mark22: per symbol × day × K (tight only)
   r4_phase3_summary.txt
   r4_phase3_gate.json               — fragment for analysis.json
 """
@@ -365,6 +366,43 @@ def main() -> None:
         m122_day.append({"day": int(d), "n": n, "mean_fwd20": mu, "t_vs_zero": t0})
     pd.DataFrame(m122_day).to_csv(OUT / "r4_p3_m0122_fwd20_by_day.csv", index=False)
 
+    # M01→M22: which symbols / horizons / days drive pooled fwd (tight only)
+    sym_rows: list[dict] = []
+    for sym in sorted(m122["symbol"].astype(str).unique()):
+        for d in DAYS:
+            sub_sym = m122[(m122["symbol"] == sym) & (m122["day"] == d)]
+            for k in KS:
+                col = f"fwd_mid_{k}"
+                vals = sub_sym[col].dropna().astype(float).to_numpy()
+                vals = vals[np.isfinite(vals)]
+                n = len(vals)
+                if n < 5:
+                    sym_rows.append(
+                        {
+                            "symbol": sym,
+                            "day": int(d),
+                            "horizon_K": k,
+                            "n": n,
+                            "mean_fwd": float("nan"),
+                            "t_vs_zero": float("nan"),
+                        }
+                    )
+                    continue
+                mu = float(np.mean(vals))
+                sd = float(np.std(vals, ddof=1))
+                t0 = float(mu / (sd / math.sqrt(n))) if n > 1 and sd > 0 else float("nan")
+                sym_rows.append(
+                    {
+                        "symbol": sym,
+                        "day": int(d),
+                        "horizon_K": k,
+                        "n": n,
+                        "mean_fwd": mu,
+                        "t_vs_zero": t0,
+                    }
+                )
+    pd.DataFrame(sym_rows).to_csv(OUT / "r4_p3_m0122_fwd_by_symbol_day.csv", index=False)
+
     # --- Top directed pairs (from Phase 1 graph) × day × horizon, asof-tight only
     eg_path = OUT / "r4_p1_graph_edges.csv"
     if eg_path.is_file():
@@ -645,7 +683,7 @@ def main() -> None:
     lines.extend(
         [
             "",
-            "Counterparty day tables: r4_p3_mark_fwd_by_day.csv, r4_p3_m0122_fwd20_by_day.csv, r4_p3_burst_echo_by_day.csv, r4_p3_top_pair_fwd_by_day.csv",
+            "Counterparty day tables: r4_p3_mark_fwd_by_day.csv, r4_p3_m0122_fwd20_by_day.csv, r4_p3_m0122_fwd_by_symbol_day.csv, r4_p3_burst_echo_by_day.csv, r4_p3_top_pair_fwd_by_day.csv",
             "",
             "Top spread–spread |r| on inner-join timestamps (inclineGod panel):",
         ]
@@ -724,6 +762,7 @@ def main() -> None:
                 "r4_p3_m0122_fwd20_by_day.csv",
                 "r4_p3_burst_echo_by_day.csv",
                 "r4_p3_top_pair_fwd_by_day.csv",
+                "r4_p3_m0122_fwd_by_symbol_day.csv",
                 "r4_phase3_summary.txt",
                 "r4_phase3_analysis.py",
             )},

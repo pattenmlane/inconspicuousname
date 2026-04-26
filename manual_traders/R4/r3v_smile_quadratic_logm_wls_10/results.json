@@ -183,5 +183,40 @@
     "phase3_analysis_extension": {
       "top_pair_fwd_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_top_pair_fwd_by_day.csv"
     }
+  },
+  {
+    "iteration": 5,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "v2 plus HYDROGEL_PACK: when Sonic joint gate on, one-tick MM on extract, all VEVs (same sizes as v2), and hydro with per-side clip 8.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/backtest_worse_trader_v5_r4_d123.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_quadratic_logm_wls_10/trader_v5.py 4-1 4-2 4-3 --data Prosperity4Data --no-out --no-progress --no-vis --match-trades worse",
+      "backtest_round": 4,
+      "backtest_days": "1-3",
+      "total_profit": 11526,
+      "day_total_profit": {"1": 2156, "2": 4608, "3": 4762},
+      "trades_or_fills_summary": {
+        "note": "worse same as all; hydro PnL day1=1181 day2=1255 day3=3000",
+        "hydrogel_pnl_by_day": {"1": 1181, "2": 1255, "3": 3000},
+        "compare_to_v2_total": 6088
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/backtest_all_trader_v5_r4_d123.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_quadratic_logm_wls_10/trader_v5.py 4-1 4-2 4-3 --data Prosperity4Data --no-out --no-progress --no-vis --match-trades all",
+      "backtest_round": 4,
+      "backtest_days": "1-3",
+      "total_profit": 11526,
+      "day_total_profit": {"1": 2156, "2": 4608, "3": 4762},
+      "trades_or_fills_summary": {
+        "note": "matches worse",
+        "hydrogel_pnl_by_day": {"1": 1181, "2": 1255, "3": 3000}
+      }
+    },
+    "phase3_analysis_extension": {
+      "m0122_fwd_by_symbol_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_fwd_by_symbol_day.csv"
+    }
   }
 ]

@@ -354,5 +354,18 @@
       "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v7_worse.json"
     ],
     "used_to_decide": "High mid\u2013mid comovement explains additive sim; for capital efficiency prefer **v3** alone unless 5300 leg has independent use (hedge not modeled here)."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Phase3 extension: **Mark67\u2192Mark49** extract prints split by joint tight at print \u2014 mean K=20 fwd extract **+1.08** (n=12 tight) vs **+1.72** (n=77 wide); CSV mark67_to_mark49_extract_fwd_k20_by_joint_tight.csv. Emitted signals_mark67_to_mark49_extract_joint_tight_at_print.json (12 rows) + events CSV from r4_phase3_sonic_gate_analysis.py. trader_v8: same mechanics as v1 but 67\u219249+tight-at-print; worse **+29.5**, **1** SUBMISSION fill \u2014 act-time gate blocks almost all fires on days 2\u20133; weaker than v1/v3 counterparty paths.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_phase3_sonic_gate_analysis.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/mark67_to_mark49_extract_fwd_k20_by_joint_tight.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/signals_mark67_to_mark49_extract_joint_tight_at_print.json",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/mark67_to_mark49_extract_tight_print_events.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v8.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v8_worse.log"
+    ],
+    "used_to_decide": "Do **not** prioritize 67\u219249+tight as a primary taker rule vs 67\u219222+tight (v3); tape fwd edge is smaller and execution overlap with act-gate is thin."
   }
 ]

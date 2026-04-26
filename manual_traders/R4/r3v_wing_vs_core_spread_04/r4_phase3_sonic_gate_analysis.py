@@ -268,6 +268,24 @@ def main() -> None:
     if len(sig_6722):
         sig_6722.assign(pair="Mark 67->Mark 22").to_csv(OUT / "mark67_to_mark22_extract_tight_print_events.csv", index=False)
 
+    # Mark 67 → Mark 49 on extract × joint tight (Phase 3 table: tight mean lower than wide — falsify “always long”)
+    sub_6749 = m[(m["symbol"] == EXTRACT) & (m["buyer"] == "Mark 67") & (m["seller"] == "Mark 49")]
+    g6749 = (
+        sub_6749.groupby("joint_tight_print")
+        .agg(n=("fwd_extract_k20", "count"), mean=("fwd_extract_k20", "mean"), med=("fwd_extract_k20", "median"))
+        .reset_index()
+    )
+    g6749.to_csv(OUT / "mark67_to_mark49_extract_fwd_k20_by_joint_tight.csv", index=False)
+    sig_6749 = sub_6749.loc[sub_6749["joint_tight_print"], ["tape_day", "timestamp"]].drop_duplicates()
+    sig_6749_list = [[int(r.tape_day), int(r.timestamp)] for r in sig_6749.itertuples()]
+    (OUT / "signals_mark67_to_mark49_extract_joint_tight_at_print.json").write_text(
+        json.dumps(sig_6749_list), encoding="utf-8"
+    )
+    if len(sig_6749):
+        sub_6749.loc[sub_6749["joint_tight_print"], ["tape_day", "timestamp", "fwd_extract_k20"]].drop_duplicates(
+            subset=["tape_day", "timestamp"]
+        ).assign(pair="Mark 67->Mark 49").to_csv(OUT / "mark67_to_mark49_extract_tight_print_events.csv", index=False)
+
     if plt is not None:
         fig, axes = plt.subplots(1, 2, figsize=(10.5, 4.2))
         ax = axes[0]
@@ -304,6 +322,7 @@ def main() -> None:
         "pooled_welch": {"mean_tight": mt, "mean_not_tight": mn, "t": tst, "p": pvl},
         "n_signals_mark67_with_tight_flag": len(sig_list),
         "n_signals_mark67_to_mark22_extract_tight_at_print": len(sig_6722_list),
+        "n_signals_mark67_to_mark49_extract_tight_at_print": len(sig_6749_list),
         "outputs": sorted(p.name for p in OUT.iterdir() if p.is_file()),
     }
     (OUT / "phase3_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")

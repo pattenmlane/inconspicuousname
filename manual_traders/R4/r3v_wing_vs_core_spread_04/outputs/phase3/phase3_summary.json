@@ -9,17 +9,25 @@
   },
   "n_signals_mark67_with_tight_flag": 164,
   "n_signals_mark67_to_mark22_extract_tight_at_print": 15,
+  "n_signals_mark67_to_mark49_extract_tight_at_print": 12,
   "outputs": [
     "extract_pair_by_joint_tight_fwd_k20.csv",
+    "extract_vev5300_fwd_corr_by_k.csv",
+    "extract_vev5300_joint_fwd_after_6722_tight.csv",
     "mark01_to_mark22_extract_fwd_k20_by_joint_tight.csv",
     "mark67_buy_aggr_extract_fwd_k20_by_joint_tight.csv",
     "mark67_to_mark22_extract_tight_print_events.csv",
+    "mark67_to_mark49_extract_fwd_k20_by_joint_tight.csv",
+    "mark67_to_mark49_extract_tight_print_events.csv",
     "phase3_summary.json",
     "r4_phase3_gate_overview.png",
     "signals_mark67_buy_aggr_extract_with_tight.json",
     "signals_mark67_to_mark22_extract_joint_tight_at_print.json",
+    "signals_mark67_to_mark49_extract_joint_tight_at_print.json",
     "sonic_gate_fwd_extract_k20_by_day.csv",
     "sonic_gate_fwd_extract_k20_pooled.txt",
-    "spread_correlations_by_gate_subset.csv"
+    "spread_correlations_by_gate_subset.csv",
+    "vev5300_fwd_after_6722_summary_by_day_k.csv",
+    "vev5300_fwd_after_6722_tight_signals.csv"
   ]
 }

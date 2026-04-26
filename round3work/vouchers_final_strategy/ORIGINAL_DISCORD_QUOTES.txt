@@ -1,0 +1,35 @@
+Verbatim source messages (community — Round 3 VEV / extract context)
+====================================================================
+Do not “clean up” wording below; this file preserves the original text
+as shared in chat. The 6-panel figure elsewhere in this folder is from a
+**fourth person** who posted the plots and said: “free alpha here you go.”
+
+-------------------------------------------------------------------------------
+inclineGod — 10:43 AM
+
+simple tip :
+ understand how underlying asset price movements affect option contract prices and spreads (for each contract)
+-------------------------------------------------------------------------------
+
+inclineGod — 12:23 PM
+
+dont just look at corr of prices.
+look at corr of spreads.
+-------------------------------------------------------------------------------
+
+Sonic — Yesterday at 10:45 PM
+
+dont have time to actually push on r3 this week so dropping this in case someone can use it
+
+VEV bot flow signal is gated on voucher book state. t stat decays hard when 5200 and 5300 spreads widen past 2 ticks. informed bot only fires when it can hedge into a tight surface, makes sense mechanically
+
+condition on both 5200 spread at or below 2 and 5300 spread at or below 2 at the same time, per event edge roughly doubles, way fewer false fires. n drops but the signal is cleaner
+
+free alpha, gl
+-------------------------------------------------------------------------------
+
+Fourth person (separate from the three messages above) — on the 6-panel plot
+
+They posted a screenshot of the analysis plots and said something to the
+effect of: “free alpha here you go” (reproduced in this repo as
+`outputs/r3_tight_spread_6panel.png` from `analyze_vev_5200_5300_tight_gate_r3.py`).

@@ -1,6 +1,30 @@
 Vouchers / extract — "joint tight book" strategy (Round 3)
 ==========================================================
 
+**UPDATE:** Verbatim **Discord / community source quotes** (inclineGod, Sonic) and a note
+on the **fourth person’s** “free alpha” plot are in the same folder:
+
+  **round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt**
+
+Re-read that file for the **exact** original wording. The rest of this file explains
+our replication and how we operationalize the idea in code.
+
+How the messages fit together
+------------------------------
+- **inclineGod (both messages):** the game is not only “**price** of options vs
+  underlying” — for **each** voucher you also need how **spreads** (book width) move, and
+  you should look at **correlation of spreads**, not just correlation of **prices**.
+- **Sonic:** the useful “**VEV bot flow**” style signal is **not** always on: it
+  **depends on book state** (tight enough to **hedge**). If **VEV_5200** and **VEV_5300**
+  **spreads** go **wider** than about **2 ticks**, the **t-stat** of your test **crashes** —
+  execution noise dominates. The concrete recipe is to require **both** **5200** and
+  **5300** spread **≤ 2 at the same time** — **fewer** events (**n** drops) but
+  **~2×** better **per-event edge** and **cleaner** signal ( fewer **false** triggers).
+- **Fourth person + our folder:** the **6-panel** plot pack is the empirical check that
+  when the **joint** gate is on, **short-horizon extract mid** **forward** behavior looks
+  much more **favorable** than when it is off (see our **outputs** and the analysis script
+  below). “Free alpha” in chat is a **heuristic**, not a guarantee at **bid/ask**.
+
 Where this lives
 ----------------
 - `analyze_vev_5200_5300_tight_gate_r3.py` — reproduces the 6-panel analysis and writes
@@ -9,13 +33,12 @@ Where this lives
 
 Context (Discord / community)
 -----------------------------
-- **inclineGod:** understand how the underlying moves, but do not stop at *price* correlation;
-  look at **spreads** (per contract) and how they behave — **liquidity / book state** is its own object.
-- **Sonic:** "VEV bot flow" (inferred activity) is more meaningful when the **voucher book** is
-  **tight** enough to **hedge**. A practical gate: when **VEV_5200** and **VEV_5300** **both** have
-  spread at or below **~2** (in price units on the tape), the signal is **cleaner** and
-  **n** (events) is smaller; when **either** widens past that, the **t-stat** of whatever you
-  are testing **decays** — mechanically you are in a **wide** book where execution dominates.
+- **Full original wording:** see **ORIGINAL_DISCORD_QUOTES.txt** in this directory.
+- **Short paraphrase (same as before):** inclineGod stresses **per-contract** **spreads** and
+  **spread** correlation, not just **price** correlation. Sonic stresses that **voucher
+  book state** **gates** the **VEV** “flow” signal: **t-stat** dies when **5200/5300**
+  **widen** past **~2 ticks**; the **tight** **joint** condition (**both** **≤ 2**)
+  **doubles** **per-event** **edge** in their description with **fewer** but **cleaner** fires.
 
 What we measure (this folder)
 ------------------------------

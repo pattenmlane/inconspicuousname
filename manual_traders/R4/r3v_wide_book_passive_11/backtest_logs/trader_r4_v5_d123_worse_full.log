@@ -1,0 +1,48 @@
+running algorithm '/workspace/manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v5.py'...
+Backtesting /workspace/manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v5.py for round: 4 day: 1
+  0%|          | 0/10000 [00:00<?, ?it/s] 21%|##1       | 2141/10000 [00:00<00:00, 21406.35it/s] 43%|####2     | 4282/10000 [00:00<00:00, 20955.01it/s] 64%|######3   | 6379/10000 [00:00<00:00, 14717.45it/s] 85%|########4 | 8455/10000 [00:00<00:00, 16599.21it/s]100%|##########| 10000/10000 [00:00<00:00, 17473.97it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 184
+VELVETFRUIT_EXTRACT: 4,204
+HYDROGEL_PACK: 0
+Total profit: 4,388
+Backtesting /workspace/manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v5.py for round: 4 day: 2
+  0%|          | 0/10000 [00:00<?, ?it/s] 21%|##1       | 2128/10000 [00:00<00:00, 21277.43it/s] 43%|####2     | 4256/10000 [00:00<00:00, 20767.14it/s] 63%|######3   | 6334/10000 [00:00<00:00, 13792.09it/s] 83%|########3 | 8307/10000 [00:00<00:00, 15567.76it/s]100%|##########| 10000/10000 [00:00<00:00, 16683.89it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 263
+VELVETFRUIT_EXTRACT: 1,622
+HYDROGEL_PACK: 0
+Total profit: 1,884
+Backtesting /workspace/manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v5.py for round: 4 day: 3
+  0%|          | 0/10000 [00:00<?, ?it/s] 21%|##1       | 2135/10000 [00:00<00:00, 21346.31it/s] 43%|####2     | 4270/10000 [00:00<00:00, 20380.87it/s] 63%|######3   | 6312/10000 [00:00<00:00, 19668.02it/s] 83%|########2 | 8282/10000 [00:00<00:00, 12145.78it/s]100%|##########| 10000/10000 [00:00<00:00, 15030.14it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 624
+VELVETFRUIT_EXTRACT: 5,307
+HYDROGEL_PACK: 0
+Total profit: 5,931
+
+Successfully saved backtest results to manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v5_d123_worse.json

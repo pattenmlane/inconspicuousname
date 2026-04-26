@@ -286,5 +286,16 @@
       "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v4_d123_all_full.log"
     ],
     "used_to_decide": "Confirms analysis iteration 5: **price** change was required to move fills; v2/v3 order-split at same prices was a dead end."
+  },
+  {
+    "iteration": 7,
+    "round": 4,
+    "analysis_description": "trader_r4_v5 ablation: Tier-A **bid-only** skew (bb+2, buy+1 cap 12) while ask path and sell size stay **v1**. Worse: **12,203** and tradeHistory **identical** to v1 (same MD5, 2239 our fills) — bid+2 + buy bump still **does not bind** vs v1 under worse matching (same as v2 clip story). All-mode: **9,684** and MD5 **identical** to v1. Therefore v4's **−18** worse PnL vs v1 is attributed to **ask lift ceil(fair)+2** and/or **sell trim**, not the bid leg alone.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v5.py",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v5_d123_worse_full.log",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v5_d123_all_full.log"
+    ],
+    "used_to_decide": "If we want Tier-A to move worse PnL **positively**, isolate **ask-side** experiments carefully (smaller +1 step) or combine with inventory state; bid-only is a null on this tape."
   }
 ]

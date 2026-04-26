@@ -99,5 +99,18 @@
       "backtests/r3v_v30_worse.log"
     ],
     "used_to_decide": "v30 (3.9 amp, 0.57 W_Z) reached 16,248 vs v22 16,260, improving on v21-style higher W_Z alone; day-2 hydrogel drag slightly smaller (-1896 vs -1902 on comparable paths). v29 (0.85/0.65/0.53 mults) fell to 16,232, confirming v22's tighter 0.84/0.64/0.52 ladder. Best candidate remains trader_v22.py."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "Tight 5200/5300 book regime on tape (replicated round3work/vouchers_final_strategy story): for each (day, ts) with aligned VELVETFRUIT_EXTRACT, VEV_5200, VEV_5300, define tight = (s_5200<=2 and s_5300<=2). P(tight) ~0.10-0.17 days 0-2; spread levels correlate with extract mid (e.g. corr(s5200, m_ext) 0.37-0.47). Mean |extract mid step| is not meaningfully lower on tight vs not-tight rows, so the gate is a microstructure/liquidity state flag rather than a low-vol filter for |du|.\n\nAfter merging origin/main, Prosperity4Data has prices_round_3_day_3.csv, so `prosperity4bt <trader> 3` backtests an extra day; for apples-to-apples with the ~16.26k (days 0-2) target, we now pass explicit 3-0 3-1 3-2. Re-baselined v22 and ran v31/v32 on that slice.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analyze_tight_5200_5300_r3.py",
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analysis_v9_tight_5200_5300_brief.json",
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v22_v31_v32_d0d1d2.json",
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v22_worse_d0d1d2.log",
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v31_worse_d0d1d2.log",
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v32_worse_d0d1d2.log"
+    ],
+    "used_to_decide": "Implemented v22+v31: when both VEV_5200 and VEV_5300 synthetic bid-ask widths are <=2, scale integer tilt by 1.1 (tighter surface/ATM reference). v32 adds the same v9 inventory skew. On days 0-2 worse-matching, v31 and v32 both total 16,254 vs v22 16,260; the tight-gate slightly hurts day-0 VEV_4000 edge. Keep trader_v22.py as the current best; use explicit 3-0 3-1 3-2 in future reports."
   }
 ]

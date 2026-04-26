@@ -1,0 +1,30 @@
+{
+  "note": "Round 3 backtests explicit days 0-1-2 only (3-0 3-1 3-2) after Prosperity4Data added prices_round_3_day_3.csv; command line `3` now includes extra day.",
+  "trader_v22": {
+    "log": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v22_worse_d0d1d2.log",
+    "day_totals": [
+      7140,
+      11013,
+      -1893
+    ],
+    "overall": 16260
+  },
+  "trader_v31": {
+    "log": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v31_worse_d0d1d2.log",
+    "day_totals": [
+      7138,
+      11013,
+      -1897
+    ],
+    "overall": 16254
+  },
+  "trader_v32": {
+    "log": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v32_worse_d0d1d2.log",
+    "day_totals": [
+      7138,
+      11013,
+      -1897
+    ],
+    "overall": 16254
+  }
+}

@@ -292,5 +292,26 @@
       "trades_or_fills_summary": "Same as worse (13338)."
     },
     "total_profit": 13338
+  },
+  {
+    "iteration": 14,
+    "trader_file": "trader_v14.py",
+    "strategy_description": "v11 with stricter Sonic gate: both 5200 and 5300 BBO spreads <= 1 (v11 uses <= 2). Loose path identical to v11 (M55 skip, soft U=14).",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 4698,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v14.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v14_worse.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v14_worse.log",
+      "trades_or_fills_summary": "Day1 +3522 (VEV4000 -34, U +3570, hydro +19); day2 -218 (U -626, hydro +408); day3 +1394 (U +1465, hydro -71); total 4698 vs v11 13338; almost no VEV wing fills (joint rare). worse=all identical."
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 4698,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v14.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v14_all.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v14_all.log",
+      "trades_or_fills_summary": "Same as worse (4698)."
+    },
+    "total_profit": 4698
   }
 ]

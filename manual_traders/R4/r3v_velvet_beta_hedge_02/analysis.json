@@ -348,5 +348,15 @@
       "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_signed_flow_lags_x_gate.json"
     ],
     "used_to_decide": "**Max |corr| ~0.052** (loose, lag0, extract signed flow vs fwd5); tight-book cross-legs peak **~0.027** — **no economically large linear lead–lag** at price-row cadence with exact-ts flow. Complements Phase-2 `r4_phase2_extract_flow_lags_fwd5.json` (zeros on different construction). **trader_v13** (tight + M55 → smaller extract clip 12 vs 18): **identical 13338** to v11 — **three-way gate×M55×size** has **zero** harness delta (same fill saturation pattern as v5–v7 on tight U)."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "Phase-3 tape: compare Sonic joint definition `both spr5200, spr5300 <= TH` for **TH=1** vs **TH=2** on inner-join timestamps — `analyze_r4_sonic_gate_threshold_tape.py` (pooled + by day; mean extract fwd_20 at joint from price tape K=20).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/analyze_r4_sonic_gate_threshold_tape.py",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_sonic_gate_joint_pooled_by_th.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_sonic_gate_threshold_by_day.csv"
+    ],
+    "used_to_decide": "**Pooled (30k ts):** TH=1 **p_joint=0.61%** (183 rows) mean extract fwd20 **+0.49**; TH=2 **p_joint=25.7%** (7722) mean **+0.32** — stricter joint is **rare**; conditional fwd is **higher** at TH=1 in pooled but **small-n** and **unstable** by day (TH=1 by-day mean fwd20 **0.16–0.66**). **trader_v14** (harness MM only when `spr<=1` on both): **+4698** vs v11 **13338** — **reject** stricter BBO threshold for this MM style: almost **no** wing VEV fills; revenue collapses. **Sonic le2 remains** the operational default."
   }
 ]

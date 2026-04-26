@@ -23,5 +23,30 @@
       "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v0_round4_all_fills_summary.json",
       "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v0.py\" 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v0_round4_all.json"
     }
+  },
+  {
+    "iteration": 1,
+    "trader_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v1.py",
+    "strategy_description": "Phase2 sim probe: Sonic joint gate (5200+5300 spread<=2) + market_trades Mark67 aggressive buy on VELVETFRUIT_EXTRACT (price>=ask) -> join-bid extract 18 with cooldown 8 buckets.",
+    "total_profit": 98,
+    "backtest_round": 4,
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v1_round4_worse.json",
+    "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v1_round4_worse_fills_summary.json",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v1.py\" 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v1_round4_worse.json",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 98,
+      "backtest_log_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v1_round4_worse.json",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v1_round4_worse_fills_summary.json",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v1.py\" 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v1_round4_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 98,
+      "backtest_log_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v1_round4_all.json",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v1_round4_all_fills_summary.json",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v1.py\" 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v1_round4_all.json"
+    }
   }
 ]

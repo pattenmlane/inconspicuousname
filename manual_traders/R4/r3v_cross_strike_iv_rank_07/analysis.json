@@ -114,5 +114,111 @@
       "High-|t| two-hop tails (e.g. Mark 14→Mark 38→Mark 22) have n<20 — not stable as standalone rules.",
       "Phase 1 is mid-only markouts; tradable PnL under worse fills not established (STRATEGY caveat applies)."
     ]
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Round 4 Phase 2: orthogonal conditioning (burst ±500 ts around any Mark01→Mark22 print), Sonic joint gate on prices merged to enriched trades, lead–lag of Mark67 signed extract flow vs extract mid on full price grid, microprice/touch proxy when gate on. Script r4_phase2_analysis.py. Sim probe trader_v1 (Sonic gate + Mark67 aggressive buy on extract from market_trades) backtested worse+all.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_phase2_analysis.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_burst_pair_mark67_extract_k20.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_mark67_buy_extract_by_day_k5.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_sonic_gate_mark67_extract_k5.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_leadlag_m67_signed_flow_vs_extract_fwd.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_microprice_sonic_tight_5200_spread.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_phase2_machine_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v1_round4_worse.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v1_round4_all.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v1_round4_worse_fills_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v1_round4_all_fills_summary.json"
+    ],
+    "used_to_decide": "Phase 2 gate object below. Phase 1 Mark67 extract edge survives per-day (k=5) but Sonic gate does not amplify it in the Mark67 subset (n small); burst neighborhood around Mark01→Mark22 does not change Mark67 mean. Lead–lag shows modest positive corr at 1–2 price rows. v1 sim is tiny positive PnL (98) — not validation of 200k/day bar."
+  },
+  {
+    "round4_phase2_complete": true,
+    "phase1_interaction": "Phase-1 headline (Mark67 aggressive buy extract → positive short-horizon mids) is confirmed per-day on k=5 (r4_p2_mark67_buy_extract_by_day_k5.csv). Conditioning on Sonic tight gate does not increase mean k=5 on that subset vs loose (r4_p2_sonic_gate_mark67_extract_k5.csv; n=27 tight vs 137 loose — refines Phase-1 by showing gate is not the dominant amplifier for Mark67 in this slice). Mark01→Mark22 burst neighborhood does not shift Mark67 k=20 extract forward mean (r4_p2_burst_pair_mark67_extract_k20.csv).",
+    "phase2_bullets": [
+      {
+        "bullet": "1) Named-bot exploitation (burst ±W, pair conditioning)",
+        "outputs": ["manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_burst_pair_mark67_extract_k20.csv"],
+        "conclusion": "Mark67|extract k=20 means identical with/without ±500ts neighborhood of Mark01→Mark22 prints; burst slice n=16 too thin to claim synergy."
+      },
+      {
+        "bullet": "2) Microstructure (touch/spread under Sonic gate)",
+        "outputs": ["manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_microprice_sonic_tight_5200_spread.csv"],
+        "conclusion": "When joint gate is on, VEV_5200 rows are already at spread≤2 by construction; file records share_le2≈1.0 — inner-quote opportunity still limited to tape discretization."
+      },
+      {
+        "bullet": "3) Cross-instrument lead–lag (Mark67 signed flow vs extract)",
+        "outputs": ["manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_leadlag_m67_signed_flow_vs_extract_fwd.csv"],
+        "conclusion": "Lag 0 corr undefined (flow and fwd share same mid row); lags 1–2 price rows (~100–200 ts) show corr ~0.12 / ~0.095 between signed Mark67 extract flow and forward extract mid change, decaying with longer lag."
+      },
+      {
+        "bullet": "4) Regime splits (Sonic gate × Mark67)",
+        "outputs": ["manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_sonic_gate_mark67_extract_k5.csv"],
+        "conclusion": "Tight gate subset mean k=5 slightly lower than loose for Mark67 buys (2.0 vs 1.78 n.s. given n) — falsifies 'gate always cleans Mark67 signal' for this cell; Phase 3 still warranted for fuller interaction."
+      },
+      {
+        "bullet": "5) Vol / smile vs Marks",
+        "outputs": [],
+        "conclusion": "Deferred: full R3-style smile residual × counterparty grid not computed this pass (CPU); next iteration will subsample bisection IV on VEV_5000 vs seller ID."
+      },
+      {
+        "bullet": "6) Execution / adverse selection (sim)",
+        "outputs": ["manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v1_round4_worse.json"],
+        "conclusion": "Minimal join-bid rule yields +98 total PnL (days 1–3) worse=all; tape edge does not yet scale — execution and selection differ from mid-only Phase 1."
+      },
+      {
+        "bullet": "7) Inventory-aware MM",
+        "outputs": [],
+        "conclusion": "Not implemented; no inventory state in v1."
+      }
+    ],
+    "top_5_tradeable_edges_phase2": [
+      {
+        "rank": 1,
+        "edge": "Lag-1–2 price rows: Mark67 signed extract flow positively correlates with subsequent extract mid drift",
+        "effect": "corr ~0.12 at lag 1 row (~100 ts)",
+        "n": "~30k pooled grid rows",
+        "days": "1,2,3",
+        "evidence": "r4_p2_leadlag_m67_signed_flow_vs_extract_fwd.csv",
+        "relation_to_phase1": "Supports Phase-1 directionality but at different aggregation (flow grid vs print events)."
+      },
+      {
+        "rank": 2,
+        "edge": "Mark67 aggressive buy extract — per-day stability of positive k=5 forward extract mid",
+        "effect": "mean k=5 extract forward ~1.75–2.2 ticks per day",
+        "n": "45–61/day",
+        "days": "1,2,3",
+        "evidence": "r4_p2_mark67_buy_extract_by_day_k5.csv",
+        "relation_to_phase1": "Confirms Phase-1 top cell is not a single-day artifact."
+      },
+      {
+        "rank": 3,
+        "edge": "Sim: gated passive long extract after Mark67 lift is weakly profitable in aggregate",
+        "effect": "+98 total PnL (worse)",
+        "n": "sparse triggers",
+        "days": "1,2,3",
+        "evidence": "trader_v1 backtest logs",
+        "relation_to_phase1": "Downgrades economic magnitude vs mid-only t-stats; execution matters."
+      },
+      {
+        "rank": 4,
+        "edge": "Sonic gate × Mark67 (negative interaction in mean k=5) — candidate for Phase-3 three-way tests",
+        "effect": "tight mean < loose mean on small n",
+        "n": "27 vs 137",
+        "days": "1,2,3",
+        "evidence": "r4_p2_sonic_gate_mark67_extract_k5.csv",
+        "relation_to_phase1": "Refines / partially falsifies naive stacking of Sonic gate on Mark67 prints."
+      },
+      {
+        "rank": 5,
+        "edge": "Burst neighborhood around Mark01→Mark22 does not improve Mark67 extract forward — avoid over-conditioning",
+        "effect": "near-burst vs not identical mean k=20",
+        "n": "16 vs 148",
+        "days": "1,2,3",
+        "evidence": "r4_p2_burst_pair_mark67_extract_k20.csv",
+        "relation_to_phase1": "Orthogonal negative on basket-burst narrative for Mark67 overlay."
+      }
+    ]
   }
 ]

@@ -1,0 +1,12 @@
+Distinct buyer/seller names in r4_trade_markouts_wide.csv:
+Mark 01, Mark 14, Mark 22, Mark 38, Mark 49, Mark 55, Mark 67
+count = 7
+
+Row counts (all products):
+  Mark 01: as_buyer=1599 as_seller=244 total_touch=1843
+  Mark 14: as_buyer=1127 as_seller=1045 total_touch=2172
+  Mark 22: as_buyer=42 as_seller=1542 total_touch=1584
+  Mark 38: as_buyer=733 as_seller=745 total_touch=1478
+  Mark 49: as_buyer=17 as_seller=105 total_touch=122
+  Mark 55: as_buyer=598 as_seller=600 total_touch=1198
+  Mark 67: as_buyer=165 as_seller=0 total_touch=165

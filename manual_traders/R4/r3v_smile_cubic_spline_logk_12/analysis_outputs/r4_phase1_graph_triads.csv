@@ -1,0 +1,16 @@
+cycle,n_AB,n_BC,n_CA
+Mark 01->Mark 22->Mark 55->Mark 01,1339,18,244
+Mark 14->Mark 22->Mark 38->Mark 14,83,17,714
+Mark 14->Mark 22->Mark 55->Mark 14,83,18,331
+Mark 22->Mark 38->Mark 14->Mark 22,17,714,83
+Mark 22->Mark 49->Mark 55->Mark 22,7,5,14
+Mark 22->Mark 55->Mark 01->Mark 22,18,244,1339
+Mark 22->Mark 55->Mark 14->Mark 22,18,331,83
+Mark 22->Mark 55->Mark 49->Mark 22,18,9,12
+Mark 38->Mark 14->Mark 22->Mark 38,714,83,17
+Mark 49->Mark 22->Mark 55->Mark 49,12,18,9
+Mark 49->Mark 55->Mark 22->Mark 49,5,14,7
+Mark 55->Mark 01->Mark 22->Mark 55,244,1339,18
+Mark 55->Mark 14->Mark 22->Mark 55,331,83,18
+Mark 55->Mark 22->Mark 49->Mark 55,14,7,5
+Mark 55->Mark 49->Mark 22->Mark 55,9,12,18

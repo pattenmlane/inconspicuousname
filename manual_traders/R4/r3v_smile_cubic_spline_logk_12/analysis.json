@@ -99,7 +99,16 @@
         "**Joint Sonic gate TRUE** + traded symbol tight bin: **VEV_5300** mean mark_20 slightly **negative** (n=163) — gate alone does not clean voucher markouts on this tape without pairing with counterparty.",
         "**Mark 55↔Mark 01** on extract: mean mark_20 ≈ 0 — no short-horizon predictability in cell means."
       ],
-      "notes": "All effects are **mid** markouts from public prices, not sim PnL. Phase 2 may add worse-fill backtests once a trader encodes these rules."
+      "notes": "All effects are **mid** markouts from public prices, not sim PnL. Phase 2 may add worse-fill backtests once a trader encodes these rules.",
+      "exhaustive_supplement_outputs": [
+        "analysis_outputs/r4_phase1_mark_coverage.txt",
+        "analysis_outputs/r4_phase1_top_cells_bootstrap_k20.csv",
+        "analysis_outputs/r4_phase1_graph_2hop_motifs.csv",
+        "analysis_outputs/r4_phase1_graph_triads.csv",
+        "analysis_outputs/r4_phase1_extract_buyaggr_hour_spread_quintile_m67sellers_k20.csv",
+        "r4_phase1_exhaustive_supplement.py"
+      ],
+      "exhaustive_supplement_note": "Bootstrap = **percentile** resample of **mark_20_same** (n_boot=4000, seed=42), not student-t on i.i.d. rows. Hydro M38→M14 cell CI **crosses zero** (negative mean but wide band). **Triads** are **count-only** motifs from `r4_graph_edges.csv` (no timestamp alignment)."
     }
   },
   {
@@ -385,5 +394,19 @@
       "results.json"
     ],
     "used_to_decide": "**v10** is new best worse+all on R4 d1–3 in this series; ship for grid until longer tape. Watch day-3 extract small drag vs v8 when stacking M67→M22."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "**Phase 1 exhaustive checklist (template §PHASE1):** Supplement script `r4_phase1_exhaustive_supplement.py` adds **Mark coverage** (7 names), **bootstrap 95% CIs** for headline `mark_20_same` cells (extract buy-aggr sellers 22/49/14, buyer 67, M67→49/M67→22, hydro M38→M14), **2-hop and 3-cycle motifs** from static `r4_graph_edges.csv` counts, and **hour × traded-symbol spread quintile** table for M67→49/M67→22 extract buy-aggr. Cross-references `round4work/outputs/r4_initial_analysis_summary.txt` for cast/roles.",
+    "analysis_outputs": [
+      "r4_phase1_exhaustive_supplement.py",
+      "analysis_outputs/r4_phase1_mark_coverage.txt",
+      "analysis_outputs/r4_phase1_top_cells_bootstrap_k20.csv",
+      "analysis_outputs/r4_phase1_graph_2hop_motifs.csv",
+      "analysis_outputs/r4_phase1_graph_triads.csv",
+      "analysis_outputs/r4_phase1_extract_buyaggr_hour_spread_quintile_m67sellers_k20.csv",
+      "round4work/outputs/r4_initial_analysis_summary.txt"
+    ],
+    "used_to_decide": "`round4_phase1_complete` object updated with `exhaustive_supplement_outputs` + caveats (bootstrap type; triads count-only). Phase 2/3 gates in this file remain authoritative for later phases."
   }
 ]

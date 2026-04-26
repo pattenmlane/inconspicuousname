@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v20.py",
+  "match_trades": "worse",
+  "round": 4,
+  "total_profit": 20790,
+  "per_day_total": { "1": 5698, "2": 12741, "3": 2351 },
+  "note": "vs v19 21253: -463. M55 aggressive sell -> +1 tight ask (cap 5 with M67); day3 extract +1727 vs +2190."
+}

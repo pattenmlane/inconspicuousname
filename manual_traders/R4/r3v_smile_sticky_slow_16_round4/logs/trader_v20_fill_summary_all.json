@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v20.py",
+  "match_trades": "all",
+  "round": 4,
+  "total_profit": 15042,
+  "per_day_total": { "1": 3981, "2": 8262, "3": 2799 },
+  "note": "vs v19 all 14272: +770 on all but worse primary down."
+}

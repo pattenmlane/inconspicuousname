@@ -436,5 +436,26 @@
     "backtest_round": 4,
     "match_trades_primary": "worse",
     "note": "**+9 vs v17** (21253 vs 21244). v8-style wide bid was globally bad; **M67-conditional** wide bid is slightly positive. Day2 extract **-39** vs v17; day3 **+48**; day1 same."
+  },
+  {
+    "iteration": 23,
+    "round": 4,
+    "trader_file": "trader_v20.py",
+    "strategy_description": "**v19** + when Sonic **tight** and **Mark 55** **aggressive sell** on extract, add **+1** to tight **ask** half (M67 +1 and M55 +1 combined **cap 5**). Phase-1 adverse sell signal \u2192 passive ask retreat (not v6 bid-off).",
+    "backtest_worse": {
+      "total_profit": 20790,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v20.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v20_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v20_fill_summary_worse.json"
+    },
+    "backtest_all": {
+      "total_profit": 15042,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v20.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v20_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v20_fill_summary_all.json"
+    },
+    "backtest_round": 4,
+    "match_trades_primary": "worse",
+    "note": "**Reject vs v19:** worse **20790** vs **21253** (\u2212463). Day3 extract **+1727** vs **+2190** dominates loss; d1/d2 match v19. **Champion stays trader_v19.**"
   }
 ]

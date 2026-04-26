@@ -457,5 +457,16 @@
       "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v19_fill_summary_worse.json"
     ],
     "used_to_decide": "**Small `worse` win:** **21253** vs v17 **21244** (+9). Unlike **v8** (unconditional wide bid on tight extract), this **M67-conditional** bid step changes **actual bid integers** on lift ticks and trades off day2 vs day3 extract PnL. **all** also +18. **Champion** for next iteration base: **trader_v19**."
+  },
+  {
+    "iteration": 23,
+    "round": 4,
+    "analysis_description": "Sim: **v20** = v19 + **Mark 55 aggressive sell** on extract \u2192 **+1** tight ask half when gate tight (stack with M67 +1, cap 5).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v20.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v20_backtest_worse.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v20_fill_summary_worse.json"
+    ],
+    "used_to_decide": "**Falsified for `worse`:** **20790** vs **v19 21253** (\u2212463). Tape K=100 sell adverse signal does **not** translate to **wider passive ask** under this MM + worse fills \u2014 day3 extract gives up **~463** of the v19 gain. **Do not ship**; keep **trader_v19** as best counterparty-augmented schedule."
   }
 ]

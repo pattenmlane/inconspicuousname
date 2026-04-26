@@ -386,5 +386,16 @@
       "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v13_d123_all_full.log"
     ],
     "used_to_decide": "Try **spread ≤1** or **microprice vs mid** gate next if we want microstructure filtering; or log `extract_spread` at signal ticks in a one-off script."
+  },
+  {
+    "iteration": 16,
+    "round": 4,
+    "analysis_description": "trader_r4_v14: v10 with **AGGR_BUY_Q=4** and **AGGR_MIN_BUY_ROOM=10**. Round 4 days 1–3 **worse** total **13,701** vs v10 **13,327** (+374); per-day +130/+162/+82 vs v10. **All** total **11,182** vs v10 **10,807** (+375). own_fill_rows unchanged (833 worse) but extract qty **3051** vs **3036** (+15); `tradeHistory` MD5 **df98c421114704ac** (differs from v10). **Note:** incremental +374 worse vs v10 equals incremental +374 of v10 vs v8 on this slice — next size bump may show diminishing returns; monitor long-run inventory.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v14.py",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v14_d123_worse_full.log",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v14_d123_all_full.log"
+    ],
+    "used_to_decide": "Prefer **v14** over v10/v11–v13 on this slice; next: cap **max daily** aggressive notional or pair with **mean-revert sell** after large long drift."
   }
 ]

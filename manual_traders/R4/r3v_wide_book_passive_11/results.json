@@ -719,5 +719,51 @@
         "identical_trade_history_to_v10_all": true
       }
     }
+  },
+  {
+    "iteration": 16,
+    "round": 4,
+    "trader_file": "manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v14.py",
+    "strategy_description": "v10 + **larger Tier-A lift**: buy-at-ask **qty 4**, **min buy room 10** (cooldown 25, max pos 160). Worse total **13,701** vs v10 **13,327** (+374); all **11,182** vs v10 **10,807** (+375). Same own_fill_rows (833/958) as v10 but extract own qty worse **3051** vs **3036** (+15) — stricter room filters some ticks but larger size on remainder. `tradeHistory` MD5 worse **df98c421114704ac**.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 13701,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v14.py 4-1 4-2 4-3 --data Prosperity4Data --no-vis --out manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v14_d123_worse.json --match-trades worse",
+      "backtest_log_file": "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v14_d123_worse_full.log",
+      "trades_or_fills_summary": {
+        "per_day_profit": {
+          "day_1": 4908,
+          "day_2": 2534,
+          "day_3": 6259
+        },
+        "own_fill_rows": 833,
+        "own_fill_qty": 3230,
+        "own_fill_qty_by_symbol": {
+          "VELVETFRUIT_EXTRACT": 3051,
+          "VEV_4000": 179
+        },
+        "trade_history_md5_16": "df98c421114704ac"
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 11182,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v14.py 4-1 4-2 4-3 --data Prosperity4Data --no-vis --out manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v14_d123_all.json --match-trades all",
+      "backtest_log_file": "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v14_d123_all_full.log",
+      "trades_or_fills_summary": {
+        "per_day_profit": {
+          "day_1": 4948,
+          "day_2": 550,
+          "day_3": 5684
+        },
+        "own_fill_rows": 958,
+        "own_fill_qty": 3769,
+        "own_fill_qty_by_symbol": {
+          "VELVETFRUIT_EXTRACT": 3590,
+          "VEV_4000": 179
+        },
+        "trade_history_md5_16": "0b7e2aa5d420e729"
+      }
+    }
   }
 ]

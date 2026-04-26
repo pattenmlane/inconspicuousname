@@ -1,5 +1,9 @@
 {
   "outputs": [
+    "r4_p10_mark55_v15_secondary_sweep.csv",
+    "r4_p11_mark14_seller_aggr_buy_extract_by_day.csv",
+    "r4_p12_mark14_fwd20_gate_tight_vs_loose.csv",
+    "r4_p13_inclinegod_spread_panels_by_day.csv",
     "r4_p3_counterparty_x_gate_welch_fwd20.csv",
     "r4_p3_executive_summary.txt",
     "r4_p3_gate_summary_by_day.csv",
@@ -11,9 +15,6 @@
     "r4_p6_rolling_tight_prevalence_by_day.csv",
     "r4_p7_mark55_fwd20_by_roll_tertile.csv",
     "r4_p8_mark55_scaled_clip_param_sweep.csv",
-    "r4_p9_mark55_roll_band_round2.csv",
-    "r4_p10_mark55_v15_secondary_sweep.csv",
-    "r4_p11_mark14_seller_aggr_buy_extract_by_day.csv",
-    "r4_p12_mark14_fwd20_gate_tight_vs_loose.csv"
+    "r4_p9_mark55_roll_band_round2.csv"
   ]
 }

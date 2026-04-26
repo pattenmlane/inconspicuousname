@@ -74,3 +74,6 @@ Tape: Mark14 seller aggr_buy fwd20 **conditional on gate** (`r4_p12_...`): day *
   mean_fwd20 **negative** (≈−0.07, n=52) vs **loose** positive (≈0.23, n=64) — unlike Mark55,
   **tight gate does not align** with better mid markouts for this slice on day 3; explains why
   v15-style roll shrink on top of gate (**v29**) **hurts** (total **9,598** vs v27 **14,268**).
+
+--- inclineGod extended (`r4_p13_inclinegod_spread_panels_by_day.csv`) ---
+Level and **clock-time Δ** correlations (5200/5300/extract spreads vs extract mid); Δ rows for tight/loose require **two consecutive** timestamps in that regime.

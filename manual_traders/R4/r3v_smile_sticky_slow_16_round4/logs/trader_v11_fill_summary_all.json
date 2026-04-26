@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v11.py",
+  "match_trades": "all",
+  "round": 4,
+  "total_profit": 6811,
+  "per_day_total": { "1": 1211, "2": 2104, "3": 3496 },
+  "note": "vs v9 all 6787: +24 (marginal); worse metric clearly prefers v10 over v11."
+}

@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v10.py",
+  "match_trades": "worse",
+  "round": 4,
+  "total_profit": 19384,
+  "per_day_total": { "1": 5698, "2": 12780, "3": 906 },
+  "note": "vs v9 worse 11850: +7534. Tight extract bid mid-1 ask mid+3; day2 extract +12265 vs v9 +5464."
+}

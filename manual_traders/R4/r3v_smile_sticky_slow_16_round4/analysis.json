@@ -315,5 +315,28 @@
       "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v9_fill_summary_worse.json"
     ],
     "used_to_decide": "**Large improvement** on primary metric: worse **11850** vs v5 **5906** (+101% rel). Per-day totals **3120 / 5979 / 2750** vs v5 **1526 / 1584 / 2797** \u2014 gain driven by **extract** especially **day2** (**+5464** vs **+1068**). **all** also up (**6787** vs **1446**). Asymmetric **ask** widening is the productive skew for this MM + gate + worse-match stack; symmetric tight offer was too aggressive on the sell leg."
+  },
+  {
+    "iteration": 12,
+    "round": 4,
+    "analysis_description": "Grid on v9: widen tight-regime extract **ask** one more tick (**mid+3**), keep bid **mid\u22121**, `trader_v10`.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v10.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v10_backtest_worse.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v10_backtest_all.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v10_fill_summary_worse.json"
+    ],
+    "used_to_decide": "**Further gain** on `--match-trades worse`: **19384** vs v9 **11850** (+64% on top of v9). Extract PnL **day1 +4664**, **day2 +12265**, **day3 +282** (day3 down vs v9\u2019s **+2126** \u2014 more passive ask may miss day3 lift). **all** **14222** vs v9 **6787**. **v10** is new champion; next grid: try **mid+4** (diminishing returns risk) or revert ask on weak days only (needs state)."
+  },
+  {
+    "iteration": 13,
+    "round": 4,
+    "analysis_description": "Control vs v9: **symmetric** tight extract **mid\u22122** / **mid+2** with size 12, `trader_v11` \u2014 same \u201caverage\u201d distance as v9 but bid widened to match ask half.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v11.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v11_backtest_worse.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v11_fill_summary_worse.json"
+    ],
+    "used_to_decide": "**Confirms asymmetry:** worse **5501** vs v9 **11850**. Widening **both** sides (bid to \u22122) repeats v8 lesson: **tight bid** (\u22121) + **only** ask retreat is the structure that works. v11 \u2248 v3-level total (4852) but slightly higher; still far below v9/v10."
   }
 ]

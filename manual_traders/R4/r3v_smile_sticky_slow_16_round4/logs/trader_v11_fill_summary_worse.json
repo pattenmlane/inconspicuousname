@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v11.py",
+  "match_trades": "worse",
+  "round": 4,
+  "total_profit": 5501,
+  "per_day_total": { "1": 1406, "2": 2572, "3": 1524 },
+  "note": "vs v9 11850: -6349. Symmetric tight mid±2 + sz12 worse than asymmetric v9; wide bid hurts."
+}

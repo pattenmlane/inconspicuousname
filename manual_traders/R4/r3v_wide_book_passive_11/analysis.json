@@ -297,5 +297,38 @@
       "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v5_d123_all_full.log"
     ],
     "used_to_decide": "If we want Tier-A to move worse PnL **positively**, isolate **ask-side** experiments carefully (smaller +1 step) or combine with inventory state; bid-only is a null on this tape."
+  },
+  {
+    "iteration": 8,
+    "round": 4,
+    "analysis_description": "trader_r4_v6: Tier-A **ask-only** skew (ceil(fair)+2 ask anchor on tight+Mark67→22 extract); bid/sizes match v1. Backtest worse **12,203** and tradeHistory MD5 **c775b003c67994dd** identical to v1 — ask path alone still does not bind vs v1 under worse matching. Logged in results.json iteration 8 with own_fill_rows (SUBMISSION rows) for auditable fill stats.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v6.py",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v6_d123_worse_full.log",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v6_d123_all_full.log"
+    ],
+    "used_to_decide": "Ask-only is a **null** for Tier-A execution on this tape (same as v5 bid-only story asymmetrically). Next: aggressive take (v8) or inventory-conditioned hybrid."
+  },
+  {
+    "iteration": 9,
+    "round": 4,
+    "analysis_description": "trader_r4_v7: Tier-A **sell-trim-only** (ex_sell=max(2,base-2) on tight+sig). Worse **12,185**, tradeHistory MD5 **f4c0352e485d22b8** matches v4 — confirms v4's **−18** slip is driven by **sell trim**, not bid+2 or ask lift in isolation.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v7.py",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v7_d123_worse_full.log",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v7_d123_all_full.log"
+    ],
+    "used_to_decide": "Avoid reducing passive sell clip on Tier-A ticks unless paired with a compensating bid-side or inventory rule."
+  },
+  {
+    "iteration": 10,
+    "round": 4,
+    "analysis_description": "trader_r4_v8: v1 + small **market-style buy** at best ask on Tier-A (Sonic tight AND Mark67→Mark22 on extract tape): qty 2 when buy_room>=6, position<=160, 25-tick cooldown; passive bid uses remaining room so limit check passes. Round 4 days 1–3 worse total **12,953** vs v1 **12,203** (+750); per-day +260/+326/+164. All-mode total **10,432** vs v1 **9,684** (+748). own_fill_rows 833 vs v1 818; extract own qty 3021 vs 2991 (+30). tradeHistory MD5 **247d64b0253dca4a** (differs from v1). Shows mid-forward Tier-A edge can translate to **PnL** when paying spread in a controlled way.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v8.py",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v8_d123_worse_full.log",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v8_d123_all_full.log"
+    ],
+    "used_to_decide": "Tune AGGR_BUY_Q / cooldown / min buy room vs inventory skew; optional **sell trim avoidance** on same ticks (v7 showed harm) — next iteration could gate aggression on position < threshold only."
   }
 ]

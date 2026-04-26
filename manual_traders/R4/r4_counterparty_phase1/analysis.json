@@ -320,5 +320,17 @@
       "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v4_all.log"
     ],
     "used_to_decide": "v4 worse +6793 improves v3 +4672 by +2121; extract PnL +2170 vs +1018 v3. Still below v1 burst-long +7207. Trigger rate ~53-71 aggressive Mark22/49 sells per day on extract tape."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "Mirror adverse selection: from enriched trades, aggressive **sell** on VELVET with passive **buyer** Mark49 has mean fwd20 ~ -2.73 (n=15). Built `r4_p5_adverse_aggrsell_fwd20_by_passive_buyer.csv` and `r4_v5_m49_aggr_sell_counts.csv`. `trader_v5` = v4 + skip extract **buy** when tape shows aggressive sell through bid with Mark49 passive buyer.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p5_adverse_aggrsell_fwd20_by_passive_buyer.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_v5_m49_aggr_sell_counts.csv",
+      "manual_traders/R4/r4_counterparty_phase1/trader_v5.py",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v5_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v5_all.log"
+    ],
+    "used_to_decide": "**Negative ablation:** v5 worse +6305 < v4 +6793; symmetric Mark49 buy-skip hurts MM under worse fills despite negative tape fwd20 for that cell (small n=15; inventory/asymmetry dominates). Keep v4 as better counterparty-augmented tight-MM."
   }
 ]

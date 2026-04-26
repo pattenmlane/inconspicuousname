@@ -101,5 +101,26 @@
       "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v4_all.log",
       "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v4_all.json"
     }
+  },
+  {
+    "iteration": 5,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "v4 + skip VELVET **buy** quotes when tape shows aggressive sell (price<=bid1) with passive buyer Mark49 (mirror adverse table r4_p5).",
+    "total_profit": 6305,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v5.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r4_counterparty_phase1/backtest_r4_v5_worse.log",
+    "note_vs_v4": "v5 worse +6305 vs v4 +6793 (-488). v5 all +8750 vs v4 +9187.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 6305,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v5_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v5_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 8750,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v5_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v5_all.json"
+    }
   }
 ]

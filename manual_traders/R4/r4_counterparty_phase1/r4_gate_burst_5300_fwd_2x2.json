@@ -1,0 +1,23 @@
+{
+  "K": 20,
+  "TH": 2.0,
+  "burst_min_rows": 4,
+  "cells": {
+    "tight=False_burst=False": {
+      "n": 22233,
+      "mean": -0.054334
+    },
+    "tight=False_burst=True": {
+      "n": 1,
+      "mean": 0.5
+    },
+    "tight=True_burst=False": {
+      "n": 7415,
+      "mean": 0.096898
+    },
+    "tight=True_burst=True": {
+      "n": 291,
+      "mean": 0.331615
+    }
+  }
+}

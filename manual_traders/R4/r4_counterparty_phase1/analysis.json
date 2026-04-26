@@ -243,5 +243,30 @@
       "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v3_r4_all.log"
     ],
     "used_to_decide": "Day-stability confirms gate+extract mid story on every tape day; sim v3 still loses on 5300 touch (-1131 worse) — burst mid edge does not survive worse fills with naive buy-at-ask; next would be passive join or smaller size / limit logic."
+  },
+  {
+    "iteration": 4,
+    "round": 4,
+    "analysis_description": "Gate×burst 2x2 on VEV_5300 fwd20 (r4_gate_burst_5300_fwd_2x2.json): tight+burst mean +0.33 (n=291) vs tight non-burst +0.097. At those timestamps, VEV_5300 tape trade prices vs book (r4_burst_tight_5300_trade_vs_book.json): 159/161 prints at bid — explains why strict bid-limit v4 had 0 worse PnL (no cross) while bid+1 v5 fills under worse but still loses -132 vs v3 -1131.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/analyze_r4_gate_burst_5300_fwd_2x2.py",
+      "manual_traders/R4/r4_counterparty_phase1/r4_gate_burst_5300_fwd_2x2.json",
+      "manual_traders/R4/r4_counterparty_phase1/analyze_r4_burst_tight_5300_trade_vs_book.py",
+      "manual_traders/R4/r4_counterparty_phase1/r4_burst_tight_5300_trade_vs_book.json",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v4_r4_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v4_r4_all.log"
+    ],
+    "used_to_decide": "Tape shows burst prints often at bid; passive execution must use bid+1 or worse-cross to get fills; document v4 zero-fill under worse."
+  },
+  {
+    "iteration": 5,
+    "round": 4,
+    "analysis_description": "trader_v5: same regime as v3/v4 but limit buy at min(bid+1, ask) when spread>=2, smaller clip. Backtest worse/all -132 vs v3 -1131 — execution cost reduced but mid-forward edge still not monetized as PnL.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/trader_v5.py",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v5_r4_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v5_r4_all.log"
+    ],
+    "used_to_decide": "Prefer v5-style limit improvement over v3 ask for risk; still need exit/hold logic or extract hedge to capture population gate drift."
   }
 ]

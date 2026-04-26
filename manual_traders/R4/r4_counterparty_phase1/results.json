@@ -158,5 +158,85 @@
         "note": "Day1 one tick worse vs worse-match; rest match."
       }
     }
+  },
+  {
+    "iteration": 4,
+    "round": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "Gate + M01→M22 burst: limit buy VEV_5300 at best bid only (passive). Flatten at bid when regime off. Cooldown 30.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v4.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v4_r4_worse.log",
+      "backtest_output": {
+        "day1": 0,
+        "day2": 0,
+        "day3": 0,
+        "total": 0
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": [],
+        "underlying_pnl": 0,
+        "note": "Strict bid limit: no fills under worse matcher in this run."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -31,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v4.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v4_r4_all.log",
+      "backtest_output": {
+        "day1": -26,
+        "day2": -5,
+        "day3": 0,
+        "total": -31
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "Small 5300 losses when all-match fills bid orders."
+      }
+    }
+  },
+  {
+    "iteration": 5,
+    "round": 4,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "Gate + burst: limit buy at min(bid+1, ask) when spread>=2 else bid; LOT=3, max pos 36, cooldown 20. Targets worse-fill crossing L1 ask without full ask lift.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -132,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v5.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v5_r4_worse.log",
+      "backtest_output": {
+        "day1": -126,
+        "day2": -6,
+        "day3": 0,
+        "total": -132
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "Fills under worse but still negative; much smaller loss than v3 ask (-1131)."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -132,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v5.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v5_r4_all.log",
+      "backtest_output": {
+        "day1": -126,
+        "day2": -6,
+        "day3": 0,
+        "total": -132
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "Same totals as worse on this run."
+      }
+    }
   }
 ]

@@ -1,0 +1,8 @@
+{
+  "n_5300_trades_tight_burst": 161,
+  "price_at_ask_count": 1,
+  "price_at_bid_count": 159,
+  "price_strictly_between_count": 1,
+  "mean_fractional_position_in_spread": 0.0093,
+  "interpretation": "Most VEV_5300 prints at these (tight+burst) timestamps are at the bid (159/161), not the ask \u2014 tape aggression is often sell-side at touch; passive bid join is plausible but sim v4 still had zero worse fills (order/repost dynamics)."
+}

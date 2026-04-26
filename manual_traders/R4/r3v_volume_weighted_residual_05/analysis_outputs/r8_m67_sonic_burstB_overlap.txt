@@ -1,0 +1,13 @@
+Round 4 tape overlap (days 1–3, CSV merge on day+timestamp from prices + trades):
+
+Definitions (match phase2_r4_analysis Burst-B):
+- burst_B: same (day,timestamp) has >=3 trade rows AND some Mark01→Mark22 AND >=3 distinct VEV_* symbols.
+- m67_sonic_tightU: same (day,timestamp) has Mark67 buyer on VELVETFRUIT_EXTRACT with price>=ask1,
+  VEV_5200 spread<=2, VEV_5300 spread<=2, U spread<=6.
+
+Counts:
+day 1: m67_sonic_tightU=5, m67∩burst_B=1
+day 2: m67_sonic_tightU=7, m67∩burst_B=1
+day 3: m67_sonic_tightU=15, m67∩burst_B=0
+
+Only 2 timestamps in three days satisfy both — burst add-on is sparse vs Mark67 leg.

@@ -216,5 +216,74 @@
         "vs_iteration_3_all_total": 6036
       }
     }
+  },
+  {
+    "iteration": 6,
+    "trader_file": "trader_v6.py",
+    "strategy_description": "**v3** extract + **VEV_5300** only when joint tight (**no VEV_5200** quotes). Same half/size as **v4** for quoted legs. **Tape:** ``analyze_r4_joint_gate_m01_m22_flow.py`` \u2014 Mark01\u2192Mark22 **5300** signed qty vs **fwd_EXTRACT_20** shows **weak |r|** under tight gate. **Sim:** **`worse`** **3382** (ties **v3**/**v4**; **VEV_5300** line **0** each day \u2014 winged half often skips orders or never fills under adverse match). **`all`** **8296** vs **v4** **9427** (no **5200** hedge leg).",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_phase1_marks/analyze_r4_joint_gate_m01_m22_flow.py",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase6_m01_m22_flow_summary.txt",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase6_m01_m22_vev5300_signed_vs_fwdEXTRACT20_by_gate.csv"
+    ],
+    "backtest_worse": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "worse",
+      "total_profit": 3382,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter6_r4d1-3_worse.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v6.py 4 --data Prosperity4Data --match-trades worse --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 1227, "2": 1553, "3": 602 },
+        "per_product_worse_4d": { "VELVETFRUIT_EXTRACT": 3382, "VEV_5300": 0, "VEV_5200": 0 },
+        "vs_iteration_4_worse_total": 3382
+      }
+    },
+    "backtest_all": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "all",
+      "total_profit": 8296,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter6_r4d1-3_all.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v6.py 4 --data Prosperity4Data --match-trades all --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 1792, "2": 3807, "3": 2696 },
+        "per_product_all_4d": { "VELVETFRUIT_EXTRACT": 6035, "VEV_5300": 2260, "VEV_5200": 0 },
+        "vs_iteration_4_all_total": 9427,
+        "note": "6035 = 790+1834+3411 from log lines (extract); 2260 = 1002+1973-715 (5300)."
+      }
+    }
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "**v6** + when **VEV_5300** BBO spread (ticks) **\u2264 VEV_TOUCH_MAX_SPREAD** (2), quote **bid=bb** and **ask=ba** (touch); else winged half (v6). Goal: force passive quotes at the touch under Sonic-tight **5300** so **`worse`** might allocate fills. **Result:** **`worse`** still **3382** (VEV **0**); **`all`** **8480** vs **v6** **8296** (more **5300** PnL days 1\u20132, worse day 3 **5300**).",
+    "backtest_worse": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "worse",
+      "total_profit": 3382,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter7_r4d1-3_worse.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v7.py 4 --data Prosperity4Data --match-trades worse --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 1227, "2": 1553, "3": 602 },
+        "per_product_worse_4d": { "VELVETFRUIT_EXTRACT": 3382, "VEV_5300": 0, "VEV_5200": 0 },
+        "vs_iteration_6_worse_total": 3382
+      }
+    },
+    "backtest_all": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "all",
+      "total_profit": 8480,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter7_r4d1-3_all.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v7.py 4 --data Prosperity4Data --match-trades all --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 1782, "2": 4128, "3": 2571 },
+        "per_product_all_4d": { "VELVETFRUIT_EXTRACT": 6035, "VEV_5300": 2445, "VEV_5200": 0 },
+        "vs_iteration_6_all_total": 8296,
+        "note": "6035 = 790+1834+3411; 2445 = 991+2294-840 (5300 from v7 all log)."
+      }
+    }
   }
 ]

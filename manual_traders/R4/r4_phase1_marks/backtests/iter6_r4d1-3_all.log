@@ -1,0 +1,44 @@
+R4 trader_v6 all — v3 extract + VEV_5300 only when joint tight
+Backtesting /workspace/manual_traders/R4/r4_phase1_marks/trader_v6.py for round: 4 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 1,002
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 790
+Total profit: 1,792
+Backtesting /workspace/manual_traders/R4/r4_phase1_marks/trader_v6.py for round: 4 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 1,973
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 1,834
+Total profit: 3,807
+Backtesting /workspace/manual_traders/R4/r4_phase1_marks/trader_v6.py for round: 4 day: 3
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: -715
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 3,411
+Total profit: 2,696
+Round 4 day 1: 1,792
+Round 4 day 2: 3,807
+Round 4 day 3: 2,696
+Total profit: 8,296

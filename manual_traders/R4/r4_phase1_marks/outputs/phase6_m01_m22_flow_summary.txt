@@ -1,0 +1,8 @@
+Mark01→Mark22 VEV_5300: corr(signed_qty, fwd_EXTRACT_20) by day and joint gate
+ day  gate  n  corr_signed_fwdEXTRACT20  mean_fwd_EXTRACT_20
+   1 tight 32                 -0.021323            -1.671875
+   1 loose  0                       NaN                  NaN
+   2 tight 31                  0.041562             1.016129
+   2 loose  0                       NaN                  NaN
+   3 tight 69                 -0.123934             0.398551
+   3 loose  0                       NaN                  NaN

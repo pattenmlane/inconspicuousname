@@ -309,5 +309,28 @@
       "manual_traders/R4/r4_phase1_marks/backtests/iter5_r4d1-3_all.log"
     ],
     "used_to_decide": "Do **not** ship wider gate-leg halves for `all` if hedge PnL matters; keep **v4** for `all` exploration, **v3** for `worse` until a different VEV execution model is found."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "**Tape:** ``analyze_r4_joint_gate_m01_m22_flow.py`` \u2014 under joint tight, correlation of Mark01\u2192Mark22 **VEV_5300** signed qty with **fwd_EXTRACT_20** is **near zero** (and slightly negative on day 1); output ``phase6_m01_m22_flow_summary.txt``. **Sim:** ``trader_v6`` = **v3** + quote **5300** only (drop **5200**). **`worse`** **3382** with **VEV_5300** line **0** (same as **v4** \u2014 adverse matching never credits voucher legs in this harness). **`all`** **8296** vs **v4** **9427** (lost **5200** `all` PnL). **Conclusion:** dropping **5200** does not help **`worse`**; **M01\u2192M22** flow on **5300** is not a usable extract directional overlay.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_phase1_marks/analyze_r4_joint_gate_m01_m22_flow.py",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase6_m01_m22_flow_summary.txt",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase6_m01_m22_vev5300_signed_vs_fwdEXTRACT20_by_gate.csv",
+      "manual_traders/R4/r4_phase1_marks/trader_v6.py",
+      "manual_traders/R4/r4_phase1_marks/backtests/iter6_r4d1-3_worse.log",
+      "manual_traders/R4/r4_phase1_marks/backtests/iter6_r4d1-3_all.log"
+    ],
+    "used_to_decide": "Keep **v3**/**v4** framing for **`worse`** vs **`all`**; **v6** documents **5300**-only hedge surface without **`worse`** uplift."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "**Sim:** ``trader_v7`` = **v6** but when **VEV_5300** spread ticks **\u22642**, pin quotes to **BBO** (touch); else winged half. **Hypothesis:** winged half can skip orders (**bid\u2265ask**) or sit inside spread; touch maximizes queue priority at the Sonic ceiling. **`worse`:** total still **3382**, **VEV_5300** **0** \u2014 **touch does not change adverse-match voucher attribution** vs **v6**. **`all`:** total **8480** vs **v6** **8296** (more **5300** on days 1\u20132, **\u2212840** on day 3 **5300** vs **\u2212715** **v6**). **Conclusion:** touch is an **`all`**-mode shape change only here; **`worse`** remains extract-only PnL for this strategy family on R4 days 1\u20133.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_phase1_marks/trader_v7.py",
+      "manual_traders/R4/r4_phase1_marks/backtests/iter7_r4d1-3_worse.log",
+      "manual_traders/R4/r4_phase1_marks/backtests/iter7_r4d1-3_all.log"
+    ],
+    "used_to_decide": "Do not rely on BBO-touch **5300** for **`worse`** edge on this tape; next iterations need a different matching story (e.g. cross-product priority) or accept extract-only **`worse`**."
   }
 ]

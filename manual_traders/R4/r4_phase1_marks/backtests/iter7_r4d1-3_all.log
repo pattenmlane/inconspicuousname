@@ -1,0 +1,44 @@
+R4 trader_v7 all — v6 + VEV_5300 BBO touch when s5300<=2
+Backtesting /workspace/manual_traders/R4/r4_phase1_marks/trader_v7.py for round: 4 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 991
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 790
+Total profit: 1,782
+Backtesting /workspace/manual_traders/R4/r4_phase1_marks/trader_v7.py for round: 4 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 2,294
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 1,834
+Total profit: 4,128
+Backtesting /workspace/manual_traders/R4/r4_phase1_marks/trader_v7.py for round: 4 day: 3
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: -840
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 3,411
+Total profit: 2,571
+Round 4 day 1: 1,782
+Round 4 day 2: 4,128
+Round 4 day 3: 2,571
+Total profit: 8,480

@@ -277,5 +277,17 @@
       "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_hydro_pair_fwd_by_day_gate.csv"
     ],
     "used_to_decide": "Pooled: Mark14→38 tight mean fwd5 **-0.26** (n=126) vs loose **+0.18** (n=370); fwd20 tight **-0.46** vs loose **+0.47**. Mark38→14 tight fwd5 **-0.10** (n=129) vs loose **-0.20** (n=378); fwd20 tight **+0.10** vs loose **-0.51**. Day-3 tight 14→38 mean fwd5 **-0.82** (n=68) — **regime-dependent** duopoly markouts; not a simple always-quote rule but supports **passive hydro MM only when surface tight** as low-conflict with duopoly flow. trader_v5 = v4 + gated hydro (size 10): sim **+11854** total vs v4 **+6418** (+5436 hydro path); worse=all identical."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "Mark 01 → Mark 22 basket flow × Sonic joint gate: analyze_r4_mark01_22_basket_x_gate.py — all trades with that counterparty pair; merge tight flag; forward extract mid at trade timestamp; per-VEV product breakdown; same-timestamp basket width (n distinct products).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/analyze_r4_mark01_22_basket_x_gate.py",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_m01_m22_fwd_extract_by_product_gate.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_m01_m22_fwd_extract_vev_vs_other_gate.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_m01_m22_basket_size_same_ts.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_m01_m22_basket_size_histogram.csv"
+    ],
+    "used_to_decide": "When **tight**, **1336** VEV-leg Mark01→22 rows: pooled mean extract **fwd5 ~+0.009**, **fwd20 ~+0.30** (tape). By product under tight: wings 6000/6500 ~316 rows each mean fwd20 ~+0.28; 5400/5500 similar; **VEV_5300** 132 rows mean fwd5 **-0.076**, fwd20 **+0.042** (weakest wing). Same-timestamp basket often **4–5** symbols (histogram). **Loose** VEV rows are negligible (n=3). trader_v6/v7: size grid up/down from v5 — **identical 11854** PnL and per-product lines to v5 in this harness (fill cap / notional saturation in band)."
   }
 ]

@@ -451,5 +451,60 @@
         }
       }
     }
+  },
+  {
+    "iteration": 24,
+    "trader_file": "trader_v24.py",
+    "strategy_description": "Sonic *tight surface*: when joint gate is on, quote **VELVETFRUIT_EXTRACT** (v23: EXTRACT_HALF=2.4) plus **VEV_5200** and **VEV_5300** only (mid+wing half, SKEW_PER_UNIT) \u2014 not full 10 VEV. Wide: flat. **No HYDRO**. Grid **SIZE_VEV_ATM** 16/20/24: identical 4d `worse` (+3096); all-mode fills 5200/5300, worse-mode VEV PnL **0** (extract-only path dominates adverse matching).",
+    "parameter_sweep": {
+      "SIZE_VEV_ATM_values": [
+        16,
+        20,
+        24
+      ],
+      "worse_4d_total_profit": 3096
+    },
+    "backtest_worse": {
+      "round_days": "3 (0,1,2,3)",
+      "match_trades": "worse",
+      "total_profit": 3096,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/backtests/iter24_r3d0-3_worse.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v24.py 3 --data Prosperity4Data --match-trades worse --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": {
+          "0": 316,
+          "1": 1227,
+          "2": 1553,
+          "3": 0
+        },
+        "per_product_totals_4d": {
+          "VELVETFRUIT_EXTRACT": 3096,
+          "VEV_5200": 0,
+          "VEV_5300": 0
+        },
+        "note": "Under `worse`, 5200/5300 daily PnL lines were 0 each day; extract matches v23."
+      }
+    },
+    "backtest_all": {
+      "round_days": "3 (0,1,2,3)",
+      "match_trades": "all",
+      "total_profit": 7572,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/backtests/iter24_r3d0-3_all.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v24.py 3 --data Prosperity4Data --match-trades all --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": {
+          "0": 798,
+          "1": 2113,
+          "2": 4751,
+          "3": -90
+        },
+        "per_product_totals_4d": {
+          "VELVETFRUIT_EXTRACT": 3090,
+          "VEV_5200": 1376,
+          "VEV_5300": 3105
+        },
+        "note": "Sums 3090+1376+3105=7571; backtester profit summary 7572 (rounding)."
+      }
+    }
   }
 ]

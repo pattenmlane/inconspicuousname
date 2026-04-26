@@ -1,0 +1,60 @@
+v24 all — same as above
+
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v24.py for round: 3 day: 0
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 114
+VEV_5200: 98
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 586
+Total profit: 798
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v24.py for round: 3 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 1,002
+VEV_5200: 334
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 776
+Total profit: 2,113
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v24.py for round: 3 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 1,973
+VEV_5200: 944
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 1,834
+Total profit: 4,751
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v24.py for round: 3 day: 3
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 16
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: -106
+Total profit: -90
+Profit summary:
+Round 3 day 0: 798
+Round 3 day 1: 2,113
+Round 3 day 2: 4,751
+Round 3 day 3: -90
+Total profit: 7,572

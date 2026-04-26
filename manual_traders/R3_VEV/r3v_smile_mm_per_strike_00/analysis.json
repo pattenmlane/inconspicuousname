@@ -192,5 +192,20 @@
       "duplicate_risk": "low",
       "new_adjusted_variant": "n/a"
     }
+  },
+  {
+    "iteration": 20,
+    "analysis_description": "Reread `ORIGINAL_DISCORD_QUOTES.txt`: Sonic *hedge into a tight surface* / both spreads \u22642; inclineGod spread correlation. **v24** = same joint gate, quote **VEV_5200 + VEV_5300 + extract** (not 10 VEV) with v23 extract params. **Grid** `SIZE_VEV_ATM` 16/20/24: **`worse` 4d identical to v23 (3096)**. **`all`**: 4d 7572 with material 5200/5300 PnL; **`worse`** per-day 5200/5300 lines **0** (adverse matching nets voucher flow to ~zero while extract path unchanged from v23).",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "round3work/vouchers_final_strategy/STRATEGY.txt"
+    ],
+    "used_to_decide": "Hedge-surface v24 does not improve **`worse`** vs v23 here; for next iteration, either **extract-only (v23)** or quote **wider** / **one-sided** on 5200/5300 when optimizing `worse`, or add **other strikes** with different half-spread under gate.",
+    "EXACT_DUPLICATE_CHECK": {
+      "parent_explored": "v23 extract-only; v22 full-10-VEV + extract.",
+      "my_variant_delta": "Only 5200+5300+extract on tight gate; SIZE_VEV_ATM sweep; documents `worse` vs `all` on gate legs.",
+      "duplicate_risk": "low",
+      "new_adjusted_variant": "n/a"
+    }
   }
 ]

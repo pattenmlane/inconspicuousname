@@ -81,3 +81,5 @@ Level and **clock-time Δ** correlations (5200/5300/extract spreads vs extract m
 **Mark 01→Mark 22 on VEV_5300 (Phase-3 pair thesis):** `r4_p14_m01_m22_5300_gate_pathology.md` — 132/132 prints at **tight** gate timestamps (0 loose); short-horizon forward mids negative at K=5,20. Live short probe **v30** (aggr_sell+gate, short 5300 bb-1): total **−4,888** (worse=all) — **do not** trade this tape-mean with naive execution.
 
 **Mark 14 buy / Mark 38 sell, aggr_sell VEV_4000 × gate** (`r4_p15_...csv`): **tight** pooled mean fwd20 **~+1.10** (n≈55) vs **loose ~−0.58** (n≈177) — gate **amplifies** this duopoly wing print vs population-only story. Live **v31** (ba+1 long, clip 8): total **+1,631** (worse=all); **day 3 VEV_4000 −3,322** — weaker than Mark55 extract lane; wing execution risk.
+
+Welch tight vs loose fwd20 (`r4_p16_...csv`): **pooled p≈0.0086** (t≈2.68); per-day day-3 **p≈0.082** (n_tight=34, n_loose=43) — tape edge **stronger pooled** than single-day significance. Risk: **v32** skip `backtest_day==3` → **4,953** total (= v31 days 1–2); **v33** clip 4 → **886** total (day-3 still **−1,660**).

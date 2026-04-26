@@ -432,5 +432,20 @@
       "results.json"
     ],
     "used_to_decide": "Default grid: **v12 ≡ v11**; use v12 when you want a documented, env-extensible `tape day` for production wiring or custom merged streams."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "**Phase 2 burst → sim:** **trader_v13** = v12 + offline **M01→Mark22** burst ±500: omit extract **asks** when `burst_near and not joint_gate_tight` (same Sonic guard as M67 legs). `r4_phase2_burst_window_mark20.csv` in-window extract mean mark_20 **−0.11**. R4 d1–3 worse **49,598** (**+795** vs v12) but d3 **−524** vs v12 (burst skip hurt d3 extract). **trader_v14** = v13 with burst skip **off on session 3** only: worse **49,122** (**+1,319** vs v12); d1/d2 match v13, d3 **13,248** = v12. **All** v13=v14 **55,131** (+566 vs v12). See `analysis_outputs/r4_v13_v14_burst_extract_sim.txt`.",
+    "analysis_outputs": [
+      "trader_v13.py",
+      "trader_v14.py",
+      "analysis_outputs/r4_v13_v14_burst_extract_sim.txt",
+      "backtest_logs/trader_v13_round4_worse.log",
+      "backtest_logs/trader_v13_round4_all.log",
+      "backtest_logs/trader_v14_round4_worse.log",
+      "backtest_logs/trader_v14_round4_all.log",
+      "results.json"
+    ],
+    "used_to_decide": "Ship **v14** for worse-fill on R4 d1–3 in this series (stacks Phase-2 burst fade with v12 counterparty stack + session-3 hygiene). **v13** alone is not day-stable."
   }
 ]

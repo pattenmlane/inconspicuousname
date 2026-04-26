@@ -330,5 +330,24 @@
       ],
       "primary_r4_thesis_candidate": "Legitimate stacked signal: tape-level forward extract drift favors Sonic tight joint gate at multiple K; counterparty identity interacts (Mark 38 aggressor flips; Mark01->Mark22 structurally tight). Next step is simulator PnL (MM skew / fade rules) because markouts are not tradeable without execution model."
     }
+  },
+  {
+    "iteration": "r4_trader_v2_counterparty_probe",
+    "analysis_description": "Post Phase 3 execution probe: trader_v2.py encodes gate + fair value + Mark22 post-fill widening (see trader docstring). Offline done for Phases 1-3; this records first live MM backtest in this strategy folder.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_research/trader_v2.py",
+      "manual_traders/R4/r4_counterparty_research/runlog_v2_worse.txt",
+      "manual_traders/R4/r4_counterparty_research/runlog_v2_all.txt",
+      "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v2_worse.json",
+      "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v2_all.json"
+    ],
+    "used_to_decide": "Quantify whether a minimal counterparty rule (widen after buying VEV from Mark 22 tape seller) adds stability on top of v24-style gated MM; worse vs all gap is small (+2414), both positive across days 1-3.",
+    "backtest_summary": {
+      "worse_total": 33870,
+      "worse_daily": [16736, 6599, 10535],
+      "all_total": 36284,
+      "all_daily": [17552, 7458, 11274],
+      "note": "Counterparty branch uses own_trades from previous tick; market_trades at run() entry is empty so burst-at-timestamp gating is not implemented in sim."
+    }
   }
 ]

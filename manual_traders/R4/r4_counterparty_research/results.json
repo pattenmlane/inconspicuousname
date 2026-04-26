@@ -65,5 +65,31 @@
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_participant_mark20u_by_gate.csv",
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_spread_spread_panels.png"
     ]
+  },
+  {
+    "iteration": 3,
+    "trader_file": "manual_traders/R4/r4_counterparty_research/trader_v2.py",
+    "strategy_description": "R4 MM: Sonic joint spread gate + DTE-scaled voucher fair (v24-style) + HYDROGEL mid MM. Counterparty: on ticks after a buy fill on a VEV where tape seller was Mark 22 (own_trades from prior match), widen that strike (+1 edge, -2 size). Anchors DTE from R4 day1-3 extract opens.",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r4_counterparty_research/trader_v2.py\" 4 --data Prosperity4Data --no-progress --no-out --no-vis",
+    "total_profit": 33870,
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 33870,
+      "daily_profit": [16736, 6599, 10535],
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v2_worse.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v2_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 36284,
+      "daily_profit": [17552, 7458, 11274],
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v2_all.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v2_all.json"
+    },
+    "research_links": [
+      "manual_traders/R4/r4_counterparty_research/analysis.json round4_phase3_complete",
+      "Phase 1: Mark 22 sells / adverse selection proxy"
+    ]
   }
 ]

@@ -18,6 +18,9 @@ analysis_outputs/r4_phase1_participant_U_spread_tert.csv (U × trade-symbol spre
 analysis_outputs/r4_phase1_participant_U_session_terc.csv (U × tick-index session tercile per day)
 analysis_outputs/r4_phase1_participant_U_burst_iso.csv  (U × isolated vs burst single/multi-symbol)
 analysis_outputs/r4_phase1_participant_flow.csv          (signed qty net buy−sell per participant×symbol)
+analysis_outputs/r4_phase1_key_pairs_stability_by_day.csv
+analysis_outputs/r4_phase1_mark67_extract_buyer_by_day.csv
+analysis_outputs/r4_phase1_burst_extract_fwd20_control.json
 analysis_outputs/r4_phase1_pair_residuals.csv
 analysis_outputs/r4_phase1_graph_edges.csv
 analysis_outputs/r4_phase1_twohop_same_symbol.csv

@@ -7,6 +7,9 @@ Stratified by trade-symbol spread tertile (per day grid), n>=5: 237 (r4_phase1_p
 Stratified by **session** = early/mid/late third of **tick index** per csv day, n>=5: 409 (r4_phase1_participant_U_session_terc.csv)
 Stratified burst_iso = isolated | burst_single_sym | burst_multi_sym, n>=5: 246 (r4_phase1_participant_U_burst_iso.csv)
 Participant signed qty balance (buy qty minus sell qty) per symbol: r4_phase1_participant_flow.csv
+Key pair **stability by csv day** (top-|t| pairs × all K): r4_phase1_key_pairs_stability_by_day.csv
+Mark 67 buyer on extract, per day × K: r4_phase1_mark67_extract_buyer_by_day.csv
+Burst fwd20 vs random-isolated null (pooled): burst_mean=1.201219512195122 one_sided_p_burst_higher=0.0215
 Unique (buyer,seller,symbol,K) pair cells (n>=5): 84
 Same-timestamp multi-print bursts: 387
 

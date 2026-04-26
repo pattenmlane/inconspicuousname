@@ -13,6 +13,9 @@ Outputs under manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/:
   - r4_phase1_participant_U_session_terc.csv — **session** = early/mid/late third of price grid (tick index)
   - r4_phase1_participant_U_burst_iso.csv — same tick burst vs isolated (multi-symbol same ts)
   - r4_phase1_participant_flow.csv — per-name qty buy/sell/net by symbol (clustering / imbalance)
+  - r4_phase1_key_pairs_stability_by_day.csv — top-|t| (buyer,seller,symbol) cells × day
+  - r4_phase1_mark67_extract_buyer_by_day.csv — Mark 67 buyer on extract, mean fwd by day
+  - r4_phase1_burst_extract_fwd20_control.json — burst mean vs **random** isolated-timestamp null (pooled + per day)
   - r4_phase1_pair_residuals.csv, r4_phase1_graph_edges.csv, r4_phase1_bursts.csv
   - r4_phase1_adverse_extract_after_01_22_5300.csv, r4_phase1_summary.txt
 """
@@ -530,6 +533,147 @@ def main() -> None:
         json.dumps(burst_summary, indent=2), encoding="utf-8"
     )
 
+    # --- Burst vs **random** isolated-timestamp null (same n as burst, resample isolated pool)
+    iso_by_day: dict[int, list[float]] = defaultdict(list)
+    for rec in rows_out:
+        if rec["symbol"] != "VELVETFRUIT_EXTRACT":
+            continue
+        v = rec.get("fwd_20_VELVETFRUIT_EXTRACT")
+        if v is None:
+            continue
+        key = (rec["csv_day"], rec["timestamp"])
+        if key not in burst_ts:
+            iso_by_day[rec["csv_day"]].append(float(v))
+    rng_ctrl = random.Random(RNG_SEED + 901)
+
+    def null_burst_enrichment(burst_vals: list[float], iso_vals: list[float], trials: int = 2000) -> dict:
+        nb = len(burst_vals)
+        ni = len(iso_vals)
+        if nb < 1 or ni < 1:
+            return {"n_burst": nb, "n_iso_pool": ni, "burst_mean": None, "null_note": "insufficient"}
+        obs = statistics.mean(burst_vals)
+        null_means: list[float] = []
+        for _ in range(trials):
+            null_means.append(statistics.mean(rng_ctrl.choices(iso_vals, k=nb)))
+        null_means.sort()
+        frac_ge = sum(1 for x in null_means if x >= obs) / trials
+        frac_le = sum(1 for x in null_means if x <= obs) / trials
+        return {
+            "n_burst": nb,
+            "n_iso_pool": ni,
+            "burst_mean_fwd20": obs,
+            "isolated_pool_mean_fwd20": statistics.mean(iso_vals),
+            "null_resample_trials": trials,
+            "null_mean_of_means": statistics.mean(null_means),
+            "null_p05_mean": null_means[int(0.05 * trials)],
+            "null_p95_mean": null_means[int(0.95 * trials) - 1],
+            "one_sided_p_burst_higher": frac_ge,
+            "one_sided_p_burst_lower": frac_le,
+        }
+
+    burst_by_day: dict[int, list[float]] = defaultdict(list)
+    for rec in rows_out:
+        if rec["symbol"] != "VELVETFRUIT_EXTRACT":
+            continue
+        v = rec.get("fwd_20_VELVETFRUIT_EXTRACT")
+        if v is None:
+            continue
+        if (rec["csv_day"], rec["timestamp"]) in burst_ts:
+            burst_by_day[rec["csv_day"]].append(float(v))
+
+    control_payload = {
+        "pooled": null_burst_enrichment(fwd20_burst, fwd20_iso),
+        "per_csv_day": {},
+    }
+    for d in csv_days:
+        bdv = burst_by_day.get(d, [])
+        idv = iso_by_day.get(d, [])
+        control_payload["per_csv_day"][str(d)] = null_burst_enrichment(bdv, idv)
+    (OUT / "r4_phase1_burst_extract_fwd20_control.json").write_text(
+        json.dumps(control_payload, indent=2), encoding="utf-8"
+    )
+
+    ctrl_pool = control_payload.get("pooled") or {}
+    burst_ctrl_note = (
+        f"Burst fwd20 vs random-isolated null (pooled): burst_mean={ctrl_pool.get('burst_mean_fwd20')} "
+        f"one_sided_p_burst_higher={ctrl_pool.get('one_sided_p_burst_higher')}"
+    )
+
+    # --- Top pair cells × day (stability table for Phase-1 narrative)
+    top_pairs: list[tuple[str, str, str]] = []
+    seen_tp: set[tuple[str, str, str]] = set()
+    for r in sorted(pair_rows, key=lambda x: -(abs(x["t_stat"] or 0))):
+        if r["n"] < 30 or r["t_stat"] is None:
+            continue
+        key3 = (r["buyer"], r["seller"], r["symbol"])
+        if key3 in seen_tp:
+            continue
+        seen_tp.add(key3)
+        top_pairs.append(key3)
+        if len(top_pairs) >= 12:
+            break
+    stab_rows: list[dict] = []
+    for buy, sell, sym in top_pairs:
+        for K in K_HORIZONS:
+            for d in csv_days:
+                vals = pair_fwd_day.get((buy, sell, sym, K, d), [])
+                stab_rows.append(
+                    {
+                        "buyer": buy,
+                        "seller": sell,
+                        "symbol": sym,
+                        "K": K,
+                        "csv_day": d,
+                        "n": len(vals),
+                        "mean_fwd": statistics.mean(vals) if vals else "",
+                        "t_stat": t_stat(vals) if vals else "",
+                    }
+                )
+    with (OUT / "r4_phase1_key_pairs_stability_by_day.csv").open("w", newline="") as f:
+        w = csv.DictWriter(
+            f,
+            fieldnames=["buyer", "seller", "symbol", "K", "csv_day", "n", "mean_fwd", "t_stat"],
+            extrasaction="ignore",
+        )
+        w.writeheader()
+        for row in stab_rows:
+            w.writerow(row)
+
+    # --- Mark 67 as **buyer** on extract: per-day mean fwd (all K)
+    m67_rows: list[dict] = []
+    m67_by_day_k: dict[tuple[int, int], list[float]] = defaultdict(list)
+    for rec in rows_out:
+        if rec.get("buyer") != "Mark 67" or rec.get("symbol") != "VELVETFRUIT_EXTRACT":
+            continue
+        d = rec["csv_day"]
+        sym = rec["symbol"]
+        for K in K_HORIZONS:
+            v = rec.get(f"fwd_{K}_{sym}")
+            if v is not None:
+                m67_by_day_k[(d, K)].append(float(v))
+    for (d, K), vals in sorted(m67_by_day_k.items()):
+        if len(vals) < 2:
+            continue
+        m67_rows.append(
+            {
+                "csv_day": d,
+                "K": K,
+                "n": len(vals),
+                "mean_fwd_same": statistics.mean(vals),
+                "median": statistics.median(vals),
+                "frac_pos": sum(1 for x in vals if x > 0) / len(vals),
+                "t_stat": t_stat(vals),
+            }
+        )
+    with (OUT / "r4_phase1_mark67_extract_buyer_by_day.csv").open("w", newline="") as f:
+        w = csv.DictWriter(
+            f,
+            fieldnames=["csv_day", "K", "n", "mean_fwd_same", "median", "frac_pos", "t_stat"],
+        )
+        w.writeheader()
+        for row in m67_rows:
+            w.writerow(row)
+
     # Two-hop chains on same symbol: consecutive prints in time order (per day, per symbol)
     hop2: Counter[tuple[str, str, str, str, str]] = Counter()
     for csv_day in csv_days:
@@ -693,6 +837,9 @@ def main() -> None:
         f"Stratified by **session** = early/mid/late third of **tick index** per csv day, n>=5: {n_participant_u_sess_cells} (r4_phase1_participant_U_session_terc.csv)",
         f"Stratified burst_iso = isolated | burst_single_sym | burst_multi_sym, n>=5: {n_participant_u_burst_cells} (r4_phase1_participant_U_burst_iso.csv)",
         f"Participant signed qty balance (buy qty minus sell qty) per symbol: r4_phase1_participant_flow.csv",
+        f"Key pair **stability by csv day** (top-|t| pairs × all K): r4_phase1_key_pairs_stability_by_day.csv",
+        f"Mark 67 buyer on extract, per day × K: r4_phase1_mark67_extract_buyer_by_day.csv",
+        burst_ctrl_note,
         f"Unique (buyer,seller,symbol,K) pair cells (n>=5): {len(pair_rows)}",
         f"Same-timestamp multi-print bursts: {len(burst_groups)}",
         "",

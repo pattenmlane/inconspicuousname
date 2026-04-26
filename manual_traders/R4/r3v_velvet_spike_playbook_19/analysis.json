@@ -1,0 +1,102 @@
+[
+  {
+    "round4_phase1_complete": {
+      "tape_days_used": [
+        1,
+        2,
+        3
+      ],
+      "horizon_definition": "K is number of forward rows in prices_round_4_day_*.csv for the same (day, product), sorted by timestamp, starting at the trade timestamp row (tape step index, not wall-clock).",
+      "aggressor_definition": "buy_aggr if trade price >= ask1 at (day,timestamp,product); sell_aggr if price <= bid1; else unknown (excluded from participant tables).",
+      "bullets": [
+        {
+          "phase1_item": "Participant-level alpha / predictiveness",
+          "outputs": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_participant_markout_by_bucket.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_trades_with_markout.csv"
+          ],
+          "one_sentence": "Aggressor-conditioned forward mids are mostly near zero in tight VEV books except Mark 22 sell on tight VEV_5300 (negative K=20) and Mark 67 buy on extract (large positive K=5/20 but n\u224860/day); no single (Mark, side, product) shows large stable same-direction edge across all three days with n\u226530 per day in tight regime."
+        },
+        {
+          "phase1_item": "Deviation from bot baseline (cell means)",
+          "outputs": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_trades_with_baseline_resid.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_top_residual_pairs.csv"
+          ],
+          "one_sentence": "Residuals of fwd_20_sym after (buyer,seller,product,spread_bucket) cell means are numerically ~0 for all major pairs \u2014 the simple baseline already explains conditional mean markouts; no strong second-order residual cluster."
+        },
+        {
+          "phase1_item": "Sequence / graph methods",
+          "outputs": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_graph_edges_buyer_seller.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_twohop_motifs_top_marks.txt"
+          ],
+          "one_sentence": "Dominant edges Mark 01\u2192Mark 22 and hydro duopoly Mark 14\u2194Mark 38 match round4work initial summary; weighted two-hop traffic peaks through Mark 55 as bridge (graph artifact), useful for conditioning not standalone PnL."
+        },
+        {
+          "phase1_item": "Burst structure",
+          "outputs": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_burst_summary_by_timestamp.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_burst_event_study_extract.json"
+          ],
+          "one_sentence": "Same-(day,timestamp) bursts (\u22653 prints) show slightly higher mean VELVETFRUIT_EXTRACT forward mid change at K=20 than a random single-trade control (mean ~0.32 vs ~0.08 on pooled n\u22481470 vs 2673), while K=100 signs differ \u2014 suggestive short-horizon pressure only, needs stricter matched-time control before trading."
+        },
+        {
+          "phase1_item": "Adverse selection vs inventory (proxy)",
+          "outputs": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_adverse_selection_proxy_worst_fwd20.csv"
+          ],
+          "one_sentence": "Pair\u00d7aggressor buckets show Mark 22 as seller on several VEVs with most negative pooled short fwd on tight names (e.g. VEV_5300), consistent with providing liquidity into basket flow; use as avoid/fade signal rather than inventory (not simulated here)."
+        }
+      ],
+      "top_5_tradeable_edges_ranked": [
+        {
+          "rank": 1,
+          "edge": "After multi-symbol burst timestamps, extract mid drifts up slightly more at K=20 than random single-trade controls (same tape).",
+          "effect_size": "mean fwd_ex_20 burst \u2248 0.32 vs control \u2248 0.08 (mid units)",
+          "n": "burst prints with valid fwd: 1470; control sample: 2673",
+          "days_validated": "1,2,3 pooled",
+          "caveat": "Control is random singles not propensity-matched; effect is small in mid units."
+        },
+        {
+          "rank": 2,
+          "edge": "Mark 67 aggressive buys on VELVETFRUIT_EXTRACT when book spread bucket is tight show strongly positive short fwd (K=5 and K=20).",
+          "effect_size": "day1 K20 mean \u2248 2.03 on n=58; similar magnitude days 2\u20133",
+          "n": "~58\u201361 prints per day in tight extract",
+          "days_validated": "1,2,3 (each day separately in CSV)",
+          "caveat": "Small n; must confirm not one-shot level jumps; still candidate for gated follow."
+        },
+        {
+          "rank": 3,
+          "edge": "Mark 22 aggressive sells on VEV_5300 in tight book: day 1 shows negative K=20 fwd mid (\u2248-0.55, n=38) but days 2\u20133 flip sign \u2014 not a stable cross-day directional edge without further conditioning.",
+          "effect_size": "day1 K20 \u2248 -0.55; day2 K20 \u2248 -0.07; day3 K20 \u2248 +0.01",
+          "n": "38\u201378 prints/day in tight 5300",
+          "days_validated": "1\u20133 (sign unstable)",
+          "caveat": "Downrank as tradeable until a regime split explains day-1 vs later."
+        },
+        {
+          "rank": 4,
+          "edge": "Structural Mark 01 \u2192 Mark 22 basket ladder (1339 prints) \u2014 use as regime flag for coordinated wing selling.",
+          "effect_size": "graph dominance not a scalar markout",
+          "n": "1339 pair rows",
+          "days_validated": "1\u20133 pooled",
+          "caveat": "Not automatically profitable; informs when not to lean short vol blindly."
+        },
+        {
+          "rank": 5,
+          "edge": "Mark 14 \u2194 Mark 38 hydro duopoly (728+714 prints) \u2014 symmetric flow; mean-reversion style microstructure possible but not evidenced in baseline residuals.",
+          "effect_size": "residuals near zero under simple cell baseline",
+          "n": "1400+ prints",
+          "days_validated": "1\u20133",
+          "caveat": "Likely stable bot schedule; directional alpha not found in Phase 1 tables."
+        }
+      ],
+      "no_edge_or_negative_findings": [
+        "(buyer,seller,product) cell-mean baseline leaves near-zero residuals for major Mark pairs \u2014 no obvious mis-modeled bot mean to exploit without richer features.",
+        "Most aggressor\u00d7product\u00d7tight-bucket cells have |mean fwd_20| \u226a 0.5 mid units or unstable sign across days.",
+        "Hour bucket stratification not yet exported separately (spread bucket already used); marginal gain expected given coarse timestamps."
+      ],
+      "repro_script": "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_counterparty_study.py"
+    }
+  }
+]

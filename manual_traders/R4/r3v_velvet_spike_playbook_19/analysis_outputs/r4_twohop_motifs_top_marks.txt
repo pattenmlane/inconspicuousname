@@ -1,0 +1,15 @@
+Mark 55 -> ? -> Mark 22 : weighted_2hop_count=354297
+Mark 55 -> ? -> Mark 38 : weighted_2hop_count=241206
+Mark 38 -> ? -> Mark 55 : weighted_2hop_count=225966
+Mark 01 -> ? -> Mark 14 : weighted_2hop_count=86060
+Mark 14 -> ? -> Mark 01 : weighted_2hop_count=77104
+Mark 38 -> ? -> Mark 22 : weighted_2hop_count=59262
+Mark 01 -> ? -> Mark 55 : weighted_2hop_count=24102
+Mark 01 -> ? -> Mark 38 : weighted_2hop_count=22763
+Mark 14 -> ? -> Mark 22 : weighted_2hop_count=18256
+Mark 22 -> ? -> Mark 14 : weighted_2hop_count=18096
+Mark 01 -> ? -> Mark 49 : weighted_2hop_count=11713
+Mark 22 -> ? -> Mark 01 : weighted_2hop_count=4392
+Mark 01 -> ? -> Mark 22 : weighted_2hop_count=3640
+Mark 14 -> ? -> Mark 49 : weighted_2hop_count=3425
+Mark 67 -> ? -> Mark 55 : weighted_2hop_count=1795

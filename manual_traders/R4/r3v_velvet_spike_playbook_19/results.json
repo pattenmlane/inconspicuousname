@@ -1,0 +1,8 @@
+[
+  {
+    "iteration": 0,
+    "note": "Round 4 Phase 1: analysis-only pass (counterparty markouts, graph, bursts). No trader_v*.py backtest yet; Phase 2+ may add strategy and log worse/all here.",
+    "phase": "round4_phase1_complete",
+    "analysis_reference": "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis.json"
+  }
+]

@@ -7,6 +7,9 @@
       3
     ],
     "outputs": {
+      "name_universe": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_name_universe.txt",
+      "name_flow_balance": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_name_flow_balance.csv",
+      "participant_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_participant_by_day.csv",
       "participant_forward": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_forward_by_mark.csv",
       "mark_product_cross": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_product_cross.csv",
       "mark_burst_same_sym": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_burst_same_sym.csv",
@@ -20,9 +23,12 @@
     "bullets": [
       {
         "bullet": "1 participant-level",
-        "conclusion": "See r4_p1_forward_by_mark.csv; Mark-conditioned fwd mids vary by role/K; many cells low-n.",
+        "conclusion": "R4 d1\u2013d3 has 7 unique counterparty strings (all Mark *; r4_p1_name_universe.txt). Pooled+regime table r4_p1_forward_by_mark.csv; per-day stability r4_p1_participant_by_day.csv; structural flow r4_p1_name_flow_balance.csv (e.g. Mark 22 net seller, Mark 01 net buyer).",
         "paths": [
-          "r4_p1_forward_by_mark.csv"
+          "r4_p1_name_universe.txt",
+          "r4_p1_name_flow_balance.csv",
+          "r4_p1_forward_by_mark.csv",
+          "r4_p1_participant_by_day.csv"
         ]
       },
       {
@@ -111,7 +117,8 @@
       "Mark 38 burst stratum: n=16\u201318 per subcell in r4_p1_mark_burst_same_sym.csv \u2014 not enough for stand-alone edge claims despite large point estimates.",
       "Mark 22 seller_agg on VELVETFRUIT_EXTRACT as traded_symbol: n=11 in r4_p1_mark_product_cross.csv \u2014 strong point estimates but too few prints for a sizing rule.",
       "Sparse tape vs dense BBO: 4281 trade rows vs ~1e5 price updates \u2014 many forward joins are per-print only; day-stability must be checked in Phase 3 tables.",
-      "Sim ablations (v4 global clip 28, v8 wing 20, v9\u2013v10 extract/hydro clips, v11 core 24): joint-gate MM total often unchanged \u2014 per-side clip not binding in this backtester for those ranges."
+      "Sim clip ablations (v4, v8\u2013v11): joint-gate MM at Sonic \u22642 with varied per-side size often leaves total 11526 unchanged \u2014 clip not the binding constraint in that stack.",
+      "Regime ablation trader_v12 (core spreads \u22643 vs v5 \u22642): 3-day sim 28,525 worse / 28,460 all with uneven days \u2014 looser gate is not a free improvement vs tape-stat regime work."
     ]
   }
 }

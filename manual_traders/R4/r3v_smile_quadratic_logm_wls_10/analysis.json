@@ -1,8 +1,11 @@
 [
   {
     "iteration": "round4_phase1",
-    "analysis_description": "Round 4 Phase 1 exhaustive counterparty tape analysis (days 1–3): participant forwards, cross-asset forwards at print time, burst vs isolated stratification, pair residuals, graph + 2-hop motifs, burst event study. See r4_phase1_gate.json for duplicate machine-readable gate.",
+    "analysis_description": "Round 4 Phase 1 exhaustive counterparty tape analysis (days 1–3): all distinct names U (buyer∪seller: 7 Marks only on this tape; see r4_p1_name_universe.txt), per-name flow balance, per-day forward table for day-stability, cross-asset forwards, burst vs isolated, pair residuals, graph + 2-hop motifs, burst event study.",
     "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_name_universe.txt",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_name_flow_balance.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_participant_by_day.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_forward_by_mark.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_product_cross.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_burst_same_sym.csv",
@@ -27,10 +30,13 @@
         "graph_edges": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_graph_edges.csv",
         "bursts": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_burst_events.csv",
         "summary_txt": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_phase1_summary.txt",
+        "name_universe": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_name_universe.txt",
+        "name_flow_balance": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_name_flow_balance.csv",
+        "participant_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_participant_by_day.csv",
         "script": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase1_counterparty_analysis.py"
       },
       "bullets": [
-        {"bullet": "1 participant-level", "conclusion": "See r4_p1_forward_by_mark.csv; Mark-conditioned fwd mids vary by role/K; many cells low-n.", "paths": ["r4_p1_forward_by_mark.csv"]},
+        {"bullet": "1 participant-level", "conclusion": "R4 d1–3 tape has 7 unique counterparty strings (all Mark *); r4_p1_name_universe.txt. Pooled+spread stratification in r4_p1_forward_by_mark.csv; per-day means for (name, role, K) in r4_p1_participant_by_day.csv (e.g. Mark 67 buyer_agg K5 positive all three days). r4_p1_name_flow_balance.csv: structural roles (Mark 22 net seller; Mark 01 net buyer; Mark 38 hydro-duopoly near-balanced).", "paths": ["r4_p1_name_universe.txt", "r4_p1_name_flow_balance.csv", "r4_p1_forward_by_mark.csv", "r4_p1_participant_by_day.csv"]},
         {"bullet": "1b cross-asset + per-traded-product", "conclusion": "r4_p1_mark_product_cross.csv: same-symbol vs extract vs hydro fwd at print time by Mark×role×product×K×spread regime with bootstrap 95% CI on mean.", "paths": ["r4_p1_mark_product_cross.csv"]},
         {"bullet": "1c burst vs isolated", "conclusion": "r4_p1_mark_burst_same_sym.csv stratifies same-symbol fwd when (day,ts) has ≥4 trades vs isolated prints.", "paths": ["r4_p1_mark_burst_same_sym.csv"]},
         {"bullet": "2 bot baseline / residuals", "conclusion": "Per (buyer,seller,symbol) mean fwd20 and trade-level residuals in r4_p1_pair_baseline_residuals.csv.", "paths": ["r4_p1_pair_baseline_residuals.csv"]},
@@ -79,7 +85,8 @@
         "Mark 38 burst stratum: n=16–18 per subcell in r4_p1_mark_burst_same_sym.csv — not enough for stand-alone edge claims despite large point estimates.",
         "Mark 22 seller_agg on VELVETFRUIT_EXTRACT as traded_symbol: n=11 in r4_p1_mark_product_cross.csv for extract legs — strong point estimates but too few prints for a sizing rule.",
         "Sparse tape vs dense BBO: 4281 trade rows vs ~1e5 price updates — many forward joins are per-print only; day-stability must be checked in Phase 3 tables.",
-        "Sim ablations (v4 global clip 28, v8 wing 20, v9–v10 extract/hydro clips): joint-gate MM total unchanged vs v1/v5 where varied — per-side clip often not binding in this backtester."
+        "Sim clip ablations (v4, v8–v11): joint-gate MM at Sonic ≤2 with varied per-side size often leaves total 11526 unchanged — clip not the binding constraint in that stack.",
+        "Regime ablation: trader_v12 (both core spreads ≤3 vs v5’s ≤2) raises 3-day sim total to 28,525 worse / 28,460 all with very uneven days (d1 16,275, d2 936, d3 11,314) — book-state threshold matters; Sonic’s stricter ≤2 is not maximizing raw sim PnL on this path but may trade robustness for tape statistics."
       ]
     }
   },
@@ -245,7 +252,8 @@
         "Counterparty-heavy events (big bursts, M01→M22 bursts, Mark22 passive prints) are almost always under asof-tight gate on this tape — weak three-way (Mark pattern × tight × wide) separation.",
         "Tight big-bursts vs wide-book extract_fwd20 pool: t≈0.88, p≈0.38 — no burst-specific extract alpha vs wide baseline.",
         "Mark22 seller_agg vs wide-book fwd20 pool: t≈-1.24, p≈0.22 — not significant; all 160 prints asof-tight.",
-        "spread_vs_mid cross pairs on inner grid: most Pearson |r| < 0.05 (weak linear link between one product's spread and another's mid in this slice)."
+        "spread_vs_mid cross pairs on inner grid: most Pearson |r| < 0.05 (weak linear link between one product's spread and another's mid in this slice).",
+        "Sim: trader_v12 relaxes 5200+5300 to ≤3 while Phase 2/3 evidence used ≤2; 3-day sim total rises to 28,525 (worse) vs v5 11,526 with very uneven day PnL — not a refutation of Sonic’s regime story; stricter gate targets cleaner per-event stats on tape, not this MM path’s raw total."
       ],
       "sonic_gate_cleans_signal": "Partially for cross-asset signed-flow structure (tight vs wide timestamp corr). Not as a separator for Mark01→Mark22 burst echo or Mark22 passive markout on this sample — those live almost entirely in the tight regime, so the gate does not carve independent wide-bucket controls."
     }
@@ -326,5 +334,15 @@
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/backtest_all_trader_v11_r4_d123.log"
     ],
     "used_to_decide": "R4 d1–3 total PnL 11526 worse and all — identical to v5 (and v4 global +10 clip, v8 wing +10, v10 extract +4). Fills/clip for core strikes not binding in this sim; counterparty-conditioned sizing needs tape-in-state or different policy class."
+  },
+  {
+    "iteration": "trader_v12_relaxed_joint_gate",
+    "analysis_description": "Sim ablation: same one-tick MM stack as v5 but require VEV_5200 and VEV_5300 spreads both ≤3 instead of Sonic ≤2 (trader_v12). Tests whether looser book-state gating trades off tape t-stat cleanliness for raw sim PnL.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/trader_v12.py",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/backtest_worse_trader_v12_r4_d123.log",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/backtest_all_trader_v12_r4_d123.log"
+    ],
+    "used_to_decide": "R4 d1–3 total 28,525 worse / 28,460 all; days 1–3: 16,275 / 936 / 11,314 (worse). Large hydro PnL swing on d1; d2 nearly flat. Stricter ≤2 (v5) is lower total on this sim path but is the regime Phase 2/3 evidence was conditioned on; ≤3 is not a drop-in 'better Sonic' without out-of-sample risk control."
   }
 ]

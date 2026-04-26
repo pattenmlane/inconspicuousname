@@ -24,6 +24,8 @@ Writes:
   r4_p3_m1438_fwd_by_symbol_day.csv — Mark14→Mark38 hydro duopoly leg (same layout)
   r4_p3_m3814_fwd_by_symbol_day.csv — Mark38→Mark14 return leg
   r4_p3_m0122_symbol_k_overall.csv   — M01→M22 pooled by symbol×K + day-sign summary
+  r4_p3_m1438_symbol_k_overall.csv   — M14→M38 pooled symbol×K (tight)
+  r4_p3_m3814_symbol_k_overall.csv   — M38→M14 pooled symbol×K (tight)
   r4_phase3_summary.txt
   r4_phase3_gate.json               — fragment for analysis.json
 """
@@ -458,6 +460,69 @@ def main() -> None:
 
     mt = md[md["joint_tight"]]
 
+    def pair_symbol_k_overall(buyer: str, seller: str, pair_df: pd.DataFrame) -> list[dict]:
+        rows_o: list[dict] = []
+        for sym in sorted(pair_df["symbol"].astype(str).unique()):
+            for k in KS:
+                col = f"fwd_mid_{k}"
+                vals = pair_df.loc[pair_df["symbol"] == sym, col].dropna().astype(float).to_numpy()
+                vals = vals[np.isfinite(vals)]
+                n_tot = len(vals)
+                if n_tot < 5:
+                    rows_o.append(
+                        {
+                            "buyer": buyer,
+                            "seller": seller,
+                            "symbol": sym,
+                            "horizon_K": k,
+                            "n": n_tot,
+                            "mean_fwd": float("nan"),
+                            "std_fwd": float("nan"),
+                            "t_vs_zero": float("nan"),
+                            "frac_pos": float("nan"),
+                            "n_days_ge5": 0,
+                            "frac_days_mean_pos": float("nan"),
+                        }
+                    )
+                    continue
+                mu = float(np.mean(vals))
+                sd = float(np.std(vals, ddof=1))
+                t0 = float(mu / (sd / math.sqrt(n_tot))) if n_tot > 1 and sd > 0 else float("nan")
+                fp = float(np.mean(vals > 0))
+                day_means: list[float] = []
+                for d in DAYS:
+                    vd = pair_df.loc[(pair_df["symbol"] == sym) & (pair_df["day"] == d), col].dropna().astype(float)
+                    vd = vd[np.isfinite(vd)]
+                    if len(vd) >= 5:
+                        day_means.append(float(np.mean(vd)))
+                n_d = len(day_means)
+                fdp = float(sum(1 for x in day_means if x > 0) / n_d) if n_d else float("nan")
+                rows_o.append(
+                    {
+                        "buyer": buyer,
+                        "seller": seller,
+                        "symbol": sym,
+                        "horizon_K": k,
+                        "n": n_tot,
+                        "mean_fwd": mu,
+                        "std_fwd": float(sd) if n_tot > 1 else 0.0,
+                        "t_vs_zero": t0,
+                        "frac_pos": fp,
+                        "n_days_ge5": n_d,
+                        "frac_days_mean_pos": fdp,
+                    }
+                )
+        return rows_o
+
+    m1438_t = mt[(mt["buyer"] == "Mark 14") & (mt["seller"] == "Mark 38")]
+    m3814_t = mt[(mt["buyer"] == "Mark 38") & (mt["seller"] == "Mark 14")]
+    pd.DataFrame(pair_symbol_k_overall("Mark 14", "Mark 38", m1438_t)).to_csv(
+        OUT / "r4_p3_m1438_symbol_k_overall.csv", index=False
+    )
+    pd.DataFrame(pair_symbol_k_overall("Mark 38", "Mark 14", m3814_t)).to_csv(
+        OUT / "r4_p3_m3814_symbol_k_overall.csv", index=False
+    )
+
     def write_pair_fwd_by_symbol_day(
         buyer: str, seller: str, out_name: str, *, tight_md: pd.DataFrame
     ) -> None:
@@ -784,7 +849,7 @@ def main() -> None:
     lines.extend(
         [
             "",
-            "Counterparty day tables: r4_p3_mark_fwd_by_day.csv, r4_p3_m0122_fwd20_by_day.csv, r4_p3_m0122_fwd_by_symbol_day.csv, r4_p3_m0122_symbol_k_overall.csv, r4_p3_m1438_fwd_by_symbol_day.csv, r4_p3_m3814_fwd_by_symbol_day.csv, r4_p3_burst_echo_by_day.csv, r4_p3_top_pair_fwd_by_day.csv",
+            "Counterparty day tables: r4_p3_mark_fwd_by_day.csv, r4_p3_m0122_fwd20_by_day.csv, r4_p3_m0122_fwd_by_symbol_day.csv, r4_p3_m0122_symbol_k_overall.csv, r4_p3_m1438_fwd_by_symbol_day.csv, r4_p3_m1438_symbol_k_overall.csv, r4_p3_m3814_fwd_by_symbol_day.csv, r4_p3_m3814_symbol_k_overall.csv, r4_p3_burst_echo_by_day.csv, r4_p3_top_pair_fwd_by_day.csv",
             "",
             "Top spread–spread |r| on inner-join timestamps (inclineGod panel):",
         ]
@@ -867,6 +932,8 @@ def main() -> None:
                 "r4_p3_m0122_symbol_k_overall.csv",
                 "r4_p3_m1438_fwd_by_symbol_day.csv",
                 "r4_p3_m3814_fwd_by_symbol_day.csv",
+                "r4_p3_m1438_symbol_k_overall.csv",
+                "r4_p3_m3814_symbol_k_overall.csv",
                 "r4_phase3_summary.txt",
                 "r4_phase3_analysis.py",
             )},

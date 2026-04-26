@@ -458,5 +458,173 @@
         }
       }
     }
+  },
+  {
+    "iteration": 21,
+    "trader_file": "trader_v21_joint_tight_gate_spline.py",
+    "strategy_description": "Joint 5200/5300 tight gate (L1 spread \u2264 2 both): v15 smile MM + rolling-mean mean-reversion on VELVETFRUIT_EXTRACT when gate is on; no trading when gate off. STRATEGY.txt joint-book thesis; merged origin/main now includes R3 day 3 tape.",
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -44081,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v21_joint_tight_gate_spline.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v21_joint_tight_gate_worse.json",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v21_joint_tight_gate_worse.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "0": -2239,
+          "1": -19838,
+          "2": -21308,
+          "3": -696,
+          "total": -44081
+        },
+        "fills": {
+          "submission_trade_count": 820,
+          "submission_filled_abs_qty": 26613,
+          "submission_by_symbol": {
+            "VELVETFRUIT_EXTRACT": {
+              "trade_count": 806,
+              "filled_abs_qty": 26389
+            },
+            "VEV_5000": {
+              "trade_count": 5,
+              "filled_abs_qty": 99
+            },
+            "VEV_5100": {
+              "trade_count": 3,
+              "filled_abs_qty": 61
+            },
+            "VEV_5200": {
+              "trade_count": 4,
+              "filled_abs_qty": 54
+            },
+            "VEV_5300": {
+              "trade_count": 2,
+              "filled_abs_qty": 10
+            }
+          }
+        }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -44127,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v21_joint_tight_gate_spline.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v21_joint_tight_gate_all.json",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v21_joint_tight_gate_all.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "0": -2239,
+          "1": -19884,
+          "2": -21308,
+          "3": -696,
+          "total": -44127
+        },
+        "fills": {
+          "submission_trade_count": 822,
+          "submission_filled_abs_qty": 26615,
+          "submission_by_symbol": {
+            "VELVETFRUIT_EXTRACT": {
+              "trade_count": 806,
+              "filled_abs_qty": 26389
+            },
+            "VEV_5000": {
+              "trade_count": 6,
+              "filled_abs_qty": 100
+            },
+            "VEV_5100": {
+              "trade_count": 3,
+              "filled_abs_qty": 61
+            },
+            "VEV_5200": {
+              "trade_count": 5,
+              "filled_abs_qty": 55
+            },
+            "VEV_5300": {
+              "trade_count": 2,
+              "filled_abs_qty": 10
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "iteration": 22,
+    "trader_file": "trader_v22_joint_tight_gate_spline_vev_only.py",
+    "strategy_description": "Same joint 5200/5300 tight gate as v21, but v15 VEV smile MM only (no extract). Tests STRATEGY risk filter without naive mid-DR policy on the underlying.",
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 1497,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v22_joint_tight_gate_spline_vev_only.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v22_joint_tight_gate_worse.json",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v22_joint_tight_gate_worse.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "0": 260,
+          "1": 1858,
+          "2": -621,
+          "3": 0,
+          "total": 1497
+        },
+        "fills": {
+          "submission_trade_count": 14,
+          "submission_filled_abs_qty": 224,
+          "submission_by_symbol": {
+            "VEV_5000": {
+              "trade_count": 5,
+              "filled_abs_qty": 99
+            },
+            "VEV_5100": {
+              "trade_count": 3,
+              "filled_abs_qty": 61
+            },
+            "VEV_5200": {
+              "trade_count": 4,
+              "filled_abs_qty": 54
+            },
+            "VEV_5300": {
+              "trade_count": 2,
+              "filled_abs_qty": 10
+            }
+          }
+        }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 1451,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v22_joint_tight_gate_spline_vev_only.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v22_joint_tight_gate_all.json",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v22_joint_tight_gate_all.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "0": 260,
+          "1": 1812,
+          "2": -621,
+          "3": 0,
+          "total": 1451
+        },
+        "fills": {
+          "submission_trade_count": 16,
+          "submission_filled_abs_qty": 226,
+          "submission_by_symbol": {
+            "VEV_5000": {
+              "trade_count": 6,
+              "filled_abs_qty": 100
+            },
+            "VEV_5100": {
+              "trade_count": 3,
+              "filled_abs_qty": 61
+            },
+            "VEV_5200": {
+              "trade_count": 5,
+              "filled_abs_qty": 55
+            },
+            "VEV_5300": {
+              "trade_count": 2,
+              "filled_abs_qty": 10
+            }
+          }
+        }
+      }
+    }
   }
 ]

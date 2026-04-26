@@ -145,5 +145,16 @@
       "manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v50_worse.log"
     ],
     "used_to_decide": "Shipped trader_v49 (gate-only mid MM, no smile) and trader_v50 (gate + BS model_iv fair from trader_v0 math for execution; logs iv_atm_nearest_strike for Greek documentation; regime is joint spread gate only, not IV-RV). Both TRADE_HYDROGEL omitted. Round 3 days 0-3: v49 worse 10,740 / all 12,910; v50 worse 41,285 / all 42,693. Far below 200k/day floor; next work is larger exploration (sizes, K-step directional extract hint, or restrict days) under the same folder thesis."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "Reread updated STRATEGY.txt (Sonic: ~2x per-event edge when both legs tight; layer-2 optional long extract on forward-mid read). v51 adds: larger tight-regime clips (inclineGod path via one-tick d(mid)); spread–spread product still in traderData; extract bid-only in tight (long exposure), symmetric in wide. Same BS anchor as v50.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/trader_v51.py",
+      "manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v51_worse.log"
+    ],
+    "used_to_decide": "v51 improves v50 on 4 R3 days: worse 50,206 vs 41,285; all 55,611 vs 42,693. Still not 200k/day; long-only in tight is aggressive (inventory/unwind left to VEVs + wide regime)."
   }
 ]

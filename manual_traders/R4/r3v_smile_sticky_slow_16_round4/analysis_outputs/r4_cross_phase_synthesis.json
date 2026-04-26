@@ -1,0 +1,39 @@
+{
+  "tape": "Prosperity4Data/ROUND_4 days 1-3",
+  "horizon_K": "K rows forward in prices CSV per (day, timestamp, symbol); see phase scripts",
+  "phase_gates_in_analysis_json": [
+    "round4_phase1_complete",
+    "round4_phase2_complete",
+    "round4_phase3_complete"
+  ],
+  "sonic_joint_gate": "VEV_5200 and VEV_5300 top-of-book spread both <= 2 (aligned timestamps); see analyze_r4_phase3_sonic_gate.py",
+  "stacked_story": [
+    {
+      "layer": "Phase 1 counterparty",
+      "evidence": "r4_phase1_forward_by_mark.json; r4_phase1_adverse_aggressor.csv",
+      "actionable_hook": "Mark 67 aggressive buy extract (tight) -> positive fwd mids; Mark 38 buy -> adverse; used in trader run() via market_trades"
+    },
+    {
+      "layer": "Phase 2 structure",
+      "evidence": "r4_phase2_burst_typeB_markout.json (day-unstable); r4_phase2_leadlag_signed_flow.json",
+      "sim_link": "Burst edge overlaps Sonic tight window (Phase 3); sim evolved from v0 hooks to gate + asymmetric extract quotes"
+    },
+    {
+      "layer": "Phase 3 Sonic + inclineGod",
+      "evidence": "r4_phase3_gate_fwd_extract.json; r4_phase3_spread_spread_matrix.json",
+      "sim_link": "Population extract fwd-mid much better when gate tight; MM uses gate for extract/hydro/5200-5300 quoting; asymmetric tight ask from v9-v12 grid"
+    },
+    {
+      "layer": "Post-phase sim best",
+      "trader": "trader_v17.py",
+      "worse_total_round4_days_1_3": 21244,
+      "delta_vs_trader_v12": 16,
+      "mechanism": "v12 day-conditioned tight ask +1 ask half when Mark67 aggressive buy and gate tight (marginal; day3 base ask +2 can bump to +3)"
+    }
+  ],
+  "r3_strategy_paths_used": [
+    "round3work/vouchers_final_strategy/STRATEGY.txt",
+    "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt"
+  ],
+  "path_note": "If your checkout uses 'previous round work/round3work/', use that mirror; this workspace has round3work/ at repo root."
+}

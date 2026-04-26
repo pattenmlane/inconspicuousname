@@ -406,5 +406,34 @@
       "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_mark67_extract_buy_counts.json"
     ],
     "used_to_decide": "**Small win** on primary metric: worse **21244** vs v12 **21228** is **+16** total; gain isolated to **day3** extract (**+2142** vs **+2126**) where base ask is **+2** so **+1** bump can become **+3** before clamp (days 1\u20132 already at **+3** cap). **all** also up (**14254** vs **13858**). First **counterparty\u00d7price** tweak that **strictly improves** v12 under worse (marginal)."
+  },
+  {
+    "iteration": 20,
+    "round": 4,
+    "analysis_description": "**Phase documentation audit + cross-phase synthesis** (no change to phase gate conclusions). Confirms `round4_phase1_complete`, `round4_phase2_complete`, and `round4_phase3_complete` are present in this `analysis.json` with per-bullet outputs; maps tape evidence \u2192 current best sim (`trader_v17`).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_cross_phase_synthesis.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis.json",
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt"
+    ],
+    "used_to_decide": "**Audit:** Phase 1\u20133 blocks in `suggested direction.txt` are already backed by listed CSV/JSON under `analysis_outputs/` and phase scripts. **Synthesis:** Sonic gate (Phase 3) + asymmetric tight extract (v9\u2192v12 grid) is the dominant sim PnL driver; **Mark 67** (Phase 1) now has a **strict** `worse`-mode improvement via **v17** (+16 vs v12). **Path note:** R3 strategy quotes in-repo live under **round3work/vouchers_final_strategy/** (launch text sometimes says **previous round work/round3work/** \u2014 same role). **Next:** larger Mark67 ask response or second counterparty on same gate stack needs grid + OOS caution."
+  },
+  {
+    "round4_phase_doc_audit": {
+      "phase1_complete_key": "round4_phase1_complete",
+      "phase2_complete_key": "round4_phase2_complete",
+      "phase3_complete_key": "round4_phase3_complete",
+      "all_present": true,
+      "r3_strategy_paths_verified": [
+        "round3work/vouchers_final_strategy/STRATEGY.txt",
+        "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt"
+      ],
+      "best_worse_sim_round4": {
+        "trader_file": "trader_v17.py",
+        "total_profit": 21244,
+        "parent_schedule": "trader_v12.py (21228)"
+      }
+    }
   }
 ]

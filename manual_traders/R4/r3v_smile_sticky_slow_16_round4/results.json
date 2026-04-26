@@ -383,5 +383,16 @@
     "backtest_round": 4,
     "match_trades_primary": "worse",
     "note": "**New best worse:** **21244** vs v12 **21228** (+16). Only day3 moves (total **2766** vs **2750**; extract **+2142** vs **+2126**); d1/d2 match v12. Marginal but validates conditional ask skew on Mark67 lift ticks."
+  },
+  {
+    "iteration": 20,
+    "round": 4,
+    "trader_file": null,
+    "strategy_description": "Documentation pass: verified Phase 1\u20133 completion objects in analysis.json; added **analysis_outputs/r4_cross_phase_synthesis.json** mapping tape phases \u2192 **trader_v17** (best `--match-trades worse` 21244). No new backtest.",
+    "backtest_worse": null,
+    "backtest_all": null,
+    "backtest_round": 4,
+    "match_trades_primary": "worse",
+    "note": "Champion remains **trader_v17.py** from iteration 19. R3 verbatim refs in-repo: **round3work/vouchers_final_strategy/** (STRATEGY.txt, ORIGINAL_DISCORD_QUOTES.txt)."
   }
 ]

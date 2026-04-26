@@ -1,0 +1,101 @@
+{
+  "method": "Bisect Black-Scholes IV from VEV mid vs extract mid, per timestamp; TH=2 joint gate. Days 0-2 only.",
+  "by_day": {
+    "0": {
+      "5000": {
+        "median_iv_tight": 0.24124576377556656,
+        "median_iv_wide": 0.24147015662938356,
+        "n_tight": 1020,
+        "n_wide": 8980
+      },
+      "5100": {
+        "median_iv_tight": 0.24308340250104668,
+        "median_iv_wide": 0.24478445645859465,
+        "n_tight": 1020,
+        "n_wide": 8980
+      },
+      "5200": {
+        "median_iv_tight": 0.2394817231345456,
+        "median_iv_wide": 0.2400747378421016,
+        "n_tight": 1020,
+        "n_wide": 8980
+      },
+      "5300": {
+        "median_iv_tight": 0.2396474543308839,
+        "median_iv_wide": 0.2399427351430524,
+        "n_tight": 1020,
+        "n_wide": 8980
+      },
+      "5400": {
+        "median_iv_tight": 0.23033586894120092,
+        "median_iv_wide": 0.22776726729534572,
+        "n_tight": 1020,
+        "n_wide": 8980
+      }
+    },
+    "1": {
+      "5000": {
+        "median_iv_tight": 0.24077501766462808,
+        "median_iv_wide": 0.24096101613393983,
+        "n_tight": 1380,
+        "n_wide": 8619
+      },
+      "5100": {
+        "median_iv_tight": 0.23653486052663059,
+        "median_iv_wide": 0.23779281724742618,
+        "n_tight": 1381,
+        "n_wide": 8619
+      },
+      "5200": {
+        "median_iv_tight": 0.24506898617255501,
+        "median_iv_wide": 0.244127493950678,
+        "n_tight": 1381,
+        "n_wide": 8619
+      },
+      "5300": {
+        "median_iv_tight": 0.24885970940780827,
+        "median_iv_wide": 0.24802076612268575,
+        "n_tight": 1381,
+        "n_wide": 8619
+      },
+      "5400": {
+        "median_iv_tight": 0.22938591665555724,
+        "median_iv_wide": 0.22973518206221055,
+        "n_tight": 1381,
+        "n_wide": 8619
+      }
+    },
+    "2": {
+      "5000": {
+        "median_iv_tight": 0.24485534441694615,
+        "median_iv_wide": 0.24330683423797594,
+        "n_tight": 1708,
+        "n_wide": 8269
+      },
+      "5100": {
+        "median_iv_tight": 0.2345473713850137,
+        "median_iv_wide": 0.23714212993872347,
+        "n_tight": 1727,
+        "n_wide": 8273
+      },
+      "5200": {
+        "median_iv_tight": 0.24079600577526722,
+        "median_iv_wide": 0.24326559561803007,
+        "n_tight": 1727,
+        "n_wide": 8273
+      },
+      "5300": {
+        "median_iv_tight": 0.24697364044939168,
+        "median_iv_wide": 0.24761475011655126,
+        "n_tight": 1727,
+        "n_wide": 8273
+      },
+      "5400": {
+        "median_iv_tight": 0.23084419919275678,
+        "median_iv_wide": 0.22995321031059146,
+        "n_tight": 1727,
+        "n_wide": 8273
+      }
+    }
+  }
+}

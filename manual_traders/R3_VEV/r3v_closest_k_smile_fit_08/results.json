@@ -322,5 +322,45 @@
       "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v26_all.txt",
       "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v26_all.json"
     }
+  },
+  {
+    "iteration": 27,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v27.py",
+    "strategy_description": "vouchers_final_strategy: same 5200+5300 spread gate and tight/wide U+VEV schedule as v24, but VEV fair = BS call at implied vol **inverted from each VEV BBO mid** (per-strike, no neighbor smile chain). Fills mid-based IV, execution-focused.",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v27.py\" 3 --data Prosperity4Data --no-progress --no-out --no-vis",
+    "total_profit": 9484,
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 9484,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v27_worse.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v27_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 14590,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v27_all.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v27_all.json"
+    }
+  },
+  {
+    "iteration": 28,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v28.py",
+    "strategy_description": "v24 with VEV edge +1 in both regimes (2 tight, 4 wide) to reduce adverse selection under --worse; U edges unchanged. Same DTE time-value fair as v24.",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v28.py\" 3 --data Prosperity4Data --no-progress --no-out --no-vis",
+    "total_profit": 9552,
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 9552,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v28_worse.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v28_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 13948,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v28_all.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v28_all.json"
+    }
   }
 ]

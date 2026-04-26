@@ -255,5 +255,26 @@
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v26_all.txt"
     ],
     "used_to_decide": "Identical PnL to v24; effective fills likely cap size — abandon v26; next work should improve fair (IV surface) or use gate only as overlay on a stronger VEV engine, still grounded in 5200/5300 spread state."
+  },
+  {
+    "iteration": 27,
+    "analysis_description": "BBO-implied vol vs joint gate (analyze_bbo_iv_by_gate_r3.py, bbo_iv_tight_vs_wide_d0_2.json): for strikes 5000-5400, bisect IV from VEV mid and extract mid per timestamp; compare median IV when 5200+5300 both <=2 vs not, days 0-2. Median IVs are similar tight vs wide (tight is not a major IV level shift in the tape) — the edge is in forward extract mid, not a simple IV level split.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_bbo_iv_by_gate_r3.py",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/bbo_iv_tight_vs_wide_d0_2.json",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v27_worse.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v27_all.txt"
+    ],
+    "used_to_decide": "trader_v27: same gate+MM schedule as v24 but VEV fair = BS(IV from own mid). Worse 9484 < v24 9552; BBO-IV re-prices toward mid, giving away edge vs simple time-value proxy under adverse fills. Keep v24 as better pure-thesis line until a richer execution model; IV snapshot alone does not beat STRATEGY mid caveat."
+  },
+  {
+    "iteration": 28,
+    "analysis_description": "Execution tweak only: v24 with +1 VEV edge in tight and wide (no change to DTE time-value fair or gate).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v28_worse.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v28_all.txt"
+    ],
+    "used_to_decide": "Worse 9552 same as v24; all 13948 > v24 13892 (slightly more mid-friendly fills). +1 VEV edge does not change worse PnL; keep v24 as default for simplicity unless optimising for all-mode."
   }
 ]

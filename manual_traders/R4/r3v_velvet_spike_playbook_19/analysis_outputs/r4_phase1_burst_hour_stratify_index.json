@@ -1,0 +1,18 @@
+{
+  "inputs": "/workspace/manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_trades_with_markout.csv",
+  "definition": {
+    "burst_ge3": "At least 3 trade rows same (day,timestamp) any product.",
+    "isolated": "Exactly 1 trade row at (day,timestamp).",
+    "pair_n2": "Exactly 2 trade rows (excluded from burst vs isolated headline).",
+    "horizon_K": "Forward rows in price tape for that product (same as Phase 1)."
+  },
+  "min_n": {
+    "hour_x_product": 30,
+    "ts_density": 10
+  },
+  "outputs": [
+    "/workspace/manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_aggressor_fwd_by_hour_product_pooled.csv",
+    "/workspace/manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_aggressor_fwd_by_ts_density_pooled.csv",
+    "/workspace/manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_extract_fwd_ex_by_ts_density_pooled.csv"
+  ]
+}

@@ -13,9 +13,20 @@
           "phase1_item": "Participant-level alpha / predictiveness",
           "outputs": [
             "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_participant_markout_by_bucket.csv",
-            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_trades_with_markout.csv"
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_trades_with_markout.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_aggressor_cell_stats_pooled.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_aggressor_fwd_by_hour_product_pooled.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_aggressor_fwd_by_ts_density_pooled.csv"
           ],
           "one_sentence": "Aggressor-conditioned forward mids are mostly near zero in tight VEV books except Mark 22 sell on tight VEV_5300 (negative K=20) and Mark 67 buy on extract (large positive K=5/20 but n\u224860/day); no single (Mark, side, product) shows large stable same-direction edge across all three days with n\u226530 per day in tight regime."
+        },
+        {
+          "phase1_item": "Burst vs isolated print (timestamp density) + cross-asset extract fwd",
+          "outputs": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_extract_fwd_ex_by_ts_density_pooled.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_burst_hour_stratify_index.json"
+          ],
+          "one_sentence": "**ts_density** = count of all product rows at (day,timestamp): burst_ge3 (\u22653) vs isolated (1) vs pair_n2 (2); aggressor same-symbol fwd stratified in separate CSVs. **VELVETFRUIT_EXTRACT** prints at burst timestamps are few (n\u224814 for K\u226420) so t-stats are noisy; multi-symbol burst event study in r4_burst_event_study_extract.json remains the main pooled extract signal (uses all prints at burst times, not extract-only)."
         },
         {
           "phase1_item": "Deviation from bot baseline (cell means)",
@@ -94,19 +105,32 @@
       "no_edge_or_negative_findings": [
         "(buyer,seller,product) cell-mean baseline leaves near-zero residuals for major Mark pairs \u2014 no obvious mis-modeled bot mean to exploit without richer features.",
         "Most aggressor\u00d7product\u00d7tight-bucket cells have |mean fwd_20| \u226a 0.5 mid units or unstable sign across days.",
-        "Hour bucket stratification not yet exported separately (spread bucket already used); marginal gain expected given coarse timestamps.",
-        "Follow-up (round4_extract_aggr_buy_coverage): **Mark 01 has zero aggressive buy prints on VELVETFRUIT_EXTRACT** on days 1\u2013 \u2014 participant-level \u2018informed buy on extract\u2019 narratives for U=Mark 01 are undefined on this tape."
+        "Extract-only subsample at burst timestamps has **small n** (\u224814 rows) \u2014 do not equate with full multi-symbol burst extract event study.",
+        "Follow-up (round4_extract_aggr_buy_coverage): **Mark 01 has zero aggressive buy prints on VELVETFRUIT_EXTRACT** on days 1\u20133 \u2014 participant-level \u2018informed buy on extract\u2019 narratives for U=Mark 01 are undefined on this tape."
       ],
       "checklist_supplement_2026_04_26": {
-        "suggested_direction_phase1_bullets": "All five Phase-1 themes are covered by existing CSV/JSON in `analysis_outputs/` (participant markouts, baseline residuals, graph + two-hop motifs, burst event study, adverse proxy) \u2014 see `bullets` above. Cross-asset fwd for extract/hydro on every trade row is in `r4_trades_with_markout.csv` (columns fwd_*_ex / same pattern could filter product for hydro).",
+        "suggested_direction_phase1_bullets": "All five Phase-1 themes are covered by existing CSV/JSON in `analysis_outputs/` (participant markouts, pooled t/bootstrap, **hour** + **timestamp-density** stratifications, baseline residuals, graph + two-hop motifs, burst event study, adverse proxy) \u2014 see `bullets` above. Cross-asset fwd for extract/hydro on every trade row is in `r4_trades_with_markout.csv` (columns fwd_*_ex).",
         "pooled_tstat_bootstrap_outputs": [
           "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_aggressor_cell_stats_pooled.csv",
           "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_supplement_index.json"
         ],
         "pooled_tstat_bootstrap_repro": "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_supplement_cell_stats.py",
-        "pooled_tstat_bootstrap_note": "For each (U, aggressor side, product, spr_b) with n\u226530, reports mean, median, t-test vs 0, frac_pos, and bootstrap CI for mean (K\u2208{5,20,100} on **same symbol** forward mid). **Not** a discovery engine \u2014 limits multiple-testing over-claims; most |t| are modest."
+        "pooled_tstat_bootstrap_note": "For each (U, aggressor side, product, spr_b) with n\u226530, reports mean, median, t-test vs 0, frac_pos, and bootstrap CI for mean (K\u2208{5,20,100} on **same symbol** forward mid). **Not** a discovery engine \u2014 limits multiple-testing over-claims; most |t| are modest.",
+        "hour_and_ts_density_stratify": {
+          "repro": "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_burst_hour_stratify.py",
+          "outputs": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_aggressor_fwd_by_hour_product_pooled.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_aggressor_fwd_by_ts_density_pooled.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_extract_fwd_ex_by_ts_density_pooled.csv"
+          ],
+          "note": "Hour buckets h0_7 / h8_15 / h16_23 from Phase-1 script (coarse). ts_density burst = any \u22653 trades same tick (all products)."
+        }
       },
-      "repro_script": "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_counterparty_study.py"
+      "repro_scripts": [
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_counterparty_study.py",
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_supplement_cell_stats.py",
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_burst_hour_stratify.py"
+      ]
     }
   },
   {

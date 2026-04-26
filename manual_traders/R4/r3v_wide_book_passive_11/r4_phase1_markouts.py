@@ -32,6 +32,8 @@ DAYS = [1, 2, 3]
 KS = [5, 20, 100]
 EXTRACT = "VELVETFRUIT_EXTRACT"
 HYDRO = "HYDROGEL_PACK"
+N_BOOT_PARTICIPANT = 400
+N_BOOT_STRAT = 250
 
 
 def _trade_paths() -> list[tuple[int, Path]]:
@@ -138,6 +140,34 @@ def burst_stats(tr: pd.DataFrame) -> pd.DataFrame:
     return g
 
 
+def one_sample_t_mean0(a: np.ndarray) -> float:
+    """t-statistic for H0: E[x]=0 (two-sided inference uses normal approx for large n)."""
+    a = a[np.isfinite(a)]
+    if len(a) < 2:
+        return float("nan")
+    m = float(a.mean())
+    s = float(a.std(ddof=1))
+    if s == 0:
+        return float("nan")
+    return m / (s / math.sqrt(len(a)))
+
+
+def bootstrap_mean_ci(a: np.ndarray, n_boot: int = 400, alpha: float = 0.05, seed: int = 42) -> tuple[float, float]:
+    """Percentile bootstrap CI for mean; returns (nan,nan) if n < 10."""
+    a = a[np.isfinite(a)]
+    n = len(a)
+    if n < 10:
+        return float("nan"), float("nan")
+    rng = np.random.default_rng(seed)
+    boots = np.empty(n_boot, dtype=float)
+    for i in range(n_boot):
+        idx = rng.integers(0, n, size=n)
+        boots[i] = float(a[idx].mean())
+    lo = float(np.percentile(boots, 100 * alpha / 2))
+    hi = float(np.percentile(boots, 100 * (1 - alpha / 2)))
+    return lo, hi
+
+
 def t_stat_welch(a: np.ndarray, b: np.ndarray) -> float:
     a = a[np.isfinite(a)]
     b = b[np.isfinite(b)]
@@ -196,9 +226,15 @@ def main() -> None:
                 hy_col = f"hydro_fwd_mid_{K}"
                 if col not in sub.columns:
                     continue
-                x = pd.to_numeric(sub[col], errors="coerce").dropna()
-                ex = pd.to_numeric(sub[ex_col], errors="coerce").dropna()
-                hy = pd.to_numeric(sub[hy_col], errors="coerce").dropna() if hy_col in sub.columns else pd.Series(dtype=float)
+                x = pd.to_numeric(sub[col], errors="coerce").dropna().to_numpy(dtype=float)
+                ex = pd.to_numeric(sub[ex_col], errors="coerce").dropna().to_numpy(dtype=float)
+                if hy_col in sub.columns:
+                    hy = pd.to_numeric(sub[hy_col], errors="coerce").dropna().to_numpy(dtype=float)
+                else:
+                    hy = np.array([], dtype=float)
+                x_lo, x_hi = bootstrap_mean_ci(x, n_boot=N_BOOT_PARTICIPANT)
+                ex_lo, ex_hi = bootstrap_mean_ci(ex, n_boot=N_BOOT_PARTICIPANT)
+                hy_lo, hy_hi = bootstrap_mean_ci(hy, n_boot=N_BOOT_PARTICIPANT)
                 rows.append(
                     {
                         "mark": U,
@@ -207,10 +243,22 @@ def main() -> None:
                         "n": len(sub),
                         "n_same_sym_fwd": int(x.shape[0]),
                         "mean_same_sym": float(x.mean()) if len(x) else float("nan"),
+                        "median_same_sym": float(np.median(x)) if len(x) else float("nan"),
+                        "t_same_sym_mean0": one_sample_t_mean0(x),
+                        "ci_same_sym_lo": x_lo,
+                        "ci_same_sym_hi": x_hi,
                         "frac_pos_same": float((x > 0).mean()) if len(x) else float("nan"),
                         "mean_extract_fwd": float(ex.mean()) if len(ex) else float("nan"),
+                        "median_extract_fwd": float(np.median(ex)) if len(ex) else float("nan"),
+                        "t_extract_mean0": one_sample_t_mean0(ex),
+                        "ci_extract_lo": ex_lo,
+                        "ci_extract_hi": ex_hi,
                         "frac_pos_extract": float((ex > 0).mean()) if len(ex) else float("nan"),
                         "mean_hydro_fwd": float(hy.mean()) if len(hy) else float("nan"),
+                        "median_hydro_fwd": float(np.median(hy)) if len(hy) else float("nan"),
+                        "t_hydro_mean0": one_sample_t_mean0(hy),
+                        "ci_hydro_lo": hy_lo,
+                        "ci_hydro_hi": hy_hi,
                         "frac_pos_hydro": float((hy > 0).mean()) if len(hy) else float("nan"),
                     }
                 )
@@ -253,6 +301,8 @@ def main() -> None:
             x = pd.to_numeric(sub[col], errors="coerce").dropna()
             if len(x) < 25:
                 continue
+            xa = x.to_numpy(dtype=float)
+            slo, shi = bootstrap_mean_ci(xa, n_boot=N_BOOT_STRAT, seed=hash((U, sym, sq, br)) % (2**31))
             strat_rows.append(
                 {
                     "mark": U,
@@ -260,8 +310,12 @@ def main() -> None:
                     "spread_q": str(sq),
                     "burst": bool(br),
                     "n": len(x),
-                    "mean_fwd20": float(x.mean()),
-                    "frac_pos": float((x > 0).mean()),
+                    "mean_fwd20": float(xa.mean()),
+                    "median_fwd20": float(np.median(xa)),
+                    "t_fwd20_mean0": one_sample_t_mean0(xa),
+                    "ci_fwd20_lo": slo,
+                    "ci_fwd20_hi": shi,
+                    "frac_pos": float((xa > 0).mean()),
                 }
             )
     if strat_rows:
@@ -320,10 +374,22 @@ def main() -> None:
     for ag, sub in m.groupby("aggressor"):
         if ag == "unknown":
             continue
-        x = pd.to_numeric(sub[col], errors="coerce").dropna()
+        x = pd.to_numeric(sub[col], errors="coerce").dropna().to_numpy(dtype=float)
         if len(x) < 50:
             continue
-        adv.append({"aggressor": ag, "n": len(x), "mean_fwd20": float(x.mean()), "frac_pos": float((x > 0).mean())})
+        lo, hi = bootstrap_mean_ci(x, n_boot=N_BOOT_STRAT, seed=hash(ag) % (2**31))
+        adv.append(
+            {
+                "aggressor": ag,
+                "n": len(x),
+                "mean_fwd20": float(x.mean()),
+                "median_fwd20": float(np.median(x)),
+                "t_fwd20_mean0": one_sample_t_mean0(x),
+                "ci_fwd20_lo": lo,
+                "ci_fwd20_hi": hi,
+                "frac_pos": float((x > 0).mean()),
+            }
+        )
     pd.DataFrame(adv).to_csv(OUT / "08_aggressor_fwd20_same_symbol.csv", index=False)
 
     # Human-readable summary

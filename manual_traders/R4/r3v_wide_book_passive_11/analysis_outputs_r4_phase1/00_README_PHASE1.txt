@@ -16,9 +16,9 @@ Top directed pairs by count:
   Mark 22 -> Mark 55: n=18
 
 Aggressor bucket same-symbol fwd20:
-aggressor,n,mean_fwd20,frac_pos
-buy_aggr,1500,0.31033333333333335,0.5186666666666667
-sell_aggr,2776,-0.026476945244956772,0.3022334293948127
+aggressor,n,mean_fwd20,median_fwd20,t_fwd20_mean0,ci_fwd20_lo,ci_fwd20_hi,frac_pos
+buy_aggr,1500,0.31033333333333335,0.5,1.9982595967788521,0.033241666666666676,0.5969583333333335,0.5186666666666667
+sell_aggr,2776,-0.026476945244956772,0.0,-0.3127696466857825,-0.20569164265129683,0.13102035302593662,0.3022334293948127
 
 Burst event study:
 Burst vs control (VELVETFRUIT_EXTRACT forward, same row index K)

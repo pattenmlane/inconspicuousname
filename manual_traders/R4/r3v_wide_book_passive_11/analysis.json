@@ -14,12 +14,14 @@
       "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/06_two_hop_motifs.txt",
       "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/07_burst_event_study_extract.txt",
       "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/08_aggressor_fwd20_same_symbol.csv",
-      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/09_participant_stability_by_day.csv"
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/09_participant_stability_by_day.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/10_phase1_inference_methods.txt"
     ],
     "used_to_decide": "Phase 1 gate documented under round4_phase1_complete (nested). Phase 2 not started.",
     "round4_phase1_complete": {
       "horizon_definition": "For each trade at (day, timestamp, symbol), forward mid change at horizon K is mid(t+K rows) - mid(t) in the prices CSV for the same day and product, after sorting by timestamp (K consecutive snapshots, not wall-clock seconds).",
       "supplement_2026_04_26": "Re-ran `r4_phase1_markouts.py`: `01_participant_fwd_summary.csv` now includes **mean_hydro_fwd** / **frac_pos_hydro** (HYDROGEL_PACK forward at trade timestamp, same K-row definition as extract). New **`09_participant_stability_by_day.csv`**: per Mark × K × day mean/median/frac_pos same-symbol (n>=5) for cross-day coarseness check.",
+      "supplement_2026_04_26_inference": "`01_participant_fwd_summary.csv`, `02_stratified_mark_symbol_fwd20_top80.csv`, and `08_aggressor_fwd20_same_symbol.csv` now include **median**, **one-sample t** (H0: mean markout=0), and **bootstrap 95% CI** for means (see `10_phase1_inference_methods.txt` for B and formulas). Example Mark 67 any K=20: t_same_sym≈5.97, CI [1.28, 2.49] ticks on same-symbol forward.",
       "phase1_bullets": [
         {
           "bullet": "1) Participant-level alpha / predictiveness",
@@ -424,5 +426,18 @@
       "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/09_participant_stability_by_day.csv"
     ],
     "used_to_decide": "Use **09_** for day-coherence on Mark-level story (e.g. Mark 14 K=20 flips sign day2 vs day1/3); use hydro columns in **01_** for joint extract+hydro picture at print time — not a substitute for symbol-conditioned hydro prints."
+  },
+  {
+    "iteration": 19,
+    "round": 4,
+    "analysis_description": "Phase 1 **inference supplement** (spec: median, t-stat, bootstrap CI): extended `r4_phase1_markouts.py` with `one_sample_t_mean0` and percentile **bootstrap 95% CI** for means (B=400 participant table, B=250 stratified/aggressor). Regenerated `01_participant_fwd_summary.csv` (median + t + CI for same_sym, extract, hydro), `02_stratified_mark_symbol_fwd20_top80.csv`, `08_aggressor_fwd20_same_symbol.csv`. Added **`10_phase1_inference_methods.txt`** documenting formulas. `round4_phase1_complete.supplement_2026_04_26_inference` updated in iteration 0.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wide_book_passive_11/r4_phase1_markouts.py",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/10_phase1_inference_methods.txt",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/01_participant_fwd_summary.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/02_stratified_mark_symbol_fwd20_top80.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/08_aggressor_fwd20_same_symbol.csv"
+    ],
+    "used_to_decide": "Filter `01_` on n_same_sym_fwd and CI strictly above 0 for conservative candidate signals; cross-check **09_** for sign stability across days before trading."
   }
 ]

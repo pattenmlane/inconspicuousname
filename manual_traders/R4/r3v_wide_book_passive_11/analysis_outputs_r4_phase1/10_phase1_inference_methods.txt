@@ -1,0 +1,21 @@
+Round 4 Phase 1 — inference columns added to CSV outputs (2026-04-26 supplement)
+
+Horizon K: unchanged — mid(t+K rows) - mid(t) per (day, product) in prices tape.
+
+1) One-sample t (mean vs 0)
+   For vector x of n finite forward markouts:
+     t = mean(x) / (sd(x) / sqrt(n))   with sample sd, ddof=1
+   Reported as t_same_sym_mean0, t_extract_mean0, t_hydro_mean0 in 01_participant_fwd_summary.csv
+   and t_fwd20_mean0 in 02_stratified_* and 08_aggressor_*.
+
+2) Bootstrap percentile CI for mean (95%, B replicates)
+   Resample rows of x with replacement, B=400 for participant summary (01_),
+   B=250 for stratified top-80 (02_) and aggressor bucket (08_) to limit runtime.
+   Alpha=0.05 → 2.5% and 97.5% percentiles of bootstrap means.
+   Random seed fixed per bucket for reproducibility.
+
+3) Median
+   Reported alongside mean for same_sym, extract, hydro in 01_; median_fwd20 in 02_ and 08_.
+
+Interpretation: t and CI address Phase 1 spec "t-stat / bootstrap CI"; they do not replace
+day-stability checks — see 09_participant_stability_by_day.csv.

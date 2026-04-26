@@ -398,5 +398,58 @@
         "day_totals": { "0": 4510, "1": 5806, "2": 2842, "3": 676 }
       }
     }
+  },
+  {
+    "iteration": 23,
+    "trader_file": "trader_v23.py",
+    "strategy_description": "vouchers_final_strategy: **extract only** when s5200\u22642 AND s5300\u22642; **no VEV orders**; no HYDRO. Wide: flat. Tight: mid\u00b1half extract + inventory skew; mild long lean (asymmetric half when not long). **EXTRACT_HALF grid** 2.2/2.4/2.6 on `worse` \u2014 **2.4** best (2.2 ties v21/v22 at -92; 2.4 worse **+3096** 4d).",
+    "parameter_sweep": {
+      "EXTRACT_HALF": [
+        2.2,
+        2.4,
+        2.6
+      ],
+      "worse_total_profit_4d": {
+        "2.2": -92,
+        "2.4": 3096,
+        "2.6": 2700
+      }
+    },
+    "backtest_worse": {
+      "round_days": "3 (0,1,2,3)",
+      "match_trades": "worse",
+      "total_profit": 3096,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/backtests/iter23_r3d0-3_worse.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v23.py 3 --data Prosperity4Data --match-trades worse --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": {
+          "0": 316,
+          "1": 1227,
+          "2": 1553,
+          "3": 0
+        },
+        "per_product_totals_4d": {
+          "VELVETFRUIT_EXTRACT": 3096
+        }
+      }
+    },
+    "backtest_all": {
+      "round_days": "3 (0,1,2,3)",
+      "match_trades": "all",
+      "total_profit": 3090,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/backtests/iter23_r3d0-3_all.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v23.py 3 --data Prosperity4Data --match-trades all --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": {
+          "0": 586,
+          "1": 776,
+          "2": 1834,
+          "3": -106
+        },
+        "per_product_totals_4d": {
+          "VELVETFRUIT_EXTRACT": 3090
+        }
+      }
+    }
   }
 ]

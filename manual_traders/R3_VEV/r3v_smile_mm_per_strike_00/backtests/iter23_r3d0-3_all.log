@@ -1,0 +1,60 @@
+v23 all — joint gate, extract only, EXTRACT_HALF=2.4
+
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v23.py for round: 3 day: 0
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 586
+Total profit: 586
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v23.py for round: 3 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 776
+Total profit: 776
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v23.py for round: 3 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 1,834
+Total profit: 1,834
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v23.py for round: 3 day: 3
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: -106
+Total profit: -106
+Profit summary:
+Round 3 day 0: 586
+Round 3 day 1: 776
+Round 3 day 2: 1,834
+Round 3 day 3: -106
+Total profit: 3,090

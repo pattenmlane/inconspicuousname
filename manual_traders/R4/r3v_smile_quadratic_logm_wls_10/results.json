@@ -34,5 +34,43 @@
       "gate_json": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase1_gate.json",
       "summary_txt": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_phase1_summary.txt"
     }
+  },
+  {
+    "iteration": 1,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Phase-2-inspired sim: Sonic joint gate (VEV_5200 and VEV_5300 spread<=2) → one-tick MM on VELVETFRUIT_EXTRACT + those two strikes only; no hydrogel. Note: TradingState.market_trades empty during run — counterparty-conditioned rules need offline table or API change.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/backtest_worse_trader_v1_r4_d123.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_quadratic_logm_wls_10/trader_v1.py 4-1 4-2 4-3 --data Prosperity4Data --no-out --no-progress --no-vis --match-trades worse",
+      "backtest_round": 4,
+      "backtest_days": "1-3",
+      "total_profit": 3634,
+      "day_total_profit": {"1": 633, "2": 2464, "3": 537},
+      "trades_or_fills_summary": {
+        "note": "from stdout; hydrogel 0",
+        "hydrogel_pnl_by_day": {"1": 0, "2": 0, "3": 0},
+        "vev_extract_pnl_day1": {"VEV_5300": 873, "VEV_5200": 314, "VELVETFRUIT_EXTRACT": -554},
+        "vev_extract_pnl_day2": {"VEV_5300": 1828, "VEV_5200": 918, "VELVETFRUIT_EXTRACT": -282},
+        "vev_extract_pnl_day3": {"VEV_5300": -859, "VEV_5200": -259, "VELVETFRUIT_EXTRACT": 1655}
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/backtest_all_trader_v1_r4_d123.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_quadratic_logm_wls_10/trader_v1.py 4-1 4-2 4-3 --data Prosperity4Data --no-out --no-progress --no-vis --match-trades all",
+      "backtest_round": 4,
+      "backtest_days": "1-3",
+      "total_profit": 3634,
+      "day_total_profit": {"1": 633, "2": 2464, "3": 537},
+      "trades_or_fills_summary": {
+        "note": "identical totals to worse in this run",
+        "hydrogel_pnl_by_day": {"1": 0, "2": 0, "3": 0}
+      }
+    },
+    "phase2_analysis": {
+      "script": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase2_analysis.py",
+      "summary": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase2_summary.txt"
+    }
   }
 ]

@@ -1,0 +1,77 @@
+[
+  {
+    "iteration": "round4_phase1",
+    "analysis_description": "See parent branch manual_traders/R3_VEV/.../analysis.json entry round4_phase1 OR r4_phase1_gate.json in this folder.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase1_gate.json"
+    ],
+    "used_to_decide": "Phase 1 completed in prior commit; gate duplicated in r4_phase1_gate.json."
+  },
+  {
+    "iteration": "round4_phase2",
+    "analysis_description": "Phase 2: named-bot burst echo (Mark01→Mark22, ≥3 VEV legs) vs VEV_5300 fwd5; joint Sonic gate on R4 extract fwd20; signed-flow lead-lag extract vs VEV_5300; extract microprice tilt vs vol; BS IV residual VEV_5300; Mark22 seller_agg passive markout proxy.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase2_summary.txt",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p2_burst_echo_vev5300.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p2_joint_gate_conditional.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p2_leadlag_signed_flow.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p2_microprice_vol_forecast.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p2_iv_mark_conditional.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p2_passive_markout_proxy.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase2_gate.json",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase2_analysis.py"
+    ],
+    "used_to_decide": "Joint gate shows higher extract fwd20 (Welch t≈7.9); burst-conditioned VEV_5300 fwd5 beats control (t≈3.15). Microprice tilt→vol nearly flat (corr≈0.01). trader_v1 tests joint-gate MM on extract+5200+5300 only (sim); worse total 3634 over d1–3.",
+    "round4_phase2_complete": {
+      "phase": 2,
+      "tape_days": [1, 2, 3],
+      "interaction_with_phase1": "Phase1 Mark01→Mark22 pair dominance is REFINED by 3+VEV burst filter and VEV_5300 echo table. Phase1 burst→extract mean is consistent with Phase2 joint-gate extract shift (different conditioning). Mark67 tape signal remains orthogonal (not simulated in trader_v1).",
+      "outputs": {
+        "burst_echo": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p2_burst_echo_vev5300.csv",
+        "micro_vol": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p2_microprice_vol_forecast.csv",
+        "leadlag": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p2_leadlag_signed_flow.csv",
+        "joint_gate": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p2_joint_gate_conditional.csv",
+        "iv_mark": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p2_iv_mark_conditional.csv",
+        "passive_markout": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p2_passive_markout_proxy.csv",
+        "summary": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase2_summary.txt",
+        "script": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase2_analysis.py"
+      },
+      "top_5_tradeable_edges": [
+        {
+          "rank": 1,
+          "edge": "Multi-VEV Mark01→Mark22 burst → higher VEV_5300 fwd5 vs control",
+          "evidence": "r4_phase2_summary.txt (Welch t≈3.15); r4_p2_burst_echo_vev5300.csv",
+          "phase1_link": "Refines pair count story with burst structure"
+        },
+        {
+          "rank": 2,
+          "edge": "Sonic joint gate (5200&5300≤2) → higher extract fwd20 vs wide",
+          "evidence": "r4_phase2_summary.txt (Welch t≈7.94); r4_p2_joint_gate_conditional.csv",
+          "phase1_link": "Operationalizes R3 STRATEGY on R4 mids"
+        },
+        {
+          "rank": 3,
+          "edge": "Signed-flow contemporaneous negative corr extract vs VEV_5300",
+          "evidence": "r4_p2_leadlag_signed_flow.csv (lag 0 ≈ -0.15)",
+          "phase1_link": "Orthogonal time-series structure vs pair tables"
+        },
+        {
+          "rank": 4,
+          "edge": "Mark22 seller_agg at bid on VEV_5300 → negative fwd20 (adverse passive proxy)",
+          "evidence": "r4_p2_passive_markout_proxy.csv; summary mean -0.14",
+          "phase1_link": "Execution / fade Mark22 on touch (needs sim sizing)"
+        },
+        {
+          "rank": 5,
+          "edge": "IV residual file for Phase3 × gate × Mark overlays",
+          "evidence": "r4_p2_iv_mark_conditional.csv",
+          "phase1_link": "Adds vol dimension to counterparty-conditioned work"
+        }
+      ],
+      "negative_results": [
+        "Microprice tilt vs extract short-horizon vol: corr ~0.009 (no strong microstructure edge in this slice).",
+        "trader_v1 joint-gate MM sim: total PnL 3634 worse over d1–3 — gate alone insufficient for 200k/day; needs counterparty-conditioned logic once API exposes tape trades in-state or offline policy table."
+      ]
+    }
+  }
+]

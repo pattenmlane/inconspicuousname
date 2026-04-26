@@ -1,0 +1,52 @@
+{
+  "round4_phase2_complete": {
+    "phase": 2,
+    "tape_days": [
+      1,
+      2,
+      3
+    ],
+    "interaction_with_phase1": "Phase1 Mark01\u2192Mark22 dominance and burst\u2192extract fwd are REFINED: Phase2 conditions bursts to \u22653 distinct VEV legs and measures VEV_5300 echo + joint-gate extract fwd distribution. Phase1 Mark67 buyer_agg signal NOT contradicted; not yet simulated.",
+    "outputs": {
+      "burst_echo": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p2_burst_echo_vev5300.csv",
+      "micro_vol": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p2_microprice_vol_forecast.csv",
+      "leadlag": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p2_leadlag_signed_flow.csv",
+      "joint_gate": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p2_joint_gate_conditional.csv",
+      "iv_mark": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p2_iv_mark_conditional.csv",
+      "passive_markout": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p2_passive_markout_proxy.csv",
+      "summary": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase2_summary.txt"
+    },
+    "top_5_tradeable_edges": [
+      {
+        "rank": 1,
+        "edge": "Multi-VEV Mark01\u2192Mark22 burst echo on VEV_5300 forward path",
+        "evidence": "r4_p2_burst_echo_vev5300.csv + summary t vs control",
+        "phase1_link": "Confirms pair structure; adds 3+VEV burst definition"
+      },
+      {
+        "rank": 2,
+        "edge": "Joint tight 5200+5300 gate vs extract fwd20 (Sonic on R4 tape)",
+        "evidence": "r4_p2_joint_gate_conditional.csv",
+        "phase1_link": "Same spirit as R3 STRATEGY; now on R4 mids"
+      },
+      {
+        "rank": 3,
+        "edge": "Signed-flow lead/lag extract vs VEV_5300",
+        "evidence": "r4_p2_leadlag_signed_flow.csv",
+        "phase1_link": "Orthogonal to pair counts \u2014 time structure"
+      },
+      {
+        "rank": 4,
+        "edge": "Microprice tilt vs short-horizon extract vol",
+        "evidence": "r4_p2_microprice_vol_forecast.csv",
+        "phase1_link": "inclineGod spread-as-object on extract"
+      },
+      {
+        "rank": 5,
+        "edge": "BS IV residual on VEV_5300 vs day mean (for Phase3\u00d7Mark conditioning)",
+        "evidence": "r4_p2_iv_mark_conditional.csv",
+        "phase1_link": "Adds vol layer to counterparty flow"
+      }
+    ]
+  }
+}

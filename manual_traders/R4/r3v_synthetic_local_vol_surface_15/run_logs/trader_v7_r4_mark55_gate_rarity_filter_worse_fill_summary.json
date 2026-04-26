@@ -1,0 +1,1 @@
+{"trader": "trader_v7_r4_mark55_gate_rarity_filter.py", "match_trades": "worse", "round": 4, "total_profit": 10238, "per_day": {"1": 4392, "2": 8306, "3": -2460}, "params": {"ROLL_WIN": 400, "ROLL_MAX": 0.32, "per_day_hist_reset": true}}

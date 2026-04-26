@@ -145,5 +145,68 @@
     "match_trades": "worse",
     "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v6_r4_mark55_gate_skip_day3_worse_stdout.txt",
     "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v6_r4_mark55_gate_skip_day3_worse_fill_summary.json"
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7_r4_mark55_gate_rarity_filter.py",
+    "strategy_description": "Data-driven regime: Mark55+v4 logic but skip when rolling 400-tick joint-tight fraction > 0.32; `tight_hist` resets when `backtest_day` changes. Targets high gate-on prevalence (see r4_p6_rolling_tight_prevalence_by_day.csv).",
+    "total_profit": 10238,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v7_r4_mark55_gate_rarity_filter.py 4 --data Prosperity4Data --match-trades worse --no-out",
+    "backtest_worse": {
+      "total_profit": 10238,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v7_r4_mark55_gate_rarity_filter_worse_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v7_r4_mark55_gate_rarity_filter_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "total_profit": 10238,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v7_r4_mark55_gate_rarity_filter_all_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v7_r4_mark55_gate_rarity_filter_all_fill_summary.json"
+    },
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v7_r4_mark55_gate_rarity_filter_worse_stdout.txt",
+    "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v7_r4_mark55_gate_rarity_filter_worse_fill_summary.json"
+  },
+  {
+    "iteration": 8,
+    "trader_file": "trader_v8_r4_mark55_gate_rarity_tight.py",
+    "strategy_description": "Inverse test: Mark55+v4 only when rolling tight fraction **< 0.12** (rare joint-tight spell). Over-filters; negative result.",
+    "total_profit": 4756,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v8_r4_mark55_gate_rarity_tight.py 4 --data Prosperity4Data --match-trades worse --no-out",
+    "backtest_worse": {
+      "total_profit": 4756,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v8_r4_mark55_gate_rarity_tight_worse_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v8_r4_mark55_gate_rarity_tight_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "total_profit": 4756,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v8_r4_mark55_gate_rarity_tight_all_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v8_r4_mark55_gate_rarity_tight_all_fill_summary.json"
+    },
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v8_r4_mark55_gate_rarity_tight_worse_stdout.txt",
+    "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v8_r4_mark55_gate_rarity_tight_worse_fill_summary.json"
+  },
+  {
+    "iteration": 9,
+    "trader_file": "trader_v9_r4_mark55_gate_micro_saturation.py",
+    "strategy_description": "v5 (Mark55+gate+microprice) plus rolling tight-rate skip when >0.40 (WIN=400, per-day hist reset). Ablation: worse than v5 alone.",
+    "total_profit": 5216,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v9_r4_mark55_gate_micro_saturation.py 4 --data Prosperity4Data --match-trades worse --no-out",
+    "backtest_worse": {
+      "total_profit": 5216,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v9_r4_mark55_gate_micro_saturation_worse_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v9_r4_mark55_gate_micro_saturation_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "total_profit": 5216,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v9_r4_mark55_gate_micro_saturation_all_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v9_r4_mark55_gate_micro_saturation_all_fill_summary.json"
+    },
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v9_r4_mark55_gate_micro_saturation_worse_stdout.txt",
+    "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v9_r4_mark55_gate_micro_saturation_worse_fill_summary.json"
   }
 ]

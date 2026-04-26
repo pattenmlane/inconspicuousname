@@ -269,5 +269,37 @@
       "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v6_r4_mark55_gate_skip_day3_all_stdout.txt"
     ],
     "used_to_decide": "v6 total **14,842** = v4 day1+day2 only (+1,680 vs v4). Next: replace hardcoded day skip with **data-driven** regime (e.g. gate P(tight) high days) or inventory cap, not magic day index."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Rolling **joint-tight** prevalence by historical day (`_r4_analyze_rolling_tight_prevalence.py` \u2192 `r4_p6_rolling_tight_prevalence_by_day.csv`): WIN=400; day3 mean ~0.45 vs ~0.14\u20130.17 on days 1\u20132. Trader v7: Mark55+v4 but skip when roll_tight_rate>0.32 with per-day buffer reset.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/_r4_analyze_rolling_tight_prevalence.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase3/r4_p6_rolling_tight_prevalence_by_day.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v7_r4_mark55_gate_rarity_filter.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v7_r4_mark55_gate_rarity_filter_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v7_r4_mark55_gate_rarity_filter_all_stdout.txt"
+    ],
+    "used_to_decide": "v7 total 10,238 < v4 13,162; day-3 still \u22122,460. Simple **high saturation** skip is not sufficient \u2014 need different risk (size, inventory) or combine with microprice (v5) not OR with crude roll cap alone."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Ablation: **rare** joint-tight only (roll_tight_rate < 0.12) before Mark55 follow \u2014 tests Sonic \u2018fewer fires\u2019 literally; kills volume.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v8_r4_mark55_gate_rarity_tight.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v8_r4_mark55_gate_rarity_tight_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v8_r4_mark55_gate_rarity_tight_all_stdout.txt"
+    ],
+    "used_to_decide": "v8 PnL 4,756 \u2014 discard rare-only filter at ROLL_MIN=0.12; best simple lane remains **v4** or **v6** (if calendar skip acceptable as stress only)."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "Stacked ablation: v5 microprice **plus** light saturation skip (ROLL_MAX=0.40). Negative vs v5 (5,216 vs 9,854) \u2014 combining filters hurt day-2 more than it helped day-3.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v9_r4_mark55_gate_micro_saturation.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v9_r4_mark55_gate_micro_saturation_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v9_r4_mark55_gate_micro_saturation_all_stdout.txt"
+    ],
+    "used_to_decide": "Keep **v5** for positive day-3 without saturation layer; use **v4** for max total on this tape; **v6** only as attribution. Next research: inventory cap or half-size on day-3 when roll mean crosses threshold, not OR of micro+saturation."
   }
 ]

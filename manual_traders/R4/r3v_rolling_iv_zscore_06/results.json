@@ -199,5 +199,45 @@
         "note": "worse_and_all_identical_this_run"
       }
     }
+  },
+  {
+    "iteration": 7,
+    "trader_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v27.py",
+    "strategy_description": "Same as v26 (r4_v26_signals + joint-tight entry) but **flatten V5300 when joint gate breaks** during the window, not only when the window ends (Sonic regime-exit hypothesis).",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -21200,
+      "per_day_pnl": {
+        "day_1": -6398,
+        "day_2": -4742,
+        "day_3": -10060
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v27_2026-04-25_r4_worse.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v27.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v27_2026-04-25_r4_worse.log",
+      "trades_or_fills_summary": {
+        "pnl_by_product_last_day_block": {
+          "VEV_5300": -21200
+        },
+        "note": "see_log_profit_summary_lines; vs_v26_total_768"
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -21200,
+      "per_day_pnl": {
+        "day_1": -6398,
+        "day_2": -4742,
+        "day_3": -10060
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v27_2026-04-25_r4_all.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v27.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v27_2026-04-25_r4_all.log",
+      "trades_or_fills_summary": {
+        "pnl_by_product_last_day_block": {
+          "VEV_5300": -21200
+        },
+        "note": "worse_and_all_identical_this_run"
+      }
+    }
   }
 ]

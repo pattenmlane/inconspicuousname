@@ -332,5 +332,26 @@
       "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v15_all.log",
       "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v15_all.json"
     }
+  },
+  {
+    "iteration": 16,
+    "trader_file": "trader_v16.py",
+    "strategy_description": "v11 + tight-gate **VEV buy-skip** on **5300/5400/5500** when tape shows aggressive sell (price<=bid1) with passive buyer **Mark 14** (tape fwd20 negative on those cells; 5200 Mark14 slice ~flat so excluded).",
+    "total_profit": 7127.5,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v16.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r4_counterparty_phase1/backtest_r4_v16_worse.log",
+    "note_vs_v11": "**Negative:** terminal worse **+7127.5** vs v11 **+7608.5** (-481). VEV_5300 **1361** vs **1842** (-481). Mid-only adverse on Mark14 does not translate to better MM PnL under worse fills. **Prefer v11**.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 7127.5,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v16_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v16_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 9392,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v16_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v16_all.json"
+    }
   }
 ]

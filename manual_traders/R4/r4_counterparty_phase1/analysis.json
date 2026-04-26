@@ -457,5 +457,20 @@
       "manual_traders/R4/r4_counterparty_phase1/fill_summary_v15_all.json"
     ],
     "used_to_decide": "**Null vs v11** again: terminal PnL and per-strike lines unchanged. Together with v14, **asymmetric clip bumps 6->8 on any single surface subset do not move** this backtest \u2014 likely inventory/depth/fill model caps effective size before CLIP_V. **Stop clip sweeps** at 8 for this architecture; next lever is logic (new counterparty regime) not CLIP_V nudges."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "Phase-1-style **passive adverse** on VEVs under Sonic tight: `r4_v16_vev_aggrsell_tight_passivebuyer.py` merges joint gate, flags aggressive sells (price<=bid1), fwd+20 = K price rows ahead. Summary CSV: Mark14 passive buyer mean fwd20 negative on **5300** (n=28), **5400** (n=12), **5500** (n=7); **5200** Mark14 ~flat (n=33).",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/r4_v16_vev_aggrsell_tight_passivebuyer.py",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_v16_vev_aggrsell_fwd20_rows.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_v16_vev_aggrsell_tight_summary_by_symbol_buyer.csv",
+      "manual_traders/R4/r4_counterparty_phase1/trader_v16.py",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v16_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v16_all.log",
+      "manual_traders/R4/r4_counterparty_phase1/fill_summary_v16_worse.json",
+      "manual_traders/R4/r4_counterparty_phase1/fill_summary_v16_all.json"
+    ],
+    "used_to_decide": "`trader_v16` skips VEV **bids** on 5300/5400/5500 for one tick when tight + Mark14 passive on aggressive sell. **Falsified in sim:** worse **+7127.5** vs v11 **+7608.5**; loss concentrated in **VEV_5300** line. Population mid markout \u2260 profitable MM filter here (similar to v5 symmetric velvet buy-skip). **Do not ship**; keep v11."
   }
 ]

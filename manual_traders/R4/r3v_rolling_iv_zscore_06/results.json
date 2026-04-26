@@ -399,5 +399,45 @@
         "note": "worse_and_all_identical_this_run"
       }
     }
+  },
+  {
+    "iteration": 12,
+    "trader_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v32.py",
+    "strategy_description": "v26 with **MAX_Q=18** on V5300 during windows (tape: up to 3 overlapping v26 windows); stop lifting beyond 18 until flat off-window.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 211,
+      "per_day_pnl": {
+        "day_1": 211,
+        "day_2": 564,
+        "day_3": -564
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v32_2026-04-25_r4_worse.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v32.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v32_2026-04-25_r4_worse.log",
+      "trades_or_fills_summary": {
+        "pnl_by_product_last_day_block": {
+          "VEV_5300": 211
+        },
+        "note": "vs_v26_768"
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 211,
+      "per_day_pnl": {
+        "day_1": 211,
+        "day_2": 564,
+        "day_3": -564
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v32_2026-04-25_r4_all.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v32.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v32_2026-04-25_r4_all.log",
+      "trades_or_fills_summary": {
+        "pnl_by_product_last_day_block": {
+          "VEV_5300": 211
+        },
+        "note": "worse_and_all_identical_this_run"
+      }
+    }
   }
 ]

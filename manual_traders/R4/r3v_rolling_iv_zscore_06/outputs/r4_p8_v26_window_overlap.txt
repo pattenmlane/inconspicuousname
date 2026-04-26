@@ -1,0 +1,8 @@
+n_triggers=27 W=50000 (active ts interval length per trigger = W+1 in discrete inclusive model)
+max_simultaneous_active_windows=3
+sum_halfopen_lengths=1350027 merged_union_length=1197819 overlap_reduction=152208
+gap_start_to_start: min=1100 median=75950 max=536400
+triggers_per_merged_day:
+  day_1: n=5
+  day_2: n=7
+  day_3: n=15

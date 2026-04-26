@@ -656,5 +656,73 @@
       },
       "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v53.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v53_all.log"
     }
+  },
+  {
+    "iteration": 54,
+    "trader_file": "trader_v54.py",
+    "strategy_description": "v52 execution fix (STRATEGY mid vs bid/ask): joint <=2 tight regime posts passive limits 1 tick inside BBO; wide regime flatten unchanged. Vouchers_final_strategy only, no PWL.",
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -69,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v54_worse.log",
+      "trades_or_fills_summary": {
+        "n_trades": 4181,
+        "notable_symbols": [
+          "VELVETFRUIT_EXTRACT",
+          "VEV_5200",
+          "VEV_5300"
+        ]
+      },
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v54.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v54_worse.log"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -69,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v54_all.log",
+      "trades_or_fills_summary": {
+        "n_trades": 4181,
+        "notable_symbols": [
+          "VELVETFRUIT_EXTRACT",
+          "VEV_5200",
+          "VEV_5300"
+        ]
+      },
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v54.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v54_all.log"
+    }
+  },
+  {
+    "iteration": 55,
+    "trader_file": "trader_v55.py",
+    "strategy_description": "v54 grid: momentum 0.28, Q_EXTRACT=12, Q_VEV=3 (more size).",
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -167,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v55_worse.log",
+      "trades_or_fills_summary": {
+        "n_trades": 4200,
+        "notable_symbols": [
+          "VELVETFRUIT_EXTRACT",
+          "VEV_5200",
+          "VEV_5300"
+        ]
+      },
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v55.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v55_worse.log"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -200,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v55_all.log",
+      "trades_or_fills_summary": {
+        "n_trades": 4201,
+        "notable_symbols": [
+          "VELVETFRUIT_EXTRACT",
+          "VEV_5200",
+          "VEV_5300"
+        ]
+      },
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/trader_v55.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v55_all.log"
+    }
   }
 ]

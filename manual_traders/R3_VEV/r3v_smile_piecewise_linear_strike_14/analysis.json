@@ -174,5 +174,19 @@
       "backtest_logs/trader_v53_all.log"
     ],
     "used_to_decide": "Backtest: naive momentum-on-tight is strongly negative (v52 ~ -18.2k total on days 0-3 worse, v53 much worse) — mid-forward edge from the paper does not survive bid/ask and our order style. Best among new line is v52 over v53. Next iteration should add passive maker logic or a different entry (still gated on joint <=2) rather than taker-chasing EMA. Nowhere near 200k/day floor."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "Follow STRATEGY.txt caveat: mid forward edge is not the same as bid/ask PnL. Replaced v52 taker (hit ask/bid) in tight regime with passive quotes one tick inside BBO in trader_v54 (grid v55: looser EMA, larger Q). Kept joint 5200+5300 <=2 gate, same EMA(d extract wall mid) for direction, inclineGod/Sonic framing unchanged. Read ORIGINAL_DISCORD_QUOTES.txt again — hedge-into-tight-surface, gate on both spreads.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "trader_v54.py",
+      "trader_v55.py",
+      "backtest_logs/trader_v54_worse.log",
+      "backtest_logs/trader_v54_all.log",
+      "backtest_logs/trader_v55_worse.log",
+      "backtest_logs/trader_v55_all.log"
+    ],
+    "used_to_decide": "Passive v54: total_profit -69 (worse, days 0-3) vs v52 -18,164; v55 is worse at -167 worse / -200 all. New lead in vouchers_final line: v54. Still far from 200k/day; may need more selective tight-only activity or different extract signal, but execution fix was mandatory."
   }
 ]

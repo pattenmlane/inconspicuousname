@@ -1,0 +1,22 @@
+{
+  "trader": "trader_v33.py",
+  "match_trades": "worse",
+  "n_submission_trade_events": 4233,
+  "by_symbol": {
+    "VEV_5100": {
+      "fills": 1748,
+      "abs_qty": 17467.0,
+      "net_qty": -91.0
+    },
+    "VEV_5200": {
+      "fills": 1539,
+      "abs_qty": 13586.0,
+      "net_qty": -12.0
+    },
+    "VEV_5300": {
+      "fills": 946,
+      "abs_qty": 10067.0,
+      "net_qty": 105.0
+    }
+  }
+}

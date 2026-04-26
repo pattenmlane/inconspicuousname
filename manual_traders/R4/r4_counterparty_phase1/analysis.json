@@ -332,5 +332,16 @@
       "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v5_all.log"
     ],
     "used_to_decide": "**Negative ablation:** v5 worse +6305 < v4 +6793; symmetric Mark49 buy-skip hurts MM under worse fills despite negative tape fwd20 for that cell (small n=15; inventory/asymmetry dominates). Keep v4 as better counterparty-augmented tight-MM."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "Sonic **gate legs** (VEV_5200/5300): aggressive-buy rows vs passive Mark22 are extremely sparse in enriched tape (n=2 on 5200, n=1 on 5300). Offline count of tape prints with price>=ask1 and seller Mark22/Mark49 on those symbols: `r4_v6_gateleg_aggr_buy_counts.csv` (3 events total over 3 days). `trader_v6` extends v4 sell-skip to those two products.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_v6_gateleg_aggr_buy_counts.csv",
+      "manual_traders/R4/r4_counterparty_phase1/trader_v6.py",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v6_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v6_all.log"
+    ],
+    "used_to_decide": "**Null extension:** v6 worse +6793 ties v4; gate-leg skip is negligible at fill frequency. Prefer v4 for simplicity unless n grows on more tape days."
   }
 ]

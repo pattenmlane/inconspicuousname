@@ -122,5 +122,26 @@
       "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v5_all.log",
       "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v5_all.json"
     }
+  },
+  {
+    "iteration": 6,
+    "trader_file": "trader_v6.py",
+    "strategy_description": "v4 + same Mark22/49 aggressive-buy sell-skip on **VEV_5200** and **VEV_5300** (Sonic gate legs); other surface legs unchanged.",
+    "total_profit": 6793,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v6.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r4_counterparty_phase1/backtest_r4_v6_worse.log",
+    "note_vs_v4": "Tape has only 3 ticks/day total with aggr buy Mark22/49 on 5200/5300; worse PnL ties v4 (+6793). All +9196 vs +9187 (+9).",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 6793,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v6_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v6_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 9196,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v6_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v6_all.json"
+    }
   }
 ]

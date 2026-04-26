@@ -39,5 +39,85 @@
         "note": "empty_trader_no_submission_fills"
       }
     }
+  },
+  {
+    "iteration": 3,
+    "trader_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v23.py",
+    "strategy_description": "Round 4 Phase 2: precomputed Mark 67 aggressive-buy-on-EXTRACT triggers; lift VEV_5300 ask in window, flatten to bid when window ends (no Sonic gate).",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -16879,
+      "per_day_pnl": {
+        "day_1": 983,
+        "day_2": -4088,
+        "day_3": -13774
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v23_2026-04-26_r4_worse.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v23.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v23_2026-04-26_r4_worse.log",
+      "trades_or_fills_summary": {
+        "pnl_by_product_last_day_block": {
+          "VEV_5300": -16879
+        },
+        "note": "see_log_profit_summary_lines"
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -16879,
+      "per_day_pnl": {
+        "day_1": 983,
+        "day_2": -4088,
+        "day_3": -13774
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v23_2026-04-26_r4_all.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v23.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v23_2026-04-26_r4_all.log",
+      "trades_or_fills_summary": {
+        "pnl_by_product_last_day_block": {
+          "VEV_5300": -16879
+        },
+        "note": "worse_and_all_identical_this_run"
+      }
+    }
+  },
+  {
+    "iteration": 4,
+    "trader_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v24.py",
+    "strategy_description": "Round 4 Phase 3: same Mark67 triggers as v23 but entries only when Sonic joint gate holds (VEV_5200 and VEV_5300 spreads both <= 2).",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -5883,
+      "per_day_pnl": {
+        "day_1": 635,
+        "day_2": 2100,
+        "day_3": -8618
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v24_2026-04-25_r4_worse.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v24.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v24_2026-04-25_r4_worse.log",
+      "trades_or_fills_summary": {
+        "pnl_by_product_last_day_block": {
+          "VEV_5300": -5883
+        },
+        "note": "see_log_profit_summary_lines"
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -5883,
+      "per_day_pnl": {
+        "day_1": 635,
+        "day_2": 2100,
+        "day_3": -8618
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v24_2026-04-25_r4_all.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v24.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v24_2026-04-25_r4_all.log",
+      "trades_or_fills_summary": {
+        "pnl_by_product_last_day_block": {
+          "VEV_5300": -5883
+        },
+        "note": "worse_and_all_identical_this_run"
+      }
+    }
   }
 ]

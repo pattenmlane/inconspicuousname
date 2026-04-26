@@ -1,0 +1,2 @@
+n_joint_tight=27 mean_fwd5_extract=1.77778 frac_pos=0.7407
+n_not_tight=137 mean_fwd5_extract=1.99635 frac_pos=0.8540

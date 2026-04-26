@@ -210,5 +210,85 @@
       "worse": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v18_2026-04-26_r3d012_worse_summary.txt",
       "all": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v18_2026-04-26_r3d012_all_summary.txt"
     }
+  },
+  {
+    "iteration": 19,
+    "trader_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v19.py",
+    "strategy_description": "vouchers_final_strategy pivot (abandon legacy r3v_rolling z): joint VEV_5200+VEV_5300 spread\u2264TH=2 (Sonic) as regime; v19 uses gate only to trade VELVETFRUIT_EXTRACT \u2014 on loose\u2192tight edge, buy ask clip when extract spread cap holds; on tight\u2192loose, sell bid to flat. 5200/5300 are signal-only, not bought. Ablation v19a (lift 52+53+extract every tick while tight) reverted: catastrophic under worse. Hydrogel off.",
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -116723,
+      "per_day_pnl": {
+        "day_0": -31269,
+        "day_1": -40169,
+        "day_2": -43513,
+        "day_3": -1772
+      },
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v19_2026-04-26_r3_worse.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v19.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v19_2026-04-26_r3_worse.log",
+      "trades_or_fills_summary": {
+        "total_trade_rows": 10131,
+        "submission_rows": 5961,
+        "submission_abs_qty": 47242
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -116723,
+      "per_day_pnl": {
+        "day_0": -31269,
+        "day_1": -40169,
+        "day_2": -43513,
+        "day_3": -1772
+      },
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v19_2026-04-26_r3_all.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v19.py 3 --data Prosperity4Data --match-trades all --no-vis --no-progress --out manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v19_2026-04-26_r3_all.log",
+      "trades_or_fills_summary": {
+        "total_trade_rows": 10131,
+        "submission_rows": 5961,
+        "submission_abs_qty": 47242
+      }
+    }
+  },
+  {
+    "iteration": 20,
+    "trader_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v20.py",
+    "strategy_description": "v20 = v19 extract gate trade + K=20 mid momentum filter (align with analyze script K=20 forward) \u2014 only enter long on tight turn-on if mid(t)-mid(t-20)>0. Exit on gate drop as v19. Goal: cut bad entry episodes. Hydrogel off.",
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -50674,
+      "per_day_pnl": {
+        "day_0": -13381,
+        "day_1": -16140,
+        "day_2": -20425,
+        "day_3": -728
+      },
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v20_2026-04-26_r3_worse.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v20.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v20_2026-04-26_r3_worse.log",
+      "trades_or_fills_summary": {
+        "total_trade_rows": 6722,
+        "submission_rows": 2552,
+        "submission_abs_qty": 20268
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -50674,
+      "per_day_pnl": {
+        "day_0": -13381,
+        "day_1": -16140,
+        "day_2": -20425,
+        "day_3": -728
+      },
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v20_2026-04-26_r3_all.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v20.py 3 --data Prosperity4Data --match-trades all --no-vis --no-progress --out manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v20_2026-04-26_r3_all.log",
+      "trades_or_fills_summary": {
+        "total_trade_rows": 6722,
+        "submission_rows": 2552,
+        "submission_abs_qty": 20268
+      }
+    }
   }
 ]

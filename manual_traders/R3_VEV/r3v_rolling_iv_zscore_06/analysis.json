@@ -130,5 +130,24 @@
       "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v18_2026-04-26_r3d012_worse.log"
     ],
     "used_to_decide": "Ship v18 as v17 with s5200/s5300 spread state in JSON; do not hard-gate v17 on joint tight at current params (ablations failed). Re-run v18 with days 3-0,3-1,3-2 for apples-to-apples with v17; store both worse+all match modes in results.json per new tracking rule."
+  },
+  {
+    "iteration": 19,
+    "analysis_description": "Strategy pivot: **deprecate** the branch\u2019s old rolling-IV z thesis; work only from **round3work/vouchers_final_strategy** (read merge-resolved **STRATEGY.txt** and verbatim **ORIGINAL_DISCORD_QUOTES.txt** \u2014 inclineGod on spread correlation; Sonic on joint 5200/5300 \u22642 and \u201chedge into a tight surface\u201d; fourth-person note on 6-panel). Empirical backstop: **outputs/r3_tight_spread_summary.txt** (day0 Welch t, positive mean K=20 forward extract mid when joint tight). **Implementation A (reverted in code, noted):** long extract + 5200+5300 every tick while tight \u2192 massive negative total under worse+all. **v19 shipped:** edge-triggered long extract only, gate from spreads; 5200/5300 not held. Result still **negative** (-116,723 on R3 days 0-3) \u2014 **mid** edge from the plot does not survive **touch + worse** (STRATEGY caveat).",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt"
+    ],
+    "used_to_decide": "Log negative toy policy; do not use naive touch-along; next iteration add analysis-aligned filters (K=20) before re-expanding to voucher legs or MM."
+  },
+  {
+    "iteration": 20,
+    "analysis_description": "v20: same **joint gate** + **extract** only, add **K=20** **mid** momentum (mid(t)\u2212mid(t\u221220)>0) on tight\u2192on entry, matching the analysis script\u2019s `K=20` forward horizon. Store rolling mids in traderData. **Worse and all** identical totals (-50,674 on R3 0-3): fewer **submission** rows vs v19 (2,552 vs 5,961) but still negative \u2014 per STRATEGY.txt **mid** vs PnL gap remains; need inventory/market making or two-sided quotes, not one-shot market orders.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/analyze_vev_5200_5300_tight_gate_r3.py (K=20 constant)",
+      "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v20_2026-04-26_r3_worse.log"
+    ],
+    "used_to_decide": "Ship v20 as second-step filter attempt; PnL still below zero \u2014 next work should explore **post-only / limit** or true **delta** basket when tight, with worse-fill measurement."
   }
 ]

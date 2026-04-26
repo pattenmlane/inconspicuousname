@@ -1,0 +1,65 @@
+running algorithm '/workspace/manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v20.py'...
+Backtesting /workspace/manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v20.py for round: 3 day: 0
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: -13,381
+HYDROGEL_PACK: 0
+Total profit: -13,381
+Backtesting /workspace/manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v20.py for round: 3 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: -16,140
+HYDROGEL_PACK: 0
+Total profit: -16,140
+Backtesting /workspace/manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v20.py for round: 3 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: -20,425
+HYDROGEL_PACK: 0
+Total profit: -20,425
+Backtesting /workspace/manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/trader_v20.py for round: 3 day: 3
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: -728
+HYDROGEL_PACK: 0
+Total profit: -728
+Profit summary:
+Round 3 day 0: -13,381
+Round 3 day 1: -16,140
+Round 3 day 2: -20,425
+Round 3 day 3: -728
+Total profit: -50,674
+
+Successfully saved backtest results to manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v20_2026-04-26_r3_worse.log

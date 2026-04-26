@@ -1,0 +1,4 @@
+buyer_mode,seller_mode,n_burst_timestamps,mean_n_prints,mean_n_sym
+Mark 01,Mark 22,291,4.738831615120275,4.738831615120275
+Mark 22,Mark 38,1,6.0,6.0
+Mark 38,Mark 22,1,10.0,10.0

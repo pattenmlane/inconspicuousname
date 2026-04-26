@@ -1,0 +1,31 @@
+{
+  "cell": "Mark 67, buy_aggr, VELVETFRUIT_EXTRACT, k=20, spread_regime=tight, burst=0",
+  "min_daily_n": 45,
+  "days_all_positive_mean": true,
+  "per_day": [
+    {
+      "tape_day": 1,
+      "n": 57.0,
+      "mean": 2.008771929824561,
+      "t_stat": 3.910593673112472,
+      "frac_pos": 0.6666666666666666,
+      "pass_n_ge_20": true
+    },
+    {
+      "tape_day": 2,
+      "n": 60.0,
+      "mean": 1.4916666666666667,
+      "t_stat": 2.995635907584927,
+      "frac_pos": 0.6333333333333333,
+      "pass_n_ge_20": true
+    },
+    {
+      "tape_day": 3,
+      "n": 45.0,
+      "mean": 2.022222222222222,
+      "t_stat": 3.14143488531692,
+      "frac_pos": 0.6444444444444445,
+      "pass_n_ge_20": true
+    }
+  ]
+}

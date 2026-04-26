@@ -21,34 +21,41 @@
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_pooled_bootstrap_k5.csv",
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_pooled_bootstrap_k20.csv",
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_pooled_bootstrap_k100.csv",
-          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/phase1_bootstrap_m67_extract_tight_k20.json"
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/phase1_bootstrap_m67_extract_tight_k20.json",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/stability_m67_buy_aggr_extract_tight_k20_by_day.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/stability_m67_buy_aggr_extract_tight_k20_by_day.json",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/all_participant_names_print_counts.csv"
         ],
-        "conclusion": "Strongest pooled signal: Mark 67 aggressive buys on VELVETFRUIT_EXTRACT in **tight** BBO regime, K=20, mean forward **same-symbol** mid \u2248 +1.82 (n=162; **95% bootstrap CI** strictly positive on pooled tape); **per-day** n\u224845\u201360 each day with mean \u2248+1.49 to +2.02 and t\u22483\u20134 on days 1\u20133 \u2014 stable sign across all tape days. Mark 49 as seller (any) on extract tight K=20 also positive mean (~+1.8, n\u2248105). Cross-asset (fwd_extract, fwd_hydro) in **participant_markout_long**; **session_q** and **burst** flags straddle cells. Voucher-specific participant edges are weaker (smaller n / mixed signs)."
+        "conclusion": "Strongest pooled signal: Mark 67 aggressive buys on VELVETFRUIT_EXTRACT in **tight** BBO regime, K=20, mean forward **same-symbol** mid \u2248 +1.82 (n=162; **95% bootstrap CI** strictly positive on pooled tape); **per-day** n\u224845\u201360 each day, **all three days** positive mean (+1.49 to +2.02) and t\u22483\u20134 (see **stability** JSON). **all_participant_names_print_counts** lists every distinct tape name with buyer/seller print counts. Cross-asset (fwd_extract, fwd_hydro) in **participant_markout_long**; **session_q** and **burst** straddle cells. Voucher-specific participant edges are weaker (smaller n / mixed signs)."
       },
       "bullet_2_bot_baseline_residuals": {
         "outputs": [
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/per_print_with_baseline.csv",
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/pair_baseline_residuals.csv",
-          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_flow_balance.csv"
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_flow_balance.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/second_order_regime_vs_pair_pooled_baseline_k20.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/second_order_regime_vs_pair_pooled_baseline_k20_top_positive_t.json"
         ],
-        "conclusion": "Cell means by (buyer,seller,symbol,spread_regime) absorb most pair-level structure; residuals highlight **second-order** prints vs dominant basket (Mark 01\u2192Mark 22) baseline\u2014useful for fade rules after Phase 2 conditioning. **participant_flow_balance** quantifies per-name print counts and net signed quantity (buyer vs seller) for **role** intuition (e.g. Mark 22 volume skew); not a standalone trade rule."
+        "conclusion": "Cell means by (buyer,seller,symbol,spread_regime) absorb most pair-level structure. **Per-print** residuals vs that full cell sum to \u20140 by construction, so a **coarse** (buyer,seller,symbol) pooled forward baseline isolates how **spread_regime** shifts forward mid within the same pair\u2014largest |t| is Mark14\u219238 \u00d7 VEV_4000 **tight** (n=28, t\u22481.23) vs hydro pair pool; not strong enough to rank above Mark67 without sim. **participant_flow_balance** = net signed quantity by name."
       },
       "bullet_3_graph_motifs": {
         "outputs": [
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/graph_edges.csv",
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/graph_top_pairs.txt",
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/graph_hubs.json",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/graph_reciprocity_top50_forward_edges.csv",
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/twohop_chain_counts.csv",
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/twohop_chain_fwd_extract.csv"
         ],
-        "conclusion": "Dominant edge Mark 01\u2192Mark 22 (1339 prints); hydro duopoly Mark 14\u219438 and 38\u219414. Two-hop chains are frequent (hydro ping-pong) but **forward extract** after chain is near noise at K=5 unless combined with burst/orchestrator filter (Phase 2)."
+        "conclusion": "Dominant directed pair Mark 01\u2192Mark 22 (1339; **one-way** vs reverse 0 on tape); **Mark 14\u219238 \u2194 38\u219214** reciprocity \u22480.98. Two-hop chains are frequent (hydro ping-pong) but **forward extract** after chain is near noise at K=5 unless combined with burst/orchestrator filter (Phase 2)."
       },
       "bullet_4_burst_structure": {
         "outputs": [
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/burst_events.csv",
-          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/burst_forward_extract.csv"
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/burst_forward_extract.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/burst_orchestrator_summary_by_mode.csv"
         ],
-        "conclusion": "293 burst timestamps (\u22654 prints). Mean forward extract K=20: day1 burst **beats** random control (-0.08 vs -0.68); day2 modest (+0.33 vs +0.14); day3 burst strongly positive (+0.63 vs -0.30)\u2014**day-heterogeneous**; not a single stable direction rule without day-specific calibration or Phase 3 gate."
+        "conclusion": "293 burst timestamps (\u22654 prints), **orchestrator roll-up** shows **\u224891%** of bursts are (Mark01, Mark22) mode; remaining few are 22\u219238 / 38\u219222 cross prints. Mean forward extract K=20: day1 burst **beats** random control (-0.08 vs -0.68); day2 modest (+0.33 vs +0.14); day3 burst strongly positive (+0.63 vs -0.30)\u2014**day-heterogeneous**; not a single stable direction rule without day-specific calibration or Phase 3 gate."
       },
       "bullet_5_adverse_selection": {
         "outputs": [
@@ -96,7 +103,9 @@
       "explicit_no_edge_or_weak": [
         "Two-hop Mark 14\u219238\u219214 on forward extract at K=5 is ~+0.2 mean with n=165\u2014too small vs tick noise to trade standalone.",
         "Mark 01\u219222 voucher basket prints alone do **not** show large signed extract markout in this pass (baseline absorbs); edge is in **residual** prints or other names (67, 49).",
-        "Burst forward extract: **inconsistent** sign day-to-day at K=20 without further stratification."
+        "Burst forward extract: **inconsistent** sign day-to-day at K=20 without further stratification.",
+        "**Full-cell** baseline residuals (per pair\u00d7symbol\u00d7regime) sum to 0 by construction; second-order **regime** effects vs a **pair\u00d7symbol** pool are small (see second_order_*.csv).",
+        "List of all tape names: **all_participant_names_list.txt** (7 distinct **Mark** names on R4 days 1\u20133) \u2014 exhaustive \u201ceach U\u201d coverage; cells dropped when n<threshold in pooled tables."
       ],
       "reference_scripts": [
         "round4work/r4_counterparty_initial_sketch.py",
@@ -438,5 +447,17 @@
       "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/phase1_bootstrap_m67_extract_tight_k20.json"
     ],
     "used_to_decide": "Phase 1 completion gate is **documented and auditable** for bootstrap CI and role/balance; existing Phase 1--3 analyses remain the authority for sim-backed edges (v1, Phase 2/3 tables)."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "r4_phase1_supplement2.py: **per-day** stability table + JSON for Mark67 buy_aggr extract tight k=20 (all three tape days: mean>0, n\u224845\u201360, t>0); **all_participant_names_*** (7 unique Marks on R4d1--3) for exhaustive-U checklist; **graph_reciprocity_top50_forward_edges** (one-way 01\u219222 vs 14\u219438 ping-pong); **burst_orchestrator_summary_by_mode**; **second_order_regime_vs_pair_pooled_baseline_k20** (regime add-on to coarse pair\u00d7symbol mean \u2014 clarifies that full-cell per_print residual is 0-mean by construction). **round4_phase1_complete** in analysis.json updated with new paths; removed spurious \u201cpositive per-cell residual\u201d artifact after fix.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_phase1_supplement2.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/stability_m67_buy_aggr_extract_tight_k20_by_day.json",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/graph_reciprocity_top50_forward_edges.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/burst_orchestrator_summary_by_mode.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/second_order_regime_vs_pair_pooled_baseline_k20.csv"
+    ],
+    "used_to_decide": "Phase 1 gate is **exhausted** for available ROUND_4 data (3 days); no Phase 2/3 re-run this ping. Mark67 edge now has quantified **day-stability** + bootstrap CI + name/role roll-ups."
   }
 ]

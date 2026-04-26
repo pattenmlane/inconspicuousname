@@ -1,0 +1,67 @@
+[
+  {
+    "buyer": "Mark 14",
+    "seller": "Mark 38",
+    "symbol": "VEV_4000",
+    "spread_regime": "tight",
+    "k": 20,
+    "n": 28,
+    "mean_residual_vs_pair_pooled_baseline": 1.0181650246305416,
+    "t_stat": 1.2299939176746426,
+    "frac_pos": 0.5,
+    "n_days": 3,
+    "all_3_days_same_sign_as_pooled": true
+  },
+  {
+    "buyer": "Mark 38",
+    "seller": "Mark 14",
+    "symbol": "VEV_4000",
+    "spread_regime": "wide",
+    "k": 20,
+    "n": 177,
+    "mean_residual_vs_pair_pooled_baseline": 0.14977263331955332,
+    "t_stat": 0.510799213064893,
+    "frac_pos": 0.4971751412429379,
+    "n_days": 3,
+    "all_3_days_same_sign_as_pooled": false
+  },
+  {
+    "buyer": "Mark 55",
+    "seller": "Mark 01",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "spread_regime": "wide",
+    "k": 20,
+    "n": 237,
+    "mean_residual_vs_pair_pooled_baseline": 0.0613630075396004,
+    "t_stat": 0.2224800742630089,
+    "frac_pos": 0.4810126582278481,
+    "n_days": 3,
+    "all_3_days_same_sign_as_pooled": false
+  },
+  {
+    "buyer": "Mark 38",
+    "seller": "Mark 14",
+    "symbol": "HYDROGEL_PACK",
+    "spread_regime": "wide",
+    "k": 20,
+    "n": 486,
+    "mean_residual_vs_pair_pooled_baseline": 0.04441522390240306,
+    "t_stat": 0.1134867036280349,
+    "frac_pos": 0.5308641975308642,
+    "n_days": 3,
+    "all_3_days_same_sign_as_pooled": false
+  },
+  {
+    "buyer": "Mark 01",
+    "seller": "Mark 22",
+    "symbol": "VEV_5400",
+    "spread_regime": "wide",
+    "k": 20,
+    "n": 263,
+    "mean_residual_vs_pair_pooled_baseline": 4.4746631410747755e-17,
+    "t_stat": 9.364443918337161e-16,
+    "frac_pos": 0.30798479087452474,
+    "n_days": 3,
+    "all_3_days_same_sign_as_pooled": false
+  }
+]

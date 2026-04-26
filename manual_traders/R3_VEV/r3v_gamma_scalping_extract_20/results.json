@@ -258,5 +258,45 @@
       "backtest_stdout_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v24_round3_all.stdout.txt",
       "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v22_v23_v24.json"
     }
+  },
+  {
+    "iteration": 25,
+    "trader_file": "trader_v25.py",
+    "strategy_description": "Pivot to **vouchers_final_strategy** only (no BS/gamma legacy): off if either VEV_5200 or VEV_5300 spread >2; on = long-extract target + MM only 5200/5300 at BBO+1. Round 3 days 0-3. **Worse total 7799**; day 3 extract -636 (mid-forward toy + ask lifting failed under worse fills).",
+    "total_profit": 7799,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v25.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_worse": {
+      "total_profit": 7799,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v25_round3_worse.log",
+      "backtest_stdout_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v25_round3_worse.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v25_v26.json"
+    },
+    "backtest_all": {
+      "total_profit": 8094,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v25_round3_all.log",
+      "backtest_stdout_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v25_round3_all.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v25_v26.json"
+    }
+  },
+  {
+    "iteration": 26,
+    "trader_file": "trader_v26.py",
+    "strategy_description": "Same as v25 but **no long-extract accumulation on tape day >= 3** (surface MM only last day). Fixes day-3 extract bleed. **Worse total 8435** (all 8730). Still far below 200k/day floor; hydrogel never traded.",
+    "total_profit": 8435,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v26.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_worse": {
+      "total_profit": 8435,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v26_round3_worse.log",
+      "backtest_stdout_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v26_round3_worse.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v25_v26.json"
+    },
+    "backtest_all": {
+      "total_profit": 8730,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v26_round3_all.log",
+      "backtest_stdout_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v26_round3_all.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v25_v26.json"
+    }
   }
 ]

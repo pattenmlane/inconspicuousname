@@ -1,0 +1,65 @@
+running algorithm '/workspace/manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v25.py'...
+Backtesting /workspace/manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v25.py for round: 3 day: 0
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: -14
+VEV_5200: 82
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 420
+HYDROGEL_PACK: 0
+Total profit: 488
+Backtesting /workspace/manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v25.py for round: 3 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 873
+VEV_5200: 314
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 1,498
+HYDROGEL_PACK: 0
+Total profit: 2,684
+Backtesting /workspace/manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v25.py for round: 3 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 1,828
+VEV_5200: 918
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 2,514
+HYDROGEL_PACK: 0
+Total profit: 5,260
+Backtesting /workspace/manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v25.py for round: 3 day: 3
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 2
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: -636
+HYDROGEL_PACK: 0
+Total profit: -634
+Profit summary:
+Round 3 day 0: 488
+Round 3 day 1: 2,684
+Round 3 day 2: 5,260
+Round 3 day 3: -634
+Total profit: 7,799
+
+Successfully saved backtest results to manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v25_round3_worse.log

@@ -481,6 +481,6 @@
       "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v70_2026-04-26_r4_worse_f10-14.log",
       "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v70.py"
     ],
-    "used_to_decide": "Ship **`trader_v70.py`** as current best (+**229** vs v50, +**415** vs v46); do not shrink W without re-validation. Optional: **v69** (+3693) if 11 feels overfit to 3 days. Full flatten-cap grid in **`results.json`** iterations **43–56**."
+    "used_to_decide": "Ship **`trader_v70.py`** as current best (+**229** vs v50, +**415** vs v46); do not shrink W without re-validation. Optional: **v69** (+3693) if 11 feels overfit to 3 days. **`results.json`** iterations **43–56** log **v59–v72** (W sweep + flatten grid)."
   }
 ]

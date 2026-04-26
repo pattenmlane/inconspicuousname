@@ -1,0 +1,65 @@
+running algorithm '/workspace/manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v22.py'...
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v22.py for round: 3 day: 0
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 21
+VELVETFRUIT_EXTRACT: 198
+HYDROGEL_PACK: 0
+Total profit: 219
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v22.py for round: 3 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: -34
+VEV_4000: 226
+VELVETFRUIT_EXTRACT: -101
+HYDROGEL_PACK: 0
+Total profit: 92
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v22.py for round: 3 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 287
+VELVETFRUIT_EXTRACT: 284
+HYDROGEL_PACK: 0
+Total profit: 571
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v22.py for round: 3 day: 3
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 56
+HYDROGEL_PACK: 0
+Total profit: 56
+Profit summary:
+Round 3 day 0: 219
+Round 3 day 1: 92
+Round 3 day 2: 571
+Round 3 day 3: 56
+Total profit: 938
+
+Successfully saved backtest results to backtests/2026-04-26_04-03-40.log

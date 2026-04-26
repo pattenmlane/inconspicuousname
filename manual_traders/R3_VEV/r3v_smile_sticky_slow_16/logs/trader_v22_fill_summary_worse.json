@@ -1,0 +1,7 @@
+{
+  "trader_file": "trader_v22.py",
+  "match_trades": "worse",
+  "log_path": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v22_backtest_worse.log",
+  "total_profit": 938,
+  "round_3_days": 4
+}

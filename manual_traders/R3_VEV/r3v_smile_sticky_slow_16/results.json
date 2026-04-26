@@ -218,5 +218,24 @@
     "backtest_round": 3,
     "backtest_note": "After merge, dataset includes 4 historical days; totals not directly comparable to v20 (3 days) without re-run on subset.",
     "match_trades_primary": "worse"
+  },
+  {
+    "iteration": 22,
+    "trader_file": "trader_v22.py",
+    "strategy_description": "vouchers_final_strategy **only** (no Black-Scholes, spline, EWMA smile): joint s5200/s5300<=(2) = **tight**. Tight: aggressive extract (EWMA fair, width=1, size=55) + VEV all strikes mid-BBO MM, shift=0.8+0.22*book, extra+6 on VEV_5200/5300. Wide: **no extract**; VEV **5000-5500 only** smaller (5) wider (1.6+0.38*book). Rationale: STRATEGY optional layer 'long extract short hold when gate on' for mid; we avoid wide-regime extract; inclineGod: spread-driven width, no price-only option model.",
+    "backtest_worse": {
+      "total_profit": 938,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v22.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v22_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v22_fill_summary_worse.json"
+    },
+    "backtest_all": {
+      "total_profit": 5053,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v22.py 3 --data Prosperity4Data --match-trades all --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v22_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v22_fill_summary_all.json"
+    },
+    "backtest_round": 3,
+    "match_trades_primary": "worse"
   }
 ]

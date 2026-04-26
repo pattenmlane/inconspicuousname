@@ -204,5 +204,15 @@
       "round3work/vouchers_final_strategy/analyze_vev_5200_5300_tight_gate_r3.py"
     ],
     "used_to_decide": "Sonic: wide books = high execution noise \u2014 v21 down-sizes to 0.4x and widens quotes; tight gate = full risk-on sizing. Merged main added Round 3 day-3 data so v21 PnL spans 4 days (8496 worse) \u2014 not apples-to-apples vs v20's 3-day 1056; for 200k/day goal next steps are extract-only gating, tighter u_MM in wide regime, and/or 3-day-only compare run."
+  },
+  {
+    "iteration": 22,
+    "analysis_description": "Grounded in **STRATEGY.txt** + **ORIGINAL_DISCORD_QUOTES.txt** and existing **outputs/r3_tight_spread_summary.txt** (tight vs not-tight forward extract mid, corr spreads). v22 removes all legacy **smile/IV** machinery: pure BBO **spread**-scaled passive quotes around **mid** for VEV; **joint gate** toggles **extract** (only tight) and **VEV** universe (core-only wide).",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt"
+    ],
+    "used_to_decide": "Falsified vs v21 on **worse** (938 < 8496 for same 4-day backtest): naive mid+spread MM without an options fair is heavily picked off on wings/4500. For vouchers_final_strategy + profit goal, a hybrid is likely needed: keep **Sonic gate** and **inclineGod spread** logic but restore a **light** BS fair (or vertical-only structure) for VEV \u2014 or restrict v22-style quotes to 5200/5300/atm band only. Next iteration: v23 candidate = v21 engine + extract **only in tight** (drop extract in wide) to align STRATEGY without dropping smile PnL entirely."
   }
 ]

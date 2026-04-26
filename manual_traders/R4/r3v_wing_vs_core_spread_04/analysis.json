@@ -370,7 +370,7 @@
   },
   {
     "iteration": 9,
-    "analysis_description": "r4_act_gate_coverage_at_fire.py: at **fire_ts = print_ts+100**, joint Sonic tight holds for **7/15** Mark67\u219222+tight-print signals and **6/12** Mark67\u219249+tight-print signals (act_gate_tight_at_fire_coverage.json + per-row CSVs). So v8\u2019s scarcity of SUBMISSION fills is **not** mainly \u201cbook always wide at fire\u201d. trader_v9 removes act gate vs v8: **same 3** SUBMISSION rows, total PnL **28** vs **29.5** (worse=all) \u2014 act gate was marginal; **worse** matching caps fills on this path regardless.",
+    "analysis_description": "r4_act_gate_coverage_at_fire.py: at **fire_ts = print_ts+100**, joint Sonic tight holds for **7/15** Mark67\u219222+tight-print signals and **6/12** Mark67\u219249+tight-print signals (act_gate_tight_at_fire_coverage.json + per-row CSVs) \u2014 so v8\u2019s low fill count is **not** explained by \u201calways wide at fire\u201d. trader_v9 removes act gate vs v8: SUBMISSION rows **3** vs **1**, total PnL **28** vs **29.5** (worse=all) \u2014 two extra fires filled but day-3 MTM dragged total slightly below v8.",
     "analysis_outputs": [
       "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_act_gate_coverage_at_fire.py",
       "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/act_gate_tight_at_fire_coverage.json",

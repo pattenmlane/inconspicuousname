@@ -397,5 +397,29 @@
       "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v9.json"
     ],
     "used_to_decide": "**Reject** naive **Mark01→Mark22** surface-print skip as a gate-time MM rule; keep **v8**-style **day-3 calendar** cut or pursue **narrower** counterparty conditions (e.g. burst-only, or skip only when print **and** adverse mid move) before more sims."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "**Day-3 hybrid:** `r4_day3_joint_tight_m01_m22_tick_coverage.py` → **4614** day-3 timestamps with joint-tight 5200+5300 books; **72** (**1.56%**) also have a **Mark01→Mark22** print on 5200 or 5300 that same timestamp (`r4_day3_joint_tight_m01_m22_coverage.csv`). **`trader_v10`**: like **v5** on days 1–2; on day 3 skip surface MM **only** on requote ticks where that print appears (else quote). **Worse 8924** vs **v8** **9157** — the day-3 VEV drag is **not** explained by that print alone: when MM runs without it, **VEV_5200** still loses **−233** under worse (5300 **0** in printed summary). **Conclusion:** keep **v8** as best worse rule in this series; counterparty skip on day 3 is **too narrow** to replace calendar surface-off.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/r4_day3_joint_tight_m01_m22_tick_coverage.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_day3_joint_tight_m01_m22_coverage.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v10.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v10_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v10_round4_all.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v10.json"
+    ],
+    "used_to_decide": "**Do not** replace **v8** with day-3 **Mark01→22** print gating alone; losses occur on joint-tight ticks **without** that print. Next ideas (not run here): day-3 **5200-only** off, inventory cap, or burst-conditioned skip."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "**Ablation:** **`trader_v11`** = **v5** but **no 5200 MM on tape day 3** (5300 unchanged). Falsifies the post-**v10** guess that **5200** alone caused day-3 drag: worse **8298**, day 3 **VEV_5300 −859** and **5200 0** — inventory/adverse flow **moves to the remaining leg**. Reinforces **v8** (both legs off day 3) as the right coarse calendar cut for this stack.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v11.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v11_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v11_round4_all.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v11.json"
+    ],
+    "used_to_decide": "**Reject** one-legged day-3 surface MM; keep **two-leg** calendar off (**v8**) or symmetric two-leg rules."
   }
 ]

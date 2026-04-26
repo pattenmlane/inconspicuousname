@@ -339,5 +339,16 @@
       "results.json"
     ],
     "used_to_decide": "Do **not** ship v6 for worse-fill objective; keep **v4**. Optional: shrink bias window or bias strength; or only bias **bids** not asks if revisiting."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "**trader_v7** (v4 + M67→M49 bid-only +1 tick on extract bid anchor for 250 ts, gate-off): **worse 47,083** (−200 vs v4 47,283). Per-product log: **day3 extract** 3,385 vs v4 **3,585** — the bid skew still worsened worse-fill extract on day3; days 1–2 extract unchanged vs v4. **All 50,196** (−332 vs v4) — bid-only does not replicate v6’s all uplift.",
+    "analysis_outputs": [
+      "trader_v7.py",
+      "backtest_logs/trader_v7_round4_worse.log",
+      "backtest_logs/trader_v7_round4_all.log",
+      "results.json"
+    ],
+    "used_to_decide": "Abandon symmetric and bid-only **fi** nudges for this tape under worse; **v4** remains best worse baseline. Any M67→M49 extract rule likely needs **different** action (e.g. skip sell only, or size cap) + longer sim grid."
   }
 ]

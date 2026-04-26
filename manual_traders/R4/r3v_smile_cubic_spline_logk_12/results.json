@@ -310,5 +310,49 @@
     },
     "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v6.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-merge-pnl",
     "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v6.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-merge-pnl"
+  },
+  {
+    "iteration": 7,
+    "round": 4,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "**trader_v4** + same M67→M49 buy-aggr window as v6, but **bid-only** skew: `bid_p = min(bb+1, fi-edge+1)` when active; **ask** unchanged vs v4 (v6 lifted both sides via `fi+=1`). Gate-off-only unchanged.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 47083,
+      "backtest_log_file": "backtest_logs/trader_v7_round4_worse.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": {
+          "day1": 23248,
+          "day2": 10787,
+          "day3": 13048
+        },
+        "non_zero_pnl_products_per_day": {
+          "day1": 4,
+          "day2": 3,
+          "day3": 4
+        },
+        "note": "−200 vs v4 worse (47283). Extract day3 vs v4: 3385 vs 3585 (−200); d1–2 extract lines match v4."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 50196,
+      "backtest_log_file": "backtest_logs/trader_v7_round4_all.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": {
+          "day1": 25980,
+          "day2": 13390,
+          "day3": 10826
+        },
+        "non_zero_pnl_products_per_day": {
+          "day1": 11,
+          "day2": 10,
+          "day3": 11
+        },
+        "note": "−332 vs v4 all (50528); bid-only bias does not recover v6’s all-mode gain without symmetric ask lift."
+      }
+    },
+    "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v7.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-merge-pnl",
+    "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v7.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-merge-pnl"
   }
 ]

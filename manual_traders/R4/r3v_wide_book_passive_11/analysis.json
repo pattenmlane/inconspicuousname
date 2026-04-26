@@ -397,5 +397,19 @@
       "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v14_d123_all_full.log"
     ],
     "used_to_decide": "Prefer **v14** over v10/v11–v13 on this slice; next: cap **max daily** aggressive notional or pair with **mean-revert sell** after large long drift."
+  },
+  {
+    "iteration": 17,
+    "round": 4,
+    "analysis_description": "Spec cross-check (ops ping, `suggested direction.txt` + phase gates): verified `analysis.json` already contains `round4_phase1_complete` (iteration 0), `round4_phase2_complete` (iteration 1), and `round4_phase3_complete` (iteration 2) with bullets, ranked edges, and null findings per Phase 1–3 text. Spot-checked that referenced `analysis_outputs_r4_phase{1,2,3}/` and analysis scripts exist on disk (no missing files in path scan). No duplicate Phase pipelines re-run this turn.",
+    "round4_spec_compliance_audit": {
+      "phase1_gate": "Satisfied in iteration 0: five bullets with output paths + conclusions; `top_5_tradeable_edges`; `negative_or_null_findings`; `horizon_definition` (K = mid(t+K rows) − mid(t) per day/product).",
+      "phase2_gate": "Satisfied in iteration 1: `top_5_tradeable_edges_phase2`, `phase2_null_or_negative`, `interaction_with_phase1`, outputs under `analysis_outputs_r4_phase2/`.",
+      "phase3_gate": "Satisfied in iteration 2: `r3_convention_match`, Sonic replication on R4, inclineGod spread–spread + spread–fwd panels, `counterparty_x_gate_synthesis`, `ranked_tier_edges_phase3`, `does_gate_clean_signal_sonic_claim`.",
+      "r3_source_docs": "STRATEGY / Discord context was applied in Phase 3 narrative; see iteration 2 `used_to_decide` and `p3_06_mark01_22_gate_interaction_summary.txt` for gate-vs-counterparty story.",
+      "on_disk_path_spotcheck": "Automated: strings under `manual_traders/R4/r3v_wide_book_passive_11/` ending in .csv/.txt/.py referenced from phase blocks — all present in workspace at audit time.",
+      "strategy_continuation": "Post-phase sim track: `trader_r4_v14.py` is current best on R4 days 1–3 worse (`results.json` iteration 16); Tier-A `Mark 67→Mark 22` + Sonic gate + buy-at-ask sizing."
+    },
+    "used_to_decide": "No Phase 1–3 re-execution required until new ROUND_4 tape days or methodology change; proceed with out-of-sample days or production-hardening of v14 if assigned."
   }
 ]

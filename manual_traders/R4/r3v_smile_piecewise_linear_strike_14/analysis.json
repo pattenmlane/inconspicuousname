@@ -381,5 +381,21 @@
       "vev_fwd_joint_gate": "Forward on the traded voucher's own mid series (not extract).",
       "trader_v10_vs_v2": "Small PnL gap vs v2; optional refinement only."
     }
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "Lead–lag: after Mark01→Mark22 VEV print, extract fwd20 vs next extract trade within W (timestamp units); top extract pairs in long window. Sim: trader_v11 joint gate + extract spread exactly 2–3.",
+    "analysis_outputs": [
+      "run_r4_m01_m22_vev_extract_leadlag.py",
+      "analysis_outputs/r4_m01_m22_vev_extract_leadlag_fwd20.json",
+      "trader_v11.py",
+      "backtest_logs/trader_v11_worse.log",
+      "backtest_logs/trader_v11_all.log"
+    ],
+    "used_to_decide": "**Lead–lag (r4_m01_m22_vev_extract_leadlag_fwd20.json):** n=1339 M01→M22 VEV events with valid extract fwd20. **Very short W=200:** next extract in (ts, ts+200] has **lower** mean fwd20 (**−0.26**, n=118) than no-soon-extract (**+0.35**, n=1221) — possible microstructure **pressure** in the immediate tick neighborhood (interpret cautiously). **W=1000:** soon-extract mean **+0.38** vs **+0.25** (n=516 vs 823) — mild reversal. **W≥20000:** essentially all events have some extract within window; pooled mean **~+0.30**. First extract after basket within 100000: dominated by **Mark55↔Mark14** and **Mark55↔Mark01** pairs (see JSON top list). **trader_v11** (extract spread **2 or 3** only + joint gate): total **636** vs v2 **13,236** — mid-width extract slice is **too sparse** in the sim for this passive style; prefer v2 or v10 band.",
+    "round4_post_phase3_notes": {
+      "leadlag_windows": "W in raw tape timestamp units; next extract = first extract trade with ts_extract > ts_vev same csv day.",
+      "trader_v11_vs_v2": "Spread {2,3} filter collapses activity and PnL."
+    }
   }
 ]

@@ -1,0 +1,95 @@
+{
+  "n_m01_m22_vev_with_extract_fwd20": 1339,
+  "by_window": {
+    "200": {
+      "extract_trade_within_(ts_vev, ts_vev+W]": {
+        "n": 118,
+        "mean": -0.2627118644067797
+      },
+      "no_extract_or_outside_window": {
+        "n": 1221,
+        "mean": 0.3533988533988534
+      }
+    },
+    "1000": {
+      "extract_trade_within_(ts_vev, ts_vev+W]": {
+        "n": 516,
+        "mean": 0.3808139534883721
+      },
+      "no_extract_or_outside_window": {
+        "n": 823,
+        "mean": 0.24787363304981774
+      }
+    },
+    "5000": {
+      "extract_trade_within_(ts_vev, ts_vev+W]": {
+        "n": 1241,
+        "mean": 0.23690572119258663
+      },
+      "no_extract_or_outside_window": {
+        "n": 98,
+        "mean": 1.086734693877551
+      }
+    },
+    "20000": {
+      "extract_trade_within_(ts_vev, ts_vev+W]": {
+        "n": 1339,
+        "mean": 0.29910380881254667
+      },
+      "no_extract_or_outside_window": {
+        "n": 0
+      }
+    },
+    "100000": {
+      "extract_trade_within_(ts_vev, ts_vev+W]": {
+        "n": 1339,
+        "mean": 0.29910380881254667
+      },
+      "no_extract_or_outside_window": {
+        "n": 0
+      }
+    }
+  },
+  "top_extract_pairs_first_extract_in_(ts_vev, ts_vev+100000]": [
+    {
+      "pair": "Mark 55->Mark 14",
+      "n": 338
+    },
+    {
+      "pair": "Mark 14->Mark 55",
+      "n": 299
+    },
+    {
+      "pair": "Mark 55->Mark 01",
+      "n": 279
+    },
+    {
+      "pair": "Mark 01->Mark 55",
+      "n": 255
+    },
+    {
+      "pair": "Mark 67->Mark 22",
+      "n": 64
+    },
+    {
+      "pair": "Mark 67->Mark 49",
+      "n": 52
+    },
+    {
+      "pair": "Mark 55->Mark 22",
+      "n": 26
+    },
+    {
+      "pair": "Mark 49->Mark 22",
+      "n": 15
+    },
+    {
+      "pair": "Mark 49->Mark 55",
+      "n": 8
+    },
+    {
+      "pair": "Mark 22->Mark 55",
+      "n": 3
+    }
+  ]
+}

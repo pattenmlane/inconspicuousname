@@ -490,5 +490,59 @@
         }
       }
     }
+  },
+  {
+    "iteration": 10,
+    "trader_file": "trader_v10_r4_burst_extract_v9_plus_joint_gate.py",
+    "strategy_description": "v9 (burst M01\u219222 + extract spread<=5 + half lot day3) with **Sonic joint tight** on 5200/5300 required.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 9491,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v10_r4_burst_extract_v9_plus_joint_gate.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v10_burst_v9_joint_worse.json",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v10_burst_v9_joint_worse.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "1": 3442,
+          "2": 6202,
+          "3": -153,
+          "total": 9491
+        },
+        "fills": {
+          "submission_trade_count": 135,
+          "submission_filled_abs_qty": 600,
+          "submission_by_symbol": {
+            "VELVETFRUIT_EXTRACT": {
+              "trade_count": 135,
+              "filled_abs_qty": 600
+            }
+          }
+        }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 9491,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v10_r4_burst_extract_v9_plus_joint_gate.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v10_burst_v9_joint_all.json",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v10_burst_v9_joint_all.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "1": 3442,
+          "2": 6202,
+          "3": -153,
+          "total": 9491
+        },
+        "fills": {
+          "submission_trade_count": 135,
+          "submission_filled_abs_qty": 600,
+          "submission_by_symbol": {
+            "VELVETFRUIT_EXTRACT": {
+              "trade_count": 135,
+              "filled_abs_qty": 600
+            }
+          }
+        }
+      }
+    }
   }
 ]

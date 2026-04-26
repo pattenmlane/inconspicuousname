@@ -371,5 +371,18 @@
       },
       "used_to_decide": "Confirms day-3 drag is **scale-dominated** in sim for this signal family: halving day-3 size nearly removes that day\u2019s loss without dropping the microstructure filter from v8."
     }
+  },
+  {
+    "round4_v10_joint_gate_stacked_on_v9": {
+      "trader": "manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v10_r4_burst_extract_v9_plus_joint_gate.py",
+      "logic": "Identical to v9 plus **Sonic joint tight** (VEV_5200 & VEV_5300 L1 spread <=2) required to fire.",
+      "tape_binding_count": "Among burst timestamps with s_ext<=5 (n=257 in r4_burst_m01_m22_rows_with_gate_fwd20.csv), **joint_tight is false on exactly 1 row**: day 3, timestamp 943900, n_vev=3, s_ext=5, fwd20_ex=+2.0 (would have been a small favorable mid move but sim does not trade it under v10).",
+      "backtest_round4_days_1_3": {
+        "worse_total": 9491,
+        "all_total": 9491,
+        "identical_to_v9": true
+      },
+      "used_to_decide": "After v8/v9 extract-spread filter, the Sonic gate is **almost non-binding** for M01\u219222 bursts (same lesson as v2 vs v1, now on the filtered family). Prefer v9 for simplicity unless a future filter creates more wide-gate bursts worth studying."
+    }
   }
 ]

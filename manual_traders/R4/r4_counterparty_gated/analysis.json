@@ -305,5 +305,17 @@
       "manual_traders/R4/r4_counterparty_gated/backtest_logs/v4_all.log"
     ],
     "used_to_decide": "Champion for this MM family remains trader_v1 (26,194 worse). Next: inventory-aware 5300 or take-side logic keyed to market_trades counterparty (requires richer sim than quote-only half-width nudges)."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "Tape-scheduled counterparty fade (no runtime market_trades in trader.run): built signals_m01_m22_5300_sonic_tight.json (132 ticks) where historical trade is Mark01→Mark22 on VEV_5300 AND Sonic joint gate holds on tape at same (day,timestamp). trader_v5 = v1 + skip VEV_5300 bid only on those ticks when live joint gate is on.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_gated/run_r4_build_m01_m22_5300_sonic_keys.py",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/signals_m01_m22_5300_sonic_tight.json",
+      "manual_traders/R4/r4_counterparty_gated/trader_v5.py",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v5_worse.log",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v5_all.log"
+    ],
+    "used_to_decide": "Backtest PnL ties trader_v1 exactly (26,194 worse / 24,301 all): selective bid removal on 132 clock ticks does not change aggregate fills vs naive MM — either bids were not marginal at those instants or inventory path nets out. Validates rule as safe overlay; next step is aggressive take/fade using same key set or own_trades feedback."
   }
 ]

@@ -102,5 +102,15 @@
       "analysis_outputs/strike_edge_greeks_summary.csv"
     ],
     "used_to_decide": "Implemented v21/v22 from v11 with take-edge asymmetry: after down extract step, require more buy-call edge and less sell-call edge; reverse on up steps. Parameter sweep ASYM_EDGE_K=0.20 (v21) and 0.35 (v22). Both backtests tied v11 exactly at 68,908 total under worse fills, with identical day totals. No measurable gain from added complexity; keep v11 as preferred tie-break."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Read `round3work/vouchers_final_strategy/STRATEGY.txt` (merged from main): joint gate when VEV_5200 and VEV_5300 both have BBO spread (ask1-bid1) \u2264 2; forward extract mid (K=20) higher when both tight; r3_tight_spread_summary (day 0) P(tight)\u22480.10, mean(FWD)|tight \u2248 0.55 vs \u2248-0.07 not-tight, t-stat \u22484.7. Spreads: corr(s5200,s5300)\u22480.22. STRATEGY.txt stresses mid \u2260 PnL after spread and worse-matching.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_6panel.png"
+    ],
+    "used_to_decide": "trader_v23 = v11 + mild gate: tight \u2192 +5% VEV sizes, take_edge mult 0.98, extract skew 0.03; wide \u2192 0.95/1.04/0.02. HYDRO restated like v11. Worse: total 68,304 over 4 backtester days; all: 70,332. Slightly below v11 on comparable head-to-head; joint gate as implemented does not help yet. Next: try gate that only modulates EXTRACT, or only size when both tight, with smaller deltas."
   }
 ]

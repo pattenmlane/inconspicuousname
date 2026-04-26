@@ -1,0 +1,37 @@
+Round 4 Phase 1 — automated summary (see CSVs in same folder)
+Trade rows: 4281 | Event horizons rows: 12843
+
+Burst vs control extract forward (mean):
+ K  burst     mean  median  count
+ 5  False 0.098342     0.0   1749
+ 5   True 0.023936     0.0    376
+20  False 0.033448     0.0   1749
+20   True 0.215426     0.0    376
+
+Top participant cells by |t| (n>=40, aggr_buy/sell, tight regime, K=20):
+participant side_role aggressor_filter  K              symbol spread_regime  burst_only     n      mean  median  frac_pos    t_stat    abs_t
+    Mark 67     buyer         aggr_buy 20 VELVETFRUIT_EXTRACT         tight       False 161.0  1.841615    1.50  0.652174  5.865156 5.865156
+    Mark 49    seller         aggr_buy 20 VELVETFRUIT_EXTRACT         tight       False 104.0  1.831731    2.00  0.682692  4.952596 4.952596
+    Mark 22    seller         aggr_buy 20 VELVETFRUIT_EXTRACT         tight       False  86.0  2.034884    1.50  0.651163  4.554197 4.554197
+    Mark 14    seller         aggr_buy 20 VELVETFRUIT_EXTRACT         tight       False 316.0  0.604430    1.00  0.522152  2.775253 2.775253
+    Mark 01    seller         aggr_buy 20 VELVETFRUIT_EXTRACT         tight       False 131.0 -0.820611   -1.00  0.381679 -2.221860 2.221860
+    Mark 01     buyer        aggr_sell 20            VEV_5400         tight        True 213.0  0.086854    0.00  0.305164  1.705263 1.705263
+    Mark 55     buyer         aggr_buy 20 VELVETFRUIT_EXTRACT         tight       False 469.0  0.277186    0.00  0.492537  1.493699 1.493699
+    Mark 01     buyer        aggr_sell 20 VELVETFRUIT_EXTRACT         tight       False 166.0  0.445783    0.00  0.463855  1.316496 1.316496
+    Mark 01     buyer        aggr_sell 20            VEV_5500         tight        True 283.0  0.031802    0.00  0.137809  1.293863 1.293863
+    Mark 22    seller        aggr_sell 20            VEV_5400         tight        True 225.0  0.060000    0.00  0.302222  1.174905 1.174905
+    Mark 14     buyer        aggr_sell 20       HYDROGEL_PACK         tight       False 461.0  0.455531    1.00  0.514100  1.130295 1.130295
+    Mark 14    seller         aggr_buy 20       HYDROGEL_PACK         tight       False 466.0 -0.439914    0.00  0.495708 -1.108558 1.108558
+    Mark 22    seller        aggr_sell 20            VEV_5300         tight        True 160.0 -0.143750    0.00  0.381250 -1.106725 1.106725
+    Mark 38     buyer         aggr_buy 20       HYDROGEL_PACK         tight       False 474.0 -0.410338    0.00  0.497890 -1.048437 1.048437
+    Mark 14     buyer        aggr_sell 20 VELVETFRUIT_EXTRACT         tight       False 301.0 -0.227575    0.00  0.418605 -0.965278 0.965278
+    Mark 01     buyer        aggr_sell 20            VEV_5300         tight        True 132.0 -0.121212    0.00  0.393939 -0.840587 0.840587
+    Mark 22    seller        aggr_sell 20            VEV_5500         tight        True 290.0  0.020690    0.00  0.134483  0.835645 0.835645
+    Mark 38    seller        aggr_sell 20       HYDROGEL_PACK         tight       False 472.0  0.308263    1.00  0.508475  0.771243 0.771243
+    Mark 38     buyer         aggr_buy 20            VEV_4000         tight       False 185.0  0.143243    0.00  0.481081  0.478937 0.478937
+    Mark 14    seller         aggr_buy 20            VEV_4000         tight       False 185.0  0.143243    0.00  0.481081  0.478937 0.478937
+    Mark 14     buyer        aggr_sell 20            VEV_4000         tight       False 197.0 -0.152284    0.00  0.451777 -0.471230 0.471230
+    Mark 38    seller        aggr_sell 20            VEV_4000         tight       False 197.0 -0.152284    0.00  0.451777 -0.471230 0.471230
+    Mark 22    seller        aggr_sell 20            VEV_5200         tight        True  44.0  0.227273   -0.25  0.477273  0.450176 0.450176
+    Mark 55    seller        aggr_sell 20 VELVETFRUIT_EXTRACT         tight       False 489.0  0.032720    0.00  0.439673  0.172441 0.172441
+    Mark 01     buyer        aggr_sell 20            VEV_6000         tight        True 317.0  0.000000    0.00  0.000000       NaN      NaN

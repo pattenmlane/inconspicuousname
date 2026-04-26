@@ -1,0 +1,114 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Merged origin/main for Prosperity4Data/ROUND_4 (days 1–3) and round4work/. Ran Phase 1 pipeline `r4_phase1_counterparty_analysis.py`: merges trades with BBO at trade timestamp, infers aggressor (price>=ask aggr_buy, price<=bid aggr_sell), forward mid = mid(ts+K*100)−mid(ts) for K∈{5,20,100} on the 100-tick grid; spread_regime = tight if TOB spread ≤ day×symbol median else wide; burst = ≥2 symbols same (day,timestamp). Cross-asset fwd columns for VELVETFRUIT_EXTRACT and HYDROGEL_PACK in events CSV.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_jump_gap_filter_17/r4_phase1_counterparty_analysis.py",
+      "manual_traders/R4/r3v_jump_gap_filter_17/r4_t_years.py",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/participant_forward_stats.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/participant_forward_stats_top.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/events_with_cell_residual.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/pair_symbol_residual_summary.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/leave_one_day_residuals.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/graph_edges.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/graph_summary.txt",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/two_hop_chain_counts.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/burst_multi_symbol.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/burst_vs_control_extract_fwd.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/adverse_proxy_k20_by_pair.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/phase1_automated_summary.txt",
+      "round4work/outputs/r4_initial_analysis_summary.txt",
+      "round4work/r4_counterparty_initial_sketch.py"
+    ],
+    "used_to_decide": "Phase 1 gate satisfied in `round4_phase1_complete`. Note: `TradingState.market_trades` is never populated in prosperity4bt test_runner (always {}), so live-strategy counterparty hooks need tape CSV ingestion or an engine change.",
+    "round4_phase1_complete": {
+      "phase": 1,
+      "bullet_summaries": [
+        {
+          "bullet": "1) Participant-level alpha / predictiveness",
+          "outputs": [
+            "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/participant_forward_stats.csv",
+            "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/participant_forward_stats_top.csv"
+          ],
+          "conclusion": "Strongest pattern: aggressive BUYs on VELVETFRUIT_EXTRACT when Mark 22 or Mark 49 is seller show mean forward extract mid +~1.8 to +2.1 at K=5 with high t-stat; Mark 67 as buyer similar. Per-day means for Mark67/Mark22 extract K=5 stay positive on days 1–3."
+        },
+        {
+          "bullet": "2) Deviation from bot baseline (cell means + residuals)",
+          "outputs": [
+            "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/events_with_cell_residual.csv",
+            "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/pair_symbol_residual_summary.csv",
+            "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/leave_one_day_residuals.csv"
+          ],
+          "conclusion": "Residuals vs (buyer,seller,symbol,regime,K) cell means show Mark 01→Mark 22 on VEV_5300 has negative LOO residuals on held-out day 1 at K=5/20; Mark 14→Mark 38 hydro stays positive — structured basket residuals on the 01→22 pipe."
+        },
+        {
+          "bullet": "3) Sequence / graph methods",
+          "outputs": [
+            "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/graph_edges.csv",
+            "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/graph_summary.txt",
+            "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/two_hop_chain_counts.csv"
+          ],
+          "conclusion": "Directed graph is sparse (19 edges); Mark 14 is count hub; Mark 01→Mark 22 dominates voucher basket prints; consecutive A→B→C chains reflect same routing."
+        },
+        {
+          "bullet": "4) Burst structure",
+          "outputs": [
+            "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/burst_multi_symbol.csv",
+            "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/burst_vs_control_extract_fwd.csv"
+          ],
+          "conclusion": "Multi-symbol same-timestamp bursts vs random timestamps: extract forward mean at K=20 is higher on bursts (~0.22 vs ~0.03); K=5 similar — burst signal is longer horizon."
+        },
+        {
+          "bullet": "5) Adverse selection vs inventory (proxy)",
+          "outputs": [
+            "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/adverse_proxy_k20_by_pair.csv"
+          ],
+          "conclusion": "Ranked mean fwd_same at K=20 by (buyer,seller) under aggr_buy/aggr_sell flags pairs with worst markouts for passive liquidity (see CSV)."
+        }
+      ],
+      "top_5_tradeable_edges": [
+        {
+          "rank": 1,
+          "rule": "After aggressive BUY on VELVETFRUIT_EXTRACT with Mark 22 as seller, extract mid rises ~+2 ticks by K=5 on average",
+          "effect": "mean fwd_same ≈ +2.0 at K=5; per-day mean +1.8–+2.3 on days 1–3",
+          "n": "~86 prints pooled; validate in sim with worse fills before sizing",
+          "days": [1, 2, 3]
+        },
+        {
+          "rank": 2,
+          "rule": "Same with Mark 49 as passive seller on aggressive extract buys",
+          "effect": "mean ≈ +1.8 at K=5; t≈9.8",
+          "n": "~104",
+          "days": [1, 2, 3]
+        },
+        {
+          "rank": 3,
+          "rule": "Mark 67 as buyer on aggressive extract buys — forward extract drift",
+          "effect": "mean ≈ +2.0 at K=5; all three days",
+          "n": "~161",
+          "days": [1, 2, 3]
+        },
+        {
+          "rank": 4,
+          "rule": "Multi-symbol same-timestamp burst → higher extract forward at K=20 vs random time control",
+          "effect": "mean burst ≈ +0.22 vs control ≈ +0.03",
+          "n": "376 burst vs 1749 controls (extract subset)",
+          "days": [1, 2, 3]
+        },
+        {
+          "rank": 5,
+          "rule": "Mark 22 as seller on aggressive SELLs on VEV_5300 during bursts — negative short-horizon same-symbol fwd (fade candidate)",
+          "effect": "mean fwd_same ≈ −0.20 at K=5; t≈−3.3",
+          "n": "~160",
+          "days": [1, 2, 3]
+        }
+      ],
+      "negative_or_null_findings": [
+        "K=5 extract forward after bursts is not meaningfully different from random controls; burst signal mainly at K=20.",
+        "Most per-participant × VEV cells have too few prints for stable inference outside extract and 01→22 lanes.",
+        "Backtester `TradingState.market_trades` is empty during `Trader.run` — tape CSV is authoritative for Mark conditioning until runner exposes trades.",
+        "round4work/round4description.txt TTE: only VEV_5000 example; `r4_t_years.py` uses 5−day at open + R3-style intraday wind (confirm if spec updates)."
+      ]
+    }
+  }
+]

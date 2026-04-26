@@ -1,0 +1,25 @@
+=== Directed pair summary ===
+Unique directed edges: 19
+  Mark 01 -> Mark 22: count=1339 notional=32427
+  Mark 01 -> Mark 55: count=260 notional=7432924
+  Mark 14 -> Mark 22: count=83 notional=14577
+  Mark 14 -> Mark 38: count=728 notional=20434344
+  Mark 14 -> Mark 55: count=316 notional=9235831
+  Mark 22 -> Mark 38: count=17 notional=427078
+  Mark 22 -> Mark 49: count=7 notional=283215
+  Mark 22 -> Mark 55: count=18 notional=482557
+  Mark 38 -> Mark 14: count=714 notional=20850351
+  Mark 38 -> Mark 22: count=19 notional=327140
+  Mark 49 -> Mark 22: count=12 notional=467190
+  Mark 49 -> Mark 55: count=5 notional=136283
+  Mark 55 -> Mark 01: count=244 notional=7220079
+  Mark 55 -> Mark 14: count=331 notional=9254679
+  Mark 55 -> Mark 22: count=14 notional=325980
+Hub (total incident trade count on directed edges):
+  Mark 14: 2172
+  Mark 01: 1843
+  Mark 22: 1584
+  Mark 38: 1478
+  Mark 55: 1198
+  Mark 67: 165
+  Mark 49: 122

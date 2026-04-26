@@ -1,0 +1,53 @@
+running algorithm '/workspace/manual_traders/R4/r3v_jump_gap_filter_17/trader_v0.py'...
+Backtesting /workspace/manual_traders/R4/r3v_jump_gap_filter_17/trader_v0.py for round: 4 day: 1
+  0%|          | 0/10000 [00:00<?, ?it/s] 31%|###1      | 3104/10000 [00:00<00:00, 31029.82it/s] 62%|######2   | 6207/10000 [00:00<00:00, 21606.52it/s] 92%|#########1| 9161/10000 [00:00<00:00, 24530.76it/s]100%|##########| 10000/10000 [00:00<00:00, 24770.09it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: 0
+Backtesting /workspace/manual_traders/R4/r3v_jump_gap_filter_17/trader_v0.py for round: 4 day: 2
+  0%|          | 0/10000 [00:00<?, ?it/s] 31%|###1      | 3115/10000 [00:00<00:00, 31145.43it/s] 62%|######2   | 6230/10000 [00:00<00:00, 19531.96it/s] 91%|#########1| 9107/10000 [00:00<00:00, 22719.32it/s]100%|##########| 10000/10000 [00:00<00:00, 23169.38it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: 0
+Backtesting /workspace/manual_traders/R4/r3v_jump_gap_filter_17/trader_v0.py for round: 4 day: 3
+  0%|          | 0/10000 [00:00<?, ?it/s] 31%|###1      | 3143/10000 [00:00<00:00, 31422.46it/s] 63%|######2   | 6286/10000 [00:00<00:00, 30177.29it/s] 93%|#########3| 9308/10000 [00:00<00:00, 18350.57it/s]100%|##########| 10000/10000 [00:00<00:00, 21080.59it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: 0
+Profit summary:
+Round 4 day 1: 0
+Round 4 day 2: 0
+Round 4 day 3: 0
+Total profit: 0
+
+Successfully saved backtest results to backtests/2026-04-26_16-43-44.log

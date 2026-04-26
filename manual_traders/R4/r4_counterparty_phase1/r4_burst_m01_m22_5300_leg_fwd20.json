@@ -1,0 +1,76 @@
+{
+  "K": 20,
+  "TH": 2.0,
+  "BURST_MIN": 4,
+  "pooled": {
+    "tight_burst_any_m01_m22": {
+      "n": 291,
+      "mean": 0.331615,
+      "frac_pos": 0.512027
+    },
+    "tight_burst_m01_m22_on_5300": {
+      "n": 131,
+      "mean": -0.122137,
+      "frac_pos": 0.396947
+    },
+    "tight_burst_basket_only_m01_m22_elsewhere": {
+      "n": 160,
+      "mean": 0.703125,
+      "frac_pos": 0.60625
+    }
+  },
+  "per_day": {
+    "1": {
+      "tight_burst_any_m01_m22": {
+        "n": 84,
+        "mean": 0.309524,
+        "frac_pos": 0.5
+      },
+      "tight_burst_m01_m22_on_5300": {
+        "n": 32,
+        "mean": -0.703125,
+        "frac_pos": 0.3125
+      },
+      "tight_burst_basket_only": {
+        "n": 52,
+        "mean": 0.932692,
+        "frac_pos": 0.615385
+      }
+    },
+    "2": {
+      "tight_burst_any_m01_m22": {
+        "n": 87,
+        "mean": 0.333333,
+        "frac_pos": 0.517241
+      },
+      "tight_burst_m01_m22_on_5300": {
+        "n": 30,
+        "mean": 0.183333,
+        "frac_pos": 0.433333
+      },
+      "tight_burst_basket_only": {
+        "n": 57,
+        "mean": 0.412281,
+        "frac_pos": 0.561404
+      }
+    },
+    "3": {
+      "tight_burst_any_m01_m22": {
+        "n": 120,
+        "mean": 0.345833,
+        "frac_pos": 0.516667
+      },
+      "tight_burst_m01_m22_on_5300": {
+        "n": 69,
+        "mean": 0.014493,
+        "frac_pos": 0.42029
+      },
+      "tight_burst_basket_only": {
+        "n": 51,
+        "mean": 0.794118,
+        "frac_pos": 0.647059
+      }
+    }
+  },
+  "interpretation": "If on-5300 leg subset has meaningfully higher mean_fwd20, conditioning entry on that leg (trader_v8) is supported by tape; if similar, stricter filter mainly reduces n."
+}

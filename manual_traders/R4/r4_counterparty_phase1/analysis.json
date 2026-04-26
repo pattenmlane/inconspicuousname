@@ -294,5 +294,30 @@
       "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v7_r4_all.log"
     ],
     "used_to_decide": "Phase 3 extension — execution: worse +255 (day1 +231, day2 +24, day3 0), all +262. Resolves prior bottleneck (bid-only exit gave away ~1 tick vs mid-forward edge). Caveat: narrow strategy (5300 only, burst-conditioned); validate robustness / overfit before treating as production alpha."
+  },
+  {
+    "iteration": 8,
+    "round": 4,
+    "analysis_description": "Counterparty split at joint tight + M01→M22 burst: analyze_r4_burst_m01_m22_5300_leg_fwd20.py → r4_burst_m01_m22_5300_leg_fwd20.json. Pooled VEV_5300 fwd20: **any** burst n=291 mean +0.332 (matches prior 2x2); **M01→M22 on VEV_5300** n=131 mean **-0.122** (frac_pos 0.40); **basket-only** (M01→M22 elsewhere) n=160 mean **+0.703** (0.61 frac_pos). Per day: day1 on-5300 mean -0.70 (n=32) vs basket-only +0.93 (n=52). trader_v8 requires on-5300 leg.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/analyze_r4_burst_m01_m22_5300_leg_fwd20.py",
+      "manual_traders/R4/r4_counterparty_phase1/r4_burst_m01_m22_5300_leg_fwd20.json",
+      "manual_traders/R4/r4_counterparty_phase1/trader_v8.py",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v8_r4_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v8_r4_all.log"
+    ],
+    "used_to_decide": "Tape says long-5300 after **on-wing** M01→M22 is a **bad** mid-forward bucket vs basket-only; v8 still profitable worse +234 but **below v7 +255** — do not prefer v8 over v7; documents counterparty heterogeneity within same coarse burst flag."
+  },
+  {
+    "iteration": 9,
+    "round": 4,
+    "analysis_description": "trader_v9: v7 entry only when M01→M22 exists on **other** symbols but **not** on VEV_5300 (basket-only subset with strongest pooled mean fwd20 +0.70). Backtest worse +43, all +50 — far below v7 despite favorable mid stats; fewer triggers and day2 zero PnL under worse suggest mid subset ≠ same as sim-fill path / overlap with v7’s profitable inventory cycles.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/trader_v9.py",
+      "manual_traders/R4/r4_counterparty_phase1/r4_burst_m01_m22_5300_leg_fwd20.json",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v9_r4_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v9_r4_all.log"
+    ],
+    "used_to_decide": "**Ship v7** for this line until more days; basket-only filter is tape-rational but sim-destructive here — mid stratification without execution mapping can mis-rank variants."
   }
 ]

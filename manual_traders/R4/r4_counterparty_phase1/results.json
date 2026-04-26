@@ -318,5 +318,85 @@
         "note": "Slightly better than worse (+7 day3) under all matcher."
       }
     }
+  },
+  {
+    "iteration": 8,
+    "round": 4,
+    "trader_file": "trader_v8.py",
+    "strategy_description": "v7 but enter only when Mark01→Mark22 leg exists on VEV_5300 (same exit). Counterparty-conditioned stricter burst per analyze_r4_burst_m01_m22_5300_leg_fwd20.py.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 234,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v8.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v8_r4_worse.log",
+      "backtest_output": {
+        "day1": 210,
+        "day2": 24,
+        "day3": 0,
+        "total": 234
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "Tape fwd20 on this subset is weak/negative vs basket-only; PnL below v7 (+255)."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 247,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v8.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v8_r4_all.log",
+      "backtest_output": {
+        "day1": 223,
+        "day2": 24,
+        "day3": 0,
+        "total": 247
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "Same day structure as worse; day3 still flat."
+      }
+    }
+  },
+  {
+    "iteration": 9,
+    "round": 4,
+    "trader_file": "trader_v9.py",
+    "strategy_description": "v7 but enter only on basket-only M01→M22 bursts (leg on other symbols, NOT on VEV_5300). Tape subset mean fwd20 +0.70 vs on-5300 -0.12.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 43,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v9.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v9_r4_worse.log",
+      "backtest_output": {
+        "day1": 43,
+        "day2": 0,
+        "day3": 0,
+        "total": 43
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "Mid-forward story does not translate to v7-level sim PnL; sparse days 2-3 under worse."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 50,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v9.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v9_r4_all.log",
+      "backtest_output": {
+        "day1": 43,
+        "day2": 0,
+        "day3": 7,
+        "total": 50
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "Day3 +7 vs worse 0 (matcher difference only)."
+      }
+    }
   }
 ]

@@ -1,0 +1,8 @@
+=== Phase 3 Sonic gate summary (Round 4) ===
+burst=0 tight=False n=2107 mean_fwd_u20=-0.03821
+burst=0 tight=True n=1217 mean_fwd_u20=0.45563
+burst=1 tight=True n=925 mean_fwd_u20=0.20162
+--- Mark01->Mark22 VELVET only (often empty) ---
+--- Mark01->Mark22 any symbol ---
+tight=False n=3 mean_fwd_u20=2.00000
+tight=True n=1324 mean_fwd_u20=0.25378

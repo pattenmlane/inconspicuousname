@@ -220,5 +220,80 @@
       ],
       "interaction_with_phase1": "Phase 1 burst vs random control showed large extract forward lift; Phase 2 burst_exact vs isolated trade rows confirms direction with smaller gap. trader_v1 shows PnL positive on days 1-2 but day 3 loss: refines Phase 1 that tape edge requires execution gating (Phase 3 Sonic joint gate)."
     }
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Round 4 Phase 3: Sonic joint gate (VEV_5200 and VEV_5300 spread both <=2) on R4 prices; inclineGod spread-spread and spread-extract correlations; three-way burst x tight x fwd extract +20; trader_v2 stacks gate on burst-follow.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/r4_phase3_sonic_gate_analysis.py",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p3_spreadcorr_by_day.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p3_spreadchange_vs_abs_dmid_extract.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p3_threeway_burst_tight_fwd_u20.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p3_threeway_summary.txt",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p3_mark01_22_any_symbol_fwd_u20_by_gate.csv",
+      "manual_traders/R4/r4_counterparty_phase1/trader_v2.py",
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt"
+    ],
+    "used_to_decide": "round4_phase3_complete object follows; compare trader_v1 vs trader_v2 PnL for gate interaction with naive execution."
+  },
+  {
+    "round4_phase3_complete": {
+      "phase": "Round 4 Phase 3 (Sonic joint gate + counterparty synthesis)",
+      "references_read": [
+        "round3work/vouchers_final_strategy/STRATEGY.txt",
+        "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+        "round4work/suggested direction.txt (Phase 3 block)"
+      ],
+      "sonic_gate_definition": "Same as R3 script: inner join VEV_5200, VEV_5300, VELVETFRUIT_EXTRACT on (day,timestamp); spread = ask1-bid1; tight_joint = (s5200<=2) and (s5300<=2). Merged onto enriched trade rows by (day,timestamp).",
+      "inclineGod_outputs": [
+        "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p3_spreadcorr_by_day.csv",
+        "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p3_spreadchange_vs_abs_dmid_extract.csv"
+      ],
+      "three_way_tables": [
+        "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p3_threeway_burst_tight_fwd_u20.csv",
+        "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p3_threeway_summary.txt",
+        "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p3_mark01_22_any_symbol_fwd_u20_by_gate.csv"
+      ],
+      "key_findings": [
+        "On enriched trades, **non-burst** rows with **tight** joint gate show **much higher** mean extract fwd_20 (+0.456, n=1217) than **burst+tight** (+0.202, n=925) or **non-tight** (-0.038, n=2107). So the Sonic surface state dominates the simple mid-forward signal in this slice; Mark01->Mark22 bursts in R4 often occur when the gate is already tight.",
+        "**Mark01->Mark22** prints on **any** symbol: almost all at tight=True (1324 vs 3 at tight=False); mean fwd_u20 is modest (+0.254) when tight — pair identity alone does not beat the gate.",
+        "**Sim PnL:** `trader_v2` (burst + require tight to quote) total **+1766** worse vs `trader_v1` (burst only) **+7207** on same days — **stricter gate reduces fills and total PnL** for this naive long rule, even though day 3 is no longer negative on extract in v2."
+      ],
+      "tier_a_edges_ranked": [
+        {
+          "rank": 1,
+          "interaction": "(joint_tight=True, burst_exact=0, product=VELVETFRUIT_EXTRACT forward +20 rows)",
+          "statement": "Largest mean forward extract mid among three-way cells on trade-timestamp merge.",
+          "evidence": "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p3_threeway_burst_tight_fwd_u20.csv"
+        },
+        {
+          "rank": 2,
+          "interaction": "(Mark01->Mark22, any symbol, tight_joint)",
+          "statement": "Counterparty pair is almost always observed under tight gate; forward mean positive but smaller than non-burst tight.",
+          "evidence": "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p3_mark01_22_any_symbol_fwd_u20_by_gate.csv"
+        },
+        {
+          "rank": 3,
+          "interaction": "(spread co-movement, inclineGod)",
+          "statement": "corr(s5200,s5300) ~0.18-0.27 by day; corr spreads vs extract mid positive ~0.32-0.47 on aligned panel.",
+          "evidence": "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p3_spreadcorr_by_day.csv"
+        },
+        {
+          "rank": 4,
+          "interaction": "(abs extract mid change vs abs spread changes)",
+          "statement": "Weak positive corr between |dm_ext| and |ds5200|, stronger for |ds5300| on day 3.",
+          "evidence": "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p3_spreadchange_vs_abs_dmid_extract.csv"
+        },
+        {
+          "rank": 5,
+          "interaction": "(burst_exact=1, tight_joint) — structural",
+          "statement": "All Mark01->Mark22 multi-VEV bursts in sample align with tight timestamps (no burst+tight=False rows); burst+tight mean fwd_u20 +0.202 matches Phase 2 burst_exact isolated comparison.",
+          "evidence": "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p3_threeway_summary.txt"
+        }
+      ],
+      "comparison_without_gate": "Phase 1/2 pooled forward extract after bursts did not condition on 5200/5300. Phase 3 shows **tight alone** already implies large positive fwd_u20 on trade timestamps; **adding burst on top of tight lowers** the mean vs **tight without burst** in this merge. Sonic gate **does not increase** the naive burst-follow sim PnL (v2 << v1); it **filters** to safer but **smaller** opportunity set.",
+      "interaction_phase1_phase2": "Phase 1 burst vs control and Phase 2 burst_exact vs isolated both highlighted burst extract lift. Phase 3 refines: **relative to other tight-timestamp trades**, burst rows are **not** the highest forward mean — the gate **cleans** the population (tight vs wide) as Sonic suggests, but **Mark01->Mark22 burst is not the unique driver** of positive fwd_u20 once tight is controlled."
+    }
   }
 ]

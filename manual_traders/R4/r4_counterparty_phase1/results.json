@@ -38,5 +38,26 @@
       "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v1_all.log",
       "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v1_all.json"
     }
+  },
+  {
+    "iteration": 2,
+    "trader_file": "trader_v2.py",
+    "strategy_description": "Phase 3: same burst-follow as v1 but only arm TTL and quote VELVET when Sonic joint gate (VEV_5200 and VEV_5300 spread both <=2) is on; quote only while tight during TTL.",
+    "total_profit": 1766,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v2.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r4_counterparty_phase1/backtest_r4_v2_worse.log",
+    "note_vs_v1": "v1 total +7207 worse; v2 +1766 — stricter gate cuts activity and aggregate PnL for this naive long rule.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 1766,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v2_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v2_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 1766,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v2_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v2_all.json"
+    }
   }
 ]

@@ -1,0 +1,205 @@
+VELVETFRUIT_EXTRACT — Bot Calibration Results
+Round 3, Day 39 (hold-1 probe, submission ID 364578)
+========================================================
+
+SOURCE DATA
+-----------
+True FV extracted from hold-1 probe: round3work/fairs/VELVETFRUIT_EXTRACTfair/364578/VELVETFRUIT_EXTRACT_true_fv_day39.csv
+  true_fv(t) = PnL(t) + buy_price
+Order book: round3work/fairs/VELVETFRUIT_EXTRACTfair/364578/prices_round_3_day_39.csv
+Ticks: 1000  (timestamps 0..99900, step 100)
+FV range: 5241 — 5276, mean=5262, std=7.51  (much tighter than hydrogel's std=30)
+
+2 BOTS IDENTIFIED (+ Bot C for near-FV noise)
+----------------------------------------------
+
+BOT A — Inner market maker (always at level 1)
+  Presence  : ~95.6% of ticks with offset in {-2, -3} (remainder is Bot C)
+  Price rule : bid = floor(FV - 0.1) - 2
+               ask = ceil(FV + 0.1)  + 2
+  Expanded   :
+               frac(FV) < 0.1  →  bid = floor(FV) - 3,  ask = floor(FV) + 3
+               frac(FV) ∈ [0.1, 0.9) →  bid = floor(FV) - 2,  ask = floor(FV) + 3
+               frac(FV) ≥ 0.9  →  bid = floor(FV) - 2,  ask = floor(FV) + 4
+  Accuracy   : 99.7% bid, 99.8% ask  (failures are at frac ≈ 0.1 and frac ≈ 0.9 — boundary noise)
+  Spread     : 5–6 ticks (smaller than hydrogel's 16)
+  Volume     : ~U[15, 25] per side, drawn INDEPENDENTLY each side each tick
+               (not same-sided like hydrogel — bid and ask vols are different draws)
+
+BOT B — Outer market maker (at level 2, conditional and single-sided)
+  Presence  : CONDITIONAL on frac(FV); single-sided most of the time
+  Price rule : bid = floor(FV) - 3 = round(FV) - 3 when frac < 0.5
+               ask = ceil(FV)  + 3 = round(FV) + 3 when frac > 0.5
+  Accuracy  : 93.3% bid / 92.9% ask (when at level 2)
+  Spread    : 6–7 ticks from FV
+  Volume    : ~U[30, 50] per side, SAME draw for both sides (92.1% same tick when both quoted)
+
+  CRITICAL — Bot B's PRESENCE depends on frac(FV):
+  ┌────────────────────────────────────────────────────────┐
+  │  frac < 0.1        Bot B BID merges with Bot A at L1  │
+  │                    (floor(FV-0.1)-2 == floor(FV)-3)   │
+  │                    Bot B does NOT quote ask            │
+  │                    → neither bid2 nor ask2             │
+  │                                                        │
+  │  frac ∈ [0.1, ~0.35)  Bot B quotes BID only at L2     │
+  │                    → only bid2 present                 │
+  │                                                        │
+  │  frac ∈ [0.35, ~0.65) Bot B quotes BOTH sides at L2   │
+  │                    → bid2 and ask2 both present        │
+  │                                                        │
+  │  frac ∈ [0.65, 0.9)  Bot B quotes ASK only at L2      │
+  │                    → only ask2 present                 │
+  │                                                        │
+  │  frac ≥ 0.9        Bot B ASK merges with Bot A at L1  │
+  │                    (ceil(FV+0.1)+2 == ceil(FV)+3)     │
+  │                    Bot B does NOT quote bid            │
+  │                    → neither bid2 nor ask2             │
+  └────────────────────────────────────────────────────────┘
+
+  LEVEL 1 VOLUME IS BIMODAL as a result:
+  - When Bot B at level 2 (frac ∈ [0.1, ~0.65) bid / [0.35, 0.9) ask):
+      bid_vol_1 ~ U[15, 25], mean=20   (Bot A alone)
+  - When Bot B merged at level 1 (frac outside those ranges):
+      bid_vol_1 ~ U[45, 75], mean=60   (Bot A + Bot B combined)
+      Combined = U[15,25] + U[30,50] = U[45,75]
+
+BOT C — Near-FV noise (rare)
+  Presence  : ~4% of ticks, single-sided, displaces Bot A to level 2
+  Price     : within 1 tick of FV (offset 0 or ±1)
+  Volume    : low, range ~4–13
+  Impact    : negligible — too rare to trade against
+
+WALL MID ACCURACY
+-----------------
+  wall_mid = (min_bids + max_asks) / 2 ≈ true_FV
+  Error: mean=0.001, std=0.227  (much tighter than hydrogel's std=0.35)
+  Best available FV proxy from live book.
+
+METHODOLOGY — HOW WE DERIVED EACH BOT
+--------------------------------------
+
+STEP 1 — Raw offsets show there is structure
+  Compute (price - true_fv) for each level across 1000 ticks:
+    bid1: mean=-2.504  std=0.561   (always present)
+    bid2: mean=-3.306  std=0.300   (present 542/1000)
+    ask1: mean=+2.479  std=0.704   (always present)
+    ask2: mean=+3.311  std=0.267   (present 538/1000)
+  Standard deviations well under 1 tick. These are bots.
+
+STEP 2 — Integer offset distributions reveal two distinct clusters
+  bid1: {-3: 567, -2: 389, -1: 13, 0: 30, -5: 1}
+        → two clusters at -2 and -3, plus near-zero outliers (Bot C)
+  ask1: {+3: 594, +2: 365, -1: 27, 0: 14}
+        → two clusters at +2 and +3, near-zero outliers
+  bid2: {-3: 416, -4: 110, -2: 14, -1: 1, -6: 1}
+        → mainly -3 and -4
+  ask2: {+3: 385, +4: 134, +2: 19}
+        → mainly +3 and +4
+
+STEP 3 — Bot A bid formula: the -0.1 boundary trick
+  Three candidate formulas tested vs all Bot A ticks (offset ∈ {-2, -3}):
+    floor(FV) - 2              →  85.7%  (misses all frac < 0.1 ticks)
+    round(FV) - 2              →  40.6%
+    floor(FV - 0.1) - 2       →  99.7%  ← WINNER
+  Failure analysis: 96/96 failures at frac < 0.1 use floor(FV)-2 but bot gives floor(FV)-3.
+  The formula floor(FV - 0.1) - 2 handles this:
+    frac < 0.1:  floor(FV - 0.1) = floor(FV) - 1 → bid = floor(FV) - 3
+    frac ≥ 0.1:  floor(FV - 0.1) = floor(FV)     → bid = floor(FV) - 2
+  Remaining 3 failures all at frac ∈ (0.100, 0.102) — floating point boundary.
+
+STEP 4 — Bot A ask formula: symmetric -0.1 / +0.1 boundary
+  Failure analysis for ask: 103/103 failures at frac > 0.9, error = +1.
+  Formula ceil(FV + 0.1) + 2:
+    frac < 0.9:  ceil(FV + 0.1) = ceil(FV)     → ask = floor(FV) + 3
+    frac ≥ 0.9:  ceil(FV + 0.1) = floor(FV) + 2 → ask = floor(FV) + 4
+  Accuracy: 99.8%  (2 remaining failures at frac ∈ (0.896, 0.900) — boundary noise)
+
+STEP 5 — The frac-boundary origin
+  This ±0.1 boundary is more extreme than hydrogel's ±0.5 boundary.
+  Likely explanation: VEV FV values often have small fractional parts (many ticks have
+  frac ≈ 0.00–0.10 because the price generator uses discrete steps).
+  The bot uses a "tolerance band" — when FV is within 0.1 of an integer, it rounds
+  differently than the pure floor/ceil rule.
+  The boundary errors (5 total out of 1000) all occur at frac ≈ 0.10 or 0.90,
+  consistent with floating-point imprecision in IMC's server.
+
+STEP 6 — Bot A volume: independent draws per side
+  Filter to Bot A-only ticks (frac ∈ [0.1, 0.65), vol in [5, 75]):
+    Bid vol distribution [15-25]: {15:~50, 16:~50, ..., 25:~50} — uniform
+    Chi-squared uniformity p-value = 0.052 (borderline, n=501)
+    Ask vol distribution: similar range [15-25]
+  Bid == Ask same tick: only 80.1%  (vs hydrogel's 97.5%)
+  Conclusion: Bot A draws vol INDEPENDENTLY for bid and ask, unlike hydrogel.
+  Rule: bid_vol ~ U[15, 25], ask_vol ~ U[15, 25], drawn independently each tick.
+
+STEP 7 — Bot B offset alternates between -3 and -4
+  bid2 offset: -3 (416 ticks) and -4 (110 ticks). Condition on frac:
+    offset = -3: frac ∈ (0.1, 0.5) — all 416 ticks  (rounded down, frac < 0.5)
+    offset = -4: frac ∈ (0.5, 0.7) — all 110 ticks  (rounded down, frac > 0.5)
+  Bot B always places bid at floor(FV) - 3. The integer offset is floor(-(3+frac)):
+    frac < 0.5 → rounds to -3; frac > 0.5 → rounds to -4.
+  This is the SAME mechanism as hydrogel Bot B, just with a -3 offset instead of -10.
+
+STEP 8 — Bot B conditional presence: the single-sided quoting pattern
+  Bot B is only present at level 2 54.2% of the time.
+  Cross-tabbing presence by frac reveals a perfect asymmetric pattern:
+    bid2 AND ask2 both present: 273 ticks → frac ∈ [0.35, 0.65)
+    ONLY bid2 present:          269 ticks → frac ∈ [0.10, 0.35)
+    ONLY ask2 present:          265 ticks → frac ∈ [0.65, 0.90)
+    NEITHER present:            193 ticks → frac ∈ [0.0, 0.1) or [0.9, 1.0)
+
+  Explanation for "neither" ticks: when frac < 0.1, Bot A bid = floor(FV)-3 = Bot B bid.
+  Bot B and Bot A post at the SAME PRICE — they aggregate at level 1 (no level 2).
+  On these ticks, Bot B does not quote ask either. Symmetric for frac > 0.9 on the ask side.
+
+  Explanation for single-sided quoting: Bot B only quotes the side where its price is
+  "close" to FV. At frac = 0.2, Bot B bid = floor(FV)-3 is 3.2 ticks below FV (acceptable).
+  But Bot B ask = ceil(FV)+3 = floor(FV)+4 is 3.8 ticks above FV (too wide, not quoted).
+  At frac = 0.8, the logic reverses. Threshold appears at frac ≈ 0.35/0.65.
+
+STEP 9 — Level 1 volume bimodality explained
+  When Bot B is at level 2: bid_vol_1 = Bot A vol alone ~ U[15, 25], mean=20.
+  When Bot B merges at level 1 (frac boundary or "neither"):
+    bid_vol_1 = Bot A vol + Bot B vol ~ U[15,25] + U[30,50] = U[45,75], mean=60.
+  This perfectly explains the observed bimodal distribution with a gap from 26 to 44.
+  Confirmed: Bot A+B coincide ticks → mean vol 59.8, range [47,74] ✓
+             Bot A alone ticks      → mean vol 19.5, range [6,25]  ✓
+
+STEP 10 — Bot B volume
+  Filter to C3 ticks (Bot A and B have different prices, Bot B at level 2):
+    Vol range: [7, 72], main cluster [30, 50], mean=39.36
+    Uniformity test [30-50]: chi2=18.36, p=0.563 → strongly uniform
+    Bid == Ask same tick: 92.1% → Bot B draws ONE volume, uses for both sides (same as hydrogel)
+  Rule: vol ~ U[30, 50], drawn once, applied to both bid and ask when both are quoted.
+
+RECONSTRUCTION ACCURACY
+-----------------------
+  Bot A bid accuracy  (on Bot A ticks): 99.7%
+  Bot A ask accuracy  (on Bot A ticks): 99.8%
+  Bot B bid accuracy  (when at level 2): 93.3%
+  Bot B ask accuracy  (when at level 2): 92.9%
+  Bot B presence accuracy (by frac rule): ~95% (a few ticks near thresholds 0.1/0.35/0.65/0.9)
+
+  Remaining errors: all at frac boundary values (0.100±, 0.350±, 0.650±, 0.900±).
+
+KEY OBSERVATIONS
+----------------
+- Bot A spread is only ±2-3 ticks from FV (vs hydrogel's ±8), so VEV is much tighter
+- Bot A draws bid and ask volumes INDEPENDENTLY (vs hydrogel where both sides get same draw)
+- Bot B is SINGLE-SIDED: it only quotes the "close-to-FV" side depending on frac(FV)
+- When frac(FV) is near 0.0 or 1.0: Bot B merges into level 1, inflating volume to [45-75]
+- wall_mid std = 0.23 from true FV — excellent FV proxy (better than hydrogel's 0.35)
+- Bot B's volume is 50% larger than Bot A's on average (mean 40 vs mean 20)
+- VEV FV is much calmer than hydrogel (std=7.5 vs std=30)
+
+ACTIONABLE IMPLICATIONS
+-----------------------
+1. Bot A's quotes are almost perfectly predictable from FV: offset = -(2 to 3) ticks
+2. The spread is very tight — your passive orders at ±1 from Bot A will be at ±3-4 from FV
+3. Wall_mid is an excellent FV proxy (std=0.23) — use it as your fair value estimate
+4. High level-1 volume (45-75) signals Bot B is merged at level 1 (frac near 0 or 1)
+   → FV is very close to an integer; bots may reprice abruptly at next FV update
+5. When only one side has a level-2 quote (bid2 XOR ask2), FV is near a mid-range value
+   where Bot B is single-sided — no actionable edge, just market structure awareness
+6. The tight spread means the taking strategy (buy when ask ≤ wm-1, sell when bid ≥ wm+1)
+   will fire less often than in hydrogel — passive making is the primary profit source

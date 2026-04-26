@@ -228,7 +228,8 @@
       "does_gate_clean_counterparty_signal": "Partially: **population** mids yes (strong); **Mark67 trade-conditioned** fwd20 no (Welch n.s.); **burst** conditioning **flips** sign vs Phase-1 unconditional burst — gate **restructures** some signals rather than uniformly cleaning them.",
       "extension_2026_04_26": "Re-ran `_r4_phase3_sonic_gate_analysis.py` with extra slices: Mark55 and Mark49 passive-seller aggr-buy EXTRACT fwd20 tight vs loose (Welch n.s.); per-day table `r4_p3_mark55_mark49_fwd20_tight_vs_loose_by_day.csv`. Backtests: v3 gate+microprice (7,068); v4 Mark55 under gate (13,162) — compact stdout logs `trader_v*_stdout.txt` replace 22MB default logs for v3/v4.",
       "extension_inclinegod_spread_panels_r4": "`_r4_phase3_inclinegod_spread_extended.py` → `r4_p13_inclinegod_spread_panels_by_day.csv`: per day, subset **all|tight|loose**, level correlations among s5200/s5300/s_ext and vs m_ext; **Δ** on consecutive timestamps (Δ only counted in tight/loose when both endpoints stay in regime). **Finding:** on day 1 **tight** subset, Δs5200–Δs5300 corr **~0.52** (co-movement of leg widths when stuck tight); **d_corr_s_ext_m_ext** ~0.13–0.22 (extract spread step vs mid step). Day 3 tight has high mean |Δs5300| (~0.37) vs day 1–2 — saturation / churn in 5300 width when gate prevalent.",
-      "extension_m01_m22_5300_gate_pathology": "Mark 01→Mark 22 on VEV_5300: 132/132 prints at **tight** gate only (`r4_p14_m01_m22_5300_gate_pathology.md`); **Welch tight vs loose N/A** for this pair+product. Short-lean sim v30: **−4,888** total — do not conflate with Tier-A Mark55 lane."
+      "extension_m01_m22_5300_gate_pathology": "Mark 01→Mark 22 on VEV_5300: 132/132 prints at **tight** gate only (`r4_p14_m01_m22_5300_gate_pathology.md`); **Welch tight vs loose N/A** for this pair+product. Short-lean sim v30: **−4,888** total — do not conflate with Tier-A Mark55 lane.",
+      "extension_m14_m38_vev4000_gate_amplify": "**Three-way** evidence: Mark14 buy / Mark38 sell / aggr_sell on **VEV_4000** — **tight** gate mean fwd20 **~+1.10** (n≈55) vs **loose ~−0.58** (n≈177), `r4_p15_mark38_vev4000_m14_aggr_sell_by_gate_day.csv`. Live **v31** +1,631 total but **day-3 wing −3,322** — gate **amplifies** tape markout for this duopoly slice but execution on far strike is fragile vs extract Mark55 v15."
     }
   },
   {
@@ -540,5 +541,17 @@
       "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v30_r4_m01_m22_aggr_sell_5300_gate_all_stdout.txt"
     ],
     "used_to_decide": "Primary Phase-3 **sim** leg remains **Mark55 v15**; Mark01\u201322 5300 is **structural** (only fires when gate on in this tape) but **fails** a simple short probe \u2014 do not stack without a different execution thesis."
+  },
+  {
+    "iteration": 32,
+    "analysis_description": "**Phase-1/3 duopoly wing:** Mark **14** buy / Mark **38** sell, **aggressive sell** on **VEV_4000** (Mark 14 lifts Mark 38\u2019s bid). Stratified fwd20 by **joint gate** and day: `r4_p15_...csv` (script `_r4_mark38_vev4000_m14_gate_table.py`). **Tight** stratum shows materially higher mean fwd20 than **loose** across days (pooled +1.10 vs \u22120.58).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/_r4_mark38_vev4000_m14_gate_table.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase3/r4_p15_mark38_vev4000_m14_aggr_sell_by_gate_day.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v31_r4_m14_m38_aggr_sell_vev4000_gate.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v31_r4_m14_m38_aggr_sell_vev4000_gate_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v31_r4_m14_m38_aggr_sell_vev4000_gate_all_stdout.txt"
+    ],
+    "used_to_decide": "Tape **supports** Sonic \u00d7 counterparty **amplification** for this slice; sim **v31** +1,631 total (worse=all) but **day-3 tail** on VEV_4000 dominates risk \u2014 secondary to **v15**; consider smaller clip / day-3 sizing if revisiting."
   }
 ]

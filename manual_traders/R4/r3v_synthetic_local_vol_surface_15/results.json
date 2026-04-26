@@ -649,5 +649,26 @@
     "match_trades": "worse",
     "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v30_r4_m01_m22_aggr_sell_5300_gate_worse_stdout.txt",
     "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v30_r4_m01_m22_aggr_sell_5300_gate_worse_fill_summary.json"
+  },
+  {
+    "iteration": 32,
+    "trader_file": "trader_v31_r4_m14_m38_aggr_sell_vev4000_gate.py",
+    "strategy_description": "Mark14 buy / Mark38 sell, **aggr_sell** on **VEV_4000**, Sonic gate; long ba+1 clip 8. Tape: tight mean fwd20 \u2248+1.1 vs loose \u2248\u22120.58 (r4_p15).",
+    "total_profit": 1631,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v31_r4_m14_m38_aggr_sell_vev4000_gate.py 4 --data Prosperity4Data --match-trades worse --no-out",
+    "backtest_worse": {
+      "total_profit": 1631,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v31_r4_m14_m38_aggr_sell_vev4000_gate_worse_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v31_r4_m14_m38_aggr_sell_vev4000_gate_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "total_profit": 1631,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v31_r4_m14_m38_aggr_sell_vev4000_gate_all_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v31_r4_m14_m38_aggr_sell_vev4000_gate_all_fill_summary.json"
+    },
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v31_r4_m14_m38_aggr_sell_vev4000_gate_worse_stdout.txt",
+    "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v31_r4_m14_m38_aggr_sell_vev4000_gate_worse_fill_summary.json"
   }
 ]

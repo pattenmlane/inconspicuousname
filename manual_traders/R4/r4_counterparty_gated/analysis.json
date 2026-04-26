@@ -340,5 +340,25 @@
       "manual_traders/R4/r4_counterparty_gated/backtest_logs/v7_all.log"
     ],
     "used_to_decide": "Backtest worse 26,194 and all 24,301 match v1/v5/v6 exactly (same trade counts and notionals). The coordinated-ladder bid suppression never moves the fill path versus single-5300 fade: either those ticks were not marginal for our bids, or PnL is dominated by extract/hydro as in prior iterations. Hypothesis falsified for this MM implementation; champion remains v1 unless we add inventory-aware or aggressive take logic keyed to counterparty."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "trader_v8 = v6 + integer inventory skew on voucher quotes: shift bid and ask by min(3, floor(|pos|/50)) ticks against the sign of position (long lowers both sides to discourage more buys). Tape can build large VEV_4000 inventory (e.g. cum qty 876 in tradeHistory on v8 worse log) so the rule is active in principle.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_gated/trader_v8.py",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v8_worse.log",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v8_all.log"
+    ],
+    "used_to_decide": "Worse 26,194 / all 24,301 and parsed trade aggregates are identical to v6/v7 (4484/4486 trades, same top-symbol notionals). So under BBO clamping and this step size, skew collapses to the same effective prices as v6 for the realized fill path. trader_v9 (see iteration 9) increases skew step/max to break the collapse."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "trader_v9 = v6 + stronger inventory skew (INV_SKEW_STEP=25, INV_SKEW_MAX=8 ticks). Same counterparty fade and Mark67 keys as v6/v8.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_gated/trader_v9.py",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v9_worse.log",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v9_all.log"
+    ],
+    "used_to_decide": "First measurable deviation from the v1/v6 plateau: worse total 26,196 (+2 vs 26,194), all 24,304 (+3 vs 24,301). Trade count unchanged (4484/4486); gross_notional slightly lower; VEV_4000 notional 1,092,534 vs 1,092,611 — skew moved some voucher fills. Day 1 worse PnL +2 (15,434 vs 15,432). Treat as small win; next sweep could tune step/max or apply skew to extract when |pos_u| is large, or combine with Mark67 aggressive buy (take) per Phase 1 edge."
   }
 ]

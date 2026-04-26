@@ -55,3 +55,6 @@ Mark55 fwd20 vs **tertile of rolling tight rate** at trade time (`r4_p7_mark55_f
 
   • **v10** Mark55+gate with **scaled clip** (12→4 as roll rises): total **14,702**; day-3 **+197**; beats **v4** (13,162);
     **below v6** (14,842 calendar skip) but **tradeable** (no magic day index) and **fixes day-3 sign** vs v4.
+
+Param sweep (`r4_p8_mark55_scaled_clip_param_sweep.csv`): v11–v13 (larger clip / shallow shrink) **hurt** day-3 or total;
+  **v14** SAT_GAIN 0.65 → 14,561; **v15** ROLL 0.20–0.40 (same SAT 0.72 as v10) → **14,971** — new best **with** day-3 traded (beats v6 14,842 and v10).

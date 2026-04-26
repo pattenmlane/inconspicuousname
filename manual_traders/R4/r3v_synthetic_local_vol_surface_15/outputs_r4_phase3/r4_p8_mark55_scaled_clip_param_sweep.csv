@@ -1,0 +1,7 @@
+trader,CLIP_MAX,CLIP_MIN,SAT_GAIN,ROLL_LO,ROLL_HI,total_profit_worse,day1,day2,day3,notes
+v10,12,4,0.72,0.18,0.42,14702,5542,8962,197,baseline scaled-clip
+v11,14,5,0.48,0.16,0.44,14120,5954,9164,-998,tuned1 larger clip gentler sat
+v12,16,6,0.55,0.15,0.50,12794,5314,8762,-1282,tuned2 aggressive size
+v13,14,6,0.35,0.18,0.42,13300,5932,8626,-1257,shallow shrink
+v14,12,4,0.65,0.18,0.42,14561,5628,8902,30,sat065
+v15,12,4,0.72,0.20,0.40,14971,5556,9116,299,roll band shift best total

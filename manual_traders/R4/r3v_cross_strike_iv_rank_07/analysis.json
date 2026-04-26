@@ -62,9 +62,12 @@
       {
         "bullet": "5) Adverse selection vs inventory (population proxy)",
         "outputs": [
-          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_mark22_seller_markout_by_buyer_k20.csv"
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_mark22_seller_markout_by_buyer_k20.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_mark22_mark49_extract_evidence.py",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_m22_m49_extract_markout_by_day.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_m22_m49_extract_markout_summary.json"
         ],
-        "conclusion": "When Mark 22 is aggressive seller, subsequent k=20 self-mid markout for the traded symbol is worst for prints with Mark 49 as buyer (n=12, very negative mean) and mildest for Mark 01 basket flow (n=1339 near zero) — candidate avoid-quote / fade tail vs Mark 49."
+        "conclusion": "r4_p1_mark22_seller_markout_by_buyer_k20.csv aggregates Mark 22 aggressive sells across products — the Mark 49 tail (n=12, mean k=20 ≈ -2.71) is entirely VELVETFRUIT_EXTRACT (no Mark49 buyer on Mark22 voucher sells in this tape). sell_agg-only extract rows (n=11): pooled mean dm_self k5/k20/k100 ≈ -2.36 / -3.09 / -4.35 (t ≈ -2.66 / -1.93 / -3.14); per-day k=20 means are mixed (day2 small n positive). Sim trader_v6 (Sonic gate + short extract on M22→M49 aggressive sell) is negative under worse (-156) with only 3 fills / 10 qty — tail too sparse to scale."
       }
     ],
     "top_5_tradeable_edges": [
@@ -112,7 +115,8 @@
     "no_edge_or_negative_results": [
       "Mark 01 aggressive buy specifically on VEV_5300 at k=20: zero qualifying rows in tape slice (Mark 01→Mark 22 basket hits other lines); r4_p1_mark01_buy_vev5300_by_day_k20.csv empty — cannot claim participant alpha on that exact cell.",
       "High-|t| two-hop tails (e.g. Mark 14→Mark 38→Mark 22) have n<20 — not stable as standalone rules.",
-      "Phase 1 is mid-only markouts; tradable PnL under worse fills not established (STRATEGY caveat applies)."
+      "Phase 1 is mid-only markouts; tradable PnL under worse fills not established (STRATEGY caveat applies).",
+      "Mark 22→Mark 49 extract adverse-selection tail: only 12 tape rows (11 sell_agg); per-day k=20 unstable (day 2 mean +2.3, n=3). trader_v6 gated short sim is negative under worse (-156) with 3 fills — not a scalable edge."
     ]
   },
   {
@@ -345,5 +349,20 @@
       "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v5_round4_all_fills_summary.json"
     ],
     "used_to_decide": "Smile steepness at Mark22 voucher sells is high and concentrated (mean ~0.079); quartile spread in forward k=20 markouts on VEV_5300 is small vs noise. IV×counterparty filter does not down-select Mark67+gate extract entries in sim (v5 ≡ v3 PnL)."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "Phase 1 adverse-selection disambiguation: Mark 22 → Mark 49 on VELVETFRUIT_EXTRACT only (12 rows in r4_p1_trade_enriched.csv). Script r4_mark22_mark49_extract_evidence.py emits r4_p1_m22_m49_extract_markout_by_day.csv and r4_p1_m22_m49_extract_markout_summary.json (horizons k∈{5,20,100}, sell_agg vs all, by day). trader_v6.py: Sonic gate + market_trades M22→M49 aggressive sell on extract → limit sell at bid; backtests worse+all.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_mark22_mark49_extract_evidence.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_m22_m49_extract_markout_by_day.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_m22_m49_extract_markout_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v6.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v6_round4_worse.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v6_round4_all.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v6_round4_worse_fills_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v6_round4_all_fills_summary.json"
+    ],
+    "used_to_decide": "Offline sell_agg slice supports short-horizon down-mid on extract after M22→M49 prints, but day-2 k=20 subset is positive (n=3) and n is tiny. Gated sim still loses under worse (-156, 3 submission sells) vs -438 all — execution and rarity dominate any fade."
   }
 ]

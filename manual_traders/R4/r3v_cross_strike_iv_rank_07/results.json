@@ -163,5 +163,33 @@
       "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v5_round4_all_fills_summary.json",
       "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v5.py\" 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v5_round4_all.json"
     }
+  },
+  {
+    "iteration": 6,
+    "trader_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v6.py",
+    "strategy_description": "Phase1 adverse-selection sim: Sonic gate + market_trades Mark22 seller Mark49 buyer on VELVETFRUIT_EXTRACT with trade price<=best bid -> limit sell extract at bid, clip 30, cooldown 8.",
+    "total_profit": -156,
+    "backtest_round": 4,
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v6_round4_worse.json",
+    "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v6_round4_worse_fills_summary.json",
+    "fills_note": "3 sell-side SUBMISSION trades, 10 extract qty (worse).",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v6.py\" 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v6_round4_worse.json",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -156,
+      "profit_by_day": {"1": -62, "2": 0, "3": -94},
+      "backtest_log_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v6_round4_worse.json",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v6_round4_worse_fills_summary.json",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v6.py\" 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v6_round4_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -438,
+      "profit_by_day": {"1": -164, "2": 0, "3": -274},
+      "backtest_log_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v6_round4_all.json",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v6_round4_all_fills_summary.json",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v6.py\" 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v6_round4_all.json"
+    }
   }
 ]

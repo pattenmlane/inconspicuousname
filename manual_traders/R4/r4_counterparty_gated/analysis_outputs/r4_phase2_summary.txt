@@ -1,0 +1,48 @@
+Round 4 Phase 2 summary
+=======================
+   burst_type   buyer  seller              symbol   n      mean
+     no_burst Mark 67 Mark 22 VELVETFRUIT_EXTRACT  73  2.047945
+     no_burst Mark 55 Mark 22 VELVETFRUIT_EXTRACT  14  2.035714
+     no_burst Mark 67 Mark 49 VELVETFRUIT_EXTRACT  89  1.634831
+burst_M01_M22 Mark 01 Mark 22            VEV_5200  11  0.863636
+     no_burst Mark 55 Mark 14 VELVETFRUIT_EXTRACT 327  0.565749
+     no_burst Mark 22 Mark 55 VELVETFRUIT_EXTRACT  18  0.527778
+     no_burst Mark 14 Mark 38       HYDROGEL_PACK 487  0.297741
+     no_burst Mark 38 Mark 14            VEV_4000 205  0.214634
+burst_M01_M22 Mark 01 Mark 22            VEV_5400 259  0.036680
+burst_M01_M22 Mark 01 Mark 22            VEV_5500 281  0.035587
+     no_burst Mark 01 Mark 55 VELVETFRUIT_EXTRACT 259  0.021236
+  burst_other Mark 14 Mark 22            VEV_5200  33  0.015152
+     no_burst Mark 55 Mark 01 VELVETFRUIT_EXTRACT 241  0.002075
+     no_burst Mark 01 Mark 22            VEV_6500  25  0.000000
+burst_M01_M22 Mark 01 Mark 22            VEV_6000 292  0.000000
+burst_M01_M22 Mark 01 Mark 22            VEV_6500 292  0.000000
+     no_burst Mark 01 Mark 22            VEV_6000  25  0.000000
+burst_M01_M22 Mark 01 Mark 22            VEV_5300 131 -0.122137
+     no_burst Mark 01 Mark 22            VEV_5500  18 -0.138889
+     no_burst Mark 14 Mark 38            VEV_4000 231 -0.188312
+
+Mark67 extract aggr_buy burst split:
+{
+  "mean":{
+    "burst":1.25,
+    "no_burst":1.8209876543
+  },
+  "count":{
+    "burst":2,
+    "no_burst":162
+  }
+}
+
+Lead-lag signed flow extract:
+ lag_ticks  corr_signed_flow_ext_fwd20    n
+         0                    0.129604 1381
+         1                    0.025263 1378
+         2                    0.082544 1375
+         3                    0.056546 1372
+         5                   -0.000785 1366
+
+Extract fwd20 by spread<=2:
+ spread_tight     n      mean      std
+            0 28723 -0.055896 4.244581
+            1  1217  1.156532 4.302207

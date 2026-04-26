@@ -1,0 +1,10 @@
+{
+  "mean":{
+    "burst":1.25,
+    "no_burst":1.8209876543
+  },
+  "count":{
+    "burst":2,
+    "no_burst":162
+  }
+}

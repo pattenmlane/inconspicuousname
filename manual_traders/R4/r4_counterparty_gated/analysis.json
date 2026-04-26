@@ -129,5 +129,103 @@
       "Mark 22 aggressive sells on VEV_5500 K=5 are negative but small magnitude (mean −0.026) — economically marginal vs tick size."
     ],
     "used_to_decide": "Phase 1 completion gate satisfied: all five Phase-1 bullets have CSV/JSON/txt outputs under manual_traders/R4/r4_counterparty_gated/analysis_outputs/. Proceed to Phase 2 (named-bot conditioning, microstructure, cross-lead–lag) only after strategy code consumes these edges; do not claim 200k/day until backtested."
+  },
+  {
+    "iteration": 1,
+    "title": "round4_phase2_complete",
+    "analysis_description": "Phase 2 scripts: run_r4_phase2_analysis.py (burst-conditioned fwd20, signed-flow lead–lag vs extract fwd20, microprice file, spread-tight regime table, M01→M22 burst residuals) + run_r4_phase2_build_signals.py (Mark67 keys for live tick). trader_v1 encodes spread-tight + optional Mark67 lift; backtest R4 days 1–3.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_gated/run_r4_phase2_analysis.py",
+      "manual_traders/R4/r4_counterparty_gated/run_r4_phase2_build_signals.py",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase2_summary.txt",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase2_burst_conditioned_fwd20.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase2_mark67_extract_burst_split.json",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase2_leadlag_signed_flow_extract.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase2_extract_fwd20_by_spread_tight.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase2_extract_microprice_timeseries.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase2_residual_fwd20_within_M01_M22_burst.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/signals_mark67_aggr_extract_buy.json",
+      "manual_traders/R4/r4_counterparty_gated/trader_v1.py",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v1_worse.log",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v1_all.log"
+    ],
+    "phase2_bullets": [
+      {
+        "bullet": "1) Named-bot + burst conditioning",
+        "outputs": [
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase2_burst_conditioned_fwd20.csv",
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase2_mark67_extract_burst_split.json"
+        ],
+        "conclusion": "Burst-conditioned table shows Mark67→Mark22 extract prints have high mean fwd20 when burst_type=no_burst (n=73); Mark67 aggr_buy split burst vs no_burst is inconclusive (only n=2 in burst bucket). Mark01→Mark22 burst rows on VEV_5200 show positive mean fwd20 (n=11) while same pair on VEV_5300 negative (n=131) — refines Phase-1 pair story: basket burst structure matters by strike."
+      },
+      {
+        "bullet": "2) Microstructure (microprice + spread regime)",
+        "outputs": [
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase2_extract_microprice_timeseries.csv",
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase2_extract_fwd20_by_spread_tight.csv"
+        ],
+        "conclusion": "Extract BBO spread<=2 (tight=1): mean fwd_mid_20 ≈ +1.16 (n=1217) vs tight=0 mean ≈ −0.056 (n=28723) — strong regime split orthogonal to counterparty IDs; trader_v1 uses this as primary gate."
+      },
+      {
+        "bullet": "3) Cross-instrument lead–lag (signed aggressive flow)",
+        "outputs": [
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase2_leadlag_signed_flow_extract.csv"
+        ],
+        "conclusion": "Same-tick signed extract flow vs subsequent extract fwd20 corr ≈ +0.13 at lag 0, weaker at 1–5 — mild short-horizon momentum co-movement, not a standalone large edge."
+      },
+      {
+        "bullet": "4) Regime splits",
+        "outputs": [
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase2_extract_fwd20_by_spread_tight.csv"
+        ],
+        "conclusion": "Same spread-tight table: signal survives only in tight book regime for forward-mid stats (aligns with R3 Sonic intuition extended to R4 extract tape)."
+      },
+      {
+        "bullet": "5) Vol/smile tie to Marks",
+        "outputs": [],
+        "conclusion": "Not run in this pass (no IV column in tape); deferred to Phase 3 or dedicated BS-from-mids pass."
+      },
+      {
+        "bullet": "6) Execution / adverse selection",
+        "outputs": [
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_passive_seller_markout_aggr_buy.csv"
+        ],
+        "conclusion": "Phase-1 file reused: Mark14 passive seller on hydro after aggr buys remains worst cell — trader_v1 does not yet fade hydro vs Mark14 (future rule)."
+      },
+      {
+        "bullet": "7) Inventory-aware MM",
+        "outputs": [],
+        "conclusion": "Not implemented in trader_v1 (no inventory model); Phase-2 evidence only."
+      }
+    ],
+    "top_5_tradeable_edges_phase2_ranked": [
+      {
+        "rank": 1,
+        "edge": "Extract tight BBO (spread <= 2) associates with much higher mean 20-tick forward mid (+1.16 vs -0.06); encoded as primary regime in trader_v1.",
+        "interaction_phase1": "Confirms Phase-1 burst-vs-control (extract drifts) through a simpler always-on microstructure gate not requiring counterparty IDs."
+      },
+      {
+        "rank": 2,
+        "edge": "Mark01→Mark22 burst on VEV_5200: positive mean fwd20 in burst-conditioned table (small n=11) vs negative on VEV_5300 in same burst — strike-specific basket follow-through.",
+        "interaction_phase1": "Refines Phase-1 Mark01→Mark22 VEV_5300 day-heterogeneity: conditioning on burst_type separates 5200 vs 5300 behavior."
+      },
+      {
+        "rank": 3,
+        "edge": "Signed aggressive extract flow same-tick correlates positively (≈0.13) with extract fwd20 — weak momentum scaler potential.",
+        "interaction_phase1": "Orthogonal to Mark67 participant alpha; adds order-flow dimension."
+      },
+      {
+        "rank": 4,
+        "edge": "Mark67 extract aggressive buys remain top Phase-1 signal; Phase-2 burst split is data-starved — keep Mark67 tick keys as optional lift only (trader_v1).",
+        "interaction_phase1": "Partially refines Mark67 story: burst conditioning does not strengthen (n=2 bursts); unconditioned Phase-1 effect remains the evidence base."
+      },
+      {
+        "rank": 5,
+        "edge": "Residual re-centering inside Mark01→Mark22 bursts vs global pair mean (r4_phase2_residual_fwd20_within_M01_M22_burst.csv) for second-order / fade research.",
+        "interaction_phase1": "Builds on Phase-1 residual file with explicit burst slice."
+      }
+    ],
+    "phase1_interaction_summary": "Phase-1 Mark67 extract effect is left intact as optional signal; Phase-2 spread-tight regime is a stronger always-on tape split. Phase-1 Mark01→Mark22 5300 ambiguity is partially explained by separating burst vs non-burst and by strike (5200 vs 5300).",
+    "used_to_decide": "Shipped trader_v1 (spread regime + Mark67 JSON keys). Backtest: worse total 26,194 vs v0 0 (active MM). Phase 3 next: Sonic joint VEV5200+5300 gate on R4 + counterparty interactions per ping_followup_phases.md."
   }
 ]

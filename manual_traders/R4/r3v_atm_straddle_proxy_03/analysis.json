@@ -279,5 +279,15 @@
       "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v2_round4_all.log"
     ],
     "used_to_decide": "v2 worse total 5107 < v0 7794 — gating reduces trade count and total PnL in this simple rule despite stronger offline Mark67 subset; keep gate for regime sizing or combine with other signals rather than hard filter on same clip."
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "trader_v3 post-Phase-3: Sonic joint gate as **sizing** only — clip 16 when s(5200) and s(5300) <=2, else clip 10; same Mark67 aggressive tape trigger as v0. Tests recommendation in round4_phase3_complete narrative.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v3_round4_worse.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v3_round4_all.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph3_mark67_aggr_extract_fwd20_by_gate.json"
+    ],
+    "used_to_decide": "v3 worse 8383 > v0 7794 and >> v2 5107; all-match 7802 < v0 7448 (day-3 adverse selection worse when larger clips). Next: cap tight clip on day 3 or add extract spread filter from ph2."
   }
 ]

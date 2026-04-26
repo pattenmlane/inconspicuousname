@@ -77,3 +77,5 @@ Tape: Mark14 seller aggr_buy fwd20 **conditional on gate** (`r4_p12_...`): day *
 
 --- inclineGod extended (`r4_p13_inclinegod_spread_panels_by_day.csv`) ---
 Level and **clock-time Δ** correlations (5200/5300/extract spreads vs extract mid); Δ rows for tight/loose require **two consecutive** timestamps in that regime.
+
+**Mark 01→Mark 22 on VEV_5300 (Phase-3 pair thesis):** `r4_p14_m01_m22_5300_gate_pathology.md` — 132/132 prints at **tight** gate timestamps (0 loose); short-horizon forward mids negative at K=5,20. Live short probe **v30** (aggr_sell+gate, short 5300 bb-1): total **−4,888** (worse=all) — **do not** trade this tape-mean with naive execution.

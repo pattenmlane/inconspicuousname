@@ -215,5 +215,17 @@
       ],
       "synthesis": "Sonic gate **cleans** the **population** extract forward-mid signal on R4 (matches STRATEGY). **Counterparty identity \u00d7 gate** is **redundant** for Mark01\u2192Mark22 VEV prints (almost always already tight). **Signed-flow** correlation is **not** cleaner under tight vs wide for this definition."
     }
+  },
+  {
+    "iteration": 4,
+    "round": 4,
+    "analysis_description": "Tape: **HYDROGEL_PACK** K=20 forward mid conditional on same Sonic joint gate as Phase 3 (aligned 5200/5300/extract timestamps). Sim: trader_v2 gates hydrogel like extract.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analyze_r4_hydro_fwd_vs_sonic_gate.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_hydro_fwd_vs_sonic_gate.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v2.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v2_backtest_worse.log"
+    ],
+    "used_to_decide": "Hydrogel fwd-mid **not** significantly higher when gate tight (pooled p\u22480.78; day signs mixed). Gating hydrogel in sim is **execution/risk** play not mid-alpha: v2 removes **day2** large hydro loss but sacrifices **day1** hydro carry vs v1."
   }
 ]

@@ -1,0 +1,1 @@
+pooled_all_days: mean_fwd_tight=0.323514 mean_fwd_not_tight=-0.121031 welch_t=7.93512 p=2.26807e-15 n_tight=7706 n_loose=22234

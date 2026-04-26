@@ -107,7 +107,23 @@
       "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v1_worse.log",
       "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v1_all.log"
     ],
-    "used_to_decide": "Phase 2 gate below; Phase 3 (Sonic gate on all stats) next ping."
+    "used_to_decide": "Phase 2 gate below; Phase 3 completed next (price inner-join gate)."
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Phase 3: r4_phase3_sonic_gate_analysis.py \u2014 inner-join 5200/5300/extract like analyze_vev_5200_5300_tight_gate_r3.py; Welch tight vs not on fwd extract K=20; spread\u2013spread correlations by subset; Mark67/three-way pair tables; signals JSON; plot r4_phase3_gate_overview.png. trader_v2: Mark67 only if tight at print + tight at act.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_phase3_sonic_gate_analysis.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/sonic_gate_fwd_extract_k20_by_day.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/sonic_gate_fwd_extract_k20_pooled.txt",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/spread_correlations_by_gate_subset.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/mark67_buy_aggr_extract_fwd_k20_by_joint_tight.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/extract_pair_by_joint_tight_fwd_k20.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/r4_phase3_gate_overview.png",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v2.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v2_worse.log"
+    ],
+    "used_to_decide": "Phase 3 gate object below; ship v1 over v2 for PnL unless sizing up tight-at-print subset."
   },
   {
     "round4_phase2_complete": {
@@ -200,6 +216,72 @@
             "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/mark22_sell_pressure_vs_dextract_corr.csv"
           ],
           "relation_to_phase1": "Complements passive-adverse motifs involving Mark22."
+        }
+      ]
+    }
+  },
+  {
+    "round4_phase3_complete": {
+      "convention": "Same as round3work/vouchers_final_strategy/analyze_vev_5200_5300_tight_gate_r3.py: inner join timestamps for VEV_5200, VEV_5300, VELVETFRUIT_EXTRACT; spread = ask1\u2212bid1; tight = s5200\u22642 and s5300\u22642; fwd extract K=20 = m_ext.shift(\u221220)\u2212m_ext.",
+      "comparison_to_phase1_2_without_price_gate": "Phase 1/2 merged gate at **trade row** often missed tight (empty cells). Price inner-join shows **P(tight)** rises to ~46% on day 3 and pooled Welch **mean_fwd_tight \u2248 +0.32** vs **\u22120.12** not-tight (t\u22487.9, p\u22482e\u221215) \u2014 Sonic\u2019s **population** mid-forward effect is strong on R4 tape. Phase-1 Mark67 **conditional** mean fwd at print is slightly **higher** when tight (n=27 mean \u22482.06 vs n=137 \u22481.77) but thin-n on tight bucket.",
+      "inclineGod_spread_spread": {
+        "outputs": [
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/spread_correlations_by_gate_subset.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/r4_phase3_gate_overview.png"
+        ],
+        "conclusion": "Under **tight** subset, s5200\u2194s5300 correlation **rises** (e.g. day1 tight r\u22480.51 vs all r\u22480.24); spread vs extract **mid** correlation often **flips sign** vs loose regime (tight book decouples tick mids from leg spreads)\u2014consistent with \u201ccorr of spreads\u201d mattering as its own object."
+      },
+      "counterparty_x_gate_interaction": {
+        "outputs": [
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/extract_pair_by_joint_tight_fwd_k20.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/mark67_buy_aggr_extract_fwd_k20_by_joint_tight.csv"
+        ],
+        "conclusion": "**Tier-A three-way:** Mark67\u2192Mark22 on extract when **joint_tight_print=True** (n=15): mean fwd extract K=20 **+2.83** vs **+1.83** when false (n=60). Mark55\u219214 tight vs not also separates (\u2248+0.44 vs +0.62 mean \u2014 direction depends on pair). Mark01\u219222 **extract** prints never co-occur with tight in this slice (empty CSV)."
+      },
+      "sim_vs_mid_phase1": {
+        "outputs": [
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v2_worse.json",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v1_worse.json"
+        ],
+        "conclusion": "Requiring tight **at print** shrinks sim from **+447.5 / 35 fills (v1)** to **+120.5 / 4 fills (v2)** \u2014 execution path is **not** monotone with the mid-only tight bucket boost; most v1 edge came from **wide-at-print** Mark67 events that still passed gate **at act**."
+      },
+      "top_5_edges_phase3_ranked": [
+        {
+          "rank": 1,
+          "edge": "Population: K=20 extract forward mid is **higher** when Sonic joint tight (pooled Welch p\u224810\u221215).",
+          "paths": [
+            "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/sonic_gate_fwd_extract_k20_pooled.txt",
+            "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/sonic_gate_fwd_extract_k20_by_day.csv"
+          ]
+        },
+        {
+          "rank": 2,
+          "edge": "Three-way: Mark67\u2192Mark22 extract prints under **joint tight at print** \u2192 large positive mean fwd extract (+2.83, n=15).",
+          "paths": [
+            "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/extract_pair_by_joint_tight_fwd_k20.csv"
+          ]
+        },
+        {
+          "rank": 3,
+          "edge": "Regime panel: spread\u2013spread structure differs sharply tight vs not (see correlation table + PNG).",
+          "paths": [
+            "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/spread_correlations_by_gate_subset.csv",
+            "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/r4_phase3_gate_overview.png"
+          ]
+        },
+        {
+          "rank": 4,
+          "edge": "Mark67 buy-aggr extract: tight-at-print slightly **raises** mean fwd vs wide-at-print (+2.06 vs +1.77) but n_tight=27.",
+          "paths": [
+            "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/mark67_buy_aggr_extract_fwd_k20_by_joint_tight.csv"
+          ]
+        },
+        {
+          "rank": 5,
+          "edge": "Operational: signals_mark67_buy_aggr_extract_with_tight.json flags which Mark67 events had tight books for downstream gating / sizing.",
+          "paths": [
+            "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/signals_mark67_buy_aggr_extract_with_tight.json"
+          ]
         }
       ]
     }

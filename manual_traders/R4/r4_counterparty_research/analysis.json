@@ -13,18 +13,26 @@
       "manual_traders/R4/r4_counterparty_research/outputs/r4_pair_01_22_5300_by_regime.txt",
       "round4work/round4description.txt",
       "round4work/suggested direction.txt",
-      "round4work/outputs/r4_initial_analysis_summary.txt"
+      "round4work/outputs/r4_initial_analysis_summary.txt",
+      "manual_traders/R4/r4_counterparty_research/run_phase1_participant_ci_bootstrap.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_bootstrap.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_bootstrap.json",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_by_day.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_burst_vs_non_welch.json",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_mark22_vev_sell_by_session.csv"
     ],
-    "used_to_decide": "Phase 1 exhaustive pass on ROUND_4 days 1\u20133; K=5/20/100 forward price ticks; aggressor vs BBO; spread regime + session buckets; bursts; graph + 2-hop motifs; baseline residuals vs (symbol,spr_regime). Ready for Phase 2.",
+    "used_to_decide": "Phase 1 exhaustive pass on ROUND_4 days 1-3; plus statistical supplement (bootstrap CI on mean mark_20, Welch burst vs non on U@20, Mark22 VEV sell by session, per-day participant means). Ready for Phase 2.",
     "round4_phase1_complete": {
       "bullets": [
         {
           "topic": "1) Participant-level alpha / predictiveness",
           "outputs": [
             "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_summary.txt",
-            "manual_traders/R4/r4_counterparty_research/outputs/r4_trades_enriched_markouts.csv"
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_trades_enriched_markouts.csv",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_bootstrap.csv",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_by_day.csv"
           ],
-          "conclusion": "Aggressive buys: Mark 67 shows large positive mean forward same-symbol markout at K=5/20/100 (n=164) but is a thin slice vs dominant flow. Mark 55 buys mildly positive short-horizon; Mark 38 buys negative at K=20 on same symbol. Aggressive sells from Mark 22 show negative short-horizon option markouts (consistent with passive adverse selection against the basket seller). All patterns need sim PnL before trading."
+          "conclusion": "Aggressive buys: Mark 67 K=20 same-symbol bootstrap CI excludes 0 (n=164). Mark 55 same (n=598). Mark 38 pooled negative but mean_U@20 CI crosses 0; per-day sign flips (r4_phase1_participant_u20_by_day.csv). Aggressive sells: Mark 22 VEV mean mark_20_sym ~-0.026 with CI including 0. All patterns still need sim PnL before trading."
         },
         {
           "topic": "2) Deviation from bot baseline",
@@ -45,16 +53,19 @@
         {
           "topic": "4) Burst structure",
           "outputs": [
-            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_summary.txt"
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_summary.txt",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_burst_vs_non_welch.json"
           ],
-          "conclusion": "Same-timestamp bursts (\u22654 rows): forward U mid change at K=20 ticks averages ~0.345 vs ~0.095 for non-burst rows (n\u22481395 vs 2884) \u2014 strongest pooled tape-level conditioning signal in this pass."
+          "conclusion": "Same-timestamp bursts: mean U@20 ~0.345 vs ~0.095 (n=1395 vs 2884). Welch two-sample t-test (unequal var) two-sided p~0.09 on mark_20_u difference \u2014 large effect but not significant at alpha=0.05 on this sample; Phase 2 burst typing refines stability."
         },
         {
           "topic": "5) Adverse selection vs inventory",
           "outputs": [
-            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_summary.txt"
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_summary.txt",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_mark22_vev_sell_by_session.csv",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_bootstrap.csv"
           ],
-          "conclusion": "Without full L2 history, proxy is markout after aggressor prints: Mark 22 as seller on options shows negative short-horizon same-symbol markouts (many prints) \u2014 candidate 'do not lean passive into Mark22 sells' rule for future MM sims."
+          "conclusion": "Mark 22 aggressive VEV sells: pooled mean mark_20_sym ~-0.026 with 95% bootstrap CI including 0; session stratification shows higher mean U@20 in mid/late than early but all are noisy markouts vs basket flow. Phase 1 headline 'negative option markout' is not statistically tight at K=20 on same-symbol for M22."
         }
       ],
       "top_5_tradeable_edges": [
@@ -82,7 +93,7 @@
         {
           "rank": 4,
           "edge": "Mark 67 aggressive buys (cross-section): large positive short-horizon same-symbol and extract markouts at K=5/20",
-          "effect": "m_sym_5_mean \u2248 +1.96 ticks",
+          "effect": "m_sym_20 mean ~+1.81; bootstrap 95% CI for same-symbol mark_20 excludes 0 (see r4_phase1_participant_u20_bootstrap.csv)",
           "n": 164,
           "days": "1\u20133 pooled"
         },
@@ -97,8 +108,20 @@
       "no_edge_or_negative": [
         "(buyer,seller,symbol)-only baseline residuals are degenerate (~0) \u2014 must condition on spread regime or product dynamics.",
         "Mark 01\u2192Mark 22 on VEV_5300 pooled (all regimes) does not show large unconditional U edge at K=20 (mean small positive); signal lives in regime splits.",
-        "Pure 2-hop motif counts alone do not map to extract direction without pairing to forward markout regression (left for Phase 2 sim)."
-      ]
+        "Pure 2-hop motif counts alone do not map to extract direction without pairing to forward markout regression (left for Phase 2 sim).",
+        "Burst vs non-burst on pooled mark_20_u: Welch p~0.09 two-sided (not significant at 0.05 despite large mean gap).",
+        "Mark 38 aggressive buy mean extract markout @20 is not day-stable (sign flips day 1-3)."
+      ],
+      "phase1_statistical_supplement": {
+        "script": "manual_traders/R4/r4_counterparty_research/run_phase1_participant_ci_bootstrap.py",
+        "method": "4000 bootstrap resamples of mean per participant slice; Welch t-test burst vs non on mark_20_u; session table for Mark 22 aggressive VEV sells",
+        "key_numbers": {
+          "mark67_aggbuy_sym20_ci95": [1.216, 2.430],
+          "mark55_aggbuy_sym20_ci95": [0.099, 0.737],
+          "mark22_aggsell_sym20_ci95": [-0.078, 0.027],
+          "burst_vs_non_welch_p_two_sided": 0.0899
+        }
+      }
     }
   },
   {

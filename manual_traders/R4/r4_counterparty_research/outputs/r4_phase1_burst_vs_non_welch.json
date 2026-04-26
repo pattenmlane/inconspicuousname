@@ -1,0 +1,8 @@
+{
+  "n_burst": 1395,
+  "n_non": 2884,
+  "mean_burst": 0.34516129032258064,
+  "mean_non": 0.09535367545076283,
+  "welch_statistic": 1.6965221737259943,
+  "welch_pvalue_two_sided": 0.08990972854697779
+}

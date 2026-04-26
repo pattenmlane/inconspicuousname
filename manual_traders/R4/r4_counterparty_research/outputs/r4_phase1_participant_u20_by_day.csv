@@ -1,0 +1,16 @@
+side,name,day,n,mean_mark20_u
+aggressive_buy,Mark 38,1,266,-0.22180451127819548
+aggressive_buy,Mark 38,2,228,0.2412280701754386
+aggressive_buy,Mark 38,3,237,-0.21308016877637131
+aggressive_buy,Mark 55,1,186,0.5672043010752689
+aggressive_buy,Mark 55,2,218,0.34174311926605505
+aggressive_buy,Mark 55,3,194,0.3324742268041237
+aggressive_sell,Mark 38,1,277,0.3989169675090253
+aggressive_sell,Mark 38,2,210,-0.5238095238095238
+aggressive_sell,Mark 38,3,258,-0.2655038759689923
+aggressive_sell,Mark 55,1,198,0.20454545454545456
+aggressive_sell,Mark 55,2,193,-0.5414507772020726
+aggressive_sell,Mark 55,3,209,0.0023923444976076554
+aggressive_sell,Mark 22,1,416,-0.24759615384615385
+aggressive_sell,Mark 22,2,419,0.4295942720763723
+aggressive_sell,Mark 22,3,595,0.5042016806722689

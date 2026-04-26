@@ -1,0 +1,19 @@
+{
+  "bootstrap_replicates": 4000,
+  "min_n_for_bootstrap_table": 100,
+  "participant_bootstrap_csv": "/workspace/manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_bootstrap.csv",
+  "by_day_csv": "/workspace/manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_by_day.csv",
+  "welch_burst": {
+    "n_burst": 1395,
+    "n_non": 2884,
+    "mean_burst": 0.34516129032258064,
+    "mean_non": 0.09535367545076283,
+    "welch_statistic": 1.6965221737259943,
+    "welch_pvalue_two_sided": 0.08990972854697779
+  },
+  "mark22_vev_sell_session_csv": "/workspace/manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_mark22_vev_sell_by_session.csv",
+  "notes": [
+    "Mark 67 aggressive buy: check if CI for mark_20_sym excludes 0.",
+    "Mark 22 aggressive sell: CI for mark_20_sym short-horizon option markout."
+  ]
+}

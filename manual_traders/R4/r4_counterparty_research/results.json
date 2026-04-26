@@ -292,5 +292,23 @@
     },
     "vs_trader_v5": {"worse_delta": 0, "all_delta": 0, "note": "22->24 tight VEV size inert at aggregate PnL (likely fill caps unchanged)"},
     "counterparty_tape": "manual_traders/R4/r4_counterparty_research/outputs/r4_m22_vev_aggbuy_u_markout_by_gate.json"
+  },
+  {
+    "iteration": 12,
+    "trader_file": null,
+    "strategy_description": "Phase 1 statistical supplement (no trader): bootstrap CI for participant mean mark_20, Welch burst vs non on U@20, Mark22 VEV sell by session, per-day participant means. See analysis.json round4_phase1_complete updates.",
+    "backtest_command_base": null,
+    "total_profit": null,
+    "backtest_round": 4,
+    "backtest_worse": null,
+    "backtest_all": null,
+    "phase1_supplement_outputs": [
+      "manual_traders/R4/r4_counterparty_research/run_phase1_participant_ci_bootstrap.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_bootstrap.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_bootstrap.json",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_by_day.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_burst_vs_non_welch.json",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_mark22_vev_sell_by_session.csv"
+    ]
   }
 ]

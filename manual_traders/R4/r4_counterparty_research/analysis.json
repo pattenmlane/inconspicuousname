@@ -1,0 +1,104 @@
+[
+  {
+    "iteration": "round4_phase1_complete",
+    "analysis_description": "round4_phase1_complete",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_research/run_phase1_counterparty_analysis.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_trades_enriched_markouts.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_summary.txt",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_graph_top_edges.txt",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_twohop_buyer_seller_motifs.txt",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_trades_with_baseline_residual.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_residual_vs_symbol_regime_baseline_top.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_pair_01_22_5300_by_regime.txt",
+      "round4work/round4description.txt",
+      "round4work/suggested direction.txt",
+      "round4work/outputs/r4_initial_analysis_summary.txt"
+    ],
+    "used_to_decide": "Phase 1 exhaustive pass on ROUND_4 days 1–3; K=5/20/100 forward price ticks; aggressor vs BBO; spread regime + session buckets; bursts; graph + 2-hop motifs; baseline residuals vs (symbol,spr_regime). Ready for Phase 2.",
+    "round4_phase1_complete": {
+      "bullets": [
+        {
+          "topic": "1) Participant-level alpha / predictiveness",
+          "outputs": [
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_summary.txt",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_trades_enriched_markouts.csv"
+          ],
+          "conclusion": "Aggressive buys: Mark 67 shows large positive mean forward same-symbol markout at K=5/20/100 (n=164) but is a thin slice vs dominant flow. Mark 55 buys mildly positive short-horizon; Mark 38 buys negative at K=20 on same symbol. Aggressive sells from Mark 22 show negative short-horizon option markouts (consistent with passive adverse selection against the basket seller). All patterns need sim PnL before trading."
+        },
+        {
+          "topic": "2) Deviation from bot baseline",
+          "outputs": [
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_trades_with_baseline_residual.csv",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_residual_vs_symbol_regime_baseline_top.csv"
+          ],
+          "conclusion": "Saturated (buyer,seller,symbol)-only cell means make residuals ~0 by construction; refined baseline uses pooled mean U mark@20 by (symbol, spr_regime). Large residuals concentrate in tight-book extract prints (e.g. Mark 55→Mark 01 vs baseline) and Mark 01→Mark 22 on VEV_5300 in tight regime (see r4_pair_01_22_5300_by_regime.txt)."
+        },
+        {
+          "topic": "3) Sequence / graph methods",
+          "outputs": [
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_graph_top_edges.txt",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_twohop_buyer_seller_motifs.txt"
+          ],
+          "conclusion": "Dominant edge Mark 01→Mark 22 (1339 prints); hydro duopoly Mark 14↔Mark 38 reciprocal. Two-hop motif mass is repetitive Mark01/Mark22 ladder (725 chains in 5k-ts window) — structural bot choreography, not episodic insider paths."
+        },
+        {
+          "topic": "4) Burst structure",
+          "outputs": [
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_summary.txt"
+          ],
+          "conclusion": "Same-timestamp bursts (≥4 rows): forward U mid change at K=20 ticks averages ~0.345 vs ~0.095 for non-burst rows (n≈1395 vs 2884) — strongest pooled tape-level conditioning signal in this pass."
+        },
+        {
+          "topic": "5) Adverse selection vs inventory",
+          "outputs": [
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_summary.txt"
+          ],
+          "conclusion": "Without full L2 history, proxy is markout after aggressor prints: Mark 22 as seller on options shows negative short-horizon same-symbol markouts (many prints) — candidate 'do not lean passive into Mark22 sells' rule for future MM sims."
+        }
+      ],
+      "top_5_tradeable_edges": [
+        {
+          "rank": 1,
+          "edge": "Burst timestamps (≥4 prints at same day+timestamp) predict higher mean forward extract mid move at K=20 ticks vs non-burst control",
+          "effect": "mean_U_mark20 ≈ +0.25 ticks (0.345 vs 0.095)",
+          "n": "1395 burst vs 2884 non-burst rows",
+          "days": "1,2,3 pooled"
+        },
+        {
+          "rank": 2,
+          "edge": "Mark 01 → Mark 22 on VEV_5300 in tight spread regime shows strongly negative residual vs (symbol×spr_regime) baseline on U@20",
+          "effect": "mean_resid_u20 ≈ -1.02 (tight bucket n=34)",
+          "n": 34,
+          "days": "1–3 pooled"
+        },
+        {
+          "rank": 3,
+          "edge": "Mark 55 aggressive buys vs Mark 01 on VELVETFRUIT_EXTRACT in tight regime: large negative residual vs symbol-regime baseline at K=20",
+          "effect": "mean_resid ≈ -2.24",
+          "n": 29,
+          "days": "1–3 pooled"
+        },
+        {
+          "rank": 4,
+          "edge": "Mark 67 aggressive buys (cross-section): large positive short-horizon same-symbol and extract markouts at K=5/20",
+          "effect": "m_sym_5_mean ≈ +1.96 ticks",
+          "n": 164,
+          "days": "1–3 pooled"
+        },
+        {
+          "rank": 5,
+          "edge": "Dominant graph hub Mark 01→Mark 22 with repetitive 2-hop ladders — structural scheduling candidate for event-triggered sizing (not directional alpha alone)",
+          "effect": "1339 directed prints; 725 repeated 01→22→01→22 chains in short window",
+          "n": "see r4_graph_top_edges.txt",
+          "days": "1–3 pooled"
+        }
+      ],
+      "no_edge_or_negative": [
+        "(buyer,seller,symbol)-only baseline residuals are degenerate (~0) — must condition on spread regime or product dynamics.",
+        "Mark 01→Mark 22 on VEV_5300 pooled (all regimes) does not show large unconditional U edge at K=20 (mean small positive); signal lives in regime splits.",
+        "Pure 2-hop motif counts alone do not map to extract direction without pairing to forward markout regression (left for Phase 2 sim)."
+      ]
+    }
+  }
+]

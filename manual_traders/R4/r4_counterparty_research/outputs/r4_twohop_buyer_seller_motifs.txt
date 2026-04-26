@@ -1,0 +1,26 @@
+count	buy1	sell1	buy2	sell2	buy3	sell3
+725	Mark 01	Mark 22	Mark 01	Mark 22	Mark 01	Mark 22
+79	Mark 14	Mark 22	Mark 01	Mark 22	Mark 01	Mark 22
+75	Mark 01	Mark 22	Mark 01	Mark 22	Mark 38	Mark 14
+67	Mark 01	Mark 22	Mark 01	Mark 22	Mark 14	Mark 38
+57	Mark 14	Mark 38	Mark 01	Mark 22	Mark 01	Mark 22
+49	Mark 38	Mark 14	Mark 01	Mark 22	Mark 01	Mark 22
+45	Mark 14	Mark 38	Mark 38	Mark 14	Mark 14	Mark 38
+44	Mark 14	Mark 38	Mark 14	Mark 38	Mark 38	Mark 14
+42	Mark 38	Mark 14	Mark 14	Mark 38	Mark 14	Mark 38
+38	Mark 38	Mark 14	Mark 14	Mark 38	Mark 38	Mark 14
+36	Mark 01	Mark 22	Mark 01	Mark 22	Mark 14	Mark 55
+35	Mark 38	Mark 14	Mark 38	Mark 14	Mark 38	Mark 14
+34	Mark 01	Mark 22	Mark 01	Mark 22	Mark 55	Mark 14
+34	Mark 14	Mark 38	Mark 38	Mark 14	Mark 38	Mark 14
+34	Mark 14	Mark 55	Mark 01	Mark 22	Mark 01	Mark 22
+31	Mark 14	Mark 38	Mark 14	Mark 38	Mark 14	Mark 38
+30	Mark 01	Mark 22	Mark 01	Mark 22	Mark 55	Mark 01
+30	Mark 38	Mark 14	Mark 38	Mark 14	Mark 14	Mark 38
+25	Mark 14	Mark 55	Mark 38	Mark 14	Mark 14	Mark 38
+23	Mark 38	Mark 14	Mark 14	Mark 55	Mark 38	Mark 14
+23	Mark 38	Mark 14	Mark 55	Mark 14	Mark 38	Mark 14
+23	Mark 55	Mark 01	Mark 01	Mark 22	Mark 01	Mark 22
+22	Mark 01	Mark 22	Mark 01	Mark 22	Mark 01	Mark 55
+22	Mark 01	Mark 22	Mark 38	Mark 14	Mark 38	Mark 14
+22	Mark 38	Mark 14	Mark 38	Mark 14	Mark 14	Mark 55

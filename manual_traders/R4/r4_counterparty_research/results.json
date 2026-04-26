@@ -1,0 +1,22 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "manual_traders/R4/r4_counterparty_research/trader_v0.py",
+    "strategy_description": "No-op placeholder for Round 4 backtest harness; Phase 1 deliverables are offline counterparty tape analyses (no strategy PnL yet).",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r4_counterparty_research/trader_v0.py\" 4 --data Prosperity4Data --no-progress --no-out --no-vis",
+    "total_profit": 0,
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 0,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v0_worse.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v0_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 0,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v0_all.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v0_all.json"
+    }
+  }
+]

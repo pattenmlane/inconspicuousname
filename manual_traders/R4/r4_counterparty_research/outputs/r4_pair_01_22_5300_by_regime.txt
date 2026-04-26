@@ -1,0 +1,3 @@
+VEV_5300 01->22 tight n=34 mean_u20=-1.0735 mean_res=-1.0235
+VEV_5300 01->22 mid n=57 mean_u20=0.4123 mean_res=0.2326
+VEV_5300 01->22 wide n=41 mean_u20=0.4512 mean_res=0.2212

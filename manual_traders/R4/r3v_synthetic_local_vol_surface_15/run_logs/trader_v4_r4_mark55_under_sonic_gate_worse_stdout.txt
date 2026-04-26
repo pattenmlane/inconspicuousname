@@ -1,0 +1,48 @@
+running algorithm '/workspace/manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v4_r4_mark55_under_sonic_gate.py'...
+Backtesting /workspace/manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v4_r4_mark55_under_sonic_gate.py for round: 4 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 6,084
+HYDROGEL_PACK: 0
+Total profit: 6,084
+Backtesting /workspace/manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v4_r4_mark55_under_sonic_gate.py for round: 4 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 8,758
+HYDROGEL_PACK: 0
+Total profit: 8,758
+Backtesting /workspace/manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v4_r4_mark55_under_sonic_gate.py for round: 4 day: 3
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: -1,680
+HYDROGEL_PACK: 0
+Total profit: -1,680
+Profit summary:
+Round 4 day 1: 6,084
+Round 4 day 2: 8,758
+Round 4 day 3: -1,680
+Total profit: 13,162

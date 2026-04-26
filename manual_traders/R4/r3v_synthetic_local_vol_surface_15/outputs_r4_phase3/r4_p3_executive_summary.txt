@@ -1,4 +1,5 @@
 Phase 3 Sonic gate (TH=2) on Round 4 days 1–3
+=============================================
 Panel rows: 30000 | merge onto trades: 4281
 
 Mark 67 aggr_buy EXTRACT fwd20: tight vs loose (Welch on merged trades)
@@ -18,13 +19,16 @@ if p high, gate does not cleanly separate markouts for this slice on R4 days 1�
 Population panel (r4_p3_gate_summary_by_day.csv): tight vs not-tight **extract** K=20 forward mid is **highly
 significant** each day (Welch p ~1e-7 to 1e-11), with P(tight) rising on day 3 (~46%).
 
-Counterparty × gate (r4_p3_counterparty_x_gate_welch_fwd20.csv):
-  • **Mark67 aggr_buy EXTRACT fwd20:** n_tight=27 only; mean_tight vs mean_loose **not** significant (p≈0.74).
-    Day table (r4_p3_mark67_fwd20_tight_vs_loose_by_day.csv): all days still positive in both buckets — no clean
-    Sonic “cleaner when tight” separation at trade level on this small tight-n slice.
-  • **Extract burst fwd20:** **tight** bucket has **lower** mean fwd20 than loose (Welch p≈0.0008) — bursts under
-    a tight 5200/5300 book are *not* the same high-forward regime as Phase-1 unconditional bursts; see Phase-1 vs
-    Phase-3 interaction note in analysis.json.
+Counterparty × gate (r4_p3_counterparty_x_gate_welch_fwd20.csv — includes Mark55, Mark49):
+  • **Mark67 aggr_buy EXTRACT fwd20:** n_tight=27; Welch **n.s.** (p≈0.74).
+  • **Mark55 aggr_buy EXTRACT fwd20:** large n; tight mean **lower** than loose; Welch **n.s.** (p≈0.52).
+  • **Mark49** passive seller on aggr-buy prints: small n_tight; Welch **n.s.**
+  • **Extract burst fwd20:** tight < loose (p≈0.0008) — bursts under tight gate differ from Phase-1 unconditional burst.
 
-Backtest (v2 vs v1): same Mark67 logic but gated — total PnL **6,875** vs **6,808** (Round 4 days 1–3);
-gate slightly reshapes day-1/2 vs v1 but does not dominantly fix day-3 drawdown.
+Per-day Mark55/Mark49: `r4_p3_mark55_mark49_fwd20_tight_vs_loose_by_day.csv`
+
+Backtest (v2 vs v1): Mark67 + gate total **6,875** vs **6,808** — marginal; day-3 weakness remains.
+
+Post–Phase3 live extensions (Round 4 days 1–3, `--no-out` stdout):
+  • **v3** Sonic gate + microprice>mid+0.35: total **7,068** (worse=all).
+  • **v4** Mark55 aggr_buy + gate: total **13,162** (worse=all) — best simple counterparty+gated lane so far.

@@ -61,5 +61,47 @@
     "match_trades": "worse",
     "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v2_r4_mark67_under_sonic_gate_worse.log",
     "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v2_r4_mark67_under_sonic_gate_worse_fill_summary.json"
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3_r4_gate_microprice_extract.py",
+    "strategy_description": "Sonic joint gate + extract microprice > mid+0.35 \u2192 buy ba+1 clip 10 (Phase-2 microstructure stack). Compact stdout log (default --out logs are huge).",
+    "total_profit": 7068,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v3_r4_gate_microprice_extract.py 4 --data Prosperity4Data --match-trades worse --no-out",
+    "backtest_worse": {
+      "total_profit": 7068,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v3_r4_gate_microprice_extract_worse_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v3_r4_gate_microprice_extract_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "total_profit": 7068,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v3_r4_gate_microprice_extract_all_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v3_r4_gate_microprice_extract_all_fill_summary.json"
+    },
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v3_r4_gate_microprice_extract_worse_stdout.txt",
+    "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v3_r4_gate_microprice_extract_worse_fill_summary.json"
+  },
+  {
+    "iteration": 4,
+    "trader_file": "trader_v4_r4_mark55_under_sonic_gate.py",
+    "strategy_description": "Mark 55 aggressive-buy VELVETFRUIT_EXTRACT (tape price \u2265 ask1) only under Sonic joint gate; ba+1 clip 12. Compact stdout logs.",
+    "total_profit": 13162,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v4_r4_mark55_under_sonic_gate.py 4 --data Prosperity4Data --match-trades worse --no-out",
+    "backtest_worse": {
+      "total_profit": 13162,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v4_r4_mark55_under_sonic_gate_worse_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v4_r4_mark55_under_sonic_gate_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "total_profit": 13162,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v4_r4_mark55_under_sonic_gate_all_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v4_r4_mark55_under_sonic_gate_all_fill_summary.json"
+    },
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v4_r4_mark55_under_sonic_gate_worse_stdout.txt",
+    "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v4_r4_mark55_under_sonic_gate_worse_fill_summary.json"
   }
 ]

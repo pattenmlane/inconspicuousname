@@ -146,38 +146,87 @@ def main() -> None:
     bt_f = y[~be["tight"]].dropna().to_numpy()
     tstatb, pb = _ttest(bt_t, bt_f)
 
-    inter = pd.DataFrame(
-        [
-            {
-                "slice": "Mark67_aggr_buy_EXTRACT_fwd20",
-                "n_tight": int(len(t67_t)),
-                "mean_tight": float(np.mean(t67_t)) if len(t67_t) else float("nan"),
-                "n_loose": int(len(t67_f)),
-                "mean_loose": float(np.mean(t67_f)) if len(t67_f) else float("nan"),
-                "welch_t": tstat67,
-                "welch_p": p67,
-            },
-            {
-                "slice": "Mark01_to_Mark22_VEV5300_fwd20",
-                "n_tight": int(len(t01_t)),
-                "mean_tight": float(np.mean(t01_t)) if len(t01_t) else float("nan"),
-                "n_loose": int(len(t01_f)),
-                "mean_loose": float(np.mean(t01_f)) if len(t01_f) else float("nan"),
-                "welch_t": tstat01,
-                "welch_p": p01,
-            },
-            {
-                "slice": "EXTRACT_burst_fwd20",
-                "n_tight": int(len(bt_t)),
-                "mean_tight": float(np.mean(bt_t)) if len(bt_t) else float("nan"),
-                "n_loose": int(len(bt_f)),
-                "mean_loose": float(np.mean(bt_f)) if len(bt_f) else float("nan"),
-                "welch_t": tstatb,
-                "welch_p": pb,
-            },
-        ]
-    )
+    def _slice_welch(name: str, sub: pd.DataFrame) -> dict:
+        xb = pd.to_numeric(sub["fwd_mid_k20"], errors="coerce")
+        a = xb[sub["tight"]].dropna().to_numpy()
+        b = xb[~sub["tight"]].dropna().to_numpy()
+        ts, pv = _ttest(a, b)
+        return {
+            "slice": name,
+            "n_tight": int(len(a)),
+            "mean_tight": float(np.mean(a)) if len(a) else float("nan"),
+            "n_loose": int(len(b)),
+            "mean_loose": float(np.mean(b)) if len(b) else float("nan"),
+            "welch_t": ts,
+            "welch_p": pv,
+        }
+
+    rows_inter = [
+        {
+            "slice": "Mark67_aggr_buy_EXTRACT_fwd20",
+            "n_tight": int(len(t67_t)),
+            "mean_tight": float(np.mean(t67_t)) if len(t67_t) else float("nan"),
+            "n_loose": int(len(t67_f)),
+            "mean_loose": float(np.mean(t67_f)) if len(t67_f) else float("nan"),
+            "welch_t": tstat67,
+            "welch_p": p67,
+        },
+        {
+            "slice": "Mark01_to_Mark22_VEV5300_fwd20",
+            "n_tight": int(len(t01_t)),
+            "mean_tight": float(np.mean(t01_t)) if len(t01_t) else float("nan"),
+            "n_loose": int(len(t01_f)),
+            "mean_loose": float(np.mean(t01_f)) if len(t01_f) else float("nan"),
+            "welch_t": tstat01,
+            "welch_p": p01,
+        },
+        {
+            "slice": "EXTRACT_burst_fwd20",
+            "n_tight": int(len(bt_t)),
+            "mean_tight": float(np.mean(bt_t)) if len(bt_t) else float("nan"),
+            "n_loose": int(len(bt_f)),
+            "mean_loose": float(np.mean(bt_f)) if len(bt_f) else float("nan"),
+            "welch_t": tstatb,
+            "welch_p": pb,
+        },
+    ]
+    m55 = mg[
+        (mg["symbol"] == "VELVETFRUIT_EXTRACT")
+        & (mg["buyer"] == "Mark 55")
+        & (mg["aggressor_bucket"] == "aggr_buy")
+    ]
+    rows_inter.append(_slice_welch("Mark55_aggr_buy_EXTRACT_fwd20", m55))
+    m49 = mg[
+        (mg["symbol"] == "VELVETFRUIT_EXTRACT")
+        & (mg["seller"] == "Mark 49")
+        & (mg["aggressor_bucket"] == "aggr_buy")
+    ]
+    rows_inter.append(_slice_welch("Mark49_passive_seller_EXTRACT_aggr_buy_fwd20", m49))
+
+    inter = pd.DataFrame(rows_inter)
     inter.to_csv(OUT / "r4_p3_counterparty_x_gate_welch_fwd20.csv", index=False)
+
+    # Day tables for Mark55 / Mark49 (tight vs loose means)
+    def _daystab(sub: pd.DataFrame, label: str) -> pd.DataFrame:
+        out = []
+        for d in DAYS:
+            s = sub[sub["day"] == d]
+            xb = pd.to_numeric(s["fwd_mid_k20"], errors="coerce")
+            out.append(
+                {
+                    "slice": label,
+                    "day": d,
+                    "n_tight": int(s["tight"].sum()),
+                    "mean_fwd20_tight": float(xb[s["tight"]].mean()) if s["tight"].any() else float("nan"),
+                    "n_loose": int((~s["tight"]).sum()),
+                    "mean_fwd20_loose": float(xb[~s["tight"]].mean()) if (~s["tight"]).any() else float("nan"),
+                }
+            )
+        return pd.DataFrame(out)
+
+    pd.concat(
+        [_daystab(m55, "Mark55"), _daystab(m49, "Mark49_passive_seller")], ignore_index=True
+    ).to_csv(OUT / "r4_p3_mark55_mark49_fwd20_tight_vs_loose_by_day.csv", index=False)
 
     # Day-stability table for Mark67 within tight only
     stab = []

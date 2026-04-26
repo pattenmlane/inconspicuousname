@@ -385,5 +385,16 @@
       "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_participant_predictivity.json"
     ],
     "used_to_decide": "v12 worse 9503 > v11 9372 but < v8 9673; all 8758 < v8 9354. Larger clips on overlap ticks still hurt under worse fills vs baseline v8 sizing. Best single change after v11 is co-tick boost not separate lift, but v8 remains champion."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Offline split r4_ph1_m67_aggr_fwd_extract_by_m49_overlap.json: at Mark67 aggressive-buy timestamps, extract fwd5/fwd20 are positive both with and without same-tick Mark49 seller extract; day-2 fwd5 mean is lower on overlap (1.66 vs 1.88). Hypothesis: overlap ticks are more crowded — **reduce** clip not increase (inverse of falsified v12).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_m67_aggr_fwd_extract_by_m49_overlap.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v13_round4_worse.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v13_round4_all.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_m67_m49_co_tick_overlap.json"
+    ],
+    "used_to_decide": "v13 worse 10030 > v8 9673 (+357); all 9650 > v8 9354 (+296). Smaller Mark67 size on M49-seller-extract co-ticks (clip-2, floor 4, days 1-2) improves day-1 and net under worse fills — first variant to beat v8 on both match modes in this folder."
   }
 ]

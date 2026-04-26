@@ -657,5 +657,42 @@
         "aggregate_by_product_group": { "extract": 8758, "hydrogel": 0, "vev_sum": 0 }
       }
     }
+  },
+  {
+    "iteration": 13,
+    "trader_file": "manual_traders/R4/r3v_atm_straddle_proxy_03/trader_v13.py",
+    "strategy_description": "v8 + Mark49 seller extract co-tick **clip trim** (days 1-2): if any tape row has seller Mark49 on extract, subtract 2 from Mark67 extract clip before aggr-buy (floor 4). Motivated by r4_ph1_m67_aggr_fwd_extract_by_m49_overlap.json — overlap fwd5 not higher than non-overlap (day2 lower); v12 boost falsified. New best worse+all vs v8.",
+    "backtest_round": 4,
+    "total_profit": 10030,
+    "match_trades": "worse",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_atm_straddle_proxy_03/trader_v13.py 4 --data Prosperity4Data --no-vis --no-progress",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 10030,
+      "backtest_log_file": "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v13_round4_worse.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_atm_straddle_proxy_03/trader_v13.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+      "trades_or_fills_summary": {
+        "per_day": [
+          { "day": 1, "products": { "VELVETFRUIT_EXTRACT": 3551, "HYDROGEL_PACK": 0 }, "day_total_profit": 3551 },
+          { "day": 2, "products": { "VELVETFRUIT_EXTRACT": 7672, "HYDROGEL_PACK": 0 }, "day_total_profit": 7672 },
+          { "day": 3, "products": { "VELVETFRUIT_EXTRACT": -1193, "HYDROGEL_PACK": 0 }, "day_total_profit": -1193 }
+        ],
+        "aggregate_by_product_group": { "extract": 10030, "hydrogel": 0, "vev_sum": 0 }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 9650,
+      "backtest_log_file": "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v13_round4_all.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_atm_straddle_proxy_03/trader_v13.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress",
+      "trades_or_fills_summary": {
+        "per_day": [
+          { "day": 1, "products": { "VELVETFRUIT_EXTRACT": 2730, "HYDROGEL_PACK": 0 }, "day_total_profit": 2730 },
+          { "day": 2, "products": { "VELVETFRUIT_EXTRACT": 7840, "HYDROGEL_PACK": 0 }, "day_total_profit": 7840 },
+          { "day": 3, "products": { "VELVETFRUIT_EXTRACT": -920, "HYDROGEL_PACK": 0 }, "day_total_profit": -920 }
+        ],
+        "aggregate_by_product_group": { "extract": 9650, "hydrogel": 0, "vev_sum": 0 }
+      }
+    }
   }
 ]

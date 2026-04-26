@@ -1,0 +1,4 @@
+scope,tier,n,mean_fwd20
+pooled,core,7706,0.32351414482221647
+pooled,loose,815,-1.1306748466257668
+pooled,wing_only,21419,-0.08261356739343574

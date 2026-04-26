@@ -387,5 +387,15 @@
       "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_sonic_tier_gate_shares_pooled.csv"
     ],
     "used_to_decide": "**trader_v17** vs **v15**: **+33979** worse / **+33914** all vs v15 **+33420** / **+33354** (**+559** worse) — **wing-band M55 skip on U only** fixes day2 extract (**-29** vs **-672**) with small day1 U giveback (**+3988** vs **+4084**); hydro and V4000 lines match v15. **Interpretation:** counterparty filter is **most valuable** when gate legs are **wider than Sonic core** but still inside spr<=3 occupancy band (~71% of timestamps); core joint (~26%) keeps unconditional U MM as in v11."
+  },
+  {
+    "iteration": 18,
+    "analysis_description": "Tape: extract **mid fwd_20** (K=20 price rows) by **Sonic tier** — `analyze_r4_extract_fwd20_by_sonic_tier.py` (pooled + by day). Ablation: `trader_v18` = v17 with VEV size 18 in wing_only only.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/analyze_r4_extract_fwd20_by_sonic_tier.py",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_extract_fwd20_by_sonic_tier_pooled.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_extract_fwd20_by_sonic_tier_by_day.csv"
+    ],
+    "used_to_decide": "**Pooled:** **core** mean fwd20 **+0.32** (n=7706), **wing_only** **-0.083** (n=21419), **loose** **-1.13** (n=815) — wing band is **worse** than core for unconditional extract forward step (day3 wing_only mean **-0.37**). Supports **not** treating wing band as Sonic-tight for extract **without** conditioning (v17 M55 wing filter is directionally aligned). **trader_v18** identical PnL to **v17** — wing-band VEV clip 18 vs 14 is **fill-saturated** in this harness (same as v5–v7 tight-path size grid)."
   }
 ]

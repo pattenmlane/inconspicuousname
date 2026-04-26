@@ -376,5 +376,26 @@
       "trades_or_fills_summary": "Day3 +11220 vs 11286 worse (VEV_5300 -65 on all); total 33914."
     },
     "total_profit": 33979
+  },
+  {
+    "iteration": 18,
+    "trader_file": "trader_v18.py",
+    "strategy_description": "v17 with SIZE_VEV=18 in wing_only band only (core/loose still 14); tests wing-band VEV fill slack.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 33979,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v18.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v18_worse.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v18_worse.log",
+      "trades_or_fills_summary": "Identical line items and totals to v17 (33979); wing VEV clip change is zero marginal in harness."
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 33914,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v18.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v18_all.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v18_all.log",
+      "trades_or_fills_summary": "Same as v17 all (33914)."
+    },
+    "total_profit": 33979
   }
 ]

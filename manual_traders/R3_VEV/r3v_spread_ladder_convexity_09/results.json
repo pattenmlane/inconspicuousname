@@ -182,5 +182,47 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f19.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v19.json"
+  },
+  {
+    "iteration": 20,
+    "trader_file": "trader_v20.py",
+    "strategy_description": "Family13 v15 + joint tight two-leg gate (s5200,s5300 BBO spread both <=2): scale calm VEV clip/rails when ON; de-risk slightly when OFF. Optional passive VELVETFRUIT_EXTRACT bids when calm+tight+long RV-IV signal (STRATEGY.txt joint-book edge). TTE proxy unchanged (core IV at T=7/365; historical days 0-3 in data).",
+    "total_profit": 28786,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v20.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f20_worse.log",
+    "note": "Backtest run spans Round 3 historical day indices 0-3 (merged prices_round_3_day_0..3 in Prosperity4Data). v15 baseline re-run on same merge: total_profit 19290 worse.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 28786,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f20_worse.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v20_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 28786,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f20_all.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v20_all.json"
+    }
+  },
+  {
+    "iteration": 21,
+    "trader_file": "trader_v21.py",
+    "strategy_description": "Same as v20 but **ablation: no VELVETFRUIT_EXTRACT orders** (gate + VEV clip/rails only) to test mid-forward story vs execution PnL.",
+    "total_profit": 20994,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/trader_v21.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f21_worse.log",
+    "note": "Parameter sweep: fixed TH=2, TIGHT_CALM_MULT=1.35; compared v20 vs v21 to isolate extract leg.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 20994,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f21_worse.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v21_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 20994,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f21_all.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v21_all.json"
+    }
   }
 ]

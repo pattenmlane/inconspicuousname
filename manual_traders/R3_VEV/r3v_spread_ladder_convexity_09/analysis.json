@@ -159,5 +159,29 @@
       "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v19.json"
     ],
     "used_to_decide": "Keep v15 as best current deployment candidate; next step should test clipped/normalized bump term with explicit cap and warmup rather than raw additive or near-zero coefficient."
+  },
+  {
+    "iteration": 20,
+    "analysis_description": "Integrated vouchers_final_strategy joint tight gate: both VEV_5200 and VEV_5300 BBO spread <=2 (ask1-bid1) as Sonic-style regime. Prior offline stats (r3_tight_spread_summary.txt, day0): P(both tight)~0.10, mean forward K=20 extract mid much higher when tight (Welch t>4). On top of v15 (RV-IV reverse sign + stress + shock), we log s5200/s5300, multiply calm VEV clip/rails by 1.35 when joint tight, 0.85/0.90 clip/rail when calm-wide, and add optional passive VELVETFRUIT_EXTRACT buy when calm+tight+long signal. IV still from BS on core (T=7/365) for same Greek thread. Full Round3 merge now has days 0-3: v20 total worse PnL 28,786 vs v15 19,290 re-baseline; worse vs all identical on this run.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f20_worse.log",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f20_all.log",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v20_worse.json",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v20_all.json"
+    ],
+    "used_to_decide": "Ship v20 as current best: joint gate as clip/rail scaler plus small extract long when gate+signal; record both match modes. Still far from 200k/day floor—next tighten extract sizing or add IV-normalized threshold grid."
+  },
+  {
+    "iteration": 21,
+    "analysis_description": "Ablate v20 extract leg: identical gate and VEV scaling, zero VELVETFRUIT_EXTRACT orders. PnL 20,994 << 28,786 v20, confirming the bulk of v20's lift came from the optional underlying trades under worse fills, not the VEV clip multiplier alone. Parameter sweep: compare v20 vs v21 (binary feature test).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f21_worse.log",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f21_all.log",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v21_worse.json",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v21_all.json"
+    ],
+    "used_to_decide": "Keep v20 over v21 for PnL; re-tune or cap extract participation next (U_MAX_CLIP, require tighter gate persistence) to reduce day0 drawdown while preserving upside."
   }
 ]

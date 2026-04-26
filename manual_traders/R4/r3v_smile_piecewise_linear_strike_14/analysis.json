@@ -256,5 +256,22 @@
       "counterparty_under_tight": "Inner-join trade ts to price-panel tight flag: 351 extract trades at tight ts vs 1030 at loose (days 1–3). Top notional tight pairs: Mark14→Mark55, Mark55→Mark14, Mark55→Mark01, Mark01→Mark55.",
       "trader_v3_vs_v2": "v3 adds passive sells when long>40 and buys when short<-40 under the same gate; worse total_profit 2961 vs v2 13236 — do not ship this skew without redesign."
     }
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "Counterparty × Sonic gate (Phase-1 horizons): extract fwd markouts by buyer→seller pair, split by joint-tight at trade ts (run_r4_pair_markout_joint_gate.py). Sim: trader_v4 position-aware buy clip only vs v2 fixed Q=4.",
+    "analysis_outputs": [
+      "run_r4_pair_markout_joint_gate.py",
+      "analysis_outputs/r4_pair_extract_fwd_joint_gate.json",
+      "trader_v4.py",
+      "backtest_logs/trader_v4_worse.log",
+      "backtest_logs/trader_v4_all.log"
+    ],
+    "used_to_decide": "Population tight-vs-loose extract fwd20 remains the main edge (Phase 3). Conditioning on (pair, tight) for **tape** extract trades: top tight-K20 pairs are Mark55↔Mark14 and Mark55↔Mark01 (n~70–86 each). Mark14→Mark55 K=20: mean tight +0.18 (n=84) vs loose -0.39 (n=232) — directionally aligned with gate story but Welch t_approx ~1.05 (underpowered). Mark55→Mark14: both regimes positive mean K=20 (~+0.44 tight vs +0.62 loose) — gate does not separate that pair on this horizon. Execution: v4 (clip buys by |pos|) reaches +7329 worse vs v2 +13236 — clipping reduces capture vs fixed Q; keep v2-style sizing or tune thresholds with tape-based risk only.",
+    "round4_post_phase3_notes": {
+      "pair_extract_fwd_joint_gate": "r4_pair_extract_fwd_joint_gate.json — Phase-1 snap_at + forward_mid K∈{5,20,100}; joint_tight from concurrent 5200/5300 spreads. Pooled tables for top pairs by tight-K20 count; per-day breakdown included.",
+      "focal_Mark14_to_55_k20": "tight mean ~+0.18 (n=84) vs loose ~-0.39 (n=232); t_approx ~1.05 — not statistically strong at pair level.",
+      "trader_v4_vs_v2": "v4 worse total 7329 vs v2 13236; more trades (~4433 vs 4365) but smaller edge per inventory path — fixed Q=4 wins on this backtest slice."
+    }
   }
 ]

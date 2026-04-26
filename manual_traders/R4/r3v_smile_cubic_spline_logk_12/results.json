@@ -178,5 +178,49 @@
     },
     "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v3.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-merge-pnl",
     "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v3.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-merge-pnl"
+  },
+  {
+    "iteration": 4,
+    "round": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "v0 + **Phase 1** hydro cue: after observing **Mark 38→Mark 14** on **HYDROGEL_PACK** in `state.market_trades`, for **400** ticks widen hydro passive edge (3→6) and halve clip (20→10). Extract/VEV unchanged. **Not** gated on Sonic joint gate (tape: gate×pair sign is unstable for this leg).",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 47283,
+      "backtest_log_file": "backtest_logs/trader_v4_round4_worse.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": {
+          "day1": 23248,
+          "day2": 10787,
+          "day3": 13248
+        },
+        "non_zero_pnl_products_per_day": {
+          "day1": 4,
+          "day2": 3,
+          "day3": 4
+        },
+        "note": "+488 vs v0 worse (46795); hydro PnL vs v0 log: day1 +310, day2 +276, day3 −98 (HYDRO lines only)."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 50528,
+      "backtest_log_file": "backtest_logs/trader_v4_round4_all.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": {
+          "day1": 25980,
+          "day2": 13714,
+          "day3": 10834
+        },
+        "non_zero_pnl_products_per_day": {
+          "day1": 11,
+          "day2": 10,
+          "day3": 11
+        },
+        "note": "+488 vs v0 all (50040)."
+      }
+    },
+    "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v4.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-merge-pnl",
+    "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v4.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-merge-pnl"
   }
 ]

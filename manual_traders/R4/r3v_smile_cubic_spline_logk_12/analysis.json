@@ -305,5 +305,17 @@
       "results.json"
     ],
     "used_to_decide": "Future counterparty-conditioned traders can read `state.market_trades` without forking data readers. For **burst neighborhood** (Phase 2), offline ±500 or rolling tape scan still needed — live same-ts burst is a **subset** of the Phase-2 window."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "**Phase 1 hydro edge → sim:** Pooled **Mark 38→Mark 14** on **HYDROGEL_PACK** has negative mean mark_20_same (Phase 1); **joint_gate_tight** splits are **inconsistent by day** (see `r4_phase1_hydro_m38_m14_mark20_by_gate_day.csv` — e.g. day2 gate=True mean still negative). **trader_v4** implements **unconditional** post-print caution: any M38→M14 hydro print at current ts extends 400-tick wider-edge / half-size hydro quotes. Backtest R4 d1–3: **worse +488** vs v0 (47,283 vs 46,795), **all +488** vs v0 (50,528 vs 50,040).",
+    "analysis_outputs": [
+      "trader_v4.py",
+      "analysis_outputs/r4_phase1_hydro_m38_m14_mark20_by_gate_day.csv",
+      "backtest_logs/trader_v4_round4_worse.log",
+      "backtest_logs/trader_v4_round4_all.log",
+      "results.json"
+    ],
+    "used_to_decide": "First counterparty rule that **improves** primary worse-fill total on this tape; do **not** stack naive joint-gate filter on this hydro pair without re-tabling by day."
   }
 ]

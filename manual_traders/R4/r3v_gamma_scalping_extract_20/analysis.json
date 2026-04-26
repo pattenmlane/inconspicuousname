@@ -319,5 +319,19 @@
       "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v3.json"
     ],
     "used_to_decide": "Population **extract** forward is cleaner when tight (Phase 3), but **counterparty-conditioned** 5300 basket fades are **day-unstable** even restricted to tight timestamps (see by-day CSV). Passive **two-leg** MM gated only on spread is **worse** than Mark67-follow variants on this tape slice — next iterations should combine gate with **inventory skew**, **counterparty avoid list** (e.g. Mark14→Mark55 in tight windows from by-day table), or **extract hedge**, not quote 5200/5300 naked through day 3."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "**Mark 14→Mark 55** on **extract** × **Sonic tight** overlap + forward **VEV_5200** mid (K=20 tape steps) conditioning; **`trader_v4`** sim (skip MM on ticks with that print on tape). Script: `r4_adverse_print_gate_overlap.py`.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/r4_adverse_print_gate_overlap.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_adverse_tight_overlap_by_day.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_adverse_vev5200_fwd_after_print.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v4.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v4_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v4_round4_all.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v4.json"
+    ],
+    "used_to_decide": "**Overlap:** Mark14→Mark55 extract prints co-occur with joint-tight on only **~0.9–1.2%** of tight timestamps per day (`r4_adverse_tight_overlap_by_day.csv`). **VEV_5200** K=20 forward mid after those ticks vs other tight ticks: **day 2** mean **lower** on adverse ticks (−0.59 vs +0.31, n=16 vs 1711); days 1 and 3 not clearly protective for 5200. **`trader_v4`** (skip MM when that print appears) **does not** beat **v3** (worse **2786** vs **2814**; day 3 PnL identical) — skipping ~1% of requote intervals is too weak to fix day-3 inventory/adverse mix; need stronger inventory or extract hedge, not this print-only filter."
   }
 ]

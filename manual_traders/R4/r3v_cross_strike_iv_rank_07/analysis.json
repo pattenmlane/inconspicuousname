@@ -33,7 +33,7 @@
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_participant_forward_stats.csv",
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_phase1_machine_summary.json"
         ],
-        "conclusion": "Strongest cell: Mark 67 aggressive buys on VELVETFRUIT_EXTRACT show large positive self-mid change at k=5 (n=164, mean≈1.96 ticks, t≈13) stable in tight/all bins; Mark 22 aggressive sells on VEV_5300 show negative k=5 self-mid (n=160, mean≈-0.20, t≈-3.3). Mark 55 on extract is horizon-sensitive (buy k=5/20 positive mean; sell k=100 negative)."
+        "conclusion": "Strongest cell: Mark 67 aggressive buys on VELVETFRUIT_EXTRACT show large positive self-mid change at k=5 (n=164, mean≈1.96 ticks, t≈13) stable in tight/all bins; Mark 22 aggressive sells on VEV_5300 show negative k=5 self-mid (n=160, mean≈-0.20, t≈-3.3). Mark 55 on extract is horizon-sensitive — tabulated in r4_p1_mark55_extract_summary.json: buy_agg k5/k20 means ≈ +0.20/+0.41 (t≈2.2/2.5); sell_agg k5/k20 ≈ +0.05/-0.11 (t n.s.), k100 ≈ -0.92 (t≈-2.5)."
       },
       {
         "bullet": "2) Deviation from bot baseline (pair cell means + residuals)",
@@ -116,7 +116,8 @@
       "Mark 01 aggressive buy specifically on VEV_5300 at k=20: zero qualifying rows in tape slice (Mark 01→Mark 22 basket hits other lines); r4_p1_mark01_buy_vev5300_by_day_k20.csv empty — cannot claim participant alpha on that exact cell.",
       "High-|t| two-hop tails (e.g. Mark 14→Mark 38→Mark 22) have n<20 — not stable as standalone rules.",
       "Phase 1 is mid-only markouts; tradable PnL under worse fills not established (STRATEGY caveat applies).",
-      "Mark 22→Mark 49 extract adverse-selection tail: only 12 tape rows (11 sell_agg); per-day k=20 unstable (day 2 mean +2.3, n=3). trader_v6 gated short sim is negative under worse (-156) with 3 fills — not a scalable edge."
+      "Mark 22→Mark 49 extract adverse-selection tail: only 12 tape rows (11 sell_agg); per-day k=20 unstable (day 2 mean +2.3, n=3). trader_v6 gated short sim is negative under worse (-156) with 3 fills — not a scalable edge.",
+      "Mark 55 aggressive sells on extract: pooled k=100 mean ≈ -0.92 (t≈-2.5) but k=5/k=20 ≈ 0 / -0.11 (not short-horizon). trader_v7 (Sonic gate + short on each M55 agg sell tape print) loses -13671 worse with 600 contracts — high-frequency fade contradicts long-horizon mid evidence and accumulates adverse path PnL."
     ]
   },
   {
@@ -364,5 +365,20 @@
       "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v6_round4_all_fills_summary.json"
     ],
     "used_to_decide": "Offline sell_agg slice supports short-horizon down-mid on extract after M22→M49 prints, but day-2 k=20 subset is positive (n=3) and n is tiny. Gated sim still loses under worse (-156, 3 submission sells) vs -438 all — execution and rarity dominate any fade."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Phase 1 Mark 55 on VELVETFRUIT_EXTRACT: pooled and per-day forward mids for buy_agg (buyer==M55) vs sell_agg (seller==M55) at k∈{5,20,100}. Script r4_mark55_extract_evidence.py → r4_p1_mark55_extract_by_day.csv, r4_p1_mark55_extract_summary.json. trader_v7.py: Sonic gate + short extract (limit sell at bid) on each tape print where Mark 55 aggressively sells extract; backtests worse+all.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_mark55_extract_evidence.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_mark55_extract_by_day.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_mark55_extract_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v7.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v7_round4_worse.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v7_round4_all.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v7_round4_worse_fills_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v7_round4_all_fills_summary.json"
+    ],
+    "used_to_decide": "Buy-side M55 is mildly positive at k=5/20 (t≈2.2/2.5). Sell-side k=100 negative (t≈-2.5) with per-day k=100 means -0.48/-1.40/-0.88 (day 2 strongest). Naive high-frequency short fade on every sell print under gate is strongly negative in sim (-13671 worse, 29 fills, 600 qty) — horizon mismatch vs Phase-1 headline."
   }
 ]

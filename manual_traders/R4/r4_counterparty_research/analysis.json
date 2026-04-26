@@ -518,5 +518,37 @@
       "vs_v5_worse": 0,
       "vs_v5_all": 0
     }
+  },
+  {
+    "iteration": "r4_m22_vev_u_markout_by_sonic_gate",
+    "analysis_description": "Tape: forward extract markout (K=20 rows) after VEV prints with seller Mark 22, split by joint gate (from r4_phase3_trades_with_gate.csv). Plus aggressive-buy-only slice.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_research/run_m22_vev_aggbuy_u_markout_by_gate_r4.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_m22_vev_aggbuy_u_markout_by_gate.json",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_m22_vev_aggbuy_u_markout_by_gate.txt"
+    ],
+    "used_to_decide": "Aggressive buy + M22 seller: only 11 prints, all tight gate (none loose) — no gate comparison. All VEV + M22 seller: n=1428 tight mean U@20 ~0.28 vs n=5 loose mean 2.0; tight minus loose mean ~-1.72 is dominated by tiny loose cell (do not treat as stable edge). Day splits for agg-buy: day1 n=6 mean 5, day3 n=5 mean -6.",
+    "caveats": [
+      "Loose cell n=5 for all-seller slice is not inferential.",
+      "Does not support loosening quotes on M22 VEV in tight vs loose without more data."
+    ]
+  },
+  {
+    "iteration": "r4_trader_v10_tight_vev_size_sweep",
+    "analysis_description": "trader_v10 = v5 with VEV_SIZE_T 24 instead of 22 when joint gate tight.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_research/trader_v10.py",
+      "manual_traders/R4/r4_counterparty_research/runlog_v10_worse.txt",
+      "manual_traders/R4/r4_counterparty_research/runlog_v10_all.txt",
+      "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v10_worse.json",
+      "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v10_all.json"
+    ],
+    "used_to_decide": "Identical PnL to v5 (worse 34438, all 36180). Tight VEV size 22 vs 24 does not change simulator totals here.",
+    "backtest_summary": {
+      "worse_total": 34438,
+      "all_total": 36180,
+      "vs_v5_worse": 0,
+      "vs_v5_all": 0
+    }
   }
 ]

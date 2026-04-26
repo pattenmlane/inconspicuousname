@@ -1,0 +1,58 @@
+{
+  "description": "Aggressive VEV buys (aggressor=buy) with seller Mark 22; mark_20_u = forward extract mid change K=20 rows",
+  "n_total_rows": 11,
+  "pooled_by_gate": [
+    {
+      "subset": "tight_gate",
+      "n": 11,
+      "mean": 0.0,
+      "median": 5.0,
+      "frac_pos": 0.5454545454545454
+    },
+    {
+      "subset": "loose_gate",
+      "n": 0,
+      "mean": null,
+      "median": null
+    }
+  ],
+  "by_day_min_n5": [
+    {
+      "day": 1,
+      "gate": "tight",
+      "n": 6,
+      "mean": 5.0,
+      "median": 5.0,
+      "frac_pos": 1.0
+    },
+    {
+      "day": 3,
+      "gate": "tight",
+      "n": 5,
+      "mean": -6.0,
+      "median": -6.0,
+      "frac_pos": 0.0
+    }
+  ],
+  "diff_tight_minus_loose_mean": null,
+  "all_vev_seller_m22": {
+    "n_total_rows": 1433,
+    "pooled_by_gate": [
+      {
+        "subset": "tight_gate",
+        "n": 1428,
+        "mean": 0.28291316526610644,
+        "median": 0.0,
+        "frac_pos": 0.4642857142857143
+      },
+      {
+        "subset": "loose_gate",
+        "n": 5,
+        "mean": 2.0,
+        "median": 2.0,
+        "frac_pos": 1.0
+      }
+    ],
+    "diff_tight_minus_loose_mean": -1.7170868347338937
+  }
+}

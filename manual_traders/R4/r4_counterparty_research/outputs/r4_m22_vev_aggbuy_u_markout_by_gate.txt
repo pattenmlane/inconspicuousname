@@ -1,0 +1,10 @@
+Aggressive buy VEV (aggressor=buy), seller Mark 22 — U markout K=20 by Sonic gate
+Total prints: 11
+  tight_gate: n=11 mean=0.0 median=5.0 frac_pos=0.5454545454545454
+  loose_gate: n=0 mean=None median=None frac_pos=None
+
+All VEV prints, seller Mark 22 (any aggressor) — U markout K=20 by gate
+Total prints: 1433
+  tight_gate: n=1428 mean=0.28291316526610644 median=0.0 frac_pos=0.4642857142857143
+  loose_gate: n=5 mean=2.0 median=2.0 frac_pos=1.0
+  mean_tight - mean_loose: -1.7171

@@ -268,5 +268,29 @@
     },
     "vs_trader_v5": {"worse_delta": 0, "all_delta": 0, "note": "PnL identical to v5 on this tape; extract widen path inert at daily aggregate"},
     "tape_evidence": "manual_traders/R4/r4_counterparty_research/outputs/r4_mark22_extract_roles_by_day.json"
+  },
+  {
+    "iteration": 11,
+    "trader_file": "manual_traders/R4/r4_counterparty_research/trader_v10.py",
+    "strategy_description": "v5 + VEV_SIZE_T 24 in tight gate (was 22). Tests larger voucher size when Sonic gate on.",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r4_counterparty_research/trader_v10.py\" 4 --data Prosperity4Data --no-progress --no-out --no-vis",
+    "total_profit": 34438,
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 34438,
+      "daily_profit": [16134, 6943, 11361],
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v10_worse.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v10_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 36180,
+      "daily_profit": [17352, 7155, 11672],
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v10_all.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v10_all.json"
+    },
+    "vs_trader_v5": {"worse_delta": 0, "all_delta": 0, "note": "22->24 tight VEV size inert at aggregate PnL (likely fill caps unchanged)"},
+    "counterparty_tape": "manual_traders/R4/r4_counterparty_research/outputs/r4_m22_vev_aggbuy_u_markout_by_gate.json"
   }
 ]

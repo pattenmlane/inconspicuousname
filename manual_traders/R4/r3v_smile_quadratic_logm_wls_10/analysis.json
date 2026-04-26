@@ -73,5 +73,80 @@
         "trader_v1 joint-gate MM sim: total PnL 3634 worse over d1–3 — gate alone insufficient for 200k/day; needs counterparty-conditioned logic once API exposes tape trades in-state or offline policy table."
       ]
     }
+  },
+  {
+    "iteration": "round4_phase3",
+    "analysis_description": "Phase 3: Sonic joint gate on R4 inner-join panel (5200+5300+extract timestamps per R3 script); inclineGod spread–spread correlations on that grid; Phase1/2 counterparty and burst tests re-run with backward merge_asof gate on trade/burst times; signed-flow corr split tight vs wide timestamps on asof gate.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_summary.txt",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_gate_panel.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_spread_correlations.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_forward_by_mark_gated.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_burst_extract_gated.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_burst_echo_gated.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_pair_residual_gate_split.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_leadlag_gated.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_passive_m22_gated.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_gate.json",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
+    ],
+    "used_to_decide": "Inner-join extract fwd20 tight vs wide Welch t≈7.94 (matches Phase2 strength). Signed-flow extract vs VEV_5300 lag-0 corr is much more negative on tight timestamps (-0.23) than wide (+0.013) — gate concentrates a cross-asset flow structure. Mark01→Mark22 burst fwd5 vs wide-book VEV_5300 fwd5 pool remains significant (t≈3.23) but almost all bursts are asof-tight (no clean Mark×tight×wide three-way split on tape).",
+    "round4_phase3_complete": {
+      "phase": 3,
+      "tape_days": [1, 2, 3],
+      "gate_convention": "Inner join (day,timestamp) VEV_5200 + VEV_5300 + VELVETFRUIT_EXTRACT; same spirit as round3work/vouchers_final_strategy/analyze_vev_5200_5300_tight_gate_r3.py aligned_panel.",
+      "trade_gate_attachment": "merge_asof backward per day for counterparty-conditioned rows",
+      "outputs": {
+        "summary": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_summary.txt",
+        "gate_panel": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_gate_panel.csv",
+        "spread_correlations": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_spread_correlations.csv",
+        "forward_by_mark_gated": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_forward_by_mark_gated.csv",
+        "burst_extract_gated": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_burst_extract_gated.csv",
+        "burst_echo_gated": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_burst_echo_gated.csv",
+        "pair_residual_gate_split": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_pair_residual_gate_split.csv",
+        "leadlag_gated": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_leadlag_gated.csv",
+        "passive_m22_gated": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_passive_m22_gated.csv",
+        "gate_json": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_gate.json",
+        "script": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
+      },
+      "top_5_tradeable_edges": [
+        {
+          "rank": 1,
+          "edge": "Extract 20-tick forward on inner-join panel: joint tight vs not",
+          "evidence": "Welch t≈7.94; r4_p3_gate_panel.csv; r4_phase3_summary.txt",
+          "phase2_link": "Confirms Phase2 joint-gate extract shift with R3-style timestamp grid"
+        },
+        {
+          "rank": 2,
+          "edge": "Signed Mark flow: extract vs VEV_5300 contemporaneous corr much stronger (negative) when gate tight on asof-aligned timestamps",
+          "evidence": "r4_p3_leadlag_gated.csv (tight_ts ≈ -0.23 vs wide_ts ≈ +0.013)",
+          "phase2_link": "Phase2 lag-0 ≈ -0.15 pooled; gate sharpens the conditioning"
+        },
+        {
+          "rank": 3,
+          "edge": "Spread–spread comovement across VEV strikes on inner-join timestamps (inclineGod)",
+          "evidence": "r4_p3_spread_correlations.csv; top pairs r>0.32 for adjacent strikes up the wing",
+          "phase2_link": "Adds spread object layer missing from mid-centric Phase2 tables"
+        },
+        {
+          "rank": 4,
+          "edge": "Mark01→Mark22 ≥3-VEV burst: VEV_5300 fwd5 vs wide-book fwd5 pool still elevated (t≈3.23) under asof-tight predominance",
+          "evidence": "r4_p3_burst_echo_gated.csv; r4_phase3_summary.txt",
+          "phase1_link": "Same structural pair as Phase1; Phase3 stresses overlap with tight-book regime"
+        },
+        {
+          "rank": 5,
+          "edge": "Participant forward table split tight vs wide-on-panel (merge_asof) for horizon scan",
+          "evidence": "r4_p3_forward_by_mark_gated.csv",
+          "phase1_link": "Phase1 table regen with gate columns"
+        }
+      ],
+      "negative_results": [
+        "Counterparty-heavy events (big bursts, M01→M22 bursts, Mark22 passive prints) are almost always under asof-tight gate on this tape — weak three-way (Mark pattern × tight × wide) separation.",
+        "Tight big-bursts vs wide-book extract_fwd20 pool: t≈0.88, p≈0.38 — no burst-specific extract alpha vs wide baseline.",
+        "Mark22 seller_agg vs wide-book fwd20 pool: t≈-1.24, p≈0.22 — not significant; all 160 prints asof-tight."
+      ],
+      "sonic_gate_cleans_signal": "Partially for cross-asset signed-flow structure (tight vs wide timestamp corr). Not as a separator for Mark01→Mark22 burst echo or Mark22 passive markout on this sample — those live almost entirely in the tight regime, so the gate does not carve independent wide-bucket controls."
+    }
   }
 ]

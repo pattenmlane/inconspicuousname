@@ -1,0 +1,22 @@
+Round 4 Phase 3 — joint gate (R3-style inner join 5200+5300+extract) + stacked tape tests
+Gate panel rows (aligned timestamps): 30,000 | frac joint_tight: 0.2574
+Extract fwd20 (inner panel): mean tight=0.32351 mean wide=-0.12103 Welch t=7.935 p=2.27e-15 (n_tight=7706 n_wide=22234)
+Phase-1 big bursts extract_fwd20: pairwise tight vs wide bursts Welch t=nan (n_tight=292 n_wide=1)
+  → tight bursts vs gate-panel wide-book extract_fwd20 pool: mean_tight=0.3288 mean_pool=0.0171 Welch t=0.876 p=3.82e-01
+Phase-2 M01→M22 burst VEV5300 fwd5: pairwise Welch t=nan | vs wide-book fwd5_5300 pool: mean_burst=0.2540 mean_pool=0.0240 t=3.234 p=1.29e-03 (n_bursts=314)
+Signed-flow lag-0 corr (timestamp sets): tight_ts=-0.2317 wide_ts=0.0127
+Mark22 seller_agg VEV5300 fwd20: pairwise Welch t=nan | vs wide-book fwd20_5300 pool: mean_print=-0.1437 mean_pool=0.0688 t=-1.236 p=2.17e-01 (n_prints=160)
+
+Top spread–spread |r| on inner-join timestamps (inclineGod panel):
+  sp_VEV_4000 vs sp_VEV_4500: r=0.8762 n=30000
+  sp_VEV_4500 vs sp_VEV_5000: r=0.7153 n=30000
+  sp_VEV_4000 vs sp_VEV_5000: r=0.6903 n=30000
+  sp_VEV_4500 vs sp_VEV_5100: r=0.6015 n=30000
+  sp_VEV_5000 vs sp_VEV_5100: r=0.5722 n=30000
+  sp_VEV_4000 vs sp_VEV_5100: r=0.5683 n=30000
+  sp_VEV_5000 vs sp_VEV_5200: r=0.4825 n=30000
+  sp_VEV_4500 vs sp_VEV_5200: r=0.4604 n=30000
+  sp_VEV_5100 vs sp_VEV_5200: r=0.4510 n=30000
+  sp_VEV_4000 vs sp_VEV_5200: r=0.4298 n=30000
+  sp_VEV_5000 vs sp_VEV_5300: r=0.3257 n=30000
+  sp_VEV_5100 vs sp_VEV_5300: r=0.3215 n=30000

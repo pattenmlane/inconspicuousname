@@ -1,0 +1,90 @@
+{
+  "round4_phase3_complete": {
+    "phase": 3,
+    "tape_days": [
+      1,
+      2,
+      3
+    ],
+    "gate_convention": "Inner join on (day,timestamp) for VEV_5200 and VEV_5300 price rows, then merge extract \u2014 matches round3work/vouchers_final_strategy/analyze_vev_5200_5300_tight_gate_r3.py aligned_panel logic (per-day timestamps).",
+    "trade_gate_attachment": "merge_asof(..., direction='backward') per day: last inner-panel joint_tight state at or before each trade/burst timestamp (prints rarely land on the 5200/5300 inner grid).",
+    "sonic_hypothesis_test": "Gate should *clean* counterparty-conditioned signals if execution noise dominates when books are wide; compare Phase1/2 pooled stats vs Phase3 gated splits in summary and CSVs.",
+    "comparison_to_phase1_phase2": "Price-panel extract fwd20 tight vs wide: Phase3 inner-join t\u22487.94 matches Phase2 magnitude (Phase2 pivot_table on all symbols' first spread per ts). Counterparty splits: Phase1/2 pooled burst/Mark22 stats mostly occur under tight books on R4; pairwise tight-vs-wide stratification is degenerate (n_wide\u22480), so burst/Mark22 tests use wide-book *pools* from the same inner-join panel for control.",
+    "negative_results": [
+      "Big multi-trade bursts and Mark01\u2192Mark22 basket bursts are almost always asof-gated tight; pairwise tight vs wide burst cells are empty (cannot confirm Sonic 'interaction' via simple split).",
+      "Tight bursts vs wide-book extract_fwd20 pool: Welch t\u22480.88 (p\u22480.38) \u2014 no excess extract drift vs wide-book baseline conditional on burst under tight asof gate.",
+      "Mark22 seller_agg prints (n=160) all asof-tight; vs wide-book fwd20_5300 pool t\u2248-1.24 (p\u22480.22) \u2014 adverse proxy from Phase2 not strengthened as a tight-only effect here."
+    ],
+    "outputs": {
+      "r4_p3_gate_panel.csv": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_gate_panel.csv",
+      "r4_p3_spread_correlations.csv": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_spread_correlations.csv",
+      "r4_p3_forward_by_mark_gated.csv": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_forward_by_mark_gated.csv",
+      "r4_p3_burst_extract_gated.csv": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_burst_extract_gated.csv",
+      "r4_p3_burst_echo_gated.csv": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_burst_echo_gated.csv",
+      "r4_p3_pair_residual_gate_split.csv": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_pair_residual_gate_split.csv",
+      "r4_p3_leadlag_gated.csv": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_leadlag_gated.csv",
+      "r4_p3_passive_m22_gated.csv": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_passive_m22_gated.csv",
+      "r4_phase3_summary.txt": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_summary.txt",
+      "r4_phase3_analysis.py": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
+    },
+    "metrics_snapshot": {
+      "extract_fwd20_welch_t_tight_vs_wide": 7.935123655204991,
+      "burst_extract_fwd20_welch_t_tight_vs_wide_pairwise": null,
+      "burst_extract_fwd20_welch_t_vs_gate_wide_pool": 0.8755934430824646,
+      "burst_echo_fwd5_welch_t_pairwise": null,
+      "burst_echo_fwd5_welch_t_vs_gate_wide5300_pool": 3.233835933414216,
+      "signed_flow_lag0_corr_tight_ts": -0.2317094557969544,
+      "signed_flow_lag0_corr_wide_ts": 0.012664109046239005,
+      "mark22_passive_fwd20_welch_t_pairwise": null,
+      "mark22_passive_fwd20_welch_t_vs_gate_wide5300_pool": -1.2364343321715887
+    },
+    "ranked_edges": [
+      {
+        "rank": 1,
+        "edge": "Extract fwd20 tight vs wide on inner-join gate panel",
+        "effect": "Welch_t=7.935 delta_mean=0.44454",
+        "paths": [
+          "r4_p3_gate_panel.csv",
+          "r4_phase3_summary.txt"
+        ],
+        "vs_phase2": "Phase2 used pivot_table first spread per ts; Phase3 uses strict inner join like R3 \u2014 compare t-stats."
+      },
+      {
+        "rank": 2,
+        "edge": "Spread\u2013spread correlations (VEV legs) on shared timestamps",
+        "effect": "See r4_p3_spread_correlations.csv; top rows in summary",
+        "paths": [
+          "r4_p3_spread_correlations.csv"
+        ],
+        "vs_phase2": "Phase2 emphasized mid paths; Phase3 adds inclineGod spread\u2013spread panel."
+      },
+      {
+        "rank": 3,
+        "edge": "Mark01\u2192Mark22 burst echo fwd5 \u00d7 joint_tight at burst",
+        "effect": "pairwise_Welch_t=nan; vs_wide5300_fwd5_pool_t=3.234",
+        "paths": [
+          "r4_p3_burst_echo_gated.csv"
+        ],
+        "vs_phase2": "Phase2 burst echo unconditional; Phase3 splits by Sonic gate at burst time."
+      },
+      {
+        "rank": 4,
+        "edge": "Participant forwards \u00d7 gate_sample (CSV-wide)",
+        "effect": "Compare same Mark\u00d7role across joint_tight vs not_tight rows",
+        "paths": [
+          "r4_p3_forward_by_mark_gated.csv"
+        ],
+        "vs_phase1": "Phase1 ungated; Phase3 adds gate column alignment."
+      },
+      {
+        "rank": 5,
+        "edge": "Mark22 passive fwd20 \u00d7 gate",
+        "effect": "pairwise_Welch_t=nan; vs_wide5300_fwd20_pool_t=-1.236",
+        "paths": [
+          "r4_p3_passive_m22_gated.csv"
+        ],
+        "vs_phase2": "Phase2 pooled; Phase3 tests Sonic claim gate cleans adverse selection."
+      }
+    ]
+  }
+}

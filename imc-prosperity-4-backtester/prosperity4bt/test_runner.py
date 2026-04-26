@@ -1,3 +1,4 @@
+import os
 from contextlib import closing, redirect_stdout
 from io import StringIO
 from IPython.utils.io import Tee
@@ -27,6 +28,9 @@ class TestRunner:
 
     def run(self):
         data = self.data_reader.read_from_file(self.round, self.day)
+        # Let algorithms align tape-derived caches with the simulated day (no API on TradingState).
+        os.environ["PROSPERITY4_BACKTEST_DAY"] = str(int(data.day_num))
+        os.environ["PROSPERITY4_BACKTEST_ROUND"] = str(int(data.round_num))
         state = TradingState(
             traderData="",
             timestamp=0,

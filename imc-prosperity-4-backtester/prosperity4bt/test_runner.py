@@ -5,7 +5,7 @@ from tqdm import tqdm
 from prosperity4bt.constants import LIMITS
 from prosperity4bt.models.test_options import TradeMatchingMode
 from prosperity4bt.tools.data_reader import BackDataReader
-from prosperity4bt.datamodel import TradingState, Observation, Symbol, Order, OrderDepth, Listing, ConversionObservation
+from prosperity4bt.datamodel import TradingState, Observation, Symbol, Order, OrderDepth, Listing, ConversionObservation, Trade
 from prosperity4bt.tools.log_creator import ActivityLogCreator
 from prosperity4bt.models.input import BacktestData
 from prosperity4bt.models.output import BacktestResult
@@ -96,6 +96,15 @@ class TestRunner:
 
             state.order_depths[product] = order_depth
             state.listings[product] = Listing(product, product, 1)
+
+        # Round 4+: expose tape prints at this timestamp (buyer/seller) for strategies before
+        # they place orders. Copies avoid sharing mutable Trade objects with the order matcher.
+        mt: dict[str, list[Trade]] = {}
+        for sym, trades in data.trades.get(timestamp, {}).items():
+            mt[sym] = [
+                Trade(t.symbol, t.price, t.quantity, t.buyer, t.seller, t.timestamp) for t in trades
+            ]
+        state.market_trades = mt
 
         observation_row = data.observations.get(state.timestamp)
         if observation_row is None:

@@ -1,0 +1,7 @@
+corr(s5200,s5300)=0.3076
+corr(s5200,s_ext)=0.0086
+corr(s5300,s_ext)=0.0054
+corr(s5200,s_hydro)=-0.0002
+corr(s5300,s_hydro)=-0.0028
+corr(s_ext,s_hydro)=0.0076
+n_rows=30000

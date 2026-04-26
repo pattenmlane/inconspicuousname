@@ -237,5 +237,60 @@
       "IV smile residual vs Mark01 same timestamp (sketch) \u2014 **null** with tiny aligned n.",
       "Inventory-aware MM not analyzed on tape (no sim)."
     ]
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Round 4 Phase 3 (Sonic + inclineGod on Round 4): **inner-join** aligned panel per day on `timestamp` for VEV_5200, VEV_5300, VELVETFRUIT_EXTRACT (+ HYDROGEL for spread correlations), same as R3 `analyze_vev_5200_5300_tight_gate_r3.py`. `tight` = s5200\u22642 and s5300\u22642. Recomputed **K=20** forward extract mid on panel; **Welch** tight vs loose by day and pooled. **inclineGod:** corr(s5200,s5300), spreads vs U, vs hydro. **Interaction:** Mark01\u2192Mark22 **VEV_5300** trades all fall when `sonic_tight` (n=132 gate_on, 0 gate_off); fwd@20 still **negative** pooled (\u2248\u22120.12) but **day-stable** pattern matches Phase-1 table. **Burst-B \u00d7 gate:** most burst-B VEV_5300 rows are `sonic_tight`; mean fwd in that cell still **negative** (\u2248\u22120.13, n=162). **Mark67** U buy_agg: **higher** mean fwd@20 when **gate on** (2.06 vs 1.77; n=27 vs 137).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_volume_weighted_residual_05/phase3_r4_sonic_gate.py",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase3/r4_phase3_sonic_welch_extract_fwd20_by_day.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase3/r4_phase3_sonic_welch_extract_fwd20_pooled.txt",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase3/r4_phase3_spread_spread_correlations.txt",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase3/r4_phase3_scatter_s5200_vs_s5300_sample.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase3/r4_phase3_m01_m22_vev5300_fwd20_by_gate.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase3/r4_phase3_m01_m22_vev5300_gate_on_by_day.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase3/r4_phase3_burstB_vev5300_fwd20_gate_cross.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase3/r4_phase3_mark67_buyagg_fwd_u20_by_gate.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v2_worse.log",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v2_all.log"
+    ],
+    "used_to_decide": "Phase 3 gate object follows. **Sonic claim validates on Round 4 extract** (pooled Welch t\u22487.9, p\u22482e-15). **Counterparty \u00d7 gate:** Mark67 U signal **strengthens when joint tight** (interaction table). **Mark01\u2192Mark22 VEV_5300** prints in this sample are **100% under joint tight** yet **mean fwd@20 stays negative** \u2014 gate **does not** flip that pair edge to positive (refines Phase 2 burst-B story: burst lifts unconditional VEV_5300 fwd but **Mark01\u2192Mark22** subset is still a bad drift at K=20)."
+  },
+  {
+    "round4_phase3_complete": true,
+    "comparison_to_phase1_without_gate": "Phase-1 pooled **Mark01\u2192Mark22 VEV_5300** K=20 day table is unchanged in sign pattern; Phase-3 shows those prints occur **only** under Sonic tight in this tape slice, yet **mean fwd@20 remains negative** \u2014 so the joint gate **cleans the population** (all basket prints are tight-surface times) but **does not** by itself create a **positive** M01\u2192M22 markout at this horizon.",
+    "comparison_to_phase2_without_gate": "Phase-2 **Burst-B** raised unconditional **VEV_5300** fwd vs non-burst; Phase-3 cross shows **Burst-B \u2229 tight** still has **negative** mean fwd@20 for **VEV_5300** rows (n=162). So **burst** and **tight** are **not sufficient** for a long-5300-after-basket rule at K=20; execution / other filters still needed.",
+    "phase3_tier_a_candidates": [
+      {
+        "pattern": "(Mark67, U_buy_agg, sonic_tight=True)",
+        "effect": "Mean **fwd U@20** ~**+2.06** (n=27) vs **~+1.77** when gate off (n=137).",
+        "paths": [
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase3/r4_phase3_mark67_buyagg_fwd_u20_by_gate.csv"
+        ],
+        "note": "Tier-A for **interaction** with Sonic gate; still mid-only."
+      },
+      {
+        "pattern": "Sonic tight vs loose on **extract** fwd@20 (panel)",
+        "effect": "Pooled mean tight **+0.32** vs loose **\u22120.12**; Welch t\u22487.9 (p\u22482e-15).",
+        "paths": [
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase3/r4_phase3_sonic_welch_extract_fwd20_pooled.txt",
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase3/r4_phase3_sonic_welch_extract_fwd20_by_day.csv"
+        ],
+        "note": "Confirms Sonic community finding on **Round 4** mid tape."
+      },
+      {
+        "pattern": "Spread co-movement (inclineGod)",
+        "effect": "**corr(s5200,s5300)\u22480.31**; voucher spreads vs U/hydro spreads ~0.",
+        "paths": [
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase3/r4_phase3_spread_spread_correlations.txt",
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase3/r4_phase3_scatter_s5200_vs_s5300_sample.csv"
+        ],
+        "note": "Wing spreads move together; cross-asset spread corr to U is weak in this join."
+      }
+    ],
+    "phase3_negative_or_null": [
+      "**Mark01\u2192Mark22** on **VEV_5300** at K=20: **all** n=132 prints have `sonic_tight=True` but **mean fwd\u2248\u22120.12** \u2014 gate does not rescue this counterparty leg.",
+      "**Burst-B \u2229 tight** on **VEV_5300** rows: mean fwd@20 still **\u2248\u22120.13** (n=162) \u2014 contradicts a naive \u2018always long 5300 after basket in tight surface\u2019 at this horizon."
+    ]
   }
 ]

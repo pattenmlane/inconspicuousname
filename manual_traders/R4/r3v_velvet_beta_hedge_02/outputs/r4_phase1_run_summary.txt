@@ -1,0 +1,22 @@
+Round 4 Phase 1 script complete.
+Trade rows merged: 4281
+Participant-event rows (aggr only): 12800
+Key outputs:
+  r4_participant_forward_pooled.csv
+  r4_participant_forward_by_day.csv
+  r4_buyer_seller_edges.csv
+  r4_burst_calendar.csv
+  r4_burst_orchestrator_sample.csv
+  r4_burst_vs_control_u_forward20.json
+  r4_residual_fwd20_top_pairs.csv
+  r4_candidate_edges_t_ge_1.5_n30.csv
+Top candidate strings:
+Mark 67 aggr_buyer VELVETFRUIT_EXTRACT K=5 n=164 mean=1.9604 t~13.03
+Mark 67 aggr_buyer VELVETFRUIT_EXTRACT K=20 n=164 mean=1.8140 t~5.86
+Mark 22 aggr_seller VEV_5300 K=5 n=160 mean=-0.2031 t~-3.31
+Mark 55 aggr_seller VELVETFRUIT_EXTRACT K=100 n=595 mean=-0.9185 t~-2.50
+Mark 55 aggr_buyer VELVETFRUIT_EXTRACT K=20 n=598 mean=0.4089 t~2.48
+Mark 55 aggr_buyer VELVETFRUIT_EXTRACT K=5 n=598 mean=0.1990 t~2.25
+Mark 22 aggr_seller VEV_5500 K=5 n=306 mean=-0.0261 t~-1.92
+Mark 67 aggr_buyer VELVETFRUIT_EXTRACT K=100 n=163 mean=1.3712 t~1.87
+Mark 22 aggr_seller VEV_5200 K=5 n=44 mean=-0.2273 t~-1.50

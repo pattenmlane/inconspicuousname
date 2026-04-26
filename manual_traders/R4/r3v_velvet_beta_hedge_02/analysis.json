@@ -1,0 +1,101 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round 4 Phase 1 (suggested direction.txt): merged trades with same-timestamp price mids; forward mid change = K-th subsequent price row for (day, product) after trade ts; aggression via price vs BBO; burst calendar; buyer→seller edge graph; participant-level mean forward by (U, role, product, K) pooled and by day; (buyer,seller,symbol) baseline mean fwd20 residuals; burst vs random control forward extract 20 rows.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/analyze_r4_phase1_counterparty.py",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_participant_forward_pooled.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_participant_forward_by_day.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_buyer_seller_edges.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_burst_calendar.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_burst_orchestrator_sample.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_burst_vs_control_u_forward20.json",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_residual_fwd20_top_pairs.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_candidate_edges_t_ge_1.5_n30.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase1_run_summary.txt",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_participant_forward_by_spreadq.csv",
+      "round4work/outputs/r4_initial_analysis_summary.txt"
+    ],
+    "used_to_decide": "Phase 1 completion gate embedded in round4_phase1_complete below; proceed to Phase 2 only after review.",
+    "round4_phase1_complete": {
+      "phase": 1,
+      "bullets": [
+        {
+          "bullet": "1) Participant-level alpha / predictiveness",
+          "outputs": [
+            "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_participant_forward_pooled.csv",
+            "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_participant_forward_by_day.csv"
+          ],
+          "conclusion": "Pooled aggressive buys by Mark 67 on VELVETFRUIT_EXTRACT show positive mean forward mid at K=5,20,100 (n~164, t>1.8); Mark 55 aggressive buy on extract positive at K=5,20 (n~598); Mark 22 aggressive sell on VEV_5300 negative mean at K=5 (n=160, t~-3.3). By-day splits show Mark 67 extract signal present days 1–2 but reverses day 3 at K=100 — not fully stable across all three days. Spread-quantile stratification: r4_participant_forward_by_spreadq.csv."
+        },
+        {
+          "bullet": "2) Deviation from bot baseline (buyer,seller,symbol cell means)",
+          "outputs": ["manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_residual_fwd20_top_pairs.csv"],
+          "conclusion": "Residuals vs (buyer,seller,product) mean forward-20 computed; top pairs dominated by high-count Mark 01→22 / hydro duopoly cells — inspect CSV for second-order structure; no single residual rule promoted to trade without further shrinkage."
+        },
+        {
+          "bullet": "3) Sequence / graph buyer→seller",
+          "outputs": ["manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_buyer_seller_edges.csv"],
+          "conclusion": "Mark 01→Mark 22 dominates count (1339 rows); Mark 14↔Mark 38 hydro reciprocity matches round4work initial summary — structural basket/duopoly roles confirmed."
+        },
+        {
+          "bullet": "4) Burst structure + forward extract",
+          "outputs": [
+            "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_burst_calendar.csv",
+            "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_burst_orchestrator_sample.csv",
+            "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_burst_vs_control_u_forward20.json"
+          ],
+          "conclusion": "Sampled 200 burst timestamps vs 600 random extract timestamps: mean forward U mid +20 rows is +0.22 after bursts vs -0.07 on random controls — weak positive event-study hint, not yet sized for execution."
+        },
+        {
+          "bullet": "5) Adverse selection vs inventory",
+          "outputs": ["manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_participant_forward_pooled.csv"],
+          "conclusion": "Mark 55 aggressive sell on extract shows negative mean forward at K=100 (n=595, t~-2.5) — population-level adverse selection proxy for liquidity takers selling extract; no full-book inventory model."
+        }
+      ],
+      "top5_tradeable_edges": [
+        {
+          "rank": 1,
+          "edge": "After Mark 67 aggressive buy on VELVETFRUIT_EXTRACT, pooled forward mid rises (K=5 mean ~1.96, K=20 ~1.81; n=164)",
+          "effect_size": "K=5 mean +1.96 mid units; t~13 pooled",
+          "n": 164,
+          "days_validated": "Strong days 1–2; K=100 weak on day 3 — partial stability"
+        },
+        {
+          "rank": 2,
+          "edge": "Mark 55 aggressive buy on VELVETFRUIT_EXTRACT — positive forward at K=5,20 (n~598)",
+          "effect_size": "K=20 mean +0.41",
+          "n": 598,
+          "days_validated": "Pooled 3 days; split by day in by_day CSV"
+        },
+        {
+          "rank": 3,
+          "edge": "Mark 22 aggressive sell on VEV_5300 — negative short-horizon forward mid (K=5 mean ~-0.20, n=160)",
+          "effect_size": "t~-3.3",
+          "n": 160,
+          "days_validated": "Pooled; aligns with dedicated 01 buy / 22 sell pipe in initial summary"
+        },
+        {
+          "rank": 4,
+          "edge": "Multi-print burst timestamps — mildly higher forward extract mid (+20 rows) vs random time control",
+          "effect_size": "+0.22 vs -0.07 (sample n 200 vs 600)",
+          "n": 200,
+          "days_validated": "Pooled burst sample across days 1–3"
+        },
+        {
+          "rank": 5,
+          "edge": "Mark 55 aggressive sell extract — negative long-horizon forward (K=100)",
+          "effect_size": "mean ~-0.92",
+          "n": 595,
+          "days_validated": "Candidate fade / avoid providing liquidity at ask after aggressive sell"
+        }
+      ],
+      "no_edge_findings": [
+        "Many (U, product, K) cells have n<30 or |t|<1.5 after aggression filter — no claim.",
+        "Mark 67 extract long-horizon (K=100) sign unstable on day 3 — do not trade K=100 off Mark 67 alone without regime split.",
+        "Residual baseline table alone does not yet yield a simple fade rule without overfit check on holdout day."
+      ],
+      "criteria_note": "Horizon K = next K rows in prices CSV for same (day, product) sorted by timestamp (documented in analyze_r4_phase1_counterparty.py). Phase 2 deferred until this gate is reviewed."
+    }
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "n_burst_sample": 200,
+  "mean_fwd_u20_after_burst": 0.2225,
+  "n_ctrl": 600,
+  "mean_fwd_u20_random_ts": -0.06916666666666667
+}

@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v8.py",
+  "match_trades": "all",
+  "round": 4,
+  "total_profit": 1470,
+  "per_day_total": { "1": 116, "2": -854, "3": 2208 },
+  "note": "Still far below v5 on worse; all mode not primary."
+}

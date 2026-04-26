@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v8.py",
+  "match_trades": "worse",
+  "round": 4,
+  "total_profit": 34,
+  "per_day_total": { "1": -189, "2": -1824, "3": 2047 },
+  "note": "vs v5 5906: -5872. Tight extract bid mid-2 ask mid+1 destroyed extract PnL (esp day2 -2339)."
+}

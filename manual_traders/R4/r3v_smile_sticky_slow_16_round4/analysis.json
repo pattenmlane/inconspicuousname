@@ -291,5 +291,29 @@
       "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v7_fill_summary_all.json"
     ],
     "used_to_decide": "**Under `--match-trades worse`, bit-identical outcome to v5** (total **5906**, same per-product lines) \u2014 in practice fills/rounding cap effective size below 12 so **9 vs 12** is a **no-op**. Slightly better **all** (**1650** vs **1446**) but secondary. **Ship v5** as the tight-extract baseline; next experiments should change **prices** (half-spread asymmetry) or **conditional one-sided** quotes, not redundant size steps."
+  },
+  {
+    "iteration": 10,
+    "round": 4,
+    "analysis_description": "Asymmetric tight-extract **A**: wider **bid** (mid\u22122) + tight **ask** (mid+1), `trader_v8`. Pair with v9 for skew direction evidence.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v8.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v8_backtest_worse.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v8_backtest_all.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v8_fill_summary_worse.json"
+    ],
+    "used_to_decide": "**Strongly negative** under worse: total **34** vs v5 **5906**. Widening bid only in the tight Sonic window **increases** extract adverse selection on buys (day2 extract **\u22122339**). **Direction matters:** bid-skew \u2260 ask-skew."
+  },
+  {
+    "iteration": 11,
+    "round": 4,
+    "analysis_description": "Asymmetric tight-extract **B**: same **bid** as v5 (mid\u22121) + wider **ask** (mid+2), `trader_v9`. Hypothesis: under **worse** fills, passive inventory at **tight** ask is costly; backing off the ask while keeping bid aggressiveness improves sell-side execution.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v9.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v9_backtest_worse.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v9_backtest_all.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v9_fill_summary_worse.json"
+    ],
+    "used_to_decide": "**Large improvement** on primary metric: worse **11850** vs v5 **5906** (+101% rel). Per-day totals **3120 / 5979 / 2750** vs v5 **1526 / 1584 / 2797** \u2014 gain driven by **extract** especially **day2** (**+5464** vs **+1068**). **all** also up (**6787** vs **1446**). Asymmetric **ask** widening is the productive skew for this MM + gate + worse-match stack; symmetric tight offer was too aggressive on the sell leg."
   }
 ]

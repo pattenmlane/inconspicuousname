@@ -173,5 +173,47 @@
     "backtest_round": 4,
     "match_trades_primary": "worse",
     "note": "**PnL-identical to v5** under worse (5906; same per-day and per-product lines). Size 9 vs 12 does not bind under worse matching \u2014 keep v5 as canonical tight-extract variant."
+  },
+  {
+    "iteration": 10,
+    "round": 4,
+    "trader_file": "trader_v8.py",
+    "strategy_description": "v5 + **asymmetric tight extract (wide bid)**: Sonic tight \u2192 bid **mid\u22122**, ask **mid+1** (wider bid, same tight offer as v5 ask side). Tests bid-skew vs symmetric v5.",
+    "backtest_worse": {
+      "total_profit": 34,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v8.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v8_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v8_fill_summary_worse.json"
+    },
+    "backtest_all": {
+      "total_profit": 1470,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v8.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v8_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v8_fill_summary_all.json"
+    },
+    "backtest_round": 4,
+    "match_trades_primary": "worse",
+    "note": "**Severely worse than v5** (34 vs 5906). Passive bid at \u22122 while ask at +1 hurt extract badly (day2 **\u22122339** extract vs v5 **+1068**)."
+  },
+  {
+    "iteration": 11,
+    "round": 4,
+    "trader_file": "trader_v9.py",
+    "strategy_description": "v5 + **asymmetric tight extract (wide ask)**: Sonic tight \u2192 bid **mid\u22121** (same as v5), ask **mid+2** (more passive selling). Complement to v8 skew test.",
+    "backtest_worse": {
+      "total_profit": 11850,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v9.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v9_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v9_fill_summary_worse.json"
+    },
+    "backtest_all": {
+      "total_profit": 6787,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v9.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v9_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v9_fill_summary_all.json"
+    },
+    "backtest_round": 4,
+    "match_trades_primary": "worse",
+    "note": "**Best worse so far:** **11850** vs v5 **5906** (+5944). Extract day2 **+5464** vs v5 **+1068**; day1 **+2086** vs **+492**. Wider ask in tight regime avoids bad sell fills under worse matching while keeping liftable bid."
   }
 ]

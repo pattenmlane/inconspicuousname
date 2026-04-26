@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v9.py",
+  "match_trades": "all",
+  "round": 4,
+  "total_profit": 6787,
+  "per_day_total": { "1": 1314, "2": 2448, "3": 3026 },
+  "note": "vs v5 all 1446: +5341. Asymmetric ask also helps 'all' vs symmetric tight v5."
+}

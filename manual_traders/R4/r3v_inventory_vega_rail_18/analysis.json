@@ -240,5 +240,17 @@
       "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v5_worse_fill_summary.json"
     ],
     "used_to_decide": "Do not ship timestamp-replay; next live logic needs **causal** Mark detection (order flow / own trade context) or fade opposite side per worst-pairs table, not chase 67→22 prints at ask."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "trader_v6: same Sonic joint gate as v3 but **passive** — post limit **buys at best bid** (CLIP=10) only while tight; on wide gate sell CLIP at ask if long. Backtest: **worse** total **+252** (only 2 submission fills, mostly day 3); **all** **+10,834** with 323 fills. Contrasts sharply with v3 (-351k worse) and v5 (-1755 worse): **avoiding lift at ask** is the dominant execution lesson for this gate on R4 tape. Sparse worse fills imply most tight windows do not trade through our bid under worse matching.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_inventory_vega_rail_18/trader_v6.py",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v6_worse_backtest.log",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v6_all_backtest.log",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v6_worse_fill_summary.json",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v6_all_fill_summary.json"
+    ],
+    "used_to_decide": "First **positive worse-fill** R4 strategy in this folder; still not counterparty-ID causal — gate-only passive MM slice. Next: combine passive bids with **fade** or **skip ask exits** when worst-pair flow, or scale clip with spread depth."
   }
 ]

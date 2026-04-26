@@ -112,5 +112,24 @@
       "backtest_log_file": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v5_all_backtest.log",
       "trades_or_fills_summary": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v5_all_fill_summary.json"
     }
+  },
+  {
+    "iteration": 6,
+    "trader_file": "trader_v6.py",
+    "strategy_description": "Sonic joint tight: passive limit buys CLIP=10 at best bid on VELVETFRUIT_EXTRACT (no lift ask); when gate wide, sell CLIP at best ask if long. Tests passive liquidity vs v3/v5 aggressive.",
+    "backtest_round": 4,
+    "backtest_note": "Round 4 days 1-3.",
+    "backtest_worse": {
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_inventory_vega_rail_18/trader_v6.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v6_worse_backtest.log",
+      "total_profit": 252,
+      "backtest_log_file": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v6_worse_backtest.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v6_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_inventory_vega_rail_18/trader_v6.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v6_all_backtest.log",
+      "total_profit": 10834,
+      "backtest_log_file": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v6_all_backtest.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v6_all_fill_summary.json"
+    }
   }
 ]

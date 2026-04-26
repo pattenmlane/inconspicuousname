@@ -1,0 +1,12 @@
+{
+  "trader": "trader_v6.py",
+  "match_trades": "all",
+  "n_submission_trade_events": 323,
+  "by_symbol": {
+    "VELVETFRUIT_EXTRACT": {
+      "fills": 323,
+      "abs_qty": 1775.0,
+      "net_qty": 3.0
+    }
+  }
+}

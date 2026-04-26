@@ -1,0 +1,118 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round 4 Phase 1 (suggested direction.txt): counterparty-conditioned forward mids on Prosperity4Data/ROUND_4 trades days 1–3 joined to same-timestamp price rows. Horizons K∈{5,20,100} map to +K*100 timestamp units. Aggression: trade price vs concurrent L1 bid/ask. Spread regime: per-product tertiles on pooled tape. Script: r4_phase1_counterparty_analysis.py.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v0_round4_worse.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v0_round4_all.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v0_round4_worse_fills_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v0_round4_all_fills_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_phase1_counterparty_analysis.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_trade_enriched.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_participant_forward_stats.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_pair_cell_means_k20.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_top_residual_pairs_k20.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_graph_buyer_seller_edges.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_extract_fwd_k20.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_mark22_seller_markout_by_buyer_k20.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_mark01_buy_vev5300_by_day_k20.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_twohop_extract_fwd_k20.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_phase1_machine_summary.json",
+      "round4work/round4description.txt",
+      "round4work/suggested direction.txt",
+      "round4work/outputs/r4_initial_analysis_summary.txt"
+    ],
+    "used_to_decide": "Phase 1 gate object appended below (round4_phase1_complete). Phase 2 not started until sim/backtest validates top edges under worse fills."
+  },
+  {
+    "round4_phase1_complete": true,
+    "phase1_bullets": [
+      {
+        "bullet": "1) Participant-level alpha / predictiveness",
+        "outputs": [
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_participant_forward_stats.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_phase1_machine_summary.json"
+        ],
+        "conclusion": "Strongest cell: Mark 67 aggressive buys on VELVETFRUIT_EXTRACT show large positive self-mid change at k=5 (n=164, mean≈1.96 ticks, t≈13) stable in tight/all bins; Mark 22 aggressive sells on VEV_5300 show negative k=5 self-mid (n=160, mean≈-0.20, t≈-3.3). Mark 55 on extract is horizon-sensitive (buy k=5/20 positive mean; sell k=100 negative)."
+      },
+      {
+        "bullet": "2) Deviation from bot baseline (pair cell means + residuals)",
+        "outputs": [
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_pair_cell_means_k20.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_top_residual_pairs_k20.csv"
+        ],
+        "conclusion": "Pair-conditioned means at k=20 are tabulated; residual file ranks pairs after subtracting global pair mean — dominant structure remains Mark 01→Mark 22 mass on vouchers (see initial summary), residuals highlight smaller sub-pairs for Phase-2 conditioning."
+      },
+      {
+        "bullet": "3) Sequence / graph methods",
+        "outputs": [
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_graph_buyer_seller_edges.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_twohop_extract_fwd_k20.csv"
+        ],
+        "conclusion": "Directed edge table matches repo sketch (Mark 01→Mark 22 top count). Two-hop chains within 5k timestamp units show repeated Mark 38→Mark 14→Mark 38 with mildly negative extract forward mean (n=885) vs rare high-n tails (e.g. Mark 14→Mark 38→Mark 22 n=19 only)."
+      },
+      {
+        "bullet": "4) Burst structure",
+        "outputs": [
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_extract_fwd_k20.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_trade_enriched.csv"
+        ],
+        "conclusion": "387 multi-print timestamps; extract forward Δmid (k=20) mean≈0.33 (n=1608) on burst rows vs ≈0.08 (n=2671) off burst — bursts align with larger short-horizon extract drift in-sample."
+      },
+      {
+        "bullet": "5) Adverse selection vs inventory (population proxy)",
+        "outputs": [
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_mark22_seller_markout_by_buyer_k20.csv"
+        ],
+        "conclusion": "When Mark 22 is aggressive seller, subsequent k=20 self-mid markout for the traded symbol is worst for prints with Mark 49 as buyer (n=12, very negative mean) and mildest for Mark 01 basket flow (n=1339 near zero) — candidate avoid-quote / fade tail vs Mark 49."
+      }
+    ],
+    "top_5_tradeable_edges": [
+      {
+        "rank": 1,
+        "edge": "Follow Mark 67 aggressive buy prints on VELVETFRUIT_EXTRACT with short-horizon long bias (or avoid fading) at k=5",
+        "effect": "mean Δmid ≈ +1.96 price units at k=5 on same symbol",
+        "n": 164,
+        "days": "1,2,3",
+        "evidence": "r4_phase1_machine_summary.json top row; participant_forward_stats.csv"
+      },
+      {
+        "rank": 2,
+        "edge": "Treat Mark 22 aggressive sells on VEV_5300 as short-term bearish for 5300 mid (k=5)",
+        "effect": "mean Δmid ≈ -0.20 at k=5",
+        "n": 160,
+        "days": "1,2,3",
+        "evidence": "r4_phase1_machine_summary.json; participant_forward_stats.csv"
+      },
+      {
+        "rank": 3,
+        "edge": "Use same-timestamp multi-symbol bursts as extract risk-on / drift indicator (forward extract k=20)",
+        "effect": "burst mean Δextract ≈ 0.33 vs non-burst ≈ 0.08",
+        "n": "1608 burst vs 2671 non-burst",
+        "days": "1,2,3",
+        "evidence": "r4_p1_burst_extract_fwd_k20.csv"
+      },
+      {
+        "rank": 4,
+        "edge": "Mark 55 on extract: separate buy vs sell horizons — aggressive buys mildly positive k=5/20; aggressive sells strongly negative k=100",
+        "effect": "e.g. sell k=100 mean ≈ -0.92 (n=595)",
+        "n": 595,
+        "days": "1,2,3",
+        "evidence": "r4_phase1_machine_summary.json; participant_forward_stats.csv"
+      },
+      {
+        "rank": 5,
+        "edge": "Two-hop motif Mark 55→Mark 01→Mark 22 predicts negative extract forward (k=20) in bulk (n=535)",
+        "effect": "mean Δextract ≈ -0.64",
+        "n": 535,
+        "days": "1,2,3",
+        "evidence": "r4_p1_twohop_extract_fwd_k20.csv"
+      }
+    ],
+    "no_edge_or_negative_results": [
+      "Mark 01 aggressive buy specifically on VEV_5300 at k=20: zero qualifying rows in tape slice (Mark 01→Mark 22 basket hits other lines); r4_p1_mark01_buy_vev5300_by_day_k20.csv empty — cannot claim participant alpha on that exact cell.",
+      "High-|t| two-hop tails (e.g. Mark 14→Mark 38→Mark 22) have n<20 — not stable as standalone rules.",
+      "Phase 1 is mid-only markouts; tradable PnL under worse fills not established (STRATEGY caveat applies)."
+    ]
+  }
+]

@@ -1,0 +1,227 @@
+{
+  "n_trades_input": 4281,
+  "n_enriched_rows": 4281,
+  "n_burst_timestamps": 387,
+  "top_tstat_cells": [
+    {
+      "n": 164,
+      "mean": 1.9603658536585367,
+      "t": 13.025623326344341,
+      "pos_frac": 0.8353658536585366,
+      "mark": "Mark 67",
+      "side": "buy_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "spread_bin": "all",
+      "horizon_k": 5
+    },
+    {
+      "n": 164,
+      "mean": 1.9603658536585367,
+      "t": 13.025623326344341,
+      "pos_frac": 0.8353658536585366,
+      "mark": "Mark 67",
+      "side": "buy_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "spread_bin": "tight",
+      "horizon_k": 5
+    },
+    {
+      "n": 164,
+      "mean": 1.8140243902439024,
+      "t": 5.86010068131766,
+      "pos_frac": 0.6463414634146342,
+      "mark": "Mark 67",
+      "side": "buy_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "spread_bin": "tight",
+      "horizon_k": 20
+    },
+    {
+      "n": 164,
+      "mean": 1.8140243902439024,
+      "t": 5.86010068131766,
+      "pos_frac": 0.6463414634146342,
+      "mark": "Mark 67",
+      "side": "buy_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "spread_bin": "all",
+      "horizon_k": 20
+    },
+    {
+      "n": 160,
+      "mean": -0.203125,
+      "t": -3.3127067443445664,
+      "pos_frac": 0.2375,
+      "mark": "Mark 22",
+      "side": "sell_agg",
+      "symbol": "VEV_5300",
+      "spread_bin": "tight",
+      "horizon_k": 5
+    },
+    {
+      "n": 160,
+      "mean": -0.203125,
+      "t": -3.3127067443445664,
+      "pos_frac": 0.2375,
+      "mark": "Mark 22",
+      "side": "sell_agg",
+      "symbol": "VEV_5300",
+      "spread_bin": "all",
+      "horizon_k": 5
+    },
+    {
+      "n": 50,
+      "mean": -0.15,
+      "t": -2.781517949836592,
+      "pos_frac": 0.16,
+      "mark": "Mark 22",
+      "side": "sell_agg",
+      "symbol": "VEV_5400",
+      "spread_bin": "wide",
+      "horizon_k": 5
+    },
+    {
+      "n": 595,
+      "mean": -0.9184873949579831,
+      "t": -2.504567788249762,
+      "pos_frac": 0.4369747899159664,
+      "mark": "Mark 55",
+      "side": "sell_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "spread_bin": "all",
+      "horizon_k": 100
+    },
+    {
+      "n": 598,
+      "mean": 0.4088628762541806,
+      "t": 2.4788758254472882,
+      "pos_frac": 0.5100334448160535,
+      "mark": "Mark 55",
+      "side": "buy_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "spread_bin": "all",
+      "horizon_k": 20
+    },
+    {
+      "n": 493,
+      "mean": 0.22008113590263692,
+      "t": 2.267803870296648,
+      "pos_frac": 0.4665314401622718,
+      "mark": "Mark 55",
+      "side": "buy_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "spread_bin": "tight",
+      "horizon_k": 5
+    },
+    {
+      "n": 598,
+      "mean": 0.19899665551839466,
+      "t": 2.2464782628170425,
+      "pos_frac": 0.46488294314381273,
+      "mark": "Mark 55",
+      "side": "buy_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "spread_bin": "all",
+      "horizon_k": 5
+    },
+    {
+      "n": 509,
+      "mean": -0.8575638506876228,
+      "t": -2.1710147071144936,
+      "pos_frac": 0.4400785854616896,
+      "mark": "Mark 55",
+      "side": "sell_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "spread_bin": "tight",
+      "horizon_k": 100
+    },
+    {
+      "n": 105,
+      "mean": 0.8666666666666667,
+      "t": 2.130729913265277,
+      "pos_frac": 0.5714285714285714,
+      "mark": "Mark 55",
+      "side": "buy_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "spread_bin": "wide",
+      "horizon_k": 20
+    },
+    {
+      "n": 49,
+      "mean": -0.5,
+      "t": -2.042109880970524,
+      "pos_frac": 0.40816326530612246,
+      "mark": "Mark 22",
+      "side": "sell_agg",
+      "symbol": "VEV_5400",
+      "spread_bin": "wide",
+      "horizon_k": 100
+    },
+    {
+      "n": 306,
+      "mean": -0.026143790849673203,
+      "t": -1.9207508139484648,
+      "pos_frac": 0.05555555555555555,
+      "mark": "Mark 22",
+      "side": "sell_agg",
+      "symbol": "VEV_5500",
+      "spread_bin": "all",
+      "horizon_k": 5
+    },
+    {
+      "n": 163,
+      "mean": 1.3711656441717792,
+      "t": 1.873917213276957,
+      "pos_frac": 0.5398773006134969,
+      "mark": "Mark 67",
+      "side": "buy_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "spread_bin": "tight",
+      "horizon_k": 100
+    },
+    {
+      "n": 163,
+      "mean": 1.3711656441717792,
+      "t": 1.873917213276957,
+      "pos_frac": 0.5398773006134969,
+      "mark": "Mark 67",
+      "side": "buy_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "spread_bin": "all",
+      "horizon_k": 100
+    },
+    {
+      "n": 493,
+      "mean": 0.31135902636916835,
+      "t": 1.727559934052485,
+      "pos_frac": 0.4969574036511156,
+      "mark": "Mark 55",
+      "side": "buy_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "spread_bin": "tight",
+      "horizon_k": 20
+    },
+    {
+      "n": 86,
+      "mean": -0.7151162790697675,
+      "t": -1.5758979826446913,
+      "pos_frac": 0.45348837209302323,
+      "mark": "Mark 55",
+      "side": "sell_agg",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "spread_bin": "wide",
+      "horizon_k": 20
+    },
+    {
+      "n": 44,
+      "mean": -0.22727272727272727,
+      "t": -1.5035884171827123,
+      "pos_frac": 0.3181818181818182,
+      "mark": "Mark 22",
+      "side": "sell_agg",
+      "symbol": "VEV_5200",
+      "spread_bin": "tight",
+      "horizon_k": 5
+    }
+  ]
+}

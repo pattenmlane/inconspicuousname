@@ -1,0 +1,27 @@
+{
+  "definition": "Burst: >=3 VEV_* trades same timestamp, buyer Mark 01, seller Mark 22. fwd20: m_ext(t+K)-m_ext(t) on price tape rows.",
+  "n_burst_ticks_total": 314,
+  "by_day": [
+    {
+      "day": 1,
+      "n": 95,
+      "mean_fwd20": -0.20526315789473684,
+      "median_fwd20": -1.0
+    },
+    {
+      "day": 2,
+      "n": 95,
+      "mean_fwd20": 0.3263157894736842,
+      "median_fwd20": 0.0
+    },
+    {
+      "day": 3,
+      "n": 124,
+      "mean_fwd20": 0.5725806451612904,
+      "median_fwd20": 0.0
+    }
+  ],
+  "day3_mean_fwd20": 0.5725806451612904,
+  "day12_mean_fwd20": 0.060526315789473685,
+  "joint_tight_fraction_at_burst": 0.9968152866242038
+}

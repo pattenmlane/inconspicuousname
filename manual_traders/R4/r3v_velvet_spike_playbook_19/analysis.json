@@ -317,5 +317,22 @@
         "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v6_inv_mm_all_fill_trade_summary.json"
       ]
     }
+  },
+  {
+    "round4_burst_m01_m22_day_stability_study": {
+      "script": "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_burst_m01_m22_day_gate_stability.py",
+      "outputs": [
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_burst_m01_m22_rows_with_gate_fwd20.csv",
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_burst_m01_m22_fwd20_by_day_gate_extspread.csv",
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_burst_m01_m22_fwd20_by_day_only.csv",
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_burst_m01_m22_day_stability_summary.json"
+      ],
+      "definition": "Burst timestamps: >=3 VEV_* prints same timestamp with buyer Mark 01, seller Mark 22. Merge panel: joint_tight = (s5200<=2 & s5300<=2), extract L1 spread bucket, fwd20 = m_ext(t+20 rows)-m_ext(t).",
+      "counts": "314 burst timestamps total (days 1\u20133); joint_tight true at 99.68% of them.",
+      "fwd20_by_day_mean": "Day 1: -0.21 (n=95); Day 2: +0.33 (n=95); Day 3: +0.57 (n=124). So the **tape mid proxy is not uniformly positive on day 1** at burst ticks, while Phase-2 pooled mean +0.30 mixed per-print vs per-tick definitions.",
+      "gate_x_extspread": "Almost all rows joint_tight; extract spread at burst is mostly **mid** bucket (3\u20136); tiny **tight** extract subsamples (n=3\u20136 per day cell) dominate variance \u2014 do not overfit.",
+      "sim_v7": "trader_v7_r4_burst_extract_skip_day3.py \u2014 identical impulse to v1 but no orders when csv_day==3. **+8,242** worse and all (days 1\u20132 only), vs v1 **+4,834** with day 3 **-3,408**. Shows v1 drag is **concentrated in realized day-3 execution**, not explained by day-3 having the **lowest** mean fwd20 (it has the **highest** among days here).",
+      "used_to_decide": "Treat **day-3 burst impulse as structurally toxic in sim** until a tape feature explains it; naive calendar skip is not a legitimate live rule but documents **PnL path vs mid-markout mismatch**. Prefer smaller size or additional filters on day 3 over blind trading."
+    }
   }
 ]

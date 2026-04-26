@@ -1,0 +1,8 @@
+day,joint_tight,s_ext_bucket,n,mean_fwd20,median_fwd20
+1,True,mid,92,-0.3804347826086957,-1.0
+1,True,tight,3,5.166666666666667,4.5
+2,True,mid,92,0.358695652173913,0.0
+2,True,tight,3,-0.6666666666666666,-1.0
+3,False,mid,1,2.0,2.0
+3,True,mid,117,0.5641025641025641,0.0
+3,True,tight,6,0.5,3.0

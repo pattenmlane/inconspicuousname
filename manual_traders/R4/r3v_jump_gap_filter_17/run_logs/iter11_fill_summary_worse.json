@@ -1,0 +1,8 @@
+{
+  "source": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter11_backtest_worse.log",
+  "match_trades": "worse",
+  "per_day": {"1": 4314.0, "2": 1377.0, "3": 1899.0},
+  "total_profit": 7590.0,
+  "per_product_total": {"VELVETFRUIT_EXTRACT": 7590.0},
+  "note": "Mark22 aggr-buy print: bid qty mq_base+1, ask mq_base; no tape fair tilt. vs v1 worse +76; vs v10 worse -58 (v10 harmed by symmetric tilt+size)"
+}

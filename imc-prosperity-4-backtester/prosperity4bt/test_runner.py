@@ -111,6 +111,11 @@ class TestRunner:
                 plainValueObservations={}, conversionObservations={"MAGNIFICENT_MACARONS": conversion_observation}
             )
 
+        # Tape prints at this timestamp (buyer/seller IDs). Order matching still uses BacktestData.trades;
+        # this field is for algorithms that read TradingState.market_trades inside run().
+        ts_trades = data.trades.get(state.timestamp, {})
+        state.market_trades = {sym: list(trs) for sym, trs in ts_trades.items()}
+
         return state
 
     # def __validate_orders(self, orders: dict[Symbol, list[Order]]) -> None:

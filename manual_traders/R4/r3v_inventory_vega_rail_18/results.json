@@ -205,5 +205,43 @@
       "backtest_log_file": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v10_all_backtest.log",
       "trades_or_fills_summary": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v10_all_fill_summary.json"
     }
+  },
+  {
+    "iteration": 11,
+    "trader_file": "trader_v11.py",
+    "strategy_description": "v6 exit + causal entry filter: passive bid only when joint tight AND same-tick tape has Mark 67 buying VELVETFRUIT_EXTRACT from Mark 22 or 49 (reads TradingState.market_trades).",
+    "backtest_round": 4,
+    "backtest_note": "Requires prosperity4bt test_runner to populate market_trades from tape each tick.",
+    "backtest_worse": {
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_inventory_vega_rail_18/trader_v11.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v11_worse_backtest.log",
+      "total_profit": 0,
+      "backtest_log_file": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v11_worse_backtest.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v11_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_inventory_vega_rail_18/trader_v11.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v11_all_backtest.log",
+      "total_profit": 0,
+      "backtest_log_file": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v11_all_backtest.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v11_all_fill_summary.json"
+    }
+  },
+  {
+    "iteration": 12,
+    "trader_file": "trader_v12.py",
+    "strategy_description": "v6 with post-trigger arming: on Mark 67→22/49 extract print while joint tight, arm passive bids for ARM_MS=3e6 ts (same-day); bids only while tight; v6 wide CLIP exit. Arm survives brief gate-wide gaps; expires by time only.",
+    "backtest_round": 4,
+    "backtest_note": "Round 4 days 1-3.",
+    "backtest_worse": {
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_inventory_vega_rail_18/trader_v12.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v12_worse_backtest.log",
+      "total_profit": 252,
+      "backtest_log_file": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v12_worse_backtest.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v12_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_inventory_vega_rail_18/trader_v12.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v12_all_backtest.log",
+      "total_profit": 10702,
+      "backtest_log_file": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v12_all_backtest.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v12_all_fill_summary.json"
+    }
   }
 ]

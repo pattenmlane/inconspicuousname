@@ -1,0 +1,17 @@
+{
+  "trader": "trader_v11.py",
+  "match_trades": "all",
+  "total_profit_merged_activities": 0,
+  "profit_incremental_by_csv_day": {
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0
+  },
+  "profit_cumulative_end_by_csv_day": {
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0
+  },
+  "n_submission_trade_events": 0,
+  "by_symbol": {}
+}

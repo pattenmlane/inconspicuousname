@@ -1,0 +1,23 @@
+{
+  "trader": "trader_v12.py",
+  "match_trades": "all",
+  "total_profit_merged_activities": 10702,
+  "profit_incremental_by_csv_day": {
+    "1": 1366.0,
+    "2": 2108.0,
+    "3": 7228.0
+  },
+  "profit_cumulative_end_by_csv_day": {
+    "1": 1366.0,
+    "2": 3474.0,
+    "3": 10702.0
+  },
+  "n_submission_trade_events": 305,
+  "by_symbol": {
+    "VELVETFRUIT_EXTRACT": {
+      "fills": 305,
+      "abs_qty": 1689.0,
+      "net_qty": 3.0
+    }
+  }
+}

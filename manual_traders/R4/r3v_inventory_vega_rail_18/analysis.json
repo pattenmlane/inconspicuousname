@@ -288,5 +288,28 @@
       "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v10_all_fill_summary.json"
     ],
     "used_to_decide": "For worse matching on this slice, **v6 ≡ v10**; prefer v6 for simplicity unless we need falling-edge semantics for logging or future partial fills. Next counterparty work: causal filter on Phase 1 Mark pairs (not oracle masks) + gate."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "**Infrastructure:** `prosperity4bt/test_runner.py` now sets `TradingState.market_trades` each tick from `BacktestData.trades` (tape prints with buyer/seller). Previously the field was always `{}`, so no algorithm could use counterparty IDs inside `run()`. **v11** (same-tick gate): passive bid only when joint tight **and** current tick has Mark 67 buying extract from Mark 22 or 49. Offline count: joint-tight ∧ Mark67 ticks exist (e.g. day 3: 15 overlaps) but **none** coincide with v6’s sparse worse-fill buy timestamp — **0** SUBMISSION trades, **0** PnL worse and all. **Falsifies** same-tick pairing as an execution filter for this passive-fill path.",
+    "analysis_outputs": [
+      "imc-prosperity-4-backtester/prosperity4bt/test_runner.py",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/trader_v11.py",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v11_worse_fill_summary.json",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v11_all_fill_summary.json"
+    ],
+    "used_to_decide": "Use **lagged** or **armed** windows after Mark prints (v12), not same-tick only; document that Phase 1 edge is defined at print time while passive bid fills can be hundreds of thousands of timestamps later."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "**trader_v12** (armed window): after Mark67→22/49 extract while tight, allow v6-style passive bids for `ARM_MS=3_000_000` timestamps while gate is **tight**; do **not** clear `_arm_from` on brief wide (that had zeroed worse PnL until fixed). **Worse** **+252**, **2** extract SUBMISSION fills, **net_qty 0** — matches **v6** on this tape (counterparty gate is **non-binding** once timing is causal). **All** **+10,702** vs v6 **+10,834** (**305** vs **323** fills); small turnover difference only.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_inventory_vega_rail_18/trader_v12.py",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v12_worse_backtest.log",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v12_all_backtest.log",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v12_worse_fill_summary.json",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v12_all_fill_summary.json"
+    ],
+    "used_to_decide": "Phase 1 Mark67 edge does not improve v6 worse PnL when implemented as a **wide** post-print arming window + same execution; keep v6 unless we shrink ARM_MS to a testable trade-off or add orthogonal state (e.g. burst flag)."
   }
 ]

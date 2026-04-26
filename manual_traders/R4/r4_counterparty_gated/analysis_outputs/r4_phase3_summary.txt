@@ -1,0 +1,42 @@
+Round 4 Phase 3 — Sonic joint gate on R4
+==========================================
+{
+  "TH": 2,
+  "K": 20,
+  "pooled_mean_fwd20_tight": 0.32351414482221647,
+  "pooled_mean_fwd20_loose": -0.12447247912364191,
+  "n_tight": 7706,
+  "n_loose": 22274,
+  "per_day": [
+    {
+      "day": 1,
+      "n_tight": 1381,
+      "mean_fwd20_tight": 0.5992034757422158,
+      "n_loose": 8619,
+      "mean_fwd20_loose": -0.058359438449936185
+    },
+    {
+      "day": 2,
+      "n_tight": 1727,
+      "mean_fwd20_tight": 0.46409959467284306,
+      "n_loose": 8273,
+      "mean_fwd20_loose": -0.017345582013779764
+    },
+    {
+      "day": 3,
+      "n_tight": 4598,
+      "mean_fwd20_tight": 0.1879077859939104,
+      "n_loose": 5382,
+      "mean_fwd20_loose": -0.3950204384986994
+    }
+  ]
+}
+
+Spread correlations (see r4_phase3_spread_spread_and_spread_price_corr.csv)
+     subset     n  corr_s5200_s5300  corr_s5200_s_ext  corr_s5300_s_ext  corr_s5200_dm_ext  corr_s5300_dm_ext
+        all 30000          0.307596          0.008579          0.005381           0.004228           0.010579
+joint_tight  7722          0.171708         -0.013630          0.011876           0.000231          -0.015795
+
+Mark01->Mark22 VEV_5300 gate split:
+ joint_tight   n      mean      std
+        True 132 -0.121212 1.656725

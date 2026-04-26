@@ -227,5 +227,67 @@
     ],
     "phase1_interaction_summary": "Phase-1 Mark67 extract effect is left intact as optional signal; Phase-2 spread-tight regime is a stronger always-on tape split. Phase-1 Mark01→Mark22 5300 ambiguity is partially explained by separating burst vs non-burst and by strike (5200 vs 5300).",
     "used_to_decide": "Shipped trader_v1 (spread regime + Mark67 JSON keys). Backtest: worse total 26,194 vs v0 0 (active MM). Phase 3 next: Sonic joint VEV5200+5300 gate on R4 + counterparty interactions per ping_followup_phases.md."
+  },
+  {
+    "iteration": 2,
+    "title": "round4_phase3_complete",
+    "analysis_description": "Phase 3: R4 Sonic joint gate (inner-join 5200/5300/extract on timestamp, tight = both BBO spreads <=2, K=20 fwd on aligned panel per analyze_vev_5200_5300_tight_gate_r3.py). inclineGod: spread–spread and spread vs extract mid change correlations (full tape vs joint_tight subset). Counterparty rows merged to gate for triplet (pair,symbol,joint_tight) fwd20 table. trader_v2 implements joint gate + fallback extract-tight.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_gated/run_r4_phase3_sonic_gate.py",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase3_sonic_gate_summary.json",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase3_sonic_fwd_extract_by_day.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase3_spread_spread_and_spread_price_corr.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase3_triplet_pair_symbol_gate_fwd20.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase3_M01_M22_VEV5300_fwd20_gate_split.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase3_mark67_extract_aggr_buy_gate_split.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase3_summary.txt",
+      "manual_traders/R4/r4_counterparty_gated/trader_v2.py",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v2_worse.log",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v2_all.log"
+    ],
+    "sonic_gate_vs_unconditional": {
+      "pooled_K20": "mean extract fwd20 tight +0.32 (n=7706) vs loose -0.12 (n=22274) — same sign all three days (r4_phase3_sonic_gate_summary.json).",
+      "phase2_extract_only_tight": "Phase2 used extract BBO<=2 alone: mean fwd20 +1.16 vs -0.06 — larger magnitude because conditioning is on extract microstructure directly, not ATM voucher legs.",
+      "does_gate_clean_counterparty": "Mixed: Mark67→Mark22 extract mean is higher when joint_tight (n=15 mean 2.83 vs n=60 mean 1.83 in triplet table) — gate helps that interaction. Mark01→Mark22 on VEV_5300 only occurs under joint_tight (all 132 prints) with negative mean fwd20 (-0.12) — falsifies simple long 5300 after basket when surface is tight; Phase2 strike split (5200 +0.86 vs 5300 -0.12 in bursts) holds under gate for 5300."
+    },
+    "top_5_tradeable_edges_phase3_ranked": [
+      {
+        "rank": 1,
+        "edge": "Sonic joint gate on R4: pooled extract 20-tick forward mid +0.32 vs -0.12 when loose — stable sign days 1–3.",
+        "paths": [
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase3_sonic_gate_summary.json"
+        ]
+      },
+      {
+        "rank": 2,
+        "edge": "Mark67→Mark22 on extract: higher mean fwd20 when joint_tight vs not (triplet CSV; small n tight=15).",
+        "paths": [
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase3_triplet_pair_symbol_gate_fwd20.csv"
+        ]
+      },
+      {
+        "rank": 3,
+        "edge": "Spread–spread: s5200 vs s5300 corr ~0.31 on full R4 panel, ~0.17 when restricted to joint_tight rows — co-movement weakens in tight box (inclineGod lens).",
+        "paths": [
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase3_spread_spread_and_spread_price_corr.csv"
+        ]
+      },
+      {
+        "rank": 4,
+        "edge": "Mark14→Mark38 VEV_4000 under joint_tight: mean fwd20 ~+1.1 (n=55) — three-way (pair, gate, symbol) candidate.",
+        "paths": [
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase3_triplet_pair_symbol_gate_fwd20.csv"
+        ]
+      },
+      {
+        "rank": 5,
+        "edge": "Mark67 aggressive extract buy: slightly higher mean fwd20 when gate tight (n=27 vs n=137 loose) — aligns Phase1 Mark67 with Sonic gate.",
+        "paths": [
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase3_mark67_extract_aggr_buy_gate_split.csv"
+        ]
+      }
+    ],
+    "sim_note": "trader_v2 (joint gate sizing) backtest worse 21,097 < trader_v1 26,194 — joint gate alone as implemented does not improve PnL vs extract-only tight regime; keep gate for signal research, refine execution.",
+    "used_to_decide": "Phase 3 gate analysis persisted; trader_v2 shipped as Sonic-gated experiment underperforming v1 on this simple MM — next iteration should combine joint gate with selective fades (e.g. avoid aggressive 5300 basket supply) rather than blanket size-up."
   }
 ]

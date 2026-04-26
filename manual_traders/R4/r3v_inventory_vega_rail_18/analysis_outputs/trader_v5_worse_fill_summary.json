@@ -1,0 +1,12 @@
+{
+  "trader": "trader_v5.py",
+  "match_trades": "worse",
+  "n_submission_trade_events": 74,
+  "by_symbol": {
+    "VELVETFRUIT_EXTRACT": {
+      "fills": 74,
+      "abs_qty": 720.0,
+      "net_qty": 0.0
+    }
+  }
+}

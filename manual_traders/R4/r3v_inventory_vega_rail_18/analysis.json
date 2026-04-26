@@ -227,5 +227,18 @@
       "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v4_worse_fill_summary.json"
     ],
     "used_to_decide": "Next strategies must combine gate with **counterparty-conditioned** or **inventory/mark** rules (Phase 1/3 three-way), not raw touch buying; optional: only trade when same-tick Mark pattern matches positive slice."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "Offline-oracle counterparty timing: build_r4_pair_timestamp_masks.py writes r4_pair_ts_masks.json (exact timestamps of Mark67→Mark22 and Mark67→Mark49 VELVETFRUIT_EXTRACT prints per csv day from tape). trader_v5 buys extract at ask only when joint Sonic gate tight AND current ts is in that union set; flattens on gate wide. Backtest worse total -1755 (74 submission events) vs v4 -512 with pure edge trigger — adding tape timestamps **hurt** here (more buys into adverse selection). Caveat: masks reuse historical tape on the same run (not deployable); proves pair+gate still loses under worse without richer state.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_inventory_vega_rail_18/build_r4_pair_timestamp_masks.py",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/r4_pair_ts_masks.json",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/trader_v5.py",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v5_worse_backtest.log",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v5_all_backtest.log",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v5_worse_fill_summary.json"
+    ],
+    "used_to_decide": "Do not ship timestamp-replay; next live logic needs **causal** Mark detection (order flow / own trade context) or fade opposite side per worst-pairs table, not chase 67→22 prints at ask."
   }
 ]

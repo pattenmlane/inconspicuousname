@@ -25,7 +25,14 @@
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_burst_vs_session_random.txt",
       "manual_traders/R4/r4_counterparty_research/run_phase1_all_names_markout_rollup_r4.py",
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_name_mark20_rollup.csv",
-      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_name_mark20_rollup.json"
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_name_mark20_rollup.json",
+      "manual_traders/R4/r4_counterparty_research/run_phase1_name_product_sprstratified_r4.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_name_product_sprreg_mark20.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_name_product_sprreg_mark20_top50.csv",
+      "manual_traders/R4/r4_counterparty_research/run_phase1_graph_hubs_r4.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_graph_hubs_by_name.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_graph_pair_reciprocity.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_graph_reciprocity_top.json"
     ],
     "used_to_decide": "Phase 1 exhaustive pass on ROUND_4 days 1-3; plus statistical supplement (bootstrap, Welch, session-matched random null for bursts, per-name markout rollups for all distinct Mark IDs). Phases 2-3 also complete. Ready for sim iteration.",
     "round4_phase1_complete": {
@@ -37,9 +44,10 @@
             "manual_traders/R4/r4_counterparty_research/outputs/r4_trades_enriched_markouts.csv",
             "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_bootstrap.csv",
             "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_by_day.csv",
-            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_name_mark20_rollup.csv"
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_name_mark20_rollup.csv",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_name_product_sprreg_mark20.csv"
           ],
-          "conclusion": "R4 has only 7 buyers / 6 sellers in tape; r4_phase1_name_mark20_rollup.csv lists every name x role (buyer_any, seller_any, aggr_buy, aggr_sell) with mean mark_20 sym/U. Mark 67/55 aggressive buy CIs still exclude 0; Mark 38 CI crosses 0 with day flips. All patterns still need sim PnL before trading."
+          "conclusion": "7 buyers / 6 sellers; r4_phase1_name_mark20_rollup has pooled roles; r4_phase1_name_product_sprreg_mark20 (min n=20 per cell) adds **product x spr_regime** t-stats on mark_20 (e.g. Mark 67 aggr buy on U in **tight** p~2.5e-8 on t-test of mean u20 vs 0, n=164). **Multiple-testing caveat:** scan many cells; FDR not applied. All patterns still need sim PnL before trading."
         },
         {
           "topic": "2) Deviation from bot baseline",
@@ -53,9 +61,11 @@
           "topic": "3) Sequence / graph methods",
           "outputs": [
             "manual_traders/R4/r4_counterparty_research/outputs/r4_graph_top_edges.txt",
-            "manual_traders/R4/r4_counterparty_research/outputs/r4_twohop_buyer_seller_motifs.txt"
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_twohop_buyer_seller_motifs.txt",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_graph_hubs_by_name.csv",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_graph_reciprocity_top.json"
           ],
-          "conclusion": "Dominant edge Mark 01\u2192Mark 22 (1339 prints); hydro duopoly Mark 14\u2194Mark 38 reciprocal. Two-hop motif mass is repetitive Mark01/Mark22 ladder (725 chains in 5k-ts window) \u2014 structural bot choreography, not episodic insider paths."
+          "conclusion": "Dominant edge Mark 01\u2192Mark 22 (1339 prints); hydro duopoly Mark 14\u2194Mark 38 reciprocal. **Hub table:** r4_phase1_graph_hubs_by_name quantifies n_prints and notional as buyer vs seller per name (Mark 22 is heavy seller, Mark 01 heavy buyer). r4_phase1_graph_pair_reciprocity lists reverse edges for top directed pairs. Two-hop motif mass remains Mark01/Mark22 ladder in motifs file."
         },
         {
           "topic": "4) Burst structure",
@@ -119,7 +129,8 @@
         "Pure 2-hop motif counts alone do not map to extract direction without pairing to forward markout regression (left for Phase 2 sim).",
         "Burst vs non-burst on pooled mark_20_u: Welch p~0.09 two-sided (not significant at 0.05 despite large mean gap).",
         "Mark 38 aggressive buy mean extract markout @20 is not day-stable (sign flips day 1-3).",
-        "Session-matched random control for distinct burst timestamps: one-sided p~0.14, two-sided ~0.29 for burst U@20 > null (n_burst_ts=293; see r4_phase1_burst_vs_session_random.json)."
+        "Session-matched random control for distinct burst timestamps: one-sided p~0.14, two-sided ~0.29 for burst U@20 > null (n_burst_ts=293; see r4_phase1_burst_vs_session_random.json).",
+        "r4_phase1_name_product_sprreg_mark20: many t-tests on Mark x product x spr_regime; treat small p as exploratory unless Bonferroni/FDR applied."
       ],
       "phase1_statistical_supplement": {
         "script": "manual_traders/R4/r4_counterparty_research/run_phase1_participant_ci_bootstrap.py",

@@ -328,5 +328,24 @@
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_name_mark20_rollup.csv",
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_name_mark20_rollup.json"
     ]
+  },
+  {
+    "iteration": 14,
+    "trader_file": null,
+    "strategy_description": "Phase 1 depth: name x product x spr_regime mark_20 table (t-tests); directed graph hub notional and reciprocity CSVs.",
+    "backtest_command_base": null,
+    "total_profit": null,
+    "backtest_round": 4,
+    "backtest_worse": null,
+    "backtest_all": null,
+    "phase1_stratify_graph_outputs": [
+      "manual_traders/R4/r4_counterparty_research/run_phase1_name_product_sprstratified_r4.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_name_product_sprreg_mark20.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_name_product_sprreg_mark20_top50.csv",
+      "manual_traders/R4/r4_counterparty_research/run_phase1_graph_hubs_r4.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_graph_hubs_by_name.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_graph_pair_reciprocity.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_graph_reciprocity_top.json"
+    ]
   }
 ]

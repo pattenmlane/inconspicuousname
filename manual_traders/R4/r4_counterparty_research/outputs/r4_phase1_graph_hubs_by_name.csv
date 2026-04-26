@@ -1,0 +1,8 @@
+name,n_distinct_counterparties_as_buyer,n_distinct_counterparties_as_seller,n_prints_as_buyer,n_prints_as_seller,notional_as_buyer,notional_as_seller,net_notional_buyer_minus_seller
+Mark 01,2,1,1599,244,7465351.0,7220079.0,245272.0
+Mark 14,3,2,1127,1045,29684752.0,30105030.0,-420278.0
+Mark 38,2,2,733,745,21177491.0,20861422.0,316069.0
+Mark 55,4,5,598,600,17083928.0,17292836.0,-208908.0
+Mark 67,3,0,165,0,7926450.0,0.0,7926450.0
+Mark 22,3,6,42,1542,1192850.0,4031965.0,-2839115.0
+Mark 49,2,3,17,105,603473.0,5622963.0,-5019490.0

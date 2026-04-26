@@ -1,0 +1,117 @@
+{
+  "note": "Pairs with n>=5 directed prints; reverse edge if exists",
+  "top": [
+    {
+      "buyer": "Mark 14",
+      "seller": "Mark 38",
+      "n_prints": 728,
+      "notional": 20434344.0,
+      "reciprocal_n_prints": 714,
+      "reciprocal_notional": 20850351.0
+    },
+    {
+      "buyer": "Mark 38",
+      "seller": "Mark 14",
+      "n_prints": 714,
+      "notional": 20850351.0,
+      "reciprocal_n_prints": 728,
+      "reciprocal_notional": 20434344.0
+    },
+    {
+      "buyer": "Mark 55",
+      "seller": "Mark 14",
+      "n_prints": 331,
+      "notional": 9254679.0,
+      "reciprocal_n_prints": 316,
+      "reciprocal_notional": 9235831.0
+    },
+    {
+      "buyer": "Mark 14",
+      "seller": "Mark 55",
+      "n_prints": 316,
+      "notional": 9235831.0,
+      "reciprocal_n_prints": 331,
+      "reciprocal_notional": 9254679.0
+    },
+    {
+      "buyer": "Mark 01",
+      "seller": "Mark 55",
+      "n_prints": 260,
+      "notional": 7432924.0,
+      "reciprocal_n_prints": 244,
+      "reciprocal_notional": 7220079.0
+    },
+    {
+      "buyer": "Mark 55",
+      "seller": "Mark 01",
+      "n_prints": 244,
+      "notional": 7220079.0,
+      "reciprocal_n_prints": 260,
+      "reciprocal_notional": 7432924.0
+    },
+    {
+      "buyer": "Mark 38",
+      "seller": "Mark 22",
+      "n_prints": 19,
+      "notional": 327140.0,
+      "reciprocal_n_prints": 17,
+      "reciprocal_notional": 427078.0
+    },
+    {
+      "buyer": "Mark 22",
+      "seller": "Mark 55",
+      "n_prints": 18,
+      "notional": 482557.0,
+      "reciprocal_n_prints": 14,
+      "reciprocal_notional": 325980.0
+    },
+    {
+      "buyer": "Mark 22",
+      "seller": "Mark 38",
+      "n_prints": 17,
+      "notional": 427078.0,
+      "reciprocal_n_prints": 19,
+      "reciprocal_notional": 327140.0
+    },
+    {
+      "buyer": "Mark 55",
+      "seller": "Mark 22",
+      "n_prints": 14,
+      "notional": 325980.0,
+      "reciprocal_n_prints": 18,
+      "reciprocal_notional": 482557.0
+    },
+    {
+      "buyer": "Mark 49",
+      "seller": "Mark 22",
+      "n_prints": 12,
+      "notional": 467190.0,
+      "reciprocal_n_prints": 7,
+      "reciprocal_notional": 283215.0
+    },
+    {
+      "buyer": "Mark 55",
+      "seller": "Mark 49",
+      "n_prints": 9,
+      "notional": 283190.0,
+      "reciprocal_n_prints": 5,
+      "reciprocal_notional": 136283.0
+    },
+    {
+      "buyer": "Mark 22",
+      "seller": "Mark 49",
+      "n_prints": 7,
+      "notional": 283215.0,
+      "reciprocal_n_prints": 12,
+      "reciprocal_notional": 467190.0
+    },
+    {
+      "buyer": "Mark 49",
+      "seller": "Mark 55",
+      "n_prints": 5,
+      "notional": 136283.0,
+      "reciprocal_n_prints": 9,
+      "reciprocal_notional": 283190.0
+    }
+  ]
+}

@@ -286,5 +286,17 @@
       },
       "repro_script": "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_followup_gated_flows.py"
     }
+  },
+  {
+    "round4_mark67_extract_joint_gate_study": {
+      "script": "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_mark67_extract_gate_study.py",
+      "outputs": [
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_mark67_aggr_buy_extract_fwd20_by_gate_day.csv",
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_mark67_aggr_buy_extract_summary.json"
+      ],
+      "definition": "Aggressive buy: Mark 67 buyer on VELVETFRUIT_EXTRACT and trade price >= tape ask1 at same timestamp; joint_tight from inner-join 5200/5300 spreads <=2.",
+      "finding": "Wide-gate subsample has **larger n** and **similar or higher** mean fwd20 than tight on days 1\u20132 (e.g. day1 wide mean ~2.11 n=53 vs tight ~1.20 n=5); day3 both positive. **Does not support** \u2018Mark67 signal only when Sonic tight\u2019 \u2014 gate does not clean this counterparty edge on R4 tape; Phase-1 tight-bucket stats were partly a thin-cell artifact vs this join.",
+      "sim_v5": "trader_v5_r4_joint_tight_follow_m67_extract.py \u2014 mirror small buy when joint tight + M67 tape buy; +2364 total worse=all, 27 fills (lower churn than burst v1)."
+    }
   }
 ]

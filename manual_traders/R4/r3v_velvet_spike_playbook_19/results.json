@@ -220,5 +220,59 @@
         }
       }
     }
+  },
+  {
+    "iteration": 5,
+    "trader_file": "trader_v5_r4_joint_tight_follow_m67_extract.py",
+    "strategy_description": "Joint tight + tape Mark67 aggressive buy on VELVETFRUIT_EXTRACT (price>=ask): mirror with 4-lot buy at ask. Tests counterparty\u00d7Sonic interaction vs naive burst.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 2364,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v5_r4_joint_tight_follow_m67_extract.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v5_m67_follow_worse.json",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v5_m67_follow_worse.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "1": 650,
+          "2": 1470,
+          "3": 244,
+          "total": 2364
+        },
+        "fills": {
+          "submission_trade_count": 27,
+          "submission_filled_abs_qty": 108,
+          "submission_by_symbol": {
+            "VELVETFRUIT_EXTRACT": {
+              "trade_count": 27,
+              "filled_abs_qty": 108
+            }
+          }
+        }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 2364,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v5_r4_joint_tight_follow_m67_extract.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v5_m67_follow_all.json",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v5_m67_follow_all.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "1": 650,
+          "2": 1470,
+          "3": 244,
+          "total": 2364
+        },
+        "fills": {
+          "submission_trade_count": 27,
+          "submission_filled_abs_qty": 108,
+          "submission_by_symbol": {
+            "VELVETFRUIT_EXTRACT": {
+              "trade_count": 27,
+              "filled_abs_qty": 108
+            }
+          }
+        }
+      }
+    }
   }
 ]

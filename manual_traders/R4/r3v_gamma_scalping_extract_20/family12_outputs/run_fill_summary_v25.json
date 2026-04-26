@@ -1,0 +1,98 @@
+{
+  "trader_v25_round4_worse": {
+    "log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v25_round4_worse.log",
+    "num_activity_rows": 360000,
+    "num_trade_rows": 4306,
+    "total_profit": 9602.0,
+    "pnl_by_symbol": {
+      "HYDROGEL_PACK": 0.0,
+      "VELVETFRUIT_EXTRACT": 5669.5,
+      "VEV_4000": 0.0,
+      "VEV_4500": 0.0,
+      "VEV_5000": 0.0,
+      "VEV_5100": 0.0,
+      "VEV_5200": 1231.5,
+      "VEV_5300": 2701.0,
+      "VEV_5400": 0.0,
+      "VEV_5500": 0.0,
+      "VEV_6000": 0.0,
+      "VEV_6500": 0.0
+    },
+    "trade_fill_count_by_symbol": {
+      "VEV_5400": 276,
+      "VEV_5500": 306,
+      "VEV_6000": 317,
+      "VEV_6500": 317,
+      "HYDROGEL_PACK": 1022,
+      "VEV_4000": 442,
+      "VELVETFRUIT_EXTRACT": 1406,
+      "VEV_5300": 164,
+      "VEV_5200": 47,
+      "VEV_4500": 3,
+      "VEV_5000": 3,
+      "VEV_5100": 3
+    },
+    "abs_filled_qty_by_symbol": {
+      "VEV_5400": 959,
+      "VEV_5500": 1069,
+      "VEV_6000": 1105,
+      "VEV_6500": 1105,
+      "HYDROGEL_PACK": 4096,
+      "VEV_4000": 876,
+      "VELVETFRUIT_EXTRACT": 8432,
+      "VEV_5300": 548,
+      "VEV_5200": 162,
+      "VEV_4500": 6,
+      "VEV_5000": 6,
+      "VEV_5100": 6
+    }
+  },
+  "trader_v25_round4_all": {
+    "log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v25_round4_all.log",
+    "num_activity_rows": 360000,
+    "num_trade_rows": 4306,
+    "total_profit": 13237.0,
+    "pnl_by_symbol": {
+      "HYDROGEL_PACK": 0.0,
+      "VELVETFRUIT_EXTRACT": 9010.0,
+      "VEV_4000": 0.0,
+      "VEV_4500": 0.0,
+      "VEV_5000": 0.0,
+      "VEV_5100": 0.0,
+      "VEV_5200": 1216.0,
+      "VEV_5300": 3011.0,
+      "VEV_5400": 0.0,
+      "VEV_5500": 0.0,
+      "VEV_6000": 0.0,
+      "VEV_6500": 0.0
+    },
+    "trade_fill_count_by_symbol": {
+      "VEV_5400": 276,
+      "VEV_5500": 306,
+      "VEV_6000": 317,
+      "VEV_6500": 317,
+      "HYDROGEL_PACK": 1022,
+      "VEV_4000": 442,
+      "VELVETFRUIT_EXTRACT": 1405,
+      "VEV_5300": 165,
+      "VEV_5200": 47,
+      "VEV_4500": 3,
+      "VEV_5000": 3,
+      "VEV_5100": 3
+    },
+    "abs_filled_qty_by_symbol": {
+      "VEV_5400": 959,
+      "VEV_5500": 1069,
+      "VEV_6000": 1105,
+      "VEV_6500": 1105,
+      "HYDROGEL_PACK": 4096,
+      "VEV_4000": 876,
+      "VELVETFRUIT_EXTRACT": 8377,
+      "VEV_5300": 553,
+      "VEV_5200": 162,
+      "VEV_4500": 6,
+      "VEV_5000": 6,
+      "VEV_5100": 6
+    }
+  }
+}

@@ -333,5 +333,18 @@
       "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v4.json"
     ],
     "used_to_decide": "**Overlap:** Mark14→Mark55 extract prints co-occur with joint-tight on only **~0.9–1.2%** of tight timestamps per day (`r4_adverse_tight_overlap_by_day.csv`). **VEV_5200** K=20 forward mid after those ticks vs other tight ticks: **day 2** mean **lower** on adverse ticks (−0.59 vs +0.31, n=16 vs 1711); days 1 and 3 not clearly protective for 5200. **`trader_v4`** (skip MM when that print appears) **does not** beat **v3** (worse **2786** vs **2814**; day 3 PnL identical) — skipping ~1% of requote intervals is too weak to fix day-3 inventory/adverse mix; need stronger inventory or extract hedge, not this print-only filter."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "**Rolling tight regime** vs extract forward + **`trader_v5`** (gate + Mark67 extract + 5200/5300 MM). Rolling share = mean(`tight`) over past W timestamps on the joint panel; correlate with same-row **K=20** extract forward mid. Script: `r4_rolling_tight_share_vs_extract_fwd.py` → `r4_rolling_tight_share_corr_k20.csv`.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/r4_rolling_tight_share_vs_extract_fwd.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_rolling_tight_share_corr_k20.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v5.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v5_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v5_round4_all.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v5.json"
+    ],
+    "used_to_decide": "**Rolling correlation** between tight-share (W∈{20,50,100}) and extract **fwd20** is **small but consistently positive** on all three days (ρ≈0.07–0.14 in `r4_rolling_tight_share_corr_k20.csv`) — aligns with Phase 3’s point-in-time tight uplift, extended to **local persistence** of the gate. **`trader_v5`** stacks **v2** (Mark67 lift under gate) with **v3** (surface MM); **worse total 8039** beats **v2** 5224 and **v3** 2814; **all** 9401. **Bugfix:** v3/v4 requote state reset each tick because `mm_tick` was not in `traderData` — v5 loads/persists `store` from `state.traderData` so MM cadence works like offline design. Day 3 worse still **−550** aggregate (VEV loss dominates extract gain) — next: inventory skew or reduce MM when net short VEVs."
   }
 ]

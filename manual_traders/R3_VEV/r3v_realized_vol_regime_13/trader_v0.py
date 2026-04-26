@@ -154,6 +154,14 @@ def micro_mid(depth: OrderDepth) -> float | None:
     return (float(bb) + float(ba)) / 2.0
 
 
+def bbo_spread(depth: OrderDepth) -> float | None:
+    """Top-of-book spread ask₁−bid₁ (same units as price tape)."""
+    _, _, bb, ba = book_walls(depth)
+    if bb is None or ba is None:
+        return None
+    return float(ba) - float(bb)
+
+
 def nearest_strike(S: float) -> int:
     return min(STRIKES, key=lambda k: abs(float(k) - S))
 
@@ -202,6 +210,19 @@ class Trader:
     # cross-section of top-of-book spread vs model vega). Scaled by VEV_HALF_LOCAL_ADD_SCALE.
     VEV_HALF_LOCAL_ADD_MAP: dict | None = None
     VEV_HALF_LOCAL_ADD_SCALE = 1.0
+    # Optional: "joint tight book" filter (vouchers_final_strategy): both VEV_5200 and VEV_5300
+    # BBO spread <= TIGHT_SPREAD_TH at the same tick — risk-on / size up; else scale down and
+    # optionally widen VEV and extract half-spreads. Off by default (backward compatible).
+    USE_TIGHT_GATE_5200_5300 = False
+    TIGHT_SPREAD_TH = 2.0
+    TIGHT_GATE_TIGHT_VEV_SIZE_MULT = 1.0
+    TIGHT_GATE_TIGHT_EX_SIZE_MULT = 1.0
+    TIGHT_GATE_TIGHT_VEV_HALF_MULT = 1.0
+    TIGHT_GATE_TIGHT_EX_HALF_MULT = 1.0
+    TIGHT_GATE_LOOSE_VEV_SIZE_MULT = 1.0
+    TIGHT_GATE_LOOSE_EX_SIZE_MULT = 1.0
+    TIGHT_GATE_LOOSE_VEV_HALF_MULT = 1.0
+    TIGHT_GATE_LOOSE_EX_HALF_MULT = 1.0
 
     def run(self, state: TradingState):
         result: dict[str, list[Order]] = {}
@@ -288,12 +309,60 @@ class Trader:
         if isinstance(prev, (int, float)) and float(prev) > 0:
             du_inst = math.log(float(mid_u) / float(prev))
         td["last_du_extract"] = du_inst
+
+        use_tg = bool(getattr(self, "USE_TIGHT_GATE_5200_5300", False))
+        th_tight = float(getattr(self, "TIGHT_SPREAD_TH", 2.0))
+        joint_tight = False
+        s5200_s: float | None = None
+        s5300_s: float | None = None
+        u_sz_m = 1.0
+        v_sz_m = 1.0
+        if use_tg:
+            s5k = sym("VEV_5200")
+            s5k2 = sym("VEV_5300")
+            if s5k and s5k2 and s5k in depths and s5k2 in depths:
+                sp0 = bbo_spread(depths[s5k])
+                sp1 = bbo_spread(depths[s5k2])
+                if sp0 is not None and sp1 is not None:
+                    s5200_s, s5300_s = sp0, sp1
+                    joint_tight = sp0 <= th_tight and sp1 <= th_tight
+            if joint_tight:
+                u_sz_m = float(getattr(self, "TIGHT_GATE_TIGHT_EX_SIZE_MULT", 1.0))
+                v_sz_m = float(getattr(self, "TIGHT_GATE_TIGHT_VEV_SIZE_MULT", 1.0))
+            else:
+                u_sz_m = float(getattr(self, "TIGHT_GATE_LOOSE_EX_SIZE_MULT", 1.0))
+                v_sz_m = float(getattr(self, "TIGHT_GATE_LOOSE_VEV_SIZE_MULT", 1.0))
+        td["joint_tight_5200_5300"] = bool(joint_tight) if use_tg else False
+        if s5200_s is not None:
+            td["s5200_bbo_spread"] = float(s5200_s)
+        if s5300_s is not None:
+            td["s5300_bbo_spread"] = float(s5300_s)
+
+        vtg = 1.0
+        if use_tg:
+            vtg = float(
+                getattr(
+                    self,
+                    "TIGHT_GATE_TIGHT_VEV_HALF_MULT" if joint_tight else "TIGHT_GATE_LOOSE_VEV_HALF_MULT",
+                    1.0,
+                )
+            )
+        half_vev *= vtg
         if float(getattr(self, "SHOCK_VEV_HALF_ADD", 0.0)) > 0.0:
             thr = float(getattr(self, "SHOCK_ABS_LOG_DU", 0.0012))
             if abs(du_inst) >= thr:
                 half_vev += float(self.SHOCK_VEV_HALF_ADD)
         half_vev = max(self.VEV_HALF_MIN, min(half_vev, self.VEV_HALF_MAX))
+
         half_u = max(1.0, self.BASE_EX_HALF + self.REG_EX_SCALE * abs(regime))
+        if use_tg:
+            half_u *= float(
+                getattr(
+                    self,
+                    "TIGHT_GATE_TIGHT_EX_HALF_MULT" if joint_tight else "TIGHT_GATE_LOOSE_EX_HALF_MULT",
+                    1.0,
+                )
+            )
         half_h = max(1.0, self.BASE_H_HALF + self.REG_H_SCALE * abs(regime))
 
         td["last_iv_atm"] = iv_atm
@@ -358,6 +427,7 @@ class Trader:
             q_default = self.ORDER_SIZE_VEV
             q_map = getattr(self, "ORDER_SIZE_VEV_MAP", None)
             q = int(q_map.get(v, q_default)) if isinstance(q_map, dict) else int(q_default)
+            q = max(1, int(round(float(q) * v_sz_m)))
             # Controlled taking when market is clearly mispriced vs same theo anchor.
             # We still use the same shared regime logic; this only improves execution quality.
             take_edge = max(1.0, half_vev_local * self.TAKE_EDGE_MULT)
@@ -367,6 +437,7 @@ class Trader:
             take_map = getattr(self, "MAX_TAKE_PER_SIDE_MAP", None)
             if isinstance(take_map, dict):
                 max_take = int(take_map.get(v, max_take))
+            max_take = max(1, int(round(float(max_take) * v_sz_m)))
             if p < lim:
                 rem_buy = min(max_take, lim - p)
                 for ap in sorted(sells.keys()):
@@ -441,11 +512,12 @@ class Trader:
         if bb is not None and ba is not None:
             bu = min(bu, int(ba) - 1)
             au = max(au, int(bb) + 1)
+        q_u = max(1, int(round(float(self.ORDER_SIZE_U) * u_sz_m)))
         if bu < au:
             if pu < lim_u:
-                result.setdefault(du, []).append(Order(du, bu, min(self.ORDER_SIZE_U, lim_u - pu)))
+                result.setdefault(du, []).append(Order(du, bu, min(q_u, lim_u - pu)))
             if pu > -lim_u:
-                result.setdefault(du, []).append(Order(du, au, -min(self.ORDER_SIZE_U, lim_u + pu)))
+                result.setdefault(du, []).append(Order(du, au, -min(q_u, lim_u + pu)))
 
         # Hydrogel: simple MM around mid scaled by regime
         if getattr(self, "TRADE_HYDROGEL", True):

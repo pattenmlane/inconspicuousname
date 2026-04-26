@@ -123,5 +123,15 @@
       "manual_traders/R3_VEV/r3v_realized_vol_regime_13/backtest_logs/v45_worse.log"
     ],
     "used_to_decide": "Added optional VEV_HALF_LOCAL_ADD_MAP + scale in trader_v0 to tilt half-spreads by strike-level spread structure vs pool. v44 used signed mean(spread)-pool offsets (scale 0.07) -> 58,781 worse. v45 used positive offsets only (scale 0.09) -> 56,912 worse. Falsified adding static vega-spread cross-section tilts on top of joint IV-RV width for this backtest; keep hook off in champion v33."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Read round3work/vouchers_final_strategy/STRATEGY.txt and outputs/r3_tight_spread_summary.txt: joint gate (VEV_5200 and VEV_5300 BBO spread <= 2 same timestamp) matches tape analysis (day 0 Welch t on forward extract mid K=20 bars). Merged main added Prosperity Round 3 historical day 3 CSV; backtests now run days 0-3 unless restricted to 0-2.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_6panel.png"
+    ],
+    "used_to_decide": "Implemented USE_TIGHT_GATE_5200_5300 + bbo_spread() in trader_v0: scales joint IV-RV half_vev, extract/VEV sizes, and extract half_u by tight vs loose regime. TRADE_HYDROGEL=False for v46-v48 (PnL objective = extract + VEV only). v46-v48 with several tight/loose multipliers all trail v33-on-4-days (59,288 worse) and no-hydro v43 (48,055 worse); best gate attempt v47 at 47,710 worse / 44,395 all. Gate not adopted as primary; hooks remain for further tuning. Both match modes logged in results.json per run."
   }
 ]

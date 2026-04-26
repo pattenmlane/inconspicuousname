@@ -12,6 +12,7 @@ Outputs under manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/
   - pair_baseline_residuals.csv
   - graph_edges.csv, graph_top_pairs.txt
   - burst_events.csv, burst_forward_extract.csv
+  - burst_forward_vev5200_vev5300_rows.csv, burst_forward_core_vev_summary.csv
   - passive_adverse_by_pair.csv
   - phase1_summary.json
 
@@ -368,9 +369,11 @@ def main() -> None:
     )
     burst_detail.to_csv(OUT / "burst_events.csv", index=False)
 
-    # Forward extract after burst timestamps vs random controls (same count, random ts)
+    # Forward extract + core vouchers after burst timestamps vs random controls (same RNG + control count per day)
     rng = np.random.default_rng(0)
     burst_fwd: list[dict] = []
+    burst_core: list[dict] = []
+    core_syms = ("VEV_5200", "VEV_5300")
     for tape_day in DAYS:
         px = load_prices_day(tape_day)
         mids, prod_index, ts_to_idx = build_mid_matrix(px)
@@ -391,6 +394,17 @@ def main() -> None:
                         "fwd_extract": forward_delta(mids, ti, ui, k),
                     }
                 )
+                for cs in core_syms:
+                    cj = prod_index[cs]
+                    burst_core.append(
+                        {
+                            "tape_day": tape_day,
+                            "kind": "burst",
+                            "k": k,
+                            "symbol": cs,
+                            "fwd_mid": forward_delta(mids, ti, cj, k),
+                        }
+                    )
         for ts in controls:
             ti = ts_to_idx.get(int(ts))
             if ti is None:
@@ -404,8 +418,28 @@ def main() -> None:
                         "fwd_extract": forward_delta(mids, ti, ui, k),
                     }
                 )
+                for cs in core_syms:
+                    cj = prod_index[cs]
+                    burst_core.append(
+                        {
+                            "tape_day": tape_day,
+                            "kind": "control",
+                            "k": k,
+                            "symbol": cs,
+                            "fwd_mid": forward_delta(mids, ti, cj, k),
+                        }
+                    )
     bf = pd.DataFrame(burst_fwd)
     bf.to_csv(OUT / "burst_forward_extract.csv", index=False)
+    bc = pd.DataFrame(burst_core)
+    bc.to_csv(OUT / "burst_forward_vev5200_vev5300_rows.csv", index=False)
+    if len(bc):
+        bc_sum = (
+            bc.groupby(["tape_day", "kind", "k", "symbol"], dropna=False)["fwd_mid"]
+            .agg(mean="mean", n="count", med="median")
+            .reset_index()
+        )
+        bc_sum.to_csv(OUT / "burst_forward_core_vev_summary.csv", index=False)
 
     # --- Passive adverse: when seller is passive (sell_aggr means seller hit bid — seller aggressed; passive seller is when buy_aggr -> buyer hits ask, seller passive)
     # Phase text: markout after prints where U is aggressor hurts passive side.
@@ -460,6 +494,16 @@ def main() -> None:
         x = x.sort_values("t_stat", ascending=False, na_position="last").head(n)
         return x.to_dict(orient="records")
 
+    burst_core_k20 = []
+    if len(bc):
+        burst_core_k20 = (
+            bc[bc["k"] == 20]
+            .groupby(["tape_day", "kind", "symbol"], dropna=False)["fwd_mid"]
+            .agg(["mean", "count"])
+            .reset_index()
+            .to_dict(orient="records")
+        )
+
     summary = {
         "n_trade_rows": int(len(tr)),
         "n_participant_cells_pooled": int(len(pooled)),
@@ -470,6 +514,7 @@ def main() -> None:
         .agg(["mean", "count"])
         .reset_index()
         .to_dict(orient="records"),
+        "burst_vs_control_core_vev_k20": burst_core_k20,
         "edges_top3": edges.head(3).to_dict(orient="records"),
     }
     (OUT / "phase1_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")

@@ -10,7 +10,8 @@ Bullet 2 — Baseline: per_print_with_baseline.csv, pair_baseline_residuals.csv.
 
 Bullet 3 — Graph: graph_edges.csv, graph_top_pairs.txt, graph_hubs.json; twohop_chain_counts.csv, twohop_chain_fwd_extract.csv
 
-Bullet 4 — Bursts: burst_events.csv, burst_forward_extract.csv (burst vs control)
+Bullet 4 — Bursts: burst_events.csv, burst_forward_extract.csv (extract burst vs control);
+  burst_forward_vev5200_vev5300_rows.csv, burst_forward_core_vev_summary.csv (core VEV mids)
 
 Bullet 5 — Passive adverse: passive_adverse_by_pair.csv
 
@@ -24,4 +25,4 @@ stability: stability_m67_buy_aggr_extract_tight_k20_by_day.csv, .json
 all names: all_participant_names_print_counts.csv, all_participant_names_list.txt
 reciprocity: graph_reciprocity_top50_forward_edges.csv
 orchestrator: burst_orchestrator_summary_by_mode.csv
-second-order baseline+: baseline_second_order_positive_residuals_k20.csv
+second-order: second_order_regime_vs_pair_pooled_baseline_k20.csv (regime effect vs (buyer,seller,symbol) pool)

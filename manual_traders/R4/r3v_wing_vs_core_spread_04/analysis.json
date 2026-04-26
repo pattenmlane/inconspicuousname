@@ -53,9 +53,12 @@
         "outputs": [
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/burst_events.csv",
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/burst_forward_extract.csv",
-          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/burst_orchestrator_summary_by_mode.csv"
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/burst_forward_vev5200_vev5300_rows.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/burst_forward_core_vev_summary.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/burst_orchestrator_summary_by_mode.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/phase1_summary.json"
         ],
-        "conclusion": "293 burst timestamps (\u22654 prints), **orchestrator roll-up** shows **\u224891%** of bursts are (Mark01, Mark22) mode; remaining few are 22\u219238 / 38\u219222 cross prints. Mean forward extract K=20: day1 burst **beats** random control (-0.08 vs -0.68); day2 modest (+0.33 vs +0.14); day3 burst strongly positive (+0.63 vs -0.30)\u2014**day-heterogeneous**; not a single stable direction rule without day-specific calibration or Phase 3 gate."
+        "conclusion": "293 burst timestamps (\u22654 prints), **orchestrator roll-up** shows **\u224891%** of bursts are (Mark01, Mark22) mode. **Extract** burst vs same-day random control: day-heterogeneous (see burst_forward_extract). **Core VEV mids** at burst vs control (**burst_forward_core_vev_summary**): **VEV_5200** K=20 burst mean exceeds control on **all** tape days (+0.79/+0.99/+0.96 vs control means); **VEV_5300** K=20 burst mean exceeds control on **all** days (+0.31/+0.28/+0.36 vs control) \u2014 Phase-1 **population** evidence for basket-linked **core** drift (Phase 2 taker stack still needs `worse` sim, e.g. trader_v12)."
       },
       "bullet_5_adverse_selection": {
         "outputs": [
@@ -103,7 +106,7 @@
       "explicit_no_edge_or_weak": [
         "Two-hop Mark 14\u219238\u219214 on forward extract at K=5 is ~+0.2 mean with n=165\u2014too small vs tick noise to trade standalone.",
         "Mark 01\u219222 voucher basket prints alone do **not** show large signed extract markout in this pass (baseline absorbs); edge is in **residual** prints or other names (67, 49).",
-        "Burst forward extract: **inconsistent** sign day-to-day at K=20 without further stratification.",
+        "Burst forward **extract** at K=20 vs control remains **day-heterogeneous**; **VEV_5200/5300** burst-vs-control K=20 means are **higher than random-timestamp controls on all three tape days** (see burst_forward_core_vev_summary.csv)\u2014still not a fade/mean-revert story without execution test.",
         "**Full-cell** baseline residuals (per pair\u00d7symbol\u00d7regime) sum to 0 by construction; second-order **regime** effects vs a **pair\u00d7symbol** pool are small (see second_order_*.csv).",
         "List of all tape names: **all_participant_names_list.txt** (7 distinct **Mark** names on R4 days 1\u20133) \u2014 exhaustive \u201ceach U\u201d coverage; cells dropped when n<threshold in pooled tables."
       ],
@@ -459,5 +462,16 @@
       "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/second_order_regime_vs_pair_pooled_baseline_k20.csv"
     ],
     "used_to_decide": "Phase 1 gate is **exhausted** for available ROUND_4 data (3 days); no Phase 2/3 re-run this ping. Mark67 edge now has quantified **day-stability** + bootstrap CI + name/role roll-ups."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "Phase 1 bullet-4 completion: extended **r4_phase1_counterparty_analysis.py** so burst-vs-control event study includes **VEV_5200** and **VEV_5300** forward mids (same RNG seed + same control timestamps as extract). New outputs: **burst_forward_vev5200_vev5300_rows.csv** (long), **burst_forward_core_vev_summary.csv** (mean/med/n by day\u00d7kind\u00d7k\u00d7symbol); **phase1_summary.json** gains **burst_vs_control_core_vev_k20**. **r4_phase1_supplement.py** bullet index updated; re-ran main Phase1 + both supplements. **round4_phase1_complete** bullet_4 + explicit_no_edge text updated to separate extract heterogeneity from stable **core** burst-vs-control pattern.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_phase1_counterparty_analysis.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_phase1_supplement.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/burst_forward_core_vev_summary.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/phase1_summary.json"
+    ],
+    "used_to_decide": "Phase 1 now documents **core VEV** burst event study explicitly (requested alongside extract); ties to Phase-2 **vev5300_after_01_22_basket_burst_drift** and sim **trader_v12** burst leg."
   }
 ]

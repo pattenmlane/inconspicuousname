@@ -120,7 +120,8 @@ Bullet 2 — Baseline: per_print_with_baseline.csv, pair_baseline_residuals.csv.
 
 Bullet 3 — Graph: graph_edges.csv, graph_top_pairs.txt, graph_hubs.json; twohop_chain_counts.csv, twohop_chain_fwd_extract.csv
 
-Bullet 4 — Bursts: burst_events.csv, burst_forward_extract.csv (burst vs control)
+Bullet 4 — Bursts: burst_events.csv, burst_forward_extract.csv (extract burst vs control);
+  burst_forward_vev5200_vev5300_rows.csv, burst_forward_core_vev_summary.csv (core VEV mids)
 
 Bullet 5 — Passive adverse: passive_adverse_by_pair.csv
 

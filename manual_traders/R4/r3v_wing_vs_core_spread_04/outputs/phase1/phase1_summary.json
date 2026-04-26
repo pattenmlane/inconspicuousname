@@ -146,6 +146,92 @@
       "count": 122
     }
   ],
+  "burst_vs_control_core_vev_k20": [
+    {
+      "tape_day": 1,
+      "kind": "burst",
+      "symbol": "VEV_5200",
+      "mean": 0.7857142857142857,
+      "count": 84
+    },
+    {
+      "tape_day": 1,
+      "kind": "burst",
+      "symbol": "VEV_5300",
+      "mean": 0.30952380952380953,
+      "count": 84
+    },
+    {
+      "tape_day": 1,
+      "kind": "control",
+      "symbol": "VEV_5200",
+      "mean": -0.39880952380952384,
+      "count": 84
+    },
+    {
+      "tape_day": 1,
+      "kind": "control",
+      "symbol": "VEV_5300",
+      "mean": -0.27976190476190477,
+      "count": 84
+    },
+    {
+      "tape_day": 2,
+      "kind": "burst",
+      "symbol": "VEV_5200",
+      "mean": 0.9942528735632183,
+      "count": 87
+    },
+    {
+      "tape_day": 2,
+      "kind": "burst",
+      "symbol": "VEV_5300",
+      "mean": 0.3333333333333333,
+      "count": 87
+    },
+    {
+      "tape_day": 2,
+      "kind": "control",
+      "symbol": "VEV_5200",
+      "mean": 0.08045977011494253,
+      "count": 87
+    },
+    {
+      "tape_day": 2,
+      "kind": "control",
+      "symbol": "VEV_5300",
+      "mean": 0.05172413793103448,
+      "count": 87
+    },
+    {
+      "tape_day": 3,
+      "kind": "burst",
+      "symbol": "VEV_5200",
+      "mean": 0.9631147540983607,
+      "count": 122
+    },
+    {
+      "tape_day": 3,
+      "kind": "burst",
+      "symbol": "VEV_5300",
+      "mean": 0.35655737704918034,
+      "count": 122
+    },
+    {
+      "tape_day": 3,
+      "kind": "control",
+      "symbol": "VEV_5200",
+      "mean": -0.1557377049180328,
+      "count": 122
+    },
+    {
+      "tape_day": 3,
+      "kind": "control",
+      "symbol": "VEV_5300",
+      "mean": -0.07377049180327869,
+      "count": 122
+    }
+  ],
   "edges_top3": [
     {
       "buyer": "Mark 01",

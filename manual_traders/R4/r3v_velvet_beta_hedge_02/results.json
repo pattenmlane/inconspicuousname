@@ -103,5 +103,26 @@
       "trades_or_fills_summary": "Same as worse."
     },
     "total_profit": 6418
+  },
+  {
+    "iteration": 5,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "v4 plus HYDROGEL_PACK one-tick inside when joint gate (size 10, limit 200). Full Round 4 product set.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 11854,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v5.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v5_worse.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v5_worse.log",
+      "trades_or_fills_summary": "Day1 +1854 (hydro 1181, U 312, V4000 395, V4500 -34), day2 +2974 (hydro 1255, U 1286, V4000 433), day3 +7026 (hydro 3000, U 2620, V4000 1363, V4500/5000/5100); total 11854; worse=all same."
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 11854,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v5.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v5_all.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v5_all.log",
+      "trades_or_fills_summary": "Same as worse."
+    },
+    "total_profit": 11854
   }
 ]

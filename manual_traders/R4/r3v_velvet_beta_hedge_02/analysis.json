@@ -267,5 +267,15 @@
       "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_extract_aggressor_fwd_by_gate_n15plus.csv"
     ],
     "used_to_decide": "Dominant flow is Mark 55 (hundreds of prints per cell). Mark 67 aggr buy: tight vs loose fwd5 similar (1.78 vs 2.0), fwd20 slightly higher tight (2.06 vs 1.77). Mark 22 extract aggressor counts tiny (n<=8) — no stable counterparty edge on extract for Mark22. trader_v4 extends v3 with gated one-tick MM on all VEVs (size 14): sim total 6418 vs v3 4218 (+2200 from VEV_4000/4500/5000/5100 path mostly day3)."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "HYDROGEL duopoly × Sonic gate: analyze_r4_hydro_pairs_x_gate.py — Mark14→38 and Mark38→14 hydro trades merged with joint tight flag; forward hydro mid K=5,20 from price tape. By-day table for stability.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/analyze_r4_hydro_pairs_x_gate.py",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_hydro_pair_fwd_by_gate.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_hydro_pair_fwd_by_day_gate.csv"
+    ],
+    "used_to_decide": "Pooled: Mark14→38 tight mean fwd5 **-0.26** (n=126) vs loose **+0.18** (n=370); fwd20 tight **-0.46** vs loose **+0.47**. Mark38→14 tight fwd5 **-0.10** (n=129) vs loose **-0.20** (n=378); fwd20 tight **+0.10** vs loose **-0.51**. Day-3 tight 14→38 mean fwd5 **-0.82** (n=68) — **regime-dependent** duopoly markouts; not a simple always-quote rule but supports **passive hydro MM only when surface tight** as low-conflict with duopoly flow. trader_v5 = v4 + gated hydro (size 10): sim **+11854** total vs v4 **+6418** (+5436 hydro path); worse=all identical."
   }
 ]

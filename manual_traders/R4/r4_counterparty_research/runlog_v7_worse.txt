@@ -1,0 +1,48 @@
+running algorithm '/workspace/manual_traders/R4/r4_counterparty_research/trader_v7.py'...
+Backtesting /workspace/manual_traders/R4/r4_counterparty_research/trader_v7.py for round: 4 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 3,367
+VELVETFRUIT_EXTRACT: -376
+HYDROGEL_PACK: 13,347
+Total profit: 16,338
+Backtesting /workspace/manual_traders/R4/r4_counterparty_research/trader_v7.py for round: 4 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 2,437
+VELVETFRUIT_EXTRACT: 829
+HYDROGEL_PACK: 3,677
+Total profit: 6,943
+Backtesting /workspace/manual_traders/R4/r4_counterparty_research/trader_v7.py for round: 4 day: 3
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 15
+VEV_4000: 2,582
+VELVETFRUIT_EXTRACT: 1,147
+HYDROGEL_PACK: 7,362
+Total profit: 11,106
+Profit summary:
+Round 4 day 1: 16,338
+Round 4 day 2: 6,943
+Round 4 day 3: 11,106
+Total profit: 34,387

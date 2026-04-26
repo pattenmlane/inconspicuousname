@@ -1,0 +1,9 @@
+{
+  "baseline_trader_v2": {"tight_U_edge": 1, "tight_U_size": 22, "worse": 33870, "all": 36284},
+  "trader_v5": {"tight_U_edge": 0, "tight_U_size": 24, "worse": 34438, "all": 36180, "note": "current best worse in grid"},
+  "trader_v6": {"tight_U_edge": 0, "tight_U_size": 28, "worse": 33922, "all": 35782},
+  "trader_v7": {"tight_U_edge": 0, "tight_U_size": 20, "worse": 34387, "all": 35914},
+  "trader_v8": {"tight_U_edge": 1, "tight_U_size": 24, "worse": 33870, "all": 36140},
+  "loose_U_all": {"edge": 3, "size": 8},
+  "conclusion": "v5 (0/24) remains best on worse; v8 worse ties v2; v7 slightly below v5 on both modes."
+}

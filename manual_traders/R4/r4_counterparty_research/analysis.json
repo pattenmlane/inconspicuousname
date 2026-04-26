@@ -460,5 +460,30 @@
       "vs_v5_worse": -516,
       "vs_v5_all": -398
     }
+  },
+  {
+    "iteration": "r4_tight_extract_edge_size_grid_v7_v8",
+    "analysis_description": "Small grid around trader_v5 tight-regime extract (edge, size) with loose U fixed at v2 (3/8). v7: (0,20); v8: (1,24). Compare v2, v5, v6 in outputs/r4_tight_extract_param_grid.json.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_research/trader_v7.py",
+      "manual_traders/R4/r4_counterparty_research/trader_v8.py",
+      "manual_traders/R4/r4_counterparty_research/runlog_v7_worse.txt",
+      "manual_traders/R4/r4_counterparty_research/runlog_v7_all.txt",
+      "manual_traders/R4/r4_counterparty_research/runlog_v8_worse.txt",
+      "manual_traders/R4/r4_counterparty_research/runlog_v8_all.txt",
+      "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v7_worse.json",
+      "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v7_all.json",
+      "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v8_worse.json",
+      "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v8_all.json",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_tight_extract_param_grid.json"
+    ],
+    "used_to_decide": "v5 (0,24) stays best on worse (34438). v7 (0,20) slightly worse on both modes. v8 (1,24) worse ties v2 (33870); all 36140 still below v2's 36284. No improvement over v5 in this neighborhood.",
+    "grid_worse_all": {
+      "v2_baseline": [33870, 36284],
+      "v5": [34438, 36180],
+      "v6": [33922, 35782],
+      "v7": [34387, 35914],
+      "v8": [33870, 36140]
+    }
   }
 ]

@@ -197,5 +197,52 @@
       "conclusion": "Larger tight extract size hurt vs v5; keep 24 or lower."
     },
     "tape_context": "manual_traders/R4/r4_counterparty_research/outputs/r4_joint_gate_occupancy.json"
+  },
+  {
+    "iteration": 8,
+    "trader_file": "manual_traders/R4/r4_counterparty_research/trader_v7.py",
+    "strategy_description": "v5 sweep: tight extract edge 0 size 20 (smaller than v5's 24).",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r4_counterparty_research/trader_v7.py\" 4 --data Prosperity4Data --no-progress --no-out --no-vis",
+    "total_profit": 34387,
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 34387,
+      "daily_profit": [16338, 6943, 11106],
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v7_worse.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v7_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 35914,
+      "daily_profit": [17340, 7162, 11412],
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v7_all.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v7_all.json"
+    },
+    "vs_trader_v5": {"worse_delta": -51, "all_delta": -266}
+  },
+  {
+    "iteration": 9,
+    "trader_file": "manual_traders/R4/r4_counterparty_research/trader_v8.py",
+    "strategy_description": "v5 sweep: tight extract edge 1 size 24 (one tick cushion vs v5 edge 0).",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r4_counterparty_research/trader_v8.py\" 4 --data Prosperity4Data --no-progress --no-out --no-vis",
+    "total_profit": 33870,
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 33870,
+      "daily_profit": [16736, 6599, 10535],
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v8_worse.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v8_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 36140,
+      "daily_profit": [17552, 7458, 11130],
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v8_all.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v8_all.json"
+    },
+    "vs_trader_v5": {"worse_delta": -568, "all_delta": -40},
+    "note": "worse ties v2; tight edge 1 removes v5 worse gain"
   }
 ]

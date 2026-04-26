@@ -107,7 +107,28 @@
       "**Mark01\u2192Mark22** on **VEV_5300** fwd_mid_20: day means **-0.70 / +0.18 / +0.014** (n 32/31/69) \u2014 **not stable** across days for a simple fade/trend rule.",
       "**Burst** timestamps do **not** outperform **random** single-trade timestamps on extract forward mid (mean burst\u2212control < 0 for K=5,20).",
       "**(buyer,seller,symbol)** cell-mean baseline for fwd_mid_20 leaves **near-zero** residuals for dominant hydro and U pairs \u2014 no obvious mis-modeled bot residual edge at this granularity."
-    ]
+    ],
+    "phase1_supplement": {
+      "script": "manual_traders/R4/r3v_volume_weighted_residual_05/phase1b_r4_supplement.py",
+      "outputs": [
+        "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1b_hour_quarter_mark67_u.csv",
+        "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1b_mark67_u_day_bootstrap_k20.csv",
+        "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1b_bootstrap_top_cells.csv",
+        "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1b_cross_asset_mark67_u.csv",
+        "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1b_mark67_u_burst_vs_not_k20.csv",
+        "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1b_mark67_u_spreadu_bin_k20.csv",
+        "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1b_participant_coverage.txt"
+      ],
+      "bullets": [
+        "**Hour/session (quartile of timestamp within day):** Mark67 **U buy_agg** fwd extract @K=5 stays **positive** in most day\u00d7quarter cells (see CSV); K=20 **flips negative** in a few small-n cells (e.g. day 3 quarter 1) \u2014 not a uniform session effect.",
+        "**Per-day bootstrap (Mark67 U buy_agg, fwd_u@20):** day **1/2/3** mean \u2248**2.03 / 1.45 / 2.02** with **95% bootstrap CI strictly above 0** on each day (n 58/61/45) \u2014 supports Phase-1 pooled t-stat beyond single pooled sample.",
+        "**Bootstrap (4000 resamples) Mark67 U buy_agg:** same-symbol fwd mean @5/20/100 with CI: **~[1.67,2.25]**, **~[1.20,2.42]**, **~[-0.04,2.78]** \u2014 K=100 upper tail still wide (CI crosses 0 slightly on lower bound file rounding).",
+        "**Cross-asset:** Mark67 U buy_agg fwd **hydro** mid @5/20 mean **~0.37 / 0.27** with CI **crossing 0** \u2014 no clean hydro leg in mid space (aligned with Phase-1 focus on U).",
+        "**Burst co-timestamp:** only **2** Mark67 U buy_agg rows land in multi-trade bursts; burst mean fwd_u@20 **lower** than non-burst subset \u2014 **no** burst reinforcement for this counterparty slice.",
+        "**U spread bin @K=20:** `u1` vs `u2_6` means **~1.90 vs ~1.76** (n 62 vs 102), both CI>0 \u2014 refines tape overlap used in traders (spread==1 still mid-positive, but sim execution differed).",
+        "**Coverage:** only **7** distinct counterparty strings in trades file for these days; **4281** enriched rows, **12** symbols \u2014 small named-bot set, limits \u201ceach name U\u201d exhaustive tables."
+      ]
+    }
   },
   {
     "iteration": 1,
@@ -399,5 +420,20 @@
       "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v12_all.log"
     ],
     "used_to_decide": "Among **Mark67 buy_agg \u2229 Sonic \u2229 U spread\u22646** timestamps, **U spread** is only **1** (n=11) or **2** (n=16) in days 1\u20133; **spread\u22653 count = 0**. Backtest **PnL 0**, **0** SUBMISSION fills \u2014 rule is **empty** on this tape. **Falsifies** the hope that \u201conly very wide U\u201d co-occurs with Mark67\u00d7Sonic here; **v11** (spread\u22652) remains the operational upper bound for this intersection without relaxing Sonic or counterparty filters."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Round 4 **Phase 1 supplement** (expanded ping spec): `phase1b_r4_supplement.py` on existing `r4_trades_enriched.csv` \u2014 within-day **timestamp quartiles** (session proxy), **burst** flag, **U spread** bins, **bootstrap 95% CI** for Mark67 U buy_agg and per-day fwd_u@20, **cross-asset** fwd to hydro vs extract, participant **coverage** counts. Results merged into `round4_phase1_complete.phase1_supplement` in this file.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_volume_weighted_residual_05/phase1b_r4_supplement.py",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1b_hour_quarter_mark67_u.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1b_mark67_u_day_bootstrap_k20.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1b_bootstrap_top_cells.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1b_cross_asset_mark67_u.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1b_mark67_u_burst_vs_not_k20.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1b_mark67_u_spreadu_bin_k20.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1b_participant_coverage.txt"
+    ],
+    "used_to_decide": "Strengthens **Tier-A** Mark67 **U buy_agg** evidence: **each day** fwd extract @20 has bootstrap CI **>0**; pooled CIs at K=5/20 exclude 0. **Hydro** forward after same prints is **noisy** (CI crosses 0). **Burst** co-location (n=2) does **not** help Mark67 U. **Coverage:** only **7** counterparty strings on these tapes \u2014 exhaustive per-name tables are trivially small. No change to Phase 2/3 gates; Phase 1 object extended in-place for audit trail."
   }
 ]

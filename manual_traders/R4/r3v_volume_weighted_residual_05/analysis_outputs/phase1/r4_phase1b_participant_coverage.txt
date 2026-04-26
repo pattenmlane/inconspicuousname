@@ -1,0 +1,3 @@
+Distinct counterparty strings (buyer ∪ seller): 7
+Total enriched trade rows: 4281
+Symbols: 12

@@ -1,0 +1,19 @@
+
+Round 3 tight-spread gate replication (our tape)
+-----------------------------------------------
+Data: /Users/pattenlane/ProsperityRepo/Prosperity4Data/ROUND_3 | TH = 2 (both s5200 and s5300 <= TH)
+Forward horizon K = 20 aligned rows (one timestamp per row after join)
+
+day 0 (valid 20-step fwd rows, n = 9,980):
+  P(both tight)  ≈ 0.1021
+  mean(fwd) | tight     = 0.548577
+  mean(fwd) | not-tight  = -0.0720902
+  Welch t-stat = 4.6928,  p = 2.9782e-06
+
+Correlations (day 0, same rows) — "corr of spreads" / vs extract mid:
+  corr(s5200, s5300)  = 0.2190
+  corr(s5200, m_ext)  = 0.3714
+  corr(s5300, m_ext)  = 0.2894
+
+inclineGod: spreads / book state; 5200 vs 5300 spread co-move ≈ 0.22.
+Sonic: BOTH ≤2 simultaneously; P(tight)≈0.10 but forward mean much higher when on.

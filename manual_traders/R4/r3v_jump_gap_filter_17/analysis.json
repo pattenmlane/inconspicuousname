@@ -19,6 +19,7 @@
       "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/phase1_automated_summary.txt",
       "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/participant_name_coverage.csv",
       "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/extract_aggrbuy_top3_per_day_stability.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/extract_aggrbuy_k5_bootstrap_ci.csv",
       "round4work/outputs/r4_initial_analysis_summary.txt",
       "round4work/r4_counterparty_initial_sketch.py"
     ],
@@ -113,7 +114,8 @@
       ],
       "phase1_supplement_files_iteration_16": {
         "participant_name_coverage.csv": "All distinct names on R4 tape with trade-print and event-row counts (8 Mark participants in this data).",
-        "extract_aggrbuy_top3_per_day_stability.csv": "Per-day K=5 mean/median/frac_pos for Mark67/22/49 aggr-buy extract — all days positive (tie-break for multi-day stability)."
+        "extract_aggrbuy_top3_per_day_stability.csv": "Per-day K=5 mean/median/frac_pos for Mark67/22/49 aggr-buy extract — all days positive (tie-break for multi-day stability).",
+        "extract_aggrbuy_k5_bootstrap_ci.csv": "Bootstrap 95% CI on pooled mean K=5 fwd_same for all three aggr-buy extract flags (8k resamples; see r4_phase1_bootstrap_extract_edges.py)."
       }
     }
   },
@@ -407,5 +409,14 @@
       "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/phase1_automated_summary.txt"
     ],
     "used_to_decide": "Keep **r4_phase1_counterparty_analysis.py** as the regen entrypoint; Phase-1 **cell tables** for thin names remain empty by design (min-n guards) — use **coverage** + **stability** CSVs for “everyone got counted” and top-edge **day** checks. Sim overlay remains **`trader_v13`** for worse-match extract in this folder."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "**Phase 1 — bootstrap CI (spec):** `r4_phase1_bootstrap_extract_edges.py` resamples **with replacement** (B=8000) the **pooled** `fwd_same` at K=5 for VELVETFRUIT_EXTRACT `aggr_buy` with Mark **67** as buyer, Mark **22** or **49** as seller (same rows as Phase-1 events CSV). Output `extract_aggrbuy_k5_bootstrap_ci.csv`: Mark67 n=164 mean≈1.96 **CI [1.67, 2.25]**; Mark22 n=90 mean≈2.02 **CI [1.63, 2.41]**; Mark49 n=104 mean≈1.85 **CI [1.48, 2.20]** — all **strictly above 0**, complementing existing t-stats in `participant_forward_stats*.csv`.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_jump_gap_filter_17/r4_phase1_bootstrap_extract_edges.py",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/extract_aggrbuy_k5_bootstrap_ci.csv"
+    ],
+    "used_to_decide": "Cite **bootstrap** + **per-day** + **t-stat** together for Tier-A extract aggr-buy edges; Phase 2/3 gates unchanged."
   }
 ]

@@ -1,0 +1,6 @@
+{
+  "description": "For days 1-2, timestamps with Mark49 seller on extract AND Sonic joint NOT tight: compare effective Mark67 extract clip after trim-6 vs trim-7 (before Mark67 aggr check), using same clip_base and extract spread cap as trader (s_ex>10 cap to loose clip; skip s_ex>16 not counted).",
+  "day_1": {"m49_overlap_sonic_loose_ts": 31, "trim6_vs_trim7_effective_clip_differs": 0},
+  "day_2": {"m49_overlap_sonic_loose_ts": 32, "trim6_vs_trim7_effective_clip_differs": 0},
+  "conclusion": "v22 (-7) matches v21 (-6) on PnL because all loose-overlap ticks already hit CLIP_FLOOR=4 after -6; -7 is redundant."
+}

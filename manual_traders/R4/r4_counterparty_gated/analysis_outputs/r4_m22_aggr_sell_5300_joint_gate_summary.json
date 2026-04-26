@@ -1,0 +1,16 @@
+{
+  "description": "Mark 22 aggressive sell on VEV_5300; fwd_mid_K = K tape rows on VEV_5300",
+  "K": 5,
+  "spread_threshold_each_leg": 2.0,
+  "n_events_total": 160,
+  "pooled_by_joint_gate": [
+    {
+      "joint_tight": true,
+      "n": 160,
+      "mean_fwd": -0.203125,
+      "median_fwd": 0.0,
+      "frac_pos": 0.2375
+    }
+  ],
+  "by_day_csv": "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_m22_aggr_sell_5300_by_joint_gate_by_day.csv"
+}

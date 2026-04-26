@@ -347,6 +347,7 @@
       }
     ],
     "sim_note": "trader_v2 (joint gate sizing) backtest worse 21,097 < trader_v1 26,194 — joint gate alone as implemented does not improve PnL vs extract-only tight regime; keep gate for signal research, refine execution.",
+    "supplement_m22_aggr_sell_5300_under_sonic_gate": "run_r4_m22_5300_joint_gate_stratify.py: all n=160 Mark 22 aggressive sells on VEV_5300 in r4_phase1_trade_events.csv occur at timestamps where VEV_5200 and VEV_5300 BBO spreads are both \u22642 (joint_tight=True only in pooled summary); therefore Phase-1 pooled Mark22\u00d75300 short-horizon edge cannot be split tight vs loose on this tape. By-day mean fwd_mid_5 under joint_tight: day1 \u22120.26 (n=38), day2 \u22120.31 (n=44), day3 \u22120.12 (n=78) \u2014 negative on all days but day3 weaker. Outputs: analysis_outputs/r4_m22_aggr_sell_5300_by_joint_gate_by_day.csv, r4_m22_aggr_sell_5300_joint_gate_summary.json.",
     "used_to_decide": "Phase 3 gate analysis persisted; trader_v2 shipped as Sonic-gated experiment underperforming v1 on this simple MM — next iteration should combine joint gate with selective fades (e.g. avoid aggressive 5300 basket supply) rather than blanket size-up."
   },
   {
@@ -502,5 +503,18 @@
       "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_passive_seller_after_aggr_buy_markout_by_name.csv"
     ],
     "used_to_decide": "R4 days 1\u20133: worse 30,932 and all 33,466 are identical to v11; trade stats match v11 worse (4511 total trades, 1408 on extract) with +9 all-mode trades and slightly higher extract notional. So the 2-tick bid skew does not change the worse-fill PnL path (likely the skew almost never bound-constrained a fill vs v11, or hydro edge cases are in the PnL noise floor). The Phase-1 Mark14\u00d7HYDRO passive-seller cell remains a caution, not a proven quote-level alpha here; keep v11 as the scalar champion; v17 documents a null for this execution mapping."
+  },
+  {
+    "iteration": 18,
+    "analysis_description": "Tape: run_r4_m22_5300_joint_gate_stratify.py shows every Mark 22 aggr sell on VEV_5300 is already under Sonic joint tight (no loose-bucket rows). trader_v18 = v11 plus suppress VEV_5300 bid when joint tight AND this tick has Mark 22 aggressive sell on 5300 (price \u2264 best bid, seller Mark 22; mirrors Phase-1 aggr_sell tag). Complements existing M01\u2192M22 fade on 5300.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_gated/run_r4_m22_5300_joint_gate_stratify.py",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_m22_aggr_sell_5300_by_joint_gate_by_day.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_m22_aggr_sell_5300_joint_gate_summary.json",
+      "manual_traders/R4/r4_counterparty_gated/trader_v18.py",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v18_worse.log",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v18_all.log"
+    ],
+    "used_to_decide": "Backtest worse 30,932 / all 33,466 identical to v11 (4511 / 4522 trades, same notionals as v17). Extra fade is orthogonal to the realized fill path on this simulator\u2014same null class as v5\u2013v7 coordinated bid suppressions when BBO clamps dominate. Champion remains v11; v18 documents Phase-2-style counterparty rule + joint gate without PnL delta."
   }
 ]

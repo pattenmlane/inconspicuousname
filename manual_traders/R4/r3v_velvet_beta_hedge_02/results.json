@@ -40,5 +40,26 @@
       "trades_or_fills_summary": "Same as worse."
     },
     "total_profit": 1040
+  },
+  {
+    "iteration": 2,
+    "trader_file": "trader_v2.py",
+    "strategy_description": "Phase 3: Sonic joint BBO gate (5200&5300 spread<=2) AND Mark22 sell on VEV_5300 then aggressive sell qty=10 at bid. Tests three-way vs v1.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -3545,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v2.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v2_worse.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v2_worse.log",
+      "trades_or_fills_summary": "Day1 VEV_5300 -3478, day2 -3749, day3 +3682; total -3545; worse=all same."
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -3545,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v2.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v2_all.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v2_all.log",
+      "trades_or_fills_summary": "Same as worse."
+    },
+    "total_profit": -3545
   }
 ]

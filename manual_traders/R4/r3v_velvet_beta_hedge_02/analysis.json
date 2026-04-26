@@ -185,5 +185,67 @@
       ],
       "phase3_prereq": "Phase 2 gate satisfied for proceed to Sonic joint gate on R4 (Phase 3)."
     }
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Round 4 Phase 3 (Sonic joint gate TH=2 on BBO ask1-bid1 for VEV_5200 & VEV_5300, inner join on timestamp per day — same convention as round3work/vouchers_final_strategy/analyze_vev_5200_5300_tight_gate_r3.py). Outputs: long panel, by-day forward extract K=20 tight vs loose, pooled spread–spread correlation matrix, counterparty×gate JSON (Mark67 extract, Mark22 5300), Mark01→22 on 5300 by day×tight. inclineGod: spread vs Δmid5200/5300 correlations in by_day CSV.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/analyze_r4_phase3_sonic_gate.py",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase3_gate_panel_long.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase3_gate_panel_by_day.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase3_spread_spread_corr_pooled.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase3_counterparty_x_gate_extract_5300.json",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase3_mark01_to_22_on_5300_by_day_tight.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase3_mark22_sell_5300_fwd5_describe_by_tight.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase3_run_done.txt",
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt"
+    ],
+    "used_to_decide": "round4_phase3_complete object below; trader_v2 gated sim vs v1.",
+    "round4_phase3_complete": {
+      "phase": 3,
+      "sonic_joint_gate_on_r4": {
+        "method": "Per day: inner join VEV_5200, VEV_5300, VELVETFRUIT_EXTRACT on timestamp; spread=ask1-bid1; tight=(s5200<=2)&(s5300<=2); fwd_ext_k20 = m_ext.shift(-20)-m_ext",
+        "comparison_to_phase1_2_without_gate": "Phase 1 pooled extract forward after Mark67 aggr buy was positive (n~164). Under joint gate, **tight** Mark67 aggr-buy extract fwd5 mean **1.78** (n=27) vs **loose** **1.99** (n=137) — **gate does not sharpen** this counterparty edge (slightly lower mean in tight, small-n tight). Mark22 aggr sell on VEV_5300: **all 160** events occur when **tight** (loose n=0) — structural coupling of that print type to tight books. Extract **mid** forward K=20: **tight** means **+0.60/+0.46/+0.19** days 1–3 vs **loose** **-0.05/-0.02/-0.40** — **confirms Sonic story for extract mid** on R4 tape (especially days 1–2).",
+        "spread_spread_inclineGod": "Pooled corr matrix in r4_phase3_spread_spread_corr_pooled.csv; by-day corr(s5200,s_ext) and (s5300,s_ext) weak (see r4_phase3_gate_panel_by_day.csv). corr(s5200,dmid5200) and (s5300,dmid5300) small positive (~0.03–0.06) — spread co-moves weakly with tick mid step on gate legs."
+      },
+      "counterparty_x_gate": {
+        "Mark01_Mark22_VEV5300_tight": "r4_phase3_mark01_to_22_on_5300_by_day_tight.csv — mean fwd5 negative on each day when tight (n 32/31/69); interaction is **sell pressure + tight book** still short-horizon down on 5300 mid.",
+        "Tier_A_sim": "trader_v2 (joint gate AND Mark22 sell on 5300, taker fade) total **-3545** worse=all vs trader_v1 **+1040** without gate — **gating does not rescue** naive execution; day1 -3478, day2 -3749, day3 +3682 (still not stable)."
+      },
+      "ranked_edges": [
+        {
+          "rank": 1,
+          "edge": "Extract mid forward K=20 is substantially higher when Sonic joint tight vs loose on R4 (see gate_panel_by_day)",
+          "paths": ["manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase3_gate_panel_by_day.csv", "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase3_gate_panel_long.csv"],
+          "tier": "Tape / mid — execution not validated"
+        },
+        {
+          "rank": 2,
+          "edge": "Mark 22 aggressive sells on VEV_5300 exist only under joint tight (n_loose=0)",
+          "paths": ["manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase3_counterparty_x_gate_extract_5300.json"],
+          "tier": "Structural identification"
+        },
+        {
+          "rank": 3,
+          "edge": "Mark 01→Mark 22 on VEV_5300 under tight: negative mean fwd5 by day (consistent short-horizon pressure)",
+          "paths": ["manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase3_mark01_to_22_on_5300_by_day_tight.csv"],
+          "tier": "Conditional tape"
+        },
+        {
+          "rank": 4,
+          "edge": "Spread–spread correlation s5200–s5300 ~0.18–0.27 (R4 pooled matrix)",
+          "paths": ["manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase3_spread_spread_corr_pooled.csv"],
+          "tier": "inclineGod panel data"
+        },
+        {
+          "rank": 5,
+          "edge": "Three-way sim (gate+Mark22 taker) — negative total PnL; falsifies this execution rule",
+          "paths": ["manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v2_worse.log", "manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v2.py"],
+          "tier": "Negative result"
+        }
+      ],
+      "does_gate_clean_signal": "Yes for **extract mid** forward (tight >> loose on mean fwd K=20 across days). **No** for sharpening **Mark 67** aggressive-buy forward (tight mean slightly below loose). **Mark 22** on 5300 is **only** observable under tight, so Phase 1 statistic is inherently gated — not an independent cross-check."
+    }
   }
 ]

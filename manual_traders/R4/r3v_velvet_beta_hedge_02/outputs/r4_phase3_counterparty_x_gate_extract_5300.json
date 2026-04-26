@@ -1,0 +1,32 @@
+{
+  "Mark67_aggr_buy_extract_fwd5_tight": {
+    "n": 27,
+    "mean": 1.7777777777777777,
+    "std": 2.284282976767265
+  },
+  "Mark67_aggr_buy_extract_fwd5_loose": {
+    "n": 137,
+    "mean": 1.9963503649635037,
+    "std": 1.8565230294005832
+  },
+  "Mark67_aggr_buy_extract_fwd20_tight": {
+    "n": 27,
+    "mean": 2.0555555555555554,
+    "std": 4.0675387883672105
+  },
+  "Mark67_aggr_buy_extract_fwd20_loose": {
+    "n": 137,
+    "mean": 1.7664233576642336,
+    "std": 3.9570539652822894
+  },
+  "Mark22_aggr_sell_5300_fwd5_tight": {
+    "n": 160,
+    "mean": -0.203125,
+    "std": 0.7756046028744286
+  },
+  "Mark22_aggr_sell_5300_fwd5_loose": {
+    "n": 0,
+    "mean": null,
+    "std": null
+  }
+}

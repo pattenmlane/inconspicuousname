@@ -1,8 +1,7 @@
 """
 Same `Mark67+Sonic` line as `trader_v38` but **EOD_PAD=750**.
 
-On R4 days 1–3 this **beats** v38 (500) and v40–41 (200/300); small grid:
-PAD 200/300 → +3,231; 500 → +3,253; 600 → +3,273; **750 → +3,279**; 1000 → +3,218.
+R4 days 1–3: **+3,279** total. Finer sweep: **PAD=800 or 820 (`trader_v46`/`v49`) → +3,284** (best).
 """
 
 from __future__ import annotations

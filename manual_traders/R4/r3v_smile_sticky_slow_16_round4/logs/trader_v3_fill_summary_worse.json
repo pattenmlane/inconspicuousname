@@ -1,0 +1,7 @@
+{
+  "trader_file": "trader_v3.py",
+  "match_trades": "worse",
+  "round": 4,
+  "total_profit": 4852,
+  "note": "Identical per-day totals to trader_v2; VEV_5200/5300 PnL lines were already zero in v2."
+}

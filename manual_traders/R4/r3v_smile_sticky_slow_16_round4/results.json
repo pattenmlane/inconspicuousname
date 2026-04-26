@@ -68,5 +68,26 @@
     "backtest_round": 4,
     "match_trades_primary": "worse",
     "note": "vs v1 worse 4832: +20; day2 hydro -6138 -> -10 (risk cut). Day1 hydro profit 5970->193 (lost most always-on hydro edge)."
+  },
+  {
+    "iteration": 5,
+    "round": 4,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "v2 + **no quotes on VEV_5200 / VEV_5300 when Sonic gate loose** (tape: pair-conditioned extract fwd20 differs by gate for some Mark pairs; gate legs arguably noisy when wide). Mark38/Mark67 hooks unchanged.",
+    "backtest_worse": {
+      "total_profit": 4852,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v3.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v3_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v3_fill_summary_worse.json"
+    },
+    "backtest_all": {
+      "total_profit": 5613,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v3.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v3_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v3_fill_summary_all.json"
+    },
+    "backtest_round": 4,
+    "match_trades_primary": "worse",
+    "note": "PnL tied v2: 5200/5300 had zero PnL under v2 already."
   }
 ]

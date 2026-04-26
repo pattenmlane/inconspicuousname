@@ -1,0 +1,7 @@
+{
+  "trader_file": "trader_v3.py",
+  "match_trades": "all",
+  "round": 4,
+  "total_profit": 5613,
+  "note": "Same as v2 in this backtest regime."
+}

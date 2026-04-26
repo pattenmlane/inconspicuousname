@@ -227,5 +227,17 @@
       "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v2_backtest_worse.log"
     ],
     "used_to_decide": "Hydrogel fwd-mid **not** significantly higher when gate tight (pooled p\u22480.78; day signs mixed). Gating hydrogel in sim is **execution/risk** play not mid-alpha: v2 removes **day2** large hydro loss but sacrifices **day1** hydro carry vs v1."
+  },
+  {
+    "iteration": 5,
+    "round": 4,
+    "analysis_description": "Extract trades at aligned gate timestamps: K=20 forward **extract** mid markout by (buyer,seller) and aggressor side, split **tight** (s5200,s5300\u22642) vs **wide**. Top pairs from Phase1 graph edges.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analyze_r4_pair_extract_markout_vs_gate.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_pair_extract_fwd20_vs_gate.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v3.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v3_backtest_worse.log"
+    ],
+    "used_to_decide": "**Mark14\u2192Mark55 sell_agg**: mean fwd20 **+0.18** (tight, n=84) vs **-0.39** (wide, n=232) \u2014 clearest gate interaction in this slice. **Mark55\u2192Mark14 buy_agg** has **higher** mean in **wide** (+0.62 vs +0.44 tight) \u2014 not monotonic. **Mark01\u2192Mark22** had too few aligned aggressive rows for cells. **trader_v3** (skip 5200/5300 MM when loose) **ties v2** PnL because those strikes had **zero** PnL in v2 logs already."
   }
 ]

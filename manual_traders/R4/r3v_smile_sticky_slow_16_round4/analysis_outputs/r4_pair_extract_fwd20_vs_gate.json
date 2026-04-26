@@ -1,0 +1,77 @@
+{
+  "K": 20,
+  "cells": [
+    {
+      "buyer": "Mark 55",
+      "seller": "Mark 14",
+      "gate": "tight",
+      "side": "buy_agg",
+      "n": 86,
+      "mean_fwd20": 0.4418604651162791,
+      "median": 0.75
+    },
+    {
+      "buyer": "Mark 55",
+      "seller": "Mark 14",
+      "gate": "wide",
+      "side": "buy_agg",
+      "n": 245,
+      "mean_fwd20": 0.6224489795918368,
+      "median": 0.5
+    },
+    {
+      "buyer": "Mark 14",
+      "seller": "Mark 55",
+      "gate": "tight",
+      "side": "sell_agg",
+      "n": 84,
+      "mean_fwd20": 0.17857142857142858,
+      "median": -0.75
+    },
+    {
+      "buyer": "Mark 14",
+      "seller": "Mark 55",
+      "gate": "wide",
+      "side": "sell_agg",
+      "n": 232,
+      "mean_fwd20": -0.3879310344827586,
+      "median": 0.0
+    },
+    {
+      "buyer": "Mark 01",
+      "seller": "Mark 55",
+      "gate": "tight",
+      "side": "sell_agg",
+      "n": 70,
+      "mean_fwd20": 0.24285714285714285,
+      "median": 0.25
+    },
+    {
+      "buyer": "Mark 01",
+      "seller": "Mark 55",
+      "gate": "wide",
+      "side": "sell_agg",
+      "n": 190,
+      "mean_fwd20": -0.08157894736842106,
+      "median": -0.5
+    },
+    {
+      "buyer": "Mark 55",
+      "seller": "Mark 01",
+      "gate": "tight",
+      "side": "buy_agg",
+      "n": 71,
+      "mean_fwd20": -0.056338028169014086,
+      "median": 0.0
+    },
+    {
+      "buyer": "Mark 55",
+      "seller": "Mark 01",
+      "gate": "wide",
+      "side": "buy_agg",
+      "n": 173,
+      "mean_fwd20": 0.031791907514450865,
+      "median": 0.0
+    }
+  ]
+}

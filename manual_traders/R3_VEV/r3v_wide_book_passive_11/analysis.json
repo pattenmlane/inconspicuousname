@@ -141,5 +141,18 @@
       "manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v17_iter16_d012_all_full.log"
     ],
     "used_to_decide": "Ship v17 as v16 with extract size 7 in risk_on (logged gate_ret_ema). For the 200k/day floor, still need larger structural edge (e.g. more voucher legs or different execution when gate is on); naive threshold-on-EMA is blocked by the alignment issue above. Next: per-day or offline sweep of ex_sz grid 6-8 with both match modes, or re-test gate with relaxations (e.g. 5200+5300 spread <=3) only if analysis supports it."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "Re-read STRATEGY.txt / ORIGINAL_DISCORD_QUOTES: Sonic requires both 5200 and 5300 spread <=2; inclineGod stresses spread (and spread co-move) not just price. v18 implements the document's *optional* toy reading \u2014 when joint gate (risk_on) is on, lean long extract for short holds by asymmetric passive sizes: +1 on extract bids, -1 on offers vs the symmetric v17 base, same prices (execution-aware vs mid-only caveats in STRATEGY). We log s_5200, s_5300 in traderData. Same fill counts on VELVET+VEV_4000 as v17; PnL improved on days 0-2 both worse and all vs v17, so the asymmetry is not a no-op. IV/Greeks: unchanged 4000/4500 BS-IV skew on extract.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v18.py",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v18_iter17_d012_worse_full.log",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v18_iter17_d012_all_full.log"
+    ],
+    "used_to_decide": "Adopt v18 as current champion vs v17 on the benchmark three-day set (worse: 16,945 vs 15,929; all: 15,353 vs 14,406). 200k/day remains out of reach on this two-symbol execution slice. Next: small grid on RISK_ON_BUY_BUMP/SELL_TRIM {1,0} and (2,1) in worse-primary; or add spread-only logging pipeline for offline corr(s5200,s5300) vs PnL by regime."
   }
 ]

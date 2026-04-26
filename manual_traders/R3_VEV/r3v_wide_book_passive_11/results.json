@@ -300,5 +300,48 @@
         }
       }
     }
+  },
+  {
+    "iteration": 17,
+    "trader_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v18.py",
+    "strategy_description": "v18 = v17 + STRATEGY.txt optional *directional* read under Sonic joint gate: when risk_on, asymmetric VELVETFRUIT_EXTRACT passive sizes (ex_buy=ex_base+1, ex_sell=ex_base-1, cap 12 / floor 1) while keeping same quote prices and VEV_4000/4500 logic — a hedged 'long lean' on extract without crossing. Logs s_5200, s_5300 (L1 width) for spread-spread analysis.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 16945,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v18.py 3-0 3-1 3-2 --data Prosperity4Data --no-vis --out manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v18_iter17_d012_worse.json --match-trades worse",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v18_iter17_d012_worse_full.log",
+      "trades_or_fills_summary": {
+        "per_day_profit": {
+          "day_0": 7779,
+          "day_1": 6660,
+          "day_2": 2506
+        },
+        "fills": 1970,
+        "fill_qty": 9209,
+        "fill_qty_by_symbol": {
+          "VELVETFRUIT_EXTRACT": 8269,
+          "VEV_4000": 940
+        }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 15353,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v18.py 3-0 3-1 3-2 --data Prosperity4Data --no-vis --out manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v18_iter17_d012_all.json --match-trades all",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v18_iter17_d012_all_full.log",
+      "trades_or_fills_summary": {
+        "per_day_profit": {
+          "day_0": 8394,
+          "day_1": 7042,
+          "day_2": -83
+        },
+        "fills": 1988,
+        "fill_qty": 9209,
+        "fill_qty_by_symbol": {
+          "VELVETFRUIT_EXTRACT": 8269,
+          "VEV_4000": 940
+        }
+      }
+    }
   }
 ]

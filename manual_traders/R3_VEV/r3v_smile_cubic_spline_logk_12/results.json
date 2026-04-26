@@ -474,5 +474,51 @@
     },
     "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v27.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
     "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v27.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis"
+  },
+  {
+    "iteration": 28,
+    "trader_file": "trader_v28.py",
+    "strategy_description": "Joint gate: extract momo skew + 1-2 tick inside BBO; gate stress; tight 2-tick join when spr>=4. vouchers_final_strategy only.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 14498,
+      "backtest_log_file": "backtest_logs/trader_v28_round3_worse.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": { "day0": 5324, "day1": 5312, "day2": 3226, "day3": 635 }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 16976,
+      "backtest_log_file": "backtest_logs/trader_v28_round3_all.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": { "day0": 6706, "day1": 6510, "day2": 2784, "day3": 975 }
+      }
+    },
+    "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v28.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+    "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v28.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis"
+  },
+  {
+    "iteration": 29,
+    "trader_file": "trader_v29.py",
+    "strategy_description": "v27 with Sonic tight-regime: lower TIGHT_BASE take/make, TIGHT_MM/TAKE 30/34, TIGHT_EX_LOT 30 (wide unchanged).",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 28136,
+      "backtest_log_file": "backtest_logs/trader_v29_round3_worse.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": { "day0": 6916, "day1": 9666, "day2": 10635, "day3": 919 }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 35424,
+      "backtest_log_file": "backtest_logs/trader_v29_round3_all.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": { "day0": 8438, "day1": 12398, "day2": 13552, "day3": 1036 }
+      }
+    },
+    "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v29.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+    "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_cubic_spline_logk_12/trader_v29.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis"
   }
 ]

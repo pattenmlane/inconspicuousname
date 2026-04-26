@@ -122,5 +122,15 @@
       "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt"
     ],
     "used_to_decide": "Implemented v24\u2013v27 with **no** HYDROGEL, **no** LOO (IV-free mid/BBO only). v24/25: joint gate for regime; **v25** local spread edge like inclineGod. **Bug:** using `wall_mid` as *fair* for `best_ask \u2264 fair - edge` makes **aggressive take** on vouchers nearly never fire (math: weighted mid is below best ask; edge must exceed half-spread in float space, but v24/25 PnL was dominated by 4000+extract). v26: 1-tick **inside** BBO (passive) \u2014 many strikes trade but PnL weak / extract bleed. v27: **arithmetic mid (bid+ask)/2** for fair like the analysis tape \u2014 still weak vs integer BBO; most ticks need float edge > half spread for same-bar ask hit. Falsified na\u00efve 'same-tick' take. Next: fractional-edge taking, cross-tick state, or combine gate with a working execution layer (e.g. join **inside** in tight only)."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "Sonic joint-gate + execution experiments (v28\u2013v29). v28: tight-regime 2-tick BBO improve when spread\u22654, one-tick otherwise; extract arith-mid momentum \u2192 fair skew; gate stress tapers size. v29: v27 arith-mid take/MM with **tighter TIGHT_*** edges and +MM/TAKE and extract cap when 5200&5300 both \u22642 (Sonic 2x edge narrative, implemented as more **size** not more mid signal).",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "trader_v28.py",
+      "trader_v29.py"
+    ],
+    "used_to_decide": "v28 **worse** total 14,498 (days 0\u20133) vs v27 28,136: deeper inside improve + momo on extract **hurt** (likely inventory/extract PnL path). v29 **worse** 28,136 = **v27** (same logic path for \u2018worse\u2019 matching when tight params do not change which orders fill). v29 \u2018all\u2019 35,424 &gt; v27 32,373 so larger **passive** extract/VEV sizes help under generous matching only. Falsify v28 recipe; keep v27-class arith-mid **edge** and iterate on **gated** passive depth / extract-only regime next."
   }
 ]

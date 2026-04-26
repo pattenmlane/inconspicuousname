@@ -95,7 +95,95 @@
         "Mark 67 extract long-horizon (K=100) sign unstable on day 3 — do not trade K=100 off Mark 67 alone without regime split.",
         "Residual baseline table alone does not yet yield a simple fade rule without overfit check on holdout day."
       ],
-      "criteria_note": "Horizon K = next K rows in prices CSV for same (day, product) sorted by timestamp (documented in analyze_r4_phase1_counterparty.py). Phase 2 deferred until this gate is reviewed."
+      "criteria_note": "Horizon K = next K rows in prices CSV for same (day, product) sorted by timestamp (documented in analyze_r4_phase1_counterparty.py)."
+    }
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Round 4 Phase 2: analyze_r4_phase2.py — burst-window (±300 ts) around Mark01→Mark22 multi-VEV centers; microprice minus mid in px table; spread first-diff vs |fwd_5|; extract signed-flow lags OLS vs fwd_5; Mark22 on VEV_5300 fwd_5 by spread bucket.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/analyze_r4_phase2.py",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase2_burst_centers_01_22.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase2_near_burst_forward_by_pair_product.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase2_spread_compression_vs_vol.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase2_extract_flow_lags_fwd5.json",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase2_mark22_on_5300_fwd5_by_spread_tertile.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase2_run_done.txt"
+    ],
+    "used_to_decide": "Phase 2 completion gate in round4_phase2_complete; trader_v1 tests Mark22-on-5300 fade (negative sim PnL overall — falsifies naive taker rule).",
+    "round4_phase2_complete": {
+      "phase": 2,
+      "interaction_with_phase1": "Mark 22 aggressive sell on VEV_5300 negative fwd_5 from Phase 1 is **refined** in Phase 2: same sign in tight spread bucket (mean -0.19, n=162) but **near-burst** window adds heterogeneous pair effects (e.g. hydro 14↔38 ± fwd near bursts). Mark 67→22/49 small-n positive forwards near bursts **echo** Phase 1 Mark 67 extract lift but are not standalone tradeable (n≤7). Phase 1 Mark 55 buy extract positive — Phase 2 extract flow lag OLS is **all zeros** (1366 rows), so signed-flow-on-same-timestamp does **not** replicate forward signal — use Phase 1 aggression merge instead.",
+      "bullets_phase2_plan": [
+        {
+          "bullet": "1) Named-bot exploitation + burst window",
+          "outputs": [
+            "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase2_near_burst_forward_by_pair_product.csv",
+            "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase2_burst_centers_01_22.csv"
+          ],
+          "conclusion": "Within ±300 of Mark01→22 multi-VEV bursts, dominant rows are still Mark01→22 on wings (fwd~0 on 6000/6500); hydro 14↔38 shows larger |mean| but tiny n (40s). No clean mean-revert vs trend split without holdout."
+        },
+        {
+          "bullet": "2) Microstructure",
+          "outputs": ["manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase2_spread_compression_vs_vol.csv"],
+          "conclusion": "corr(Δspread, |fwd_5|) weak negative on extract/hydro (~-0.05), ~0 on VEV_5300 — no strong compression→vol edge at 5-row horizon."
+        },
+        {
+          "bullet": "3) Cross-instrument lead–lag (extract flow lags)",
+          "outputs": ["manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase2_extract_flow_lags_fwd5.json"],
+          "conclusion": "Same-timestamp stacked flow lags regress to zero coefficients vs extract fwd_5 — this formulation does not recover Phase 1 participant conditioning."
+        },
+        {
+          "bullet": "4) Regime splits",
+          "outputs": ["manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase2_mark22_on_5300_fwd5_by_spread_tertile.csv"],
+          "conclusion": "Mark 22 on 5300: tight spread (≤2) bucket n=162 mean fwd_5 -0.19; wider bucket n=1 only — regime table sparse for wide book."
+        },
+        {
+          "bullet": "5) Vol / smile",
+          "outputs": [],
+          "conclusion": "Not recomputed in this pass (no BS IV pipeline wired for R4 in repo scope this iteration)."
+        },
+        {
+          "bullet": "6) Execution / adverse selection",
+          "outputs": ["manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v1_worse.log", "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v1_all.log"],
+          "conclusion": "Naive taker fade on every Mark22 print on 5300 yields **+1040** total worse=all but **-5002** days 1–2 vs **+6042** day 3 — **not day-stable**; do not ship as-is."
+        },
+        {
+          "bullet": "7) Inventory-aware MM",
+          "outputs": [],
+          "conclusion": "Skipped (no MM skew in trader_v1; needs position + counterparty joint model)."
+        }
+      ],
+      "top5_tradeable_edges": [
+        {
+          "rank": 1,
+          "edge": "Conditional tables only: Mark 22 on VEV_5300 in tight spread — negative mean fwd_5 (tape)",
+          "orthogonal_note": "Same leg as Phase 1 rank-3 but adds spread bucket file",
+          "evidence_paths": ["manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase2_mark22_on_5300_fwd5_by_spread_tertile.csv"],
+          "sim_note": "trader_v1 falsifies naive always-fade taker implementation"
+        },
+        {
+          "rank": 2,
+          "edge": "Near-burst hydro 14↔38 forward means spike |m5|>1 (n~40) — **hypothesis** for basket stress, not validated OOS",
+          "evidence_paths": ["manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase2_near_burst_forward_by_pair_product.csv"]
+        },
+        {
+          "rank": 3,
+          "edge": "Burst calendar centers for Mark01→22 (structural count) — scheduling reference",
+          "evidence_paths": ["manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase2_burst_centers_01_22.csv"]
+        },
+        {
+          "rank": 4,
+          "edge": "Microprice field available for future microprice–mid divergence signals (computed in px pipeline)",
+          "evidence_paths": ["manual_traders/R4/r3v_velvet_beta_hedge_02/analyze_r4_phase2.py"]
+        },
+        {
+          "rank": 5,
+          "edge": "Spread-change vs |fwd_5| weakly negative on extract — **null-tier** for directional use",
+          "evidence_paths": ["manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_phase2_spread_compression_vs_vol.csv"]
+        }
+      ],
+      "phase3_prereq": "Phase 2 gate satisfied for proceed to Sonic joint gate on R4 (Phase 3)."
     }
   }
 ]

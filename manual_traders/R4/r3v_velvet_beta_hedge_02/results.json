@@ -19,5 +19,26 @@
       "trades_or_fills_summary": "Same as worse (no fills)."
     },
     "total_profit": 0
+  },
+  {
+    "iteration": 1,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Phase2 prototype: if market_trades include Mark 22 selling VEV_5300 this tick, aggressive sell qty=12 at best bid (fade tape drift). Tests counterparty path in sim.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 1040,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v1.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v1_worse.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v1_worse.log",
+      "trades_or_fills_summary": "Day1 VEV_5300 -3277, day2 -1725, day3 +6042; worse=all identical totals."
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 1040,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v1.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v1_all.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v1_all.log",
+      "trades_or_fills_summary": "Same as worse."
+    },
+    "total_profit": 1040
   }
 ]

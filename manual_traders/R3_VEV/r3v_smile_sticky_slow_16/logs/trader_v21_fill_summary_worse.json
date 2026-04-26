@@ -1,0 +1,13 @@
+{
+  "trader_file": "trader_v21.py",
+  "match_trades": "worse",
+  "log_path": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v21_backtest_worse.log",
+  "total_profit": 8496,
+  "note": "Backtester processed Round 3 days 0-3 (dataset after merge with main). No hydrogel.",
+  "by_day": [
+    {"day": 0, "total": 4422},
+    {"day": 1, "total": 3278},
+    {"day": 2, "total": 372},
+    {"day": 3, "total": 424}
+  ]
+}

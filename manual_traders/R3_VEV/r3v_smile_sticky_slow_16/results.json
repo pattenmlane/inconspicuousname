@@ -198,5 +198,25 @@
     },
     "backtest_round": 3,
     "match_trades_primary": "worse"
+  },
+  {
+    "iteration": 21,
+    "trader_file": "trader_v21.py",
+    "strategy_description": "vouchers_final_strategy only: same joint s5200/s5300 signal as v20 but STRATEGY.txt layer (1) — **soft regime**. Tight (both <=2): full size/width. Wide: 0.4x extract+VEV size, +0.15 to half_spread floor, 1.08x total shift. Never return early: sticky smile updates every tick. No hydrogel. (Addresses hard gate removing ~86% of time in v20.)",
+    "backtest_worse": {
+      "total_profit": 8496,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v21.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v21_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v21_fill_summary_worse.json"
+    },
+    "backtest_all": {
+      "total_profit": 9951,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_sticky_slow_16/trader_v21.py 3 --data Prosperity4Data --match-trades all --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v21_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v21_fill_summary_all.json"
+    },
+    "backtest_round": 3,
+    "backtest_note": "After merge, dataset includes 4 historical days; totals not directly comparable to v20 (3 days) without re-run on subset.",
+    "match_trades_primary": "worse"
   }
 ]

@@ -193,5 +193,16 @@
       "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/analysis_outputs/vev5200_5300_tight_gate_freq.json"
     ],
     "used_to_decide": "~13.8% of timestamps pass the joint tight gate. trader_v20 trades extract + VEV only in that window (no hydrogel). PnL worse=1056 vs v15 18968 — gating out ~86% of time removes the hydrogel carry and most VEV flow; need next iteration: either partial gate (e.g. size/width scale vs binary off), or keep hydrogel out but quote VEV in wide regime with reduced size, or add extract+5200/5300-only layer."
+  },
+  {
+    "iteration": 21,
+    "analysis_description": "Reread **round3work/vouchers_final_strategy/STRATEGY.txt** and **ORIGINAL_DISCORD_QUOTES.txt** (Sonic: gate on book state, both 5200/5300 <=2, per-event edge vs noise when wide; inclineGod: spread/spread, not just price). Used **r3_tight_spread_summary.txt** (forward mid K=20: tight vs not-tight mean difference on day 0 sample). v21 implements STRATEGY section **risk filter + sizing** as **soft** multipliers in wide regime instead of v20's hard return — still tracks spreads as signals. IV/Greeks: unchanged BS smile stack from prior implementation for VEV fair.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "round3work/vouchers_final_strategy/analyze_vev_5200_5300_tight_gate_r3.py"
+    ],
+    "used_to_decide": "Sonic: wide books = high execution noise \u2014 v21 down-sizes to 0.4x and widens quotes; tight gate = full risk-on sizing. Merged main added Round 3 day-3 data so v21 PnL spans 4 days (8496 worse) \u2014 not apples-to-apples vs v20's 3-day 1056; for 200k/day goal next steps are extract-only gating, tighter u_MM in wide regime, and/or 3-day-only compare run."
   }
 ]

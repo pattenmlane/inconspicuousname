@@ -1,0 +1,12 @@
+{
+  "trader_file": "trader_v21.py",
+  "match_trades": "all",
+  "log_path": "manual_traders/R3_VEV/r3v_smile_sticky_slow_16/logs/trader_v21_backtest_all.log",
+  "total_profit": 9951,
+  "by_day": [
+    {"day": 0, "total": 5222},
+    {"day": 1, "total": 4452},
+    {"day": 2, "total": -244},
+    {"day": 3, "total": 520}
+  ]
+}

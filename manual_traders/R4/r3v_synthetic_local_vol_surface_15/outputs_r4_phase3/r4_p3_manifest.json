@@ -1,0 +1,9 @@
+{
+  "outputs": [
+    "r4_p3_counterparty_x_gate_welch_fwd20.csv",
+    "r4_p3_executive_summary.txt",
+    "r4_p3_gate_summary_by_day.csv",
+    "r4_p3_joint_gate_panel_by_timestamp.csv",
+    "r4_p3_mark67_fwd20_tight_vs_loose_by_day.csv"
+  ]
+}

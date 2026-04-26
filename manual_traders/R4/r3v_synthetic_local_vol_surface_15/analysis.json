@@ -164,5 +164,64 @@
         "Signed VEV_5300 flow vs extract Δmid in 1k-timestamp buckets: unstable sign across days (r4_p2_signed_flow_vev5300_vs_extract_dmid_bucket.csv)."
       ]
     }
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Round 4 Phase 3: `_r4_phase3_sonic_gate_analysis.py` — same inner-join gate as R3 `analyze_vev_5200_5300_tight_gate_r3.py` on ROUND_4 prices (days 1–3, TH=2, K=20 extract forward). Merged `tight` onto Phase-1 enriched trades for counterparty×gate Welch tests; inclineGod-style spread correlations in `r4_p3_gate_summary_by_day.csv`. Executive text updated in `r4_p3_executive_summary.txt`. Trader v2 = v1 + live gate.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/_r4_phase3_sonic_gate_analysis.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase3/r4_p3_manifest.json",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase3/r4_p3_joint_gate_panel_by_timestamp.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase3/r4_p3_gate_summary_by_day.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase3/r4_p3_counterparty_x_gate_welch_fwd20.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase3/r4_p3_mark67_fwd20_tight_vs_loose_by_day.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase3/r4_p3_executive_summary.txt",
+      "round3work/vouchers_final_strategy/analyze_vev_5200_5300_tight_gate_r3.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v2_r4_mark67_under_sonic_gate.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v2_r4_mark67_under_sonic_gate_worse.log",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v2_r4_mark67_under_sonic_gate_all.log"
+    ],
+    "used_to_decide": "Phase 3 completion object follows. Population extract fwd K strongly favors tight gate (replicates Sonic on R4 mids); Mark67×gate trade-level Welch is inconclusive (small n_tight); burst×gate inverts Phase-1 unconditional burst lift."
+  },
+  {
+    "round4_phase3_complete": {
+      "phase": 3,
+      "prerequisite": "round4_phase2_complete",
+      "reference_r3": "round3work/vouchers_final_strategy/STRATEGY.txt + analyze_vev_5200_5300_tight_gate_r3.py (inner join 5200/5300/extract on timestamp; tight = both spreads ≤2)",
+      "comparison_to_phase1_2_without_gate": {
+        "population_extract_fwd_K20": "Tight joint gate shows large positive mean fwd vs loose on aligned timestamps all three days (Welch p ~1e-7 to 1e-11) — **Sonic story holds on R4 mids** at the panel level (r4_p3_gate_summary_by_day.csv).",
+        "mark67_counterparty_slice": "Merged Mark67 aggr_buy extract fwd20: tight vs loose **not** significant (p≈0.74, n_tight=27) — gate does **not** statistically sharpen this Phase-1 edge on trades (r4_p3_counterparty_x_gate_welch_fwd20.csv; per-day table r4_p3_mark67_fwd20_tight_vs_loose_by_day.csv).",
+        "burst_interaction": "Extract burst fwd20 is **worse when tight** than when loose (p≈0.0008) — **three-way** (burst, gate, fwd) differs from Phase-1 unconditional burst lift; do not treat Phase-1 burst stat as Sonic-gated without re-specifying.",
+        "backtest_v1_vs_v2": "v1 (no gate) total 6,808 vs v2 (Sonic gate) 6,875 Round 4 days 1–3 — marginal total; gate does not fix day-3 weakness in this toy execution."
+      },
+      "ranked_tier_a_candidates": [
+        {
+          "rank": 1,
+          "edge": "Population: joint tight 5200+5300 gate → higher extract K=20 forward mid vs loose (all days p≪0.001)",
+          "paths": ["manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase3/r4_p3_gate_summary_by_day.csv", "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase3/r4_p3_joint_gate_panel_by_timestamp.csv"]
+        },
+        {
+          "rank": 2,
+          "edge": "inclineGod spread object: corr(s5200,m_ext) and corr(s5300,m_ext) moderate positive daily; corr(s5200,s5300)~0.18–0.26",
+          "paths": ["manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase3/r4_p3_gate_summary_by_day.csv"]
+        },
+        {
+          "rank": 3,
+          "edge": "Three-way interaction (burst × tight × fwd20) is **material** and opposite unconditional burst — use for regime logic, not naive stacking",
+          "paths": ["manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase3/r4_p3_counterparty_x_gate_welch_fwd20.csv"]
+        },
+        {
+          "rank": 4,
+          "edge": "Live: v2 gated Mark67 probe ≈ same PnL as v1 — gate as risk filter is optional for this specific counterparty rule on R4 days 1–3",
+          "paths": ["manual_traders/R4/r3v_synthetic_local_vol_surface_15/results.json", "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v2_r4_mark67_under_sonic_gate_worse.log"]
+        },
+        {
+          "rank": 5,
+          "edge": "Carry Phase-2 microprice signal + Phase-1 adverse maps; Phase-3 gate orthogonal to microprice (not recomputed here — still valid)",
+          "paths": ["manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase2/r4_p2_microprice_summary.csv"]
+        }
+      ],
+      "does_gate_clean_counterparty_signal": "Partially: **population** mids yes (strong); **Mark67 trade-conditioned** fwd20 no (Welch n.s.); **burst** conditioning **flips** sign vs Phase-1 unconditional burst — gate **restructures** some signals rather than uniformly cleaning them."
+    }
   }
 ]

@@ -1,0 +1,48 @@
+{
+  "mark67_extract_buy_aggr_filtered_merged_ts": [
+    39400,
+    575800,
+    632800,
+    812900,
+    949400,
+    1134300,
+    1378400,
+    1424600,
+    1547100,
+    1720500,
+    1793900,
+    1872400,
+    2117400,
+    2254000,
+    2294300,
+    2349100,
+    2357500,
+    2405400,
+    2406500,
+    2462100,
+    2512800,
+    2560900,
+    2588300,
+    2616700,
+    2769200,
+    2873400,
+    2969100
+  ],
+  "filters": {
+    "joint_5200_5300_spread_le": 2,
+    "extract_micro_minus_mid_gt": 0,
+    "note_micro_gt_mid": "Vacuous on this slice (all Mark67 aggr extract prints have micro>mid)."
+  },
+  "day_cum_offset": {
+    "1": 0,
+    "2": 1000000,
+    "3": 2000000
+  },
+  "day_max_ts": {
+    "1": 999900,
+    "2": 999900,
+    "3": 999900
+  },
+  "window_ts": 50000,
+  "rule": "Mark67_aggr_buy_EXTRACT_and_joint_tight_and_micro_gt_mid"
+}

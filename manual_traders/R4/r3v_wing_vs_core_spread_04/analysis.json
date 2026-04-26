@@ -308,5 +308,18 @@
       "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v3_worse.log"
     ],
     "used_to_decide": "Ship **v1** for PnL on this tape; use v3 event list for research / optional overlay sizing; consider maker on 5300 after 67\u219222 tight prints instead of taker extract."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "VEV_5300 **mid** forward after the 15 Mark67\u2192Mark22+tight-at-print timestamps: r4_analyze_vev5300_after_6722_tight.py \u2192 vev5300_fwd_after_6722_tight_signals.csv + summary by (day,k). Pooled n=15: mean fwd +0.17 (K=5), +0.30 (K=20), +0.53 (K=100); day3 K=100 mean **negative** (\u22120.69 on n=8). trader_v4: same triggers as v3 but taker **long VEV_5300**; backtest +32 / 3 fills vs v3 +91 / 3 on extract \u2014 taker 5300 under worse does not capture mid edge.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_analyze_vev5300_after_6722_tight.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/vev5300_fwd_after_6722_tight_signals.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/vev5300_fwd_after_6722_summary_by_day_k.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v4.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v4_worse.log",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v4_worse.json"
+    ],
+    "used_to_decide": "Prefer **extract** taker on this trigger set (v3) over **5300** taker (v4); next research branch is passive 5300 or multi-lot sizing with inventory cap, not raw taker at ask."
   }
 ]

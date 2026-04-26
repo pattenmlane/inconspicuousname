@@ -1,0 +1,103 @@
+[
+  {
+    "iteration": 1,
+    "round": 4,
+    "analysis_description": "Round 4 Phase 1 (counterparty IDs): forward mid moves after prints, stratified by aggressor inference (price vs BBO), K in {5,20,100} tape rows, spread quantile (tight/mid/wide on traded symbol), burst flag, hour; pair-cell baseline means; buyer\u2192seller graph; burst vs random-time extract controls; consecutive-trade two-hop triple counts; adverse aggressor summary.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analyze_r4_phase1_counterparty_edges.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase1_forward_by_mark.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase1_pair_cell_means.csv",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase1_residuals_top.csv",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase1_graph_edges.csv",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase1_bursts_forward.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase1_adverse_aggressor.csv",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase1_twohop_top.json",
+      "round4work/round4description.txt",
+      "round4work/suggested direction.txt",
+      "round4work/outputs/r4_initial_analysis_summary.txt"
+    ],
+    "used_to_decide": "Tape days 1\u20133 per Prosperity4Data/ROUND_4. Horizon K = K rows forward in price CSV for same (day, symbol). See round4_phase1_complete for gate checklist."
+  },
+  {
+    "round4_phase1_complete": {
+      "horizon_definition": "K \\in {5,20,100} means K rows forward in prices_round_4_day_*.csv after the row matching (day, timestamp, symbol); forward mid change = mid(t+K) - mid(t).",
+      "bullets": [
+        {
+          "topic": "1) Participant-level alpha / predictiveness",
+          "outputs": [
+            "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase1_forward_by_mark.json",
+            "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase1_adverse_aggressor.csv"
+          ],
+          "conclusion": "Strongest signal: **Mark 67 aggressive buys** on **VELVETFRUIT_EXTRACT** in **tight** spread_q show large positive mean forward mids (K=5: mean\u22481.98, t\u224812.7, n\u2248154; K=20 similar). **Mark 55 aggressive sells** extract at K=100 mid spread show **negative** mean fwd (\u2248-0.94, p\u22480.015, n\u2248538). **Mark 22** sell_agg on **VEV_5300** tight+**burst** K=5: negative mean (\u2248-0.20, p\u22480.001, n=160). Mark 01 buy_agg on VEV_5200 tight had n=0 in per-day slice (trades often inside spread \u2192 unk)."
+        },
+        {
+          "topic": "2) Deviation from bot baseline (pair \u00d7 symbol \u00d7 K \u00d7 regime cell means)",
+          "outputs": [
+            "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase1_pair_cell_means.csv",
+            "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase1_residuals_top.csv"
+          ],
+          "conclusion": "Residuals vs (buyer|seller, symbol, K, spread_q, burst) cell means are **~machine zero** everywhere in the top table \u2014 dominant structure is **explained by the coarse pair/regime cells**; no large stable second-order residual in this parameterization."
+        },
+        {
+          "topic": "3) Sequence / graph methods",
+          "outputs": [
+            "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase1_graph_edges.csv",
+            "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase1_twohop_top.json"
+          ],
+          "conclusion": "Graph matches prior sketch: **Mark 01\u2192Mark 22** dominates (1339 prints). Consecutive-trade two-hop buyer\u2192seller\u2192(next seller) shows **Mark 14\u2192Mark 38\u2192Mark 14** and **Mark 38\u2192Mark 14\u2192Mark 38** oscillation (\u2248165 / 160) \u2014 **duopoly ping-pong**, not a one-way insider chain."
+        },
+        {
+          "topic": "4) Burst structure",
+          "outputs": [
+            "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase1_bursts_forward.json"
+          ],
+          "conclusion": "Multi-print timestamps (n\u2248774 burst events): mean **VELVETFRUIT_EXTRACT** forward mid change is **higher** after bursts than random same-day controls for K=20 (burst mean \u22480.33 vs control \u22480.11; K=5 also higher). Mid-only; tradable PnL not tested here."
+        },
+        {
+          "topic": "5) Adverse selection vs inventory (population proxy)",
+          "outputs": [
+            "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase1_adverse_aggressor.csv"
+          ],
+          "conclusion": "**Mark 38 buy_agg** and **Mark 55 sell_agg** have the **most negative** mean 20-tick same-symbol markouts among marks with n\u226515; **Mark 67 buy_agg** most positive \u2014 consistent with long-extract pressure after Mark 67 lifts."
+        }
+      ],
+      "top_5_tradeable_edges": [
+        {
+          "rank": 1,
+          "rule": "After **multi-symbol burst** at a timestamp, **VELVETFRUIT_EXTRACT** mid tends to drift **up** more than random controls over **K=20** tape rows (effect \u22480.22 mid ticks; n_bursts=774 vs n_ctrl=2321).",
+          "days": "1,2,3",
+          "caveat": "Mid not bid/ask; confirm with --match-trades worse sim before sizing."
+        },
+        {
+          "rank": 2,
+          "rule": "**Mark 67** **aggressive buy** on **VELVETFRUIT_EXTRACT** when extract BBO is **tight** \u2192 large **positive** forward mids at K=5/20/100 (n\u2248154; t\u22655).",
+          "days": "1,2,3 pooled",
+          "caveat": "Low-frequency actor vs Mark 55; watch overfit."
+        },
+        {
+          "rank": 3,
+          "rule": "**Mark 55 aggressive sell** on extract in **mid** spread \u2192 **negative** mean forward at **K=100** (mean\u2248-0.94, p\u22480.015, n\u2248538).",
+          "days": "1,2,3 pooled",
+          "caveat": "Long horizon K=100 overlaps signals; use for regime not precise timing."
+        },
+        {
+          "rank": 4,
+          "rule": "**Mark 22** **aggressive sell** on **VEV_5300** in **tight+burst** \u2192 **negative** short (K=5) forward on same symbol (t\u2248-3.3, n=160).",
+          "days": "1,2,3 pooled",
+          "caveat": "Tick discretization; effect is sub-tick mean."
+        },
+        {
+          "rank": 5,
+          "rule": "**Mark 55 aggressive buy** on extract in **mid** spread \u2192 **weak positive** K=20 mean (\u2248+0.32, p\u22480.07, n\u2248546) \u2014 possible MM inventory mean-revert opposite to sell leg at K=100.",
+          "days": "1,2,3 pooled",
+          "caveat": "Marginal p; not significant at K=5."
+        }
+      ],
+      "negative_findings": [
+        "**Mark 01 buy_agg on VEV_5200 tight K=20** has **n=0** per day in this join (prints rarely at touch) \u2014 cannot validate Sonic-style 5200 pipe on aggressive-buy subset without inside-spread model.",
+        "**Pair-cell residuals** show **no** meaningful deviation from (pair, symbol, K, regime) means \u2014 second-order \u2018mystery alpha\u2019 not visible in this baseline.",
+        "**Two-hop chains** are dominated by **14\u219438\u219214** alternation \u2014 explains **liquidity recycling**, not directional extract alpha by itself."
+      ]
+    }
+  }
+]

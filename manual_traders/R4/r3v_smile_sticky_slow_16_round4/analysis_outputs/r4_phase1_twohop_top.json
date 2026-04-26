@@ -1,0 +1,154 @@
+{
+  "top_buyer_seller_seller_triples": [
+    {
+      "a": "Mark 14",
+      "b": "Mark 38",
+      "c": "Mark 14",
+      "n": 165
+    },
+    {
+      "a": "Mark 38",
+      "b": "Mark 14",
+      "c": "Mark 38",
+      "n": 160
+    },
+    {
+      "a": "Mark 38",
+      "b": "Mark 14",
+      "c": "Mark 55",
+      "n": 75
+    },
+    {
+      "a": "Mark 55",
+      "b": "Mark 14",
+      "c": "Mark 38",
+      "n": 69
+    },
+    {
+      "a": "Mark 55",
+      "b": "Mark 14",
+      "c": "Mark 55",
+      "n": 32
+    },
+    {
+      "a": "Mark 14",
+      "b": "Mark 55",
+      "c": "Mark 14",
+      "n": 26
+    },
+    {
+      "a": "Mark 55",
+      "b": "Mark 01",
+      "c": "Mark 22",
+      "n": 25
+    },
+    {
+      "a": "Mark 55",
+      "b": "Mark 01",
+      "c": "Mark 55",
+      "n": 23
+    },
+    {
+      "a": "Mark 01",
+      "b": "Mark 55",
+      "c": "Mark 14",
+      "n": 23
+    },
+    {
+      "a": "Mark 14",
+      "b": "Mark 55",
+      "c": "Mark 01",
+      "n": 23
+    },
+    {
+      "a": "Mark 38",
+      "b": "Mark 14",
+      "c": "Mark 22",
+      "n": 21
+    },
+    {
+      "a": "Mark 01",
+      "b": "Mark 55",
+      "c": "Mark 01",
+      "n": 17
+    },
+    {
+      "a": "Mark 55",
+      "b": "Mark 14",
+      "c": "Mark 22",
+      "n": 11
+    },
+    {
+      "a": "Mark 14",
+      "b": "Mark 55",
+      "c": "Mark 49",
+      "n": 2
+    },
+    {
+      "a": "Mark 14",
+      "b": "Mark 55",
+      "c": "Mark 22",
+      "n": 2
+    },
+    {
+      "a": "Mark 22",
+      "b": "Mark 38",
+      "c": "Mark 14",
+      "n": 2
+    },
+    {
+      "a": "Mark 14",
+      "b": "Mark 38",
+      "c": "Mark 22",
+      "n": 2
+    },
+    {
+      "a": "Mark 22",
+      "b": "Mark 55",
+      "c": "Mark 01",
+      "n": 1
+    },
+    {
+      "a": "Mark 67",
+      "b": "Mark 22",
+      "c": "Mark 38",
+      "n": 1
+    },
+    {
+      "a": "Mark 38",
+      "b": "Mark 22",
+      "c": "Mark 49",
+      "n": 1
+    },
+    {
+      "a": "Mark 22",
+      "b": "Mark 55",
+      "c": "Mark 14",
+      "n": 1
+    },
+    {
+      "a": "Mark 67",
+      "b": "Mark 22",
+      "c": "Mark 55",
+      "n": 1
+    },
+    {
+      "a": "Mark 67",
+      "b": "Mark 49",
+      "c": "Mark 55",
+      "n": 1
+    },
+    {
+      "a": "Mark 49",
+      "b": "Mark 55",
+      "c": "Mark 01",
+      "n": 1
+    },
+    {
+      "a": "Mark 01",
+      "b": "Mark 55",
+      "c": "Mark 49",
+      "n": 1
+    }
+  ]
+}

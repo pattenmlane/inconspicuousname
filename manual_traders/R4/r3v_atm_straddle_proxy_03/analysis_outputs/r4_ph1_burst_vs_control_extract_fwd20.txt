@@ -1,0 +1,2 @@
+burst_n=200 mean_fwd20_extract=0.3975
+control_n=448 mean_fwd20_extract=0.14732142857142858

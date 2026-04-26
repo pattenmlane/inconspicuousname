@@ -1,0 +1,932 @@
+[
+  {
+    "party": "Mark 01",
+    "role": "buyer",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 5,
+    "n": 260,
+    "mean_fwd_mid": 0.290385,
+    "t_stat": 2.113,
+    "frac_pos": 0.5
+  },
+  {
+    "party": "Mark 01",
+    "role": "buyer",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 20,
+    "n": 260,
+    "mean_fwd_mid": 0.005769,
+    "t_stat": 0.0214,
+    "frac_pos": 0.4538
+  },
+  {
+    "party": "Mark 01",
+    "role": "buyer",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 100,
+    "n": 260,
+    "mean_fwd_mid": -0.634615,
+    "t_stat": -1.1125,
+    "frac_pos": 0.4654
+  },
+  {
+    "party": "Mark 01",
+    "role": "buyer",
+    "symbol": "VEV_5300",
+    "K": 5,
+    "n": 132,
+    "mean_fwd_mid": -0.147727,
+    "t_stat": -2.2915,
+    "frac_pos": 0.25
+  },
+  {
+    "party": "Mark 01",
+    "role": "buyer",
+    "symbol": "VEV_5300",
+    "K": 20,
+    "n": 132,
+    "mean_fwd_mid": -0.121212,
+    "t_stat": -0.8406,
+    "frac_pos": 0.3939
+  },
+  {
+    "party": "Mark 01",
+    "role": "buyer",
+    "symbol": "VEV_5300",
+    "K": 100,
+    "n": 132,
+    "mean_fwd_mid": 0.079545,
+    "t_stat": 0.2783,
+    "frac_pos": 0.4924
+  },
+  {
+    "party": "Mark 01",
+    "role": "buyer",
+    "symbol": "VEV_5400",
+    "K": 5,
+    "n": 263,
+    "mean_fwd_mid": -0.013308,
+    "t_stat": -0.5689,
+    "frac_pos": 0.1711
+  },
+  {
+    "party": "Mark 01",
+    "role": "buyer",
+    "symbol": "VEV_5400",
+    "K": 20,
+    "n": 263,
+    "mean_fwd_mid": 0.039924,
+    "t_stat": 0.8355,
+    "frac_pos": 0.308
+  },
+  {
+    "party": "Mark 01",
+    "role": "buyer",
+    "symbol": "VEV_5400",
+    "K": 100,
+    "n": 263,
+    "mean_fwd_mid": 0.020913,
+    "t_stat": 0.2313,
+    "frac_pos": 0.4183
+  },
+  {
+    "party": "Mark 01",
+    "role": "buyer",
+    "symbol": "VEV_5500",
+    "K": 5,
+    "n": 299,
+    "mean_fwd_mid": -0.020067,
+    "t_stat": -1.5274,
+    "frac_pos": 0.0569
+  },
+  {
+    "party": "Mark 01",
+    "role": "buyer",
+    "symbol": "VEV_5500",
+    "K": 20,
+    "n": 299,
+    "mean_fwd_mid": 0.025084,
+    "t_stat": 1.0478,
+    "frac_pos": 0.1438
+  },
+  {
+    "party": "Mark 01",
+    "role": "buyer",
+    "symbol": "VEV_5500",
+    "K": 100,
+    "n": 299,
+    "mean_fwd_mid": -0.018395,
+    "t_stat": -0.4444,
+    "frac_pos": 0.2408
+  },
+  {
+    "party": "Mark 01",
+    "role": "buyer",
+    "symbol": "VEV_6000",
+    "K": 5,
+    "n": 317,
+    "mean_fwd_mid": 0.0,
+    "t_stat": null,
+    "frac_pos": 0.0
+  },
+  {
+    "party": "Mark 01",
+    "role": "buyer",
+    "symbol": "VEV_6000",
+    "K": 20,
+    "n": 317,
+    "mean_fwd_mid": 0.0,
+    "t_stat": null,
+    "frac_pos": 0.0
+  },
+  {
+    "party": "Mark 01",
+    "role": "buyer",
+    "symbol": "VEV_6000",
+    "K": 100,
+    "n": 317,
+    "mean_fwd_mid": 0.0,
+    "t_stat": null,
+    "frac_pos": 0.0
+  },
+  {
+    "party": "Mark 01",
+    "role": "buyer",
+    "symbol": "VEV_6500",
+    "K": 5,
+    "n": 317,
+    "mean_fwd_mid": 0.0,
+    "t_stat": null,
+    "frac_pos": 0.0
+  },
+  {
+    "party": "Mark 01",
+    "role": "buyer",
+    "symbol": "VEV_6500",
+    "K": 20,
+    "n": 317,
+    "mean_fwd_mid": 0.0,
+    "t_stat": null,
+    "frac_pos": 0.0
+  },
+  {
+    "party": "Mark 01",
+    "role": "buyer",
+    "symbol": "VEV_6500",
+    "K": 100,
+    "n": 317,
+    "mean_fwd_mid": 0.0,
+    "t_stat": null,
+    "frac_pos": 0.0
+  },
+  {
+    "party": "Mark 01",
+    "role": "seller",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 5,
+    "n": 244,
+    "mean_fwd_mid": -0.002049,
+    "t_stat": -0.0151,
+    "frac_pos": 0.418
+  },
+  {
+    "party": "Mark 01",
+    "role": "seller",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 20,
+    "n": 244,
+    "mean_fwd_mid": 0.006148,
+    "t_stat": 0.0225,
+    "frac_pos": 0.4754
+  },
+  {
+    "party": "Mark 01",
+    "role": "seller",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 100,
+    "n": 244,
+    "mean_fwd_mid": -0.17418,
+    "t_stat": -0.2869,
+    "frac_pos": 0.4754
+  },
+  {
+    "party": "Mark 14",
+    "role": "buyer",
+    "symbol": "HYDROGEL_PACK",
+    "K": 5,
+    "n": 496,
+    "mean_fwd_mid": 0.071573,
+    "t_stat": 0.3529,
+    "frac_pos": 0.4677
+  },
+  {
+    "party": "Mark 14",
+    "role": "buyer",
+    "symbol": "HYDROGEL_PACK",
+    "K": 20,
+    "n": 496,
+    "mean_fwd_mid": 0.233871,
+    "t_stat": 0.5994,
+    "frac_pos": 0.504
+  },
+  {
+    "party": "Mark 14",
+    "role": "buyer",
+    "symbol": "HYDROGEL_PACK",
+    "K": 100,
+    "n": 496,
+    "mean_fwd_mid": 0.854839,
+    "t_stat": 1.054,
+    "frac_pos": 0.4899
+  },
+  {
+    "party": "Mark 14",
+    "role": "buyer",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 5,
+    "n": 316,
+    "mean_fwd_mid": -0.033228,
+    "t_stat": -0.2808,
+    "frac_pos": 0.4146
+  },
+  {
+    "party": "Mark 14",
+    "role": "buyer",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 20,
+    "n": 316,
+    "mean_fwd_mid": -0.237342,
+    "t_stat": -1.0409,
+    "frac_pos": 0.4177
+  },
+  {
+    "party": "Mark 14",
+    "role": "buyer",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 100,
+    "n": 316,
+    "mean_fwd_mid": -1.224684,
+    "t_stat": -2.5316,
+    "frac_pos": 0.4177
+  },
+  {
+    "party": "Mark 14",
+    "role": "buyer",
+    "symbol": "VEV_4000",
+    "K": 5,
+    "n": 232,
+    "mean_fwd_mid": -0.163793,
+    "t_stat": -1.1197,
+    "frac_pos": 0.4267
+  },
+  {
+    "party": "Mark 14",
+    "role": "buyer",
+    "symbol": "VEV_4000",
+    "K": 20,
+    "n": 232,
+    "mean_fwd_mid": -0.178879,
+    "t_stat": -0.609,
+    "frac_pos": 0.444
+  },
+  {
+    "party": "Mark 14",
+    "role": "buyer",
+    "symbol": "VEV_4000",
+    "K": 100,
+    "n": 232,
+    "mean_fwd_mid": -0.131466,
+    "t_stat": -0.2221,
+    "frac_pos": 0.4483
+  },
+  {
+    "party": "Mark 14",
+    "role": "buyer",
+    "symbol": "VEV_5200",
+    "K": 5,
+    "n": 33,
+    "mean_fwd_mid": -0.242424,
+    "t_stat": -1.425,
+    "frac_pos": 0.3333
+  },
+  {
+    "party": "Mark 14",
+    "role": "buyer",
+    "symbol": "VEV_5200",
+    "K": 20,
+    "n": 33,
+    "mean_fwd_mid": 0.015152,
+    "t_stat": 0.0259,
+    "frac_pos": 0.4242
+  },
+  {
+    "party": "Mark 14",
+    "role": "buyer",
+    "symbol": "VEV_5200",
+    "K": 100,
+    "n": 33,
+    "mean_fwd_mid": -0.090909,
+    "t_stat": -0.0821,
+    "frac_pos": 0.5152
+  },
+  {
+    "party": "Mark 14",
+    "role": "buyer",
+    "symbol": "VEV_5300",
+    "K": 5,
+    "n": 30,
+    "mean_fwd_mid": -0.416667,
+    "t_stat": -2.533,
+    "frac_pos": 0.2
+  },
+  {
+    "party": "Mark 14",
+    "role": "buyer",
+    "symbol": "VEV_5300",
+    "K": 20,
+    "n": 30,
+    "mean_fwd_mid": -0.216667,
+    "t_stat": -0.7647,
+    "frac_pos": 0.3333
+  },
+  {
+    "party": "Mark 14",
+    "role": "buyer",
+    "symbol": "VEV_5300",
+    "K": 100,
+    "n": 30,
+    "mean_fwd_mid": 0.65,
+    "t_stat": 1.1549,
+    "frac_pos": 0.5333
+  },
+  {
+    "party": "Mark 14",
+    "role": "seller",
+    "symbol": "HYDROGEL_PACK",
+    "K": 5,
+    "n": 507,
+    "mean_fwd_mid": -0.171598,
+    "t_stat": -0.923,
+    "frac_pos": 0.4536
+  },
+  {
+    "party": "Mark 14",
+    "role": "seller",
+    "symbol": "HYDROGEL_PACK",
+    "K": 20,
+    "n": 507,
+    "mean_fwd_mid": -0.353057,
+    "t_stat": -0.9265,
+    "frac_pos": 0.4931
+  },
+  {
+    "party": "Mark 14",
+    "role": "seller",
+    "symbol": "HYDROGEL_PACK",
+    "K": 100,
+    "n": 507,
+    "mean_fwd_mid": -0.512821,
+    "t_stat": -0.6311,
+    "frac_pos": 0.4852
+  },
+  {
+    "party": "Mark 14",
+    "role": "seller",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 5,
+    "n": 331,
+    "mean_fwd_mid": 0.261329,
+    "t_stat": 2.1521,
+    "frac_pos": 0.4804
+  },
+  {
+    "party": "Mark 14",
+    "role": "seller",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 20,
+    "n": 331,
+    "mean_fwd_mid": 0.575529,
+    "t_stat": 2.7137,
+    "frac_pos": 0.5196
+  },
+  {
+    "party": "Mark 14",
+    "role": "seller",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 100,
+    "n": 331,
+    "mean_fwd_mid": 1.075529,
+    "t_stat": 2.1875,
+    "frac_pos": 0.5227
+  },
+  {
+    "party": "Mark 14",
+    "role": "seller",
+    "symbol": "VEV_4000",
+    "K": 5,
+    "n": 207,
+    "mean_fwd_mid": 0.130435,
+    "t_stat": 0.8471,
+    "frac_pos": 0.4734
+  },
+  {
+    "party": "Mark 14",
+    "role": "seller",
+    "symbol": "VEV_4000",
+    "K": 20,
+    "n": 207,
+    "mean_fwd_mid": 0.188406,
+    "t_stat": 0.6652,
+    "frac_pos": 0.4831
+  },
+  {
+    "party": "Mark 14",
+    "role": "seller",
+    "symbol": "VEV_4000",
+    "K": 100,
+    "n": 207,
+    "mean_fwd_mid": -0.475845,
+    "t_stat": -0.786,
+    "frac_pos": 0.4734
+  },
+  {
+    "party": "Mark 22",
+    "role": "buyer",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 5,
+    "n": 25,
+    "mean_fwd_mid": -0.4,
+    "t_stat": -0.6532,
+    "frac_pos": 0.4
+  },
+  {
+    "party": "Mark 22",
+    "role": "buyer",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 20,
+    "n": 25,
+    "mean_fwd_mid": 1.14,
+    "t_stat": 1.3431,
+    "frac_pos": 0.6
+  },
+  {
+    "party": "Mark 22",
+    "role": "buyer",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 100,
+    "n": 25,
+    "mean_fwd_mid": 2.2,
+    "t_stat": 1.0753,
+    "frac_pos": 0.52
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 5,
+    "n": 101,
+    "mean_fwd_mid": 1.544554,
+    "t_stat": 6.4148,
+    "frac_pos": 0.7921
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 20,
+    "n": 101,
+    "mean_fwd_mid": 1.465347,
+    "t_stat": 3.2636,
+    "frac_pos": 0.6238
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 100,
+    "n": 101,
+    "mean_fwd_mid": 0.475248,
+    "t_stat": 0.5028,
+    "frac_pos": 0.4851
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VEV_5200",
+    "K": 5,
+    "n": 46,
+    "mean_fwd_mid": -0.206522,
+    "t_stat": -1.42,
+    "frac_pos": 0.3261
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VEV_5200",
+    "K": 20,
+    "n": 46,
+    "mean_fwd_mid": 0.228261,
+    "t_stat": 0.4629,
+    "frac_pos": 0.4783
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VEV_5200",
+    "K": 100,
+    "n": 46,
+    "mean_fwd_mid": 0.880435,
+    "t_stat": 0.941,
+    "frac_pos": 0.587
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VEV_5300",
+    "K": 5,
+    "n": 163,
+    "mean_fwd_mid": -0.193252,
+    "t_stat": -3.1777,
+    "frac_pos": 0.2454
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VEV_5300",
+    "K": 20,
+    "n": 163,
+    "mean_fwd_mid": -0.122699,
+    "t_stat": -0.9543,
+    "frac_pos": 0.3865
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VEV_5300",
+    "K": 100,
+    "n": 163,
+    "mean_fwd_mid": 0.233129,
+    "t_stat": 0.9037,
+    "frac_pos": 0.5031
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VEV_5400",
+    "K": 5,
+    "n": 276,
+    "mean_fwd_mid": -0.030797,
+    "t_stat": -1.3173,
+    "frac_pos": 0.163
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VEV_5400",
+    "K": 20,
+    "n": 276,
+    "mean_fwd_mid": 0.021739,
+    "t_stat": 0.4575,
+    "frac_pos": 0.308
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VEV_5400",
+    "K": 100,
+    "n": 276,
+    "mean_fwd_mid": -0.021739,
+    "t_stat": -0.2385,
+    "frac_pos": 0.4203
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VEV_5500",
+    "K": 5,
+    "n": 306,
+    "mean_fwd_mid": -0.026144,
+    "t_stat": -1.9208,
+    "frac_pos": 0.0556
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VEV_5500",
+    "K": 20,
+    "n": 306,
+    "mean_fwd_mid": 0.014706,
+    "t_stat": 0.6103,
+    "frac_pos": 0.1405
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VEV_5500",
+    "K": 100,
+    "n": 306,
+    "mean_fwd_mid": -0.031046,
+    "t_stat": -0.7558,
+    "frac_pos": 0.2353
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VEV_6000",
+    "K": 5,
+    "n": 317,
+    "mean_fwd_mid": 0.0,
+    "t_stat": null,
+    "frac_pos": 0.0
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VEV_6000",
+    "K": 20,
+    "n": 317,
+    "mean_fwd_mid": 0.0,
+    "t_stat": null,
+    "frac_pos": 0.0
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VEV_6000",
+    "K": 100,
+    "n": 317,
+    "mean_fwd_mid": 0.0,
+    "t_stat": null,
+    "frac_pos": 0.0
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VEV_6500",
+    "K": 5,
+    "n": 317,
+    "mean_fwd_mid": 0.0,
+    "t_stat": null,
+    "frac_pos": 0.0
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VEV_6500",
+    "K": 20,
+    "n": 317,
+    "mean_fwd_mid": 0.0,
+    "t_stat": null,
+    "frac_pos": 0.0
+  },
+  {
+    "party": "Mark 22",
+    "role": "seller",
+    "symbol": "VEV_6500",
+    "K": 100,
+    "n": 317,
+    "mean_fwd_mid": 0.0,
+    "t_stat": null,
+    "frac_pos": 0.0
+  },
+  {
+    "party": "Mark 38",
+    "role": "buyer",
+    "symbol": "HYDROGEL_PACK",
+    "K": 5,
+    "n": 515,
+    "mean_fwd_mid": -0.119417,
+    "t_stat": -0.6419,
+    "frac_pos": 0.4583
+  },
+  {
+    "party": "Mark 38",
+    "role": "buyer",
+    "symbol": "HYDROGEL_PACK",
+    "K": 20,
+    "n": 515,
+    "mean_fwd_mid": -0.327184,
+    "t_stat": -0.8696,
+    "frac_pos": 0.4951
+  },
+  {
+    "party": "Mark 38",
+    "role": "buyer",
+    "symbol": "HYDROGEL_PACK",
+    "K": 100,
+    "n": 515,
+    "mean_fwd_mid": -0.585437,
+    "t_stat": -0.7256,
+    "frac_pos": 0.4854
+  },
+  {
+    "party": "Mark 38",
+    "role": "buyer",
+    "symbol": "VEV_4000",
+    "K": 5,
+    "n": 209,
+    "mean_fwd_mid": 0.174641,
+    "t_stat": 1.1214,
+    "frac_pos": 0.4785
+  },
+  {
+    "party": "Mark 38",
+    "role": "buyer",
+    "symbol": "VEV_4000",
+    "K": 20,
+    "n": 209,
+    "mean_fwd_mid": 0.23445,
+    "t_stat": 0.823,
+    "frac_pos": 0.4833
+  },
+  {
+    "party": "Mark 38",
+    "role": "buyer",
+    "symbol": "VEV_4000",
+    "K": 100,
+    "n": 209,
+    "mean_fwd_mid": -0.322967,
+    "t_stat": -0.5275,
+    "frac_pos": 0.4785
+  },
+  {
+    "party": "Mark 38",
+    "role": "seller",
+    "symbol": "HYDROGEL_PACK",
+    "K": 5,
+    "n": 507,
+    "mean_fwd_mid": 0.011834,
+    "t_stat": 0.0591,
+    "frac_pos": 0.4635
+  },
+  {
+    "party": "Mark 38",
+    "role": "seller",
+    "symbol": "HYDROGEL_PACK",
+    "K": 20,
+    "n": 507,
+    "mean_fwd_mid": 0.101578,
+    "t_stat": 0.2625,
+    "frac_pos": 0.499
+  },
+  {
+    "party": "Mark 38",
+    "role": "seller",
+    "symbol": "HYDROGEL_PACK",
+    "K": 100,
+    "n": 507,
+    "mean_fwd_mid": 0.552268,
+    "t_stat": 0.686,
+    "frac_pos": 0.4832
+  },
+  {
+    "party": "Mark 38",
+    "role": "seller",
+    "symbol": "VEV_4000",
+    "K": 5,
+    "n": 233,
+    "mean_fwd_mid": -0.169528,
+    "t_stat": -1.163,
+    "frac_pos": 0.4249
+  },
+  {
+    "party": "Mark 38",
+    "role": "seller",
+    "symbol": "VEV_4000",
+    "K": 20,
+    "n": 233,
+    "mean_fwd_mid": -0.17382,
+    "t_stat": -0.5943,
+    "frac_pos": 0.4464
+  },
+  {
+    "party": "Mark 38",
+    "role": "seller",
+    "symbol": "VEV_4000",
+    "K": 100,
+    "n": 233,
+    "mean_fwd_mid": -0.079399,
+    "t_stat": -0.1342,
+    "frac_pos": 0.4506
+  },
+  {
+    "party": "Mark 49",
+    "role": "seller",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 5,
+    "n": 105,
+    "mean_fwd_mid": 1.819048,
+    "t_stat": 9.6309,
+    "frac_pos": 0.781
+  },
+  {
+    "party": "Mark 49",
+    "role": "seller",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 20,
+    "n": 105,
+    "mean_fwd_mid": 1.795238,
+    "t_stat": 4.8767,
+    "frac_pos": 0.6762
+  },
+  {
+    "party": "Mark 49",
+    "role": "seller",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 100,
+    "n": 105,
+    "mean_fwd_mid": 1.919048,
+    "t_stat": 2.1264,
+    "frac_pos": 0.5333
+  },
+  {
+    "party": "Mark 55",
+    "role": "buyer",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 5,
+    "n": 598,
+    "mean_fwd_mid": 0.198997,
+    "t_stat": 2.2465,
+    "frac_pos": 0.4649
+  },
+  {
+    "party": "Mark 55",
+    "role": "buyer",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 20,
+    "n": 598,
+    "mean_fwd_mid": 0.408863,
+    "t_stat": 2.4789,
+    "frac_pos": 0.51
+  },
+  {
+    "party": "Mark 55",
+    "role": "buyer",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 100,
+    "n": 598,
+    "mean_fwd_mid": 0.521739,
+    "t_stat": 1.3837,
+    "frac_pos": 0.4983
+  },
+  {
+    "party": "Mark 55",
+    "role": "seller",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 5,
+    "n": 600,
+    "mean_fwd_mid": 0.051667,
+    "t_stat": 0.577,
+    "frac_pos": 0.4433
+  },
+  {
+    "party": "Mark 55",
+    "role": "seller",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 20,
+    "n": 600,
+    "mean_fwd_mid": -0.105833,
+    "t_stat": -0.6181,
+    "frac_pos": 0.4383
+  },
+  {
+    "party": "Mark 55",
+    "role": "seller",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 100,
+    "n": 600,
+    "mean_fwd_mid": -0.901667,
+    "t_stat": -2.4774,
+    "frac_pos": 0.44
+  },
+  {
+    "party": "Mark 67",
+    "role": "buyer",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 5,
+    "n": 165,
+    "mean_fwd_mid": 1.945455,
+    "t_stat": 12.9415,
+    "frac_pos": 0.8303
+  },
+  {
+    "party": "Mark 67",
+    "role": "buyer",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 20,
+    "n": 165,
+    "mean_fwd_mid": 1.845455,
+    "t_stat": 5.967,
+    "frac_pos": 0.6485
+  },
+  {
+    "party": "Mark 67",
+    "role": "buyer",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 100,
+    "n": 165,
+    "mean_fwd_mid": 1.566667,
+    "t_stat": 2.1288,
+    "frac_pos": 0.5455
+  }
+]

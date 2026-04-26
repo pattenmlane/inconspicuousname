@@ -1,0 +1,167 @@
+[
+  {
+    "chain": [
+      "Mark 01",
+      "Mark 22",
+      "Mark 01",
+      "Mark 22",
+      "Mark 01",
+      "Mark 22"
+    ],
+    "n": 725
+  },
+  {
+    "chain": [
+      "Mark 14",
+      "Mark 22",
+      "Mark 01",
+      "Mark 22",
+      "Mark 01",
+      "Mark 22"
+    ],
+    "n": 79
+  },
+  {
+    "chain": [
+      "Mark 01",
+      "Mark 22",
+      "Mark 01",
+      "Mark 22",
+      "Mark 38",
+      "Mark 14"
+    ],
+    "n": 75
+  },
+  {
+    "chain": [
+      "Mark 01",
+      "Mark 22",
+      "Mark 01",
+      "Mark 22",
+      "Mark 14",
+      "Mark 38"
+    ],
+    "n": 67
+  },
+  {
+    "chain": [
+      "Mark 14",
+      "Mark 38",
+      "Mark 01",
+      "Mark 22",
+      "Mark 01",
+      "Mark 22"
+    ],
+    "n": 57
+  },
+  {
+    "chain": [
+      "Mark 38",
+      "Mark 14",
+      "Mark 01",
+      "Mark 22",
+      "Mark 01",
+      "Mark 22"
+    ],
+    "n": 49
+  },
+  {
+    "chain": [
+      "Mark 14",
+      "Mark 38",
+      "Mark 38",
+      "Mark 14",
+      "Mark 14",
+      "Mark 38"
+    ],
+    "n": 47
+  },
+  {
+    "chain": [
+      "Mark 14",
+      "Mark 38",
+      "Mark 14",
+      "Mark 38",
+      "Mark 38",
+      "Mark 14"
+    ],
+    "n": 45
+  },
+  {
+    "chain": [
+      "Mark 38",
+      "Mark 14",
+      "Mark 14",
+      "Mark 38",
+      "Mark 14",
+      "Mark 38"
+    ],
+    "n": 43
+  },
+  {
+    "chain": [
+      "Mark 38",
+      "Mark 14",
+      "Mark 14",
+      "Mark 38",
+      "Mark 38",
+      "Mark 14"
+    ],
+    "n": 40
+  },
+  {
+    "chain": [
+      "Mark 01",
+      "Mark 22",
+      "Mark 01",
+      "Mark 22",
+      "Mark 14",
+      "Mark 55"
+    ],
+    "n": 36
+  },
+  {
+    "chain": [
+      "Mark 38",
+      "Mark 14",
+      "Mark 38",
+      "Mark 14",
+      "Mark 38",
+      "Mark 14"
+    ],
+    "n": 36
+  },
+  {
+    "chain": [
+      "Mark 01",
+      "Mark 22",
+      "Mark 01",
+      "Mark 22",
+      "Mark 55",
+      "Mark 14"
+    ],
+    "n": 34
+  },
+  {
+    "chain": [
+      "Mark 14",
+      "Mark 38",
+      "Mark 38",
+      "Mark 14",
+      "Mark 38",
+      "Mark 14"
+    ],
+    "n": 34
+  },
+  {
+    "chain": [
+      "Mark 14",
+      "Mark 55",
+      "Mark 01",
+      "Mark 22",
+      "Mark 01",
+      "Mark 22"
+    ],
+    "n": 34
+  }
+]

@@ -1,0 +1,120 @@
+[
+  {
+    "iteration": "round4_phase1_complete",
+    "analysis_description": "Round 4 Phase 1 completion gate (suggested direction.txt): counterparty-conditioned markouts on tapes days 1–3; tick = price CSV row order per (day, product); forward K = mid[i+K]-mid[i] at trade-aligned index; aggressive side from trade price vs BBO at same (day, ts).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/ph1_r4_counterparty_analysis.py",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_executive_summary.txt",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_participant_predictivity.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_mark01_vev5300_stratify_extract.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_baseline_cell_means_fwd20.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_residuals_fwd20.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_graph_top_pairs.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_graph_2hop_trade_order.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_burst_events.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_burst_vs_control_extract_fwd20.txt",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_adverse_aggressor_fwd20.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_markout_per_trade_sample.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_mark67_aggr_buy_fwd20_by_day.json",
+      "round4work/round4description.txt",
+      "round4work/suggested direction.txt",
+      "round4work/outputs/r4_initial_analysis_summary.txt"
+    ],
+    "used_to_decide": "Phase 1 gate satisfied: all five bullet areas have quantitative artifacts; ranked edges below for Phase 2 conditioning and eventual R4 trader design.",
+    "phase1_bullet_conclusions": [
+      {
+        "bullet": "1) Participant-level alpha / predictivity",
+        "outputs": [
+          "analysis_outputs/r4_ph1_participant_predictivity.json",
+          "analysis_outputs/r4_ph1_mark01_vev5300_stratify_extract.json",
+          "analysis_outputs/r4_ph1_mark67_aggr_buy_fwd20_by_day.json"
+        ],
+        "conclusion": "Mark 67 aggressive buys show large positive mean forward mid on the traded symbol at K=20 (t≈5.86, n=164) with positive mean on all three days; Mark 55 aggressive buys also positive at K=20 (t≈2.48, n≈600). Mark 01 buyer on VEV_5300 shows negative short-horizon (K=5) mean. Many cells have weak t-stats after stratification."
+      },
+      {
+        "bullet": "2) Deviation from bot baseline (cell means)",
+        "outputs": [
+          "analysis_outputs/r4_ph1_baseline_cell_means_fwd20.json",
+          "analysis_outputs/r4_ph1_residuals_fwd20.json"
+        ],
+        "conclusion": "Dominant (buyer,seller,symbol) cells have heterogeneous mean fwd-20; residual file supports second-order search but no single huge systematic residual without further conditioning."
+      },
+      {
+        "bullet": "3) Sequence / graph methods",
+        "outputs": [
+          "analysis_outputs/r4_ph1_graph_top_pairs.json",
+          "analysis_outputs/r4_ph1_graph_2hop_trade_order.json"
+        ],
+        "conclusion": "Mark 01→Mark 22 dominates pair counts (consistent with r4_initial_analysis_summary); 2-hop chains in raw trade order are mostly Mark microstructure—needs time-aligned motif search in Phase 2."
+      },
+      {
+        "bullet": "4) Burst structure",
+        "outputs": [
+          "analysis_outputs/r4_ph1_burst_events.json",
+          "analysis_outputs/r4_ph1_burst_vs_control_extract_fwd20.txt"
+        ],
+        "conclusion": "Multi-print bursts (≥3 rows same day+ts) show higher mean extract fwd-20 mid (~0.40 vs ~0.15 control), suggesting scheduled basket activity moves extract short horizon on average."
+      },
+      {
+        "bullet": "5) Adverse selection vs inventory (proxy)",
+        "outputs": [
+          "analysis_outputs/r4_ph1_adverse_aggressor_fwd20.json"
+        ],
+        "conclusion": "Mark 22 as aggressive seller shows slight negative mean fwd-20 on symbol (t≈-0.95); Mark 67 aggressive buy strongly positive—suggests asymmetry in who leans price up after prints."
+      }
+    ],
+    "phase1_top5_tradeable_edges": [
+      {
+        "rank": 1,
+        "edge": "Follow Mark 67 aggressive buy: positive mean fwd-20 on traded symbol (~+1.81, n=164, t≈5.86); day stability: mean fwd20 positive on days 1,2,3 (see r4_ph1_mark67_aggr_buy_fwd20_by_day.json).",
+        "effect_size": "mean fwd20 sym ~1.8 (price units)",
+        "n": 164,
+        "days_validated": [1, 2, 3]
+      },
+      {
+        "rank": 2,
+        "edge": "Mark 55 aggressive buy: positive mean fwd-20 on symbol (~+0.41, t≈2.48, n≈598). Validate in Phase 2 vs inventory and burst context.",
+        "effect_size": "~0.41 mean fwd20",
+        "n": 598,
+        "days_validated": [1, 2, 3]
+      },
+      {
+        "rank": 3,
+        "edge": "Multi-symbol burst timestamps: extract mid fwd-20 higher than random time control (burst mean ~0.40 vs control ~0.15 on sampled controls).",
+        "effect_size": "~0.25 extract mid delta",
+        "n": "200 burst events vs 448 controls",
+        "days_validated": [1, 2, 3]
+      },
+      {
+        "rank": 4,
+        "edge": "Mark 01 buyer on VEV_5300 at K=5: negative mean fwd mid (mean ~-0.15, t≈-2.29, n=132)—candidate short-horizon fade of 5300 after Mark 01 aggressive lift (needs Sonic gate in Phase 3).",
+        "effect_size": "~-0.15 mean fwd5",
+        "n": 132,
+        "days_validated": [1, 2, 3]
+      },
+      {
+        "rank": 5,
+        "edge": "Mark 01 buyer on VELVETFRUIT_EXTRACT at K=5: mild positive mean fwd (~+0.29, t≈2.11, n=260)—weaker than Mark 67 edge; use as secondary extract cue.",
+        "effect_size": "~+0.29 mean fwd5",
+        "n": 260,
+        "days_validated": [1, 2, 3]
+      }
+    ],
+    "phase1_negative_or_null_findings": [
+      "Mark 22 as aggressive seller: mean fwd-20 on symbol only slightly negative (t≈-0.95)—not a sharp fade signal alone.",
+      "Mark 01 on VEV_5300 at K=20/100: short-horizon edge does not persist at same magnitude (K=5 strongest).",
+      "Trade-order 2-hop motifs without clock alignment are noisy; Phase 2 should use timestamp-aligned sequences.",
+      "Cell-mean baseline alone does not surface a single dominant residual trade rule without regime splits (spread/hour)—documented for follow-up."
+    ]
+  },
+  {
+    "iteration": 0,
+    "analysis_description": "Round 4 trader_v0 backtest vs Phase 1: implements Mark 67 aggressive-buy extract lift; tape index cache fix (JSON keys) required for live merge. Compare results.json worse/all to offline predictivity.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v0_round4_worse.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v0_round4_all.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_adverse_aggressor_fwd20.json"
+    ],
+    "used_to_decide": "v0 worse total 7794 (days 1–2 positive, day 3 negative); does not meet 200k/day bar. Next: add Sonic joint gate on 5200/5300 from Phase 3 playbook, fade Mark 01 on 5300, or reduce day-3 exposure; Phase 2 not started until ops requests."
+  }
+]

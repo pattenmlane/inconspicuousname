@@ -1,0 +1,2825 @@
+[
+  {
+    "day": 1,
+    "ts": 437100,
+    "n_prints": 10,
+    "orchestrator_buyer_mode": "Mark 38",
+    "symbols": [
+      "VEV_4000",
+      "VEV_4500",
+      "VEV_5000",
+      "VEV_5100",
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 5.0
+  },
+  {
+    "day": 3,
+    "ts": 155400,
+    "n_prints": 10,
+    "orchestrator_buyer_mode": "Mark 38",
+    "symbols": [
+      "VEV_4000",
+      "VEV_4500",
+      "VEV_5000",
+      "VEV_5100",
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -6.0
+  },
+  {
+    "day": 2,
+    "ts": 423800,
+    "n_prints": 7,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "HYDROGEL_PACK",
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 5.0
+  },
+  {
+    "day": 3,
+    "ts": 699400,
+    "n_prints": 7,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "HYDROGEL_PACK",
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.0
+  },
+  {
+    "day": 3,
+    "ts": 877600,
+    "n_prints": 7,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VELVETFRUIT_EXTRACT",
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -4.0
+  },
+  {
+    "day": 1,
+    "ts": 14800,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VELVETFRUIT_EXTRACT",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -4.0
+  },
+  {
+    "day": 1,
+    "ts": 16700,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_4000",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -4.5
+  },
+  {
+    "day": 1,
+    "ts": 252500,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "HYDROGEL_PACK",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 0.0
+  },
+  {
+    "day": 1,
+    "ts": 489700,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VELVETFRUIT_EXTRACT",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 5.0
+  },
+  {
+    "day": 1,
+    "ts": 564300,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 4.5
+  },
+  {
+    "day": 1,
+    "ts": 624400,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -7.0
+  },
+  {
+    "day": 1,
+    "ts": 642100,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -2.0
+  },
+  {
+    "day": 1,
+    "ts": 720500,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VELVETFRUIT_EXTRACT",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -3.0
+  },
+  {
+    "day": 1,
+    "ts": 988100,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 4.0
+  },
+  {
+    "day": 2,
+    "ts": 169000,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "HYDROGEL_PACK",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.0
+  },
+  {
+    "day": 2,
+    "ts": 414900,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 9.0
+  },
+  {
+    "day": 2,
+    "ts": 433100,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.5
+  },
+  {
+    "day": 2,
+    "ts": 483400,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VELVETFRUIT_EXTRACT",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -3.5
+  },
+  {
+    "day": 2,
+    "ts": 519600,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -2.0
+  },
+  {
+    "day": 2,
+    "ts": 554600,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VELVETFRUIT_EXTRACT",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.0
+  },
+  {
+    "day": 2,
+    "ts": 666500,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 5.5
+  },
+  {
+    "day": 3,
+    "ts": 98900,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 0.0
+  },
+  {
+    "day": 3,
+    "ts": 128700,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 9.0
+  },
+  {
+    "day": 3,
+    "ts": 222400,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 1.0
+  },
+  {
+    "day": 3,
+    "ts": 269000,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -6.5
+  },
+  {
+    "day": 3,
+    "ts": 320200,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VELVETFRUIT_EXTRACT",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 1.5
+  },
+  {
+    "day": 3,
+    "ts": 328700,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 8.0
+  },
+  {
+    "day": 3,
+    "ts": 363100,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.5
+  },
+  {
+    "day": 3,
+    "ts": 369800,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 4.0
+  },
+  {
+    "day": 3,
+    "ts": 370100,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 22",
+    "symbols": [
+      "VEV_4000",
+      "VEV_4500",
+      "VEV_5000",
+      "VEV_5100",
+      "VEV_5200",
+      "VEV_5300"
+    ],
+    "fwd20_extract": 6.0
+  },
+  {
+    "day": 3,
+    "ts": 428900,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -4.5
+  },
+  {
+    "day": 3,
+    "ts": 431900,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 2.0
+  },
+  {
+    "day": 3,
+    "ts": 451300,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "HYDROGEL_PACK",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.0
+  },
+  {
+    "day": 3,
+    "ts": 498100,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "HYDROGEL_PACK",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -3.0
+  },
+  {
+    "day": 3,
+    "ts": 511800,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 5.0
+  },
+  {
+    "day": 3,
+    "ts": 516400,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "HYDROGEL_PACK",
+      "VEV_5200",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -2.0
+  },
+  {
+    "day": 3,
+    "ts": 524000,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 0.0
+  },
+  {
+    "day": 3,
+    "ts": 535900,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 7.0
+  },
+  {
+    "day": 3,
+    "ts": 555100,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -2.0
+  },
+  {
+    "day": 3,
+    "ts": 622500,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 2.0
+  },
+  {
+    "day": 3,
+    "ts": 705400,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 0.0
+  },
+  {
+    "day": 3,
+    "ts": 834400,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -4.0
+  },
+  {
+    "day": 3,
+    "ts": 890900,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 9.0
+  },
+  {
+    "day": 3,
+    "ts": 943900,
+    "n_prints": 6,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VELVETFRUIT_EXTRACT",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 2.0
+  },
+  {
+    "day": 1,
+    "ts": 40400,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -2.0
+  },
+  {
+    "day": 1,
+    "ts": 74100,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 3.0
+  },
+  {
+    "day": 1,
+    "ts": 85300,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 4.5
+  },
+  {
+    "day": 1,
+    "ts": 135900,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -5.5
+  },
+  {
+    "day": 1,
+    "ts": 150600,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -9.0
+  },
+  {
+    "day": 1,
+    "ts": 172500,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -5.5
+  },
+  {
+    "day": 1,
+    "ts": 190100,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.5
+  },
+  {
+    "day": 1,
+    "ts": 195600,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 1.0
+  },
+  {
+    "day": 1,
+    "ts": 376600,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 2.0
+  },
+  {
+    "day": 1,
+    "ts": 460400,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 6.0
+  },
+  {
+    "day": 1,
+    "ts": 519500,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 0.0
+  },
+  {
+    "day": 1,
+    "ts": 568900,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -2.0
+  },
+  {
+    "day": 1,
+    "ts": 588200,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -4.0
+  },
+  {
+    "day": 1,
+    "ts": 604600,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -4.5
+  },
+  {
+    "day": 1,
+    "ts": 617900,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 0.0
+  },
+  {
+    "day": 1,
+    "ts": 618300,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.5
+  },
+  {
+    "day": 1,
+    "ts": 636100,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -11.0
+  },
+  {
+    "day": 1,
+    "ts": 674000,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 5.0
+  },
+  {
+    "day": 1,
+    "ts": 701200,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "HYDROGEL_PACK",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 8.0
+  },
+  {
+    "day": 1,
+    "ts": 710500,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 6.0
+  },
+  {
+    "day": 1,
+    "ts": 725000,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -8.0
+  },
+  {
+    "day": 1,
+    "ts": 785800,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "HYDROGEL_PACK",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 4.0
+  },
+  {
+    "day": 1,
+    "ts": 807800,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -4.5
+  },
+  {
+    "day": 1,
+    "ts": 812600,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -6.0
+  },
+  {
+    "day": 1,
+    "ts": 948500,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 4.0
+  },
+  {
+    "day": 1,
+    "ts": 950300,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "HYDROGEL_PACK",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 7.0
+  },
+  {
+    "day": 2,
+    "ts": 20900,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -2.5
+  },
+  {
+    "day": 2,
+    "ts": 45100,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "HYDROGEL_PACK",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 1.5
+  },
+  {
+    "day": 2,
+    "ts": 75200,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -3.0
+  },
+  {
+    "day": 2,
+    "ts": 79300,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 7.0
+  },
+  {
+    "day": 2,
+    "ts": 129700,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 2.5
+  },
+  {
+    "day": 2,
+    "ts": 189100,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 2.0
+  },
+  {
+    "day": 2,
+    "ts": 204400,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 6.0
+  },
+  {
+    "day": 2,
+    "ts": 225500,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -4.0
+  },
+  {
+    "day": 2,
+    "ts": 239400,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "HYDROGEL_PACK",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 11.0
+  },
+  {
+    "day": 2,
+    "ts": 289300,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.0
+  },
+  {
+    "day": 2,
+    "ts": 320800,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 1.0
+  },
+  {
+    "day": 2,
+    "ts": 321600,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -0.5
+  },
+  {
+    "day": 2,
+    "ts": 350700,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -7.5
+  },
+  {
+    "day": 2,
+    "ts": 358500,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 3.5
+  },
+  {
+    "day": 2,
+    "ts": 365600,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 2.0
+  },
+  {
+    "day": 2,
+    "ts": 389000,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 2.0
+  },
+  {
+    "day": 2,
+    "ts": 390300,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 6.0
+  },
+  {
+    "day": 2,
+    "ts": 443600,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 11.5
+  },
+  {
+    "day": 2,
+    "ts": 456200,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 3.0
+  },
+  {
+    "day": 2,
+    "ts": 461200,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 4.5
+  },
+  {
+    "day": 2,
+    "ts": 495700,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "HYDROGEL_PACK",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 0.5
+  },
+  {
+    "day": 2,
+    "ts": 501900,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -5.5
+  },
+  {
+    "day": 2,
+    "ts": 555700,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VELVETFRUIT_EXTRACT",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -3.0
+  },
+  {
+    "day": 2,
+    "ts": 587100,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 3.0
+  },
+  {
+    "day": 2,
+    "ts": 588500,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.5
+  },
+  {
+    "day": 2,
+    "ts": 604100,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 7.0
+  },
+  {
+    "day": 2,
+    "ts": 711900,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -7.0
+  },
+  {
+    "day": 2,
+    "ts": 764000,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -2.0
+  },
+  {
+    "day": 2,
+    "ts": 779200,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -6.0
+  },
+  {
+    "day": 2,
+    "ts": 793900,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VELVETFRUIT_EXTRACT",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.0
+  },
+  {
+    "day": 2,
+    "ts": 808800,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -9.0
+  },
+  {
+    "day": 2,
+    "ts": 826400,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -0.5
+  },
+  {
+    "day": 2,
+    "ts": 836300,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 0.0
+  },
+  {
+    "day": 2,
+    "ts": 872600,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.0
+  },
+  {
+    "day": 2,
+    "ts": 876500,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 7.0
+  },
+  {
+    "day": 2,
+    "ts": 948500,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -2.0
+  },
+  {
+    "day": 2,
+    "ts": 993800,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 9.0
+  },
+  {
+    "day": 3,
+    "ts": 32900,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 2.5
+  },
+  {
+    "day": 3,
+    "ts": 33600,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.0
+  },
+  {
+    "day": 3,
+    "ts": 92200,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -2.5
+  },
+  {
+    "day": 3,
+    "ts": 126600,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "HYDROGEL_PACK",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -2.0
+  },
+  {
+    "day": 3,
+    "ts": 137700,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -4.0
+  },
+  {
+    "day": 3,
+    "ts": 142700,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "HYDROGEL_PACK",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 3.0
+  },
+  {
+    "day": 3,
+    "ts": 218300,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 4.0
+  },
+  {
+    "day": 3,
+    "ts": 220800,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -6.0
+  },
+  {
+    "day": 3,
+    "ts": 243700,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.0
+  },
+  {
+    "day": 3,
+    "ts": 289400,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -7.0
+  },
+  {
+    "day": 3,
+    "ts": 290900,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.0
+  },
+  {
+    "day": 3,
+    "ts": 315800,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 2.0
+  },
+  {
+    "day": 3,
+    "ts": 317200,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -3.0
+  },
+  {
+    "day": 3,
+    "ts": 319700,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -3.0
+  },
+  {
+    "day": 3,
+    "ts": 329200,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 6.5
+  },
+  {
+    "day": 3,
+    "ts": 332600,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -5.0
+  },
+  {
+    "day": 3,
+    "ts": 346200,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "HYDROGEL_PACK",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -6.0
+  },
+  {
+    "day": 3,
+    "ts": 350300,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -4.0
+  },
+  {
+    "day": 3,
+    "ts": 364700,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 0.0
+  },
+  {
+    "day": 3,
+    "ts": 385400,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 5.0
+  },
+  {
+    "day": 3,
+    "ts": 389100,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 7.0
+  },
+  {
+    "day": 3,
+    "ts": 391400,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 0.5
+  },
+  {
+    "day": 3,
+    "ts": 396000,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.0
+  },
+  {
+    "day": 3,
+    "ts": 442200,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 3.0
+  },
+  {
+    "day": 3,
+    "ts": 456600,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -2.0
+  },
+  {
+    "day": 3,
+    "ts": 459800,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -2.0
+  },
+  {
+    "day": 3,
+    "ts": 529600,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.0
+  },
+  {
+    "day": 3,
+    "ts": 531500,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -3.0
+  },
+  {
+    "day": 3,
+    "ts": 535400,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 4.0
+  },
+  {
+    "day": 3,
+    "ts": 547600,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VELVETFRUIT_EXTRACT",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 3.0
+  },
+  {
+    "day": 3,
+    "ts": 580600,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.0
+  },
+  {
+    "day": 3,
+    "ts": 584300,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -6.0
+  },
+  {
+    "day": 3,
+    "ts": 612700,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 8.0
+  },
+  {
+    "day": 3,
+    "ts": 624200,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 12.0
+  },
+  {
+    "day": 3,
+    "ts": 627700,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -9.5
+  },
+  {
+    "day": 3,
+    "ts": 631300,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -3.5
+  },
+  {
+    "day": 3,
+    "ts": 631500,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -4.0
+  },
+  {
+    "day": 3,
+    "ts": 634500,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 3.0
+  },
+  {
+    "day": 3,
+    "ts": 642500,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 8.0
+  },
+  {
+    "day": 3,
+    "ts": 671800,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 11.5
+  },
+  {
+    "day": 3,
+    "ts": 671900,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 8.0
+  },
+  {
+    "day": 3,
+    "ts": 689900,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 4.5
+  },
+  {
+    "day": 3,
+    "ts": 700300,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 0.0
+  },
+  {
+    "day": 3,
+    "ts": 708800,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 11.0
+  },
+  {
+    "day": 3,
+    "ts": 728500,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -3.0
+  },
+  {
+    "day": 3,
+    "ts": 730000,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -9.5
+  },
+  {
+    "day": 3,
+    "ts": 741100,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 4.0
+  },
+  {
+    "day": 3,
+    "ts": 753700,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 4.0
+  },
+  {
+    "day": 3,
+    "ts": 777600,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 0.5
+  },
+  {
+    "day": 3,
+    "ts": 785100,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VELVETFRUIT_EXTRACT",
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 5.5
+  },
+  {
+    "day": 3,
+    "ts": 807400,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VELVETFRUIT_EXTRACT",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 2.0
+  },
+  {
+    "day": 3,
+    "ts": 820200,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 0.0
+  },
+  {
+    "day": 3,
+    "ts": 826200,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 2.0
+  },
+  {
+    "day": 3,
+    "ts": 839800,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -6.0
+  },
+  {
+    "day": 3,
+    "ts": 864100,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 3.0
+  },
+  {
+    "day": 3,
+    "ts": 868300,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -3.0
+  },
+  {
+    "day": 3,
+    "ts": 878300,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -9.5
+  },
+  {
+    "day": 3,
+    "ts": 894300,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 0.0
+  },
+  {
+    "day": 3,
+    "ts": 918500,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 5.0
+  },
+  {
+    "day": 3,
+    "ts": 977300,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -7.0
+  },
+  {
+    "day": 3,
+    "ts": 983300,
+    "n_prints": 5,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 0.0
+  },
+  {
+    "day": 1,
+    "ts": 4500,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -4.0
+  },
+  {
+    "day": 1,
+    "ts": 9600,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -5.0
+  },
+  {
+    "day": 1,
+    "ts": 43400,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 8.5
+  },
+  {
+    "day": 1,
+    "ts": 50700,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 2.0
+  },
+  {
+    "day": 1,
+    "ts": 52800,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -3.0
+  },
+  {
+    "day": 1,
+    "ts": 86100,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 3.5
+  },
+  {
+    "day": 1,
+    "ts": 89800,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5400",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -2.0
+  },
+  {
+    "day": 1,
+    "ts": 120300,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 6.5
+  },
+  {
+    "day": 1,
+    "ts": 145500,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 7.0
+  },
+  {
+    "day": 1,
+    "ts": 153000,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -3.0
+  },
+  {
+    "day": 1,
+    "ts": 170400,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.0
+  },
+  {
+    "day": 1,
+    "ts": 170500,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 1.0
+  },
+  {
+    "day": 1,
+    "ts": 235300,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 5.0
+  },
+  {
+    "day": 1,
+    "ts": 304000,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.5
+  },
+  {
+    "day": 1,
+    "ts": 310100,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -4.0
+  },
+  {
+    "day": 1,
+    "ts": 322000,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 2.0
+  },
+  {
+    "day": 1,
+    "ts": 322600,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5200",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -4.0
+  },
+  {
+    "day": 1,
+    "ts": 350300,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.5
+  },
+  {
+    "day": 1,
+    "ts": 377900,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 3.0
+  },
+  {
+    "day": 1,
+    "ts": 399700,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 5.0
+  },
+  {
+    "day": 1,
+    "ts": 410400,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 0.0
+  },
+  {
+    "day": 1,
+    "ts": 428000,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -2.0
+  },
+  {
+    "day": 1,
+    "ts": 455700,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -5.0
+  },
+  {
+    "day": 1,
+    "ts": 476500,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -3.0
+  },
+  {
+    "day": 1,
+    "ts": 524000,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -5.0
+  },
+  {
+    "day": 1,
+    "ts": 553100,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5300",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 2.0
+  },
+  {
+    "day": 1,
+    "ts": 567200,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 4.5
+  },
+  {
+    "day": 1,
+    "ts": 574800,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 1.0
+  },
+  {
+    "day": 1,
+    "ts": 575800,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VELVETFRUIT_EXTRACT",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 3.5
+  },
+  {
+    "day": 1,
+    "ts": 654200,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": -1.0
+  },
+  {
+    "day": 1,
+    "ts": 684000,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 2.5
+  },
+  {
+    "day": 1,
+    "ts": 703200,
+    "n_prints": 4,
+    "orchestrator_buyer_mode": "Mark 01",
+    "symbols": [
+      "VEV_5400",
+      "VEV_5500",
+      "VEV_6000",
+      "VEV_6500"
+    ],
+    "fwd20_extract": 3.5
+  }
+]

@@ -1,0 +1,254 @@
+[
+  {
+    "key": [
+      "Mark 38",
+      "Mark 14",
+      "HYDROGEL_PACK"
+    ],
+    "n": 507,
+    "mean": -0.3530571992110454
+  },
+  {
+    "key": [
+      "Mark 14",
+      "Mark 38",
+      "HYDROGEL_PACK"
+    ],
+    "n": 496,
+    "mean": 0.23387096774193547
+  },
+  {
+    "key": [
+      "Mark 55",
+      "Mark 14",
+      "VELVETFRUIT_EXTRACT"
+    ],
+    "n": 331,
+    "mean": 0.5755287009063444
+  },
+  {
+    "key": [
+      "Mark 01",
+      "Mark 22",
+      "VEV_6000"
+    ],
+    "n": 317,
+    "mean": 0.0
+  },
+  {
+    "key": [
+      "Mark 01",
+      "Mark 22",
+      "VEV_6500"
+    ],
+    "n": 317,
+    "mean": 0.0
+  },
+  {
+    "key": [
+      "Mark 14",
+      "Mark 55",
+      "VELVETFRUIT_EXTRACT"
+    ],
+    "n": 316,
+    "mean": -0.23734177215189872
+  },
+  {
+    "key": [
+      "Mark 01",
+      "Mark 22",
+      "VEV_5500"
+    ],
+    "n": 299,
+    "mean": 0.02508361204013378
+  },
+  {
+    "key": [
+      "Mark 01",
+      "Mark 22",
+      "VEV_5400"
+    ],
+    "n": 263,
+    "mean": 0.039923954372623575
+  },
+  {
+    "key": [
+      "Mark 01",
+      "Mark 55",
+      "VELVETFRUIT_EXTRACT"
+    ],
+    "n": 260,
+    "mean": 0.0057692307692307696
+  },
+  {
+    "key": [
+      "Mark 55",
+      "Mark 01",
+      "VELVETFRUIT_EXTRACT"
+    ],
+    "n": 244,
+    "mean": 0.006147540983606557
+  },
+  {
+    "key": [
+      "Mark 14",
+      "Mark 38",
+      "VEV_4000"
+    ],
+    "n": 232,
+    "mean": -0.1788793103448276
+  },
+  {
+    "key": [
+      "Mark 38",
+      "Mark 14",
+      "VEV_4000"
+    ],
+    "n": 207,
+    "mean": 0.18840579710144928
+  },
+  {
+    "key": [
+      "Mark 01",
+      "Mark 22",
+      "VEV_5300"
+    ],
+    "n": 132,
+    "mean": -0.12121212121212122
+  },
+  {
+    "key": [
+      "Mark 67",
+      "Mark 49",
+      "VELVETFRUIT_EXTRACT"
+    ],
+    "n": 89,
+    "mean": 1.6348314606741574
+  },
+  {
+    "key": [
+      "Mark 67",
+      "Mark 22",
+      "VELVETFRUIT_EXTRACT"
+    ],
+    "n": 75,
+    "mean": 2.026666666666667
+  },
+  {
+    "key": [
+      "Mark 14",
+      "Mark 22",
+      "VEV_5200"
+    ],
+    "n": 33,
+    "mean": 0.015151515151515152
+  },
+  {
+    "key": [
+      "Mark 14",
+      "Mark 22",
+      "VEV_5300"
+    ],
+    "n": 30,
+    "mean": -0.21666666666666667
+  },
+  {
+    "key": [
+      "Mark 22",
+      "Mark 55",
+      "VELVETFRUIT_EXTRACT"
+    ],
+    "n": 18,
+    "mean": 0.5277777777777778
+  },
+  {
+    "key": [
+      "Mark 55",
+      "Mark 22",
+      "VELVETFRUIT_EXTRACT"
+    ],
+    "n": 14,
+    "mean": 2.0357142857142856
+  },
+  {
+    "key": [
+      "Mark 14",
+      "Mark 22",
+      "VEV_5400"
+    ],
+    "n": 13,
+    "mean": -0.34615384615384615
+  },
+  {
+    "key": [
+      "Mark 49",
+      "Mark 22",
+      "VELVETFRUIT_EXTRACT"
+    ],
+    "n": 12,
+    "mean": -2.7083333333333335
+  },
+  {
+    "key": [
+      "Mark 22",
+      "Mark 38",
+      "HYDROGEL_PACK"
+    ],
+    "n": 11,
+    "mean": -5.863636363636363
+  },
+  {
+    "key": [
+      "Mark 01",
+      "Mark 22",
+      "VEV_5200"
+    ],
+    "n": 11,
+    "mean": 0.8636363636363636
+  },
+  {
+    "key": [
+      "Mark 55",
+      "Mark 49",
+      "VELVETFRUIT_EXTRACT"
+    ],
+    "n": 9,
+    "mean": 2.6666666666666665
+  },
+  {
+    "key": [
+      "Mark 38",
+      "Mark 22",
+      "HYDROGEL_PACK"
+    ],
+    "n": 8,
+    "mean": 1.3125
+  },
+  {
+    "key": [
+      "Mark 22",
+      "Mark 49",
+      "VELVETFRUIT_EXTRACT"
+    ],
+    "n": 7,
+    "mean": 2.7142857142857144
+  },
+  {
+    "key": [
+      "Mark 14",
+      "Mark 22",
+      "VEV_5500"
+    ],
+    "n": 7,
+    "mean": -0.42857142857142855
+  },
+  {
+    "key": [
+      "Mark 49",
+      "Mark 55",
+      "VELVETFRUIT_EXTRACT"
+    ],
+    "n": 5,
+    "mean": -1.3
+  }
+]

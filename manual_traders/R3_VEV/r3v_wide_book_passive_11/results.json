@@ -214,5 +214,48 @@
       },
       "sweep_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/sweep_iter14_strike_beta.json"
     }
+  },
+  {
+    "iteration": 15,
+    "trader_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v16.py",
+    "strategy_description": "Shared thesis: joint VEV_5200+VEV_5300 tight L1 gate (both spread<=2) as risk_on filter. No HYDROGEL orders (vouchers+extract PnL focus). Under risk_on, extract size is scaled by GATE_EXTRACT_MULT (currently 1.0 to match v8 extract sizing while gating is logged in traderData). v8 wide-passive 4000/4500 (same offsets/size). BS IV delta+vega skew for extract hedge uses only 4000+4500 positions. Failed experiments removed: (1) touch/market orders on 5200/5300 was strongly negative in worse-matching; (2) gating large 4000/extract size mult hurt worse PnL.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 14946,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v16.py 3 --data Prosperity4Data --no-vis --out manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v16_iter15e_worse.json --match-trades worse",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v16_iter15e_worse_full.log",
+      "trades_or_fills_summary": {
+        "per_day_profit": {
+          "day_0": 7341,
+          "day_1": 6168,
+          "day_2": 1438
+        },
+        "fills": 1154,
+        "fill_qty": 4467,
+        "fill_qty_by_symbol": {
+          "VELVETFRUIT_EXTRACT": 3538,
+          "VEV_4000": 929
+        }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 13416,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v16.py 3 --data Prosperity4Data --no-vis --out manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v16_iter15e_all.json --match-trades all",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v16_iter15e_all_full.log",
+      "trades_or_fills_summary": {
+        "per_day_profit": {
+          "day_0": 7892,
+          "day_1": 6466,
+          "day_2": -942
+        },
+        "fills": 1253,
+        "fill_qty": 4970,
+        "fill_qty_by_symbol": {
+          "VELVETFRUIT_EXTRACT": 4041,
+          "VEV_4000": 929
+        }
+      }
+    }
   }
 ]

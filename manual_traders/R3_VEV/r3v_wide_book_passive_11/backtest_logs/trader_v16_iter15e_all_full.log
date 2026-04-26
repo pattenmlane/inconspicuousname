@@ -1,0 +1,53 @@
+running algorithm '/workspace/manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v16.py'...
+Backtesting /workspace/manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v16.py for round: 3 day: 0
+  0%|          | 0/10000 [00:00<?, ?it/s] 14%|#4        | 1449/10000 [00:00<00:00, 14485.18it/s] 29%|##8       | 2898/10000 [00:00<00:00, 14132.19it/s] 43%|####3     | 4312/10000 [00:00<00:00, 14015.32it/s] 57%|#####7    | 5714/10000 [00:00<00:00, 13734.81it/s] 71%|#######   | 7089/10000 [00:00<00:00, 9849.21it/s]  84%|########4 | 8435/10000 [00:00<00:00, 10805.17it/s] 98%|#########7| 9762/10000 [00:00<00:00, 11481.17it/s]100%|##########| 10000/10000 [00:00<00:00, 11885.33it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 1,970
+VELVETFRUIT_EXTRACT: 5,922
+HYDROGEL_PACK: 0
+Total profit: 7,892
+Backtesting /workspace/manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v16.py for round: 3 day: 1
+  0%|          | 0/10000 [00:00<?, ?it/s] 14%|#4        | 1448/10000 [00:00<00:00, 14472.87it/s] 29%|##8       | 2896/10000 [00:00<00:00, 14061.31it/s] 43%|####3     | 4303/10000 [00:00<00:00, 13973.07it/s] 57%|#####7    | 5701/10000 [00:00<00:00, 9653.01it/s]  71%|#######1  | 7121/10000 [00:00<00:00, 10914.66it/s] 85%|########5 | 8541/10000 [00:00<00:00, 11845.78it/s] 99%|#########9| 9925/10000 [00:00<00:00, 12419.78it/s]100%|##########| 10000/10000 [00:00<00:00, 12096.63it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 2,307
+VELVETFRUIT_EXTRACT: 4,158
+HYDROGEL_PACK: 0
+Total profit: 6,466
+Backtesting /workspace/manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v16.py for round: 3 day: 2
+  0%|          | 0/10000 [00:00<?, ?it/s] 15%|#4        | 1484/10000 [00:00<00:00, 14837.71it/s] 30%|##9       | 2981/10000 [00:00<00:00, 14914.72it/s] 45%|####4     | 4473/10000 [00:00<00:00, 14719.18it/s] 59%|#####9    | 5946/10000 [00:00<00:00, 14442.11it/s] 74%|#######3  | 7391/10000 [00:00<00:00, 9320.64it/s]  88%|########7 | 8791/10000 [00:00<00:00, 10471.76it/s]100%|##########| 10000/10000 [00:00<00:00, 11831.12it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 1,781
+VELVETFRUIT_EXTRACT: -2,723
+HYDROGEL_PACK: 0
+Total profit: -942
+Profit summary:
+Round 3 day 0: 7,892
+Round 3 day 1: 6,466
+Round 3 day 2: -942
+Total profit: 13,416
+
+Successfully saved backtest results to manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v16_iter15e_all.json

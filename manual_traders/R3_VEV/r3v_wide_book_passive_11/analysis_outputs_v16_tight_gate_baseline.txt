@@ -1,0 +1,7 @@
+Tight two-leg gate baseline (prices_round_3_day_k.csv, L1 ask-bid):
+  Fraction of timestamps where VEV_5200 AND VEV_5300 both have spread <= 2 (same-tick):
+  day_0: 1020/10000 = 0.102
+  day_1: 1381/10000 = 0.138
+  day_2: 1727/10000 = 0.173
+
+round3work/vouchers_final_strategy/STRATEGY.txt was not present in this checkout; thesis taken from task description (tight 5200+5300 as risk-on filter).

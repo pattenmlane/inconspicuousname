@@ -122,5 +122,14 @@
       "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v15.py"
     ],
     "used_to_decide": "Introduced strike-specific center shift betas (4000:0.58, 4500:0.52) with same shock threshold=4 and shock-tighten logic from v14. Outcome ties v14 at 36,503 on worse-fill. Per tie-break, prefer simpler v14/v13 family unless this granularity helps future refinements."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "round3work/vouchers_final_strategy/STRATEGY.txt was not present in this repo checkout. Implemented shared thesis from task text: (1) tape baseline \u2014 fraction of same-tick timestamps where 5200 and 5300 both have L1 spread <=2: day0/1/2 ~10.2%/13.8%/17.3% (see analysis_outputs_v16_tight_gate_baseline.txt). (2) IV/Greeks: BS-IV from mids, delta+vega skew on extract for held 4000/4500 only (T=6/365y proxy; same as v8). (3) Tried: gate+touch on 5200/5300 under worse matching produced large negative VEV_5200/5300 PnL; abandoned. (4) Tried: scaling 4000/extract in gate: worse PnL fell vs v8+hydro; with hydro removed, gate-only+mult>1.0 also hurt. Final v16: gate observational, GATE_EXTRACT_MULT=1.0, no 5200/5300 order flow, skew only from 4000/4500.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/analysis_outputs_v16_tight_gate_baseline.txt",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v16.py"
+    ],
+    "used_to_decide": "Ship v16 with gate logged and conservative sizing. Worse-total 14,946 and all-total 13,416 on days 0-2 (vs ~36,500 for v8 which included ~20k hydro) \u2014 PnL gap is almost entirely removing hydrogel, not the gate. Next: forward-return conditioning from tight gate (e.g. only widen extract when EMA of gate-on returns positive) with small ablations, still worse-primary."
   }
 ]

@@ -1,0 +1,2 @@
+burst_rows=318 mean_ext_fwd20=0.298742 std=4.57314
+control_n=800 mean_ext_fwd20=0.34

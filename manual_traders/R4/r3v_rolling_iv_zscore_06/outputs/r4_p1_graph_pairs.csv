@@ -1,0 +1,20 @@
+buyer,seller,rows,notional
+Mark 01,Mark 22,1339,32427.0
+Mark 14,Mark 38,728,20434344.0
+Mark 38,Mark 14,714,20850351.0
+Mark 55,Mark 14,331,9254679.0
+Mark 14,Mark 55,316,9235831.0
+Mark 01,Mark 55,260,7432924.0
+Mark 55,Mark 01,244,7220079.0
+Mark 67,Mark 49,89,5056558.0
+Mark 14,Mark 22,83,14577.0
+Mark 67,Mark 22,75,2864651.0
+Mark 38,Mark 22,19,327140.0
+Mark 22,Mark 55,18,482557.0
+Mark 22,Mark 38,17,427078.0
+Mark 55,Mark 22,14,325980.0
+Mark 49,Mark 22,12,467190.0
+Mark 55,Mark 49,9,283190.0
+Mark 22,Mark 49,7,283215.0
+Mark 49,Mark 55,5,136283.0
+Mark 67,Mark 55,1,5241.0

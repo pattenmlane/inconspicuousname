@@ -1,0 +1,43 @@
+[
+  {
+    "iteration": 1,
+    "phase": "R4_Phase1_analysis",
+    "trader_file": null,
+    "strategy_description": "Phase 1 tape analysis only (see analysis.json round4_phase1_complete). Script: manual_traders/R4/r3v_rolling_iv_zscore_06/r4_phase1_counterparty.py",
+    "backtest_round": null
+  },
+  {
+    "iteration": 2,
+    "trader_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v22.py",
+    "strategy_description": "Round 4 baseline no-op trader (Phase 1: counterparty IDs not yet wired into TradingState; Phase 2 will load precomputed signals). Round 4 days 1-3.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 0,
+      "per_day_pnl": {
+        "day_1": 0,
+        "day_2": 0,
+        "day_3": 0
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v22_2026-04-26_r4_worse.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v22.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v22_2026-04-26_r4_worse.log",
+      "trades_or_fills_summary": {
+        "note": "empty_trader_no_submission_fills"
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 0,
+      "per_day_pnl": {
+        "day_1": 0,
+        "day_2": 0,
+        "day_3": 0
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v22_2026-04-26_r4_all.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v22.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v22_2026-04-26_r4_all.log",
+      "trades_or_fills_summary": {
+        "note": "empty_trader_no_submission_fills"
+      }
+    }
+  }
+]

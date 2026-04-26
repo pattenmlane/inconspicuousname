@@ -118,5 +118,17 @@
       "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v17_2026-04-25.log"
     ],
     "used_to_decide": "Ship v17 as v15 with DROP_THRESH=1.0 and S_LOOKBACK=10 only; keep all other v15 constants."
+  },
+  {
+    "iteration": 18,
+    "analysis_description": "Pulled in **round3work/vouchers_final_strategy/STRATEGY.txt** and **outputs/r3_tight_spread_summary.txt** (merge from `origin/main`). Definitions: s5200/s5300 = ask1\u2212bid1 on VEV_5200/5300, **tight** = both \u2264 TH=2; summary shows P(tight)\u00b710%, higher mean K-step forward extract mid when both tight vs not (t-stat). **Implementation experiments on top of v17:** (A) require joint tight to place any new V5000 long \u2014 backtested worse; **huge** PnL loss vs v17. (B) only allow relaxed V5000 cap (6) when drawdown *and* joint tight \u2014 also hurt vs v17; restoring v17 spread path recovered PnL. (C) vega-clip multipliers 1.0\u20131.2 when drawdown+joint_tight: **no** change in 3-0,3-1,3-2 total (19,780). Conclusion: keep v17 execution; **v18 = v17 + joint spread observability in traderData** (and dead extract stub EXTRACT_Q=0).",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "ablate_joint_gate_entry_v18_pre_shrink",
+      "sweep_JOINT_TIGHT_Q_mult_1.0-1.2",
+      "manual_traders/R3_VEV/r3v_rolling_iv_zscore_06/logs/trader_v18_2026-04-26_r3d012_worse.log"
+    ],
+    "used_to_decide": "Ship v18 as v17 with s5200/s5300 spread state in JSON; do not hard-gate v17 on joint tight at current params (ablations failed). Re-run v18 with days 3-0,3-1,3-2 for apples-to-apples with v17; store both worse+all match modes in results.json per new tracking rule."
   }
 ]

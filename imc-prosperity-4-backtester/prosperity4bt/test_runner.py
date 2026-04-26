@@ -1,3 +1,4 @@
+import json
 from contextlib import closing, redirect_stdout
 from io import StringIO
 from IPython.utils.io import Tee
@@ -115,6 +116,21 @@ class TestRunner:
         plain = dict(state.observations.plainValueObservations)
         plain["__BT_TAPE_DAY__"] = data.day_num
         plain["__BT_ROUND__"] = data.round_num
+        # Round 4+: expose this tick's historical tape trades (buyer/seller populated) for counterparty-aware algos.
+        tape_rows = data.trades.get(timestamp, {})
+        tape_list: list[dict] = []
+        for _sym, tlist in tape_rows.items():
+            for t in tlist:
+                tape_list.append(
+                    {
+                        "symbol": t.symbol,
+                        "price": int(t.price),
+                        "quantity": int(t.quantity),
+                        "buyer": t.buyer or "",
+                        "seller": t.seller or "",
+                    }
+                )
+        plain["__BT_TAPE_TRADES_JSON__"] = json.dumps(tape_list)
         state.observations = Observation(plain, state.observations.conversionObservations)
 
         return state

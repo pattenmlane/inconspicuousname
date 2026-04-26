@@ -123,5 +123,99 @@
       ],
       "phase2_prerequisite_met": true
     }
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Round 4 Phase 2 offline analysis — named-bot conditioning, microprice/spread compression, cross-lag signed flow, regime splits, BS IV skew at Mark01→22 prints on VEV_5200, Mark22 rolling sell vs extract; script `r4_phase2_counterparty_analysis.py`.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/r4_phase2_counterparty_analysis.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase2_run_log.txt",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase2_pair_near_01_22_burst.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase2_vev5300_same_ts_burst_01_22_followthrough.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase2_mark67_extract_buyagg_k5_tight_by_day.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase2_spread_compression_vs_vol_vev5200.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase2_mark01_vev5300_flow_lag_vs_extract_ret.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase2_iv_skew_at_mark01_22_vev5200_prints.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase2_mark22_roll_sell_vs_extract_fwd20_by_day.csv",
+      "imc-prosperity-4-backtester/prosperity4bt/test_runner.py"
+    ],
+    "used_to_decide": "Phase 2 adds burst proximity and microstructure tests; backtester now injects `__BT_TAPE_TRADES_JSON__` for live counterparty-aware traders. See `round4_phase2_complete` on the next entry."
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "round4_phase2_complete",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase2_pair_near_01_22_burst.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase2_mark67_extract_buyagg_k5_tight_by_day.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase2_spread_compression_vs_vol_vev5200.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase2_mark01_vev5300_flow_lag_vs_extract_ret.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase2_iv_skew_at_mark01_22_vev5200_prints.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase2_mark22_roll_sell_vs_extract_fwd20_by_day.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v1_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v1_round4_all.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v1.json"
+    ],
+    "used_to_decide": "Phase 2 completion gate: ranked edges, interaction with Phase 1, and one `worse`/`all` sim of a counterparty-conditioned toy rule.",
+    "round4_phase2_complete": {
+      "interaction_with_phase1": {
+        "confirmed": [
+          "**Mark 67** aggressive buy on **VELVETFRUIT_EXTRACT** in tight extract spread tertile: day-level means stay **positive** on days 1–3 (`r4_phase2_mark67_extract_buyagg_k5_tight_by_day.csv` ≈ +1.75–+2.2), matching Phase 1 Mark67 signal.",
+          "**Mark 01→Mark 22** basket remains the dominant structural pair in Phase 2 proximity tables (`r4_phase2_pair_near_01_22_burst.csv`)."
+        ],
+        "refined_or_conditional": [
+          "Conditioning prints on **±500 time units of a Mark01→Mark22 burst** flips **Mark 01→Mark 22, VEV_5300** short-horizon markout to **negative** at K=5 (n≈132, t≈−2.3) vs unconditional Phase‑1 negativity — spatial gate **amplifies** the short-horizon fade on 5300 in-window.",
+          "**Mark 01→Mark 55** on **extract** near bursts: small **n=24** cells show **positive** K=5/K=20 means in-window vs larger off-window samples (`r4_phase2_pair_near_01_22_burst.csv`) — Phase 1’s long-horizon **negative** K=100 for this pair is **not** overturned at K=100 in-burst (still noisy)."
+        ],
+        "falsified_or_weak_in_sim": [
+          "Naive **lift-at-ask after every Mark67 aggressive extract print** (`trader_v1.py` using live `__BT_TAPE_TRADES_JSON__`) is **not** profitable under **`worse`**: total **3,152** vs 0 baseline, with **day 3 extract −1,504** (`run_logs/trader_v1_round4_worse.log`) — mid-only predictiveness does not survive execution without richer gating."
+        ]
+      },
+      "top_5_tradeable_edges_ranked": [
+        {
+          "rank": 1,
+          "rule": "**Mark 67** aggressive buy on **VELVETFRUIT_EXTRACT** with extract in **tight** spread tertile → positive **K=5** forward mid; stable **per-day** means (days 1–3).",
+          "evidence": "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase2_mark67_extract_buyagg_k5_tight_by_day.csv",
+          "orthogonal_note": "Confirms Phase 1 #1; adds explicit **extract spread tertile** filter."
+        },
+        {
+          "rank": 2,
+          "rule": "**Mark 01→Mark 22** on **VEV_5300** prints occurring within **±500** time units of a **Mark01→Mark22 burst** → **negative** mean forward **VEV_5300** mid at **K=5** (short fade).",
+          "evidence": "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase2_pair_near_01_22_burst.csv (near_01_22_burst=True)",
+          "orthogonal_note": "Burst **spatial** gate — not in Phase 1 tables."
+        },
+        {
+          "rank": 3,
+          "rule": "Same-timestamp **Mark01→Mark22** multi-leg burst: **VEV_5300** forward mid **mean-reverts down** at **K=5** (n=163, t≈−3.2), not strongly at K=20.",
+          "evidence": "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase2_vev5300_same_ts_burst_01_22_followthrough.csv",
+          "orthogonal_note": "Pure **event-study** on burst rows vs Phase 1 pooled burst vs control on merged markout rows."
+        },
+        {
+          "rank": 4,
+          "rule": "**Rolling Mark 22** sell quantity (3-tick window) vs **K=20** extract forward mid: **weak positive** same-day correlation on day **3** (~0.033) with near-zero days 1–2.",
+          "evidence": "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase2_mark22_roll_sell_vs_extract_fwd20_by_day.csv",
+          "orthogonal_note": "Inventory-pressure style proxy orthogonal to Phase 1 pair markouts."
+        },
+        {
+          "rank": 5,
+          "rule": "**Microstructure null (VEV_5200):** 5-tick **spread change** vs absolute 5-tick mid move shows **~0** correlation each day — spread compression does **not** predict local vol on this grid (`r4_phase2_spread_compression_vs_vol_vev5200.csv`).",
+          "evidence": "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase2_spread_compression_vs_vol_vev5200.csv",
+          "orthogonal_note": "Negative-result edge-of-knowledge for Phase 3 design (do not build vol signals off L1 spread delta alone)."
+        }
+      ],
+      "phase1_edges_status_after_phase2": {
+        "Mark67_extract": "Tape signal **confirmed** per-day; **live follow** (`trader_v1`) **falsified** as simple PnL under worse fills — needs exit/spread gate/position rules.",
+        "Mark67_to_Mark22_extract_pair": "Still strong in unconditional pair tables (Phase 1); Phase 2 did not re-run pair-only LOSO here (same tape).",
+        "Burst_extract_forward": "Phase 1 burst uplift at K=20/100 **unchallenged**; Phase 2 adds **5300 short-horizon fade** conditional on burst proximity (orthogonal dimension).",
+        "Mark14_to_Mark55_adverse": "Phase 2 burst splits for **Mark01→Mark55** are **high variance** (n=24 in-burst); keep Phase 1 K=100 adverse as primary **avoid** hypothesis until more data.",
+        "Baseline_residuals_null": "**Confirmed** still null at tested granularity."
+      },
+      "no_edge_or_weak_phase2": [
+        "**Mark 01** signed buy flow on **VEV_5300** vs **concurrent / lagged** extract returns: correlations **near zero** at lags 0–5 all days (`r4_phase2_mark01_vev5300_flow_lag_vs_extract_ret.csv`).",
+        "**IV skew** (BS, T=4/365) at **Mark01→Mark22** prints on **VEV_5200**: only **n=11** prints — descriptive only (`r4_phase2_iv_skew_at_mark01_22_vev5200_prints.csv`).",
+        "**Spread compression → vol** on **VEV_5200**: correlations ≈ 0 (`r4_phase2_spread_compression_vs_vol_vev5200.csv`)."
+      ],
+      "simulation_note": "Counterparty-conditioned toy: `trader_v1.py` — Round 4 total **3,152** (`worse`), **3,602** (`all`); logs + `family12_outputs/run_fill_summary_v1.json`.",
+      "phase3_prerequisite_met": true
+    }
   }
 ]

@@ -1,0 +1,15 @@
+Phase2 markout rows: 12,809
+Wrote r4_phase2_pair_near_01_22_burst.csv (72 rows)
+     K    n      mean         t
+0    5  163 -0.193252 -3.177680
+1   20  163 -0.122699 -0.954286
+2  100  162  0.191358  0.747108
+Wrote r4_phase2_mark67_extract_buyagg_k5_tight_by_day.csv
+Wrote r4_phase2_spread_compression_vs_vol_vev5200.csv
+   day  corr_dspread_absdm     n
+0    1           -0.009029  9994
+1    2           -0.004289  9994
+2    3           -0.003000  9994
+Wrote r4_phase2_mark01_vev5300_flow_lag_vs_extract_ret.csv
+Wrote r4_phase2_iv_skew_at_mark01_22_vev5200_prints.csv n=11
+Wrote r4_phase2_mark22_roll_sell_vs_extract_fwd20_by_day.csv

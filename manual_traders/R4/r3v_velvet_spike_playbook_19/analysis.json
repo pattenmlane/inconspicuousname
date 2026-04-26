@@ -410,5 +410,17 @@
       "finding": "Unlike the Mark 67 gate study (where tight did not consistently dominate), **Mark 55** shows **day-dependent** tight vs wide ordering: day 1 tight > wide; days 2\u20133 **wide > tight** on mean fwd20. **Do not** treat Sonic tight as a universal filter for \u2018chase M55 lift\u2019.",
       "used_to_decide": "If adding a Mark 55 extract follower, gate choice must be **validated per day** or use a non-gate feature; copying the M67+v5 recipe blindly is unsupported."
     }
+  },
+  {
+    "round4_sim_mark55_aggr_buy_follow_ablation": {
+      "tape_reference": "round4_mark55_extract_joint_gate_study (mean fwd20 tight vs wide flips by day).",
+      "v11": "trader_v11_r4_joint_tight_follow_m55_extract.py \u2014 joint tight + M55 aggressive buy mirror, LOT=4. Backtest days 1\u20133: **+13,126** worse=all (d1 +3038, d2 +8896, d3 +1192); 119 submission trades, 476 abs qty.",
+      "v12": "trader_v12_r4_joint_wide_follow_m55_extract.py \u2014 **not** joint tight (at least one of 5200/5300 spread >2) + same M55 mirror. **+6,004** worse=all (d3 **-2472**); 150 trades, 600 abs qty.",
+      "finding": "On this sim slice, **tight gate + M55 follow strongly dominates** the wide-gate variant in total PnL and avoids the large day-3 loss seen under wide. This **contradicts** naive reading of days 2\u2013 tape means alone \u2014 execution / overlap differs; still validate out-of-sample.",
+      "artifacts": [
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v11_m55_tight_worse.json",
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v12_m55_wide_worse.json"
+      ]
+    }
   }
 ]

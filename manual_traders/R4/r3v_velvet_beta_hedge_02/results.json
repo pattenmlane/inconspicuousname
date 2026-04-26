@@ -250,5 +250,26 @@
       "trades_or_fills_summary": "Same as worse (13338)."
     },
     "total_profit": 13338
+  },
+  {
+    "iteration": 12,
+    "trader_file": "trader_v12.py",
+    "strategy_description": "v11 but loose soft U skip only on Mark55 aggressive **sell** (still quote on M55 aggressive buy ticks); SIZE_U_SOFT=14 unchanged.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 12931,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v12.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v12_worse.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v12_worse.log",
+      "trades_or_fills_summary": "Day1 +5480 (U +3938 vs v11 +3988); day2 +1270 (U -418 vs -29); day3 +6180 (U +1774 vs +1742); total 12931 vs v11 13338; worse=all identical."
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 12931,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v12.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v12_all.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v12_all.log",
+      "trades_or_fills_summary": "Same as worse (12931)."
+    },
+    "total_profit": 12931
   }
 ]

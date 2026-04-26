@@ -1,0 +1,9 @@
+Overlap counts (tape CSV + prices CSV, Round 4 days 1–3):
+Mark 67 buyer on VELVETFRUIT_EXTRACT with trade price >= ask1 at same timestamp,
+AND VEV_5200 spread<=2 AND VEV_5300 spread<=2 AND U spread<=6.
+
+day 1: Mark67 buy_agg U total 58; joint Sonic+tightU 5
+day 2: Mark67 buy_agg U total 61; joint Sonic+tightU 7
+day 3: Mark67 buy_agg U total 45; joint Sonic+tightU 15
+
+(Generated for trader_v5 design rationale; horizons not recomputed here.)

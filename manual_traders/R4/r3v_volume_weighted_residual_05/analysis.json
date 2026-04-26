@@ -312,5 +312,17 @@
       "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v4_all.log"
     ],
     "used_to_decide": "PnL **-468** worse / **-444** all (still negative but **~600\u00d7** smaller loss than v3); **165** worse SUBMISSION rows vs **8426** in v3 \u2014 spread cost dominated v3. Remaining drag: exit still pays spread (ask sells); Mark67 interaction not yet wired (needs tape at `run()` or runner reorder). Next iteration can try **only** passive round-trip (improved bid / improved ask) or smaller `EXIT_Q` / wider `PROFIT`."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "**Infrastructure:** `TestRunner` now calls `__attach_raw_market_trades` so `state.market_trades` holds **this timestamp\u2019s** tape **before** `Trader.run()` (Round 4 counterparty fields usable). **Execution:** `trader_v5.py` \u2014 Mark **67** **buy-aggressive** on **U** (`price>=ask1`) gated on **Sonic** (VEV_5200/5300 spread\u22642) + U spread\u22646; spread==1 uses small **ask** lift (else improved bid under worse-match). **Bugfix:** avoid `isinstance(tr, Trade)` in the trader module (duplicate `Trade` class under different import paths silently dropped all tape rows).",
+    "analysis_outputs": [
+      "imc-prosperity-4-backtester/prosperity4bt/test_runner.py",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/trader_v5.py",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r5_m67_buyagg_u_sonic_overlap_counts.txt",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v5_worse.log",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v5_all.log"
+    ],
+    "used_to_decide": "Rare overlap: only **27** timestamps across days 1\u20133 satisfy Mark67 buy_agg on U **and** Sonic gate (see `r5_m67_*_counts.txt`). Backtest **v5** PnL **-42** (worse=all identical here): **22** SUBMISSION rows, **66** abs fill qty on U \u2014 small edge after execution still **negative** at current exit (EMA+ask) and sizing. Mid-only Phase-3 lift for Mark67\u00d7gate does **not** yet yield positive PnL in this discrete rule; next: passive-only exits, tune `ASK_LIFT_Q`/`PROFIT`, or add VEV leg per burst-B (separate risk)."
   }
 ]

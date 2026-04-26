@@ -14,9 +14,9 @@ This version (U only; no hydrogel / no VEV orders):
   (capped by position).
 - **Risk off:** when not `tight`, flatten long at **best bid**.
 
-Note: `TradingState.market_trades` in this backtester is not a clean same-timestamp tape feed
-at `run()` entry (see `test_runner` vs `OrderMatchMaker`), so this iteration does **not**
-gate on Mark67 prints; it only uses observable BBO + spreads.
+Note: `TestRunner` now attaches **raw** same-timestamp tape to `state.market_trades` before
+`run()` (see `imc-prosperity-4-backtester/.../test_runner.py`); this trader still does not
+use counterparty IDs (BBO + spreads only).
 """
 from __future__ import annotations
 

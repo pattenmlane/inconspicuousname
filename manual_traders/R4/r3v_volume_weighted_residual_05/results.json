@@ -103,5 +103,26 @@
       "trades_or_fills_summary": "trade_history_rows=4363; SUBMISSION rows=167; own_fill_abs_qty_sum=926",
       "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_volume_weighted_residual_05/trader_v4.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v4_all.log"
     }
+  },
+  {
+    "iteration": 5,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "Mark 67 buyer-aggressive on U (tape price>=ask1) AND Sonic joint gate (5200/5300<=2) AND U spread<=6: entry improved bid if spread>=2 else small ask-lift; EMA take-profit; flatten off gate. Depends on TestRunner pre-filling market_trades.",
+    "total_profit": -42,
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -42,
+      "backtest_log_file": "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v5_worse.log",
+      "trades_or_fills_summary": "trade_history_rows=4303; SUBMISSION rows=22; own_fill_abs_qty_sum=66",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_volume_weighted_residual_05/trader_v5.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v5_worse.log"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -42,
+      "backtest_log_file": "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v5_all.log",
+      "trades_or_fills_summary": "trade_history_rows=4303; SUBMISSION rows=22; own_fill_abs_qty_sum=66",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_volume_weighted_residual_05/trader_v5.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v5_all.log"
+    }
   }
 ]

@@ -43,6 +43,7 @@ class TestRunner:
         timestamps_iterator = tqdm(timestamps, ascii=True) if self.show_progress_bar else timestamps
         for timestamp in timestamps_iterator:
             state = self.__initialize_trade_state(state, data, timestamp)
+            self.__attach_raw_market_trades(state, data, timestamp)
             orders = self.__run_trader(state, result, timestamp)
 
             # self.__validate_orders(orders)
@@ -112,6 +113,15 @@ class TestRunner:
             )
 
         return state
+
+    def __attach_raw_market_trades(self, state: TradingState, data: BacktestData, timestamp: int) -> None:
+        """Expose this timestamp's tape prints before `Trader.run()` (Round 4 counterparty IDs).
+
+        Previously `market_trades` was only filled *after* matching, so `run()` saw the
+        prior tick's leftovers. Align with live semantics: same-tick `buyer`/`seller` are
+        readable when deciding orders."""
+        by_ts = data.trades.get(timestamp, {})
+        state.market_trades = {sym: list(trs) for sym, trs in by_ts.items()}
 
     # def __validate_orders(self, orders: dict[Symbol, list[Order]]) -> None:
     #     for key, value in orders.items():

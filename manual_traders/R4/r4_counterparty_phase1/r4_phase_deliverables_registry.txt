@@ -6,6 +6,8 @@ PHASE 1 — quantitative outputs (see analysis.json object round4_phase1_complet
 ----------------------------------------------------------------------------------
 manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase1_counterparty_edges.py
 manual_traders/R4/r4_counterparty_phase1/r4_phase1_markout_summary.json
+  (includes: forward_K_definition, participant_cells_hydro_top, U_trade_involvement_top,
+  mark67_buyer_agg_extract_by_day_hour, per-trade hy_fwd_K in full marks list, CSV hy_fwd_20)
 manual_traders/R4/r4_counterparty_phase1/r4_phase1_trade_markouts_sample.csv
 
 PHASE 2 — scripts + JSON (see analysis.json object round4_phase2_complete)

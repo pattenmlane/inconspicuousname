@@ -558,5 +558,45 @@
         "note": "Same extract -8 vs v12 +750 all; day3 5300 +6 matches v12."
       }
     }
+  },
+  {
+    "iteration": 15,
+    "round": 4,
+    "trader_file": "trader_v14.py",
+    "strategy_description": "v12 + skip entry / early exit when Mark22 sell qty on VEV_5300 in the burst print batch is >=4 (p75 on tape; r4_phase2_burst_m22_5300_qty_vs_fwd.json). Early trim when bad_m22 and MIN_HOLD met.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 304,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v14.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v14_r4_worse.log",
+      "backtest_output": {
+        "day1": 304,
+        "day2": 0,
+        "day3": 0,
+        "total": 304
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "Large drop vs v12 +744: filter removes day2+most day1 PnL path at M22_HIGH=4; tape bucket split not plug-and-play for sim (threshold/early-exit too aggressive or misaligned with fill path)."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 310,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v14.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v14_r4_all.log",
+      "backtest_output": {
+        "day1": 304,
+        "day2": 0,
+        "day3": 6,
+        "total": 310
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "Day3 +6 5300 vs worse; still far below v12."
+      }
+    }
   }
 ]

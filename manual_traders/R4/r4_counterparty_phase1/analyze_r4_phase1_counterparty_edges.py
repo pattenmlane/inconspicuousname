@@ -178,7 +178,7 @@ def main() -> None:
         for K in KS:
             d = forward_mid_delta(tss, mids, ts, K)
             row[f"fwd_{K}"] = d
-        # cross: extract forward same K
+        # cross: extract and hydro forward same K (K steps on that symbol's series)
         ek = (day, "VELVETFRUIT_EXTRACT")
         if ek in pidx:
             etss, emids, _, _ = pidx[ek]
@@ -187,6 +187,14 @@ def main() -> None:
         else:
             for K in KS:
                 row[f"ex_fwd_{K}"] = None
+        hk = (day, "HYDROGEL_PACK")
+        if hk in pidx:
+            htss, hmids, _, _ = pidx[hk]
+            for K in KS:
+                row[f"hy_fwd_{K}"] = forward_mid_delta(htss, hmids, ts, K)
+        else:
+            for K in KS:
+                row[f"hy_fwd_{K}"] = None
         marks.append(row)
 
     # spread quantile per symbol (global over marks)
@@ -260,6 +268,66 @@ def main() -> None:
             }
         )
     part_summary.sort(key=lambda x: (-abs(x["mean_fwd_mid"]) * math.sqrt(x["n"]), -x["n"]))
+
+    # same-symbol cells for HYDROGEL_PACK (Phase 1 cross-product coverage)
+    cells_h: dict[tuple, list[float]] = defaultdict(list)
+    for m in marks:
+        if m["side"] is None or m["sym"] != "HYDROGEL_PACK":
+            continue
+        U = m["buyer"] if m["side"] == "buyer_agg" else m["seller"]
+        for K in KS:
+            fk = m.get(f"fwd_{K}")
+            if fk is None or math.isnan(fk):
+                continue
+            cells_h[(U, m["side"], K)].append(fk)
+    part_summary_hydro = []
+    for (U, side, K), xs in cells_h.items():
+        n = len(xs)
+        if n < 30:
+            continue
+        mu = sum(xs) / n
+        pos = sum(1 for x in xs if x > 0) / n
+        tsv, _ = t_stat_mean(xs)
+        part_summary_hydro.append(
+            {
+                "U": U,
+                "side": side,
+                "symbol": "HYDROGEL_PACK",
+                "K": K,
+                "n": n,
+                "mean_fwd_mid": round(mu, 6),
+                "frac_pos": round(pos, 4),
+                "t_stat": round(tsv, 3) if not math.isnan(tsv) else None,
+            }
+        )
+    part_summary_hydro.sort(key=lambda x: (-abs(x["mean_fwd_mid"]) * math.sqrt(x["n"]), -x["n"]))
+
+    # Mark 67 buyer_agg on extract: mean fwd_20 by (day, hour_bin) for day-stability table
+    m67_ex_hour: dict[str, list[float]] = defaultdict(list)
+    for m in marks:
+        if m["sym"] != "VELVETFRUIT_EXTRACT" or m["side"] != "buyer_agg" or m["buyer"] != "Mark 67":
+            continue
+        fk = m.get("fwd_20")
+        if fk is None or math.isnan(fk):
+            continue
+        m67_ex_hour[f"d{m['day']}_h{m['hour_bin']}"].append(fk)
+    m67_ex_hourly = {
+        k: {
+            "n": len(v),
+            "mean_fwd20": round(sum(v) / len(v), 6) if v else None,
+        }
+        for k, v in sorted(m67_ex_hour.items())
+    }
+
+    # name involvement counts (any side)
+    u_inv = Counter()
+    for m in marks:
+        u_inv[m["buyer"]] += 1
+        u_inv[m["seller"]] += 1
+    u_involve = [
+        {"U": u, "n_mentions": c}
+        for u, c in u_inv.most_common(25)
+    ]
 
     # stratified examples (K=20 same symbol)
     def _mean(xs: list[float]) -> float:
@@ -367,7 +435,11 @@ def main() -> None:
     out_main = {
         "n_trades_parsed": len(trades),
         "n_marks_with_fwd": len(marks),
+        "forward_K_definition": "K = K-th next price row in timestamp order for that product (not wall-clock; same as ex_fwd_*/hy_fwd_*)",
         "participant_cells_top": part_summary[:40],
+        "participant_cells_hydro_top": part_summary_hydro[:25],
+        "U_trade_involvement_top": u_involve,
+        "mark67_buyer_agg_extract_by_day_hour": m67_ex_hourly,
         "stratified_baseline_note": strat,
         "baseline_fwd20_residual_mean": round(resid_mean, 8),
         "baseline_fwd20_residual_abs_mean": round(resid_abs_mean, 8),
@@ -404,6 +476,7 @@ def main() -> None:
                 "fwd_20",
                 "fwd_100",
                 "ex_fwd_20",
+                "hy_fwd_20",
             ],
         )
         w.writeheader()
@@ -424,6 +497,7 @@ def main() -> None:
                     "fwd_20": m.get("fwd_20"),
                     "fwd_100": m.get("fwd_100"),
                     "ex_fwd_20": m.get("ex_fwd_20"),
+                    "hy_fwd_20": m.get("hy_fwd_20"),
                 }
             )
 

@@ -384,5 +384,27 @@
       "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v15_fill_summary_worse.json"
     ],
     "used_to_decide": "**Hurts vs v12:** worse **18650** (\u22122578). Day1 extract **+2086** vs v12 **+4664** \u2014 **+3** ask on day1 was **not** over-passive; it was **PnL-positive** vs **+2** in this stack. Day2/3 unchanged. **Conclusion:** day-conditioned schedule from v12 (d1\u20132 +3, d3 +2) is better than pulling day1 toward +2."
+  },
+  {
+    "iteration": 18,
+    "round": 4,
+    "analysis_description": "Sim complement to v15: **v16** loosens **tape day 2** tight ask to **+2** while keeping day1 **+3** (v12 day3 already **+2**).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v16.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v16_backtest_worse.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v16_fill_summary_worse.json"
+    ],
+    "used_to_decide": "**Catastrophic vs v12** on worse: **14427** (\u22126801). Day2 extract **+5464** vs v12 **+12265** \u2014 the **+3** ask on **day 2** is the dominant profit engine in v12; **+2** collapses it toward **v9**-like day2. **Strong asymmetry:** day1 and day2 both need **+3** in this schedule; only day3 tolerates **+2**."
+  },
+  {
+    "iteration": 19,
+    "round": 4,
+    "analysis_description": "Counterparty-conditioned **ask** skew on top of v12: **Mark 67** aggressive buy on extract \u2192 add **+1** to tight ask half when gate tight (`trader_v17`, cap 4).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v17.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v17_backtest_worse.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_mark67_extract_buy_counts.json"
+    ],
+    "used_to_decide": "**Small win** on primary metric: worse **21244** vs v12 **21228** is **+16** total; gain isolated to **day3** extract (**+2142** vs **+2126**) where base ask is **+2** so **+1** bump can become **+3** before clamp (days 1\u20132 already at **+3** cap). **all** also up (**14254** vs **13858**). First **counterparty\u00d7price** tweak that **strictly improves** v12 under worse (marginal)."
   }
 ]

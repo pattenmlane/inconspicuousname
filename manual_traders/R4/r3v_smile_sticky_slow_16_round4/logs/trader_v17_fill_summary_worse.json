@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v17.py",
+  "match_trades": "worse",
+  "round": 4,
+  "total_profit": 21244,
+  "per_day_total": { "1": 5698, "2": 12780, "3": 2766 },
+  "note": "vs v12 21228: +16. Mark67 aggressive buy -> tight ask half +1 (cap 4); day3 extract +2142 vs +2126."
+}

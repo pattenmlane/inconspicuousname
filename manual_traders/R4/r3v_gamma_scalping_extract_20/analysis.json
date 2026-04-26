@@ -305,5 +305,19 @@
         "**Mark01→22 VEV_5500** gate-split Welch **not estimable** (n_off=1 per K)."
       ]
     }
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "Post–Phase 3 extension: (1) **pair markouts only at Sonic-tight timestamps** — `r4_post_phase3_tight_only_pair_markouts.py` → `r4_tight_only_pair_markout_pooled.csv` / `_by_day.csv` (fixes confound where Mark01→22 on 5300 was almost always tight anyway; shows **day-1** 5300 K=5/K=20 means **more negative** than pooled Phase 1). (2) **`trader_v3`**: joint gate + MM **5200+5300** only — worse **2814** vs **v2** 5224; **day 3** 5200+5300 **−1118** under worse — naive surface MM **not** a standalone edge.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/r4_post_phase3_tight_only_pair_markouts.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_tight_only_pair_markout_pooled.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_tight_only_pair_markout_by_day.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v3.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v3_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v3_round4_all.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v3.json"
+    ],
+    "used_to_decide": "Population **extract** forward is cleaner when tight (Phase 3), but **counterparty-conditioned** 5300 basket fades are **day-unstable** even restricted to tight timestamps (see by-day CSV). Passive **two-leg** MM gated only on spread is **worse** than Mark67-follow variants on this tape slice — next iterations should combine gate with **inventory skew**, **counterparty avoid list** (e.g. Mark14→Mark55 in tight windows from by-day table), or **extract hedge**, not quote 5200/5300 naked through day 3."
   }
 ]

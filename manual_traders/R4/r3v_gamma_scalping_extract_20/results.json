@@ -58,5 +58,25 @@
       "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v2_round4_all.stdout.txt",
       "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v2.json"
     }
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "Post–Phase 3: **Sonic joint gate** then passive MM **only VEV_5200 + VEV_5300** (BBO+1, clip 10, requote every 2 ticks). No extract/hydrogel orders. Tests whether tight-surface quoting alone is PnL-stable under worse fills.",
+    "total_profit": 2814,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v3.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_worse": {
+      "total_profit": 2814,
+      "backtest_log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v3_round4_worse.log",
+      "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v3_round4_worse.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v3.json"
+    },
+    "backtest_all": {
+      "total_profit": 3002,
+      "backtest_log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v3_round4_all.log",
+      "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v3_round4_all.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v3.json"
+    }
   }
 ]

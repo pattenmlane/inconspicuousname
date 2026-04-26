@@ -1,0 +1,101 @@
+"""
+Round 4 post–Phase 3 — **Sonic joint tight surface** execution (no extract lift).
+
+When **VEV_5200** and **VEV_5300** both have L1 spread **≤ 2**, market-make
+**only** those two legs at BBO+MM_EDGE (same “hedge into a tight surface” idea
+as STRATEGY / Sonic; counterparty-agnostic, tests whether population-level
+tight-window edge from Phase 3 supports passive quoting on the two ATM-adjacent
+strikes under `worse` fills).
+
+When gate is **off**, no orders.
+"""
+from __future__ import annotations
+
+import json
+from typing import Any
+
+from datamodel import Order, OrderDepth, TradingState
+
+EXTRACT = "VELVETFRUIT_EXTRACT"
+HYDRO = "HYDROGEL_PACK"
+VEV_5200 = "VEV_5200"
+VEV_5300 = "VEV_5300"
+SURFACE = (VEV_5200, VEV_5300)
+STRIKES = [4000, 4500, 5000, 5100, 5200, 5300, 5400, 5500, 6000, 6500]
+VEV = [f"VEV_{k}" for k in STRIKES]
+PRODUCTS = [HYDRO, EXTRACT] + VEV
+
+LIMITS = {HYDRO: 200, EXTRACT: 200, **{v: 300 for v in VEV}}
+
+SPREAD_TH = 2
+MM_EDGE = 1
+OPTION_CLIP = 10
+REQUOTE_EVERY = 2
+
+
+def _best(depth: OrderDepth | None) -> tuple[int | None, int | None]:
+    if not depth:
+        return None, None
+    bb = max(depth.buy_orders.keys()) if depth.buy_orders else None
+    ba = min(depth.sell_orders.keys()) if depth.sell_orders else None
+    return bb, ba
+
+
+def _bbo_spread(depth: OrderDepth | None) -> int | None:
+    bb, ba = _best(depth)
+    if bb is None or ba is None:
+        return None
+    return int(ba - bb)
+
+
+def joint_tight_gate(state: TradingState) -> bool:
+    s0 = _bbo_spread(state.order_depths.get(VEV_5200))
+    s1 = _bbo_spread(state.order_depths.get(VEV_5300))
+    if s0 is None or s1 is None:
+        return False
+    return s0 <= SPREAD_TH and s1 <= SPREAD_TH
+
+
+class Trader:
+    def run(self, state: TradingState) -> tuple[dict[str, list[Order]], int, str]:
+        result: dict[str, list[Order]] = {p: [] for p in PRODUCTS}
+        conversions = 0
+        store: dict[str, Any] = {}
+        obs = getattr(state.observations, "plainValueObservations", None) or {}
+
+        if not joint_tight_gate(state):
+            store["sonic_tight"] = False
+            if "__BT_TAPE_DAY__" in obs:
+                store["tape_day"] = int(obs["__BT_TAPE_DAY__"])
+            return result, conversions, json.dumps(store)
+
+        store["sonic_tight"] = True
+
+        tick = state.timestamp // REQUOTE_EVERY
+        if tick == int(store.get("mm_tick", -1)):
+            if "__BT_TAPE_DAY__" in obs:
+                store["tape_day"] = int(obs["__BT_TAPE_DAY__"])
+            return result, conversions, json.dumps(store)
+        store["mm_tick"] = tick
+
+        for sym in SURFACE:
+            d = state.order_depths.get(sym)
+            if not d:
+                continue
+            bb, ba = _best(d)
+            if bb is None or ba is None:
+                continue
+            pos = int(state.position.get(sym, 0))
+            room_buy = LIMITS[sym] - pos
+            room_sell = LIMITS[sym] + pos
+            bid_px = min(int(bb) + MM_EDGE, int(ba) - 1)
+            sell_px = max(int(ba) - MM_EDGE, int(bb) + 1)
+            c = OPTION_CLIP
+            if room_buy > 0:
+                result[sym].append(Order(sym, bid_px, min(c, room_buy)))
+            if room_sell > 0 and pos > 0:
+                result[sym].append(Order(sym, sell_px, -min(c, pos, room_sell)))
+
+        if "__BT_TAPE_DAY__" in obs:
+            store["tape_day"] = int(obs["__BT_TAPE_DAY__"])
+        return result, conversions, json.dumps(store)

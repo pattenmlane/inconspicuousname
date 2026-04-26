@@ -1,0 +1,14 @@
+day,role,participant,n
+1,buyer,Mark 01,32
+1,buyer,Mark 14,12
+1,buyer,Mark 38,2
+1,seller,Mark 22,46
+2,buyer,Mark 01,31
+2,buyer,Mark 14,22
+2,seller,Mark 22,53
+3,buyer,Mark 01,80
+3,buyer,Mark 14,28
+3,buyer,Mark 22,2
+3,buyer,Mark 38,1
+3,seller,Mark 22,109
+3,seller,Mark 38,2

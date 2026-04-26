@@ -1,0 +1,7 @@
+Joint-tight (both spreads≤2) VEV_5200/5300 prints: n=210
+By day: {1: 46, 2: 53, 3: 111}
+Mark 01 on ≥1 side of print (5200/5300, joint-tight ts):
+ day   n  mark01_any_side    share
+   1  46               32 0.695652
+   2  53               31 0.584906
+   3 111               80 0.720721

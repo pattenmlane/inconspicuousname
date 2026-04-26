@@ -1,0 +1,10 @@
+day,buyer,seller,n
+1,Mark 01,Mark 22,32
+1,Mark 14,Mark 22,12
+1,Mark 38,Mark 22,2
+2,Mark 01,Mark 22,31
+2,Mark 14,Mark 22,22
+3,Mark 01,Mark 22,80
+3,Mark 14,Mark 22,28
+3,Mark 22,Mark 38,2
+3,Mark 38,Mark 22,1

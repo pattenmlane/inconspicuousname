@@ -380,5 +380,22 @@
       "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v8.json"
     ],
     "used_to_decide": "**Confirmed on tape:** worse **9157** vs **v5** **8039** (+1118 = full day-3 VEV loss avoided); day 1 **2454**, day 2 **6134** match **v5**; day 3 **568** (extract only, zero VEV PnL). **all** mode **10,626** vs v5 **9401**. **Caveat:** rule is **calendar-day** (tape file index), not a learned counterparty trigger — acceptable as a falsifiable risk-off until a print- or inventory-based day-3 filter beats it. **New ship candidate:** **v8** over **v5** on worse total."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "**Joint-tight VEV print counterparty tables** (`r4_joint_tight_vev_print_counterparties.py`) + **`trader_v9`** falsification. For trades on **VEV_5200/5300** at timestamps where **both** L1 spreads ≤2, pooled n=**210** (day1 **46**, day2 **53**, day3 **111**). **Mark 01→Mark 22** is the modal edge each day (e.g. day3 **80**/111 prints); **Mark 01** on ≥1 side **72%** of day-3 joint-tight prints. **Sim:** **v5** + skip surface MM when **this tick’s** tape has **Mark01→Mark22** on 5200/5300 (requote bucket cleared via `mm_tick`). **Worse 5804** vs **v5** 8039 — filter is **too frequent** under the Sonic gate (removes most profitable MM windows on days 1–2), so **print-conditioned skip ≠ calendar day-3 off** (**v8**).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/r4_joint_tight_vev_print_counterparties.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_joint_tight_vev_print_counts_by_day.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_joint_tight_vev_print_top_edges_by_day.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_joint_tight_vev_print_top_participants_by_day.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_joint_tight_vev_print_mark01_share_by_day.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_joint_tight_vev_print_run_log.txt",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v9.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v9_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v9_round4_all.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v9.json"
+    ],
+    "used_to_decide": "**Reject** naive **Mark01→Mark22** surface-print skip as a gate-time MM rule; keep **v8**-style **day-3 calendar** cut or pursue **narrower** counterparty conditions (e.g. burst-only, or skip only when print **and** adverse mid move) before more sims."
   }
 ]

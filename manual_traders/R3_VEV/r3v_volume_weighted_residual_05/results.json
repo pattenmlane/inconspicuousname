@@ -293,5 +293,26 @@
       "trades_or_fills_summary": "trade_history_rows=4170, own_fill_rows=18, own_fill_abs_qty_sum=69, own_by_symbol={'VEV_5300': 17, 'VEV_5200': 1}",
       "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v26.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v26_vev_only_all.log"
     }
+  },
+  {
+    "iteration": 27,
+    "trader_file": "trader_v27.py",
+    "strategy_description": "vouchers_final_strategy: Sonic joint spread<=2 on 5200+5300; gate on = two-sided touch MM on VELVETFRUIT_EXTRACT and VEV_5200/5300 with inventory skew; gate off = flatten. No hydrogel.",
+    "total_profit": -162,
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -162,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v27_mm_gate_worse.log",
+      "trades_or_fills_summary": "trade_history_rows=4170, own_fill_rows=1, own_fill_abs_qty_sum=5, own_by_symbol={'VELVETFRUIT_EXTRACT': 1}",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v27.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v27_mm_gate_worse.log"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 4226,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v27_mm_gate_all.log",
+      "trades_or_fills_summary": "trade_history_rows=4325, own_fill_rows=366, own_fill_abs_qty_sum=1701, own_by_symbol={'VELVETFRUIT_EXTRACT': 336, 'VEV_5300': 17, 'VEV_5200': 13}",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v27.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v27_mm_gate_all.log"
+    }
   }
 ]

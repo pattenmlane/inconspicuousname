@@ -157,5 +157,16 @@
       "analysis_outputs/v26_vev_only_all.log"
     ],
     "used_to_decide": "Ship v23\u2013v26 as pure gate-thesis experiments. Primary metric --match-trades worse: v25 -13.6k, v23 -10.6k, v24 -46k, v26 0. Compare all: v25 +4.3k best. Next: maker-style 5200/5300 inside spread when tight, or slower extract EMA, or smaller U size; avoid lifting option asks on worse."
+  },
+  {
+    "iteration": 27,
+    "analysis_description": "Next step after STRATEGY caveat (mid PnL != touch PnL): two-sided market-making when joint gate on \u2014 spreads remain the state object (Sonic + inclineGod). v27 posts touch bid+ask on U and 5200/5300 with small inventory skew. Logged 6-panel folder summary unchanged; v27 is execution experiment only.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "analysis_outputs/v27_mm_gate_worse.log",
+      "analysis_outputs/v27_mm_gate_all.log"
+    ],
+    "used_to_decide": "Under --match-trades worse almost no own SUBMISSION fills (gate rare + passive MM); PnL -162. All mode +4226 with meaningful own fills on U and 5200/5300. No path to 200k/day on this run; try wider Q when gate+thin spread, or one tick inside, or re-enable directional leg with stricter u_spread. Still no legacy IV thesis."
   }
 ]

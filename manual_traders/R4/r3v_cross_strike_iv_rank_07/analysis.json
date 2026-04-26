@@ -54,12 +54,14 @@
         "bullet": "3) Sequence / graph methods",
         "outputs": [
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_graph_buyer_seller_edges.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_graph_hubs_degree.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_graph_top_pairs_reciprocity.csv",
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_twohop_extract_fwd_k20.csv",
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_twohop_m55_m01_m22_detail.py",
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_twohop_m55_m01_m22_events.csv",
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_twohop_m55_m01_m22_summary.json"
         ],
-        "conclusion": "Directed edge table matches repo sketch (Mark 01→Mark 22 top count). Two-hop chains within 5k ts: Mark 38→14→38 n=885 mildly negative extract k=20. Mark 55→01→22 n=535: pooled dm_ex k5/k20/k100 means ≈ -0.21/-0.64/-1.39 (t≈-2.39/-3.44/-3.44) but day-stability is uneven — day1 k20 mean ≈ -0.10 (t≈-0.28, n=155); day2 k5 positive (+0.34, t≈3.0); day3 k20 ≈ -1.19 (t≈-4.0). Stateful sim trader_v8 (Sonic gate + arm on M55 buy extract from M01, short on next M01→M22 print in window) loses -11396 worse/all with 19 fills / 355 qty — execution timing differs from offline t2 anchor."
+        "conclusion": "Directed edge table matches repo sketch (Mark 01→Mark 22 top count). **Hub degree** (`r4_p2_graph_hubs_degree.csv`): Mark14 highest total edge-print mass (~2172), then Mark01/Mark22/Mark38 — consistent with hydro duopoly + basket pipe. **Reciprocity** (`r4_p2_graph_top_pairs_reciprocity.csv`): Mark14↔Mark38 ~0.98 min/max count ratio; Mark01→Mark22 has **zero** reverse prints (reciprocity 0) — pure one-way basket edge. Two-hop chains within 5k ts: Mark 38→14→38 n=885 mildly negative extract k=20. Mark 55→01→22 n=535: pooled dm_ex k5/k20/k100 means ≈ -0.21/-0.64/-1.39 (t≈-2.39/-3.44/-3.44) but day-stability is uneven — day1 k20 mean ≈ -0.10 (t≈-0.28, n=155); day2 k5 positive (+0.34, t≈3.0); day3 k20 ≈ -1.19 (t≈-4.0). Stateful sim trader_v8 (Sonic gate + arm on M55 buy extract from M01, short on next M01→M22 print in window) loses -11396 worse/all with 19 fills / 355 qty — execution timing differs from offline t2 anchor."
       },
       {
         "bullet": "4) Burst structure",
@@ -145,7 +147,8 @@
       "8-hour / full-day ‘session’ splits on Phase-1 participant tables are degenerate: `hour_cs` in r4_p1_trade_enriched.csv only 0,1,2 (example: Mark 67|extract|k=5 populates a single r4_p1_participant_forward_by_session.csv row) — not a disproof of time-of-day effects, a **data-coverage** limit for this run.",
       "Burst vs nearest isolated-timestamp control on extract k=20 (387 pairs): mean paired difference burst−control ≈ +0.13, t≈0.79, bootstrap 95% CI crosses zero — naive ‘bursts predict extract drift vs matched quiet times’ is **not** significant at burst-clock resolution in this construction.",
       "Round 4 trade CSVs only list **Mark** buyer/seller strings (7 buyers / 6 sellers in tape) — ‘each distinct name U’ is fully enumerated by the participant tables; there is no separate non-Mark counterparty universe in this dataset.",
-      "After subtracting the **cell-mean** baseline (pair×symbol×spread_bin), the naive summary ‘mean residual aggregated by pair only’ is ~0 by construction — second-order structure lives in **within-cell dispersion** (`r4_p1_top_cell_residual_dispersion_k20.csv`) and per-print residuals in `r4_p1_trade_enriched.csv`, not in pair-only means."
+      "After subtracting the **cell-mean** baseline (pair×symbol×spread_bin), the naive summary ‘mean residual aggregated by pair only’ is ~0 by construction — second-order structure lives in **within-cell dispersion** (`r4_p1_top_cell_residual_dispersion_k20.csv`) and per-print residuals in `r4_p1_trade_enriched.csv`, not in pair-only means.",
+      "Joint max(VEV_5200, VEV_5300) spread vs |extract mid change| over 5 price rows: correlation ≈0.009 pooled and ≈0.004 when Sonic tight (`r4_p2_joint_spread_vs_extract_vol.csv`) — **no** microstructure edge for ‘spread compression predicts extract short-horizon vol’ on this grid."
     ]
   },
   {
@@ -174,14 +177,18 @@
         "bullet": "1) Named-bot exploitation (burst ±W, pair conditioning)",
         "outputs": [
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_burst_pair_mark67_extract_k20.csv",
-          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_pair_forward_by_burst.csv"
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_pair_forward_by_burst.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_pair_burst_forward_by_day.csv"
         ],
-        "conclusion": "Mark67|extract k=20 means identical with/without ±500ts neighborhood of Mark01→Mark22 prints; burst slice n=16 too thin to claim synergy. **Pair × burst stratum** (`r4_p1_pair_forward_by_burst.csv`, n≥30): e.g. Mark01|Mark22 on VEV_5300 in **multi_print_burst** shows negative k=5 self-mid (mean≈−0.15, t≈−2.3, n=132) vs isolated stratum often thinner — use file for burst-conditioned basket pipes vs participant-only burst splits."
+        "conclusion": "Mark67|extract k=20 means identical with/without ±500ts neighborhood of Mark01→Mark22 prints; burst slice n=16 too thin to claim synergy. **Pair × burst stratum** (`r4_p1_pair_forward_by_burst.csv`, n≥30): e.g. Mark01|Mark22 on VEV_5300 in **multi_print_burst** shows negative k=5 self-mid (mean≈−0.15, t≈−2.3, n=132). **Per-day** (`r4_p2_pair_burst_forward_by_day.csv`): same cell is **not** sign-stable — day1 k=5 self_mid mean≈−0.28 (t≈−2.0, n=32), day2 k=5 mean≈−0.05 (|t|<0.5), day3 k=5 mean≈−0.13 (t≈−1.45) — pooled burst stat overstates out-of-sample day homogeneity; mean-revert vs trend split depends on horizon/day (e.g. day3 k=100 extract positive with large t but day2 k=100 extract ~0)."
       },
       {
         "bullet": "2) Microstructure (touch/spread under Sonic gate)",
-        "outputs": ["manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_microprice_sonic_tight_5200_spread.csv"],
-        "conclusion": "When joint gate is on, VEV_5200 rows are already at spread≤2 by construction; file records share_le2≈1.0 — inner-quote opportunity still limited to tape discretization."
+        "outputs": [
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_microprice_sonic_tight_5200_spread.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_joint_spread_vs_extract_vol.csv"
+        ],
+        "conclusion": "When joint gate is on, VEV_5200 rows are already at spread≤2 by construction; file records share_le2≈1.0 — inner-quote opportunity still limited to tape discretization. **Joint voucher spread vs extract short-horizon vol** (`r4_p2_joint_spread_vs_extract_vol.csv`): corr(max(5200,5300) spread, |Δextract mid| over k=5 rows) is **~0.009** pooled and **~0.004** in sonic_tight_only (n≈30k / 7.7k) — no evidence that wider joint surface predicts larger 5-row extract moves in this discrete panel (not a compression→vol edge)."
       },
       {
         "bullet": "3) Cross-instrument lead–lag (Mark67 signed flow vs extract)",
@@ -547,5 +554,17 @@
       "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_pair_forward_by_burst.csv"
     ],
     "used_to_decide": "Cell-mean baseline makes naive pair-only residual means ~0; dispersion table surfaces hydro duopoly and extract pipe cells as high within-regime variance. Pair×burst file gives Phase-2-style conditioning without new script entrypoint."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "Phase 2 extension in r4_phase2_analysis.py: r4_p2_graph_hubs_degree.csv (buy+sell edge mass per participant), r4_p2_graph_top_pairs_reciprocity.csv (count_ba + min/max reciprocity for top pairs), r4_p2_pair_burst_forward_by_day.csv (pair×symbol×spread×burst×day×horizon mean/t/n for self_mid and extract), r4_p2_joint_spread_vs_extract_vol.csv (corr max/min joint voucher spread vs |extract Δmid| over k=5 rows, pooled/tight/loose/by day). Updated analysis.json Phase1 bullet 3 and Phase2 bullets 1–2; added no_edge line on spread-vol.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_phase2_analysis.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_graph_hubs_degree.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_graph_top_pairs_reciprocity.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_pair_burst_forward_by_day.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_joint_spread_vs_extract_vol.csv"
+    ],
+    "used_to_decide": "Graph reciprocity quantifies Mark14↔Mark38 two-way hydro vs Mark01→Mark22 one-way basket. Day-split burst basket stats falsify a simple ‘always fade 5300 on burst’ rule. Joint spread–extract vol correlation ~0 kills a naive Phase-2 microstructure compression hypothesis without sim."
   }
 ]

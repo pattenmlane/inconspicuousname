@@ -419,5 +419,24 @@
     ],
     "backtest_worse": null,
     "backtest_all": null
+  },
+  {
+    "iteration": 17,
+    "trader_file": "(none — r4_phase2_analysis.py extension)",
+    "strategy_description": "Graph hubs/reciprocity CSVs; pair×burst×day forward stability; joint 5200/5300 spread vs extract |Δmid| k=5 vol correlation. No backtest.",
+    "total_profit": null,
+    "backtest_round": 4,
+    "match_trades": null,
+    "backtest_log_file": null,
+    "trades_or_fills_summary": null,
+    "analysis_only_outputs": [
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_phase2_analysis.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_graph_hubs_degree.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_graph_top_pairs_reciprocity.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_pair_burst_forward_by_day.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_joint_spread_vs_extract_vol.csv"
+    ],
+    "backtest_worse": null,
+    "backtest_all": null
   }
 ]

@@ -10,6 +10,11 @@ Outputs under analysis_outputs/:
 - r4_p2_leadlag_signed_flow_by_mark.csv (from r4_phase2_leadlag_multi_mark_flow.py) — same for multiple marks
 - r4_p2_sonic_gate_mark67_k5_by_day.csv — joint 5200+5300 spread<=2 vs Mark67 buy_agg extract k=5
 - r4_p2_microprice_touch_rate.csv — touch rate when spread==2 on 5200/5300
+- r4_p1_graph_buyer_seller_edges.csv — input for graph hub / reciprocity (Phase 1)
+- r4_p2_graph_hubs_degree.csv — undirected edge-print mass per participant
+- r4_p2_graph_top_pairs_reciprocity.csv — top directed pairs with count_ba and reciprocity ratio
+- r4_p2_pair_burst_forward_by_day.csv — (pair,symbol,spread_bin,burst_stratum)×day×horizon (mean/t/n)
+- r4_p2_joint_spread_vs_extract_vol.csv — max(5200,5300) spread vs |Δextract mid| over 5 price rows
 """
 from __future__ import annotations
 
@@ -176,6 +181,134 @@ def main() -> None:
 
     with open(os.path.join(OUT, "r4_phase2_machine_summary.json"), "w") as f:
         json.dump({"burst_neighborhood_rows_m67": int(m67["near_m01_m22_burst"].sum()), "m67_n": int(len(m67))}, f, indent=2)
+
+    # --- Graph hubs & reciprocity (Phase 1 edges file) ---
+    edges_path = os.path.join(OUT, "r4_p1_graph_buyer_seller_edges.csv")
+    if os.path.isfile(edges_path):
+        ed = pd.read_csv(edges_path)
+        ed["buyer"] = ed["buyer"].astype(str)
+        ed["seller"] = ed["seller"].astype(str)
+        out_deg = ed.groupby("buyer")["count"].sum()
+        in_deg = ed.groupby("seller")["count"].sum()
+        names = sorted(set(out_deg.index.astype(str)) | set(in_deg.index.astype(str)))
+        hub_list = []
+        for nm in names:
+            ob = float(out_deg.get(nm, 0)) if nm in out_deg.index else 0.0
+            ib = float(in_deg.get(nm, 0)) if nm in in_deg.index else 0.0
+            hub_list.append(
+                {
+                    "participant": nm,
+                    "prints_as_buyer": ob,
+                    "prints_as_seller": ib,
+                    "total_edge_prints": ob + ib,
+                }
+            )
+        hubs = pd.DataFrame(hub_list).sort_values("total_edge_prints", ascending=False)
+        rec_rows = []
+        for _, r in ed.iterrows():
+            a, b = str(r["buyer"]), str(r["seller"])
+            fwd = int(r["count"])
+            rev = int(ed.loc[(ed["buyer"] == b) & (ed["seller"] == a), "count"].sum() or 0)
+            if fwd <= 0:
+                continue
+            rec_rows.append(
+                {
+                    "buyer": a,
+                    "seller": b,
+                    "count_ab": fwd,
+                    "count_ba": rev,
+                    "reciprocity_min_over_max": float(min(fwd, rev) / max(fwd, rev)) if max(fwd, rev) > 0 else 0.0,
+                }
+            )
+        rec_df = pd.DataFrame(rec_rows).drop_duplicates(subset=["buyer", "seller"])
+        rec_df = rec_df.sort_values("count_ab", ascending=False).head(40)
+        hubs.to_csv(os.path.join(OUT, "r4_p2_graph_hubs_degree.csv"), index=False)
+        rec_df.to_csv(os.path.join(OUT, "r4_p2_graph_top_pairs_reciprocity.csv"), index=False)
+
+    # --- Pair × burst × day forward stability (Phase 2 bullet 1 out-of-sample style) ---
+    sub_ag = df[df["agg"].isin(["buy_agg", "sell_agg"])].copy()
+    day_rows: list[dict] = []
+    for (pair, sym, spb, burst_flag), grp in sub_ag.groupby(["pair", "symbol", "spread_bin", "burst"]):
+        if len(grp) < 30:
+            continue
+        burst_label = "multi_print_burst" if bool(burst_flag) else "isolated_print"
+        for d in DAYS:
+            gday = grp[grp["day"] == int(d)]
+            if len(gday) < 5:
+                continue
+            for k in (5, 20, 100):
+                for col, fwd in [(f"dm_self_k{k}", "self_mid"), (f"dm_ex_k{k}", "extract")]:
+                    x = gday[col].dropna()
+                    n = int(len(x))
+                    if n < 5:
+                        continue
+                    m = float(x.mean())
+                    s = float(x.std(ddof=1)) if n > 1 else 0.0
+                    tstat = float(m / (s / np.sqrt(n))) if s > 1e-12 else float("nan")
+                    day_rows.append(
+                        {
+                            "pair": pair,
+                            "symbol": sym,
+                            "spread_bin": spb,
+                            "burst_stratum": burst_label,
+                            "day": int(d),
+                            "horizon_k": k,
+                            "forward": fwd,
+                            "n": n,
+                            "mean": m,
+                            "t": tstat,
+                            "pos_frac": float((x > 0).mean()),
+                        }
+                    )
+    if day_rows:
+        pd.DataFrame(day_rows).to_csv(os.path.join(OUT, "r4_p2_pair_burst_forward_by_day.csv"), index=False)
+
+    # --- Joint 5200/5300 spread vs short-horizon extract |Δmid| (5 rows = k=5) ---
+    ex = prices[prices["product"] == "VELVETFRUIT_EXTRACT"][["day", "timestamp", "mid_price"]].copy()
+    ex = ex.sort_values(["day", "timestamp"])
+    ex["abs_dm5"] = ex.groupby("day")["mid_price"].transform(lambda s: (s.shift(-5) - s).abs())
+    s52 = prices[prices["product"] == "VEV_5200"][["day", "timestamp", "bid_price_1", "ask_price_1"]].copy()
+    s52["sp5200"] = s52["ask_price_1"] - s52["bid_price_1"]
+    s53 = prices[prices["product"] == "VEV_5300"][["day", "timestamp", "bid_price_1", "ask_price_1"]].copy()
+    s53["sp5300"] = s53["ask_price_1"] - s53["bid_price_1"]
+    m = ex.merge(s52[["day", "timestamp", "sp5200"]], on=["day", "timestamp"], how="inner")
+    m = m.merge(s53[["day", "timestamp", "sp5300"]], on=["day", "timestamp"], how="inner")
+    m["joint_max_spread"] = np.maximum(m["sp5200"], m["sp5300"])
+    m["joint_min_spread"] = np.minimum(m["sp5200"], m["sp5300"])
+    m = m.merge(sonic, on=["day", "timestamp"], how="left")
+    m["sonic_tight"] = m["sonic_tight"].fillna(False)
+    vol_rows: list[dict] = []
+    for label, mask in [
+        ("pooled_all", pd.Series(True, index=m.index)),
+        ("sonic_tight_only", m["sonic_tight"]),
+        ("sonic_loose_only", ~m["sonic_tight"]),
+    ]:
+        g = m[mask].dropna(subset=["abs_dm5", "joint_max_spread"])
+        if len(g) < 100:
+            continue
+        cmax = float(g["joint_max_spread"].corr(g["abs_dm5"]))
+        cmin = float(g["joint_min_spread"].corr(g["abs_dm5"]))
+        vol_rows.append(
+            {
+                "slice": label,
+                "n": int(len(g)),
+                "corr_joint_max_spread_abs_dm5": cmax,
+                "corr_joint_min_spread_abs_dm5": cmin,
+            }
+        )
+    for d in DAYS:
+        g = m[m["day"] == d].dropna(subset=["abs_dm5", "joint_max_spread"])
+        if len(g) < 50:
+            continue
+        vol_rows.append(
+            {
+                "slice": f"day_{d}",
+                "n": int(len(g)),
+                "corr_joint_max_spread_abs_dm5": float(g["joint_max_spread"].corr(g["abs_dm5"])),
+                "corr_joint_min_spread_abs_dm5": float(g["joint_min_spread"].corr(g["abs_dm5"])),
+            }
+        )
+    pd.DataFrame(vol_rows).to_csv(os.path.join(OUT, "r4_p2_joint_spread_vs_extract_vol.csv"), index=False)
 
     print("Phase2 outputs ->", OUT)
 

@@ -143,5 +143,15 @@
       "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v36_v37_d0d1d2_worse_all.json"
     ],
     "used_to_decide": "Ship v37 as the vouchers_final_strategy line (soft gate for participation). 200k/day in these units is not met (still ~5k/day on this harness); next: tune mults, ret window, or partial hard gate (e.g. only 5200/5300/5400+extract when not tight) without reintroducing old stack."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "Tried v38 (higher BASE_* and TIGHT mult vs v37) and v39 (v38 + co-tightness boost 1.12x when s5200+s5300<=3 while joint TH satisfied — STRATEGY 6-panel low-left). Backtest R3 d0-2 worse+all.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v38_v39_d0d1d2_worse_all.json",
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v38_worse_d0d1d2.log",
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v39_worse_d0d1d2.log"
+    ],
+    "used_to_decide": "Total and per-product PnL identical to v37 (15382, same V4000+U lines). Suggests this harness fill path is not scaling with our larger order sizes for these products, or we already sat at effective max participation. No reason to prefer v38/v39 over v37; keep v37 as reference implementation until quote-level or taker/IOC experiments change the path. 200k/day objective still not approached. (Initial tee mis-shell produced bogus filenames with literal ${n} — removed; logs saved as r3v_v38/v39_*.log under strategy folder.)"
   }
 ]

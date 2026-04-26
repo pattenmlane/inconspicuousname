@@ -1,0 +1,11 @@
+{
+  "note": "R3 d0-2; v38/v39 same per-day and total as v37 (15382) — larger Order quantities did not change reported PnL in this harness; worse and all match.",
+  "trader_v38": {
+    "backtest_worse": { "total_profit": 15382, "day_totals": [6233, 7384, 1765] },
+    "backtest_all": { "total_profit": 15382, "day_totals": [6233, 7384, 1765] }
+  },
+  "trader_v39": {
+    "backtest_worse": { "total_profit": 15382, "day_totals": [6233, 7384, 1765] },
+    "backtest_all": { "total_profit": 15382, "day_totals": [6233, 7384, 1765] }
+  }
+}

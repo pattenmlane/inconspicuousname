@@ -173,5 +173,59 @@
         "Mark55 signed-flow terciles vs extract fwd5 flip sign by day — weak inventory signal without more structure."
       ]
     }
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Phase 3 script `r4_phase3_joint_gate_r4.py`: replicates R3 `analyze_vev_5200_5300_tight_gate_r3` **inner-join** timestamps for 5200+5300+extract; tight=(s5200≤2)&(s5300≤2); K=20 forward extract mid. Pooled Welch **t≈7.94**, tight mean fwd **+0.32** vs loose **−0.12** (`r4_joint_gate_forward_extract_k20_by_day.csv`). inclineGod panels: **spread–spread** scatter per day (`r4_spread_spread_scatter_day*.png`), **spread vs price** via corr s5200/s5300 vs m_ext and vs extract spread in same CSV. **Counterparty × gate:** `r4_aggr_extract_buy_fwd5_by_gate_seller.csv` (Phase-1 style K=5); `mark01_mark22_fwd5_by_gate_and_symbol.csv` shows **Mark01→Mark22 on VEV_5300 when joint_tight** has **negative** mean fwd5 (tape — basket selling into tight surface drags short-horizon mid). `three_way_pair_gate_symbol_fwd5.csv` for Tier-A tables. Read `round3work/vouchers_final_strategy/STRATEGY.txt` and `ORIGINAL_DISCORD_QUOTES.txt` for Sonic/inclineGod wording alignment.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_jump_gap_filter_17/r4_phase3_joint_gate_r4.py",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase3/r4_joint_gate_forward_extract_k20_by_day.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase3/phase3_summary.txt",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase3/r4_fwd_extract_hist_tight_vs_loose.png",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase3/r4_spread_spread_scatter_day1.png",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase3/r4_spread_spread_scatter_day2.png",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase3/r4_spread_spread_scatter_day3.png",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase3/r4_aggr_extract_buy_fwd5_by_gate_seller.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase3/mark01_mark22_fwd5_by_gate_and_symbol.csv",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase3/three_way_pair_gate_symbol_fwd5.csv",
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "manual_traders/R4/r3v_jump_gap_filter_17/trader_v2.py",
+      "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter2_backtest_worse.log",
+      "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter2_backtest_all.log"
+    ],
+    "used_to_decide": "Phase 3 gate in `round4_phase3_complete`. Tape: Sonic joint gate **cleans** K=20 **extract mid** forward distribution vs Phase-1/2 without that conditioning (Welch highly significant pooled). **Counterparty interaction:** Mark01→Mark22 **VEV_5300** prints under **tight** gate skew **short** at K=5 (negative mean_fwd5) — orthogonal to Phase-1 aggressive-extract-buy drift (different product/horizon). Sim `trader_v2` did not improve PnL vs v1 (no VEV fills); Tier-A remains **tape-first** until MM crosses touch.",
+    "round4_phase3_complete": {
+      "phase": 3,
+      "comparison_to_phase1_2_without_gate": "Unconditional mid dynamics mixed in Phase 2; **gated K=20 extract forward** is clearly higher when both 5200 and 5300 spreads ≤2 (R4 days 1–3), matching Sonic’s ‘cleaner signal when tight’ narrative on **extract mid** (still not automatic PnL — STRATEGY caveat). Phase-1 Mark22/49 **aggressive extract buy** K=5 means stay positive **mostly when gate loose** (wide majority of counts); **tight slices are n-starved** for that specific print type — gate **does not amplify** that edge in raw count terms.",
+      "top_5_tier_a_edges": [
+        {
+          "rank": 1,
+          "edge": "Sonic joint tight (5200+5300 TOB ≤2, inner-join timestamps) → higher mean K=20 forward extract mid vs not-tight; pooled Welch p ~2e-15",
+          "evidence": "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase3/r4_joint_gate_forward_extract_k20_by_day.csv; r4_fwd_extract_hist_tight_vs_loose.png"
+        },
+        {
+          "rank": 2,
+          "edge": "Spread–spread + spread–price: positive corr(5200 spread, 5300 spread) ~0.18–0.31 by day; corr spreads to extract mid ~0.35–0.48 (inclineGod ‘spreads not only prices’)",
+          "evidence": "same CSV correlation columns; scatter PNGs in outputs/phase3/"
+        },
+        {
+          "rank": 3,
+          "edge": "Three-way (Mark01→Mark22, joint_tight, VEV_5300): under tight gate, mean fwd5 on 5300 prints is **negative** (basket flow vs short-horizon mid) — candidate **fade / avoid providing liquidity** on that leg when surface tight",
+          "evidence": "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase3/mark01_mark22_fwd5_by_gate_and_symbol.csv; three_way_pair_gate_symbol_fwd5.csv"
+        },
+        {
+          "rank": 4,
+          "edge": "Mark14→Mark38 hydro: tight gate shows different mean fwd5 than loose on some days (see three_way CSV) — hydro duopoly interacts with surface regime",
+          "evidence": "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase3/three_way_pair_gate_symbol_fwd5.csv"
+        },
+        {
+          "rank": 5,
+          "edge": "Sim `trader_v2` documents that naive wall-mid MM on 5200/5300 under gate **did not fill** in backtester (PnL equals extract-only v1) — execution layer still missing for Tier-A sim",
+          "evidence": "manual_traders/R4/r3v_jump_gap_filter_17/results.json iteration 2; run_logs/iter2_backtest_worse.log"
+        }
+      ],
+      "does_gate_clean_phase1_extract_buy_signal": "Partially: **K=20 extract mid** strongly improves under gate (clear ‘clean’ mid signal). The Phase-1 **aggressive extract buy + Mark22/49** **K=5** effect is **not** uniformly larger when tight — cells are **small** and sometimes lower mean; do not equate mid cleanliness with that print-type edge without more n or a sim that fills."
+    }
   }
 ]

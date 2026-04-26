@@ -1,0 +1,13 @@
+Round 4 Phase 3 — Sonic joint gate (inner join 5200+5300+extract), TH=2, K_fwd=20
+
+   day  mean_fwd_tight  mean_fwd_loose  welch_t      welch_p  n_tight  n_loose  corr_s5200_s5300  corr_s5200_m_ext  corr_s5300_m_ext  corr_s5200_s_ext  corr_s5300_s_ext  frac_tight
+     1        0.599203       -0.048320 5.324774 1.132599e-07     1381     8599          0.235549          0.388153          0.324251          0.022505          0.006026    0.138377
+     2        0.464100       -0.018115 4.238249 2.336409e-05     1727     8253          0.264989          0.465786          0.406942         -0.003498         -0.013770    0.173046
+     3        0.187908       -0.395020 6.781484 1.257856e-11     4598     5382          0.184113          0.425123          0.351445          0.004823          0.018029    0.460721
+pooled        0.323514       -0.121031 7.935124 2.268068e-15     7706    22234          0.307127          0.479288          0.421544          0.008514          0.005461    0.257381
+
+Plots:
+/workspace/manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase3/r4_fwd_extract_hist_tight_vs_loose.png
+/workspace/manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase3/r4_spread_spread_scatter_day1.png
+/workspace/manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase3/r4_spread_spread_scatter_day2.png
+/workspace/manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase3/r4_spread_spread_scatter_day3.png

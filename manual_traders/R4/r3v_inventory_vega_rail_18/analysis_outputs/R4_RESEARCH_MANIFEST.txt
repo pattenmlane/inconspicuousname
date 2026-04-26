@@ -1,0 +1,64 @@
+Round 4 — research manifest (strategy folder: r3v_inventory_vega_rail_18)
+======================================================================
+Data: Prosperity4Data/ROUND_4/ prices + trades, csv days 1–3 (see FileSystemReader round 4).
+Horizon K: forward price ticks on 100-step grid (see run_r4_phase1_counterparty_analysis.py).
+
+Phase 1 — scripts
+-----------------
+manual_traders/R4/r3v_inventory_vega_rail_18/run_r4_phase1_counterparty_analysis.py
+
+Phase 1 — outputs
+-----------------
+analysis_outputs/r4_phase1_pair_forward_summary.csv
+analysis_outputs/r4_phase1_pair_forward_by_day.csv
+analysis_outputs/r4_phase1_mark_forward_summary.csv
+analysis_outputs/r4_phase1_pair_residuals.csv
+analysis_outputs/r4_phase1_graph_edges.csv
+analysis_outputs/r4_phase1_twohop_same_symbol.csv
+analysis_outputs/r4_phase1_bursts.csv
+analysis_outputs/r4_phase1_burst_vs_isolated_extract_fwd20.json
+analysis_outputs/r4_phase1_adverse_extract_after_01_22_5300.csv
+analysis_outputs/r4_phase1_summary.txt
+
+Phase 2 — scripts
+-----------------
+manual_traders/R4/r3v_inventory_vega_rail_18/run_r4_phase2_analysis.py
+
+Phase 2 — outputs
+-----------------
+analysis_outputs/r4_phase2_burst_window_fwd_k5.csv
+analysis_outputs/r4_phase2_microprice_spread_regimes.json
+analysis_outputs/r4_phase2_leadlag_signed_flow.json
+analysis_outputs/r4_phase2_joint_gate_stratify.json
+analysis_outputs/r4_phase2_session_tercile_gate.json
+analysis_outputs/r4_phase2_smile_residual_01_22_vev.json
+analysis_outputs/r4_phase2_worst_mean_fwd_k5_pairs.csv
+analysis_outputs/r4_phase2_summary.txt
+
+Phase 3 — scripts
+-----------------
+round3work/vouchers_final_strategy/analyze_vev_5200_5300_tight_gate_r3.py (R3 convention reference)
+manual_traders/R4/r3v_inventory_vega_rail_18/run_r4_phase3_joint_gate_analysis.py
+
+Phase 3 — outputs
+-----------------
+analysis_outputs/r4_phase3_gate_forward_extract_k20.json
+analysis_outputs/r4_phase3_spread_correlations.json
+analysis_outputs/r4_phase3_threeway_pair_gate_fwd.csv
+analysis_outputs/r4_phase3_focus_pairs_gate.json
+analysis_outputs/r4_phase3_mark01_mark22_5300_gate_slice.json
+analysis_outputs/r4_phase3_summary.txt
+
+Community / STRATEGY reference (Round 3 folder in-repo)
+------------------------------------------------------
+round3work/vouchers_final_strategy/STRATEGY.txt
+round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt
+
+Backtester (counterparty in TradingState)
+-----------------------------------------
+imc-prosperity-4-backtester/prosperity4bt/test_runner.py (market_trades per tick)
+
+Execution experiment log (append-only)
+--------------------------------------
+manual_traders/R4/r3v_inventory_vega_rail_18/results.json
+manual_traders/R4/r3v_inventory_vega_rail_18/analysis.json (includes round4_phase{1,2,3}_complete)

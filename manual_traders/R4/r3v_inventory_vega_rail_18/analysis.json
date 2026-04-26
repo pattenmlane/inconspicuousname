@@ -323,5 +323,28 @@
       "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v13_all_fill_summary.json"
     ],
     "used_to_decide": "Keep v6 as baseline; v13 is optional risk overlay for live if we want to avoid quoting extract into simultaneous 01→22 5300 tape without hurting this backtest slice. Next: multi-tick armed risk-off after 01→22 (symmetric to v12) or burst-conditioned skip."
+  },
+  {
+    "round4_synthesis_2026_04_26": {
+      "status": "Phases 1–3: gate objects and ranked edges already live in this file under round4_phase1_complete, round4_phase2_complete, round4_phase3_complete. This entry adds a single manifest path and a concise cross-phase verdict.",
+      "authoritative_suggested_plan": "round4work/suggested direction.txt",
+      "r3_strategy_reference": [
+        "round3work/vouchers_final_strategy/STRATEGY.txt",
+        "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt"
+      ],
+      "manifest": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/R4_RESEARCH_MANIFEST.txt",
+      "scripts_ran": [
+        "run_r4_phase1_counterparty_analysis.py",
+        "run_r4_phase2_analysis.py",
+        "run_r4_phase3_joint_gate_analysis.py"
+      ],
+      "cross_phase_verdict": "Tape statistics: population Sonic joint gate improves aggregate extract forward (Phase 3); Mark-pair conditionals are heterogeneous (Mark67 extract vs Mark01→22 5300). Execution (--match-trades worse): only passive bid + joint gate (v6) shows small positive PnL; same-tick Mark67 filter (v11) and wide Mark67 arm (v12) do not beat v6; Mark01→22 5300 risk-off (v13) matches v6 on worse fills. Conclusion: counterparty **timing** and **gating** from offline stats do not automatically survive fill simulation — execution dominates.",
+      "negative_results_preserved": [
+        "v3/v5 aggressive at-ask: large losses",
+        "v11 same-tick Mark67: 0 fills",
+        "v9 one-shot exit: worse +70 vs v6 +252 (missing sell under worse matching)"
+      ],
+      "positive_baseline": "trader_v6 (and v10/v12/v13 on worse: +252 where matched)"
+    }
   }
 ]

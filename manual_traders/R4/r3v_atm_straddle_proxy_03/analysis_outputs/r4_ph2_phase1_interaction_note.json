@@ -1,0 +1,5 @@
+{
+  "confirms_phase1": "Mark 01 aggressive VEV_5300 short-horizon negativity persists in isolated window; burst-adjacent subset differs \u2014 see r4_ph2_mark01_vev5300_burst_window_fwd5.json",
+  "refines_phase1": "Mark 67 extract lift edge stratified by extract spread (tight vs wide) in r4_ph2_mark67_aggr_buy_extract_spread_regime.json",
+  "orthogonal": "Microprice dislocation on VEV_5300 vs subsequent abs fwd20 in r4_ph2_vev5300_microprice_spread_regime.json; signed-flow lag table in r4_ph2_signed_flow_5300_vs_extract_fwd20_lag.json"
+}

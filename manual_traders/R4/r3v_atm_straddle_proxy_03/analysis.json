@@ -115,6 +115,110 @@
       "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v0_round4_all.log",
       "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_adverse_aggressor_fwd20.json"
     ],
-    "used_to_decide": "v0 worse total 7794 (days 1–2 positive, day 3 negative); does not meet 200k/day bar. Next: add Sonic joint gate on 5200/5300 from Phase 3 playbook, fade Mark 01 on 5300, or reduce day-3 exposure; Phase 2 not started until ops requests."
+    "used_to_decide": "v0 worse total 7794 (days 1–2 positive, day 3 negative). Phase 2 analysis completed in follow-up commit; v1 adds burst-conditioned 5300 leg."
+  },
+  {
+    "iteration": "round4_phase2_complete",
+    "analysis_description": "Round 4 Phase 2 gate: named-bot/burst conditioning, microprice/spread on VEV_5300, signed net flow Mark01↔Mark22 on 5300 vs extract fwd20 lags, spread regime for Mark67 extract, tight-spread print pairs, interaction with Phase 1.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/ph2_r4_phase2_analysis.py",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph2_executive_summary.txt",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph2_mark01_vev5300_burst_window_fwd5.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph2_vev5300_microprice_spread_regime.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph2_signed_flow_5300_vs_extract_fwd20_lag.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph2_mark67_aggr_buy_extract_spread_regime.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph2_vev5300_tight_spread_print_pairs.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph2_phase1_interaction_note.json"
+    ],
+    "used_to_decide": "Phase 2 complete; ranked edges below. Phase 3 (Sonic joint gate on R4 + three-way interactions) remains.",
+    "phase2_bullet_conclusions": [
+      {
+        "bullet": "1) Named-bot exploitation + burst",
+        "outputs": ["analysis_outputs/r4_ph2_mark01_vev5300_burst_window_fwd5.json"],
+        "conclusion": "All 132 Mark 01 buys of VEV_5300 in tape fall within ±500 ts of a Mark01→Mark22 multi-symbol burst; mean fwd5 mid on 5300 ≈ -0.148 (t≈-2.29). No isolated prints—burst context is universal for this pattern in days 1–3."
+      },
+      {
+        "bullet": "2) Microstructure (microprice vs mid, spread)",
+        "outputs": ["analysis_outputs/r4_ph2_vev5300_microprice_spread_regime.json"],
+        "conclusion": "VEV_5300 L1 microprice minus mid is rarely large; mean abs fwd20 is ~1.26–1.35 in high vs low dislocation split—weak vol signal from microprice alone on this tape."
+      },
+      {
+        "bullet": "3) Cross-instrument lead–lag",
+        "outputs": ["analysis_outputs/r4_ph2_signed_flow_5300_vs_extract_fwd20_lag.json"],
+        "conclusion": "Net signed lot flow (Mark01 buys minus Mark22 buys on 5300 per ts) vs extract fwd20: Pearson corr with fwd20 peaks ~0.06 at lag 0, turns negative by lag 5–20—no strong linear lead instrument."
+      },
+      {
+        "bullet": "4) Regime splits",
+        "outputs": ["analysis_outputs/r4_ph2_mark67_aggr_buy_extract_spread_regime.json"],
+        "conclusion": "Mark 67 aggressive extract buys (n=164) all occur at extract spread ≤8 in sample; cannot split tight vs wide for Mark67 on this slice—Phase 1 mean fwd20 ~1.81 reproduced."
+      },
+      {
+        "bullet": "5) Vol / smile",
+        "outputs": [],
+        "conclusion": "Deferred: no BS IV pipeline in Phase 2 script; tight-spread print pair counts on VEV_5300 captured in r4_ph2_vev5300_tight_spread_print_pairs.json for future smile tie-in."
+      },
+      {
+        "bullet": "6) Execution / adverse selection",
+        "outputs": ["manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v1_round4_worse.log"],
+        "conclusion": "v1 adds burst short 5300 + Mark67 long extract; worse total 6521 < v0 7794—simple simultaneous short 5300 hurts more than extract lift helps under worse fills."
+      },
+      {
+        "bullet": "7) Inventory-aware MM",
+        "outputs": [],
+        "conclusion": "Not modeled; passive markouts per Mark remain in Phase 1 r4_ph1_adverse_aggressor_fwd20.json for future quote-skew rules."
+      }
+    ],
+    "phase2_top5_tradeable_edges": [
+      {
+        "rank": 1,
+        "edge": "Mark 01 buys VEV_5300 only exist inside Mark01→Mark22 burst windows (n=132); short-horizon 5300 mid drift negative (mean fwd5 ≈ -0.15, |t|>2).",
+        "orthogonal_to_phase1": "Conditions basket choreography rather than single-name Mark67 extract impulse.",
+        "phase1_interaction": "Refines Phase 1 Mark01/5300/K=5 negative edge: burst conditioning explains zero isolated aggressive prints.",
+        "paths": ["analysis_outputs/r4_ph2_mark01_vev5300_burst_window_fwd5.json", "analysis_outputs/r4_ph1_participant_predictivity.json"],
+        "days": [1, 2, 3]
+      },
+      {
+        "rank": 2,
+        "edge": "Mark 67 aggressive extract buy + spread regime: all n=164 under extract spread≤8; mean fwd20 ≈ +1.81 (confirms Phase 1 cell).",
+        "orthogonal_to_phase1": "Adds regime documentation only.",
+        "phase1_interaction": "Confirms Phase 1 Mark67 statistic; wide-spread bucket empty on tape.",
+        "paths": ["analysis_outputs/r4_ph2_mark67_aggr_buy_extract_spread_regime.json"],
+        "days": [1, 2, 3]
+      },
+      {
+        "rank": 3,
+        "edge": "Multi-symbol Mark01→Mark22 bursts vs extract fwd20 (Phase 1): burst mean extract fwd20 ~0.40 vs control ~0.15.",
+        "orthogonal_to_phase1": "Cross-asset scheduler signature.",
+        "phase1_interaction": "Confirms Phase 1 burst table; use as timing for extract or basket fades in Phase 3.",
+        "paths": ["analysis_outputs/r4_ph1_burst_vs_control_extract_fwd20.txt"],
+        "days": [1, 2, 3]
+      },
+      {
+        "rank": 4,
+        "edge": "VEV_5300 tight-spread (≤4) print pair histogram — dominated by Mark01→Mark22 (see JSON top pairs).",
+        "orthogonal_to_phase1": "Microstructure who-trades-when.",
+        "phase1_interaction": "Supports Phase 1 graph hub Mark01→Mark22 on 5300 specifically.",
+        "paths": ["analysis_outputs/r4_ph2_vev5300_tight_spread_print_pairs.json"],
+        "days": [1, 2, 3]
+      },
+      {
+        "rank": 5,
+        "edge": "Signed net 5300 flow vs extract fwd20 lag structure (weak corr, sign flip by lag) — cautions against single-lag linear rule.",
+        "orthogonal_to_phase1": "Distributed lag view not in Phase 1 tables.",
+        "phase1_interaction": "Falsifies simple 'flow sign predicts extract same direction' at moderate lags.",
+        "paths": ["analysis_outputs/r4_ph2_signed_flow_5300_vs_extract_fwd20_lag.json"],
+        "days": [1, 2, 3]
+      }
+    ],
+    "phase2_vs_phase1": "Mark67 extract impulse unchanged and regime-bounded. Mark01/5300 negative markout reframed as burst-only phenomenon (no isolated counterpart). v1 live test shows naive burst short 5300 stacks poorly with Mark67 long under worse fills—Phase 3 should gate 5300 fade on Sonic 5200+5300 spread and/or separate horizons."
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "trader_v1: v0 + short VEV_5300 on same-timestamp Mark01→Mark22 multi-symbol bursts (Phase 2 hypothesis); backtest round 4 days 1–3.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v1_round4_worse.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v1_round4_all.log"
+    ],
+    "used_to_decide": "v1 worse total 6521 < v0 7794; burst short 5300 is not a net add with current sizing/execution. Phase 3: apply Sonic joint gate before 5300 fade and retest."
   }
 ]

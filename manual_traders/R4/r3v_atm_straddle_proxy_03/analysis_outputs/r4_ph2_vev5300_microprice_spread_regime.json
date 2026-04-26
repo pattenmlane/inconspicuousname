@@ -1,0 +1,10 @@
+{
+  "n_ticks": 29940,
+  "median_abs_micro_minus_mid": 1e-09,
+  "mean_abs_fwd20_high_micro_disloc": 1.3462692967409948,
+  "mean_abs_fwd20_low_micro_disloc": 1.238362970711297,
+  "spread_tercile_cutoffs": [
+    2.0,
+    2.0
+  ]
+}

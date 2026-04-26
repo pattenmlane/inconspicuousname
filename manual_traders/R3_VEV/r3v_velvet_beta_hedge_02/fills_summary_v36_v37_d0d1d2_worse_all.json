@@ -1,0 +1,11 @@
+{
+  "note": "R3 d0-2, both match modes; VEV+VELVETFRUIT_EXTRACT only (hydro 0).",
+  "trader_v36": {
+    "backtest_worse": { "total_profit": 2887, "day_totals": [495, 674, 1718], "log": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v36_worse_d0d1d2.log" },
+    "backtest_all": { "total_profit": 2887, "day_totals": [495, 674, 1718], "log": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v36_all_d0d1d2.log" }
+  },
+  "trader_v37": {
+    "backtest_worse": { "total_profit": 15382, "day_totals": [6233, 7384, 1765], "log": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v37_worse_d0d1d2.log" },
+    "backtest_all": { "total_profit": 15382, "day_totals": [6233, 7384, 1765], "log": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v37_all_d0d1d2.log" }
+  }
+}

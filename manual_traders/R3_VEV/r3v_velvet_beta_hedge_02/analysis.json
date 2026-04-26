@@ -133,5 +133,15 @@
       "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v35_all_d0d1d2.log"
     ],
     "used_to_decide": "trader_v35.py: v33 + joint BBO tight gate (5200&5300) with +6% VEV tilt and extract MM in gate. R3 d0-2: total 18,232 in both worse and all (identical in this run); VEV+extract only subtotal 10,599 from printed lines. Beats v33 total 16,273. Future: tune gate mult / extract size; optional hydrogel-off variant for 200k/day VEV+U target."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "Scope pivot: only round3work/vouchers_final_strategy. Re-read STRATEGY.txt and ORIGINAL_DISCORD_QUOTES.txt (Sonic: both 5200/5300 spread <=2 at same time, per-event edge, cleaner; inclineGod: corr of spreads, per-contract; mid-only plots need bid/ask execution). v36: **hard** gate (quote only when joint tight) + one-tick inside on all 10 VEV + extract, larger sizes on 5200/5300, ret-20 extract skew — PnL 2887/3d (sparse fills, mostly V4000+U). v37: **soft** gate — always one-tick inside, SIZE_MULT 1.45 when joint tight BBO / 0.75 when not, 20-tick extract ret bias; **no** hydrogel, no legacy tilt/smile. v37 15382 VEV+U only, worse=all.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v36_v37_d0d1d2_worse_all.json"
+    ],
+    "used_to_decide": "Ship v37 as the vouchers_final_strategy line (soft gate for participation). 200k/day in these units is not met (still ~5k/day on this harness); next: tune mults, ret window, or partial hard gate (e.g. only 5200/5300/5400+extract when not tight) without reintroducing old stack."
   }
 ]

@@ -1,0 +1,30 @@
+[
+  {
+    "iteration": 0,
+    "trader_file": "trader_v0.py",
+    "strategy_description": "Round 4 baseline: Sonic joint gate (VEV_5200+5300 BBO spread \u22642) \u2192 **VELVETFRUIT_EXTRACT** mid-style MM only (ported from R3 v23: EXTRACT_HALF=2.4, skew, long-lean). No HYDRO, no VEV orders. Counterparty logic deferred to later iterations.",
+    "backtest_worse": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "worse",
+      "total_profit": 3184,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter0_r4d1-3_worse.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v0.py 4 --data Prosperity4Data --match-trades worse --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 1227, "2": 1553, "3": 404 },
+        "note": "Day 1 extract line 1227 in log (no day 0 in ROUND_4 tape)."
+      }
+    },
+    "backtest_all": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "all",
+      "total_profit": 6012,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter0_r4d1-3_all.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v0.py 4 --data Prosperity4Data --match-trades all --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 776, "2": 1834, "3": 3401 }
+      }
+    }
+  }
+]

@@ -1,0 +1,122 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Merged **origin/main** for `Prosperity4Data/ROUND_4/` and `round4work/`. Round 4 Phase 1 tape study: 4,281 trade rows matched to price grid (days 1\u20133); horizons K\u2208{5,20,100} in **timestamp-bar steps**; aggressor inferred vs BBO; stratification by spread tertile bins and session tertile on clock timestamp.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_phase1_marks/outputs/participant_markout_by_side_symbol_K.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/stratified_cell_means.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/baseline_fwd20_residuals.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/top_abs_residual_pairs.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/directed_pair_counts_notional.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/two_step_chain_counts.txt",
+      "manual_traders/R4/r4_phase1_marks/outputs/burst_vs_extract_fwd20.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/burst_extract_welch_ge4_vs_lt4.txt",
+      "manual_traders/R4/r4_phase1_marks/outputs/lagged_signed_flow_extract_corr.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/extract_passive_party_fwd20_proxy.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/PHASE1_SUMMARY.md",
+      "manual_traders/R4/r4_phase1_marks/analyze_phase1.py"
+    ],
+    "note": "`analyze_phase1.py` also writes `outputs/trades_enriched.csv` when run; it is gitignored (large).",
+    "used_to_decide": "Phase 1 gate object appended as next array element. Baseline trader_v0 documents Round 4 sim harness for joint-gate extract leg before Mark-conditioned execution."
+  },
+  {
+    "round4_phase1_complete": true,
+    "phase": 1,
+    "data": "Prosperity4Data/ROUND_4 trades_round_4_day_{1,2,3}.csv + prices same days",
+    "bullet_evidence": [
+      {
+        "bullet": "1) Participant-level alpha / predictiveness",
+        "outputs": [
+          "manual_traders/R4/r4_phase1_marks/outputs/participant_markout_by_side_symbol_K.csv",
+          "manual_traders/R4/r4_phase1_marks/outputs/stratified_cell_means.csv"
+        ],
+        "conclusion": "No (Mark, aggressor side, symbol, K) cell reached **|Welch t vs spread-matched pool| \u2265 2** with **n\u226540**; max |t| with n\u226520 was **~0.65** (Mark 55 aggr_sell extract). **Null** for informed-style same-asset markout at these horizons on three days."
+      },
+      {
+        "bullet": "2) Deviation from bot baseline (cell mean fwd_same_20 by buyer,seller,symbol,spread_bin)",
+        "outputs": [
+          "manual_traders/R4/r4_phase1_marks/outputs/baseline_fwd20_residuals.csv",
+          "manual_traders/R4/r4_phase1_marks/outputs/top_abs_residual_pairs.csv"
+        ],
+        "conclusion": "Residual means are **~0** at scale of rounding; dominant structure is explained by the cell means (**no** large stable second-order anomaly in fwd_same_20)."
+      },
+      {
+        "bullet": "3) Sequence / graph methods",
+        "outputs": [
+          "manual_traders/R4/r4_phase1_marks/outputs/directed_pair_counts_notional.csv",
+          "manual_traders/R4/r4_phase1_marks/outputs/two_step_chain_counts.txt",
+          "manual_traders/R4/r4_phase1_marks/outputs/lagged_signed_flow_extract_corr.csv"
+        ],
+        "conclusion": "**Mark 01\u2192Mark 22** dominates counts (basket seller), **Mark 14\u2194Mark 38** on hydro notional; tape-order 2-step motifs are mostly **within-pair churn**. Lagged signed-flow vs extract fwd20 correlations are **small |r|** (no strong Granger-style lead in this coarse test)."
+      },
+      {
+        "bullet": "4) Burst structure",
+        "outputs": [
+          "manual_traders/R4/r4_phase1_marks/outputs/burst_vs_extract_fwd20.csv",
+          "manual_traders/R4/r4_phase1_marks/outputs/burst_extract_welch_ge4_vs_lt4.txt"
+        ],
+        "conclusion": "Prints in **same (day,timestamp)** bursts (\u22654 rows) show **higher mean fwd_EXTRACT_20** than isolated prints (**0.345 vs 0.095**) but Welch **t\u22481.70** (p\u22480.09 one-sided) \u2014 **suggestive only**, not a tight statistical edge across days alone."
+      },
+      {
+        "bullet": "5) Adverse selection vs inventory (proxy)",
+        "outputs": [
+          "manual_traders/R4/r4_phase1_marks/outputs/extract_passive_party_fwd20_proxy.csv"
+        ],
+        "conclusion": "Party-conditioned mean **fwd_same_20** on extract prints is near **0** for all Marks in this proxy; **no** clear \u201cwho systematically picks off mid\u201d ranking beyond noise at K=20."
+      }
+    ],
+    "top_5_tradeable_edges_ranked": [
+      {
+        "rank": 1,
+        "name": "Burst-time extract drift (weak)",
+        "rule_sketch": "After same-timestamp multi-symbol burst (\u22644 prints), extract mid **+20 bars** tends slightly up vs control.",
+        "effect": "mean fwd_EXTRACT_20 \u2248 +0.25 higher in burst bucket vs non-burst; Welch t\u22481.7",
+        "n": "1395 burst vs 2884 non-burst prints with valid fwd",
+        "days": "1,2,3 pooled",
+        "caveat": "Not significant at \u03b1=0.05 two-sided; overlapping forward windows; not validated out-of-sample (only 3 days)."
+      },
+      {
+        "rank": 2,
+        "name": "Structural flow: Mark 01 \u2192 Mark 22",
+        "rule_sketch": "Treat as **schedule / inventory** prior for MM (expect voucher sell pressure from 22 when 01 buys), not as a standalone mid-alpha.",
+        "effect": "1339 prints; see pair table",
+        "n": 1339,
+        "days": "1,2,3",
+        "caveat": "Does not by itself predict signed fwd mid in our tests."
+      },
+      {
+        "rank": 3,
+        "name": "Hydro duopoly Mark 14 \u2194 Mark 38",
+        "rule_sketch": "Two-sided hydro flow for regime detection / cross-hedge timing.",
+        "effect": "~50/50 buyer-seller split on HYDRO in prior sketch; large notionals",
+        "n": "700+ prints each direction",
+        "days": "1,2,3",
+        "caveat": "No extract markout lift isolated here."
+      },
+      {
+        "rank": 4,
+        "name": "Mark 55 on extract (balanced MM)",
+        "rule_sketch": "High touch rate on extract both sides; candidate for **neutral** reference bot when modeling microstructure later.",
+        "effect": "~43% buy/sell share on extract in r4_initial_analysis_summary (qual cross-check)",
+        "n": "O(10^2) extract rows",
+        "days": "1,2,3",
+        "caveat": "No directional markout."
+      },
+      {
+        "rank": 5,
+        "name": "Joint-gate extract MM (execution thesis)",
+        "rule_sketch": "Sonic gate + extract-only quoting (trader_v0) as sim baseline **before** layering Mark filters in Phase 2.",
+        "effect": "worse total PnL **3184** vs all **6012** on days 1\u20133 (not mid markout)",
+        "n": "full backtest",
+        "days": "1,2,3",
+        "caveat": "Uses R3-style gate on R4 tape; does not use counterparty fields yet."
+      }
+    ],
+    "no_edge_findings": [
+      "Aggressor-tagged **participant \u00d7 symbol \u00d7 K** markouts: **no** |t|\u22652 with n\u226540 vs spread-matched pool.",
+      "Baseline-adjusted fwd_same_20 residuals show **no** persistent pair-level alpha.",
+      "Passive-party extract fwd20 proxy: **flat** across Marks."
+    ],
+    "next_phase": "Phase 2 may condition the burst hint and pair structure on **finer windows**, **microprice**, and **Mark\u00d7burst** interactions; Phase 3 will re-test inside Sonic gate on R4."
+  }
+]

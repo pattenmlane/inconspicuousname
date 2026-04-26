@@ -1,0 +1,3 @@
+fwd_EXTRACT_20: burst_n>=4 n=1395 mean=0.345161
+                burst_n<4  n=2884 mean=0.095354
+Welch t (>=4 minus <4): 1.6965

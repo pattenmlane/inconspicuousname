@@ -128,6 +128,18 @@
         "**U spread bin @K=20:** `u1` vs `u2_6` means **~1.90 vs ~1.76** (n 62 vs 102), both CI>0 \u2014 refines tape overlap used in traders (spread==1 still mid-positive, but sim execution differed).",
         "**Coverage:** only **7** distinct counterparty strings in trades file for these days; **4281** enriched rows, **12** symbols \u2014 small named-bot set, limits \u201ceach name U\u201d exhaustive tables."
       ]
+    },
+    "phase1c_exhaustion": {
+      "script": "manual_traders/R4/r3v_volume_weighted_residual_05/phase1c_r4_exhaustive_names_leadlag.py",
+      "outputs": [
+        "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1c_exhaustive_per_name.csv",
+        "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1c_name_coverage.txt",
+        "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1c_m01_m22_leadlag_extract_k20.txt"
+      ],
+      "bullets": [
+        "**All names:** tape has exactly **7** Mark IDs (listed in `r4_phase1c_name_coverage.txt`). `r4_phase1c_exhaustive_per_name.csv` gives mean/**median**/**t**/**frac_pos**/**bootstrap CI** for every (name, side_role, symbol) cell with n\u22655, for K\u2208{5,20,100} and fwd targets same_sym / U / hydro (351 detail rows) \u2014 completes ping \u201ceach U\u201d requirement on this 7-actor set.",
+        "**Lead–lag (population):** M01\u2192M22 at **same U timestamp** vs extract **fwd_u_20** has Pearson r **\u2248-0.004, +0.006, +0.02** on days 1\u20133 (n=9980 ticks/day); 1-tick **lag** r similarly **~0.02 max** \u2014 **no** linear same-tick predictive link from basket prints to 20-tick U drift on full clock (Phase 1 structural ≠ signed extract clock signal without conditioning)."
+      ]
     }
   },
   {
@@ -435,5 +447,16 @@
       "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1b_participant_coverage.txt"
     ],
     "used_to_decide": "Strengthens **Tier-A** Mark67 **U buy_agg** evidence: **each day** fwd extract @20 has bootstrap CI **>0**; pooled CIs at K=5/20 exclude 0. **Hydro** forward after same prints is **noisy** (CI crosses 0). **Burst** co-location (n=2) does **not** help Mark67 U. **Coverage:** only **7** counterparty strings on these tapes \u2014 exhaustive per-name tables are trivially small. No change to Phase 2/3 gates; Phase 1 object extended in-place for audit trail."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "Round 4 **Phase 1c** — **exhaust** every counterparty name on the tape: `phase1c_r4_exhaustive_names_leadlag.py` outputs full **per-name** table with median + bootstrap (351 rows) and a **Mark01\u2192Mark22** vs **extract fwd_u@20** lagged-correlation on the full U **clock** (not trade-conditioned). Merged as `round4_phase1_complete.phase1c_exhaustion`.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_volume_weighted_residual_05/phase1c_r4_exhaustive_names_leadlag.py",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1c_exhaustive_per_name.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1c_name_coverage.txt",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1c_m01_m22_leadlag_extract_k20.txt"
+    ],
+    "used_to_decide": "Satisfies expanded Phase-1 spec \u201cfor each distinct name U\u201d: **7** only. New **negative** finding: on the **entire** U price grid, M01\u2192M22 indicator is **~uncorrelated** with short extract fwd (|r| < 0.02 day 1\u20132; ~0.018 day 3) \u2014 supports conditioning **on gate / counterparty slice** (Phase 2/3) rather than a raw clock signal. `r4_phase1c_exhaustive_per_name.csv` is the audit trail for all roles\u00d7symbol\u00d7K\u00d7target cells."
   }
 ]

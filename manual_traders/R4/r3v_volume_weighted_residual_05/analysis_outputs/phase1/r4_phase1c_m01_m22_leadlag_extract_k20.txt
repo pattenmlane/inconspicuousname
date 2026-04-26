@@ -1,0 +1,8 @@
+Horizon: fwd_u_20 = mid(U at t+20 ticks) - mid(U at t) on ordered U price tape per day.
+
+Pearson r between (M01→M22 trade at same timestamp) and extract fwd_u_20 at that tick.
+Also r with m01m22 **lagged one tick forward** (next row in U tape) vs fwd_u_20 (same t).
+
+day 1: n=9980 r(same_ts, m01m22 vs fwd_u_20)=-0.0041  r(m01m22[t-1] vs fwd_u_20[t])=-0.0037  m01m22 rate=0.0098
+day 2: n=9980 r(same_ts, m01m22 vs fwd_u_20)=0.0061  r(m01m22[t-1] vs fwd_u_20[t])=0.0081  m01m22 rate=0.0095
+day 3: n=9980 r(same_ts, m01m22 vs fwd_u_20)=0.0182  r(m01m22[t-1] vs fwd_u_20[t])=0.0158  m01m22 rate=0.0124

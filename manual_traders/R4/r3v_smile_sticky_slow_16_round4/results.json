@@ -5,5 +5,26 @@
     "trader_file": null,
     "strategy_description": "Phase 1 only: counterparty / burst / forward-mid analysis (no trader_v backtest this iteration). See analysis.json round4_phase1_complete.",
     "note": "Next iteration: trader_v0.py implementing gated rules with prosperity4bt round 4, worse + all."
+  },
+  {
+    "iteration": 2,
+    "round": 4,
+    "trader_file": "trader_v0.py",
+    "strategy_description": "Phase 2 execution sketch: mid\u00b12 MM all R4 products; omit extract ask when market_trades show Mark 38 aggressive buy on extract; +2 extract bid size when Mark 67 aggressive buy. Evidence-driven adverse hook from Phase 1.",
+    "backtest_worse": {
+      "total_profit": 4664,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v0.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v0_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v0_fill_summary_worse.json"
+    },
+    "backtest_all": {
+      "total_profit": 7310,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v0.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v0_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v0_fill_summary_all.json"
+    },
+    "backtest_round": 4,
+    "match_trades_primary": "worse",
+    "note": "Tape days 1-3 only in Prosperity4Data/ROUND_4. Phase 2 analysis in analysis.json round4_phase2_complete."
   }
 ]

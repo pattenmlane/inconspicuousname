@@ -99,5 +99,63 @@
         "**Two-hop chains** are dominated by **14\u219438\u219214** alternation \u2014 explains **liquidity recycling**, not directional extract alpha by itself."
       ]
     }
+  },
+  {
+    "iteration": 2,
+    "round": 4,
+    "analysis_description": "Phase 2: (1) Mark01\u2192Mark22 multi-VEV burst Type-B conditioning vs controls + per-day OOS; (2) microprice gap vs forward vol proxy; (3) signed extract flow lead-lag vs extract d_mid; hydro flow vs extract; (5) VEV_5200 IV residual vs Mark01/22 VEV prints; (7) Mark55 cumulative aggressive flow vs extract mid.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analyze_r4_phase2_edges.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase2_burst_typeB_markout.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase2_microprice_spread_vol.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase2_leadlag_signed_flow.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase2_cross_hydro_extract.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase2_iv_residual_vs_marks.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase2_inventory_proxy_mark55.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase2_day_split_oos.json"
+    ],
+    "used_to_decide": "See round4_phase2_complete for Phase-1 interaction and ranked edges."
+  },
+  {
+    "round4_phase2_complete": {
+      "phase1_interaction": "Type-B Mark01\u2192Mark22 multi-VEV bursts **refine** generic multi-print burst story: extract fwd20 mean **+0.24** vs control **-0.13** pooled, but **day 1 is negative (-0.34)** while **day 3 is strongly positive (+0.96)** \u2014 Phase-1 generic burst edge is **not day-stable**; Mark67/Mark55 patterns from Phase 1 **orthogonal** (actor-level) and persist in Phase 2 IV residual (M01/M22 prints coincide with **lower** IV residual on 5200, Welch p\u224810^-80). Microprice\u2192vol edge is **null** (~0 corr).",
+      "top_5_tradeable_edges": [
+        {
+          "rank": 1,
+          "edge": "At timestamps where **Mark 01\u2192Mark 22** prints **\u22652 different VEV symbols**, **VELVETFRUIT_EXTRACT** forward mid (K=20 tape rows) **beats** random-time controls on **pooled** days 1\u20133 (mean **+0.24** vs **-0.13**; n=217 bursts).",
+          "interaction_with_phase1": "Tightens Phase-1 generic burst to **named basket** choreography; **falsifies day-stability** (day1 negative, day3 hot).",
+          "outputs": ["manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase2_burst_typeB_markout.json", "manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase2_day_split_oos.json"]
+        },
+        {
+          "rank": 2,
+          "edge": "**Mark 01/Mark 22 VEV prints** align with **lower** rolling IV residual on **VEV_5200** (mean residual **-0.0048** vs **+0.0002** otherwise; Welch t\u2248-25.8).",
+          "interaction_with_phase1": "**Confirms** structural basket pressure on smile level; not same as mid markout but **stackable** with pair conditioning.",
+          "outputs": ["manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase2_iv_residual_vs_marks.json"]
+        },
+        {
+          "rank": 3,
+          "edge": "**Signed extract flow** shows **positive** correlation with **next-tick** extract mid change (lag1 corr **\u2248+0.115**), near-zero at lag0 negative.",
+          "interaction_with_phase1": "Orthogonal to counterparty tables; supports **short-horizon momentum** after aggressive flow aggregation.",
+          "outputs": ["manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase2_leadlag_signed_flow.json"]
+        },
+        {
+          "rank": 4,
+          "edge": "**Cumulative Mark 55** aggressive signed flow on extract correlates with extract mid within each tape day (mean per-day corr **\u2248+0.33** over 3 days).",
+          "interaction_with_phase1": "Inventory-style interpretation consistent with Phase-1 Mark55 buy/sell asymmetry at long K.",
+          "outputs": ["manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase2_inventory_proxy_mark55.json"]
+        },
+        {
+          "rank": 5,
+          "edge": "**Hydro signed flow** vs extract **\u0394mid** at **lead-1** tick: corr **\u2248+0.030** (weak cross-leg; same-tick ~0).",
+          "interaction_with_phase1": "Adds cross-instrument dimension beyond Phase-1 single-asset markouts.",
+          "outputs": ["manual_traders/R4/r3v_smile_sticky_slow_16_round4/analysis_outputs/r4_phase2_cross_hydro_extract.json"]
+        }
+      ],
+      "null_or_negative": [
+        "**Microprice minus mid** vs forward 5-tick absolute mid volatility: corr **\u2248 -0.0014** (no microprice edge at L1). File: r4_phase2_microprice_spread_vol.json.",
+        "**Regime-only** microstructure signal not found without richer book than L1 tape."
+      ],
+      "sim_note": "trader_v0.py implements one Phase-2 execution hook (skip extract ask when Mark38 aggressive buy seen in market_trades); backtest worse total **4664** on days 1\u20133 (not a profit goal)."
+    }
   }
 ]

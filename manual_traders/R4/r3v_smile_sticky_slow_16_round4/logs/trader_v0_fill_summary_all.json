@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v0.py",
+  "match_trades": "all",
+  "round": 4,
+  "total_profit": 7310,
+  "days": [1, 2, 3],
+  "per_day_total": {"1": 10512, "2": -6770, "3": 3569}
+}

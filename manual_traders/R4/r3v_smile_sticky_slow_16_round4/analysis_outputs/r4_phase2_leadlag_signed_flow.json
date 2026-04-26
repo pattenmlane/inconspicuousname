@@ -1,0 +1,48 @@
+{
+  "extract_signed_flow_vs_future_dmid": [
+    {
+      "lag_ticks": 0,
+      "corr_flow_dmid": -0.05373003950963161
+    },
+    {
+      "lag_ticks": 1,
+      "corr_flow_dmid": 0.11496467211224978
+    },
+    {
+      "lag_ticks": 2,
+      "corr_flow_dmid": 0.025493937157722253
+    },
+    {
+      "lag_ticks": 3,
+      "corr_flow_dmid": 0.027060742075649236
+    },
+    {
+      "lag_ticks": 4,
+      "corr_flow_dmid": 0.03541323904295648
+    },
+    {
+      "lag_ticks": 5,
+      "corr_flow_dmid": 0.02524571260845522
+    },
+    {
+      "lag_ticks": 6,
+      "corr_flow_dmid": 0.027670617263516786
+    },
+    {
+      "lag_ticks": 7,
+      "corr_flow_dmid": -0.023343925970912335
+    },
+    {
+      "lag_ticks": 8,
+      "corr_flow_dmid": 0.01884664486861065
+    },
+    {
+      "lag_ticks": 9,
+      "corr_flow_dmid": -0.019203479536273726
+    },
+    {
+      "lag_ticks": 10,
+      "corr_flow_dmid": -0.019607617495568865
+    }
+  ]
+}

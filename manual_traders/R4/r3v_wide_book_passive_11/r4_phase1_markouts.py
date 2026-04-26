@@ -32,8 +32,13 @@ DAYS = [1, 2, 3]
 KS = [5, 20, 100]
 EXTRACT = "VELVETFRUIT_EXTRACT"
 HYDRO = "HYDROGEL_PACK"
+VEV_5300 = "VEV_5300"
+VEV_5200 = "VEV_5200"
+VEV_4000 = "VEV_4000"
 N_BOOT_PARTICIPANT = 400
 N_BOOT_STRAT = 250
+LEAD_LAG_SYMBOLS = [EXTRACT, HYDRO, VEV_5300, VEV_5200, VEV_4000]
+LEAD_LAGS = [0, 1, 2, 3, 5]
 
 
 def _trade_paths() -> list[tuple[int, Path]]:
@@ -113,6 +118,9 @@ def merge_trades_prices(tr: pd.DataFrame, pr: pd.DataFrame) -> pd.DataFrame:
     hy = px.loc[px["symbol"] == HYDRO, ["day", "timestamp"] + [f"fwd_mid_{K}" for K in KS]]
     hy = hy.rename(columns={f"fwd_mid_{K}": f"hydro_fwd_mid_{K}" for K in KS})
     m = m.merge(hy, on=["day", "timestamp"], how="left")
+    v53 = px.loc[px["symbol"] == VEV_5300, ["day", "timestamp"] + [f"fwd_mid_{K}" for K in KS]]
+    v53 = v53.rename(columns={f"fwd_mid_{K}": f"vev5300_fwd_mid_{K}" for K in KS})
+    m = m.merge(v53, on=["day", "timestamp"], how="left")
     return m
 
 
@@ -126,6 +134,16 @@ def aggressor_side(row: pd.Series) -> str:
     if price <= bid1:
         return "sell_aggr"
     return "mid_passive"
+
+
+def signed_trade_qty(row: pd.Series) -> float:
+    ag = row.get("aggressor", "unknown")
+    q = float(row.get("quantity", 0) or 0)
+    if ag == "buy_aggr":
+        return q
+    if ag == "sell_aggr":
+        return -q
+    return 0.0
 
 
 def burst_stats(tr: pd.DataFrame) -> pd.DataFrame:
@@ -188,6 +206,7 @@ def main() -> None:
     tr = load_trades()
     m = merge_trades_prices(tr, pr)
     m["aggressor"] = m.apply(aggressor_side, axis=1)
+    m["signed_qty"] = m.apply(signed_trade_qty, axis=1)
 
     # Spread quantile per symbol (pooled days)
     m["spread_q"] = m.groupby("symbol")["spread"].transform(
@@ -439,7 +458,63 @@ def main() -> None:
             f"K={K}  burst n={len(a)} mean={a.mean():.5g}  control n={len(b)} mean={b.mean():.5g}  "
             f"welch_t={t_stat_welch(a, b):.3f}\n"
         )
+    burst_lines.append("\nBurst vs control (VEV_5300 forward at trade timestamps, same row index K)\n")
+    for K in KS:
+        vcol = f"vev5300_fwd_mid_{K}"
+        if vcol not in br_sub.columns:
+            continue
+        a = pd.to_numeric(br_sub[vcol], errors="coerce").dropna().values
+        b = pd.to_numeric(ctrl[vcol], errors="coerce").dropna().values
+        burst_lines.append(
+            f"K={K}  burst n={len(a)} mean={a.mean():.5g}  control n={len(b)} mean={b.mean():.5g}  "
+            f"welch_t={t_stat_welch(a, b):.3f}\n"
+        )
     Path(OUT / "07_burst_event_study_extract.txt").write_text("".join(burst_lines))
+
+    # --- 4b) Signed-flow lead–lag vs extract forward (K=20) at trade timestamps ---
+    flow = (
+        m.groupby(["day", "timestamp", "symbol"], as_index=False)["signed_qty"]
+        .sum()
+        .rename(columns={"signed_qty": "net_signed_qty"})
+    )
+    ext20 = pr.loc[pr["product"] == EXTRACT, ["day", "timestamp", "fwd_mid_20"]].rename(
+        columns={"fwd_mid_20": "extract_fwd_20"}
+    )
+    fl = flow.merge(ext20, on=["day", "timestamp"], how="inner")
+    ll_rows = []
+    for day in DAYS:
+        for sym in LEAD_LAG_SYMBOLS:
+            sub = fl[(fl["day"] == day) & (fl["symbol"] == sym)].sort_values("timestamp")
+            if len(sub) < 30:
+                continue
+            y = pd.to_numeric(sub["extract_fwd_20"], errors="coerce")
+            q = pd.to_numeric(sub["net_signed_qty"], errors="coerce")
+            for L in LEAD_LAGS:
+                if L == 0:
+                    ql = q
+                else:
+                    ql = q.shift(L)
+                mask = ql.notna() & y.notna()
+                if int(mask.sum()) < 25:
+                    continue
+                xa = ql[mask].to_numpy(dtype=float)
+                ya = y[mask].to_numpy(dtype=float)
+                if np.std(xa) < 1e-12 or np.std(ya) < 1e-12:
+                    corr = float("nan")
+                else:
+                    corr = float(np.corrcoef(xa, ya)[0, 1])
+                ll_rows.append(
+                    {
+                        "day": day,
+                        "flow_symbol": sym,
+                        "lag_trade_events": L,
+                        "n": int(mask.sum()),
+                        "corr_net_flow_lagged_vs_extract_fwd20": corr,
+                    }
+                )
+    if ll_rows:
+        pd.DataFrame(ll_rows).to_csv(OUT / "15_signed_flow_leadlag_vs_extract_fwd20.csv", index=False)
+        lines.append(f"Wrote {OUT / '15_signed_flow_leadlag_vs_extract_fwd20.csv'}")
 
     # --- 5) Adverse selection proxy: aggressor vs forward (same symbol) ---
     adv = []
@@ -464,6 +539,17 @@ def main() -> None:
         )
     pd.DataFrame(adv).to_csv(OUT / "08_aggressor_fwd20_same_symbol.csv", index=False)
 
+    # --- 5b) Worst (buyer,seller) pairs for *aggressive* prints — population adverse-selection hint ---
+    mag = m[m["aggressor"].isin(["buy_aggr", "sell_aggr"])].copy()
+    pair_ag = (
+        mag.groupby(["buyer", "seller"])[col]
+        .agg(n="count", mean_fwd20="mean")
+        .reset_index()
+    )
+    pair_ag = pair_ag[pair_ag["n"] >= 25].sort_values("mean_fwd20", ascending=True).head(25).reset_index(drop=True)
+    pair_ag.to_csv(OUT / "16_worst_aggressor_pairs_fwd20_n25plus.csv", index=False)
+    lines.append(f"Wrote {OUT / '16_worst_aggressor_pairs_fwd20_n25plus.csv'}")
+
     # Human-readable summary
     summary = []
     summary.append("Round 4 Phase 1 — automated summary (see CSVs in same folder)\n")
@@ -475,6 +561,10 @@ def main() -> None:
     summary.append(Path(OUT / "08_aggressor_fwd20_same_symbol.csv").read_text())
     summary.append("\nBurst event study:\n")
     summary.append(Path(OUT / "07_burst_event_study_extract.txt").read_text())
+    if (OUT / "15_signed_flow_leadlag_vs_extract_fwd20.csv").is_file():
+        summary.append("\nSigned-flow lead–lag (head):\n")
+        summary.append(pd.read_csv(OUT / "15_signed_flow_leadlag_vs_extract_fwd20.csv").head(12).to_string(index=False))
+        summary.append("\n")
     Path(OUT / "00_README_PHASE1.txt").write_text("".join(summary))
     print("Done. Outputs in", OUT)
 

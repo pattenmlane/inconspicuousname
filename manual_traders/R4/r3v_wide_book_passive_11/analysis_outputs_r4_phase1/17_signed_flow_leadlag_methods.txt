@@ -1,0 +1,26 @@
+Phase 1 — signed flow vs extract forward (15_signed_flow_leadlag_vs_extract_fwd20.csv)
+
+Per (day, timestamp, symbol): net_signed_qty = sum over trade rows of
+  +quantity if aggressor=buy_aggr (touch buy),
+  -quantity if aggressor=sell_aggr (touch sell),
+   0 if mid_passive or unknown.
+
+Merged with extract_fwd_20 = mid(t+20 rows) - mid(t) on VELVETFRUIT_EXTRACT at same (day, timestamp).
+
+For each day, flow_symbol in {EXTRACT, HYDROGEL_PACK, VEV_5300, VEV_5200, VEV_4000},
+and lag L in {0,1,2,3,5} **trade-event rows** (not wall-clock):
+  correlate( net_signed_qty shifted by L events within that (day, symbol) series,
+             extract_fwd_20 )
+Only rows where both sides finite; require n >= 25 after dropna.
+
+Interpretation: L>0 means signed flow on the named product **precedes** the extract
+forward measured at the same wall timestamp by L print events on that product —
+a discrete-time lead–lag proxy (Phase 1 graph / structural flow).
+
+16_worst_aggressor_pairs_fwd20_n25plus.csv
+  Among trades with aggressor in {buy_aggr, sell_aggr}, group (buyer, seller),
+  require n>=25, sort mean same-symbol fwd_mid_20 ascending, keep bottom 25 pairs
+  (worst aggressive-print markouts).
+
+07_burst_event_study_extract.txt
+  Appends VEV_5300 burst vs control (same sampling as extract block).

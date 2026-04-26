@@ -2,3 +2,8 @@ Burst vs control (VELVETFRUIT_EXTRACT forward, same row index K)
 K=5  burst n=1608 mean=0.028918  control n=1608 mean=0.17662  welch_t=-1.948
 K=20  burst n=1608 mean=0.33427  control n=1607 mean=0.16895  welch_t=1.059
 K=100  burst n=1592 mean=0.4777  control n=1596 mean=-0.067669  welch_t=1.649
+
+Burst vs control (VEV_5300 forward at trade timestamps, same row index K)
+K=5  burst n=1608 mean=0.18968  control n=1608 mean=0.016791  welch_t=5.622
+K=20  burst n=1608 mean=0.3041  control n=1607 mean=0.018357  welch_t=4.818
+K=100  burst n=1592 mean=0.30402  control n=1596 mean=-0.12813  welch_t=3.500

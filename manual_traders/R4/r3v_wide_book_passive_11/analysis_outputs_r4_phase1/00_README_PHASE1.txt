@@ -17,11 +17,31 @@ Top directed pairs by count:
 
 Aggressor bucket same-symbol fwd20:
 aggressor,n,mean_fwd20,median_fwd20,t_fwd20_mean0,ci_fwd20_lo,ci_fwd20_hi,frac_pos
-buy_aggr,1500,0.31033333333333335,0.5,1.9982595967788521,0.041791666666666664,0.5955416666666667,0.5186666666666667
-sell_aggr,2776,-0.026476945244956772,0.0,-0.3127696466857825,-0.19652377521613834,0.13389769452449568,0.3022334293948127
+buy_aggr,1500,0.31033333333333335,0.5,1.9982595967788521,0.021916666666666678,0.6696000000000001,0.5186666666666667
+sell_aggr,2776,-0.026476945244956772,0.0,-0.3127696466857825,-0.1829520893371758,0.16683627521613847,0.3022334293948127
 
 Burst event study:
 Burst vs control (VELVETFRUIT_EXTRACT forward, same row index K)
 K=5  burst n=1608 mean=0.028918  control n=1608 mean=0.17662  welch_t=-1.948
 K=20  burst n=1608 mean=0.33427  control n=1607 mean=0.16895  welch_t=1.059
 K=100  burst n=1592 mean=0.4777  control n=1596 mean=-0.067669  welch_t=1.649
+
+Burst vs control (VEV_5300 forward at trade timestamps, same row index K)
+K=5  burst n=1608 mean=0.18968  control n=1608 mean=0.016791  welch_t=5.622
+K=20  burst n=1608 mean=0.3041  control n=1607 mean=0.018357  welch_t=4.818
+K=100  burst n=1592 mean=0.30402  control n=1596 mean=-0.12813  welch_t=3.500
+
+Signed-flow lead–lag (head):
+ day         flow_symbol  lag_trade_events   n  corr_net_flow_lagged_vs_extract_fwd20
+   1 VELVETFRUIT_EXTRACT                 0 446                               0.105661
+   1 VELVETFRUIT_EXTRACT                 1 445                               0.011832
+   1 VELVETFRUIT_EXTRACT                 2 444                               0.129793
+   1 VELVETFRUIT_EXTRACT                 3 443                               0.077554
+   1 VELVETFRUIT_EXTRACT                 5 441                               0.013589
+   1       HYDROGEL_PACK                 0 375                              -0.084644
+   1       HYDROGEL_PACK                 1 374                               0.033309
+   1       HYDROGEL_PACK                 2 373                              -0.020489
+   1       HYDROGEL_PACK                 3 372                               0.008904
+   1       HYDROGEL_PACK                 5 370                              -0.059676
+   1            VEV_5300                 0  39                               0.120559
+   1            VEV_5300                 1  38                              -0.025322

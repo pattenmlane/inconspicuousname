@@ -19,7 +19,10 @@
       "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/11_burst_orchestrator_timestamps.csv",
       "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/12_stratified_mark_session_fwd20_top80.csv",
       "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/13_edge_reciprocity_top200_from_top200.csv",
-      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/14_mark_hub_incident_edge_counts.csv"
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/14_mark_hub_incident_edge_counts.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/15_signed_flow_leadlag_vs_extract_fwd20.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/16_worst_aggressor_pairs_fwd20_n25plus.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/17_signed_flow_leadlag_methods.txt"
     ],
     "used_to_decide": "Phase 1 gate documented under round4_phase1_complete (nested). Phase 2 not started.",
     "round4_phase1_complete": {
@@ -27,6 +30,7 @@
       "supplement_2026_04_26": "Re-ran `r4_phase1_markouts.py`: `01_participant_fwd_summary.csv` now includes **mean_hydro_fwd** / **frac_pos_hydro** (HYDROGEL_PACK forward at trade timestamp, same K-row definition as extract). New **`09_participant_stability_by_day.csv`**: per Mark × K × day mean/median/frac_pos same-symbol (n>=5) for cross-day coarseness check.",
       "supplement_2026_04_26_inference": "`01_participant_fwd_summary.csv`, `02_stratified_mark_symbol_fwd20_top80.csv`, and `08_aggressor_fwd20_same_symbol.csv` now include **median**, **one-sample t** (H0: mean markout=0), and **bootstrap 95% CI** for means (see `10_phase1_inference_methods.txt` for B and formulas). Example Mark 67 any K=20: t_same_sym≈5.97, CI [1.28, 2.49] ticks on same-symbol forward.",
       "supplement_2026_04_26_phase1_strat_graph_burst": "**Participant `mid_passive`:** added role `mid_passive` in `01_` (prints where U is buyer or seller and trade price is strictly inside L1); most Marks have n≈0 — rare mid prints. **`12_stratified_mark_session_fwd20_top80.csv`:** same stratification as `02_` plus **session tertile** (early/mid/late by timestamp rank within day). **`11_burst_orchestrator_timestamps.csv`:** one row per burst `(day,timestamp)` with n_prints, sorted symbol list, modal buyer/seller. **`13_edge_reciprocity_top200_from_top200.csv`:** reverse-edge counts for top 200 directed pairs. **`14_mark_hub_incident_edge_counts.csv`:** hub table = out-degree (as buyer) + in-degree (as seller) print counts — Mark 14 highest incident count on this tape slice.",
+      "supplement_2026_04_26_leadlag_burst_vev": "**`15_signed_flow_leadlag_vs_extract_fwd20.csv`:** per-day corr(net signed touch-flow on symbol S, lagged L **trade events** on S, vs extract_fwd_20 at timestamp) for S in {extract,hydro,5300,5200,4000}, L∈{0..5}. **`07_burst_event_study_extract.txt`** extended: burst vs control **VEV_5300** forward — K=20 Welch t≈4.82 (burst mean >> control), stronger than extract-only burst headline at same K. **`16_worst_aggressor_pairs_fwd20_n25plus.csv`:** lowest mean same-symbol fwd20 among **aggressive** prints (n≥25): **Mark14→Mark55** and **Mark38→Mark14** most negative (~−0.24 / −0.19 ticks). **`17_signed_flow_leadlag_methods.txt`** defines signed flow and lag units.",
       "phase1_bullets": [
         {
           "bullet": "1) Participant-level alpha / predictiveness",
@@ -48,21 +52,27 @@
           "bullet": "3) Sequence / graph methods",
           "outputs": [
             "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/05_directed_edges_buyer_seller.csv",
-            "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/06_two_hop_motifs.txt"
+            "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/06_two_hop_motifs.txt",
+            "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/13_edge_reciprocity_top200_from_top200.csv",
+            "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/14_mark_hub_incident_edge_counts.csv",
+            "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/15_signed_flow_leadlag_vs_extract_fwd20.csv",
+            "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/17_signed_flow_leadlag_methods.txt"
           ],
           "conclusion": "Dominant Mark 01→Mark 22; hydro Mark 14↔Mark 38. Two-hop motifs chain through Mark 22 as sink — consistent with initial sketch, no new mystery hub."
         },
         {
           "bullet": "4) Burst structure",
           "outputs": [
-            "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/07_burst_event_study_extract.txt"
+            "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/07_burst_event_study_extract.txt",
+            "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/11_burst_orchestrator_timestamps.csv"
           ],
-          "conclusion": "Burst timestamps: extract fwd K=5 lower than control (t≈-1.95); K=20 burst vs control not significant (t≈1.06). No strong short-horizon burst alpha on extract."
+          "conclusion": "Burst timestamps: extract fwd K=5 lower than control (t≈-1.95); K=20 burst vs control not significant (t≈1.06). **VEV_5300** at same burst timestamps: K=20 Welch t≈4.82 (strong positive burst vs control) — core-voucher forward differs from extract-only headline."
         },
         {
           "bullet": "5) Adverse selection proxy (aggressor vs same-symbol fwd20)",
           "outputs": [
-            "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/08_aggressor_fwd20_same_symbol.csv"
+            "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/08_aggressor_fwd20_same_symbol.csv",
+            "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/16_worst_aggressor_pairs_fwd20_n25plus.csv"
           ],
           "conclusion": "Aggressive buys mean fwd20 ~+0.31 (n=1500); aggressive sells ~-0.026 (n=2776) — buy-side aggression associates with better short-run mid markouts in this tape."
         }
@@ -112,7 +122,9 @@
       "negative_or_null_findings": [
         "Mark 01→Mark 22 basket on deep wings: ~zero or negative same-symbol fwd20 residual — no unconditional continuation on those prints.",
         "Burst vs control extract fwd at K=20 not statistically convincing (Welch t≈1.06).",
-        "Mark 01 participant-wide mean fwd20 ~flat on same symbol despite huge volume — not a naive 'always follow 01' edge."
+        "Mark 01 participant-wide mean fwd20 ~flat on same symbol despite huge volume — not a naive 'always follow 01' edge.",
+        "Signed-flow vs extract_fwd_20 correlations in `15_` are mostly **small** (often |ρ|<0.17 on extract/hydro); VEV_5200 rows are **tiny-n** on some days — treat as exploratory, not standalone rules.",
+        "Worst aggressive pairs (`16_`): Mark14→Mark55 / Mark38→Mark14 negative same-symbol fwd20 — candidate **avoid / fade** context for those touch-aggressive legs, not a full passive-book model."
       ],
       "note": "Phase 1 completion criteria met; Phase 2 documented in iteration 1."
     }
@@ -458,5 +470,18 @@
       "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/14_mark_hub_incident_edge_counts.csv"
     ],
     "used_to_decide": "`mid_passive` mostly empty for ladder Marks — passive adverse-selection at mid is tape-rare; use **11_** for burst orchestration joins to sim timestamps; **14_** supports hub narrative in Phase 1 bullet 3."
+  },
+  {
+    "iteration": 21,
+    "round": 4,
+    "analysis_description": "Phase 1 **lead–lag + burst VEV + aggressive worst-pairs**: `r4_phase1_markouts.py` adds per-(day,symbol,timestamp) **signed touch-flow** (+qty buy_aggr, −qty sell_aggr), **`15_signed_flow_leadlag_vs_extract_fwd20.csv`** (corr vs extract_fwd_20 with L∈{0,1,2,3,5} trade-event lags), **`17_signed_flow_leadlag_methods.txt`**. Extended **`07_burst_event_study_extract.txt`** with **VEV_5300** burst vs control (K=20 Welch t≈4.82). **`16_worst_aggressor_pairs_fwd20_n25plus.csv`**: lowest mean same-symbol fwd20 for aggressive-only prints (n≥25). Updated `round4_phase1_complete` bullets 3–5 conclusions, `negative_or_null_findings`, and iteration 0 `analysis_outputs` list.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wide_book_passive_11/r4_phase1_markouts.py",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/07_burst_event_study_extract.txt",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/15_signed_flow_leadlag_vs_extract_fwd20.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/16_worst_aggressor_pairs_fwd20_n25plus.csv",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_phase1/17_signed_flow_leadlag_methods.txt"
+    ],
+    "used_to_decide": "Treat **15_** as discrete-time flow–extract coupling (not Granger); combine with Phase 2 `p2_04` panel corr for execution. Burst **5300** continuation strengthens basket-burst story beyond extract-only K=20 null."
   }
 ]

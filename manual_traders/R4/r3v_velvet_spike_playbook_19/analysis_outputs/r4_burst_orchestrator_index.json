@@ -1,0 +1,64 @@
+{
+  "n_burst_timestamps": 318,
+  "mark01_buy_mark22_sell_orchestrator_ticks": 314,
+  "pooled_mean_fwd20_ex_when_M01_buy_orch_M22_sell_orch": 0.3184713375796178,
+  "median_fwd20_ex_same": 0.0,
+  "top_dominant_pairs": [
+    {
+      "dominant_pair_buyer": "Mark 01",
+      "dominant_pair_seller": "Mark 22",
+      "n_burst_ticks": 226
+    },
+    {
+      "dominant_pair_buyer": "Mark 14",
+      "dominant_pair_seller": "Mark 22",
+      "n_burst_ticks": 58
+    },
+    {
+      "dominant_pair_buyer": "Mark 14",
+      "dominant_pair_seller": "Mark 38",
+      "n_burst_ticks": 10
+    },
+    {
+      "dominant_pair_buyer": "Mark 38",
+      "dominant_pair_seller": "Mark 14",
+      "n_burst_ticks": 7
+    },
+    {
+      "dominant_pair_buyer": "Mark 14",
+      "dominant_pair_seller": "Mark 55",
+      "n_burst_ticks": 4
+    },
+    {
+      "dominant_pair_buyer": "Mark 55",
+      "dominant_pair_seller": "Mark 14",
+      "n_burst_ticks": 4
+    },
+    {
+      "dominant_pair_buyer": "Mark 55",
+      "dominant_pair_seller": "Mark 01",
+      "n_burst_ticks": 3
+    },
+    {
+      "dominant_pair_buyer": "Mark 67",
+      "dominant_pair_seller": "Mark 22",
+      "n_burst_ticks": 2
+    },
+    {
+      "dominant_pair_buyer": "Mark 38",
+      "dominant_pair_seller": "Mark 22",
+      "n_burst_ticks": 2
+    },
+    {
+      "dominant_pair_buyer": "Mark 01",
+      "dominant_pair_seller": "Mark 55",
+      "n_burst_ticks": 1
+    },
+    {
+      "dominant_pair_buyer": "Mark 22",
+      "dominant_pair_seller": "Mark 38",
+      "n_burst_ticks": 1
+    }
+  ],
+  "definition": "Orchestrator = party with max gross traded qty on that side at the timestamp across all products; burst = >=3 rows same (day,timestamp)."
+}

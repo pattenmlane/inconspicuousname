@@ -57,9 +57,12 @@
           "phase1_item": "Burst structure",
           "outputs": [
             "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_burst_summary_by_timestamp.csv",
-            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_burst_event_study_extract.json"
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_burst_event_study_extract.json",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_burst_orchestrator_rows.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_burst_orchestrator_fwd20_summary.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_burst_orchestrator_index.json"
           ],
-          "one_sentence": "Same-(day,timestamp) bursts (\u22653 prints) show slightly higher mean VELVETFRUIT_EXTRACT forward mid change at K=20 than a random single-trade control (mean ~0.32 vs ~0.08 on pooled n\u22481470 vs 2673), while K=100 signs differ \u2014 suggestive short-horizon pressure only, needs stricter matched-time control before trading."
+          "one_sentence": "Same-(day,timestamp) bursts (\u22653 prints) show slightly higher mean VELVETFRUIT_EXTRACT forward mid change at K=20 than a random single-trade control (mean ~0.32 vs ~0.08 on pooled n\u22481470 vs 2673); **orchestrator attribution** (max gross buy/sell qty per tick) shows **314/318** burst ticks with **Mark 01** as buy-orch and **Mark 22** as sell-orch, pooled mean fwd20_ex **+0.318** (median 0) \u2014 aligns basket ladder with the extract lift; other dominant pairs (e.g. Mark14\u2192Mark22 on 58 ticks) are secondary."
         },
         {
           "phase1_item": "Adverse selection vs inventory (proxy)",
@@ -141,13 +144,22 @@
             "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_hydro_signed_flow_by_name_day.csv",
             "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_hydro_aggressor_fwd_cross_asset_by_day.csv"
           ]
+        },
+        "burst_orchestrator": {
+          "repro": "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_burst_orchestrator_study.py",
+          "outputs": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_burst_orchestrator_rows.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_burst_orchestrator_fwd20_summary.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_burst_orchestrator_index.json"
+          ]
         }
       },
       "repro_scripts": [
         "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_counterparty_study.py",
         "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_supplement_cell_stats.py",
         "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_burst_hour_stratify.py",
-        "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_hydro_cross_asset_flow.py"
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_hydro_cross_asset_flow.py",
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_burst_orchestrator_study.py"
       ]
     }
   },

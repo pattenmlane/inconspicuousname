@@ -1,0 +1,4 @@
+day,buy_orchestrator,sell_orchestrator,n_bursts,mean_fwd20_ex,median_fwd20_ex
+3,Mark 01,Mark 22,123,0.6260162601626016,0.0
+1,Mark 01,Mark 22,96,-0.08333333333333333,0.0
+2,Mark 01,Mark 22,95,0.3263157894736842,0.0

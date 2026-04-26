@@ -676,5 +676,11 @@
     "note": "Phase 1 hydro: signed flow Mark14/38/22 per day + aggressive hydro markouts to extract_mid vs hydro_mid (r4_phase1_hydro_cross_asset_flow.py). See round4_phase1_complete new bullet + checklist_supplement.hydro_cluster_cross_asset.",
     "phase": "round4_phase1_hydro_cluster",
     "analysis_reference": "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis.json"
+  },
+  {
+    "iteration": 17,
+    "note": "Phase 1 burst orchestrator: r4_phase1_burst_orchestrator_study.py \u2192 318 burst ticks; 314 with buy_orch=Mark01 & sell_orch=Mark22, mean fwd20_ex +0.318 (see r4_burst_orchestrator_index.json). Burst bullet in analysis.json updated.",
+    "phase": "round4_phase1_burst_orchestrator",
+    "analysis_reference": "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis.json"
   }
 ]

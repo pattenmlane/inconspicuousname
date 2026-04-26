@@ -2,8 +2,11 @@ Round 4 Phase 1 — automated summary
 ====================================
 Trade rows analyzed: 4281
 Distinct participant names (buyer ∪ seller, non-empty): 7
-Aggregated (U, role, fwd_target, out_symbol, K) cells n>=5: 234 (see r4_phase1_participant_U_forward.csv)
-Stratified by trade-symbol spread tertile (per day grid), n>=5: 237 (see r4_phase1_participant_U_spread_tert.csv)
+Aggregated (U, role, fwd_target, out_symbol, K) cells n>=5: 234 (see r4_phase1_participant_U_forward.csv; boot_mean_lo/hi = 400 resamples)
+Stratified by trade-symbol spread tertile (per day grid), n>=5: 237 (r4_phase1_participant_U_spread_tert.csv)
+Stratified by **session** = early/mid/late third of **tick index** per csv day, n>=5: 409 (r4_phase1_participant_U_session_terc.csv)
+Stratified burst_iso = isolated | burst_single_sym | burst_multi_sym, n>=5: 246 (r4_phase1_participant_U_burst_iso.csv)
+Participant signed qty balance (buy qty minus sell qty) per symbol: r4_phase1_participant_flow.csv
 Unique (buyer,seller,symbol,K) pair cells (n>=5): 84
 Same-timestamp multi-print bursts: 387
 

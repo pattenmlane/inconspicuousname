@@ -13,8 +13,11 @@ Phase 1 — outputs
 analysis_outputs/r4_phase1_pair_forward_summary.csv
 analysis_outputs/r4_phase1_pair_forward_by_day.csv
 analysis_outputs/r4_phase1_mark_forward_summary.csv
-analysis_outputs/r4_phase1_participant_U_forward.csv   (all names U, roles, same + extract + hydro)
-analysis_outputs/r4_phase1_participant_U_spread_tert.csv (U stratified by trade-symbol BBO spread tertile)
+analysis_outputs/r4_phase1_participant_U_forward.csv   (all names U; boot_mean_lo/hi; same + extract + hydro)
+analysis_outputs/r4_phase1_participant_U_spread_tert.csv (U × trade-symbol spread tertile)
+analysis_outputs/r4_phase1_participant_U_session_terc.csv (U × tick-index session tercile per day)
+analysis_outputs/r4_phase1_participant_U_burst_iso.csv  (U × isolated vs burst single/multi-symbol)
+analysis_outputs/r4_phase1_participant_flow.csv          (signed qty net buy−sell per participant×symbol)
 analysis_outputs/r4_phase1_pair_residuals.csv
 analysis_outputs/r4_phase1_graph_edges.csv
 analysis_outputs/r4_phase1_twohop_same_symbol.csv

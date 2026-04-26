@@ -58,9 +58,17 @@
         "bullet": "4) Burst structure",
         "outputs": [
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_extract_fwd_k20.csv",
-          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_trade_enriched.csv"
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_trade_enriched.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_burst_orchestrator_analysis.py",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_orchestrator_events.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_pair_extract_k20.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_dominant_buyer_extract_k20.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_extract_k20_by_gate.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_m01_m22_dominant_by_day.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_m01_m22_dominant_by_day_gate.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_orchestrator_summary.json"
         ],
-        "conclusion": "387 multi-print timestamps; extract forward Δmid (k=20) mean≈0.33 (n=1608) on burst rows vs ≈0.08 (n=2671) off burst — bursts align with larger short-horizon extract drift in-sample."
+        "conclusion": "387 burst timestamps (~4.2 prints each). Dominant (buyer,seller) mode at each instant: Mark 01|Mark 22 on 318 bursts — mean extract dm_ex k20 ≈ +0.29 (vs pooled burst +0.33). Sonic tight covers ~86% of burst ts; tight bursts mean k20 ≈ +0.22 vs loose ≈ +1.0 (n=332 vs 55). Dominant M01|M22 bursts are not sign-stable by day: day1 mean k20 ≈ -0.14 (n=98), day2 ≈ +0.38 (n=96), day3 ≈ +0.57 (n=124) — orchestrator label refines basket bursts but does not yield a uniform short-horizon sign."
       },
       {
         "bullet": "5) Adverse selection vs inventory (population proxy)",
@@ -121,7 +129,8 @@
       "Phase 1 is mid-only markouts; tradable PnL under worse fills not established (STRATEGY caveat applies).",
       "Mark 22→Mark 49 extract adverse-selection tail: only 12 tape rows (11 sell_agg); per-day k=20 unstable (day 2 mean +2.3, n=3). trader_v6 gated short sim is negative under worse (-156) with 3 fills — not a scalable edge.",
       "Mark 55 aggressive sells on extract: pooled k=100 mean ≈ -0.92 (t≈-2.5) but k=5/k=20 ≈ 0 / -0.11 (not short-horizon). trader_v7 (Sonic gate + short on each M55 agg sell tape print) loses -13671 worse with 600 contracts — high-frequency fade contradicts long-horizon mid evidence and accumulates adverse path PnL.",
-      "Mark 55→Mark 01→Mark 22 two-hop: offline extract drift negative pooled but day-1 k20 flat; trader_v8 stateful short under Sonic gate still -11396 (19 fills) — not a tradable translation of the graph motif."
+      "Mark 55→Mark 01→Mark 22 two-hop: offline extract drift negative pooled but day-1 k20 flat; trader_v8 stateful short under Sonic gate still -11396 (19 fills) — not a tradable translation of the graph motif.",
+      "Burst orchestrator (dominant buyer|seller per multi-print ts): Mark 01|Mark 22 dominates but extract k=20 forward means flip positive days 2–3 after slightly negative day 1 — not a monotone fade target without further conditioning."
     ]
   },
   {
@@ -399,5 +408,20 @@
       "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v8_round4_all_fills_summary.json"
     ],
     "used_to_decide": "Pooled two-hop extract drift is negative at k=5/20/100 (n=535), but day 1 k=20 is not significant and day 2 shows positive k=5. Sim shorts on first basket print after arm lose heavily (-11396, 19 submission sells, 355 qty) — motif is not robust as a simple trigger under worse fills."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "Phase 1 burst orchestrator attribution: at each multi-print (day,timestamp), count buyer/seller names across all symbols; dominant pair = argmax counts (ties broken lexicographically). Join extract dm_ex_k20; merge Sonic gate from r4_p3_trade_enriched_with_gate.csv. Script r4_burst_orchestrator_analysis.py. Offline evidence only — results.json not appended (no new trader backtest).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_burst_orchestrator_analysis.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_orchestrator_events.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_pair_extract_k20.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_dominant_buyer_extract_k20.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_extract_k20_by_gate.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_m01_m22_dominant_by_day.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_m01_m22_dominant_by_day_gate.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_orchestrator_summary.json"
+    ],
+    "used_to_decide": "Dominant Mark01|Mark22 bursts (n=318) have mild positive mean extract k=20 (+0.29); day-split shows sign flip (day1 slightly negative, days 2–3 positive). Sonic-tight burst subset remains positive on average (+0.22). Suggests basket bursts are not a clean short-extract trigger without additional state; complements Phase 3 burst×gate extract table."
   }
 ]

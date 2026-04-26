@@ -1,0 +1,19 @@
+pair,mean_dm_ex_k20,n_bursts
+Mark 01|Mark 22,0.2940251572327044,318
+Mark 14|Mark 14,-1.5,15
+Mark 38|Mark 14,-0.20833333333333334,12
+Mark 14|Mark 38,0.375,8
+Mark 01|Mark 14,-2.8333333333333335,6
+Mark 14|Mark 01,2.4,5
+Mark 01|Mark 38,1.1,5
+Mark 22|Mark 49,2.125,4
+Mark 38|Mark 01,2.125,4
+Mark 14|Mark 22,2.25,2
+Mark 22|Mark 14,-5.5,1
+Mark 14|Mark 49,2.5,1
+Mark 01|Mark 49,9.5,1
+Mark 22|Mark 38,6.0,1
+Mark 22|Mark 55,7.0,1
+Mark 38|Mark 22,5.0,1
+Mark 49|Mark 01,4.5,1
+Mark 55|Mark 49,5.0,1

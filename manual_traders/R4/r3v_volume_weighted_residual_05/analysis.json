@@ -1,0 +1,112 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round 4 Phase 1 (counterparty IDs): merged `Prosperity4Data/ROUND_4/trades_round_4_day_{1,2,3}.csv` with `prices_round_4_day_*.csv` on (day,timestamp,symbol). Forward horizon K in {5,20,100} = K steps along the ordered timestamp series per (day,symbol). Aggressor: trade price vs same-tick bid1/ask1 (buy_agg if price>=ask1, sell_agg if price<=bid1). Stratification: symbol, U-spread bin (tight <=6 vs wide), burst detection (>=3 trades same day+timestamp). Graph: buyer\u2192seller counts and 2-hop motifs. Baseline: cell mean fwd_mid_20 by (buyer,seller,symbol); residuals near zero for dominant pairs.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_volume_weighted_residual_05/phase1_r4_counterparty_analysis.py",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_trades_enriched.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_participant_predictiveness.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_participant_predictiveness_top25.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_stratify_symbol_spreadbin.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_cell_mean_buyer_seller_symbol_k20.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_trades_with_residual_k20.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_residual_top_absmean.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_graph_top_pairs.txt",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_graph_2hop.txt",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_bursts_ge3.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_burst_orchestrator_buyer_mode.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_burst_vs_control_extract_fwd.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_adverse_proxy_aggressor_fwd.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_day_stability_m01_m22_vev5300_k20.csv",
+      "round4work/outputs/r4_initial_analysis_summary.txt",
+      "round4work/suggested direction.txt",
+      "round4work/ping_followup_phases.md",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v0_worse.log",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v0_all.log"
+    ],
+    "used_to_decide": "Phase 1 gate object appended as `round4_phase1_complete` in this same file (next array element). Ran `trader_v0.py` round 4 backtests (worse+all, PnL 0) for auditable logs. Do not start Phase 2 depth until reviewed; Mark01\u2192Mark22 VEV_5300 K=20 means **flip across days**; burst\u2212control extract test **negative** on average."
+  },
+  {
+    "round4_phase1_complete": true,
+    "phase1_bullets": [
+      {
+        "bullet": "1) Participant-level alpha / predictiveness",
+        "outputs": [
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_participant_predictiveness.csv",
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_participant_predictiveness_top25.csv",
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_stratify_symbol_spreadbin.csv"
+        ],
+        "conclusion": "Several Marks show **positive mean same-symbol forward mid** after their prints on **VELVETFRUIT_EXTRACT** (e.g. Mark 67 `U_buy_agg` K=5 n\u2248164 mean\u22481.96 ticks, t\u224813; Mark 22/49 passive-sell roles on U with n\u224890\u2013104 and K\u2208{5,20}). Voucher-specific aggressive rows are smaller n and weaker t-stats; need execution filter before claiming tradeable PnL."
+      },
+      {
+        "bullet": "2) Deviation from bot baseline (cell means)",
+        "outputs": [
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_cell_mean_buyer_seller_symbol_k20.csv",
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_residual_top_absmean.csv"
+        ],
+        "conclusion": "Residuals of fwd_mid_20 after subtracting (buyer,seller,symbol) cell means are **~0** for high-volume pairs (Mark67\u2192Mark22/49 on U, Mark14\u219438 hydro/VEV_4000); **no** large stable second-order anomaly in this linear cell baseline."
+      },
+      {
+        "bullet": "3) Sequence / graph methods",
+        "outputs": [
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_graph_top_pairs.txt",
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_graph_2hop.txt"
+        ],
+        "conclusion": "Hub structure matches `r4_initial_analysis_summary.txt`: **Mark01\u2192Mark22** (1339 prints) and **Mark14\u2194Mark38** hydro duopoly dominate; 2-hop listing is heuristic but shows Mark01\u2192Mark22\u2192* as frequent scaffold."
+      },
+      {
+        "bullet": "4) Burst structure",
+        "outputs": [
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_bursts_ge3.csv",
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_burst_orchestrator_buyer_mode.csv",
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_burst_vs_control_extract_fwd.csv"
+        ],
+        "conclusion": "Multi-symbol bursts exist (orchestrator table). Matched **random single-trade** control: mean(**burst_fwd_U \u2212 control_fwd_U**) is **negative** at K=5 and K=20 (n\u2248318 bursts) \u2014 **no** evidence bursts predict **better** extract short-horizon mids than random timestamps on this crude control."
+      },
+      {
+        "bullet": "5) Adverse selection vs inventory (proxy)",
+        "outputs": [
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_adverse_proxy_aggressor_fwd.csv"
+        ],
+        "conclusion": "Population-level forward mids after `buy_agg` vs `sell_agg` pooled across all symbols are small; use per-symbol tables in full CSV for MM design \u2014 not a single smoking gun here."
+      }
+    ],
+    "top_5_tradeable_edge_candidates": [
+      {
+        "rank": 1,
+        "edge": "After **Mark 67** **buyer-aggressive** prints on **VELVETFRUIT_EXTRACT**, pooled forward extract mid rises ~**2 ticks** at K=5 and ~**1.8** at K=20 (n\u2248164; t\u22485.9\u201313).",
+        "validated_days": "1,2,3 pooled (not yet strict per-day t-test)",
+        "caveat": "Tape-only; **worse** fills not tested; role is aggressive **buyer** \u2014 any live rule must respect limits and adverse selection at touch."
+      },
+      {
+        "rank": 2,
+        "edge": "**Mark 22** as **passive seller** on **VELVETFRUIT_EXTRACT** rows: positive mean fwd mid at K=5 and K=20 (n=90; t\u224810\u20134.7).",
+        "validated_days": "1\u20133 pooled",
+        "caveat": "Passive seller \u2192 upward drift may reflect **liquidity provision** context; needs pairing with aggressor identity and gate (Phase 3 Sonic)."
+      },
+      {
+        "rank": 3,
+        "edge": "**Mark 49** passive seller on **VELVETFRUIT_EXTRACT** shows similar positive short-horizon fwd (n\u2248104).",
+        "validated_days": "1\u20133 pooled",
+        "caveat": "Smaller actor than Mark22; confirm not duplicate of same micro episodes."
+      },
+      {
+        "rank": 4,
+        "edge": "**Mark 14** passive seller on **VELVETFRUIT_EXTRACT** at **K=100** weak positive mean (~1.1 ticks, n=328, t\u22482.2).",
+        "validated_days": "1\u20133 pooled",
+        "caveat": "Long horizon signal is mild; overlapping windows not de-duplicated."
+      },
+      {
+        "rank": 5,
+        "edge": "Directed pair **Mark01\u2192Mark22** is the structural spine for voucher basket flow (1339 rows) \u2014 candidate **scheduler** feature for any conditional model even if mean reversion on VEV_5300 alone is weak.",
+        "validated_days": "1\u20133",
+        "caveat": "This is **structural** not yet a signed markout edge; per-symbol Mark01\u2192Mark22 VEV_5300 K=20 means **flip sign across days** (see stability CSV)."
+      }
+    ],
+    "no_edge_or_negative_findings": [
+      "**Mark01\u2192Mark22** on **VEV_5300** fwd_mid_20: day means **-0.70 / +0.18 / +0.014** (n 32/31/69) \u2014 **not stable** across days for a simple fade/trend rule.",
+      "**Burst** timestamps do **not** outperform **random** single-trade timestamps on extract forward mid (mean burst\u2212control < 0 for K=5,20).",
+      "**(buyer,seller,symbol)** cell-mean baseline for fwd_mid_20 leaves **near-zero** residuals for dominant hydro and U pairs \u2014 no obvious mis-modeled bot residual edge at this granularity."
+    ]
+  }
+]

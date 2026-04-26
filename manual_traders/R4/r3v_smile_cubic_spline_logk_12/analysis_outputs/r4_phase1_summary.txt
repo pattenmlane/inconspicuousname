@@ -1,0 +1,24 @@
+=== Round 4 Phase 1 summary (automated) ===
+
+Strongest pair cells (n>=50, K=20, by |mean|):
+  Mark 67->Mark 22 VELVETFRUIT_EXTRACT n=75 mean20=2.0267
+  Mark 67->Mark 49 VELVETFRUIT_EXTRACT n=89 mean20=1.6348
+  Mark 55->Mark 14 VELVETFRUIT_EXTRACT n=331 mean20=0.5755
+  Mark 38->Mark 14 HYDROGEL_PACK n=507 mean20=-0.3531
+  Mark 14->Mark 55 VELVETFRUIT_EXTRACT n=316 mean20=-0.2373
+  Mark 14->Mark 38 HYDROGEL_PACK n=496 mean20=0.2339
+  Mark 38->Mark 14 VEV_4000 n=205 mean20=0.2146
+  Mark 14->Mark 38 VEV_4000 n=232 mean20=-0.1789
+  Mark 01->Mark 22 VEV_5300 n=132 mean20=-0.1212
+  Mark 01->Mark 22 VEV_5400 n=263 mean20=0.0399
+  Mark 01->Mark 22 VEV_5500 n=299 mean20=0.0251
+  Mark 55->Mark 01 VELVETFRUIT_EXTRACT n=244 mean20=0.0061
+  Mark 01->Mark 55 VELVETFRUIT_EXTRACT n=260 mean20=0.0058
+  Mark 01->Mark 22 VEV_6000 n=317 mean20=0.0000
+  Mark 01->Mark 22 VEV_6500 n=317 mean20=0.0000
+
+Party×role with n>=80, K=20, |mean|>0.5 (same-symbol markout):
+  Mark 22 seller buy_aggr VELVETFRUIT_EXTRACT n=90 mean=2.0222
+  Mark 49 seller buy_aggr VELVETFRUIT_EXTRACT n=104 mean=1.8317
+  Mark 67 buyer buy_aggr VELVETFRUIT_EXTRACT n=164 mean=1.8140
+  Mark 14 seller buy_aggr VELVETFRUIT_EXTRACT n=331 mean=0.5755

@@ -1,0 +1,3 @@
+Burst (>=4 prints same day+ts) count=293
+  mean mark_20 VELVET mid: 0.3345
+Random-ts control n=1200 mean: 0.1458

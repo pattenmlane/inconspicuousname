@@ -1,0 +1,105 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round 4 Phase 1 (counterparty IDs, days 1–3): aligned each trade to last BBO/mid at ts; forward K∈{5,20,100} **price rows** (strictly future timestamps) for same-symbol mid, plus parallel extract/hydro markouts. Aggressor from price vs bid1/ask1. Burst ≥4 prints same (day,ts). Graph buyer→seller counts. Stratification: joint Sonic gate (5200&5300 spr≤2), symbol spread bins, hour in wide CSV.",
+    "analysis_outputs": [
+      "analysis_outputs/r4_trade_markouts_wide.csv",
+      "analysis_outputs/r4_markout_party_product_horizon.csv",
+      "analysis_outputs/r4_markout_pair_symbol_horizon.csv",
+      "analysis_outputs/r4_markout_jointgate_spreadbin_symbol_k20.csv",
+      "analysis_outputs/r4_graph_edges.csv",
+      "analysis_outputs/r4_burst_events.csv",
+      "analysis_outputs/r4_burst_forward_summary.txt",
+      "analysis_outputs/r4_adverse_aggressor_summary.csv",
+      "analysis_outputs/r4_phase1_summary.txt",
+      "r4_phase1_counterparty_analysis.py"
+    ],
+    "used_to_decide": "Phase 1 gate object below documents bullets 1–5; do not start Phase 2 until reviewed."
+  },
+  {
+    "round4_phase1_complete": {
+      "bullets": [
+        {
+          "name": "1_participant_predictiveness",
+          "outputs": [
+            "analysis_outputs/r4_markout_party_product_horizon.csv",
+            "analysis_outputs/r4_trade_markouts_wide.csv"
+          ],
+          "conclusion": "Strongest same-tick party effects are **buy-aggressive** extract prints: **Mark 22 as seller** mean mark_20 +2.02 (n=90); **Mark 49 seller** +1.83 (n=104); **Mark 67 buyer** +1.81 (n=164); **Mark 14 seller** +0.58 (n=331). Many VEV cells near zero (penny strikes). Horizons K=5/20/100 broadly consistent for Mark67→Mark49 on extract."
+        },
+        {
+          "name": "2_deviation_bot_baseline",
+          "outputs": [
+            "analysis_outputs/r4_markout_pair_symbol_horizon.csv"
+          ],
+          "conclusion": "Cell-mean baseline vs global mean: largest |residual| pairs include **Mark 67→Mark 49** and **Mark 67→Mark 22** on **VELVETFRUIT_EXTRACT** (mean mark_20 ≈ +1.63 to +2.03, n≈75–89). **Mark 38→Mark 14** hydro shows negative mean mark_20 (~−0.35, n=507). Residuals are interpretable as **scheduled bot legs**, not human IDs."
+        },
+        {
+          "name": "3_sequence_graph",
+          "outputs": [
+            "analysis_outputs/r4_graph_edges.csv"
+          ],
+          "conclusion": "Dominant edges: **Mark 01→Mark 22** (basket), **Mark 14↔Mark 38** (hydro duopoly loops), **Mark 55→Mark 01→Mark 22** two-hop volume. Static motif ranking in script log; no new dynamic chain beyond initial round4work summary."
+        },
+        {
+          "name": "4_burst_structure",
+          "outputs": [
+            "analysis_outputs/r4_burst_events.csv",
+            "analysis_outputs/r4_burst_forward_summary.txt"
+          ],
+          "conclusion": "n=293 bursts (≥4 prints); **mean extract mark_20 after burst = +0.33** vs **random control +0.15** — bursts associate with modestly higher forward extract mid path (event-study style, not causal)."
+        },
+        {
+          "name": "5_adverse_selection",
+          "outputs": [
+            "analysis_outputs/r4_adverse_aggressor_summary.csv"
+          ],
+          "conclusion": "Conditional on **buy_aggr**, sellers with worst mean mark_20 on same symbol include **Mark 22 / Mark 49** on extract (passive seller adverse selection vs aggressive buyer), consistent with informed-style pressure on the offer."
+        }
+      ],
+      "top_5_tradeable_edges": [
+        {
+          "rank": 1,
+          "rule": "After **Mark 67 buy-aggressive** print on **VELVETFRUIT_EXTRACT** vs **Mark 49** (seller), forward **K=20** mid drift **positive** (~+1.8; n≈104; days 1–3 stable ~1.63/day).",
+          "effect_size": "~+1.6 to +1.9 mid-tick units at K=20",
+          "n": 89,
+          "days_validated": [1, 2, 3]
+        },
+        {
+          "rank": 2,
+          "rule": "**Mark 67→Mark 22** on extract, buy-aggr: mean mark_20 **+2.03** pooled (n=75); day stability mixed (day2 lower).",
+          "effect_size": "~+2.0",
+          "n": 75,
+          "days_validated": [1, 2, 3]
+        },
+        {
+          "rank": 3,
+          "rule": "**Mark 14 as seller** on buy-aggr extract: mean mark_20 **+0.58** (n=331) — weaker but high-n.",
+          "effect_size": "~+0.58",
+          "n": 331,
+          "days_validated": [1, 2, 3]
+        },
+        {
+          "rank": 4,
+          "rule": "**Multi-print bursts** (≥4 same ts): extract mark_20 **+0.33** vs random **+0.15** — structural scheduler signal.",
+          "effect_size": "~+0.19 excess vs control",
+          "n": 293,
+          "days_validated": [1, 2, 3]
+        },
+        {
+          "rank": 5,
+          "rule": "**Mark 38→Mark 14** on **HYDROGEL_PACK**: negative forward same-symbol mark_20 (~−0.35, n=507) — fade/avoid passive offer into that leg if sim confirms.",
+          "effect_size": "~−0.35",
+          "n": 507,
+          "days_validated": [1, 2, 3]
+        }
+      ],
+      "no_edge_findings": [
+        "**Mark 01→Mark 22** on VEV_5300/5400/5500: mean mark_20 near zero and **sign flips by day** (day1 negative, day2 positive) — **not** a stable directional edge at K=20.",
+        "**Joint Sonic gate TRUE** + traded symbol tight bin: **VEV_5300** mean mark_20 slightly **negative** (n=163) — gate alone does not clean voucher markouts on this tape without pairing with counterparty.",
+        "**Mark 55↔Mark 01** on extract: mean mark_20 ≈ 0 — no short-horizon predictability in cell means."
+      ],
+      "notes": "All effects are **mid** markouts from public prices, not sim PnL. Phase 2 may add worse-fill backtests once a trader encodes these rules."
+    }
+  }
+]

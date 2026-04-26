@@ -404,5 +404,27 @@
       "vs_trader_v2_worse": 508,
       "vs_trader_v2_all": -2417
     }
+  },
+  {
+    "iteration": "r4_trader_v5_tight_only_extract_tilt",
+    "analysis_description": "trader_v5 applies Phase-3 forward-U signal only in the Sonic tight regime (aggressive extract MM); loose extract reverts to v2 parameters so optimistic match mode is not punished by wider bids.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_research/trader_v5.py",
+      "manual_traders/R4/r4_counterparty_research/runlog_v5_worse.txt",
+      "manual_traders/R4/r4_counterparty_research/runlog_v5_all.txt",
+      "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v5_worse.json",
+      "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v5_all.json"
+    ],
+    "used_to_decide": "v4 widened loose extract (edge 4) which helped worse slightly but crushed all (-2417 vs v2). v5 keeps loose U identical to v2; tight U stays edge 0 size 24. Net: worse +568 vs v2 (+60 vs v4); all -104 vs v2 (+2313 vs v4).",
+    "backtest_summary": {
+      "worse_total": 34438,
+      "worse_daily": [16134, 6943, 11361],
+      "all_total": 36180,
+      "all_daily": [17352, 7155, 11672],
+      "vs_v2_worse": 568,
+      "vs_v2_all": -104,
+      "vs_v4_worse": 60,
+      "vs_v4_all": 2313
+    }
   }
 ]

@@ -141,5 +141,33 @@
       "all_delta": -2417,
       "note": "worse improves slightly; all match mode degrades (more aggressive extract fills hurt under all matching)."
     }
+  },
+  {
+    "iteration": 6,
+    "trader_file": "manual_traders/R4/r4_counterparty_research/trader_v5.py",
+    "strategy_description": "v2 + Phase-3 extract tilt **tight gate only** (U edge 0 size 24 when tight; loose U same as v2 edge 3 size 8). Fixes v4 loose-regime widening that hurt all-mode fills.",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r4_counterparty_research/trader_v5.py\" 4 --data Prosperity4Data --no-progress --no-out --no-vis",
+    "total_profit": 34438,
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 34438,
+      "daily_profit": [16134, 6943, 11361],
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v5_worse.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v5_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 36180,
+      "daily_profit": [17352, 7155, 11672],
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v5_all.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v5_all.json"
+    },
+    "vs_baselines": {
+      "vs_trader_v2_worse": 568,
+      "vs_trader_v2_all": -104,
+      "vs_trader_v4_worse": 60,
+      "vs_trader_v4_all": 2313
+    }
   }
 ]

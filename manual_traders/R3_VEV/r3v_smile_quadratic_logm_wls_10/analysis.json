@@ -140,5 +140,14 @@
       "round3work/vouchers_final_strategy/outputs/r3_tight_spread_6panel.png"
     ],
     "used_to_decide": "v22: gate_on=both spreads<=2; when on size extract quotes 20/leg and +25% VEV clip. Worse 40817 / all 40882 on R3 d0-2 is far below v19 65038 on the old 3-day-all invocation \u2014 the joint-gate extract sizing with reduced baseline MM (6) likely starves the smile edge; next: restore baseline extract size or gate VEV only (not extract MM) or only boost when gate and edge present."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "Re-read post-merge: round3work/vouchers_final_strategy/STRATEGY.txt; ORIGINAL_DISCORD_QUOTES.txt (Sonic: both 5200 and 5300 at or below 2, per-event edge; inclineGod: spreads per contract). v23 implements pure gate + spread-based MM, no prior smile thesis.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt"
+    ],
+    "used_to_decide": "v23: stop legacy WLS stack; on joint tight book post quotes. Fixed sp==2 bug (join quote). R3 d0-2 total 4427 (<<200k/day floor) \u2014 naive MM in gate is insufficient; next: taker/lean on forward extract signal when gate+spread ok, or pair 5200/5300 with extract beta hedge."
   }
 ]

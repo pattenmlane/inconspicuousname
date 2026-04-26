@@ -158,5 +158,21 @@
       "backtest_logs/trader_v51_all.log"
     ],
     "used_to_decide": "v50 (mild 0.92/1.04) matches v48 on worse total (-93 over days 0-3); v51 is worse at -120. Record both match modes: worse and all are identical in these runs. New lead: trader_v50.py (PWL+shock+joint-tight as execution overlay); avoid v51. Still far from 200k/day objective — need extract/VEV-only redesign next."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "Scope change: deprioritize legacy PWL line; reread round3work/vouchers_final_strategy/STRATEGY.txt and ORIGINAL_DISCORD_QUOTES.txt (Sonic: both 5200 and 5300 spread <=2; inclineGod: spread/spread, not just price). Implemented new traders v52/v53: joint L1 spread gate, extract mid momentum (EMA of tick d(wall_mid)), VELVET + 5200/5300 only (no HYDROGEL). v53 = larger/looser grid.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "trader_v52.py",
+      "trader_v53.py",
+      "backtest_logs/trader_v52_worse.log",
+      "backtest_logs/trader_v52_all.log",
+      "backtest_logs/trader_v53_worse.log",
+      "backtest_logs/trader_v53_all.log"
+    ],
+    "used_to_decide": "Backtest: naive momentum-on-tight is strongly negative (v52 ~ -18.2k total on days 0-3 worse, v53 much worse) — mid-forward edge from the paper does not survive bid/ask and our order style. Best among new line is v52 over v53. Next iteration should add passive maker logic or a different entry (still gated on joint <=2) rather than taker-chasing EMA. Nowhere near 200k/day floor."
   }
 ]

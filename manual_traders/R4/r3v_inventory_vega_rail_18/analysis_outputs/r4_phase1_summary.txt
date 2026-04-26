@@ -1,0 +1,34 @@
+Round 4 Phase 1 — automated summary
+====================================
+Trade rows analyzed: 4281
+Unique (buyer,seller,symbol,K) pair cells (n>=5): 84
+Same-timestamp multi-print bursts: 387
+
+Top 15 (buyer,seller,symbol,K) by |t_stat| among n>=30:
+  Mark 67->Mark 22 VELVETFRUIT_EXTRACT K=5 n=75 mean=2.0600 t=9.306
+  Mark 67->Mark 49 VELVETFRUIT_EXTRACT K=5 n=89 mean=1.8764 t=9.112
+  Mark 67->Mark 22 VELVETFRUIT_EXTRACT K=20 n=75 mean=2.0267 t=4.159
+  Mark 67->Mark 49 VELVETFRUIT_EXTRACT K=20 n=89 mean=1.6348 t=4.113
+  Mark 55->Mark 14 VELVETFRUIT_EXTRACT K=20 n=331 mean=0.5755 t=2.714
+  Mark 14->Mark 55 VELVETFRUIT_EXTRACT K=100 n=311 mean=-1.2621 t=-2.572
+  Mark 14->Mark 22 VEV_5300 K=5 n=30 mean=-0.4167 t=-2.533
+  Mark 01->Mark 22 VEV_5300 K=5 n=132 mean=-0.1477 t=-2.291
+  Mark 55->Mark 14 VELVETFRUIT_EXTRACT K=100 n=328 mean=1.0976 t=2.220
+  Mark 55->Mark 14 VELVETFRUIT_EXTRACT K=5 n=331 mean=0.2613 t=2.152
+  Mark 01->Mark 55 VELVETFRUIT_EXTRACT K=5 n=260 mean=0.2904 t=2.113
+  Mark 67->Mark 49 VELVETFRUIT_EXTRACT K=100 n=88 mean=1.9205 t=1.969
+  Mark 01->Mark 22 VEV_5500 K=5 n=299 mean=-0.0201 t=-1.527
+  Mark 14->Mark 22 VEV_5200 K=5 n=33 mean=-0.2424 t=-1.425
+  Mark 14->Mark 22 VEV_5300 K=100 n=30 mean=0.6500 t=1.155
+
+Mark-conditioned (n>=15) top 10 by |mean_fwd|:
+  Mark 49 as_buyer VELVETFRUIT_EXTRACT K=100 n=16 mean=-3.8125 t=-3.148347783623802
+  Mark 49 as_buyer VELVETFRUIT_EXTRACT K=20 n=17 mean=-2.2941 t=-1.8384776310850233
+  Mark 22 as_buyer VELVETFRUIT_EXTRACT K=100 n=25 mean=2.2000 t=1.0753051227015626
+  Mark 67 buyer_aggr VELVETFRUIT_EXTRACT K=5 n=164 mean=1.9604 t=13.025623326344341
+  Mark 67 as_buyer VELVETFRUIT_EXTRACT K=5 n=165 mean=1.9455 t=12.941467482109264
+  Mark 67 as_buyer VELVETFRUIT_EXTRACT K=20 n=165 mean=1.8455 t=5.967043172323755
+  Mark 49 as_buyer VELVETFRUIT_EXTRACT K=5 n=17 mean=-1.8235 t=-2.6229071768107897
+  Mark 49 as_seller VELVETFRUIT_EXTRACT K=5 n=105 mean=1.8190 t=9.63090606602775
+  Mark 67 buyer_aggr VELVETFRUIT_EXTRACT K=20 n=164 mean=1.8140 t=5.86010068131766
+  Mark 49 as_seller VELVETFRUIT_EXTRACT K=20 n=105 mean=1.7952 t=4.876686926034512

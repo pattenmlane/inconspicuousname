@@ -1,0 +1,101 @@
+[
+  {
+    "iteration": 0,
+    "analysis_description": "Round 4 scope: read round4work/round4description.txt, suggested direction.txt Phase 1, outputs/r4_initial_analysis_summary.txt. Data: Prosperity4Data/ROUND_4 days 1-3 (prices + trades with buyer/seller). Horizon K = number of price ticks (timestamp step 100) forward on the aligned mid grid.",
+    "analysis_outputs": [
+      "round4work/round4description.txt",
+      "round4work/suggested direction.txt",
+      "round4work/outputs/r4_initial_analysis_summary.txt",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/run_r4_phase1_counterparty_analysis.py"
+    ],
+    "used_to_decide": "Proceed with Phase 1 tape statistics before Phase 2; seven Marks only."
+  },
+  {
+    "round4_phase1_complete": {
+      "bullets": [
+        {
+          "phase1_bullet": "1) Participant-level alpha / predictiveness",
+          "outputs": [
+            "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_pair_forward_summary.csv",
+            "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_pair_forward_by_day.csv",
+            "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_mark_forward_summary.csv"
+          ],
+          "conclusion": "Strong positive forward extract mid after Mark 67 buys from Mark 22 or Mark 49 at K=5 and K=20 (t>4 pooled); per-day means stay positive on csv days 1,2,3. Mark 01->Mark 22 on VEV_5300 shows negative short-horizon same-symbol fwd at K=5 pooled but not stable (day2 near zero)."
+        },
+        {
+          "phase1_bullet": "2) Deviation from bot baseline (cell means / residuals)",
+          "outputs": [
+            "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_pair_residuals.csv"
+          ],
+          "conclusion": "Residuals rank Mark 67->Mark 22 / 49 on VELVETFRUIT_EXTRACT above global mean forward for the symbol; Mark 01->Mark 22 VEV_5300 residual is negative at short K — candidate fade on that pipe at the touch."
+        },
+        {
+          "phase1_bullet": "3) Sequence / graph methods",
+          "outputs": [
+            "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_graph_edges.csv",
+            "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_twohop_same_symbol.csv"
+          ],
+          "conclusion": "Directed Mark 01->Mark 22 dominates counts (matches initial summary); two-hop counts show repeated same-symbol handoffs mostly within the Mark 01/22 ladder — structural basket, not random."
+        },
+        {
+          "phase1_bullet": "4) Burst structure",
+          "outputs": [
+            "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_bursts.csv",
+            "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_burst_vs_isolated_extract_fwd20.json"
+          ],
+          "conclusion": "387 multi-print timestamps; extract trades co-located with bursts have higher mean 20-tick forward mid (+1.20 vs +0.28 for isolated extract prints) — burst times align with upward extract drift in this slice."
+        },
+        {
+          "phase1_bullet": "5) Adverse selection vs inventory (aggressor proxy)",
+          "outputs": [
+            "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_adverse_extract_after_01_22_5300.csv",
+            "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_summary.txt"
+          ],
+          "conclusion": "Aggressor inferred from trade price vs BBO mid+spread; Mark 01->Mark 22 VEV_5300 aggressive buys skew negative short-horizon same-symbol forward — liquidity taker may be paying for immediate size on the 01/22 pipe."
+        }
+      ],
+      "top_5_tradeable_edges": [
+        {
+          "rank": 1,
+          "edge": "After Mark 67 buys VELVETFRUIT_EXTRACT from Mark 22 (or Mark 49), extract mid rises ~2 ticks over the next 5 price ticks; holds with positive mean on each of csv days 1-3 (see pair_forward_by_day).",
+          "effect_size": "mean fwd K=5 ~ +2.0 price units pooled (n=75 / 89)",
+          "n": "75-89 trades pooled per pair; 17-35 per day",
+          "days_validated": "csv days 1, 2, 3"
+        },
+        {
+          "rank": 2,
+          "edge": "Same Mark 67->Mark 22 / 49 pairs at K=20 still positive mean forward extract (~+2.0 / +1.6) with t~4 on pooled sample.",
+          "effect_size": "~+2.0 over 20 ticks",
+          "n": "same pools",
+          "days_validated": "1,2,3"
+        },
+        {
+          "rank": 3,
+          "edge": "Burst timestamps: extract prints during multi-symbol bursts show ~+1.2 mean 20-tick forward extract mid vs ~+0.28 when isolated (burst_vs_isolated json).",
+          "effect_size": "+0.92 vs isolated mean difference at K=20",
+          "n": "82 burst-timestamp extract trades vs 1299 isolated",
+          "days_validated": "1,2,3 pooled"
+        },
+        {
+          "rank": 4,
+          "edge": "Mark 55 buys extract from Mark 14: modest positive forward at K=5/20/100 in pooled pair table (t~2); weaker than Mark 67 edges but same sign across horizons.",
+          "effect_size": "mean K=20 ~ +0.58 over 331 trades",
+          "n": "331 at K=20",
+          "days_validated": "pooled 1-3"
+        },
+        {
+          "rank": 5,
+          "edge": "Fade / short-horizon caution: Mark 01 aggressive buys VEV_5300 from Mark 22 associate with negative same-symbol 5-tick forward on pooled sample (t~-2.3); day2 mean near zero — use as risk-off on 5300 touch, not standalone alpha without Phase 2 sim.",
+          "effect_size": "mean K=5 ~ -0.15 on 132 trades",
+          "n": "132",
+          "days_validated": "significant day1; weak day2-3"
+        }
+      ],
+      "explicit_no_edge": [
+        "No single Mark 'as_buyer' aggregate across all products shows uniform positive markout at K=100 with high t across all symbols — role is pair- and symbol-specific (see mark_forward_summary sparse rows).",
+        "Mark 14->Mark 55 extract at K=100 shows negative mean in one cell — not a stable buy signal without further regime split.",
+        "Only three tape days; all 'stable across days' claims are limited to those csv days — Phase 2 should stress-test with execution sim."
+      ]
+    }
+  }
+]

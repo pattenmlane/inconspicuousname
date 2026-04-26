@@ -1,0 +1,6 @@
+{
+  "trader": "trader_v0.py",
+  "match_trades": "worse",
+  "n_submission_trade_events": 0,
+  "by_symbol": {}
+}

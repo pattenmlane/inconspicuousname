@@ -282,5 +282,18 @@
       "manual_traders/R4/r4_phase1_marks/outputs/phase3_joint_gate_summary_r4.txt"
     ],
     "used_to_decide": "Ship **trader_v3** with **EXTRACT_HALF_MULT_TIGHT=1.05** as best `worse` in this grid; 1.1 breaks day 1\u20132 under adverse matching. Next: combine with **VEV** legs or counterparty filters only with tape-backed sim uplift."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "**Counterparty \u00d7 joint gate (tape):** ``analyze_r4_01_22_under_joint_gate.py`` \u2014 on R4 days 1\u20133, **every** Mark01\u2192Mark22 print on VEV_5200/5300/5400 sits on a **joint-tight** timestamp (inner-join gate; loose count 0). Mean **fwd_same_20** on those prints: 5200 **+0.86** (n=11), 5300 **\u22120.12** (n=132), 5400 **+0.04** (n=263). **Sim:** ``trader_v4`` = **v3** extract + quote **5200/5300** when tight (Sonic hedge surface). **`worse`** PnL **ties v3** (3382; VEV lines 0). **`all`** total **9427** vs v3 **6036** \u2014 large voucher PnL but **not** the primary objective; day 3 VEV legs **negative** in `all` while extract carries.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_phase1_marks/analyze_r4_01_22_under_joint_gate.py",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase4_01_22_gate_counts.txt",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase4_01_22_fwd20_joint_tight.csv",
+      "manual_traders/R4/r4_phase1_marks/trader_v4.py",
+      "manual_traders/R4/r4_phase1_marks/backtests/iter4_r4d1-3_worse.log",
+      "manual_traders/R4/r4_phase1_marks/backtests/iter4_r4d1-3_all.log"
+    ],
+    "used_to_decide": "Keep **v3** as best `worse` extract-only; v4 documents hedge-surface MM for `all` exploration only unless VEV quoting is retuned for `worse`."
   }
 ]

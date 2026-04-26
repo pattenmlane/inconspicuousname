@@ -1,0 +1,4 @@
+Mark 01 → Mark 22 prints vs joint gate (inner-join tight flag)
+VEV_5200: tight=11 loose=0 total=11
+VEV_5300: tight=132 loose=0 total=132
+VEV_5400: tight=263 loose=0 total=263

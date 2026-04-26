@@ -137,5 +137,45 @@
         "vs_iteration_0_all_total": 6012
       }
     }
+  },
+  {
+    "iteration": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "**Sonic tight surface** on R4: same extract path as **v3** (joint gate + EXTRACT_HALF 2.4\u00d71.05) plus **VEV_5200** and **VEV_5300** mid-touch MM when tight (from R3 `trader_v24`). Wide: flat. **No HYDRO**, no other VEVs.",
+    "tape_note": "``analyze_r4_01_22_under_joint_gate.py``: on R4 days 1\u20133, **all** Mark01\u2192Mark22 prints on VEV_5200/5300/5400 occur at **joint-tight** timestamps (loose count 0); 5300 mean fwd20 \u2248\u22120.12 (n=132).",
+    "backtest_worse": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "worse",
+      "total_profit": 3382,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter4_r4d1-3_worse.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v4.py 4 --data Prosperity4Data --match-trades worse --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 1227, "2": 1553, "3": 602 },
+        "per_product_worse_4d": {
+          "VELVETFRUIT_EXTRACT": 3382,
+          "VEV_5200": 0,
+          "VEV_5300": 0
+        },
+        "vs_iteration_3_worse_total": 3382
+      }
+    },
+    "backtest_all": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "all",
+      "total_profit": 9427,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter4_r4d1-3_all.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v4.py 4 --data Prosperity4Data --match-trades all --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 2127, "2": 4751, "3": 2549 },
+        "per_product_all_4d": {
+          "VELVETFRUIT_EXTRACT": 6036,
+          "VEV_5200": 1131,
+          "VEV_5300": 2260
+        },
+        "vs_iteration_3_all_total": 6036
+      }
+    }
   }
 ]

@@ -191,6 +191,14 @@
           "one_sentence": "Correlations of Mark-01 buy quantity on extract with same-tick fwd are undefined (degenerate); at lags 1\u201310 correlations are small (\u2248-0.03 to +0.03) \u2014 no strong lead\u2013lag edge."
         },
         {
+          "item": "Cross-instrument lead\u2013lag (mid returns: extract vs each VEV + hydro, aligned timestamps)",
+          "outputs": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase2_leadlag_corr_extract_vs_products.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase2_leadlag_index.json"
+          ],
+          "one_sentence": "Inner-join all mids on (day,timestamp); corr(r_other.shift(L), r_extract) for L=0..20; **pooled |rho| at best L\u22651 stays below ~0.025** for every wing/hydro (n\u224830k) \u2014 no practical distributed-lag lead of voucher/hydro **mid diffs** into extract **mid diffs** on this tape (counterparty-free null; complements Mark01-flow null)."
+        },
+        {
           "item": "Execution / adverse selection (sim)",
           "outputs": [
             "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v1_burst_extract_worse.json",
@@ -228,9 +236,9 @@
         },
         {
           "rank": 4,
-          "edge": "Mark 01 extract buy flow shows no reliable lagged correlation with extract returns at 1\u201310 row lags.",
-          "evidence": "r4_phase2_extract_mark01_buy_flow_lagcorr.json",
-          "phase1_relation": "Negative on Phase-1 style \u2018informed buy\u2019 narrative for extract specifically."
+          "edge": "Aligned-panel mid-return lead\u2013lag (VEV_* + hydro vs extract, L\u226420) shows **no** economically meaningful |corr| at optimal lag (\u226a0.025 pooled); Mark-01 signed flow on extract also flat at short lags.",
+          "evidence": "r4_phase2_leadlag_index.json + r4_phase2_extract_mark01_buy_flow_lagcorr.json",
+          "phase1_relation": "Supports Phase-1 takeaway that **counterparty-conditioned** bursts matter more than anonymous mid cross-lead on this clock."
         },
         {
           "rank": 5,
@@ -239,7 +247,10 @@
           "phase1_relation": "Confirms Phase-1 graph/burst narrative as regime context."
         }
       ],
-      "repro_script": "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase2_study.py"
+      "repro_scripts": [
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase2_study.py",
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase2_cross_lead_lag_returns.py"
+      ]
     }
   },
   {

@@ -682,5 +682,11 @@
     "note": "Phase 1 burst orchestrator: r4_phase1_burst_orchestrator_study.py \u2192 318 burst ticks; 314 with buy_orch=Mark01 & sell_orch=Mark22, mean fwd20_ex +0.318 (see r4_burst_orchestrator_index.json). Burst bullet in analysis.json updated.",
     "phase": "round4_phase1_burst_orchestrator",
     "analysis_reference": "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis.json"
+  },
+  {
+    "iteration": 18,
+    "note": "Phase 2 cross lead-lag: r4_phase2_cross_lead_lag_returns.py \u2192 corr(r_VEV.shift(L), r_extract) L=0..20 on inner-joined mids; pooled |rho| best L\u22651 <~0.025 (r4_phase2_leadlag_index.json). round4_phase2_complete updated.",
+    "phase": "round4_phase2_cross_leadlag_returns",
+    "analysis_reference": "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis.json"
   }
 ]

@@ -1,0 +1,61 @@
+{
+  "max_lag": 20,
+  "definition": "r = mid.diff() within concatenated day panels; corr(r_other.shift(L), r_extract); L>0 => other leads extract.",
+  "pooled_best_lag_ge1": [
+    {
+      "product": "VEV_4000",
+      "lag": 1,
+      "corr": -0.02501333527690695,
+      "n": 29998
+    },
+    {
+      "product": "VEV_5400",
+      "lag": 11,
+      "corr": 0.0194833163086842,
+      "n": 29988
+    },
+    {
+      "product": "VEV_5200",
+      "lag": 2,
+      "corr": -0.017300299013435216,
+      "n": 29997
+    },
+    {
+      "product": "VEV_5300",
+      "lag": 2,
+      "corr": -0.01640106115841725,
+      "n": 29997
+    },
+    {
+      "product": "VEV_5100",
+      "lag": 11,
+      "corr": 0.013244082024274881,
+      "n": 29988
+    },
+    {
+      "product": "VEV_5000",
+      "lag": 2,
+      "corr": -0.01314825976995763,
+      "n": 29997
+    },
+    {
+      "product": "VEV_5500",
+      "lag": 6,
+      "corr": 0.013111710660799105,
+      "n": 29993
+    },
+    {
+      "product": "VEV_4500",
+      "lag": 11,
+      "corr": 0.012329848931209076,
+      "n": 29988
+    },
+    {
+      "product": "HYDROGEL_PACK",
+      "lag": 14,
+      "corr": -0.011733729015595428,
+      "n": 29985
+    }
+  ],
+  "note": "Contemporaneous (L=0) often dominates microstructure noise; L>=1 tests predictive lead."
+}

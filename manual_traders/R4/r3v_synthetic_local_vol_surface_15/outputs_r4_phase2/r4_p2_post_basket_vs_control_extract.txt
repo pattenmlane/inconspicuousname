@@ -1,0 +1,6 @@
+Post Mark01→Mark22 multi-leg (>=3 rows same ts) vs sparse time controls on extract:
+  n_events=314
+  mean fwd5=-0.0016 median=0.0000
+  mean fwd20=0.2627 median=0.0000
+  control n=1486 mean fwd5=-0.0441 mean fwd20=-0.0007
+  Welch fwd5: t=0.327 p=0.7434

@@ -1,0 +1,31 @@
+Round 4 Phase 2 — executive summary (days 1–3)
+================================================
+
+1) Named-bot + burst (post Mark01→Mark22 basket)
+   r4_p2_post_basket_vs_control_extract.txt: 314 events; extract fwd5 not different from sparse
+   time controls (Welch p=0.74); fwd20 slightly higher on basket timestamps than controls but not
+   significant at fwd5 horizon — no clean post-basket **fade vs trend** rule from this test alone.
+
+2) Microstructure
+   r4_p2_microprice_summary.csv: lagged (microprice−mid) vs next Δmid correlation ~0.23 (extract)
+   and ~0.31 (VEV_5300) — microprice pressure has mild predictive content for next tick mid move.
+
+3) Cross-instrument signed flow
+   r4_p2_signed_flow_vev5300_vs_extract_dmid_bucket.csv: same-bucket correlation of VEV_5300
+   signed flow vs summed extract Δmid is mixed by day (−0.09, +0.20, −0.01) — not stable
+   three-day lead signal at this coarse bucket.
+
+4) Regime (Mark 67 × spread tertile)
+   r4_p2_mark67_extract_fwd20_by_spread_tertile.csv: Mark67 aggressive-buy extract still shows
+   large positive fwd20 in tight books, but day-3 wide bucket remains positive (small n in
+   mid cells) — Phase-1 edge is not purely a “tight-spread only” artifact but day-3 subsamples
+   are noisy.
+
+5) IV / smile at M01→M22 bursts
+   r4_p2_smile_width_at_m01_m22_bursts.csv: IV range across strikes at basket timestamps (for
+   follow-up conditioning on steepness).
+
+6) Backtester fix + probe strategy
+   test_runner now copies tape trades into state.market_trades before trader.run so algorithms
+   can read buyer/seller. trader_v1_r4_mark67_aggr_buy_extract.py: buy extract ba+1 when Mark 67
+   aggressive buy hits tape; Round 4 total PnL +6,808 (worse=all identical in this run).

@@ -1,0 +1,10 @@
+{
+  "outputs": [
+    "r4_p2_mark67_extract_fwd20_by_spread_tertile.csv",
+    "r4_p2_microprice_summary.csv",
+    "r4_p2_post_basket_vs_control_extract.txt",
+    "r4_p2_post_m01_m22_basket_extract_fwd.csv",
+    "r4_p2_signed_flow_vev5300_vs_extract_dmid_bucket.csv",
+    "r4_p2_smile_width_at_m01_m22_bursts.csv"
+  ]
+}

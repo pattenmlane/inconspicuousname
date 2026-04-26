@@ -1,3 +1,4 @@
+import copy
 from contextlib import closing, redirect_stdout
 from io import StringIO
 from IPython.utils.io import Tee
@@ -112,6 +113,12 @@ class TestRunner:
             state.observations = Observation(
                 plainValueObservations={}, conversionObservations={"MAGNIFICENT_MACARONS": conversion_observation}
             )
+
+        # Round 4+: expose tape trades with buyer/seller for strategies that read state.market_trades.
+        mt_at = data.get_market_trades_at(timestamp)
+        state.market_trades = {
+            sym: [copy.copy(mt.trade) for mt in lst] for sym, lst in mt_at.items()
+        }
 
         return state
 

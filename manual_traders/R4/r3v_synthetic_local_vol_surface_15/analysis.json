@@ -102,5 +102,67 @@
       ],
       "methodology_note": "Forward mid: K steps on sorted distinct timestamps per (day,symbol). Cross-asset extract/hydro: align extract/hydro mids to trade symbol timestamp grid endpoints. Aggressor: price vs bid1/ask1 at trade time."
     }
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Round 4 Phase 2 orthogonal analysis: `_r4_phase2_analysis.py` (post M01→M22 basket vs control, microprice–mid, signed-flow buckets, Mark67×spread tertile IV smile at bursts). Backtester `test_runner` now exposes `state.market_trades` with buyer/seller before each trader step. Probe trader v1 implements Phase-1 Mark67 signal via live tape reads.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/_r4_phase2_analysis.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase2/r4_p2_manifest.json",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase2/r4_p2_post_basket_vs_control_extract.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase2/r4_p2_post_m01_m22_basket_extract_fwd.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase2/r4_p2_microprice_summary.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase2/r4_p2_signed_flow_vev5300_vs_extract_dmid_bucket.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase2/r4_p2_mark67_extract_fwd20_by_spread_tertile.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase2/r4_p2_smile_width_at_m01_m22_bursts.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/r4_p2_phase2_executive_summary.txt",
+      "imc-prosperity-4-backtester/prosperity4bt/test_runner.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v1_r4_mark67_aggr_buy_extract.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v1_r4_mark67_aggr_buy_extract_worse.log",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v1_r4_mark67_aggr_buy_extract_all.log"
+    ],
+    "used_to_decide": "Phase 2 completion object follows. Phase 1 Mark67 mid-forward edge survives regime split qualitatively; post-basket extract drift is not a strong standalone signal at K=5 vs control."
+  },
+  {
+    "round4_phase2_complete": {
+      "phase": 2,
+      "prerequisite": "round4_phase1_complete present in this file",
+      "interaction_with_phase1": {
+        "confirmed": "Mark 67 aggressive-buy extract forward mids remain large in Phase-2 spread-tertile table (r4_p2_mark67_extract_fwd20_by_spread_tertile.csv); microprice gap has predictive correlation with next Δmid.",
+        "refined": "Post Mark01→Mark22 multi-leg basket does **not** show significant extract fwd5 lift vs sparse time controls (Welch p=0.74) — Phase-1 burst story on extract is not the same as post-basket trend at 5-step horizon.",
+        "falsified_or_weak": "VEV_5300 signed-flow vs extract Δmid in coarse buckets is **not day-stable** (sign flips day 1 vs 2); not promoted as Tier-A cross-lead rule without finer alignment."
+      },
+      "top_5_tradeable_edges_phase2": [
+        {
+          "rank": 1,
+          "edge": "Microprice-minus-mid lag predicts next tick extract Δmid (corr ~0.23) and VEV_5300 (~0.31) — microstructure layer usable for quote skew / short-horizon filter",
+          "paths": ["manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase2/r4_p2_microprice_summary.csv"]
+        },
+        {
+          "rank": 2,
+          "edge": "Mark 67 aggressive-buy extract: Phase-2 spread-tertile table still shows large mean fwd20 in tight/mid books (see CSV); aligns with Phase-1 rank-1",
+          "paths": ["manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase2/r4_p2_mark67_extract_fwd20_by_spread_tertile.csv"]
+        },
+        {
+          "rank": 3,
+          "edge": "Live sim: counterparty-conditioned buy on Mark67 aggr-buy extract (trader_v1) yields +6,808 total PnL days 1–3 under worse (day 3 negative — needs risk cap / OOS day)",
+          "paths": ["manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v1_r4_mark67_aggr_buy_extract_worse.log", "manual_traders/R4/r3v_synthetic_local_vol_surface_15/results.json"]
+        },
+        {
+          "rank": 4,
+          "edge": "IV smile width snapshot at Mark01→Mark22 burst timestamps (r4_p2_smile_width_at_m01_m22_bursts.csv) for conditioning wing pressure (tie-in to Phase-2 vol/smile bullet)",
+          "paths": ["manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase2/r4_p2_smile_width_at_m01_m22_bursts.csv"]
+        },
+        {
+          "rank": 5,
+          "edge": "Adverse-selection maps from Phase-1 (r4_p1_aggr_*) remain the execution complement — Phase-2 does not replace them",
+          "paths": ["manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase1/r4_p1_aggr_buy_fwd5_by_seller.csv"]
+        }
+      ],
+      "phase2_negative_results": [
+        "Post M01→M22 basket: no significant fwd5 uplift vs sparse controls (r4_p2_post_basket_vs_control_extract.txt).",
+        "Signed VEV_5300 flow vs extract Δmid in 1k-timestamp buckets: unstable sign across days (r4_p2_signed_flow_vev5300_vs_extract_dmid_bucket.csv)."
+      ]
+    }
   }
 ]

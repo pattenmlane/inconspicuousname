@@ -363,5 +363,16 @@
       "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_m22_5300_aggr_sell_counts.json"
     ],
     "used_to_decide": "v10 worse 5901 << v8 9673; VEV_5300 -3772 vs v8 0 over days 1-2 under worse. Tape audit (r4_ph1_m22_5300_aggr_sell_counts.json): days 1-2 have 38-44 unique ts with Mark22 aggr sell 5300 — clip-4 shorts at bid still lose badly under worse fills vs mid-only Phase1 statistic. Do not stack this leg; v8 remains best."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "trader_v11: Phase1 second strong extract row — Mark 49 **seller** on extract K=5 (n≈105, mean≈+1.82, t≈9.6). Tape audit r4_ph1_m49_seller_extract_counts.json: ~32-36 unique ts/day with Mark49 seller extract; aggressive sells (price<=bid1) are 0-1/day — overlay uses full seller cohort to match Phase1 table definition.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v11_round4_worse.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v11_round4_all.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_participant_predictivity.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_m49_seller_extract_counts.json"
+    ],
+    "used_to_decide": "v11 worse 9372 < v8 9673 (all 8562 < 9354). Small overlay clips (3/4) still dilute day-1 Mark67 path under worse fills; day-2 nearly flat vs v8. Confirms v5/v6 lesson: stacking extra extract lifts on counterparty tape without isolating execution quality underperforms v8."
   }
 ]

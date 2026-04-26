@@ -1,0 +1,17 @@
+{
+  "1": {
+    "seller_extract_rows": 34,
+    "unique_ts_seller": 32,
+    "aggressive_sell_rows_price_le_bid": 0
+  },
+  "2": {
+    "seller_extract_rows": 37,
+    "unique_ts_seller": 36,
+    "aggressive_sell_rows_price_le_bid": 1
+  },
+  "3": {
+    "seller_extract_rows": 34,
+    "unique_ts_seller": 32,
+    "aggressive_sell_rows_price_le_bid": 0
+  }
+}

@@ -130,5 +130,15 @@
       "results.json"
     ],
     "used_to_decide": "v21 replaces v19's tail clip scaling with a simpler tail freeze: when |dS|>=2.0, no new voucher entries. Backtest 63142 (below v19 65038), so retaining some controlled tail participation (v19) is superior on this tape."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "Read round3work/vouchers_final_strategy/STRATEGY.txt and outputs/r3_tight_spread_summary.txt: joint gate TH=2 (both 5200 and 5300) aligns with better forward extract mid; day0 summary t-stat~4.7. Implemented as book-state filter + sizing (Sonic-style) on top of existing WLS smile IV (Greek gates unchanged).",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_6panel.png"
+    ],
+    "used_to_decide": "v22: gate_on=both spreads<=2; when on size extract quotes 20/leg and +25% VEV clip. Worse 40817 / all 40882 on R3 d0-2 is far below v19 65038 on the old 3-day-all invocation \u2014 the joint-gate extract sizing with reduced baseline MM (6) likely starves the smile edge; next: restore baseline extract size or gate VEV only (not extract MM) or only boost when gate and edge present."
   }
 ]

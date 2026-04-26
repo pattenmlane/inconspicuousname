@@ -4,7 +4,11 @@ Round 4 Phase 1 — counterparty-conditioned forward mids (tape evidence).
 Reads Prosperity4Data/ROUND_4 prices + trades (days present).
 Horizon K = K steps in the *price tape* for the same (day, product): next K rows by timestamp.
 
-Outputs under manual_traders/R4/r4_counterparty_gated/analysis_outputs/
+Key outputs (analysis_outputs/): r4_phase1_trade_events.csv (per-trade, all strata);
+r4_participant_fwd_by_symbol.csv (mean, median, bootstrap 95% CI for mean, t where n>=30);
+r4_participant_fwd_by_symbol_by_day.csv; r4_edge_pairs_with_reciprocity.csv;
+r4_node_degree_in_out_top30.csv; r4_burst_orchestrator_by_timestamp.csv; plus
+cell means, residuals, two-hop, burst event study, passive-seller markout, summary txt.
 """
 from __future__ import annotations
 
@@ -191,6 +195,8 @@ def main() -> None:
 
     burst_flag = (ev["burst_n"] >= 4).astype(int)
     ev["burst_ge4"] = burst_flag
+    # Full per-trade event table for phase-1 stratum re-analysis (all horizons + strata in one file)
+    ev.to_csv(OUT / "r4_phase1_trade_events.csv", index=False)
 
     def safe_tstat(x: np.ndarray) -> tuple[float, int]:
         x = x[np.isfinite(x)]
@@ -202,6 +208,20 @@ def main() -> None:
         if s < 1e-12:
             return float("nan"), n
         return m / (s / math.sqrt(n)), n
+
+    def boot_mean_ci_95(
+        x: np.ndarray, n_boot: int = 2000, min_n: int = 20, seed: int = 0
+    ) -> tuple[float, float]:
+        """Percentile CI for mean; skip small cells."""
+        x = x[np.isfinite(x)]
+        n = len(x)
+        if n < min_n or n < 2:
+            return float("nan"), float("nan")
+        rng = np.random.default_rng(seed)
+        # (n_boot, n) resamples of the empirical distribution
+        idx = rng.integers(0, n, size=(n_boot, n))
+        means = x[idx].mean(axis=1)
+        return float(np.percentile(means, 2.5)), float(np.percentile(means, 97.5))
 
     # --- 1) Participant-level: aggressive buy (buyer lifts) vs aggressive sell ---
     part_rows = []
@@ -219,22 +239,68 @@ def main() -> None:
                 for K in HORIZONS:
                     col = f"fwd_mid_{K}"
                     x = s2[col].to_numpy(dtype=float)
-                    tstat, n = safe_tstat(x)
+                    xclean = x[np.isfinite(x)]
+                    nn = len(xclean)
+                    tstat, _ = safe_tstat(x)
+                    ci_lo, ci_hi = boot_mean_ci_95(
+                        x, seed=int(abs(hash((U, role, sym, K))) % (2**31 - 1))
+                    )
                     part_rows.append(
                         {
                             "participant": U,
                             "role": role,
                             "symbol": sym,
                             "K": K,
-                            "n": n,
-                            "mean_fwd": float(np.nanmean(x)) if n else float("nan"),
+                            "n": nn,
+                            "mean_fwd": float(np.mean(xclean)) if nn else float("nan"),
+                            "median_fwd": float(np.median(xclean)) if nn else float("nan"),
                             "t_stat": tstat,
-                            "frac_pos": float(np.mean(x > 0)) if n else float("nan"),
+                            "boot_ci95_mean_lo": ci_lo,
+                            "boot_ci95_mean_hi": ci_hi,
+                            "frac_pos": float(np.mean(xclean > 0)) if nn else float("nan"),
                         }
                     )
 
     part_df = pd.DataFrame(part_rows)
     part_df.to_csv(OUT / "r4_participant_fwd_by_symbol.csv", index=False)
+
+    # By-day: same cells with n>=5 that day (for day-stability review)
+    part_day_rows: list[dict] = []
+    for U in names:
+        if not U or U == "nan":
+            continue
+        sub_b = ev[(ev["buyer"] == U) & (ev["aggression"] == "aggr_buy")]
+        sub_s = ev[(ev["seller"] == U) & (ev["aggression"] == "aggr_sell")]
+        for role, sub in [("U_aggr_buy", sub_b), ("U_aggr_sell", sub_s)]:
+            if sub.empty:
+                continue
+            for sym in sub["symbol"].unique():
+                s2 = sub[sub["symbol"] == sym]
+                for d in sorted(s2["day"].unique()):
+                    s3 = s2[s2["day"] == d]
+                    for K in HORIZONS:
+                        col = f"fwd_mid_{K}"
+                        x = s3[col].to_numpy(dtype=float)
+                        x = x[np.isfinite(x)]
+                        if len(x) < 5:
+                            continue
+                        tstat, _ = safe_tstat(x)
+                        part_day_rows.append(
+                            {
+                                "participant": U,
+                                "role": role,
+                                "symbol": sym,
+                                "day": int(d),
+                                "K": K,
+                                "n": len(x),
+                                "mean_fwd": float(np.mean(x)),
+                                "median_fwd": float(np.median(x)),
+                                "t_stat": tstat,
+                                "frac_pos": float(np.mean(x > 0)),
+                            }
+                        )
+    if part_day_rows:
+        pd.DataFrame(part_day_rows).to_csv(OUT / "r4_participant_fwd_by_symbol_by_day.csv", index=False)
 
     # Per-day cell means for (buyer, seller, symbol) n>=5
     cell = (
@@ -263,10 +329,81 @@ def main() -> None:
         OUT / "r4_trade_level_residual_fwd20.csv", index=False
     )
 
-    # --- 3) Graph edges ---
-    edge = tr.groupby(["buyer", "seller"]).agg(n=("symbol", "size"), notional=("price", lambda x: float(np.sum(x)))).reset_index()
+    # --- 3) Graph edges: count, sum(|price|) as legacy, gross_notional = sum(|p*q|) ---
+    tr2 = tr.copy()
+    tr2["p"] = pd.to_numeric(tr2["price"], errors="coerce")
+    tr2["gross_row"] = np.abs(tr2["p"] * tr2["qty"].astype(float))
+    edge = (
+        tr2.groupby(["buyer", "seller"])
+        .agg(
+            n=("symbol", "size"),
+            notional_sum_abs_price=( "p", lambda x: float(np.nansum(np.abs(x))) ),
+            gross_notional=( "gross_row", "sum" ),
+        )
+        .reset_index()
+    )
     edge = edge.sort_values("n", ascending=False)
     edge.to_csv(OUT / "r4_directed_edges_buyer_seller.csv", index=False)
+
+    e2 = edge.rename(columns={"n": "edge_count"}).copy()
+    rev_lookup = e2.set_index(["buyer", "seller"])["edge_count"].to_dict()
+    grev = e2.set_index(["buyer", "seller"])["gross_notional"].to_dict()
+    e2["reverse_edge_count"] = e2.apply(
+        lambda r: float(rev_lookup.get((r["seller"], r["buyer"]), 0.0)), axis=1
+    )
+    e2["reverse_gross_n"] = e2.apply(
+        lambda r: float(grev.get((r["seller"], r["buyer"]), 0.0)), axis=1
+    )
+    ssum = e2["edge_count"] + e2["reverse_edge_count"].fillna(0)
+    e2["reciprocity_ratio_n"] = np.where(
+        ssum > 0,
+        2 * np.minimum(e2["edge_count"], e2["reverse_edge_count"].fillna(0)) / ssum,
+        np.nan,
+    )
+    e2.sort_values("edge_count", ascending=False).to_csv(OUT / "r4_edge_pairs_with_reciprocity.csv", index=False)
+    e2.head(20)[["buyer", "seller", "edge_count", "gross_notional", "reverse_edge_count", "reciprocity_ratio_n"]].to_csv(
+        OUT / "r4_top20_directed_edge_pairs.csv", index=False
+    )
+
+    in_deg = e2.groupby("seller")["edge_count"].sum()
+    out_deg = e2.groupby("buyer")["edge_count"].sum()
+    all_names = set(e2["buyer"].astype(str)) | set(e2["seller"].astype(str))
+    hub_rows = []
+    for n in all_names:
+        hub_rows.append(
+            {
+                "name": n,
+                "in_edge_count": float(in_deg[n]) if n in in_deg.index else 0.0,
+                "out_edge_count": float(out_deg[n]) if n in out_deg.index else 0.0,
+            }
+        )
+    hubs = pd.DataFrame(hub_rows)
+    hubs["sum_in_out"] = hubs["in_edge_count"] + hubs["out_edge_count"]
+    hubs = hubs.sort_values("sum_in_out", ascending=False).head(30)
+    hubs.to_csv(OUT / "r4_node_degree_in_out_top30.csv", index=False)
+
+    # --- Burst orchestrator: (day,ts) with 2+ prints: mode buyer / mode seller on that clock tick ---
+    br = tr.copy()
+    br["_bc"] = br.groupby(["day", "timestamp"])["symbol"].transform("size")
+    br = br[br["_bc"] >= 2]
+    orch: list[dict] = []
+    for (d, t), g in br.groupby(["day", "timestamp"]):
+        bcnt = g["buyer"].astype(str).value_counts()
+        scnt = g["seller"].astype(str).value_counts()
+        top_b, top_s = str(bcnt.index[0]), str(scnt.index[0]) if len(scnt) else ""
+        orch.append(
+            {
+                "day": int(d),
+                "timestamp": int(t),
+                "n_prints": int(len(g)),
+                "n_syms": int(g["symbol"].nunique()),
+                "most_common_buyer": top_b,
+                "buyer_appearances": int(bcnt.iloc[0]),
+                "most_common_seller": top_s,
+                "seller_appearances": int(scnt.iloc[0]) if len(scnt) else 0,
+            }
+        )
+    pd.DataFrame(orch).to_csv(OUT / "r4_burst_orchestrator_by_timestamp.csv", index=False)
 
     # --- 4) Burst event study: first row per (day, ts) burst>=4 ---
     burst_keys = ev.loc[ev["burst_n"] >= 4, ["day", "timestamp"]].drop_duplicates()

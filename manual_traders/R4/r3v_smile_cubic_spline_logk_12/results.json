@@ -626,7 +626,7 @@
     "strategy_description": "**v13** with burst-window extract ask skip **disabled on tape session 3** (mirrors M67→M22 day-3 ablation).",
     "backtest_worse": {
       "match_trades": "worse",
-      "total_profit": 49122,
+      "total_profit": 50122,
       "backtest_log_file": "backtest_logs/trader_v14_round4_worse.log",
       "trades_or_fills_summary": {
         "day_total_profit": {
@@ -639,7 +639,7 @@
           "day2": 3,
           "day3": 4
         },
-        "note": "+1319 vs v12 worse; d1/d2 match v13; d3 matches v12 (13248). Best worse in series on R4 d1–3."
+        "note": "+1319 vs v12 worse (50122−48803); d1/d2 match v13; d3 matches v12 (13248). Best worse in series on R4 d1–3."
       }
     },
     "backtest_all": {

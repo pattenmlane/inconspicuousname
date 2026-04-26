@@ -7,7 +7,7 @@ Phase 2 table `r4_phase2_burst_window_mark20.csv`: extract prints **near** offli
   all: 55,131 total (+566 vs v12).
 
 **trader_v14** = v13 + **no burst-window extract skip on tape session 3** (same index as M67→M22 ablation).
-  worse: **49,122** (+1,319 vs v12); day totals 24,070 / 12,804 / **13,248** (d3 matches v12).
+  worse: **50,122** (+1,319 vs v12 48,803); day totals 24,070 / 12,804 / **13,248** (d3 matches v12).
   all: **55,131** (same as v13; burst skip mostly affects worse-fill path).
 
 Conclusion: mid markout near M01→M22 bursts **does** translate to worse-fill extract PnL on d1–2 when encoded as ask suppression; **d3** needs the same session ablation as M67→M22. **v14** is new best **worse** on this three-day grid; **all** ties v13 above v12.

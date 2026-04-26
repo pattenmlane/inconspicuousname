@@ -1,0 +1,21 @@
+{
+  "K": 20,
+  "TH": 2.0,
+  "BURST_MIN": 4,
+  "n_events": 291,
+  "quartiles_m22_sell_qty_5300": {
+    "p25": 0,
+    "p75": 4
+  },
+  "low_m22_pressure": {
+    "n": 130,
+    "mean_fwd20_5300": 0.9,
+    "mean_fwd20_extract": 0.592308
+  },
+  "high_m22_pressure": {
+    "n": 75,
+    "mean_fwd20_5300": -0.146667,
+    "mean_fwd20_extract": -0.073333
+  },
+  "pooled_correlation_note": "Compare high vs low Mark22 sell qty on 5300 within same burst regime; if high pressure associates with lower fwd20, supports fade / skew-away-from-M22-sell inventory stories."
+}

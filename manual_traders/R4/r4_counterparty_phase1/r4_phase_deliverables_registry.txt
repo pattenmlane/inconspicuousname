@@ -1,0 +1,52 @@
+Round 4 — r4_counterparty_phase1 deliverable registry (paths relative to repo root)
+======================================================================================
+Tape: Prosperity4Data/ROUND_4/ (days 1–3). Authoritative docs: round4work/round4description.txt, round4work/suggested direction.txt, round4work/outputs/r4_initial_analysis_summary.txt.
+
+PHASE 1 — quantitative outputs (see analysis.json object round4_phase1_complete)
+----------------------------------------------------------------------------------
+manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase1_counterparty_edges.py
+manual_traders/R4/r4_counterparty_phase1/r4_phase1_markout_summary.json
+manual_traders/R4/r4_counterparty_phase1/r4_phase1_trade_markouts_sample.csv
+
+PHASE 2 — scripts + JSON (see analysis.json object round4_phase2_complete)
+--------------------------------------------------------------------------
+manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase2_burst_m01_m22.py
+manual_traders/R4/r4_counterparty_phase1/r4_phase2_burst_m01_m22.json
+manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase2_leadlag_flow.py
+manual_traders/R4/r4_counterparty_phase1/r4_phase2_leadlag_hourly.json
+manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase2_iv_mark_clusters.py
+manual_traders/R4/r4_counterparty_phase1/r4_phase2_iv_mark_density.json
+manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase2_spread_fwd_vol.py
+manual_traders/R4/r4_counterparty_phase1/r4_phase2_spread_fwd5300.json
+manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase2_burst_mark22_5300_qty_vs_fwd.py  (inventory proxy)
+manual_traders/R4/r4_counterparty_phase1/r4_phase2_burst_m22_5300_qty_vs_fwd.json
+
+PHASE 3 — Sonic gate + spread–spread on Round 4 (see analysis.json round4_phase3_complete)
+------------------------------------------------------------------------------------------
+manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase3_sonic_gate_r4.py
+manual_traders/R4/r4_counterparty_phase1/r4_phase3_gate_summary.json
+manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase3_gate_extract_by_day.py
+manual_traders/R4/r4_counterparty_phase1/r4_phase3_gate_extract_by_day.json
+manual_traders/R4/r4_counterparty_phase1/r4_phase3_spread_spread.json
+(previous round reference) previous round work/round3work/vouchers_final_strategy/analyze_vev_5200_5300_tight_gate_r3.py
+
+EXTENSIONS — gate × burst × counterparty leg (post Phase 3)
+-------------------------------------------------------------
+manual_traders/R4/r4_counterparty_phase1/analyze_r4_gate_burst_5300_fwd_2x2.py
+manual_traders/R4/r4_counterparty_phase1/r4_gate_burst_5300_fwd_2x2.json
+manual_traders/R4/r4_counterparty_phase1/analyze_r4_burst_tight_5300_trade_vs_book.py
+manual_traders/R4/r4_counterparty_phase1/r4_burst_tight_5300_trade_vs_book.json
+manual_traders/R4/r4_counterparty_phase1/analyze_r4_tight_burst_5300_fwd_horizons.py
+manual_traders/R4/r4_counterparty_phase1/r4_tight_burst_5300_fwd_horizons.json
+manual_traders/R4/r4_counterparty_phase1/analyze_r4_5300_spread_by_gate_burst.py
+manual_traders/R4/r4_counterparty_phase1/r4_5300_spread_by_gate_burst.json
+manual_traders/R4/r4_counterparty_phase1/analyze_r4_burst_m01_m22_5300_leg_fwd20.py
+manual_traders/R4/r4_counterparty_phase1/r4_burst_m01_m22_5300_leg_fwd20.json
+manual_traders/R4/r4_counterparty_phase1/analyze_r4_burst_m01_m22_5300_leg_fwd_multik.py
+manual_traders/R4/r4_counterparty_phase1/r4_burst_m01_m22_5300_leg_fwd_multik.json
+manual_traders/R4/r4_counterparty_phase1/analyze_r4_tight_burst_extract_fwd_by_5300_leg.py
+manual_traders/R4/r4_counterparty_phase1/r4_tight_burst_extract_fwd_by_5300_leg.json
+
+SIM TIER (prosperity4bt Round 4; primary worse, also all) — results.json iterations
+-----------------------------------------------------------------------------------
+trader_v0.py … trader_v13.py and matching backtest_trader_v*_r4_{worse,all}.log under same folder.

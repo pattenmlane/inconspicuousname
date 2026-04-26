@@ -368,5 +368,22 @@
       "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v13_r4_all.log"
     ],
     "used_to_decide": "Worse **+736** vs v12 **+744**; extract subaccount **-8** over 3 days (day1 -2, day2 -6). **Falsifies** simple \"tape mid edge ⇒ profitable paired touch\" for extract under this execution — keep **v12** 5300-only until extract leg is redesigned (e.g. passive-only when extract spr>=2, or smaller/hold, or separate sim calibration)."
+  },
+  {
+    "iteration": 14,
+    "round": 4,
+    "analysis_description": "Re-audit vs formal Phase 1–3 prompt checklist: centralize artifact paths in r4_phase_deliverables_registry.txt. Add Phase-2 **inventory-pressure proxy** — at joint tight + M01→M22 burst timestamps, bucket by Mark 22 **sell** quantity on VEV_5300 in that print batch; relate to VEV_5300 and extract fwd20 (K=20 price rows).",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/r4_phase_deliverables_registry.txt",
+      "manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase2_burst_mark22_5300_qty_vs_fwd.py",
+      "manual_traders/R4/r4_counterparty_phase1/r4_phase2_burst_m22_5300_qty_vs_fwd.json"
+    ],
+    "round4_phase_formal_audit": {
+      "phase1": "COMPLETE — first `analysis.json` entry with key `round4_phase1_complete` (bullets 1–5, top-5 edges, negative findings). Primary outputs: r4_phase1_markout_summary.json + r4_phase1_trade_markouts_sample.csv. Forward K = K **price rows** on symbol mid series after trade timestamp (documented in script header).",
+      "phase2": "COMPLETE — entry with `round4_phase2_complete` (burst vs singleton, spread–fwd, hourly lead–lag, IV×Mark density, sim v1 falsification). **Extension (this iteration):** r4_phase2_burst_m22_5300_qty_vs_fwd.json on n=291 tight+burst events — Mark22 sell qty on 5300 **≤p25 (0)**: mean fwd20_5300 **+0.90**, extract **+0.59** (n=130); **≥p75 (≥4)**: mean fwd20_5300 **−0.15**, extract **−0.07** (n=75). Supports **inventory / sell-pressure** conditioning within basket bursts (orthogonal to pure pair-count graph).",
+      "phase3": "COMPLETE — entry with `round4_phase3_complete` (gate summary, spread–spread, per-day gate stability, 2×2 gate×burst extensions, sim v2–v13). Gate **cleans** population extract fwd20 (tight vs loose) per prior Welch result; counterparty **interacts** (M01→M22 on 5300 vs basket-only leg splits in later JSONs).",
+      "tier_a_sim_note": "Best worse-fill sim on this tape: trader_v12 +744 VEV_5300 only; v13 paired extract −8 vs v12 — mid-forward basket-only extract lift does not survive mirrored touch execution."
+    },
+    "used_to_decide": "No change to prior `round4_phase*_complete` truth flags — this iteration **documents** compliance for ops review and strengthens Phase-2 bullet 7 (inventory-aware) with a **quantified** Mark22-pressure split."
   }
 ]

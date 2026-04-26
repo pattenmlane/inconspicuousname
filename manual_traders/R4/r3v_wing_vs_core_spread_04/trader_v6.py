@@ -1,0 +1,82 @@
+"""
+Round 4 v6 — same Tier-A triggers and lag as v3/v4, **taker buy VEV_5300 at best ask**
+with **qty=2** per fire (test scale vs v4 single-lot).
+
+Act-time Sonic gate retained (same as v3/v4) so only fires when 5200/5300 still tight.
+"""
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+from datamodel import Order, OrderDepth, TradingState
+
+U = "VELVETFRUIT_EXTRACT"
+VEV_5200 = "VEV_5200"
+VEV_5300 = "VEV_5300"
+H = "HYDROGEL_PACK"
+STRIKES = [4000, 4500, 5000, 5100, 5200, 5300, 5400, 5500, 6000, 6500]
+PRODUCTS = [H, U, *[f"VEV_{k}" for k in STRIKES]]
+
+V = VEV_5300
+LAG = 100
+MAX_LONG = 40
+TIGHT_TH = 2
+QTY = 2
+
+_SIG_PATH = (
+    Path(__file__).resolve().parent
+    / "outputs"
+    / "phase3"
+    / "signals_mark67_to_mark22_extract_joint_tight_at_print.json"
+)
+_FIRE: set[int] = set()
+if _SIG_PATH.is_file():
+    for tape_day, local_ts in json.loads(_SIG_PATH.read_text(encoding="utf-8")):
+        _FIRE.add((int(tape_day) - 1) * 1_000_000 + int(local_ts) + LAG)
+
+
+def _bb_ba(d: OrderDepth | None) -> tuple[int, int] | None:
+    if d is None or not d.buy_orders or not d.sell_orders:
+        return None
+    return int(max(d.buy_orders)), int(min(d.sell_orders))
+
+
+def _sp(d: OrderDepth | None) -> int | None:
+    t = _bb_ba(d)
+    if t is None:
+        return None
+    return t[1] - t[0]
+
+
+def _joint_tight(state: TradingState) -> bool:
+    a, b = _sp(state.order_depths.get(VEV_5200)), _sp(state.order_depths.get(VEV_5300))
+    if a is None or b is None:
+        return False
+    return a <= TIGHT_TH and b <= TIGHT_TH
+
+
+class Trader:
+    def run(self, state: TradingState):
+        try:
+            td: dict = json.loads(state.traderData) if state.traderData else {}
+        except (json.JSONDecodeError, TypeError):
+            td = {}
+        acted: set[int] = set(td.get("acted", []))
+
+        orders: dict[str, list[Order]] = {p: [] for p in PRODUCTS}
+        ts = int(state.timestamp)
+        pv = int(state.position.get(V, 0))
+
+        if ts in _FIRE and ts not in acted and _joint_tight(state) and pv + QTY <= MAX_LONG:
+            dv = state.order_depths.get(V)
+            if dv and dv.sell_orders:
+                ask = int(min(dv.sell_orders))
+                vol = min(QTY, abs(dv.sell_orders[ask]))
+                q = min(QTY, vol, MAX_LONG - pv)
+                if q > 0:
+                    orders[V].append(Order(V, ask, q))
+                    acted.add(ts)
+                    td["acted"] = sorted(acted)
+
+        return orders, 0, json.dumps(td)

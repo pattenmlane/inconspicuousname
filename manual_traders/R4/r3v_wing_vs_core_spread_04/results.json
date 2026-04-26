@@ -109,5 +109,49 @@
       "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v4_all.log",
       "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v4_all.json"
     }
+  },
+  {
+    "iteration": 5,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "Passive bid (touch or +1 inside if spread\u22652) on VEV_5300 at Tier-A fire timestamps; wide-regime taker flatten if long. **0** SUBMISSION fills worse+all \u2014 engine does not fill passive touch bids like taker.",
+    "total_profit": 0.0,
+    "backtest_round": 4,
+    "backtest_days": "4-1 4-2 4-3",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 0.0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v5.py 4 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v5_worse.log",
+      "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v5_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v5_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 0.0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v5.py 4 --data Prosperity4Data --match-trades all --no-vis --out manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v5_all.log",
+      "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v5_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v5_all.json"
+    }
+  },
+  {
+    "iteration": 6,
+    "trader_file": "trader_v6.py",
+    "strategy_description": "Same Tier-A triggers as v4 but **taker buy 2 lots** VEV_5300 at ask when act-time Sonic gate tight (clip capped by visible ask size).",
+    "total_profit": 64.0,
+    "backtest_round": 4,
+    "backtest_days": "4-1 4-2 4-3",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 64.0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v6.py 4 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v6_worse.log",
+      "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v6_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v6_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 64.0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v6.py 4 --data Prosperity4Data --match-trades all --no-vis --out manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v6_all.log",
+      "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v6_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v6_all.json"
+    }
   }
 ]

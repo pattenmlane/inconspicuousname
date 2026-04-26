@@ -1,0 +1,88 @@
+{
+  "method": "L1 book half-spread = 0.5*(ask-bid) per tick; VELVETFRUIT_EXTRACT for context only",
+  "n_ticks_with_row": {
+    "VEV_4000": 30000,
+    "VEV_4500": 30000,
+    "VEV_5000": 30000,
+    "VEV_5100": 30000,
+    "VEV_5200": 30000,
+    "VEV_5300": 30000,
+    "VEV_5400": 30000,
+    "VEV_5500": 30000,
+    "VEV_6000": 30000,
+    "VEV_6500": 30000
+  },
+  "by_symbol": {
+    "VEV_4000": {
+      "mean_half_spread": 10.406733333333333,
+      "p50_half_spread": 10.5,
+      "p90_half_spread": 11.0,
+      "beta_tape_ols": 0.745,
+      "opportunity_proxy_beta_over_mean_h": 0.0715882665710021
+    },
+    "VEV_4500": {
+      "mean_half_spread": 7.926333333333333,
+      "p50_half_spread": 8.0,
+      "p90_half_spread": 8.5,
+      "beta_tape_ols": 0.662,
+      "opportunity_proxy_beta_over_mean_h": 0.08351907144959839
+    },
+    "VEV_5000": {
+      "mean_half_spread": 3.0216666666666665,
+      "p50_half_spread": 3.0,
+      "p90_half_spread": 3.5,
+      "beta_tape_ols": 0.654,
+      "opportunity_proxy_beta_over_mean_h": 0.2164368450082736
+    },
+    "VEV_5100": {
+      "mean_half_spread": 2.1479166666666667,
+      "p50_half_spread": 2.0,
+      "p90_half_spread": 2.5,
+      "beta_tape_ols": 0.577,
+      "opportunity_proxy_beta_over_mean_h": 0.2686323957322987
+    },
+    "VEV_5200": {
+      "mean_half_spread": 1.4440666666666666,
+      "p50_half_spread": 1.5,
+      "p90_half_spread": 1.5,
+      "beta_tape_ols": 0.437,
+      "opportunity_proxy_beta_over_mean_h": 0.3026176076820091
+    },
+    "VEV_5300": {
+      "mean_half_spread": 1.0534,
+      "p50_half_spread": 1.0,
+      "p90_half_spread": 1.5,
+      "beta_tape_ols": 0.273,
+      "opportunity_proxy_beta_over_mean_h": 0.2591608126067971
+    },
+    "VEV_5400": {
+      "mean_half_spread": 0.6907166666666666,
+      "p50_half_spread": 0.5,
+      "p90_half_spread": 1.0,
+      "beta_tape_ols": 0.129,
+      "opportunity_proxy_beta_over_mean_h": 0.18676254132181552
+    },
+    "VEV_5500": {
+      "mean_half_spread": 0.5748833333333333,
+      "p50_half_spread": 0.5,
+      "p90_half_spread": 1.0,
+      "beta_tape_ols": 0.055,
+      "opportunity_proxy_beta_over_mean_h": 0.0956715855390949
+    },
+    "VEV_6000": {
+      "mean_half_spread": 0.5,
+      "p50_half_spread": 0.5,
+      "p90_half_spread": 0.5,
+      "beta_tape_ols": 0.0,
+      "opportunity_proxy_beta_over_mean_h": 0.0
+    },
+    "VEV_6500": {
+      "mean_half_spread": 0.5,
+      "p50_half_spread": 0.5,
+      "p90_half_spread": 0.5,
+      "beta_tape_ols": 0.0,
+      "opportunity_proxy_beta_over_mean_h": 0.0
+    }
+  },
+  "interpretation": "Higher beta at low strikes coexists with much wider mean half-spread; weighting by beta/h favors ATM-like VEV_5000-5200 for same model edge."
+}

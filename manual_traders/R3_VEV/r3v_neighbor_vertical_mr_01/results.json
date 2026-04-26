@@ -162,5 +162,30 @@
       "underlying_pnl": 0,
       "note": "Identical per-day and total PnL to v10; smile axis m=log(K/S)/sqrt(T) did not change the trade set on this run."
     }
+  },
+  {
+    "iteration": 12,
+    "trader_file": "trader_v12.py",
+    "strategy_description": "Family10 (same as v11: dual m-axis WLS, EWMA z, agreement, beta hedge). Edge selection: among eligible strikes, maximize score = |z| * BETA_EMP / max(half_spread,0.25) so high-beta wings are not over-weighted when their mean half-spread is wide (from analysis_spread_elasticity_r3.json: proxy peaks near VEV_5200/5100). Ties: higher |z|.",
+    "total_profit": -138,
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v12.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v12_worse.log",
+    "backtest_output": {
+      "day0": -19,
+      "day1": -35,
+      "day2": -84,
+      "day3": 0,
+      "sum_days_0_2": -138
+    },
+    "trades_or_fills_summary": {
+      "nonzero_symbols": [
+        "VEV_4000",
+        "VEV_4500"
+      ],
+      "underlying_pnl": 0,
+      "note": "Activity shifted from max-|z| mix (v11: 4000/4500/5100/6500) toward 4000+4500 only; much smaller |loss| than v11. No hydrogel; extract PnL 0 all days."
+    }
   }
 ]

@@ -1,0 +1,23 @@
+all: python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v20.py 3 --data Prosperity4Data --match-trades all --no-out
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v20.py for round: 3 day: 0
+VELVETFRUIT_EXTRACT: -1,228
+HYDROGEL_PACK: 0
+Total profit: -1,418
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v20.py for round: 3 day: 1
+VELVETFRUIT_EXTRACT: -3,415
+HYDROGEL_PACK: 0
+Total profit: -2,764
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v20.py for round: 3 day: 2
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: 2,443
+Backtesting /workspace/manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v20.py for round: 3 day: 3
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: 53
+Profit summary:
+Round 3 day 0: -1,418
+Round 3 day 1: -2,764
+Round 3 day 2: 2,443
+Round 3 day 3: 53
+Total profit: -1,686

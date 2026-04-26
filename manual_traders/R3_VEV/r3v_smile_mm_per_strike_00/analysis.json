@@ -152,5 +152,21 @@
       "duplicate_risk": "low",
       "new_adjusted_variant": "n/a"
     }
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "Read `round3work/vouchers_final_strategy/STRATEGY.txt` and `outputs/r3_tight_spread_summary.txt`: joint gate (s5200\u22642 and s5300\u22642) aligns with higher mean K-step forward extract mid; P(tight)\u22480.10 on day 0 tape; mid\u2192PnL caveat in STRATEGY. Repro script: `analyze_vev_5200_5300_tight_gate_r3.py`.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_6panel.png"
+    ],
+    "used_to_decide": "v20: at each tick compute BBO spread ticks for VEV_5200/5300; if both \u2264 TIGHT_SPREAD_TH=2, apply mild risk-on (1.05\u00d7 VEV clip, 1.05\u00d7 extract clip, 0.99\u00d7 EXTRACT_HALF); else 0.95 / 1.01. Disabled HYDRO to match extract+VEV objective. Backtest now includes Round 3 day 3 via Prosperity4Data. `worse` 4-day total 2089; days 0\u20132 extract+implied-VEV path matches v9 (1522+359+203) before HYDRO removal; `all` 4-day -1686. Next: tune gate or separate extract policy\u2014current sizing did not add edge vs v9 on comparable days.",
+    "EXACT_DUPLICATE_CHECK": {
+      "parent_explored": "v9 smile MM; v18 EMA |dS|; v15/16 shock spread.",
+      "my_variant_delta": "Explicit 5200+5300 BBO **joint** spread gate from shared strategy pack; first-class book-state filter.",
+      "duplicate_risk": "low",
+      "new_adjusted_variant": "n/a"
+    }
   }
 ]

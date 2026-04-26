@@ -306,5 +306,47 @@
         "VEV_5500": 10
       }
     }
+  },
+  {
+    "iteration": 20,
+    "trader_file": "trader_v20.py",
+    "strategy_description": "Shared joint gate (round3work/vouchers_final_strategy/STRATEGY.txt): s5200 and s5300 BBO \u2264 2 \u21d2 risk-on: VEV+extract size up 1.05x and EXTRACT half slightly tight; else 0.95x / 1.01 half. No HYDROGEL_PACK (per extract+VEV PnL objective). Parent v9 smile MM; adds top_of_book_spread_ticks gate.",
+    "backtest_worse": {
+      "round_days": "3 (all available CSV days: 0,1,2,3)",
+      "match_trades": "worse",
+      "total_profit": 2089,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/backtests/iter20_r3d0-3_worse.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v20.py 3 --data Prosperity4Data --match-trades worse --no-out",
+      "trades_or_fills_summary": {
+        "day_totals": {
+          "0": 1522,
+          "1": 359,
+          "2": 203,
+          "3": 5
+        },
+        "per_day_bbo_product_pnl": {
+          "0": { "VELVETFRUIT_EXTRACT": 1522, "HYDROGEL_PACK": 0, "day_total": 1522 },
+          "1": { "VELVETFRUIT_EXTRACT": 359, "HYDROGEL_PACK": 0, "day_total": 359 },
+          "2": { "day_total": 203 },
+          "3": { "day_total": 5 }
+        }
+      }
+    },
+    "backtest_all": {
+      "round_days": "3 (all available CSV days: 0,1,2,3)",
+      "match_trades": "all",
+      "total_profit": -1686,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/backtests/iter20_r3d0-3_all.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_mm_per_strike_00/trader_v20.py 3 --data Prosperity4Data --match-trades all --no-out",
+      "trades_or_fills_summary": {
+        "day_totals": {
+          "0": -1418,
+          "1": -2764,
+          "2": 2443,
+          "3": 53
+        }
+      }
+    },
+    "notes": "Days 0-2 extract+VEV only match v9 extract+vev (1522+359+203=2084) before day3; HYDRO was ~7.2k of old v9 days 0-1. Full JSON activity logs not saved (use --out for full). Compact logs: grep of stdout to iter20_*_worse|all.log."
   }
 ]

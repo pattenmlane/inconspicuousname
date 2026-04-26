@@ -1,0 +1,35 @@
+{
+  "by_day": [
+    {
+      "day": 1,
+      "n_u_prints": 450,
+      "n_m22_seller": 40,
+      "n_m22_buyer": 10,
+      "frac_m22_seller": 0.08888888888888889,
+      "frac_m22_buyer": 0.022222222222222223
+    },
+    {
+      "day": 2,
+      "n_u_prints": 477,
+      "n_m22_seller": 37,
+      "n_m22_buyer": 9,
+      "frac_m22_seller": 0.07756813417190776,
+      "frac_m22_buyer": 0.018867924528301886
+    },
+    {
+      "day": 3,
+      "n_u_prints": 454,
+      "n_m22_seller": 24,
+      "n_m22_buyer": 6,
+      "frac_m22_seller": 0.05286343612334802,
+      "frac_m22_buyer": 0.013215859030837005
+    }
+  ],
+  "pooled": {
+    "n_u_prints": 1381,
+    "n_m22_seller": 101,
+    "n_m22_buyer": 25,
+    "frac_m22_seller": 0.07313540912382331,
+    "frac_m22_buyer": 0.018102824040550327
+  }
+}

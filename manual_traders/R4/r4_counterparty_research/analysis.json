@@ -485,5 +485,38 @@
       "v7": [34387, 35914],
       "v8": [33870, 36140]
     }
+  },
+  {
+    "iteration": "r4_mark22_extract_roles_tape",
+    "analysis_description": "Mark 22 on VELVETFRUIT_EXTRACT prints: seller vs buyer counts (Round 4 days 1-3). Complements r4_mark22_vev_roles (M22 dominates VEV as seller, rare buyer).",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_research/run_mark22_extract_roles_r4.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_mark22_extract_roles_by_day.json",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_mark22_extract_roles_by_day.csv"
+    ],
+    "used_to_decide": "On extract, M22 is passive seller on ~7.3% of prints (101/1381) and buyer on ~1.8% (25/1381) — much less concentrated than on VEVs. Cross-hedging extract off VEV-M22 fills targets a thinner tape relationship.",
+    "pooled": {
+      "n_u_prints": 1381,
+      "n_m22_seller": 101,
+      "n_m22_buyer": 25
+    }
+  },
+  {
+    "iteration": "r4_trader_v9_m22_cross_extract_hedge",
+    "analysis_description": "trader_v9 extends v5: when prior tick had any VEV buy from Mark22, add +1 extract edge and reduce extract size by 2 (min 4) for that tick.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_research/trader_v9.py",
+      "manual_traders/R4/r4_counterparty_research/runlog_v9_worse.txt",
+      "manual_traders/R4/r4_counterparty_research/runlog_v9_all.txt",
+      "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v9_worse.json",
+      "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v9_all.json"
+    ],
+    "used_to_decide": "Backtest totals match v5 exactly (worse 34438, all 36180; same daily splits). The added extract rule does not change realized PnL in this simulator slice — either quotes collapse to same effective prices after min(bb+1)/max(ap-1) clamping on most affected ticks, or the hedge is too weak to move aggregates. Keep v5 for simplicity unless finer logging shows benefit.",
+    "backtest_summary": {
+      "worse_total": 34438,
+      "all_total": 36180,
+      "vs_v5_worse": 0,
+      "vs_v5_all": 0
+    }
   }
 ]

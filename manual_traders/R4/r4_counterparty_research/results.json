@@ -244,5 +244,29 @@
     },
     "vs_trader_v5": {"worse_delta": -568, "all_delta": -40},
     "note": "worse ties v2; tight edge 1 removes v5 worse gain"
+  },
+  {
+    "iteration": 10,
+    "trader_file": "manual_traders/R4/r4_counterparty_research/trader_v9.py",
+    "strategy_description": "v5 + after prior-tick VEV buy from Mark22, widen extract (+1 edge, -2 size floor 4) in addition to VEV widen. Cross-product counterparty hedge.",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r4_counterparty_research/trader_v9.py\" 4 --data Prosperity4Data --no-progress --no-out --no-vis",
+    "total_profit": 34438,
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 34438,
+      "daily_profit": [16134, 6943, 11361],
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v9_worse.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v9_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 36180,
+      "daily_profit": [17352, 7155, 11672],
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v9_all.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v9_all.json"
+    },
+    "vs_trader_v5": {"worse_delta": 0, "all_delta": 0, "note": "PnL identical to v5 on this tape; extract widen path inert at daily aggregate"},
+    "tape_evidence": "manual_traders/R4/r4_counterparty_research/outputs/r4_mark22_extract_roles_by_day.json"
   }
 ]

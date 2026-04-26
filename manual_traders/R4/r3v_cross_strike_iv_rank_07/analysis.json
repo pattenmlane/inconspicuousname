@@ -132,7 +132,8 @@
       "Mark 55→Mark 01→Mark 22 two-hop: offline extract drift negative pooled but day-1 k20 flat; trader_v8 stateful short under Sonic gate still -11396 (19 fills) — not a tradable translation of the graph motif.",
       "Burst orchestrator (dominant buyer|seller per multi-print ts): Mark 01|Mark 22 dominates but extract k=20 forward means flip positive days 2–3 after slightly negative day 1 — not a monotone fade target without further conditioning.",
       "Hydro duopoly (Mark38 agg buy HYDROGEL_PACK from Mark14): Sonic-tight rows show **positive** mean extract k=20 (+0.53, n=129) vs loose negative (-0.46, n=378) — contradicts using joint voucher gate to justify shorting extract on that flow; trader_v9 sim -14281.",
-      "Reverse hydro leg (M38 sell to M14 at bid): tight subset strongly positive extract k20/k100 offline but day3 mean k20 negative; trader_v10 long sim +11633 total yet still << 200k/day bar and day3 PnL disagrees with naive extrapolation from tight-only means."
+      "Reverse hydro leg (M38 sell to M14 at bid): tight subset strongly positive extract k20/k100 offline but day3 mean k20 negative; trader_v10 long sim +11633 total yet still << 200k/day bar and day3 PnL disagrees with naive extrapolation from tight-only means.",
+      "Mark 22 VEV sell-pressure EMA + extract inventory trim (trader_v11 on top of v3) lowers worse/all totals vs v3 (+4764 / +5058 vs +5304 / +10953) with fewer taker fills — this MM-sketch is not a PnL upgrade at tested thresholds."
     ]
   },
   {
@@ -199,8 +200,13 @@
       },
       {
         "bullet": "7) Inventory-aware MM",
-        "outputs": [],
-        "conclusion": "Not implemented; no inventory state in v1."
+        "outputs": [
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v11.py",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v11_round4_worse.json",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v11_round4_all.json",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v11_round4_worse_fills_summary.json"
+        ],
+        "conclusion": "Implemented a minimal sketch on top of v3: EMA(6) of per-timestep count of Mark 22 aggressive VEV sells (price<=bid) under Sonic tight; if pos_extract>0 and EMA>0.5 and pos>80, skip new Mark67 lift buys and (cooldown) limit-sell 18 at bid to trim long into that flow. Sim trader_v11: +4764 worse / +5058 all over days 1–3 vs v3 +5304/+10953 — the overlay cuts worse/all PnL and trade count (27 buys +4 sells worse, 320 extract qty) without reaching scale."
       }
     ],
     "top_5_tradeable_edges_phase2": [
@@ -337,7 +343,7 @@
       "total_profit_all": 10953,
       "submission_fills_worse": {"n_trades": 27, "extract_qty": 248},
       "gap_to_target": "200k/day × 3 days would be 600k total; best observed ~0.9% of that under worse fills.",
-      "cross_phase_note": "trader_v10 (Phase2 hydro leg + same Sonic gate) +11633 worse over days 1–3 — higher PnL than v3 but driven by hydro counterparty, not Mark67 voucher flow."
+      "cross_phase_note": "trader_v10 (Phase2 hydro leg + same Sonic gate) +11633 worse over days 1–3 — higher PnL than v3 but driven by hydro counterparty, not Mark67 voucher flow. trader_v11 (Phase2 bullet-7 M22-sell pressure + inventory trim on v3) +4764 worse / +5058 all — underperforms v3; keep v3 as Mark67+gate reference unless MM skew is re-tuned."
     }
   },
   {
@@ -461,5 +467,20 @@
       "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v10_round4_all_fills_summary.json"
     ],
     "used_to_decide": "Symmetric duopoly direction matters: M38→M14 bid hits associate with strong positive extract drift in tight gate (k20 +1.08, k100 +3.19, n=126) vs negative loose. Sim long +11633 (36 fills) beats v9 but day3 loses (-3044) while offline day3 k20 for this slice is negative — mid-only gate slice overstates tradable edge magnitude and sign stability intraday."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Phase 2 bullet 7 (inventory MM sketch): r4_phase3_incline_spread_panels.py fix — drop diagonal spread–delta correlations (1.0 artifacts) and pair each product spread with its own 1-tick mid change only; re-ran to refresh CSV/JSON. trader_v11.py: v3 + EMA(6) Mark 22 aggressive VEV sell intensity under gate; when long extract, high pressure, pos>80 — skip new lifts and (cooldown) sell 18 at bid; backtests worse+all; fills summary.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_phase3_incline_spread_panels.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p3_spread_price_corr_panels.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p3_incline_panels_by_day.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v11.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v11_round4_worse.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v11_round4_all.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v11_round4_worse_fills_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v11_round4_all_fills_summary.json"
+    ],
+    "used_to_decide": "Incline spread–price block no longer has spurious 1.0 self-corrs. Inventory-aware M22 overlay on Mark67+gate taker is worse than v3 in total PnL and fill volume — 'skew away from new risk when a repeated seller is active' is testable but this parameterization is not a near-term PnL upgrade vs baseline v3."
   }
 ]

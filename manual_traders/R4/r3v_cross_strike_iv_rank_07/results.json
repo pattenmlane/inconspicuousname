@@ -319,5 +319,33 @@
       "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v10_round4_all_fills_summary.json",
       "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v10.py\" 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v10_round4_all.json"
     }
+  },
+  {
+    "iteration": 12,
+    "trader_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v11.py",
+    "strategy_description": "Phase2 bullet-7: v3 + EMA(6) of Mark 22 aggressive VEV sell prints under Sonic gate; if long extract>80 and EMA>0.5, skip new lifts and (cooldown 4) sell 18 at bid. Incline panel script also fixed: spread vs own 1-tick mid delta (no 1.0 diagonals).",
+    "total_profit": 4764,
+    "backtest_round": 4,
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v11_round4_worse.json",
+    "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v11_round4_worse_fills_summary.json",
+    "fills_note": "31 SUBMISSION trades worse (27 buys, 4 sells), 320 extract qty. vs v3: fewer lifts and total worse PnL lower.",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v11.py\" 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v11_round4_worse.json",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 4764,
+      "profit_by_day": {"1": 1268, "2": 3590, "3": -93},
+      "backtest_log_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v11_round4_worse.json",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v11_round4_worse_fills_summary.json",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v11.py\" 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v11_round4_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 5058,
+      "profit_by_day": {"1": 2536, "2": 3564, "3": -1042},
+      "backtest_log_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v11_round4_all.json",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v11_round4_all_fills_summary.json",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v11.py\" 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v11_round4_all.json"
+    }
   }
 ]

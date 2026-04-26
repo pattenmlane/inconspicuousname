@@ -1,0 +1,9 @@
+{
+  "source": "trader_v11_round4_all.json",
+  "num_submission_trades": 68,
+  "num_buy_submission": 54,
+  "num_sell_submission": 14,
+  "filled_abs_qty_by_symbol": {
+    "VELVETFRUIT_EXTRACT": 732
+  }
+}

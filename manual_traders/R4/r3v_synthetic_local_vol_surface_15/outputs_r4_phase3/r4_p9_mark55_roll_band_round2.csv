@@ -1,0 +1,7 @@
+trader,ROLL_LO,ROLL_HI,SAT_GAIN,CLIP,total_worse,day1,day2,day3,notes
+v15,0.20,0.40,0.72,12/4,14971,5556,9116,299,baseline best from p8
+v16,0.19,0.40,0.72,12/4,14624,5452,8872,299,earlier shrink onset hurts d1-2
+v17,0.20,0.39,0.72,12/4,14748,5482,8962,304,tighter ROLL_HI slight gain vs v16 not v15
+v18,0.21,0.41,0.72,12/4,14818,5616,9018,184,second best total
+v19,0.20,0.42,0.72,12/4,14693,5640,9018,35,wider band toward v10 hurts d3
+v20,v15+micro0.35,,,,4520,965,4608,-1052,same clip logic as v15 + microprice>mid+0.35 before fire

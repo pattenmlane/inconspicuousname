@@ -10,6 +10,7 @@
     "r4_p5_mark55_gate_multik_welch.csv",
     "r4_p6_rolling_tight_prevalence_by_day.csv",
     "r4_p7_mark55_fwd20_by_roll_tertile.csv",
-    "r4_p8_mark55_scaled_clip_param_sweep.csv"
+    "r4_p8_mark55_scaled_clip_param_sweep.csv",
+    "r4_p9_mark55_roll_band_round2.csv"
   ]
 }

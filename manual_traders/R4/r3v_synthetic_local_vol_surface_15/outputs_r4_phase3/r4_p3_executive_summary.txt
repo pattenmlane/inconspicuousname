@@ -58,3 +58,7 @@ Mark55 fwd20 vs **tertile of rolling tight rate** at trade time (`r4_p7_mark55_f
 
 Param sweep (`r4_p8_mark55_scaled_clip_param_sweep.csv`): v11–v13 (larger clip / shallow shrink) **hurt** day-3 or total;
   **v14** SAT_GAIN 0.65 → 14,561; **v15** ROLL 0.20–0.40 (same SAT 0.72 as v10) → **14,971** — new best **with** day-3 traded (beats v6 14,842 and v10).
+
+Fine roll band round 2 (`r4_p9_mark55_roll_band_round2.csv`): **v15** remains global max (14,971).
+  **v18** (ROLL 0.21–0.41) second at **14,818**; v16/v17/v19 all **below v15**.
+  **v20** = v15 + microprice>mid+0.35 → **4,520** total (worse=all) — Phase-2 filter **incompatible** with scaled-clip lane on this tape (not a tail hedge).

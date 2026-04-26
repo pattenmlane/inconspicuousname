@@ -365,5 +365,56 @@
       "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase3/r4_p8_mark55_scaled_clip_param_sweep.csv"
     ],
     "used_to_decide": "**v15** new best deployable Mark55+scaled-clip lane. Next: fine grid on (ROLL_LO, ROLL_HI) around (0.19\u20130.21, 0.38\u20130.42) or combine with microprice (v5) as optional tail hedge."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "Fine grid on v15 roll band: **v16** ROLL 0.19\u20130.40. Total **14,624** (worse=all); days 1\u20132 down vs v15, day3 same +299.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v16_r4_mark55_scaled_roll019040.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v16_r4_mark55_scaled_roll019040_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v16_r4_mark55_scaled_roll019040_all_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase3/r4_p9_mark55_roll_band_round2.csv"
+    ],
+    "used_to_decide": "Earlier ROLL_LO hurts; keep v15 0.20 lower bound."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "**v17** ROLL 0.20\u20130.39. Total **14,748**; day3 +304 \u2014 still below v15 14,971.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v17_r4_mark55_scaled_roll020039.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v17_r4_mark55_scaled_roll020039_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v17_r4_mark55_scaled_roll020039_all_stdout.txt"
+    ],
+    "used_to_decide": "Tighter ROLL_HI alone not enough; v15 0.40 HI remains better for total."
+  },
+  {
+    "iteration": 18,
+    "analysis_description": "**v18** ROLL 0.21\u20130.41. Total **14,818** (worse=all) \u2014 **runner-up** to v15; day1+day2 slightly up, day3 +184 vs v15 +299.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v18_r4_mark55_scaled_roll021041.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v18_r4_mark55_scaled_roll021041_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v18_r4_mark55_scaled_roll021041_all_stdout.txt"
+    ],
+    "used_to_decide": "Keep **v18** as documented backup if v15 is unstable OOS; primary remains **v15**."
+  },
+  {
+    "iteration": 19,
+    "analysis_description": "**v19** ROLL 0.20\u20130.42 (wider band toward v10). Total **14,693**; day3 collapses to **+35**.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v19_r4_mark55_scaled_roll020042.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v19_r4_mark55_scaled_roll020042_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v19_r4_mark55_scaled_roll020042_all_stdout.txt"
+    ],
+    "used_to_decide": "Wider ROLL_HI toward 0.42 restores v10-like day-3 weakness; reject."
+  },
+  {
+    "iteration": 20,
+    "analysis_description": "**v20** = v15 + extract **microprice > mid + 0.35** (Phase-2, same as v5) before Mark55 trigger. Total **4,520** (worse=all); day3 **\u22121,052**.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v20_r4_mark55_v15_plus_microprice.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v20_r4_mark55_v15_plus_microprice_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v20_r4_mark55_v15_plus_microprice_all_stdout.txt"
+    ],
+    "used_to_decide": "Microprice stack on v15 is **strong negative** vs v15 alone \u2014 do not combine; Phase-2 filter orthogonal to this counterparty+roll-sizing lane on R4 days 1\u20133."
   }
 ]

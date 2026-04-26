@@ -1,0 +1,4 @@
+tape_day,n_mark67_extract_trades,n_aggressive_buy_price_ge_ask,n_aggressive_and_joint_tight,share_joint_tight_given_aggressive
+1,58,58,5,0.086207
+2,61,61,7,0.114754
+3,46,45,15,0.333333

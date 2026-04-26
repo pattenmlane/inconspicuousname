@@ -449,5 +449,33 @@
       "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v15.json"
     ],
     "used_to_decide": "Do not spend further effort on clip/requote tuning inside this **v8** skeleton for R4 days 1–3; next knobs are **different products**, **inventory gates**, or **non-calendar** risk rules if new tape features appear."
+  },
+  {
+    "iteration": 20,
+    "analysis_description": "**Mark 67** × **Sonic joint gate** (tape truth, not sim): `r4_mark67_extract_aggressive_joint_gate_by_day.py` → `r4_mark67_extract_agg_joint_gate_by_day.csv`. Among **Mark 67** **VELVETFRUIT_EXTRACT** trades with **price ≥ L1 ask** (aggressive lift), count also **joint-tight** (5200+5300 spread≤2) at same timestamp: day **1** **5/58** (8.6%), day **2** **7/61** (11.5%), day **3** **15/45** (**33.3%**). So day-3 aggressive lifts **co-locate** with the tight voucher regime more often — supports stacking extract follow with the gate while cutting day-3 **VEV** MM (**v8** family).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/r4_mark67_extract_aggressive_joint_gate_by_day.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_mark67_extract_agg_joint_gate_by_day.csv"
+    ],
+    "used_to_decide": "Quantifies **counterparty×book-state** overlap for the live rule; motivates tuning **extract** size on top of **v8** rather than more **OPTION_CLIP** on VEVs."
+  },
+  {
+    "iteration": 21,
+    "analysis_description": "**trader_v16–v19** sweep on **v8** base: **MM_EDGE** 0 / 2, **CLIP_EX** 6, and **CLIP_EX=20** + **MAX_EX_POS=120**. **v16** (**MM_EDGE=0**): worse **5224** — at spread=2, bid+0 and ask-0 **collapse** to one price, so **no** two-sided surface orders days 1–2 under worse. **v17** (**MM_EDGE=2**): **9157** (same as v8). **v18** (smaller extract clip): **7596**. **v19** (larger extract): **worse 9602** / **all 13237** — **new best** in series (+445 vs v8), gain from **extract** only (VEV lines match v8 on days 1–2).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v16.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v17.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v18.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v19.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v16_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v17_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v18_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v19_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v16.json",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v17.json",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v18.json",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v19.json"
+    ],
+    "used_to_decide": "**Ship candidate:** **v19** for **`worse`** until inventory risk is modeled; **avoid MM_EDGE=0** on spread-2 surfaces without a width check. Further sweep could grid **MAX_EX_POS**/**CLIP_EX** under caps."
   }
 ]

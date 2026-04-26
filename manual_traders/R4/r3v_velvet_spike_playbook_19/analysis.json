@@ -199,6 +199,14 @@
           "one_sentence": "Inner-join all mids on (day,timestamp); corr(r_other.shift(L), r_extract) for L=0..20; **pooled |rho| at best L\u22651 stays below ~0.025** for every wing/hydro (n\u224830k) \u2014 no practical distributed-lag lead of voucher/hydro **mid diffs** into extract **mid diffs** on this tape (counterparty-free null; complements Mark01-flow null)."
         },
         {
+          "item": "Cross-instrument lead\u2013lag (**aggressor-signed flow** vs extract mid return)",
+          "outputs": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase2_leadlag_signedflow_vs_extract.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase2_leadlag_signedflow_index.json"
+          ],
+          "one_sentence": "At extract timestamps: F_P = \u03a3 aggressive signed qty on P (buy at ask +, sell at bid -); corr(F_P.shift(L), r_extract) for L=0..20; **pooled best |corr| at L\u22651 is still only ~0.013** (VEV_5200 L=1) \u2014 **signed tape flow does not recover** a usable linear lead into extract returns vs mid-return nulls."
+        },
+        {
           "item": "Execution / adverse selection (sim)",
           "outputs": [
             "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v1_burst_extract_worse.json",
@@ -249,7 +257,8 @@
       ],
       "repro_scripts": [
         "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase2_study.py",
-        "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase2_cross_lead_lag_returns.py"
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase2_cross_lead_lag_returns.py",
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase2_cross_lead_lag_signed_flow.py"
       ]
     }
   },

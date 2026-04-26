@@ -125,5 +125,19 @@
       "analysis_outputs/v21_5400_stress_asym_quote.log"
     ],
     "used_to_decide": "For VEV_5400, residual predictiveness is stronger during stress-up than stress-down (slope -5.38 vs -3.83), while spread/topsum are similar. Implemented asymmetric stress quoting: on stress-up keep short-entry at touch for faster capture; on stress-down keep passive one-tick-off-touch behavior."
+  },
+  {
+    "iteration": 22,
+    "analysis_description": "Read `round3work/vouchers_final_strategy/STRATEGY.txt` and `outputs/r3_tight_spread_summary.txt` (day 0: Welch t on K=20 forward extract mid, mean fwd higher when both s5200,s5300<=2; P(tight)~0.10; corr(s5200,s5300)~0.22). Re-ran a strict gate-only voucher variant and an EMA extract leg on 4 R3 days: large negative PnL under worse fills (mid story does not transfer without execution). Shipped v22 as v21 + soft 5200+5300 spread regime sizing on the existing volume-WLS residual fade; IV via BS inversion + WLS strip unchanged; Greek sizing still vega~20/q cap.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "analysis_outputs/v22_joint_5200_5300_gate.json",
+      "analysis_outputs/v22_worse.log",
+      "analysis_outputs/v22_all.log",
+      "analysis_outputs/v22_worse_fills.json",
+      "analysis_outputs/v22_all_fills.json"
+    ],
+    "used_to_decide": "Use joint tightness as a **Sonic** book-state modulator: tight both legs -> full q; else half-rounded q, but in practice identical to v21 at int(20/vega). Keep v21 5400 stress asymmetry. Record both `--match-trades worse` and `all` (identical PnL/fills this run). Next: try gate tied to *quoted* 5200/5300 size or explicit extract legs with spread-aware limits."
   }
 ]

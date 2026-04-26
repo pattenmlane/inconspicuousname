@@ -188,5 +188,26 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v21_5400_stress_asym_quote.log",
     "trades_or_fills_summary": "trade_history_rows=4843, own_fill_rows=1577, own_fill_abs_qty_sum=4342; own SUBMISSION rows by symbol HYDROGEL_PACK=979, VEV_5400=598",
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v21.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v21_5400_stress_asym_quote.log"
+  },
+  {
+    "iteration": 22,
+    "trader_file": "trader_v22.py",
+    "strategy_description": "v21 + joint VEV_5200/VEV_5300 spread gate (TH=2) as Sonic-style regime: scale new VEV entry q up when both tight, down when either wide; exits unscaled; v21 5400 stress pricing + passive hydrogel unchanged. Dropped a tested hard-gate + extract mean-rev prototype that hemorrhaged on worse fills.",
+    "total_profit": 13976,
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 13976,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v22_worse.log",
+      "trades_or_fills_summary": "trade_history_rows=5070, own_fill_rows=1697, own_fill_abs_qty_sum=4510, own SUBMISSION: HYDROGEL_PACK=998, VEV_5400=699 (identical worse vs all in this run)",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v22.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v22_worse.log"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 13976,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v22_all.log",
+      "trades_or_fills_summary": "trade_history_rows=5070, own_fill_rows=1697, own_fill_abs_qty_sum=4510, own SUBMISSION: HYDROGEL_PACK=998, VEV_5400=699 (identical worse vs all in this run)",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v22.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v22_all.log"
+    }
   }
 ]

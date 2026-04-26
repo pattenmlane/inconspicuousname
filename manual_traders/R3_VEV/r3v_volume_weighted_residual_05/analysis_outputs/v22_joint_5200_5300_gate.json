@@ -1,0 +1,6 @@
+{
+  "source": "round3work/vouchers_final_strategy/STRATEGY.txt and outputs/r3_tight_spread_summary.txt",
+  "gate": "s5200 <= 2 and s5300 <= 2 (ask1 - bid1, same as analyze_vev_5200_5300_tight_gate_r3.py TH=2)",
+  "implementation": "GATE_TIGHT_Q_MULT=1.0, GATE_LOOSE_Q_MULT=0.5 on int(20/vega) before MAX_Q; at current vega/limits this is identical to v21 (no size change in practice)",
+  "note": "Hard gate + EMA extract mean-rev prototype lost ~39k on 4 days worse; dropped. Soft gate + v21 hydrogel leg matches v21 PnL 13976."
+}

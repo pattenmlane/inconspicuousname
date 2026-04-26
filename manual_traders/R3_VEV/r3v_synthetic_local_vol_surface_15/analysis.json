@@ -229,5 +229,37 @@
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v30_gate_legs_plus_extract_mm_all.log"
     ],
     "used_to_decide": "v30 +4,810 worse, +6,066 all (days 0\u20133). Far from 200k/day; next levers: inventory skew, only passive (no taker) in gate, or layer another signal\u2014still within this thesis only."
+  },
+  {
+    "iteration": 31,
+    "analysis_description": "Reread STRATEGY.txt (mid vs PnL) and ORIGINAL_DISCORD_QUOTES. Hypothesis: remove taker path (STRATEGY adverse-fill caveat), strengthen skew, scale clip by super-tight (1+1) joint spread state \u2014 spread--spread, inclineGod-style.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v31_passive_skew_tightness_clip.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v31_passive_skew_tightness_clip_worse.log",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v31_passive_skew_tightness_clip_all.log"
+    ],
+    "used_to_decide": "v31 PnL < v30: in this backtest, passive-only starves good trades vs Frankfurt taker. Abandon passive-only as primary; keep taker+passive like v30."
+  },
+  {
+    "iteration": 32,
+    "analysis_description": "Keep v30 structure; add explicit 2\u00d72 clip table from (s5200,s5300) in {1,2} when joint gate is on \u2014 direct use of per-leg spread objects for sizing (Sonic: cleaner events when tightest).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v32_gate_spread_sized_taker_v30.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v32_gate_spread_sized_taker_v30_worse.log",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v32_gate_spread_sized_taker_v30_all.log"
+    ],
+    "used_to_decide": "Worse 3,032 < v30 4,810. Larger taker on (1,1) increased adverse under --match-trades worse. Revert dynamic super-tight upsize; try uniform clip sweep instead."
+  },
+  {
+    "iteration": 33,
+    "analysis_description": "Parameter sweep: v30 clone with **MAX_CLIP=22** (was 18). No change to joint gate, names, or wall_mid logic.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v33_v30_clip22.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v33_v30_clip22_worse.log",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v33_v30_clip22_all.log"
+    ],
+    "used_to_decide": "v33 best so far: 4,608 worse, 6,346 all. Next: sweep clip 20\u201326 or add light skew without killing v30; 200k/day still not approached without different product surface or more volume mechanism."
   }
 ]

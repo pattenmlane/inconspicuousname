@@ -1,0 +1,1 @@
+corr(spread_ticks, sum_abs_dmid_next5 on VEV_5300 bars): 0.0884 n=29985

@@ -26,5 +26,46 @@
         "day_totals": { "1": 776, "2": 1834, "3": 3401 }
       }
     }
+  },
+  {
+    "iteration": 1,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Phase 2 microstructure overlay: same as v0 **plus** require **VELVETFRUIT_EXTRACT** BBO spread \u2264 **EXTRACT_MAX_SPREAD_TICKS** (default 6). Grid on `worse`: maxSpread 4 \u2192 **0** PnL (never quotes); 6/8/12 \u2192 **3184** (identical to v0 on R4 days 1\u20133).",
+    "parameter_sweep": {
+      "EXTRACT_MAX_SPREAD_ticks": [
+        4,
+        6,
+        8,
+        12
+      ],
+      "worse_total_profit_4": {
+        "4": 0,
+        "6": 3184,
+        "8": 3184,
+        "12": 3184
+      }
+    },
+    "backtest_worse": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "worse",
+      "total_profit": 3184,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter1_r4d1-3_worse.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v1.py 4 --data Prosperity4Data --match-trades worse --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 1227, "2": 1553, "3": 404 }
+      }
+    },
+    "backtest_all": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "all",
+      "total_profit": 6012,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter1_r4d1-3_all.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v1.py 4 --data Prosperity4Data --match-trades all --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 776, "2": 1834, "3": 3401 }
+      }
+    }
   }
 ]

@@ -1,0 +1,46 @@
+R4 trader_v1 all — same
+
+Backtesting /workspace/manual_traders/R4/r4_phase1_marks/trader_v1.py for round: 4 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 776
+Total profit: 776
+Backtesting /workspace/manual_traders/R4/r4_phase1_marks/trader_v1.py for round: 4 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 1,834
+Total profit: 1,834
+Backtesting /workspace/manual_traders/R4/r4_phase1_marks/trader_v1.py for round: 4 day: 3
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 3,401
+Total profit: 3,401
+Profit summary:
+Round 4 day 1: 776
+Round 4 day 2: 1,834
+Round 4 day 3: 3,401
+Total profit: 6,012

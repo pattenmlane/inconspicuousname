@@ -1,0 +1,4 @@
+tight5300_book_at_ts,burst_ge4_same_ts,n,mean_fwd_EXTRACT_20
+True,True,1389,0.33801295896328293
+True,False,2661,0.07966929725667042
+False,False,223,0.2825112107623318

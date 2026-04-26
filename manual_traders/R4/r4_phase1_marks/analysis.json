@@ -118,5 +118,87 @@
       "Passive-party extract fwd20 proxy: **flat** across Marks."
     ],
     "next_phase": "Phase 2 may condition the burst hint and pair structure on **finer windows**, **microprice**, and **Mark\u00d7burst** interactions; Phase 3 will re-test inside Sonic gate on R4."
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Round 4 **Phase 2** tape + sim: added ``analyze_phase2.py`` (named-pair \u00d7 burst proximity \u00b1500, VEV_5300 MR vs trend near 01\u219222 bursts, leave-one-day-out burst Welch, microprice spread vs short vol on 5300, **bar-grid** signed-flow lead\u2013lag, **book** tight5300 \u00d7 burst on **all** prints\u2019 extract fwd20, smile-lite cross-VEV rolling std by pair, Mark01\u219222 passive-seller fwd, Mark22 rolling pressure vs extract). ``trader_v1`` tests extract cash-leg spread cap from microstructure.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_phase1_marks/analyze_phase2.py",
+      "manual_traders/R4/r4_phase1_marks/outputs/PHASE2_SUMMARY.md",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase2_burst_metadata_by_timestamp.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase2_pair_x_burst_bucket_markout.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase2_vev5300_mr_vs_trend_near_01_22_burst.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase2_leave_one_day_burst_extract_welch.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase2_spread_vs_fwd_vol_vev5300_corr.txt",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase2_cross_leadlag_bar_grid_flow.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase2_regime_tight5300_x_burst_extract_fwd20.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase2_smile_lite_tension_by_pair.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase2_01_22_aggr_buy_passive_seller_fwd.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase2_m22_inventory_pressure_extract_corr.csv"
+    ],
+    "used_to_decide": "See ``round4_phase2_complete`` next object for ranked edges vs Phase 1 and sim tie on v1."
+  },
+  {
+    "round4_phase2_complete": true,
+    "phase": 2,
+    "interaction_with_phase1": {
+      "burst_extract_effect": "**Refines and partly falsifies** Phase 1 pooled burst hint: leave-one-day-out Welch shows **day 1 holdout reverses** sign (burst **worse** than non-burst on that day); days 2\u20133 still positive. Phase 1 t\u22481.7 was **over-optimistic** for cross-day stability.",
+      "participant_null": "**Confirmed** \u2014 Phase 2 pair\u00d7burst buckets still show no clean universal directional markout (e.g. Mark01\u219222 on VEV_5300 slightly negative mean fwd20 near bursts).",
+      "microprice_sim": "Weak spread\u2192short-vol corr on 5300 bars (~0.09). **Cash-leg spread cap** in sim (**trader_v1**) does not beat v0 unless cap is **so tight (4)** that the trader never quotes (**0** PnL); caps 6/8/12 **tie v0** at 3184 worse."
+    },
+    "top_5_tradeable_edges_ranked": [
+      {
+        "rank": 1,
+        "name": "Book tight 5300 \u00d7 burst \u2192 higher extract fwd20 (tape, all prints)",
+        "paths": [
+          "manual_traders/R4/r4_phase1_marks/outputs/phase2_regime_tight5300_x_burst_extract_fwd20.csv"
+        ],
+        "effect": "tight5300 & burst: mean fwd_EXTRACT_20 \u2248 **0.338** (n=1389) vs tight & not burst **0.080** (n=2661)",
+        "caveat": "Not same as Sonic joint gate on every bar; overlapping fwd windows; day-1 LODO weakens burst-only trading."
+      },
+      {
+        "rank": 2,
+        "name": "Mark 55 \u2192 Mark 01 on extract near 01\u219222 activity (adverse proxy)",
+        "paths": [
+          "manual_traders/R4/r4_phase1_marks/outputs/phase2_pair_x_burst_bucket_markout.csv"
+        ],
+        "effect": "Near-burst bucket: mean fwd20 on extract prints **\u2248 -1.7** (n=30) vs far bucket **+0.25** (n=214)",
+        "caveat": "Small n; execution rule would be **avoid quoting** into that pair context, not a directional bet."
+      },
+      {
+        "rank": 3,
+        "name": "Burst extract drift (conditional, unstable by day)",
+        "paths": [
+          "manual_traders/R4/r4_phase1_marks/outputs/phase2_leave_one_day_burst_extract_welch.csv",
+          "manual_traders/R4/r4_phase1_marks/outputs/burst_extract_welch_ge4_vs_lt4.txt"
+        ],
+        "effect": "Pooled Welch t\u22481.7 (Phase 1); holdout day **1** t\u2248**-1.17** (burst mean below non-burst)",
+        "caveat": "Treat as **hypothesis for more days**, not production signal on 3 days alone."
+      },
+      {
+        "rank": 4,
+        "name": "VEV_5300 spread vs next-5-bar |Δmid| (microstructure)",
+        "paths": [
+          "manual_traders/R4/r4_phase1_marks/outputs/phase2_spread_vs_fwd_vol_vev5300_corr.txt"
+        ],
+        "effect": "corr \u2248 **0.088** (n\u224830k bar rows)",
+        "caveat": "Too weak alone; may combine with gate in Phase 3."
+      },
+      {
+        "rank": 5,
+        "name": "Sim: extract BBO width filter (Phase 2 execution test)",
+        "paths": [
+          "manual_traders/R4/r4_phase1_marks/trader_v1.py",
+          "manual_traders/R4/r4_phase1_marks/results.json"
+        ],
+        "effect": "Grid 6/8/12: **no PnL change** vs v0 on R4 worse; **4**: zero participation",
+        "caveat": "Shows cash-leg filter **not** a free improvement here; need counterparty or burst **observable** in-state for Phase 3."
+      }
+    ],
+    "phase2_unproven_or_low_power": [
+      "Same-timestamp cross-flow merge is **too sparse** for extract\u21945300; replaced by **bar-grid** flow file.",
+      "Bar-grid flow\u2194dmid correlations are **near zero** at most lags (see phase2_cross_leadlag_bar_grid_flow.csv).",
+      "Smile-lite tension by pair is descriptive only (phase2_smile_lite_tension_by_pair.csv)."
+    ]
   }
 ]

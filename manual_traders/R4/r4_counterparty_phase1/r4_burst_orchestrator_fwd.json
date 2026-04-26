@@ -1,0 +1,69 @@
+{
+  "TH": 2.0,
+  "BURST_MIN": 4,
+  "K": 20,
+  "definition": "dominant buyer = mode of buyer field over rows at (day,ts); burst = len(rows)>=BURST_MIN",
+  "joint_tight_gated": {
+    "fwd20_5300_mark01_dom_tight": {
+      "n": 288,
+      "mean": 0.336806
+    },
+    "fwd20_5300_other_dom_tight": {
+      "n": 4,
+      "mean": 0.25
+    },
+    "per_day": {
+      "1": {
+        "mark01_dom": {
+          "n": 82,
+          "mean": 0.29878
+        },
+        "other_dom": {
+          "n": 2,
+          "mean": 0.75
+        }
+      },
+      "2": {
+        "mark01_dom": {
+          "n": 87,
+          "mean": 0.333333
+        },
+        "other_dom": {
+          "n": 0,
+          "mean": null
+        }
+      },
+      "3": {
+        "mark01_dom": {
+          "n": 119,
+          "mean": 0.365546
+        },
+        "other_dom": {
+          "n": 2,
+          "mean": -0.25
+        }
+      }
+    }
+  },
+  "cells_ex_fwd20_sample": {
+    "tight=True_dom=Mark 01": {
+      "n": 288,
+      "mean": 0.322917
+    },
+    "tight=True_m01_buy_row=y": {
+      "n": 291,
+      "mean": 0.309278
+    }
+  },
+  "cells_5300_fwd20_sample": {
+    "tight=True_dom=Mark 01": {
+      "n": 288,
+      "mean": 0.336806
+    },
+    "tight=True_m01_buy_row=y": {
+      "n": 291,
+      "mean": 0.331615
+    }
+  },
+  "note": "Full cell dump truncated to n>=15; see joint_tight_gated for Mark01-as-mode-buyer vs rest under tight+burst timestamps on 5300 clock."
+}

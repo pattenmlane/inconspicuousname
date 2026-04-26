@@ -438,5 +438,16 @@
       "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v16_r4_all.log"
     ],
     "used_to_decide": "Worse **+185** / all **+191** vs v12 **+744**/**+750** — **falsifies** using this single mid-table cell as a buy veto in the current burst bot; profitable sim path overlaps (1,2) ticks. Tier-A sim remains **v12**; pair grid is descriptive, not a drop-in filter without joint optimization."
+  },
+  {
+    "iteration": 19,
+    "round": 4,
+    "analysis_description": "Phase 1/4 **burst orchestrator** proxy (Phase 3 gate): analyze_r4_burst_orchestrator_fwd.py → r4_burst_orchestrator_fwd.json. At timestamps with **>=4** trade rows, dominant **buyer** (mode across symbols); joint tight = 5200&5300 spr<=2. Under **tight+burst** on 5300 price clock: **Mark 01 dominant buyer** n=288 mean VEV_5300 fwd20 **+0.337**; **other dominant buyer** n=**4** only (mean +0.25 pooled — not stable). Per-day: Mark01-dom n 82/87/119 means ~0.30–0.37; other_dom n 2/0/2. Extract fwd20 tight+dom=Mark01 n=288 mean **+0.323**.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/analyze_r4_burst_orchestrator_fwd.py",
+      "manual_traders/R4/r4_counterparty_phase1/r4_burst_orchestrator_fwd.json",
+      "manual_traders/R4/r4_counterparty_phase1/r4_phase_deliverables_registry.txt"
+    ],
+    "used_to_decide": "**No second orchestrator cluster** under Sonic tight+burst on this tape — almost all multi-print bursts are **Mark 01–heavy** on the buyer side; conditioning on dominant buyer≠Mark01 is **empty** (days 2). Do not ship a fade-Mark01-basket on dominant-buyer alone; identity×gate interaction is **trivial** here (Mark01 schedules the basket)."
   }
 ]

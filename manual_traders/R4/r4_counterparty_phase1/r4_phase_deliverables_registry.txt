@@ -38,6 +38,8 @@ manual_traders/R4/r4_counterparty_phase1/r4_phase3_spread_vs_fwd_panels.json
 
 EXTENSIONS — gate × burst × counterparty leg (post Phase 3)
 -------------------------------------------------------------
+manual_traders/R4/r4_counterparty_phase1/analyze_r4_burst_orchestrator_fwd.py
+manual_traders/R4/r4_counterparty_phase1/r4_burst_orchestrator_fwd.json
 manual_traders/R4/r4_counterparty_phase1/analyze_r4_gate_burst_5300_fwd_2x2.py
 manual_traders/R4/r4_counterparty_phase1/r4_gate_burst_5300_fwd_2x2.json
 manual_traders/R4/r4_counterparty_phase1/analyze_r4_burst_tight_5300_trade_vs_book.py

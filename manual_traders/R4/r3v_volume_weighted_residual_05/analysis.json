@@ -377,5 +377,16 @@
       "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v10_all.log"
     ],
     "used_to_decide": "PnL **+8** (worse=all) vs v7 **+18**; **18** SUBMISSION rows / **18** abs qty vs **22**/**22** \u2014 **four** fewer entry episodes remove **+10** PnL, so the dropped prints were **net contributing** on this tape under v7 exits. **Do not** tighten with this dip rule at DIP=0.5 without retuning exits or scanning DIP grid; **v7 remains best** in this pair. Optional follow-up: sweep DIP \u2208 {0.25,0.75} or use pre-signal EMA (not updated same tick) if retesting."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "**Execution diagnosis:** first `trader_v11` draft skipped **U spread==1** and used **improved bid** for spread\u22652; backtest showed **0** SUBMISSION fills \u2014 buy limit often **strictly below** best ask while Mark67 prints at ask; under `worse`, equality at limit does not match tape, and **no** resting sell \u2264 limit \u2192 no fill. **Fix:** for spread\u22652, **buy at best ask** (book-first path) while still skipping spread==1 (no lift).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_volume_weighted_residual_05/trader_v11.py",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r11_skip_spread1_ask_entry.txt",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v11_worse.log",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v11_all.log"
+    ],
+    "used_to_decide": "After fix: total PnL **+217** (worse=all), **35** SUBMISSION rows, **160** abs qty on **U** vs v7 **+18** / **22** / **22** \u2014 large lift from **actually filling** multi-tick entries while keeping v7 exits. Caveat: more **aggressive** entry (touch ask) increases adverse-selection risk; validate on more days / stress `ENTRY_Q`. **v11** is now the strongest Mark67\u00d7Sonic U-only variant in this branch line."
   }
 ]

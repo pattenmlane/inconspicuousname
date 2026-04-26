@@ -1,0 +1,12 @@
+Round 4 backtest (days 1–3, prosperity4bt, Mark67 buy_agg × Sonic, same exits as v7):
+
+v7:  total_profit +18, SUBMISSION rows 22, own_fill_abs_qty_sum 22
+v11: total_profit +217, SUBMISSION rows 35, own_fill_abs_qty_sum 160
+
+v11 design (final):
+- Skip new entries when U spread == 1 (no ask-lift branch).
+- When U spread >= 2, submit **buy at best ask** (not improved bid) so the order can match
+  the **order book** sell side first; improved bid alone often sat **below** the Mark67 print
+  at the ask, yielding **zero** SUBMISSION fills under `--match-trades worse` in a dry run.
+
+Tape counts (CSV, Mark67∩Sonic∩Uspread<=6): U spread==1 vs >=2 ≈ 11 vs 16 over three days.

@@ -1,0 +1,4 @@
+W=50000 day3_start=2000000
+n_triggers_total=27
+n_triggers_with_T_lt_day3_and_T_plus_W_ge_day3=0
+merged_T values:

@@ -519,5 +519,85 @@
         "note": "worse_and_all_identical_this_run"
       }
     }
+  },
+  {
+    "iteration": 15,
+    "trader_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v35.py",
+    "strategy_description": "INTENDED: skip lifts when merged ts>=2e6; **BUG**: backtester uses **local** timestamps so guard is a no-op — identical to v26. See v36 + analysis iteration 15.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 768,
+      "per_day_pnl": {
+        "day_1": 503,
+        "day_2": 6962,
+        "day_3": -6697
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v35_2026-04-25_r4_worse.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v35.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v35_2026-04-25_r4_worse.log",
+      "trades_or_fills_summary": {
+        "pnl_by_product_last_day_block": {
+          "VEV_5300": 768
+        },
+        "note": "identical_per_day_to_v26"
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 768,
+      "per_day_pnl": {
+        "day_1": 503,
+        "day_2": 6962,
+        "day_3": -6697
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v35_2026-04-25_r4_all.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v35.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v35_2026-04-25_r4_all.log",
+      "trades_or_fills_summary": {
+        "pnl_by_product_last_day_block": {
+          "VEV_5300": 768
+        },
+        "note": "worse_and_all_identical_this_run"
+      }
+    }
+  },
+  {
+    "iteration": 16,
+    "trader_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v36.py",
+    "strategy_description": "v26 execution but **r4_v36_signals.json**: drop 15 Mark67 triggers on merged tape day 3 (T>=2e6); 12 triggers remain. Fixes v35 timestamp confusion by offline filter.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 768,
+      "per_day_pnl": {
+        "day_1": 503,
+        "day_2": 6962,
+        "day_3": -6697
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v36_2026-04-25_r4_worse.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v36.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v36_2026-04-25_r4_worse.log",
+      "trades_or_fills_summary": {
+        "pnl_by_product_last_day_block": {
+          "VEV_5300": 768
+        },
+        "note": "identical_to_v26; signals_file=r4_v36_signals.json"
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 768,
+      "per_day_pnl": {
+        "day_1": 503,
+        "day_2": 6962,
+        "day_3": -6697
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v36_2026-04-25_r4_all.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v36.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v36_2026-04-25_r4_all.log",
+      "trades_or_fills_summary": {
+        "pnl_by_product_last_day_block": {
+          "VEV_5300": 768
+        },
+        "note": "worse_and_all_identical_this_run"
+      }
+    }
   }
 ]

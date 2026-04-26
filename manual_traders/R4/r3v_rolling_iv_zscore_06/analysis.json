@@ -360,5 +360,27 @@
       "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v34_2026-04-25_r4_all.log"
     ],
     "used_to_decide": "Total **+288** worse+all. Among capped variants on this three-day run: **v26 uncapped 768** > **v33 (cap 36) 532** > **v29 (Q=4) 377** > **v34 (cap 24) 288** > **v32 (cap 18) 211**. Higher cap tracks closer to v26 but remains below it; none beat uncapped v26."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "`trader_v35.py`: intended **skip new lifts on tape day 3** using `state.timestamp >= 2_000_000` — **incorrect**: `TradingState.timestamp` in `TestRunner` is **per-day local** (same 0..max as CSV), **not** merged-timeline absolute. So the guard never activated; v35 matched v26 by accident.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v35_2026-04-25_r4_worse.log",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v35_2026-04-25_r4_all.log",
+      "imc-prosperity-4-backtester/prosperity4bt/test_runner.py"
+    ],
+    "used_to_decide": "For calendar-style rules in live `Trader.run`, either pass **day index** via `traderData` from a wrapper, or **pre-filter triggers** in JSON (see v36). Do not assume merged offsets in `state.timestamp` without verifying the runner."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "`r4_phase10_window_cross_day3.py`: **zero** v26 triggers satisfy `T < 2e6 <= T+W` — day-2 triggers end **before** merged day 3 (`max(day2 T)+W = 1_922_400 < 2e6`). `r4_phase11_v36_signals.json` drops **15** triggers with `T >= 2e6` (tape day 3 prints), leaving **12**. `trader_v36.py` uses that file.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/r4_phase10_window_cross_day3.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/outputs/r4_p10_windows_crossing_into_day3.txt",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/r4_phase11_v36_signals.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/outputs/r4_v36_signals.json",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v36_2026-04-25_r4_worse.log"
+    ],
+    "used_to_decide": "v36 PnL still **+768** identical to v26 — removing day-3-origin triggers does **not** change day_3 **-6697**; that loss is **unwind of inventory** from day 1–2 windows (and/or overlapping activity), not from the 15 dropped triggers alone. True day-3 mitigation needs **flatten-before-roll**, **shorter W**, or **caps** (already explored)."
   }
 ]

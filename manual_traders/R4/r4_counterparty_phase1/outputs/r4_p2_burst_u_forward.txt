@@ -1,0 +1,3 @@
+=== Burst-conditioned forward extract mid +20 rows ===
+burst_exact: n=925 mean=0.20162 median=0.00000
+isolated: n=3324 mean=0.14260 median=0.00000

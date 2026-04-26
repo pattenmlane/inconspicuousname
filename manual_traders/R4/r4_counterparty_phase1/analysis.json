@@ -121,5 +121,104 @@
         "Phase 1 does **not** yet prove **PnL** under `--match-trades worse`; `trader_v0` baseline is zero by design until Phase 2 encodes rules."
       ]
     }
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Round 4 Phase 2: named-bot burst windows (W=500), microprice vs mid + forward vol proxy on extract, lead-lag extract ret vs Mark01/Mark22 signed flow on VEV_5300, BS IV(5200) means by counterparty pair, Mark01 cumulative net tape series. Backtester sets state.day_num and state.market_trades each tick for R4.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/r4_phase2_analysis.py",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p2_extract_micro_fwdvol.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p2_burst_01_22_exact.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p2_burst_u_forward.txt",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p2_leadlag_extract_vs_5300flow.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p2_iv5200_mean_by_pair.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p2_inventory_proxy_Mark01_cumnet.csv",
+      "manual_traders/R4/r4_counterparty_phase1/burst_near_timestamps_by_day.json",
+      "imc-prosperity-4-backtester/prosperity4bt/test_runner.py"
+    ],
+    "used_to_decide": "Phase 2 gate object follows; trader_v1 tests burst-follow long extract."
+  },
+  {
+    "round4_phase2_complete": {
+      "phase": "Round 4 Phase 2",
+      "prerequisite": "round4_phase1_complete present in this file",
+      "bullet_outputs": [
+        {
+          "bullet": "1) Named-bot + burst conditioning (W=500) + trend vs MR proxy",
+          "paths": [
+            "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p2_burst_u_forward.txt",
+            "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p2_burst_01_22_exact.csv",
+            "manual_traders/R4/r4_counterparty_phase1/burst_near_timestamps_by_day.json"
+          ],
+          "conclusion": "burst_exact (Mark01 to Mark22, at least 3 symbols same ts) mean fwd_u_20 exceeds isolated trade rows (+0.202 vs +0.143, n=925 vs 3324). burst_near-only slice empty for this merge."
+        },
+        {
+          "bullet": "2) Microstructure (microprice vs mid, forward abs mid sum)",
+          "paths": ["manual_traders/R4/r4_counterparty_phase1/outputs/r4_p2_extract_micro_fwdvol.csv"],
+          "conclusion": "Extract L1 microprice minus mid plus 5-row forward absolute mid move panel for regime work."
+        },
+        {
+          "bullet": "3) Cross-instrument lead-lag",
+          "paths": ["manual_traders/R4/r4_counterparty_phase1/outputs/r4_p2_leadlag_extract_vs_5300flow.csv"],
+          "conclusion": "Correlations near zero: signed Mark01 buy minus Mark22 sell flow on VEV_5300 does not linearly lead extract returns at lags 0-5 per day."
+        },
+        {
+          "bullet": "4) Regime splits",
+          "paths": ["manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_participant_markout_by_symbol_K.csv"],
+          "conclusion": "Phase 1 spread_q and session strata remain primary; Phase 2 adds burst time axis."
+        },
+        {
+          "bullet": "5) Vol / smile (BS IV)",
+          "paths": ["manual_traders/R4/r4_counterparty_phase1/outputs/r4_p2_iv5200_mean_by_pair.csv"],
+          "conclusion": "Mean BS IV on VEV_5200 prints highest for Mark38 to Mark22 and Mark14 to Mark22 vs Mark01 to Mark22 (small n for some pairs)."
+        },
+        {
+          "bullet": "6) Execution / adverse selection",
+          "paths": [
+            "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_adverse_aggrbuy_fwd20_by_passive_seller.csv",
+            "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v1_worse.log"
+          ],
+          "conclusion": "trader_v1 naive long extract after burst: total +7207 worse and all; day3 VELVET -691. Mid edge not robust to naive fills."
+        },
+        {
+          "bullet": "7) Inventory-aware proxy",
+          "paths": ["manual_traders/R4/r4_counterparty_phase1/outputs/r4_p2_inventory_proxy_Mark01_cumnet.csv"],
+          "conclusion": "Cumulative Mark01 net from tape exported for future skew rules."
+        }
+      ],
+      "top5_tradeable_edges_phase2": [
+        {
+          "rank": 1,
+          "edge": "Mark01 to Mark22 exact burst timestamps associate with higher mean extract forward +20 rows vs isolated enriched trade rows.",
+          "orthogonal_to_p1": "Control is isolated trades not random timestamp sample.",
+          "evidence": "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p2_burst_u_forward.txt"
+        },
+        {
+          "rank": 2,
+          "edge": "Mark38 to Mark22 and Mark14 to Mark22 show higher mean IV on VEV_5200 prints than Mark01 to Mark22 under same BS.",
+          "orthogonal_to_p1": "IV pair interaction.",
+          "evidence": "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p2_iv5200_mean_by_pair.csv"
+        },
+        {
+          "rank": 3,
+          "edge": "Microprice minus mid on extract with forward abs mid sum5 for regime gating (stack with Sonic in Phase 3).",
+          "orthogonal_to_p1": "Book microstructure.",
+          "evidence": "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p2_extract_micro_fwdvol.csv"
+        },
+        {
+          "rank": 4,
+          "edge": "Runtime burst detection via state.market_trades matches offline Mark01 to Mark22 multi-symbol pattern.",
+          "orthogonal_to_p1": "Execution bridge.",
+          "evidence": "imc-prosperity-4-backtester/prosperity4bt/test_runner.py and manual_traders/R4/r4_counterparty_phase1/trader_v1.py"
+        },
+        {
+          "rank": 5,
+          "edge": "Negative: linear lead-lag from VEV_5300 signed flow to extract returns is absent at lags 0-5.",
+          "orthogonal_to_p1": "Falsifies simple cross-leg rule.",
+          "evidence": "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p2_leadlag_extract_vs_5300flow.csv"
+        }
+      ],
+      "interaction_with_phase1": "Phase 1 burst vs random control showed large extract forward lift; Phase 2 burst_exact vs isolated trade rows confirms direction with smaller gap. trader_v1 shows PnL positive on days 1-2 but day 3 loss: refines Phase 1 that tape edge requires execution gating (Phase 3 Sonic joint gate)."
+    }
   }
 ]

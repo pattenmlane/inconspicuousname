@@ -111,6 +111,14 @@ class TestRunner:
                 plainValueObservations={}, conversionObservations={"MAGNIFICENT_MACARONS": conversion_observation}
             )
 
+        # Round 4+ counterparty strategies may key offline tables by tape day index
+        state.day_num = data.day_num
+        # Expose tape prints at this timestamp (buyer/seller populated in Round 4 CSVs)
+        mt: dict = {}
+        for sym, tlist in data.trades.get(state.timestamp, {}).items():
+            mt[sym] = list(tlist)
+        state.market_trades = mt
+
         return state
 
     # def __validate_orders(self, orders: dict[Symbol, list[Order]]) -> None:

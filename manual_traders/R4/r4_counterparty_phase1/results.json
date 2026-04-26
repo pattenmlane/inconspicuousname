@@ -18,5 +18,25 @@
       "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v0_all.log",
       "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v0_all.json"
     }
+  },
+  {
+    "iteration": 1,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Phase 2 execution test: long VELVETFRUIT_EXTRACT passively for TTL ticks after Mark01->Mark22 multi-VEV burst (offline W=500 window + live market_trades detection).",
+    "total_profit": 7207,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v1.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r4_counterparty_phase1/backtest_r4_v1_worse.log",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 7207,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v1_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v1_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 7207,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v1_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v1_all.json"
+    }
   }
 ]

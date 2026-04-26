@@ -347,5 +347,23 @@
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_graph_pair_reciprocity.csv",
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_graph_reciprocity_top.json"
     ]
+  },
+  {
+    "iteration": 15,
+    "trader_file": null,
+    "strategy_description": "Phase 1: (buyer,seller,symbol,spr_regime) LOO baseline residuals + aggressor mark_20 burst vs non burst tables.",
+    "backtest_command_base": null,
+    "total_profit": null,
+    "backtest_round": 4,
+    "backtest_worse": null,
+    "backtest_all": null,
+    "phase1_bsr_burst_outputs": [
+      "manual_traders/R4/r4_counterparty_research/run_phase1_bsr_baseline_and_burst_stratify_r4.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_trades_with_resid_baseline_bsr.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_residual_bsr_top_abs_rows.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_residual_bsr_cell_summary.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_aggressor_mark20_by_burst_pooled.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_aggressor_mark20_by_burst_by_day.csv"
+    ]
   }
 ]

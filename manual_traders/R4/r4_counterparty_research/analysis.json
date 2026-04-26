@@ -32,7 +32,13 @@
       "manual_traders/R4/r4_counterparty_research/run_phase1_graph_hubs_r4.py",
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_graph_hubs_by_name.csv",
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_graph_pair_reciprocity.csv",
-      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_graph_reciprocity_top.json"
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_graph_reciprocity_top.json",
+      "manual_traders/R4/r4_counterparty_research/run_phase1_bsr_baseline_and_burst_stratify_r4.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_trades_with_resid_baseline_bsr.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_residual_bsr_top_abs_rows.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_residual_bsr_cell_summary.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_aggressor_mark20_by_burst_pooled.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_aggressor_mark20_by_burst_by_day.csv"
     ],
     "used_to_decide": "Phase 1 exhaustive pass on ROUND_4 days 1-3; plus statistical supplement (bootstrap, Welch, session-matched random null for bursts, per-name markout rollups for all distinct Mark IDs). Phases 2-3 also complete. Ready for sim iteration.",
     "round4_phase1_complete": {
@@ -45,17 +51,22 @@
             "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_bootstrap.csv",
             "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_participant_u20_by_day.csv",
             "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_name_mark20_rollup.csv",
-            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_name_product_sprreg_mark20.csv"
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_name_product_sprreg_mark20.csv",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_aggressor_mark20_by_burst_pooled.csv",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_aggressor_mark20_by_burst_by_day.csv"
           ],
-          "conclusion": "7 buyers / 6 sellers; r4_phase1_name_mark20_rollup has pooled roles; r4_phase1_name_product_sprreg_mark20 (min n=20 per cell) adds **product x spr_regime** t-stats on mark_20 (e.g. Mark 67 aggr buy on U in **tight** p~2.5e-8 on t-test of mean u20 vs 0, n=164). **Multiple-testing caveat:** scan many cells; FDR not applied. All patterns still need sim PnL before trading."
+          "conclusion": "7 buyers / 6 sellers; rollup + product x spr_regime t-tests as before. **Burst split:** Mark 22 aggressive VEV sells show **higher** mean U@20 in burst rows than isolated (pooled ~0.31 vs -0.5, n 1344 vs 86) while Mark 38 aggressive buys flip (burst n=18 small). See r4_phase1_aggressor_mark20_by_burst_*.csv. Multiple-testing caveat on t-test grid unchanged."
         },
         {
           "topic": "2) Deviation from bot baseline",
           "outputs": [
             "manual_traders/R4/r4_counterparty_research/outputs/r4_trades_with_baseline_residual.csv",
-            "manual_traders/R4/r4_counterparty_research/outputs/r4_residual_vs_symbol_regime_baseline_top.csv"
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_residual_vs_symbol_regime_baseline_top.csv",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_trades_with_resid_baseline_bsr.csv",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_residual_bsr_top_abs_rows.csv",
+            "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_residual_bsr_cell_summary.csv"
           ],
-          "conclusion": "Saturated (buyer,seller,symbol)-only cell means make residuals ~0 by construction; refined baseline uses pooled mean U mark@20 by (symbol, spr_regime). Large residuals concentrate in tight-book extract prints (e.g. Mark 55\u2192Mark 01 vs baseline) and Mark 01\u2192Mark 22 on VEV_5300 in tight regime (see r4_pair_01_22_5300_by_regime.txt)."
+          "conclusion": "(buyer,seller,symbol) cell-mean baseline is degenerate (~0 residual). **(buyer,seller,symbol,spr_regime) leave-one-out** baseline (r4_trades_with_resid_baseline_bsr.csv) yields non-zero per-print residuals; largest |resid| are sparse single prints (see top_abs_rows). Cell-level mean residual stays ~0 by construction; **std_resid** in r4_phase1_residual_bsr_cell_summary flags high-variance Mark01\u2192Mark22 wide-book VEV cells. Original (symbol,spr_regime) residual story unchanged (r4_pair_01_22_5300_by_regime.txt)."
         },
         {
           "topic": "3) Sequence / graph methods",
@@ -124,7 +135,7 @@
         }
       ],
       "no_edge_or_negative": [
-        "(buyer,seller,symbol)-only baseline residuals are degenerate (~0) \u2014 must condition on spread regime or product dynamics.",
+        "(buyer,seller,symbol)-only baseline residuals are degenerate (~0); (buyer,seller,symbol,spr_regime) **cell-mean** baseline also gives ~0 mean residual per cell \u2014 use **LOO** or (symbol,spr_regime) baselines for interpretable residuals.",
         "Mark 01\u2192Mark 22 on VEV_5300 pooled (all regimes) does not show large unconditional U edge at K=20 (mean small positive); signal lives in regime splits.",
         "Pure 2-hop motif counts alone do not map to extract direction without pairing to forward markout regression (left for Phase 2 sim).",
         "Burst vs non-burst on pooled mark_20_u: Welch p~0.09 two-sided (not significant at 0.05 despite large mean gap).",

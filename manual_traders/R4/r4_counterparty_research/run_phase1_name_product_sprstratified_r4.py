@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Phase 1 bullet 1 supplement: participant x product x spr_regine cell stats for K=20 markouts.
+Phase 1 bullet 1 supplement: participant x product x spr_regime cell stats for K=20 markouts.
 Roles: aggr_buy (group buyer), aggr_sell (group seller). Minimum n per cell = 20 for CSV export.
 Columns: t-stat one-sample test mean(mark_20_u) != 0, same for mark_20_sym ( scipy ttest_1samp ).
 

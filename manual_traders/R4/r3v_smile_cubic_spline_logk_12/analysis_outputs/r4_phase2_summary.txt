@@ -1,0 +1,7 @@
+=== Round 4 Phase 2 (automated) ===
+
+VEV_5300 near M01→M22 burst window (±500):
+  near_burst=False n=2 mean_m20=1.2500
+  near_burst=True n=162 mean_m20=-0.1296
+
+See r4_phase2_extract_ret_lag_corr_other.csv for lead-lag.

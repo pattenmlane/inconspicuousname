@@ -101,5 +101,120 @@
       ],
       "notes": "All effects are **mid** markouts from public prices, not sim PnL. Phase 2 may add worse-fill backtests once a trader encodes these rules."
     }
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Round 4 Phase 2: burst-window conditioning (±500 ts around Mark01→Mark22 n≥4 bursts), microprice deviation summary, extract spread-change vs 20-tick realized |Δmid|, contemporaneous extract vs VEV_5300 / hydro mid **return** correlations at lags, IV proxy residual (5200 vs extract) vs active Mark count, adverse extract table for sellers 22/49.",
+    "analysis_outputs": [
+      "analysis_outputs/r4_phase2_burst_window_mark5.csv",
+      "analysis_outputs/r4_phase2_burst_window_mark20.csv",
+      "analysis_outputs/r4_phase2_vev5300_burst_meanrevert.txt",
+      "analysis_outputs/r4_phase2_microprice_summary_by_day_symbol.csv",
+      "analysis_outputs/r4_phase2_extract_spreadchange_vs_rv20.csv",
+      "analysis_outputs/r4_phase2_extract_dspr_quintile_rv20.csv",
+      "analysis_outputs/r4_phase2_extract_ret_lag_corr_other.csv",
+      "analysis_outputs/r4_phase2_iv_proxy_residual.csv",
+      "analysis_outputs/r4_phase2_iv_absres_by_active_mark_count.csv",
+      "analysis_outputs/r4_phase2_adverse_extract_buyaggr_seller22_49.csv",
+      "analysis_outputs/r4_phase2_summary.txt",
+      "r4_phase2_analysis.py"
+    ],
+    "used_to_decide": "See round4_phase2_complete gate for ranked edges and Phase-1 interaction."
+  },
+  {
+    "round4_phase2_complete": {
+      "bullets": [
+        {
+          "name": "1_named_bot_burst",
+          "outputs": [
+            "analysis_outputs/r4_phase2_burst_window_mark20.csv",
+            "analysis_outputs/r4_phase2_vev5300_burst_meanrevert.txt"
+          ],
+          "conclusion": "Within ±500 of **Mark01→Mark22** bursts, **VEV_5300** mean mark_20 **−0.13** (n=162) vs **+1.25** off-window (n=2 only — not comparable). **VELVET** trades in window mean mark_20 **−0.11** vs **+0.40** off-window — **refines Phase 1**: basket-burst **neighborhood** coincides with **worse** short-horizon extract markouts, opposite naive burst-follow trend."
+        },
+        {
+          "name": "2_microstructure",
+          "outputs": [
+            "analysis_outputs/r4_phase2_microprice_summary_by_day_symbol.csv",
+            "analysis_outputs/r4_phase2_extract_dspr_quintile_rv20.csv"
+          ],
+          "conclusion": "Microprice vs mid: small mean |dev| on liquid names (see CSV). Extract **spread tightening vs widening** quintiles show **~flat** subsequent 20-tick |Δmid| sums (~17.2) — **no** strong spread-compression→vol edge in this discretization."
+        },
+        {
+          "name": "3_cross_lead_lag",
+          "outputs": [
+            "analysis_outputs/r4_phase2_extract_ret_lag_corr_other.csv"
+          ],
+          "conclusion": "**Contemporaneous** corr(extract Δmid, VEV_5300 Δmid) **~0.62** all three days; **lag ±3 ≈ 0** — lead–lag alpha is **same-bar co-move**, not predictive offset. Hydro corr ~0 at lag 0."
+        },
+        {
+          "name": "4_regime_splits",
+          "outputs": [
+            "analysis_outputs/r4_phase2_burst_window_mark20.csv"
+          ],
+          "conclusion": "Regime split **burst window** materially changes markouts (extract + vouchers); complements Phase 1 joint-gate CSV (already split tight/wide × symbol spread bin)."
+        },
+        {
+          "name": "5_vol_smile",
+          "outputs": [
+            "analysis_outputs/r4_phase2_iv_proxy_residual.csv",
+            "analysis_outputs/r4_phase2_iv_absres_by_active_mark_count.csv"
+          ],
+          "conclusion": "Crude **(C−intrinsic)/S** proxy for VEV_5200 vs extract: **|iv_res|** essentially flat vs number of active Marks at timestamp — **no** Mark-count IV stress signal in this proxy."
+        },
+        {
+          "name": "6_execution_adverse",
+          "outputs": [
+            "analysis_outputs/r4_phase2_adverse_extract_buyaggr_seller22_49.csv"
+          ],
+          "conclusion": "Confirms Phase 1: buy-aggr extract vs **Mark 22 / Mark 49** as seller shows large positive forward same-symbol markouts (seller adverse to buyer aggression)."
+        },
+        {
+          "name": "7_inventory_mm",
+          "outputs": [
+            "analysis_outputs/r4_phase2_inventory_proxy_note.txt"
+          ],
+          "conclusion": "Deferred to sim/trader: cumulative signed flow per Mark vs extract drift needs tick-state loop; not shipped as table this round."
+        }
+      ],
+      "top_5_tradeable_edges": [
+        {
+          "rank": 1,
+          "rule": "**Fade / avoid providing liquidity** in **±500 timestamp** window around **Mark01→Mark22** multi-VEV bursts on **VELVETFRUIT_EXTRACT** (mean mark_20 **−0.11** in-window vs **+0.40** out; n=159 vs 1222).",
+          "orthogonal_to_phase1": "Phase 1 showed unconditional burst **+** extract forward; conditioning on **who** (M01→M22) **inverts** sign for co-located extract prints.",
+          "outputs": [
+            "analysis_outputs/r4_phase2_burst_window_mark20.csv"
+          ]
+        },
+        {
+          "rank": 2,
+          "rule": "**Co-move basket:** contemporaneous **extract** vs **VEV_5300** mid returns corr **~0.62** (days 1–3); use for **hedge ratio / beta** not directional lag.",
+          "outputs": [
+            "analysis_outputs/r4_phase2_extract_ret_lag_corr_other.csv"
+          ]
+        },
+        {
+          "rank": 3,
+          "rule": "**VEV_5300** in M01→M22 burst window: negative short-horizon mark_20 (**−0.13**, n=162) — candidate **fade wing** after basket choreography (needs sim).",
+          "outputs": [
+            "analysis_outputs/r4_phase2_burst_window_mark20.csv"
+          ]
+        },
+        {
+          "rank": 4,
+          "rule": "**Re-affirm Phase 1** Mark67→Mark49 / Mark67→Mark22 extract markouts — Phase 2 did **not** falsify; burst-window analysis adds **when not** to lean long (near M01→M22).",
+          "interaction_with_phase1": "Confirms + refines timing context for Phase-1 positive extract legs."
+        },
+        {
+          "rank": 5,
+          "rule": "**Mark 38→Mark 14** hydro negative markout (Phase 1) unchanged; Phase 2 microprice table shows hydro/extract microstructure stats for future MM skew.",
+          "outputs": [
+            "analysis_outputs/r4_phase2_microprice_summary_by_day_symbol.csv",
+            "analysis_outputs/r4_markout_pair_symbol_horizon.csv"
+          ]
+        }
+      ],
+      "phase1_interaction_summary": "Phase 2 **refines** Phase 1 burst finding: **unconditional** burst extract forward **+** becomes **negative** for prints **near Mark01→Mark22** basket bursts — counterparty / orchestration matters. Phase 1 **Mark67** extract edges **stand** (not contradicted). Joint-gate-only VEV weakness from Phase 1 **unchanged**; Phase 3 should cross gate × burst × pair."
+    }
   }
 ]

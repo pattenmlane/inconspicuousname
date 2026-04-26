@@ -1,0 +1,2 @@
+Inventory-aware MM (Phase 2 bullet 7): not implemented as a numeric table this iteration.
+Next: event-loop cumulative signed aggressive flow per Mark vs forward extract mid in sim.

@@ -1,0 +1,4 @@
+day,n_m67_aggr_joint_tight,n_m67_aggr_not_joint_tight,n_m67_aggr_total,share_tight_given_aggr
+1,5,53,58,0.086207
+2,7,54,61,0.114754
+3,15,30,45,0.333333

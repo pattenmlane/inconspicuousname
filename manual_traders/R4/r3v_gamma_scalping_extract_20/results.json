@@ -518,5 +518,25 @@
       "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v25_round4_all.stdout.txt",
       "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v25.json"
     }
+  },
+  {
+    "iteration": 26,
+    "trader_file": "trader_v26.py",
+    "strategy_description": "**v19** but **Mark 67 extract lift runs without Sonic joint gate** (surface MM still gated + day-3 surface off). **Worse 8564** vs **v19** 9602: tape shows **~87–91%** of aggressive M67 extract prints when **not** joint-tight (`r4_mark67_aggr_extract_joint_gate_counts_by_day.csv`); sim day-3 extract **−1713** vs **+812**. **Confirms** gating extract follow on tight 5200/5300 is risk-reducing under `worse`. **all** 10066.",
+    "total_profit": 8564,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v26.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_worse": {
+      "total_profit": 8564,
+      "backtest_log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v26_round4_worse.log",
+      "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v26_round4_worse.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v26.json"
+    },
+    "backtest_all": {
+      "total_profit": 10066,
+      "backtest_log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v26_round4_all.log",
+      "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v26_round4_all.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v26.json"
+    }
   }
 ]

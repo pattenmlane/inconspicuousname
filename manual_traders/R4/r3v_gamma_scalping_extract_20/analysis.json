@@ -520,5 +520,18 @@
       "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v25.json"
     ],
     "used_to_decide": "**No** extra extract-spread **gating** on top of the Sonic joint gate for Mark67 follow in this R4 slice — it does not change executable paths. Keep **v19**; document **negative** marginal value of this filter. **R4_STRATEGY_SNAPSHOT.txt** updated to reference the script + CSV."
+  },
+  {
+    "iteration": 27,
+    "analysis_description": "**Counterparty × Sonic (decoupling ablation):** `r4_mark67_aggressive_extract_joint_gate_counts.py` → `r4_mark67_aggr_extract_joint_gate_counts_by_day.csv`. Of **Mark 67** **aggressive** extract prints, share at **joint-tight** timestamps: day1 **5/58** (8.6%), day2 **7/61** (11.5%), day3 **15/45** (33.3%) — **most** prints occur when **5200/5300 are NOT both tight**. **`trader_v26`** lifts on **all** such prints but keeps surface MM only under the gate (**v19** sizing). **`worse` 8564** vs **v19** **9602**; day3 extract **−1713** vs **+812**. **Conclusion:** for **`worse`** execution, **do not** drop the joint gate on the **extract** leg; Phase 3 “stack gate + Mark” is validated vs naive always-follow.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/r4_mark67_aggressive_extract_joint_gate_counts.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_mark67_aggr_extract_joint_gate_counts_by_day.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v26.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v26_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v26_round4_all.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v26.json"
+    ],
+    "used_to_decide": "Strengthens **round4_phase3_complete** narrative: joint gate is not redundant for **sim PnL** when pairing with aggressive extract follow under adverse fills."
   }
 ]

@@ -4,7 +4,8 @@ Horizon K: K consecutive mid_price tape rows (100 time units per step on the 10k
 
 Bullet 1 — Participant markouts: participant_markout_long.csv (per row), participant_markout_pooled.csv
   (pooled t-stat), participant_markout_by_day_nosession.csv (stability by tape_day),
-  participant_pooled_bootstrap_k{5,20,100}.csv (bootstrap 95% CI for pooled means, n>=20).
+  participant_pooled_bootstrap_k{5,20,100}.csv (bootstrap 95% CI for pooled means, n>=20);
+  participant_cross_asset_markout_*.csv + cross_asset_* (r4_phase1_cross_asset_markouts.py).
 
 Bullet 2 — Baseline: per_print_with_baseline.csv, pair_baseline_residuals.csv. Flow / roles: participant_flow_balance.csv
 

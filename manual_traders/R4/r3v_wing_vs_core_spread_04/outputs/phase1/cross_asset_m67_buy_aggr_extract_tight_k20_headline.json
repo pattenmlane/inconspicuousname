@@ -1,0 +1,84 @@
+[
+  {
+    "cross_target": "VELVETFRUIT_EXTRACT",
+    "pooled": {
+      "cross_target": "VELVETFRUIT_EXTRACT",
+      "name": "Mark 67",
+      "role": "buy_aggr",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "k": 20,
+      "spread_regime": "tight",
+      "burst": 0,
+      "n_days_nonzero": 3,
+      "n": 162,
+      "mean": 1.8209876543209877,
+      "median": 1.5,
+      "t_stat": 5.822888939968094,
+      "frac_pos": 0.6481481481481481
+    },
+    "per_day": [
+      {
+        "tape_day": 1,
+        "n": 57,
+        "mean": 2.008771929824561,
+        "t_stat": 3.910593673112472,
+        "frac_pos": 0.6666666666666666
+      },
+      {
+        "tape_day": 2,
+        "n": 60,
+        "mean": 1.4916666666666667,
+        "t_stat": 2.995635907584927,
+        "frac_pos": 0.6333333333333333
+      },
+      {
+        "tape_day": 3,
+        "n": 45,
+        "mean": 2.022222222222222,
+        "t_stat": 3.14143488531692,
+        "frac_pos": 0.6444444444444445
+      }
+    ]
+  },
+  {
+    "cross_target": "HYDROGEL_PACK",
+    "pooled": {
+      "cross_target": "HYDROGEL_PACK",
+      "name": "Mark 67",
+      "role": "buy_aggr",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "k": 20,
+      "spread_regime": "tight",
+      "burst": 0,
+      "n_days_nonzero": 3,
+      "n": 162,
+      "mean": 0.3271604938271605,
+      "median": 0.0,
+      "t_stat": 0.4957120883174169,
+      "frac_pos": 0.4567901234567901
+    },
+    "per_day": [
+      {
+        "tape_day": 1,
+        "n": 57,
+        "mean": 1.8421052631578947,
+        "t_stat": 1.7817072580423357,
+        "frac_pos": 0.5263157894736842
+      },
+      {
+        "tape_day": 2,
+        "n": 60,
+        "mean": -0.5083333333333333,
+        "t_stat": -0.48441279775257406,
+        "frac_pos": 0.43333333333333335
+      },
+      {
+        "tape_day": 3,
+        "n": 45,
+        "mean": -0.4777777777777778,
+        "t_stat": -0.34269995680542725,
+        "frac_pos": 0.4
+      }
+    ]
+  }
+]

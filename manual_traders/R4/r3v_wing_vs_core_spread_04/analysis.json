@@ -24,9 +24,13 @@
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/phase1_bootstrap_m67_extract_tight_k20.json",
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/stability_m67_buy_aggr_extract_tight_k20_by_day.csv",
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/stability_m67_buy_aggr_extract_tight_k20_by_day.json",
-          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/all_participant_names_print_counts.csv"
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/all_participant_names_print_counts.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_cross_asset_markout_pooled.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_cross_asset_markout_by_day.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/cross_asset_m67_buy_aggr_extract_tight_k20_headline.json",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_phase1_cross_asset_markouts.py"
         ],
-        "conclusion": "Strongest pooled signal: Mark 67 aggressive buys on VELVETFRUIT_EXTRACT in **tight** BBO regime, K=20, mean forward **same-symbol** mid \u2248 +1.82 (n=162; **95% bootstrap CI** strictly positive on pooled tape); **per-day** n\u224845\u201360 each day, **all three days** positive mean (+1.49 to +2.02) and t\u22483\u20134 (see **stability** JSON). **all_participant_names_print_counts** lists every distinct tape name with buyer/seller print counts. Cross-asset (fwd_extract, fwd_hydro) in **participant_markout_long**; **session_q** and **burst** straddle cells. Voucher-specific participant edges are weaker (smaller n / mixed signs)."
+        "conclusion": "Strongest pooled signal: Mark 67 aggressive buys on VELVETFRUIT_EXTRACT in **tight** BBO regime, K=20, mean forward **same-symbol** mid \u2248 +1.82 (n=162; **95% bootstrap CI** strictly positive on pooled tape); **per-day** n\u224845\u201360 each day, **all three days** positive mean (+1.49 to +2.02) and t\u22483\u20134 (see **stability** JSON). **Cross-asset tables** (**participant_cross_asset_markout_pooled.csv**, headline JSON): same-event **fwd_extract** matches same-symbol; **fwd_hydro** on those prints is **not** a stable positive edge (pooled mean +0.33, t\u22480.5; day2/3 means **negative**). **all_participant_names_print_counts** lists every distinct tape name. **session_q** and **burst** straddle cells. Voucher-specific participant edges are weaker (smaller n / mixed signs)."
       },
       "bullet_2_bot_baseline_residuals": {
         "outputs": [
@@ -113,7 +117,8 @@
         "Burst forward **extract** at K=20 vs control remains **day-heterogeneous**; **VEV_5200/5300** burst-vs-control K=20 means are **higher than random-timestamp controls on all three tape days** (see burst_forward_core_vev_summary.csv)\u2014still not a fade/mean-revert story without execution test.",
         "**Full-cell** baseline residuals (per pair\u00d7symbol\u00d7regime) sum to 0 by construction; second-order **regime** effects vs a **pair\u00d7symbol** pool are small (see second_order_*.csv).",
         "List of all tape names: **all_participant_names_list.txt** (7 distinct **Mark** names on R4 days 1\u20133) \u2014 exhaustive \u201ceach U\u201d coverage; cells dropped when n<threshold in pooled tables.",
-        "**Cross-symbol** signed-flow vs forward-mid lag table (Phase 1 r4_phase1_lead_lag_flow.py): no |pooled corr| \u2265 0.08 for off-diagonal lead/lag cells \u2014 not a substitute for **counterparty-conditioned** Mark67 edge."
+        "**Cross-symbol** signed-flow vs forward-mid lag table (Phase 1 r4_phase1_lead_lag_flow.py): no |pooled corr| \u2265 0.08 for off-diagonal lead/lag cells \u2014 not a substitute for **counterparty-conditioned** Mark67 edge.",
+        "**Mark67 buy-aggr extract (tight, k=20)** conditional **hydro** forward mid: **cross_asset_m67_..._headline.json** shows day-1 positive hydro drift but **days 2\u20133 negative** \u2014 do **not** bundle hydro as same-direction leg without separate hypothesis."
       ],
       "reference_scripts": [
         "round4work/r4_counterparty_initial_sketch.py",
@@ -489,5 +494,16 @@
       "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/cross_symbol_flow_fwd_mid_lag_corr_top12_by_day.csv"
     ],
     "used_to_decide": "Population tape-flow lead/lag is **weak** (|corr| \u2264 ~0.06 off-diagonal); **counterparty identity** (Mark67 etc.) remains the main exploitable dimension vs anonymous signed flow."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "**Phase 1 bullet 1 cross-asset evidence:** r4_phase1_cross_asset_markouts.py aggregates **fwd_extract** and **fwd_hydro** from participant_markout_long (already computed in main Phase1 script) into **participant_cross_asset_markout_by_day.csv** and **participant_cross_asset_markout_pooled.csv**, plus top-25 pooled tables for k=20 tight non-burst and **cross_asset_m67_buy_aggr_extract_tight_k20_headline.json**. Finding: Mark67 buy-aggr extract tight k=20 \u2192 **fwd_extract** matches same-symbol edge; **fwd_hydro** pooled mean +0.33 (t\u22480.5) with **negative** day2/day3 means \u2014 not a stable bundle with extract. r4_phase1_supplement.py index updated.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_phase1_cross_asset_markouts.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/participant_cross_asset_markout_pooled.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/cross_asset_m67_buy_aggr_extract_tight_k20_headline.json",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_phase1_supplement.py"
+    ],
+    "used_to_decide": "Keep Round-4 sim focus on **extract + VEV** legs; do not assume **HYDROGEL** co-moves with Mark67 extract prints without a new hypothesis."
   }
 ]

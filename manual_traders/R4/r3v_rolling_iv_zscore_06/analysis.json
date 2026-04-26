@@ -394,5 +394,26 @@
       "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v37_2026-04-26_r4_worse.log"
     ],
     "used_to_decide": "`trader_v37.py` adds **EOD flatten** on tape days 1–2 (local ts >= 994_900) before roll; total **+3,101** — slightly below fixed v26 due to early exit cost on day_1 (**373** vs **503**)."
+  },
+  {
+    "iteration": 18,
+    "analysis_description": "**EOD PAD sweep** on fixed v26: `trader_v38.py` uses PAD=**500** (last 500 local ts before 999_900) on days 1–2 — total **+3,253** worse+all (**+22** vs fixed v26 **+3,231**), day_1 **+525** vs **+503**. `trader_v39.py` EOD **day 2 only** same PAD: **identical +3,231** to v26 (day-2 end flatten redundant vs window exit for this tape).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v38.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v38_2026-04-26_r4_worse.log",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v39.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v39_2026-04-26_r4_worse.log"
+    ],
+    "used_to_decide": "Ship **v38** as best EOD-carry tweak so far; keep v26 baseline for minimalism."
+  },
+  {
+    "iteration": 19,
+    "analysis_description": "**Post-fix reruns** for earlier Mark67 strategies (merged `window_active`): **v23** **-8,208** (full trigger list, still bad); **v24** **-625** (Sonic gate helps vs v23 but negative); **v27** **-46,438** (gate-break exit catastrophic once cross-day windows actually fire). Logs `trader_v{23,24,27}_2026-04-26_r4_*_mergedfix.log`.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v23_2026-04-26_r4_worse_mergedfix.log",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v24_2026-04-26_r4_worse_mergedfix.log",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v27_2026-04-26_r4_worse_mergedfix.log"
+    ],
+    "used_to_decide": "Pre-filtered **v26/v38** line remains the only positive Mark67+V5300 branch in this sweep; do not resurrect v27-style forced exits."
   }
 ]

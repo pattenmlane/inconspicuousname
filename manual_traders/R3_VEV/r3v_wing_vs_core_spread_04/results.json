@@ -351,5 +351,27 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v39.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v39.json"
+  },
+  {
+    "iteration": 40,
+    "trader_file": "trader_v40.py",
+    "strategy_description": "v39 + joint tight two-leg gate: when VEV_5200 and VEV_5300 BBO spreads both \u2264 2, full MAX_LEG (12) and HEDGE_FRAC 0.24; else half clip and hedge 0.12 (Sonic / inclineGod book-state sizing).",
+    "total_profit": 4001.0,
+    "backtest_round": 3,
+    "backtest_days": "3-0 3-1 3-2 (days 0\u20132 only; repo now has day-3 data\u2014use explicit day list to match v37\u2013v39 tape scope)",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 4001.0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v40.py 3-0 3-1 3-2 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v40_worse_d0-2.log",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v40_worse_d0-2.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v40_worse_d0-2.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 4001.0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/trader_v40.py 3-0 3-1 3-2 --data Prosperity4Data --match-trades all --no-vis --out manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v40_all_d0-2.log",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/backtest_v40_all_d0-2.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_wing_vs_core_spread_04/fill_summary_v40_all_d0-2.json"
+    }
   }
 ]

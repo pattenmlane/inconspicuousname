@@ -296,5 +296,18 @@
       "backtest_v39.log"
     ],
     "used_to_decide": "New branch best v39; next grid HEDGE 0.22 or 0.26 from v39, or leave hedge and tune RICH/CHEAP on v39 parent."
+  },
+  {
+    "iteration": 40,
+    "analysis_description": "Merged origin/main: added round3work/vouchers_final_strategy/ (STRATEGY.txt, outputs/r3_tight_spread_summary.txt, analyze_vev_5200_5300_tight_gate_r3.py). Paper result: when both s5200 and s5300 \u2264 2, mean K=20 forward extract mid change is \u2248+0.55 vs \u2248-0.07 not-tight (day 0, Welch t\u22484.7). v40 implements joint gate for sizing: tight \u2192 v39 clips/hedge; wide \u2192 MAX_LEG\u00d70.5 (min 1), HEDGE 0.12. EXACT_DUPLICATE_CHECK: not a code duplicate of parent v39; new spread-regime path (distinct from v38\u2013v39 hedge-only tweaks).",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "backtest_v40_worse_d0-2.log",
+      "backtest_v40_all_d0-2.log",
+      "fill_summary_v40_worse_d0-2.json",
+      "fill_summary_v40_all_d0-2.json"
+    ],
+    "used_to_decide": "On Round 3 days 0\u20132 explicit list (3-0 3-1 3-2) to match v39 scope after day-3 CSV landed on main, worse and both give total 4001.0 vs v39 4229.0 on same window \u2014 the half-clip/hedge in non-tight regime hurt more than the tape mid signal suggests under our execution. Next: only size up in tight (keep v39 base in wide), or TH=3, or apply gate to hedge only not wing clips, or re-test with LOOSE_MAX_LEG_FRAC=0.75."
   }
 ]

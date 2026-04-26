@@ -131,5 +131,15 @@
       "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v16.py"
     ],
     "used_to_decide": "Ship v16 with gate logged and conservative sizing. Worse-total 14,946 and all-total 13,416 on days 0-2 (vs ~36,500 for v8 which included ~20k hydro) \u2014 PnL gap is almost entirely removing hydrogel, not the gate. Next: forward-return conditioning from tight gate (e.g. only widen extract when EMA of gate-on returns positive) with small ablations, still worse-primary."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "Tried gate-conditioned extract sizing via EMA of one-tick extract changes during joint 5200+5300 tight windows. Ablations: threshold bumps on ex_sz, VEV_4000 passive+1, risk_on+EMA combinations. In all cases that preserved v16's order logic, `tradeHistory` was byte-identical to v16: joint tight 5200/5300 and VEV_4000 spread>=15 rarely coincide; the EMA also stayed in a band that never triggered conservative thresholds, so the gate-EMA had no effect on actual quotes. The only PnL-moving change in this pass was `EXTRACT_PASSIVE_SIZE` 6->7 (when risk_on), which increases extract fills vs v16 and improves days 0-2 worse PnL to 15,929 (vs 14,946). We keep `gate_ret_ema` in traderData for future research (e.g. offline calibration). IV/Greeks: unchanged BS-IV on 4000/4500 for extract skew; DTE proxy 6/365y.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v17.py",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v17_iter16_d012_worse_full.log",
+      "manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v17_iter16_d012_all_full.log"
+    ],
+    "used_to_decide": "Ship v17 as v16 with extract size 7 in risk_on (logged gate_ret_ema). For the 200k/day floor, still need larger structural edge (e.g. more voucher legs or different execution when gate is on); naive threshold-on-EMA is blocked by the alignment issue above. Next: per-day or offline sweep of ex_sz grid 6-8 with both match modes, or re-test gate with relaxations (e.g. 5200+5300 spread <=3) only if analysis supports it."
   }
 ]

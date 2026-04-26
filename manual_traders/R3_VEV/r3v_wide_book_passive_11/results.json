@@ -257,5 +257,48 @@
         }
       }
     }
+  },
+  {
+    "iteration": 16,
+    "trader_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v17.py",
+    "strategy_description": "v16 + (1) `EXTRACT_PASSIVE_SIZE` 6 -> 7 when risk_on (cap 12); (2) log only `gate_ret_ema` = EMA of one-tick extract changes while 5200+5300 are jointly tight (threshold-based sizing on this signal was a no-op in the simulator: VEV_4000 wide book rarely co-occurs with joint tightness; EMA also stayed within narrow band, so v16 and blind threshold experiments produced identical `tradeHistory`).",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 15929,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v17.py 3-0 3-1 3-2 --data Prosperity4Data --no-vis --out manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v17_iter16_d012_worse.json --match-trades worse",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v17_iter16_d012_worse_full.log",
+      "trades_or_fills_summary": {
+        "per_day_profit": {
+          "day_0": 7738,
+          "day_1": 6379,
+          "day_2": 1812
+        },
+        "fills": 1975,
+        "fill_qty": 9209,
+        "fill_qty_by_symbol": {
+          "VELVETFRUIT_EXTRACT": 8269,
+          "VEV_4000": 940
+        }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 14406,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_wide_book_passive_11/trader_v17.py 3-0 3-1 3-2 --data Prosperity4Data --no-vis --out manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v17_iter16_d012_all.json --match-trades all",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_wide_book_passive_11/backtest_logs/trader_v17_iter16_d012_all_full.log",
+      "trades_or_fills_summary": {
+        "per_day_profit": {
+          "day_0": 8350,
+          "day_1": 6712,
+          "day_2": -656
+        },
+        "fills": 1993,
+        "fill_qty": 9209,
+        "fill_qty_by_symbol": {
+          "VELVETFRUIT_EXTRACT": 8269,
+          "VEV_4000": 940
+        }
+      }
+    }
   }
 ]

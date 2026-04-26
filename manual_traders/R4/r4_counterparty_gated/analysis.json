@@ -289,5 +289,21 @@
     ],
     "sim_note": "trader_v2 (joint gate sizing) backtest worse 21,097 < trader_v1 26,194 — joint gate alone as implemented does not improve PnL vs extract-only tight regime; keep gate for signal research, refine execution.",
     "used_to_decide": "Phase 3 gate analysis persisted; trader_v2 shipped as Sonic-gated experiment underperforming v1 on this simple MM — next iteration should combine joint gate with selective fades (e.g. avoid aggressive 5300 basket supply) rather than blanket size-up."
+  },
+  {
+    "iteration": 3,
+    "title": "round4_post_phase3_execution_experiments",
+    "analysis_description": "After Phase 3: (1) tape merge of joint gate to trades shows VEV_5300 notional is ~99% when joint_tight vs loose (r4_trade_notional_by_symbol_gate.csv) — M01→M22 ladder concentrates in Sonic-tight clock; skipping 5300 MM should matter if we had inventory. (2) trader_v3 widened/shrank 5300 under joint tight vs v2 — PnL unchanged (21097 worse) because quotes clamp to BBO so half-spread edits often ineffective. (3) trader_v4 skips 5300 entirely under joint tight — still 21097 worse / 19230 all: PnL dominated by extract and hydro same as v2.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_gated/run_r4_gate_trade_notional.py",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_trade_notional_by_symbol_gate.csv",
+      "manual_traders/R4/r4_counterparty_gated/trader_v3.py",
+      "manual_traders/R4/r4_counterparty_gated/trader_v4.py",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v3_worse.log",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v3_all.log",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v4_worse.log",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v4_all.log"
+    ],
+    "used_to_decide": "Champion for this MM family remains trader_v1 (26,194 worse). Next: inventory-aware 5300 or take-side logic keyed to market_trades counterparty (requires richer sim than quote-only half-width nudges)."
   }
 ]

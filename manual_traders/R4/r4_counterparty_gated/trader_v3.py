@@ -1,0 +1,220 @@
+"""
+Round 4 — v2 (Sonic joint gate + extract-tight fallback) with Phase-3 counterparty evidence:
+
+Under joint tight, tape shows Mark01→Mark22 on VEV_5300 with negative mean fwd20 (r4_phase3
+triplet) — widen and shrink MM on VEV_5300 only to reduce adverse selection; keep 5200 and
+other strikes on the v2 joint-tight schedule (5200 basket positive in phase2/3 tables).
+"""
+from __future__ import annotations
+
+import json
+from pathlib import Path
+from typing import Any
+
+try:
+    from datamodel import Order, OrderDepth, TradingState
+except ImportError:
+    from prosperity4bt.datamodel import Order, OrderDepth, TradingState
+
+U = "VELVETFRUIT_EXTRACT"
+H = "HYDROGEL_PACK"
+STRIKES = [4000, 4500, 5000, 5100, 5200, 5300, 5400, 5500, 6000, 6500]
+VOUCHERS = [f"VEV_{k}" for k in STRIKES]
+LIMITS = {H: 200, U: 200, **{v: 300 for v in VOUCHERS}}
+
+_SIG_PATH = Path(__file__).resolve().parent / "analysis_outputs" / "signals_mark67_aggr_extract_buy.json"
+_TH = 2.0
+VEV_5300 = "VEV_5300"
+VEV_5200 = "VEV_5200"
+
+
+def book_walls(depth: OrderDepth) -> tuple[int | None, int | None, int | None, int | None]:
+    buys = depth.buy_orders or {}
+    sells = depth.sell_orders or {}
+    if not buys and not sells:
+        return None, None, None, None
+    sell_prices = list(sells.keys())
+    return (
+        min(buys.keys()),
+        max(sell_prices) if sell_prices else None,
+        max(buys.keys()),
+        min(sell_prices) if sell_prices else None,
+    )
+
+
+def micro_mid(depth: OrderDepth) -> float | None:
+    _, _, bb, ba = book_walls(depth)
+    if bb is None or ba is None:
+        return None
+    return (float(bb) + float(ba)) / 2.0
+
+
+def bbo_spread(depth: OrderDepth) -> float | None:
+    _, _, bb, ba = book_walls(depth)
+    if bb is None or ba is None:
+        return None
+    return float(ba) - float(bb)
+
+
+def _load_m67_keys() -> set[str]:
+    if not _SIG_PATH.is_file():
+        return set()
+    try:
+        d = json.loads(_SIG_PATH.read_text(encoding="utf-8"))
+        return set(str(x) for x in d.get("keys", []))
+    except (json.JSONDecodeError, OSError):
+        return set()
+
+
+_M67_KEYS = _load_m67_keys()
+
+
+class Trader:
+    EMA_S = 80
+    # When Sonic joint tight: extra half-spread on 5300 (avoid fading M01→M22 supply)
+    JOINT_TIGHT_V5300_HALF_ADD = 4.0
+    JOINT_TIGHT_V5300_Q_MULT = 0.55
+    # Slightly lean into 5200 when surface is tight (positive fwd in phase tables)
+    JOINT_TIGHT_V5200_HALF_SUB = 0.5
+    JOINT_TIGHT_V5200_Q_MULT = 1.2
+
+    def run(self, state: TradingState):
+        result: dict[str, list[Order]] = {}
+        conv = 0
+        raw = getattr(state, "traderData", "") or ""
+        try:
+            td: dict[str, Any] = json.loads(raw) if str(raw).strip() else {}
+        except (json.JSONDecodeError, TypeError):
+            td = {}
+
+        csv_day = int(getattr(state, "_prosperity4bt_csv_day", td.get("csv_day", 1)))
+        td["csv_day"] = csv_day
+        ts = int(getattr(state, "timestamp", 0))
+        depths: dict = getattr(state, "order_depths", {}) or {}
+
+        def sym(product: str) -> str | None:
+            listings = getattr(state, "listings", {}) or {}
+            for s, lst in listings.items():
+                if getattr(lst, "product", None) == product:
+                    return s
+            return product if product in depths else None
+
+        du = sym(U)
+        s5200 = sym("VEV_5200")
+        s5300 = sym("VEV_5300")
+        if not du or du not in depths:
+            return result, conv, json.dumps(td, separators=(",", ":"))
+
+        d_u = depths[du]
+        mid_u = micro_mid(d_u)
+        if mid_u is None:
+            return result, conv, json.dumps(td, separators=(",", ":"))
+
+        joint = False
+        sp_u = bbo_spread(d_u)
+        ext_tight = sp_u is not None and sp_u <= _TH
+        if s5200 and s5300 and s5200 in depths and s5300 in depths:
+            a = bbo_spread(depths[s5200])
+            b = bbo_spread(depths[s5300])
+            if a is not None and b is not None:
+                joint = a <= _TH and b <= _TH
+        td["sonic_joint_tight_5200_5300"] = joint
+        if sp_u is not None:
+            td["extract_bbo_spread"] = float(sp_u)
+
+        key = f"{csv_day}:{ts}"
+        m67 = key in _M67_KEYS
+        td["mark67_signal_tick"] = bool(m67)
+
+        alpha = 2.0 / (float(self.EMA_S) + 1.0)
+        ema = float(td.get("ema_s", mid_u))
+        ema = alpha * float(mid_u) + (1.0 - alpha) * ema
+        td["ema_s"] = ema
+
+        if joint:
+            half_u, qu = 1, 70
+            half_v, qv = 2, 24
+            if m67:
+                half_u, qu = 1, 85
+        elif ext_tight:
+            half_u, qu = 2, 45
+            half_v, qv = 3, 18
+            if m67:
+                half_u, qu = 1, 60
+        else:
+            half_u, qu = 5, 12
+            half_v, qv = 8, 6
+
+        pos = getattr(state, "position", {}) or {}
+        pu = int(pos.get(du, 0))
+        lim_u = LIMITS[U]
+        bu = int(round(ema - half_u))
+        au = int(round(ema + half_u))
+        bb, ba = book_walls(d_u)[2], book_walls(d_u)[3]
+        if bb is not None and ba is not None:
+            bu = min(bu, int(ba) - 1)
+            au = max(au, int(bb) + 1)
+        qu = max(1, min(qu, 200))
+        if bu < au:
+            if pu < lim_u:
+                result.setdefault(du, []).append(Order(du, bu, min(qu, lim_u - pu)))
+            if pu > -lim_u:
+                result.setdefault(du, []).append(Order(du, au, -min(qu, lim_u + pu)))
+
+        for v in VOUCHERS:
+            sv = sym(v)
+            if not sv or sv not in depths:
+                continue
+            d = depths[sv]
+            m = micro_mid(d)
+            if m is None:
+                continue
+            bbb, baa = book_walls(d)[2], book_walls(d)[3]
+            if bbb is None or baa is None:
+                continue
+            theo = float(m)
+            p = int(pos.get(sv, 0))
+            lim = LIMITS[v]
+            hv = float(half_v)
+            qvv = int(qv)
+            if joint:
+                if v == VEV_5300:
+                    hv += float(self.JOINT_TIGHT_V5300_HALF_ADD)
+                    qvv = max(1, int(round(qvv * float(self.JOINT_TIGHT_V5300_Q_MULT))))
+                elif v == VEV_5200:
+                    hv = max(1.0, hv - float(self.JOINT_TIGHT_V5200_HALF_SUB))
+                    qvv = max(1, min(300, int(round(qvv * float(self.JOINT_TIGHT_V5200_Q_MULT)))))
+            bid_p = int(round(theo - hv))
+            ask_p = int(round(theo + hv))
+            bid_p = min(bid_p, int(baa) - 1)
+            ask_p = max(ask_p, int(bbb) + 1)
+            if bid_p >= ask_p:
+                continue
+            q = max(1, min(qvv, 300))
+            if p < lim:
+                result.setdefault(sv, []).append(Order(sv, bid_p, min(q, lim - p)))
+            if p > -lim:
+                result.setdefault(sv, []).append(Order(sv, ask_p, -min(q, lim + p)))
+
+        dh = sym(H)
+        if dh and dh in depths:
+            d_h = depths[dh]
+            mh = micro_mid(d_h)
+            if mh is not None:
+                ph = int(pos.get(dh, 0))
+                lim_h = LIMITS[H]
+                hh = 2 if joint else (3 if ext_tight else 5)
+                bh = int(round(float(mh) - hh))
+                ah = int(round(float(mh) + hh))
+                bbh, bah = book_walls(d_h)[2], book_walls(d_h)[3]
+                if bbh is not None and bah is not None:
+                    bh = min(bh, int(bah) - 1)
+                    ah = max(ah, int(bbh) + 1)
+                qh = 12 if joint else (8 if ext_tight else 5)
+                if bh < ah:
+                    if ph < lim_h:
+                        result.setdefault(dh, []).append(Order(dh, bh, min(qh, lim_h - ph)))
+                    if ph > -lim_h:
+                        result.setdefault(dh, []).append(Order(dh, ah, -min(qh, lim_h + ph)))
+
+        return result, conv, json.dumps(td, separators=(",", ":"))

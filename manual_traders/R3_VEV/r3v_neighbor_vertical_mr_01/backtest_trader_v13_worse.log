@@ -1,0 +1,65 @@
+running algorithm '/workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v13.py'...
+Backtesting /workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v13.py for round: 3 day: 0
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 15
+VEV_4000: 23
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: 38
+Backtesting /workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v13.py for round: 3 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: -26
+VEV_4000: -38
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: -64
+Backtesting /workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v13.py for round: 3 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 76
+VEV_5000: 0
+VEV_4500: -188
+VEV_4000: -248
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: -360
+Backtesting /workspace/manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v13.py for round: 3 day: 3
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 13
+VEV_4000: 7
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: 20
+Profit summary:
+Round 3 day 0: 38
+Round 3 day 1: -64
+Round 3 day 2: -360
+Round 3 day 3: 20
+Total profit: -366
+
+Successfully saved backtest results to backtests/2026-04-26_03-40-51.log

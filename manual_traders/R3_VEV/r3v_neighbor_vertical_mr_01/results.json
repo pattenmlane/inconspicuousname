@@ -187,5 +187,32 @@
       "underlying_pnl": 0,
       "note": "Activity shifted from max-|z| mix (v11: 4000/4500/5100/6500) toward 4000+4500 only; much smaller |loss| than v11. No hydrogel; extract PnL 0 all days."
     }
+  },
+  {
+    "iteration": 13,
+    "trader_file": "trader_v13.py",
+    "strategy_description": "Family10 v12 + Greek tie-break: after analysis_vega_by_strike_r3.json (mean BS vega peaks VEV_5200-5300), among |z|>=OPEN_Z candidates pick max (|z|*BETA/h, then vega) to break ties only. v12 primary key unchanged when no tie.",
+    "total_profit": -366,
+    "comment": "4-day total after main merge; sum_days_0_2 = -386 for benchmark slice",
+    "backtest_round": 3,
+    "match_trades": "worse",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v13.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v13_worse.log",
+    "backtest_output": {
+      "day0": 38,
+      "day1": -64,
+      "day2": -360,
+      "day3": 20,
+      "sum_days_0_2": -386
+    },
+    "trades_or_fills_summary": {
+      "nonzero_symbols": [
+        "VEV_4000",
+        "VEV_4500",
+        "VEV_5100"
+      ],
+      "underlying_pnl": 0,
+      "note": "Worse than v12 total -138: vega secondary key shifts some fills among tied v12 score (e.g. day2). Falsified as improvement for this tape; keep v12 ranking."
+    }
   }
 ]

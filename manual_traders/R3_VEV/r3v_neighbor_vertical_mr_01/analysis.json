@@ -114,5 +114,15 @@
       "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v12_worse.log"
     ],
     "used_to_decide": "v12 replaces pure max-|z| pick with |z|*beta/mean_half_spread so wide-spread high-beta symbols do not dominate; backtest (worse) total -138 vs v11 -599 for days 0-2+empty day3 on merged main."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Greek/IV: analyze_vega_by_strike_r3.py on prices_round_3_day_0-2 (BS vega with IV from mid, T=8,7,6d). Mean vega is largest at VEV_5300/5200/5400/5100 (~190-280) vs deep OTM VEV_4000/4500 (~12-13) — same strikes where spreads are tightest in prior work, so |z| on residuals is a different object than 'edge per vega' from tape. Output: analysis_vega_by_strike_r3.json.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/analyze_vega_by_strike_r3.py",
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/analysis_vega_by_strike_r3.json",
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v13_worse.log"
+    ],
+    "used_to_decide": "v13 uses vega at fitted IV only to break ties on v12\u2019s |z|*beta/h among open-candidates; backtest -366 vs v12 -138 (worse). Conclude vega tie-break is harmful here; next iteration should stay on v12 primary or use vega in a pre-filter, not re-rank open signals."
   }
 ]

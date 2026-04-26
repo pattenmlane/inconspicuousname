@@ -1,0 +1,171 @@
+"""
+Round 4 — v5 + soft partial gate on VEV wings.
+
+Tape (iteration 6): Mark01→Mark22 on VEV under joint-tight has near-zero mean extract fwd5
+but positive fwd20; loose-book VEV rows are negligible (n=3). Outer strikes (4000/4500/6000/6500)
+contribute wing PnL in v5 gated MM — keep them **only when joint tight** (hard gate).
+
+When joint is **off**, still quote VELVETFRUIT_EXTRACT and inner ATM/near-OTM vouchers
+(5000–5500 incl. gate legs) one-tick inside at reduced clip to harvest surface when 5200/5300
+books are wide without quoting far wings into unknown regime.
+
+When joint is **on**, identical to v5 (full sizes, all products).
+"""
+from __future__ import annotations
+
+import json
+from typing import Any
+
+try:
+    from datamodel import Order, OrderDepth, TradingState
+except ImportError:
+    from prosperity4bt.datamodel import Order, OrderDepth, TradingState
+
+U = "VELVETFRUIT_EXTRACT"
+HYDRO = "HYDROGEL_PACK"
+V5200 = "VEV_5200"
+V5300 = "VEV_5300"
+STRIKES_ALL = [4000, 4500, 5000, 5100, 5200, 5300, 5400, 5500, 6000, 6500]
+VOUCHERS_ALL = [f"VEV_{k}" for k in STRIKES_ALL]
+INNER_STRIKES = [5000, 5100, 5200, 5300, 5400, 5500]
+VOUCHERS_INNER = [f"VEV_{k}" for k in INNER_STRIKES]
+LIMITS = {U: 200, HYDRO: 200, **{v: 300 for v in VOUCHERS_ALL}}
+TH = 2
+SIZE_U = 18
+SIZE_VEV = 14
+SIZE_H = 10
+SIZE_U_SOFT = 8
+SIZE_VEV_SOFT = 6
+
+
+def _bbo_spread(depth: OrderDepth) -> int | None:
+    buys = getattr(depth, "buy_orders", None) or {}
+    sells = getattr(depth, "sell_orders", None) or {}
+    if not buys or not sells:
+        return None
+    bb = max(buys.keys())
+    ba = min(sells.keys())
+    if ba <= bb:
+        return None
+    return int(ba - bb)
+
+
+def _book(depth: OrderDepth) -> tuple[int | None, int | None]:
+    buys = getattr(depth, "buy_orders", None) or {}
+    sells = getattr(depth, "sell_orders", None) or {}
+    if not buys or not sells:
+        return None, None
+    return max(buys.keys()), min(sells.keys())
+
+
+def _parse_td(raw: str | None) -> dict[str, Any]:
+    if not raw:
+        return {}
+    try:
+        o = json.loads(raw)
+        return o if isinstance(o, dict) else {}
+    except (json.JSONDecodeError, TypeError):
+        return {}
+
+
+def _inside_pair(depth: OrderDepth) -> tuple[int, int] | None:
+    bb, ba = _book(depth)
+    if bb is None or ba is None or ba <= bb + 1:
+        return None
+    bid_p, ask_p = int(bb) + 1, int(ba) - 1
+    if bid_p >= ask_p:
+        return None
+    return bid_p, ask_p
+
+
+def _emit_u(depths: dict[str, OrderDepth], pos: dict[str, int], size: int) -> dict[str, list[Order]]:
+    out: dict[str, list[Order]] = {}
+    if U not in depths:
+        return out
+    pr = _inside_pair(depths[U])
+    if not pr:
+        return out
+    bid_p, ask_p = pr
+    p0 = int(pos.get(U, 0))
+    lim = LIMITS[U]
+    qb = min(size, max(0, lim - p0))
+    qs = min(size, max(0, lim + p0))
+    lo: list[Order] = []
+    if qb > 0:
+        lo.append(Order(U, bid_p, qb))
+    if qs > 0:
+        lo.append(Order(U, ask_p, -qs))
+    if lo:
+        out[U] = lo
+    return out
+
+
+def _emit_hydro(depths: dict[str, OrderDepth], pos: dict[str, int], size: int) -> dict[str, list[Order]]:
+    out: dict[str, list[Order]] = {}
+    if HYDRO not in depths:
+        return out
+    prh = _inside_pair(depths[HYDRO])
+    if not prh:
+        return out
+    bid_p, ask_p = prh
+    ph = int(pos.get(HYDRO, 0))
+    limh = LIMITS[HYDRO]
+    qh = min(size, max(0, limh - ph))
+    qhs = min(size, max(0, limh + ph))
+    ho: list[Order] = []
+    if qh > 0:
+        ho.append(Order(HYDRO, bid_p, qh))
+    if qhs > 0:
+        ho.append(Order(HYDRO, ask_p, -qhs))
+    if ho:
+        out[HYDRO] = ho
+    return out
+
+
+def _emit_vevs(
+    depths: dict[str, OrderDepth], pos: dict[str, int], vouchers: list[str], size: int
+) -> dict[str, list[Order]]:
+    orders: dict[str, list[Order]] = {}
+    for v in vouchers:
+        if v not in depths:
+            continue
+        pr = _inside_pair(depths[v])
+        if not pr:
+            continue
+        bid_p, ask_p = pr
+        p0 = int(pos.get(v, 0))
+        lim = LIMITS[v]
+        qb = min(size, max(0, lim - p0))
+        qs = min(size, max(0, lim + p0))
+        lo2: list[Order] = []
+        if qb > 0:
+            lo2.append(Order(v, bid_p, qb))
+        if qs > 0:
+            lo2.append(Order(v, ask_p, -qs))
+        if lo2:
+            orders[v] = lo2
+    return orders
+
+
+class Trader:
+    def run(self, state: TradingState):
+        _ = _parse_td(getattr(state, "traderData", None))
+        depths: dict[str, OrderDepth] = getattr(state, "order_depths", None) or {}
+        pos: dict[str, int] = getattr(state, "position", None) or {}
+
+        s52 = _bbo_spread(depths[V5200]) if V5200 in depths else None
+        s53 = _bbo_spread(depths[V5300]) if V5300 in depths else None
+        joint = s52 is not None and s53 is not None and s52 <= TH and s53 <= TH
+
+        orders: dict[str, list[Order]] = {}
+        if joint:
+            orders.update(_emit_u(depths, pos, SIZE_U))
+            orders.update(_emit_hydro(depths, pos, SIZE_H))
+            orders.update(_emit_vevs(depths, pos, VOUCHERS_ALL, SIZE_VEV))
+            td = {"joint": True, "mode": "full"}
+        else:
+            orders.update(_emit_u(depths, pos, SIZE_U_SOFT))
+            orders.update(_emit_vevs(depths, pos, VOUCHERS_INNER, SIZE_VEV_SOFT))
+            td = {"joint": False, "mode": "inner_soft"}
+
+        return orders, 0, json.dumps(td, separators=(",", ":"))

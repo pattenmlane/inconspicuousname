@@ -166,5 +166,26 @@
       "trades_or_fills_summary": "Same as worse."
     },
     "total_profit": 11854
+  },
+  {
+    "iteration": 8,
+    "trader_file": "trader_v8.py",
+    "strategy_description": "v5 when joint tight; when loose, soft MM on extract+inner VEVs (5000–5500, size 8/6) only — outer wings and hydro quoted only under tight gate.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 12727,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v8.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v8_worse.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v8_worse.log",
+      "trades_or_fills_summary": "Day1 +5626 (U +4084 vs v5 +312; hydro/V4000 same); day2 +965 (U -723 vs +1286); day3 +6136 (U +1729 vs +2620; inner VEV small +43 vs v5 +4026 on VEVs); total 12727; worse=all differ on day3 VEV_5300 only."
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 12662,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v8.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v8_all.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v8_all.log",
+      "trades_or_fills_summary": "Same as worse except day3 total 6070 vs 6136 (VEV_5300 -65 vs 0 on all); grand total 12662."
+    },
+    "total_profit": 12727
   }
 ]

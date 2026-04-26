@@ -1,0 +1,6 @@
+{
+  "description": "Days 1-2, timestamps with Mark49 seller extract AND Sonic joint NOT tight: after base clip, spread cap, and loose trim -6, compare max(clip-6,4) vs max(clip-6,3).",
+  "day_1": {"differs": 0},
+  "day_2": {"differs": 0},
+  "conclusion": "v23 (floor 3 on overlap) matches v21 (floor 4) in sim: no tick where post-trim clip would be 3; all already >=4 or path skips."
+}

@@ -237,7 +237,8 @@
       "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v2_round4_all.log",
       "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_m67_overlap_fwd5_by_sonic.json",
       "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_m49_sonic_trim_sweep_r4d1to3.json",
-      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_m49_loose_trim6_vs7_effective_clip_audit.json"
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_m49_loose_trim6_vs7_effective_clip_audit.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_m49_overlap_floor3_vs4_audit.json"
     ],
     "used_to_decide": "Phase 3 gate complete; Sonic-style joint tight regime strongly separates positive vs negative mean K=20 extract forward mids on R4 tape; Mark01→22 on 5300 always occurs under joint tight in sample so gate does not split that edge (confirms Phase 2 burst embedding).",
     "phase3_vs_phase1_2_without_gate": "Ungated population: extract fwd20 mean +0.32 tight vs -0.12 not-tight over 30k inner-join rows (ph3 sonic JSON). Phase 1 Mark67 aggr extract: gated subset mean fwd20 ~2.06 (n=27) vs ~1.77 not tight (n=137). Phase 2 Mark01→22 VEV_5300: all n=132 trades have joint gate true — negative mean fwd5 unchanged vs ph2 burst window (-0.148); gate does not 'clean' that signal because it only fires in tight wings. Phase 2 burst fwd5 on 5300: mean +0.26 in tight (n=316) vs one loose burst — suggests fading 5300 on bursts was mis-specified vs mid dynamics. **Live follow-up** (`r4_ph1_m67_overlap_fwd5_by_sonic.json`, `r4_m49_sonic_trim_sweep_r4d1to3.json`, `r4_m49_loose_trim6_vs7_effective_clip_audit.json`): for M49 seller-extract co-tick with Mark67, **0** clip trim if Sonic joint **tight**, **-6** if **loose** (`trader_v21`); **-7** (`trader_v22`) is **identical** in sim because effective clip already floors at 4 after -6 on all relevant loose-overlap timestamps on days 1-2.",
@@ -486,5 +487,24 @@
       "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v20_round4_all.log"
     ],
     "used_to_decide": "v20 worse 11011 equals v17; all 10274 < v17. -1 on tight is redundant when loose -4 already captures most of the win; v18 pure loose deepening wins more."
+  },
+  {
+    "iteration": 23,
+    "analysis_description": "trader_v23: v21 with M49-overlap clip floor **3** (v21 uses 4). Tests sub-4 post-trim size on crowded ticks.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v23_round4_worse.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v23_round4_all.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_m49_overlap_floor3_vs4_audit.json"
+    ],
+    "used_to_decide": "v23 ties v21 (11894/10430). Audit: 0 loose+M49 overlap ts on days 1-2 where max(clip-6,3) != max(clip-6,4) — floor 3 never binds differently from 4 after -6."
+  },
+  {
+    "iteration": 24,
+    "analysis_description": "trader_v24: v21 + **-1** trim when Sonic tight on M49 overlap (loose -6, floor 4). Hybrid tight trim + v21 loose path.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v24_round4_worse.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v24_round4_all.log"
+    ],
+    "used_to_decide": "v24 worse ties v21; all 10394 < v21 10430 (day2 extract 7908→7872). Tight -1 not worth it with loose -6; keep v21."
   }
 ]

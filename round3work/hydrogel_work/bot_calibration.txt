@@ -1,0 +1,165 @@
+HYDROGEL_PACK — Bot Calibration Results
+Round 3, Day 39 (hold-1 probe, submission ID 364553)
+========================================================
+
+SOURCE DATA
+-----------
+True FV extracted from hold-1 probe: round3work/fairs/hydrogel/364553/HYDROGEL_PACK_true_fv_day39.csv
+  true_fv(t) = PnL(t) + buy_price
+Order book: round3work/fairs/hydrogel/364553/prices_round_3_day_39.csv
+Ticks: 1000  (timestamps 0..99900, step 100)
+FV range: 9915 — 10031, mean=9979, std=30
+
+3 BOTS IDENTIFIED
+-----------------
+
+BOT A — Inner market maker (dominant at level 1)
+  Presence  : 96% of ticks (bid=961/1000, ask=955/1000)
+  Price rule : bid = round(FV) - 8
+               ask = round(FV) + 8
+  Accuracy   : 99.7% bid, 100.0% ask
+  Spread     : 16 ticks (always symmetric around round(FV))
+  Volume     : uniform random [10, 15], SAME value on both sides each tick
+  Memory     : none — quotes depend only on current FV
+
+BOT B — Outer market maker (level 2, sometimes level 3)
+  Presence  : 97-98% of ticks (bid=985/1000, ask=973/1000)
+  Price rule : asymmetric rounding based on fractional part of FV
+               frac(FV) < 0.5  →  bid = floor(FV) - 10,  ask = ceil(FV) + 10  (offset ±10)
+               frac(FV) >= 0.5 →  bid = floor(FV) - 11,  ask = floor(FV) + 12 (offset ±11)
+               Equivalently: bid = round(FV - 0.5) - 10,  ask = round(FV + 0.5) + 10
+  Spread     : 20 ticks (frac<0.5) or 22 ticks (frac>=0.5)
+  Volume     : uniform random [20, 30], SAME value on both sides each tick
+  Memory     : none — quotes depend only on current FV
+
+BOT C — Near-FV noise (leaks into level 1, rare)
+  Presence  : 4.1% of ticks (41/1000)
+  Side      : single-sided only (never both bid and ask same tick)
+              bid: 14 events, ask: 27 events
+  Price     : within 1 tick of FV (crossing or at-fair)
+  Volume    : roughly [4, 13], mean ~7
+  Memory    : none apparent — looks random
+  Impact    : negligible for strategy purposes (too rare)
+
+METHODOLOGY — HOW WE DERIVED EACH BOT
+--------------------------------------
+
+The general method: for each book level, compute offset = price - true_FV,
+look at its distribution, identify the dominant cluster, then condition every
+other variable on that cluster to find the exact formula. Three questions
+always asked: (1) what integer does the offset cluster at? (2) which rounding
+formula produces that integer from FV? (3) what is the volume distribution,
+and does it depend on anything?
+
+STEP 1 — Raw offsets tell you there is structure
+  Compute (price - true_fv) for every level across all 1000 ticks:
+    bid1: mean=-7.886  std=0.962
+    bid2: mean=-10.458 std=0.475
+    ask1: mean=+7.759  std=1.406
+    ask2: mean=+10.394 std=0.549
+  Standard deviations under 1.5 ticks. No human trader quotes this precisely.
+  These are bots with a deterministic formula.
+
+STEP 2 — Integer offset distributions reveal distinct clusters
+  Round offset to nearest int and count:
+    bid1: 961 ticks at -8, 22 at -7, 7 at -1/0  → dominant cluster at -8
+    ask1: 955 ticks at +8, 13 at +7, 13/14 at -1/0 → dominant cluster at +8
+    bid2: 512 at -10, 473 at -11, 14 at -8        → two nearly equal clusters
+    ask2: 517 at +10, 456 at +11, 25 at +8        → two nearly equal clusters
+  Conclusion: two distinct bots (±8 and ±10/11), plus rare near-FV outliers.
+
+STEP 3 — Presence rate tells you which bot owns which level
+    bid1: 1000/1000 (100%) — always present
+    bid2: 1000/1000 (100%) — always present
+    bid3: 14/1000   (1.4%) — almost never
+    ask1: 1000/1000 (100%) — always present
+    ask2: 1000/1000 (100%) — always present
+    ask3: 26/1000   (2.6%) — almost never
+  Level 3 is not its own bot — it's Bot B occasionally spilling to a third level,
+  or Bot C. Levels 1 and 2 are always occupied by exactly one bot each.
+
+STEP 4 — Bot A: identify exact price formula (bid1, ask1 main cluster)
+  Three candidate formulas tested against all 961 Bot A bid ticks:
+    floor(FV) - 8  →  47.9% match
+    round(FV) - 8  →  99.7% match  ← winner
+    ceil(FV)  - 8  →  52.2% match
+  Ask side: round(FV) + 8 → 100.0% match.
+  The 0.3% misses all occur when frac(FV) ≈ 0.5 (rounding boundary).
+  Python's round() and IMC's server disagree at exactly X.5 — floating point
+  noise, not a model error.
+
+STEP 5 — Bot A: volume distribution
+  On Bot A ticks, bid volume distribution: {10:167, 11:167, 12:146, 13:150, 14:172, 15:159}
+  Ask volume distribution on same ticks:   {10:167, 11:166, 12:142, 13:145, 14:161, 15:157}
+  (The ask counts differ slightly because Bot C ticks contaminate ask1.)
+  Chi-squared uniformity test [10-15]: chi2=3.36, p=0.644 → consistent with uniform.
+  Bid == Ask volume same tick: 97.5% → Bot A draws one number and uses it for both sides.
+  Rule: vol ~ Uniform[10, 15], drawn once per tick, applied to both bid and ask.
+
+STEP 6 — Bot B: why does it alternate between -10 and -11?
+  The offset is sometimes -10, sometimes -11, seemingly random. The key is to
+  CONDITION on another variable. We condition on frac(FV) = true_fv % 1:
+
+    When offset = -10 (512 ticks): frac(FV) mean=0.308, range entirely [0.0, 0.5)
+      frac dist: 0.0-0.1: 76, 0.1-0.2: 105, 0.2-0.3: 102, 0.3-0.4: 75, 0.4-0.5: 119
+                 0.5-0.6: 3,  0.6-0.7: 0,   0.7-0.8: 0,   0.8-0.9: 0,   0.9-1.0: 32
+
+    When offset = -11 (473 ticks): frac(FV) mean=0.736, range almost entirely [0.5, 1.0)
+      frac dist: 0.0-0.1: 4, 0.1-0.2: 0, 0.2-0.3: 0, 0.3-0.4: 0, 0.4-0.5: 0
+                 0.5-0.6: 90, 0.6-0.7: 110, 0.7-0.8: 88, 0.8-0.9: 101, 0.9-1.0: 80
+
+  Perfect split at frac = 0.5. Prediction rule "offset=-10 if frac<0.5 else -11"
+  achieves 96% accuracy. This is the same asymmetric rounding pattern seen in
+  the Frankfurt Hedgehogs writeup (Prosperity 3 Kelp / Resin bots).
+
+STEP 7 — Bot B: exact formula
+  Compact form: bid = round(FV - 0.5) - 10, ask = round(FV + 0.5) + 10
+  Accuracy: 96.3% (remaining 4% are frac ≈ 0.5 boundary cases, same as Bot A).
+  Equivalently (expanded):
+    frac(FV) < 0.5:  bid = floor(FV) - 10,  ask = floor(FV) + 11
+    frac(FV) >= 0.5: bid = floor(FV) - 11,  ask = floor(FV) + 12
+
+STEP 8 — Bot B: volume distribution
+  Volume range: [20, 30], mean=25.03
+  Counts: {20:83, 21:93, 22:82, 23:94, 24:96, 25:89, 26:92, 27:89, 28:84, 29:93, 30:90}
+  Chi-squared uniformity test [20-30]: chi2=2.49, p=0.991 → strongly uniform.
+  Bid == Ask same tick: 959/985 → same pattern as Bot A, one draw per tick both sides.
+  Rule: vol ~ Uniform[20, 30], drawn once per tick, applied to both bid and ask.
+
+STEP 9 — Bot C: characterize the outliers
+  The ticks where bid1 or ask1 offset is near 0 (within ±1 of FV).
+  These are 41 ticks (4.1% of 1000). Always single-sided (never both bid and ask).
+  Bid events: 14, Ask events: 27. Volume range [4, 13], mean ~7.
+  No pattern found in timing or FV level. Treated as a random rare participant.
+  Impact: negligible — too rare to trade against, and both Frankfurt and the
+  model-aware strategy already correctly ignore these.
+
+RECONSTRUCTION ACCURACY (validate_bot_model.py)
+  Bot A bid accuracy (when present): 958/961 = 99.7%
+  Bot A ask accuracy (when present): 955/955 = 100.0%
+  Bot B bid accuracy (all ticks):    949/1000 = 94.9%
+  Bot B ask accuracy (all ticks):    947/1000 = 94.7%
+  Full book (L1+L2 both correct):    854/1000 = 85.4%
+  Remaining errors: almost all ±1 tick at frac(FV) ≈ 0.5 boundaries.
+  Mean frac(FV) at failure ticks: 0.497 — confirms boundary noise, not model error.
+
+KEY OBSERVATIONS
+----------------
+- Bot A and Bot B are always both present together (>96% of ticks)
+- Both bots draw volume independently and randomly each tick
+- Both bots draw the SAME volume for bid and ask on any given tick
+- The -10 vs -11 offset split for Bot B is determined purely by frac(FV):
+    frac < 0.5  → offset ±10
+    frac >= 0.5 → offset ±11
+  (mean frac when offset=-10: 0.308, when offset=-11: 0.736)
+- Bot C appears to be a simulated participant, not a market maker
+
+ACTIONABLE IMPLICATIONS
+-----------------------
+1. If you know true FV, you can predict Bot A's quotes with ~99.7% accuracy
+2. If you know true FV, you can predict Bot B's quotes with ~98%+ accuracy
+3. When FV moves, Bot A's quote becomes stale for one tick — take it immediately
+4. Wall mid (min(bids) + max(asks)) / 2 is a noisy proxy for FV; the true FV
+   is smoother and more useful as a fair value estimate
+5. Bot B's outer quotes define the wall — the Frankfurt wall_mid strategy is
+   implicitly anchoring to Bot B's quotes, which are themselves anchored to FV

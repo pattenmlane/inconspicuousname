@@ -1,0 +1,8 @@
+{
+  "source": "trader_v2_round4_worse.json",
+  "num_submission_trades": 146,
+  "filled_abs_qty_by_symbol": {
+    "VEV_6000": 900,
+    "VEV_6500": 900
+  }
+}

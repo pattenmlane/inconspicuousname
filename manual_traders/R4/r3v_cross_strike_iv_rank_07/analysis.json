@@ -131,7 +131,7 @@
       "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v1_round4_worse_fills_summary.json",
       "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v1_round4_all_fills_summary.json"
     ],
-    "used_to_decide": "Phase 2 gate object below. Phase 1 Mark67 extract edge survives per-day (k=5) but Sonic gate does not amplify it in the Mark67 subset (n small); burst neighborhood around Mark01→Mark22 does not change Mark67 mean. Lead–lag shows modest positive corr at 1–2 price rows. v1 sim is tiny positive PnL (98) — not validation of 200k/day bar."
+    "used_to_decide": "Phase 2 gate object below. Phase 1 Mark67 extract edge survives per-day (k=5) but Sonic gate does not amplify it in the Mark67 subset (n small); burst neighborhood around Mark01→Mark22 does not change Mark67 mean. Lead–lag shows modest positive corr at 1–2 price rows. Post-fix (spread==1 execution + SUBMISSION-only fills summary): trader_v1 worse +2572 / all +3951 over days 1–3 — still far below 200k/day; prior +98 figure was wrong (v1 never traded on 1-tick extract)."
   },
   {
     "round4_phase2_complete": true,
@@ -165,7 +165,7 @@
       {
         "bullet": "6) Execution / adverse selection (sim)",
         "outputs": ["manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v1_round4_worse.json"],
-        "conclusion": "Minimal join-bid rule yields +98 total PnL (days 1–3) worse=all; tape edge does not yet scale — execution and selection differ from mid-only Phase 1."
+        "conclusion": "After fixing join-bid on 1-tick books (buy at ask when bid+1>=ask), gated Mark67-follow extract is +2572 worse / +3951 all over days 1–3 (11 SUBMISSION fills worse); still no 200k/day scale."
       },
       {
         "bullet": "7) Inventory-aware MM",
@@ -194,12 +194,12 @@
       },
       {
         "rank": 3,
-        "edge": "Sim: gated passive long extract after Mark67 lift is weakly profitable in aggregate",
-        "effect": "+98 total PnL (worse)",
-        "n": "sparse triggers",
+        "edge": "Sim: gated long extract after Mark67 lift (executable prices) is modestly profitable in aggregate",
+        "effect": "+2572 worse / +3951 all total PnL (days 1–3)",
+        "n": "11 SUBMISSION trades worse; 125 extract qty",
         "days": "1,2,3",
-        "evidence": "trader_v1 backtest logs",
-        "relation_to_phase1": "Downgrades economic magnitude vs mid-only t-stats; execution matters."
+        "evidence": "trader_v1 backtest logs; trader_v1_round4_worse_fills_summary.json",
+        "relation_to_phase1": "Mid-only t-stats overstate sim PnL; sign still positive on this slice."
       },
       {
         "rank": 4,
@@ -220,5 +220,92 @@
         "relation_to_phase1": "Orthogonal negative on basket-burst narrative for Mark67 overlay."
       }
     ]
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Round 4 Phase 3 (suggested direction.txt): re-run STRATEGY.txt Sonic joint gate on R4 aligned panel; spread–spread correlation; gate-conditioned extract forwards; merge gate onto enriched trades; three-way (gate × pair × symbol) k=20; Mark22 VEV_5300 sells by gate; burst×gate; Mark67 extract buys by gate; overlap counts. Script r4_phase3_sonic_gate_analysis.py. Sims: trader_v2 (wings), trader_v3 (Mark67+gate lift ask), r4_summarize_submission_fills.py for auditable own-fill counts.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_phase3_sonic_gate_analysis.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_summarize_submission_fills.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p3_spread_spread_corr.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p3_gate_extract_fwd_k20.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p3_trade_enriched_with_gate.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p3_three_way_pair_symbol_k20.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p3_mark22_vev5300_sell_by_gate.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p3_burst_extract_fwd_k20_by_gate.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p3_mark67_extract_buy_k20_by_gate.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_phase3_machine_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v2.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v3.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v2_round4_worse.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v2_round4_all.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v3_round4_worse.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v3_round4_all.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v2_round4_worse_fills_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v2_round4_all_fills_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v3_round4_worse_fills_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v3_round4_all_fills_summary.json",
+      "previous round work/round3work/vouchers_final_strategy/STRATEGY.txt",
+      "previous round work/round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt"
+    ],
+    "used_to_decide": "Phase 3 gate object below. Sonic tight regime reproduces positive extract forward k=20 vs loose on R4 panel; three-way CSV guides sim v2 (negative PnL under worse). v3 (Mark67+gate, lift ask, larger clip) is best sim so far (+5304 worse) but still orders of magnitude below 200k/day."
+  },
+  {
+    "round4_phase3_complete": true,
+    "sonic_joint_gate_on_r4": {
+      "spread_spread_corr_5200_5300": 0.308,
+      "evidence": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p3_spread_spread_corr.csv"
+    },
+    "extract_forward_k20_tight_vs_loose": {
+      "welch_t_and_p": "see r4_p3_gate_extract_fwd_k20.csv / phase3 summary",
+      "evidence": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p3_gate_extract_fwd_k20.csv"
+    },
+    "phase3_bullets": [
+      {
+        "bullet": "STRATEGY.txt Sonic gate on R4 (aligned panel)",
+        "outputs": ["manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p3_gate_extract_fwd_k20.csv", "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p3_spread_spread_corr.csv"],
+        "conclusion": "Joint tight gate: positive extract Δmid k=20 mean vs loose (tape-level replication of R3 community claim on R4 days 1–3)."
+      },
+      {
+        "bullet": "Gate merged onto counterparty-enriched trades",
+        "outputs": ["manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p3_trade_enriched_with_gate.csv"],
+        "conclusion": "Enables three-way conditioning without re-parsing raw CSV in downstream scripts."
+      },
+      {
+        "bullet": "Three-way interaction (sonic_tight × buyer|seller × symbol)",
+        "outputs": ["manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p3_three_way_pair_symbol_k20.csv"],
+        "conclusion": "Motivated trader_v2 (Mark01←Mark22 on VEV_6000/6500 under gate); sim shows -900 worse/all (consistent with wing flow not translating to long-hold edge)."
+      },
+      {
+        "bullet": "Mark22 VEV_5300 aggressive sells × gate",
+        "outputs": ["manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p3_mark22_vev5300_sell_by_gate.csv"],
+        "conclusion": "Most Mark22 5300 prints occur under tight gate in sample; markout split by gate is tabulated for future fades."
+      },
+      {
+        "bullet": "Burst × gate on extract k=20",
+        "outputs": ["manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p3_burst_extract_fwd_k20_by_gate.csv"],
+        "conclusion": "Structured burst risk under tight vs loose recorded for sizing overlays."
+      },
+      {
+        "bullet": "Mark67 extract aggressive buys × gate (k=20)",
+        "outputs": ["manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p3_mark67_extract_buy_k20_by_gate.csv"],
+        "conclusion": "Subset sizes small; used with Phase-2 note that k=5 gate interaction on Mark67 is not a clean amplifier — v3 sim tests executable lift instead."
+      },
+      {
+        "bullet": "Execution / sim (worse + all)",
+        "outputs": [
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v1_round4_worse.json",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v3_round4_worse.json"
+        ],
+        "conclusion": "trader_v3 (Sonic gate + Mark67 agg buy + lift ask, clip 24): +5304 worse, +10953 all over days 1–3; trader_v2 wings: -900. Fills summaries count SUBMISSION rows only."
+      }
+    ],
+    "phase3_sim_headline": {
+      "best_trader": "trader_v3.py",
+      "total_profit_worse": 5304,
+      "total_profit_all": 10953,
+      "submission_fills_worse": {"n_trades": 27, "extract_qty": 248},
+      "gap_to_target": "200k/day × 3 days would be 600k total; best observed ~0.9% of that under worse fills."
+    }
   }
 ]

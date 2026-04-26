@@ -111,6 +111,13 @@ class TestRunner:
                 plainValueObservations={}, conversionObservations={"MAGNIFICENT_MACARONS": conversion_observation}
             )
 
+        # Expose this timestamp's tape trades (buyer/seller) to the trader before order placement.
+        # Previously market_trades stayed empty until after OrderMatchMaker ran.
+        mt: dict[Symbol, list] = {}
+        for sym, trlist in data.trades.get(state.timestamp, {}).items():
+            mt[sym] = list(trlist)
+        state.market_trades = mt
+
         return state
 
     # def __validate_orders(self, orders: dict[Symbol, list[Order]]) -> None:

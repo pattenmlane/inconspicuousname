@@ -27,26 +27,85 @@
   {
     "iteration": 1,
     "trader_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v1.py",
-    "strategy_description": "Phase2 sim probe: Sonic joint gate (5200+5300 spread<=2) + market_trades Mark67 aggressive buy on VELVETFRUIT_EXTRACT (price>=ask) -> join-bid extract 18 with cooldown 8 buckets.",
-    "total_profit": 98,
+    "strategy_description": "Phase2 sim: Sonic gate + Mark67 agg buy extract -> limit buy extract (bid+1 if spread>=2 else at ask). Cooldown 8, clip 18. Fix 2026-04-25: v1 previously skipped all 1-tick spreads (bid+1>=ask), so it never traded.",
+    "total_profit": 2572,
     "backtest_round": 4,
     "match_trades": "worse",
     "backtest_log_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v1_round4_worse.json",
     "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v1_round4_worse_fills_summary.json",
+    "fills_note": "tradeHistory mixes tape prints with SUBMISSION fills; fills_summary counts buyer==SUBMISSION only (r4_summarize_submission_fills.py).",
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v1.py\" 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v1_round4_worse.json",
     "backtest_worse": {
       "match_trades": "worse",
-      "total_profit": 98,
+      "total_profit": 2572,
+      "profit_by_day": {"1": 292, "2": 2481, "3": -202},
       "backtest_log_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v1_round4_worse.json",
       "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v1_round4_worse_fills_summary.json",
       "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v1.py\" 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v1_round4_worse.json"
     },
     "backtest_all": {
       "match_trades": "all",
-      "total_profit": 98,
+      "total_profit": 3951,
+      "profit_by_day": {"1": 585, "2": 3690, "3": -324},
       "backtest_log_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v1_round4_all.json",
       "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v1_round4_all_fills_summary.json",
       "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v1.py\" 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v1_round4_all.json"
+    }
+  },
+  {
+    "iteration": 2,
+    "trader_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v2.py",
+    "strategy_description": "Phase3 sim: Sonic gate + Mark01<-Mark22 on VEV_6000/6500 tape -> limit buy wings (bid+1 or ask if 1-tick). Clip 14 each. Same spread fix as v1.",
+    "total_profit": -900,
+    "backtest_round": 4,
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v2_round4_worse.json",
+    "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v2_round4_worse_fills_summary.json",
+    "fills_note": "SUBMISSION-only summary in fills_summary JSON.",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v2.py\" 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v2_round4_worse.json",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -900,
+      "profit_by_day": {"1": -300, "2": -300, "3": -300},
+      "backtest_log_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v2_round4_worse.json",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v2_round4_worse_fills_summary.json",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v2.py\" 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v2_round4_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -900,
+      "profit_by_day": {"1": -300, "2": -300, "3": -300},
+      "backtest_log_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v2_round4_all.json",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v2_round4_all_fills_summary.json",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v2.py\" 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v2_round4_all.json"
+    }
+  },
+  {
+    "iteration": 3,
+    "trader_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v3.py",
+    "strategy_description": "Phase1+3: Sonic gate + Mark67 agg buy extract -> always lift ask (clip 24, cooldown 6). Tests whether explicit ask lift improves fill rate vs v1 conditional bid+1/ask.",
+    "total_profit": 5304,
+    "backtest_round": 4,
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v3_round4_worse.json",
+    "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v3_round4_worse_fills_summary.json",
+    "fills_note": "SUBMISSION-only summary in fills_summary JSON.",
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v3.py\" 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v3_round4_worse.json",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 5304,
+      "profit_by_day": {"1": 1268, "2": 3590, "3": 447},
+      "backtest_log_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v3_round4_worse.json",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v3_round4_worse_fills_summary.json",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v3.py\" 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v3_round4_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 10953,
+      "profit_by_day": {"1": 2536, "2": 6777, "3": 1640},
+      "backtest_log_file": "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v3_round4_all.json",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v3_round4_all_fills_summary.json",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v3.py\" 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v3_round4_all.json"
     }
   }
 ]

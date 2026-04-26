@@ -127,8 +127,10 @@ class Trader:
 
         pos_e = int(pos.get(sym_ex, 0))
         qb = min(BUY_Q, EX_LIM - pos_e)
-        if qb <= 0 or ubb + 1 >= uba:
+        if qb <= 0:
             return {}, 0, json.dumps(td, separators=(",", ":"))
+        # Join-bid at bid+1 only works when spread>=2; at spread==1 use best ask (still passive vs worse tape match).
+        buy_px = int(uba) if ubb + 1 >= uba else ubb + 1
 
         td[_LAST_FIRE] = int(bucket)
-        return {sym_ex: [Order(sym_ex, ubb + 1, qb)]}, 0, json.dumps(td, separators=(",", ":"))
+        return {sym_ex: [Order(sym_ex, buy_px, qb)]}, 0, json.dumps(td, separators=(",", ":"))

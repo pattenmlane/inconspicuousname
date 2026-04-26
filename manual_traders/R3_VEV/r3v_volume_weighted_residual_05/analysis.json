@@ -139,5 +139,23 @@
       "analysis_outputs/v22_all_fills.json"
     ],
     "used_to_decide": "Use joint tightness as a **Sonic** book-state modulator: tight both legs -> full q; else half-rounded q, but in practice identical to v21 at int(20/vega). Keep v21 5400 stress asymmetry. Record both `--match-trades worse` and `all` (identical PnL/fills this run). Next: try gate tied to *quoted* 5200/5300 size or explicit extract legs with spread-aware limits."
+  },
+  {
+    "iteration": 23,
+    "analysis_description": "Strategy pivot to round3work/vouchers_final_strategy only. Reread STRATEGY.txt and ORIGINAL_DISCORD_QUOTES.txt (Sonic: both 5200 and 5300 spread <=2; inclineGod: spreads as signals). Existing r3_tight_spread_summary.txt: K=20 forward extract mid higher when joint tight (Welch t on day 0). Implemented v23\u2013v26: gate+extract+aggressive VEV (v23), extract-only (v24), gate+passive VEV (v25), VEV-only passive (v26). Mid-based forward edge does not translate to PnL under worse fills without careful execution; v25 all-mode is best in this batch but still far from 200k/day floor.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "analysis_outputs/v23_tight_gate_only_worse.log",
+      "analysis_outputs/v23_tight_gate_only_all.log",
+      "analysis_outputs/v24_extract_only_gate_worse.log",
+      "analysis_outputs/v24_extract_only_gate_all.log",
+      "analysis_outputs/v25_passive_vev_worse.log",
+      "analysis_outputs/v25_passive_vev_all.log",
+      "analysis_outputs/v26_vev_only_worse.log",
+      "analysis_outputs/v26_vev_only_all.log"
+    ],
+    "used_to_decide": "Ship v23\u2013v26 as pure gate-thesis experiments. Primary metric --match-trades worse: v25 -13.6k, v23 -10.6k, v24 -46k, v26 0. Compare all: v25 +4.3k best. Next: maker-style 5200/5300 inside spread when tight, or slower extract EMA, or smaller U size; avoid lifting option asks on worse."
   }
 ]

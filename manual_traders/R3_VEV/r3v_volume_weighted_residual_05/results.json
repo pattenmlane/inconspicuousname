@@ -209,5 +209,89 @@
       "trades_or_fills_summary": "trade_history_rows=5070, own_fill_rows=1697, own_fill_abs_qty_sum=4510, own SUBMISSION: HYDROGEL_PACK=998, VEV_5400=699 (identical worse vs all in this run)",
       "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v22.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v22_all.log"
     }
+  },
+  {
+    "iteration": 23,
+    "trader_file": "trader_v23.py",
+    "strategy_description": "vouchers_final_strategy (pivot): joint 5200+5300 spread<=2 (TH=2). Gate off: flatten all. Gate on: EMA(extract mid) mean-rev (buy ask / sell bid) + aggressive long 5200/5300 at ask on dip. No hydrogel.",
+    "total_profit": -10639,
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -10639,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v23_tight_gate_only_worse.log",
+      "trades_or_fills_summary": "trade_history_rows=5352, own_fill_rows=1187, own_fill_abs_qty_sum=19324, own_by_symbol={'VELVETFRUIT_EXTRACT': 1027, 'VEV_5200': 98, 'VEV_5300': 62}",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v23.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v23_tight_gate_only_worse.log"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 3741,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v23_tight_gate_only_all.log",
+      "trades_or_fills_summary": "trade_history_rows=5473, own_fill_rows=1759, own_fill_abs_qty_sum=23718, own_by_symbol={'VELVETFRUIT_EXTRACT': 1599, 'VEV_5200': 98, 'VEV_5300': 62}",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v23.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v23_tight_gate_only_all.log"
+    }
+  },
+  {
+    "iteration": 24,
+    "trader_file": "trader_v24.py",
+    "strategy_description": "Same joint gate; extract EMA mean-rev only when gate on; flatten VEV when off. No option flow.",
+    "total_profit": -46297,
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -46297,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v24_extract_only_gate_worse.log",
+      "trades_or_fills_summary": "trade_history_rows=6138, own_fill_rows=1971, own_fill_abs_qty_sum=22967, own_by_symbol={'VELVETFRUIT_EXTRACT': 1971}",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v24.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v24_extract_only_gate_worse.log"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -31982,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v24_extract_only_gate_all.log",
+      "trades_or_fills_summary": "trade_history_rows=6282, own_fill_rows=2592, own_fill_abs_qty_sum=27314, own_by_symbol={'VELVETFRUIT_EXTRACT': 2592}",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v24.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v24_extract_only_gate_all.log"
+    }
+  },
+  {
+    "iteration": 25,
+    "trader_file": "trader_v25.py",
+    "strategy_description": "Joint gate + U mean-rev + passive 5200/5300 (join bid on dip, join ask on rally vs EMA). Smaller sizes than v23.",
+    "total_profit": -13586,
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -13586,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v25_passive_vev_worse.log",
+      "trades_or_fills_summary": "trade_history_rows=5299, own_fill_rows=1132, own_fill_abs_qty_sum=13154, own_by_symbol={'VELVETFRUIT_EXTRACT': 1132}",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v25.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v25_passive_vev_worse.log"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 4280,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v25_passive_vev_all.log",
+      "trades_or_fills_summary": "trade_history_rows=5462, own_fill_rows=1746, own_fill_abs_qty_sum=17525, own_by_symbol={'VELVETFRUIT_EXTRACT': 1724, 'VEV_5300': 21, 'VEV_5200': 1}",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v25.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v25_passive_vev_all.log"
+    }
+  },
+  {
+    "iteration": 26,
+    "trader_file": "trader_v26.py",
+    "strategy_description": "Joint gate + passive 5200/5300 only (EMA of U as signal; no extract orders).",
+    "total_profit": 0,
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 0,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v26_vev_only_worse.log",
+      "trades_or_fills_summary": "trade_history_rows=4170, own_fill_rows=0, own_fill_abs_qty_sum=0, own_by_symbol={}",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v26.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v26_vev_only_worse.log"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 637,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v26_vev_only_all.log",
+      "trades_or_fills_summary": "trade_history_rows=4170, own_fill_rows=18, own_fill_abs_qty_sum=69, own_by_symbol={'VEV_5300': 17, 'VEV_5200': 1}",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_volume_weighted_residual_05/trader_v26.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_volume_weighted_residual_05/analysis_outputs/v26_vev_only_all.log"
+    }
   }
 ]

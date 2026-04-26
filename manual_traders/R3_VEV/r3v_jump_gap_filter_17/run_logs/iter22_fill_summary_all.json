@@ -1,0 +1,14 @@
+{
+  "source": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter22_backtest_all.log",
+  "match_trades": "all",
+  "per_day": {
+    "0": 3546.0,
+    "1": 17308.0,
+    "2": 53702.0,
+    "3": -270.0
+  },
+  "total_profit": 74286.0,
+  "extract_plus_vev_only": true,
+  "hydrogel_pnl": 0.0,
+  "comparable_3day_total": 74556.0
+}

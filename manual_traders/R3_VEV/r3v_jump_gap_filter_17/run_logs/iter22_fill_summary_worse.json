@@ -1,0 +1,15 @@
+{
+  "source": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter22_backtest_worse.log",
+  "match_trades": "worse",
+  "per_day": {
+    "0": 3106.0,
+    "1": 16312.0,
+    "2": 51644.0,
+    "3": -302.0
+  },
+  "total_profit": 70759.0,
+  "extract_plus_vev_only": true,
+  "hydrogel_pnl": 0.0,
+  "comparable_3day_total": 71062.0,
+  "note": "v22: LOO spline + strict joint gate; no jump-PTP or move-asym; day_3 60% VEV size, extract clips 15/5."
+}

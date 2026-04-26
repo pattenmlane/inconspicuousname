@@ -12,7 +12,7 @@
       "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v0.py 4 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v0_worse.log",
       "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v0_worse.log",
       "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v0_worse.json",
-      "note": "Round 4 log tradeHistory lists tape trades with buyer/seller; fill_summary counts those rows (not SUBMISSION-only like R3)."
+      "note": "fill_summary counts tradeHistory rows where buyer or seller is SUBMISSION (agent fills only); tape Mark prints are excluded."
     },
     "backtest_all": {
       "match_trades": "all",
@@ -20,6 +20,28 @@
       "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v0.py 4 --data Prosperity4Data --match-trades all --no-vis --out manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v0_all.log",
       "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v0_all.log",
       "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v0_all.json"
+    }
+  },
+  {
+    "iteration": 1,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Lagged (+100) taker buy 1 lot VELVETFRUIT_EXTRACT after precomputed Mark 67 buy-aggressive tape prints; only when VEV_5200 and VEV_5300 spreads \u22642 (Sonic gate). Signals: outputs/phase2/signals_mark67_buy_aggr_extract.json.",
+    "total_profit": 447.5,
+    "backtest_round": 4,
+    "backtest_days": "4-1 4-2 4-3",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 447.5,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v1.py 4 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v1_worse.log",
+      "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v1_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v1_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 447.5,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v1.py 4 --data Prosperity4Data --match-trades all --no-vis --out manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v1_all.log",
+      "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v1_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v1_all.json"
     }
   }
 ]

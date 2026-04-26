@@ -24,7 +24,12 @@ def summarize(path: Path) -> dict:
             last_pnl[prod] = float(row["profit_and_loss"])
         except (ValueError, KeyError):
             pass
-    th = [t for t in data.get("tradeHistory", []) if t.get("buyer") or t.get("seller")]
+    # Round 4 tape rows always have buyer+seller (Mark IDs). Count **our** fills only.
+    th = [
+        t
+        for t in data.get("tradeHistory", [])
+        if t.get("buyer") == "SUBMISSION" or t.get("seller") == "SUBMISSION"
+    ]
     qty_by: Counter[str] = Counter()
     ntr: Counter[str] = Counter()
     for t in th:

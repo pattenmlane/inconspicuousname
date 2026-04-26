@@ -15,33 +15,7 @@
     "VEV_6000": 0.0,
     "VEV_6500": 0.0
   },
-  "n_submission_trade_rows": 4281,
-  "submission_qty_by_symbol": {
-    "VEV_5400": 959,
-    "VEV_5500": 1069,
-    "VEV_6000": 1105,
-    "VEV_6500": 1105,
-    "HYDROGEL_PACK": 4096,
-    "VEV_4000": 876,
-    "VELVETFRUIT_EXTRACT": 8203,
-    "VEV_5300": 548,
-    "VEV_5200": 162,
-    "VEV_4500": 6,
-    "VEV_5000": 6,
-    "VEV_5100": 6
-  },
-  "submission_trades_by_symbol": {
-    "VEV_5400": 276,
-    "VEV_5500": 306,
-    "VEV_6000": 317,
-    "VEV_6500": 317,
-    "HYDROGEL_PACK": 1022,
-    "VEV_4000": 442,
-    "VELVETFRUIT_EXTRACT": 1381,
-    "VEV_5300": 164,
-    "VEV_5200": 47,
-    "VEV_4500": 3,
-    "VEV_5000": 3,
-    "VEV_5100": 3
-  }
+  "n_submission_trade_rows": 0,
+  "submission_qty_by_symbol": {},
+  "submission_trades_by_symbol": {}
 }

@@ -1,0 +1,15 @@
+{
+  "n_signals_mark67": 164,
+  "basket_burst_timestamps": 273,
+  "phase2_outputs": [
+    "/workspace/manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/extract_spread_compression_fwd_abs5.csv",
+    "/workspace/manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/extract_spread_compression_summary_by_day.csv",
+    "/workspace/manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/iv_skew_proxy_vs_mark01_22.csv",
+    "/workspace/manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/mark22_sell_pressure_vs_dextract_corr.csv",
+    "/workspace/manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/pair_burst_gate_fwd_extract_k20.csv",
+    "/workspace/manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/phase2_summary.json",
+    "/workspace/manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/signals_mark67_buy_aggr_extract.json",
+    "/workspace/manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/signed_flow_lag_corr.csv",
+    "/workspace/manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/vev5300_after_01_22_basket_burst_drift.csv"
+  ]
+}

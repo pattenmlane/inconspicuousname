@@ -6,7 +6,7 @@
       "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_phase1_counterparty_analysis.py",
       "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/phase1_summary.json"
     ],
-    "used_to_decide": "Phase 1 gate documented below; no Phase 2 until ops requests."
+    "used_to_decide": "Phase 1 gate documented below; Phase 2 started after this ping."
   },
   {
     "round4_phase1_complete": {
@@ -94,6 +94,113 @@
       "reference_scripts": [
         "round4work/r4_counterparty_initial_sketch.py",
         "round4work/outputs/r4_initial_analysis_summary.txt"
+      ]
+    }
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Phase 2 tape script r4_phase2_analysis.py: named-bot \u00d7 burst neighbourhood \u00d7 Sonic joint gate tables; extract spread-compression event study; signed-flow lag corr vs \u0394mid; crude IV-skew proxy vs Mark01\u219222 prints; Mark22 sell pressure vs \u0394extract; signals JSON for trader_v1. trader_v1: lagged Mark67 follow + joint gate; backtest R4 days 1\u20133 worse+all.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_phase2_analysis.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/phase2_summary.json",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v1.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v1_worse.log",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v1_all.log"
+    ],
+    "used_to_decide": "Phase 2 gate below; Phase 3 (Sonic gate on all stats) next ping."
+  },
+  {
+    "round4_phase2_complete": {
+      "phase1_interaction": "Mark67 extract edge **survives** Phase-2 execution test when adding Sonic joint gate + 1-step lag: trader_v1 **+447.5** over 3 days (35 agent fills), worse=all. Phase-1 burst-vs-control story is **refined**: Mark01\u219222 **\u22654-print** timestamps (273) show **positive** mean VEV_5300 drift at +5 and +20 steps on **all** days (vev5300_after_01_22_basket_burst_drift.csv)\u2014trend-follow not mean-revert at those horizons. **Joint_gate=True** cells in pair\u00d7burst table are empty at our n\u2014most prints occur when 5200/5300 are **not** both \u22642; trader still uses gate at **act** time (confirms Phase-1 mid stats were mostly wide-book).",
+      "bullet_1_named_bot_burst": {
+        "outputs": [
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/pair_burst_gate_fwd_extract_k20.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/vev5300_after_01_22_basket_burst_drift.csv"
+        ],
+        "conclusion": "Mark01\u219222 **multi-print** bursts (same ts, \u22654 rows): forward VEV_5300 mid rises ~+0.25 (K=5) and ~+0.35\u20130.43 (K=20) consistently across days 1\u20133 (n\u224875\u2013116 events/day). Near-burst (\u00b1100 tape units) flag tags most 01\u219222 voucher prints for stratification."
+      },
+      "bullet_2_microstructure": {
+        "outputs": [
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/extract_spread_compression_fwd_abs5.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/extract_spread_compression_summary_by_day.csv"
+        ],
+        "conclusion": "Extract BBO spread **compression** events (~2k per day) show unconditional mean |mid(t+5)\u2212mid(t)| \u2248 **1.8** price points\u2014baseline short-horizon vol; not yet a directional edge without conditioning on counterparty."
+      },
+      "bullet_3_lead_lag": {
+        "outputs": [
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/signed_flow_lag_corr.csv"
+        ],
+        "conclusion": "Signed aggressive flow vs \u0394mid: correlations are **small** (|r| \u2264 ~0.09); day 2 extract shows lag-1 **+0.089**\u2014weak microstructure lead worth Phase-3 gating only."
+      },
+      "bullet_4_regime_splits": {
+        "outputs": [
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/pair_burst_gate_fwd_extract_k20.csv"
+        ],
+        "conclusion": "Joint tight gate co-occurring with prints is **rare** in the trade tape merge; regime work should use **price** CSV inner-join (Phase 3) rather than trade-row gate only."
+      },
+      "bullet_5_vol_smile": {
+        "outputs": [
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/iv_skew_proxy_vs_mark01_22.csv"
+        ],
+        "conclusion": "Crude wing/ATM skew proxy is slightly **less negative** on Mark01\u219222 print timestamps vs off-print (~+1 skew units)\u2014hypothesis-generating only; needs proper IV surface in Phase 3."
+      },
+      "bullet_6_execution_adverse": {
+        "outputs": [
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase1/passive_adverse_by_pair.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v1_worse.json"
+        ],
+        "conclusion": "summarize_backtest_log.py now filters **SUBMISSION** fills for R4; taker strategy fills are auditable (v1: 35 rows). Phase-1 passive-adverse table still informs **who not to quote**."
+      },
+      "bullet_7_inventory_mm": {
+        "outputs": [
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/mark22_sell_pressure_vs_dextract_corr.csv"
+        ],
+        "conclusion": "Per-timestamp Mark22 sell qty vs concurrent \u0394extract mid: small **negative** corr (\u2248\u22120.02 to \u22120.028) each day\u2014light sell pressure aligns with slightly down extract tick; not strong enough for inventory MM alone."
+      },
+      "top_5_tradeable_edges_phase2": [
+        {
+          "rank": 1,
+          "edge": "**Simulated** lag-1 taker long extract after Mark67 buy-aggr print + Sonic joint gate (trader_v1).",
+          "pnl_or_effect": "+447.5 total PnL (3 tape days); 35 fills; worse=all",
+          "paths": [
+            "manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v1.py",
+            "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v1_worse.log"
+          ],
+          "relation_to_phase1": "Confirms Phase-1 Mark67 predictiveness is not only mid-fit; **gate at execution** is load-bearing."
+        },
+        {
+          "rank": 2,
+          "edge": "After Mark01\u219222 **\u22654-print burst** timestamps, **VEV_5300** mid drifts **up** at 5 and 20 steps (all days).",
+          "effect": "mean \u0394 \u2248 +0.25 (K=5), +0.35\u20130.43 (K=20)",
+          "paths": [
+            "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/vev5300_after_01_22_basket_burst_drift.csv"
+          ],
+          "relation_to_phase1": "Refines Phase-1 burst table: not extract direction but **core strike trend** after basket choreography."
+        },
+        {
+          "rank": 3,
+          "edge": "Mark67\u2192Mark55 / Mark67\u2192Mark22 extract prints show large positive conditional mean forward extract in pair\u00d7burst table (wide-book regime).",
+          "paths": [
+            "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/pair_burst_gate_fwd_extract_k20.csv"
+          ],
+          "relation_to_phase1": "Adds **pair** context to single-name Mark67 signal."
+        },
+        {
+          "rank": 4,
+          "edge": "Extract spread compression \u2192 predictable short-horizon **absolute** mid move (~1.8) \u2014 vol / straddle regime signal.",
+          "paths": [
+            "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/extract_spread_compression_summary_by_day.csv"
+          ],
+          "relation_to_phase1": "Orthogonal (no counterparty); useful for sizing/risk."
+        },
+        {
+          "rank": 5,
+          "edge": "Mark22 sell pressure vs \u0394extract: consistent weak negative corr \u2014 avoid leaning long extract into heavy Mark22 sell prints without offset.",
+          "paths": [
+            "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/mark22_sell_pressure_vs_dextract_corr.csv"
+          ],
+          "relation_to_phase1": "Complements passive-adverse motifs involving Mark22."
+        }
       ]
     }
   }

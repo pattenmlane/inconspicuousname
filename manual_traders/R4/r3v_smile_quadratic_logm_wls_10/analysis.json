@@ -93,6 +93,8 @@
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_burst_echo_by_day.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_top_pair_fwd_by_day.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_fwd_by_symbol_day.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m1438_fwd_by_symbol_day.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m3814_fwd_by_symbol_day.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_gate.json",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
     ],
@@ -118,6 +120,8 @@
         "burst_echo_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_burst_echo_by_day.csv",
         "top_pair_fwd_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_top_pair_fwd_by_day.csv",
         "m0122_fwd_by_symbol_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_fwd_by_symbol_day.csv",
+        "m1438_fwd_by_symbol_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m1438_fwd_by_symbol_day.csv",
+        "m3814_fwd_by_symbol_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m3814_fwd_by_symbol_day.csv",
         "gate_json": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_gate.json",
         "script": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
       },
@@ -189,5 +193,15 @@
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
     ],
     "used_to_decide": "M01→M22: K=100 on day 3 shows mean_fwd≈0.14 and t≈2.24 (n=549) while K=5 stays negative — horizon matters; day-stability for short K still mixed. Mark14→Mark38 / Mark38→Mark14 cells flip sign by day at K=20 with low n. Sim ablation: trader_v4 (MM 28 vs v1 18) identical PnL 3634 — clip not binding vs v1 on R4 joint-gate MM."
+  },
+  {
+    "iteration": "round4_phase3_hydro_duopoly_symbol_horizon",
+    "analysis_description": "Phase 1 hydro duopoly legs Mark14→Mark38 and Mark38→Mark14 decomposed by symbol × day × K on asof-tight trades (same convention as r4_p3_m0122_fwd_by_symbol_day.csv). Primary mass is HYDROGEL_PACK rows; voucher legs are low-n.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m1438_fwd_by_symbol_day.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m3814_fwd_by_symbol_day.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
+    ],
+    "used_to_decide": "M14→M38 on HYDROGEL under tight: day1 K20 mean≈+2.08 t≈1.34 (n=25); day3 K5/K20 negative means with n=68. Return leg M38→M14 in second CSV for asymmetry. Sim: trader_v6 hydro clip 14 vs v5 clip 8 — identical 11526 and same hydro day PnL (clip not binding vs v5)."
   }
 ]

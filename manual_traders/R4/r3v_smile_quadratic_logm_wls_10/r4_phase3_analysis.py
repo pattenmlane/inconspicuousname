@@ -21,6 +21,8 @@ Writes:
   r4_p3_burst_echo_by_day.csv       — M01→M22 ≥3VEV burst echo grouped by day
   r4_p3_top_pair_fwd_by_day.csv     — top graph pairs × day × K (asof-tight trades only)
   r4_p3_m0122_fwd_by_symbol_day.csv — Mark01→Mark22: per symbol × day × K (tight only)
+  r4_p3_m1438_fwd_by_symbol_day.csv — Mark14→Mark38 hydro duopoly leg (same layout)
+  r4_p3_m3814_fwd_by_symbol_day.csv — Mark38→Mark14 return leg
   r4_phase3_summary.txt
   r4_phase3_gate.json               — fragment for analysis.json
 """
@@ -403,6 +405,55 @@ def main() -> None:
                 )
     pd.DataFrame(sym_rows).to_csv(OUT / "r4_p3_m0122_fwd_by_symbol_day.csv", index=False)
 
+    mt = md[md["joint_tight"]]
+
+    def write_pair_fwd_by_symbol_day(
+        buyer: str, seller: str, out_name: str, *, tight_md: pd.DataFrame
+    ) -> None:
+        base = tight_md[(tight_md["buyer"] == buyer) & (tight_md["seller"] == seller)]
+        rows_out: list[dict] = []
+        for sym in sorted(base["symbol"].astype(str).unique()):
+            for d in DAYS:
+                sub_sym = base[(base["symbol"] == sym) & (base["day"] == d)]
+                for k in KS:
+                    col = f"fwd_mid_{k}"
+                    vals = sub_sym[col].dropna().astype(float).to_numpy()
+                    vals = vals[np.isfinite(vals)]
+                    n = len(vals)
+                    if n < 5:
+                        rows_out.append(
+                            {
+                                "buyer": buyer,
+                                "seller": seller,
+                                "symbol": sym,
+                                "day": int(d),
+                                "horizon_K": k,
+                                "n": n,
+                                "mean_fwd": float("nan"),
+                                "t_vs_zero": float("nan"),
+                            }
+                        )
+                        continue
+                    mu = float(np.mean(vals))
+                    sd = float(np.std(vals, ddof=1))
+                    t0 = float(mu / (sd / math.sqrt(n))) if n > 1 and sd > 0 else float("nan")
+                    rows_out.append(
+                        {
+                            "buyer": buyer,
+                            "seller": seller,
+                            "symbol": sym,
+                            "day": int(d),
+                            "horizon_K": k,
+                            "n": n,
+                            "mean_fwd": mu,
+                            "t_vs_zero": t0,
+                        }
+                    )
+        pd.DataFrame(rows_out).to_csv(OUT / out_name, index=False)
+
+    write_pair_fwd_by_symbol_day("Mark 14", "Mark 38", "r4_p3_m1438_fwd_by_symbol_day.csv", tight_md=mt)
+    write_pair_fwd_by_symbol_day("Mark 38", "Mark 14", "r4_p3_m3814_fwd_by_symbol_day.csv", tight_md=mt)
+
     # --- Top directed pairs (from Phase 1 graph) × day × horizon, asof-tight only
     eg_path = OUT / "r4_p1_graph_edges.csv"
     if eg_path.is_file():
@@ -420,7 +471,6 @@ def main() -> None:
             ("Mark 67", "Mark 49"),
         ]
     pair_rows: list[dict] = []
-    mt = md[md["joint_tight"]]
     for buyer, seller in top_pairs:
         base = mt[(mt["buyer"] == buyer) & (mt["seller"] == seller)]
         for d in DAYS:
@@ -683,7 +733,7 @@ def main() -> None:
     lines.extend(
         [
             "",
-            "Counterparty day tables: r4_p3_mark_fwd_by_day.csv, r4_p3_m0122_fwd20_by_day.csv, r4_p3_m0122_fwd_by_symbol_day.csv, r4_p3_burst_echo_by_day.csv, r4_p3_top_pair_fwd_by_day.csv",
+            "Counterparty day tables: r4_p3_mark_fwd_by_day.csv, r4_p3_m0122_fwd20_by_day.csv, r4_p3_m0122_fwd_by_symbol_day.csv, r4_p3_m1438_fwd_by_symbol_day.csv, r4_p3_m3814_fwd_by_symbol_day.csv, r4_p3_burst_echo_by_day.csv, r4_p3_top_pair_fwd_by_day.csv",
             "",
             "Top spread–spread |r| on inner-join timestamps (inclineGod panel):",
         ]
@@ -763,6 +813,8 @@ def main() -> None:
                 "r4_p3_burst_echo_by_day.csv",
                 "r4_p3_top_pair_fwd_by_day.csv",
                 "r4_p3_m0122_fwd_by_symbol_day.csv",
+                "r4_p3_m1438_fwd_by_symbol_day.csv",
+                "r4_p3_m3814_fwd_by_symbol_day.csv",
                 "r4_phase3_summary.txt",
                 "r4_phase3_analysis.py",
             )},

@@ -1,0 +1,9 @@
+{
+  "n_bursts_with_valid_fwd100": 315,
+  "mean_revert_pattern_count": 112,
+  "trend_pattern_count": 110,
+  "other_or_flat_count": 93,
+  "frac_meanrev": 0.35555555555555557,
+  "frac_trend": 0.3492063492063492,
+  "definition": "meanrev: r5 and (r20-r5) opposite sign; trend: r5,r20,r100 same sign and |r100|>=|r5|"
+}

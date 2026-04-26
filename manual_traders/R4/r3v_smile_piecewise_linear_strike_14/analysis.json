@@ -28,9 +28,10 @@
           "outputs": [
             "analysis_outputs/r4_participant_screen_k20.json",
             "analysis_outputs/r4_participant_screen_fwd20_day_bootstrap.json",
+            "analysis_outputs/r4_participant_extract_burst_stratify_k20.json",
             "analysis_outputs/r4_phase1_run_meta.json"
           ],
-          "conclusion": "Pooled K=20 screen: Mark 67 buyer_agg on VELVETFRUIT_EXTRACT mean fwd mid ~+1.81 (n=164, t~5.86); day-split +2.03 / +1.45 / +2.02 on days 1/2/3. Mark 49 buyer_agg extract n=105 mean ~+1.83. **Extension:** day-block bootstrap (2000× resample 3 days with replacement) — Mark 67 buyer_agg extract pooled mean CI95 ~[1.45, 2.03] (see bootstrap JSON); Mark 55 buyer_agg extract CI excludes 0 ~[0.33, 0.57]."
+          "conclusion": "Pooled K=20 screen: Mark 67 buyer_agg on VELVETFRUIT_EXTRACT mean fwd mid ~+1.81 (n=164, t~5.86); day-split +2.03 / +1.45 / +2.02 on days 1/2/3. Mark 49 buyer_agg extract n=105 mean ~+1.83. **Extension:** day-block bootstrap (2000× resample 3 days with replacement) — Mark 67 buyer_agg extract pooled mean CI95 ~[1.45, 2.03] (see bootstrap JSON); Mark 55 buyer_agg extract CI excludes 0 ~[0.33, 0.57]. **Burst split:** same cells vs burst ts — Mark 67 buyer_agg has **n=2** burst vs **162** isolated (burst means not stable); see r4_participant_extract_burst_stratify_k20.json."
         },
         {
           "bullet": "2) Deviation from bot baseline (buyer_agg, fwd20, cell mean by buyer,seller,symbol)",
@@ -56,9 +57,10 @@
             "analysis_outputs/r4_burst_summary.json",
             "analysis_outputs/r4_burst_vs_control_extract_fwd20.json",
             "analysis_outputs/r4_burst_vs_control_by_day.json",
-            "analysis_outputs/r4_burst_orchestrator_modes.json"
+            "analysis_outputs/r4_burst_orchestrator_modes.json",
+            "analysis_outputs/r4_burst_extract_meanrev_trend_k.json"
           ],
-          "conclusion": "Pooled burst extract fwd20 modestly positive vs control; day-split mixed. **Orchestrator (>=3 trades same ts):** **~99.7%** of **318** bursts have **Mark 01** as some buyer and **Mark 22** as some seller; modal top buyer in burst = **Mark 01** (314/318), modal top seller = **Mark 22** (317/318) — bursts are **almost entirely** the M01→M22 basket machine, not a diverse multi-party burst class."
+          "conclusion": "Pooled burst extract fwd20 modestly positive vs control; day-split mixed. **Orchestrator (>=3 trades same ts):** **~99.7%** of **318** bursts have **Mark 01** as some buyer and **Mark 22** as some seller; modal top buyer in burst = **Mark 01** (314/318), modal top seller = **Mark 22** (317/318) — bursts are **almost entirely** the M01→M22 basket machine, not a diverse multi-party burst class. **Post-burst shape (r4_burst_extract_meanrev_trend_k.json):** simple mean-revert vs trend heuristics split **~35% / ~35%** (**112** / **110** of **315**), remainder mixed — **no** dominant follow-through class."
         },
         {
           "bullet": "5) Adverse selection vs inventory",
@@ -108,7 +110,8 @@
         "Mark 22 buyer_agg extract sparse per day.",
         "No bid/ask PnL in Phase 1.",
         "Adjacent-trade two-hop middle-match motif: extract fwd20 at second leg **worse** than control (see r4_twohop_adjacent_extract_fwd20.json) — not a tradeable positive chain signal.",
-        "Passive-side proxy: Mark 14 (and 01) on **VEV_5300** as passive show **negative** mean K=20 on traded mid — possible adverse selection to aggressive flow on that strike; extract passive Mark22/Mark49 still positive (same file)."
+        "Passive-side proxy: Mark 14 (and 01) on **VEV_5300** as passive show **negative** mean K=20 on traded mid — possible adverse selection to aggressive flow on that strike; extract passive Mark22/Mark49 still positive (same file).",
+        "**Burst × participant (extract, K=20):** Mark 67 buyer_agg has **n=2** prints on burst timestamps vs **n=162** isolated — burst slice **not** a stable uplift (r4_participant_extract_burst_stratify_k20.json)."
       ],
       "phase2_gate": "Phase 1 documented; Phase 2 may proceed."
     }
@@ -130,6 +133,10 @@
       "analysis_outputs/r4_burst_orchestrator_modes.json",
       "run_r4_hourly_signed_flow_extract_lagcorr.py",
       "analysis_outputs/r4_hourly_signed_extract_flow_vs_return_lag.json",
+      "run_r4_participant_extract_burst_stratify.py",
+      "analysis_outputs/r4_participant_extract_burst_stratify_k20.json",
+      "run_r4_burst_extract_meanrev_trend.py",
+      "analysis_outputs/r4_burst_extract_meanrev_trend_k.json",
       "trader_v1.py",
       "_r3v_smile_core.py",
       "backtest_logs/trader_v1_worse.log",
@@ -144,7 +151,8 @@
         "microprice": "Orthogonal to counterparty: tight extract spread bin shows large mean fwd10 mid (+2.0 on n=186) vs negative in wide bins — confirms spread regime matters for mid dynamics (inclineGod-style).",
         "residuals": "Signed aggressive net flow vs extract fwd20 corr ~0.12 (n=764) — weak linear link; does not replace pair/burst structure.",
         "lead_lag_mids_extension": "r4_leadlag_extract_vev_mids_deltas_by_day.json: corr(Δm_extract, Δm_5200/5300) **strong at k=0** (e.g. day 1 ~0.71/0.62), **~0 for k≥1** at snapshot lags — co-movement is **contemporaneous** in this construction, not a clean voucher-**lead** over extract at tape resolution.",
-        "hourly_signed_flow_lag": "r4_hourly_signed_extract_flow_vs_return_lag.json: corr(hourly signed aggressive extract **flow**, extract **intra-hour** mid return) **~0.17** at L=0, **~0.11** at L=1–3 (n~63–72 (day,hour) cells) — weak positive link at **hour** grain; not a strong distributed-lag lead."
+        "hourly_signed_flow_lag": "r4_hourly_signed_extract_flow_vs_return_lag.json: corr(hourly signed aggressive extract **flow**, extract **intra-hour** mid return) **~0.17** at L=0, **~0.11** at L=1–3 (n~63–72 (day,hour) cells) — weak positive link at **hour** grain; not a strong distributed-lag lead.",
+        "burst_post_extract_patterns": "r4_burst_extract_meanrev_trend_k.json: among **315** bursts with valid fwd100, heuristic **mean-revert** vs **trend** counts **~36%** each (**112** vs **110**), **93** other — **no** dominant one-sided follow-through; not a clean fade-or-chase rule from burst alone."
       },
       "top_5_tradeable_edges": [
         {
@@ -484,6 +492,23 @@
     "used_to_decide": "**Burst orchestration (r4_burst_orchestrator_modes.json):** **318** burst timestamps; **~99.7%** have **Mark 01** as *some* buyer and **Mark 22** as *some* seller on that clock; modal **most frequent buyer** in burst = **Mark 01** (314), modal **most frequent seller** = **Mark 22** (317) — bursts are **structurally** the basket pipeline, not a generic multi-party burst class. **Hourly signed flow (r4_hourly_signed_extract_flow_vs_return_lag.json):** weak positive corr (**~0.11–0.17**) between hour **H** signed aggressive extract flow and extract **in-hour** return at H+L (L=0..3); n~63–72 cells — **not** a strong cross-hour lead. **trader_v15** (Q=**2**): worse **6,686** / all **6,692** vs v2 **13,236** — halving clip **cuts** PnL despite more trade rows; **Q=4** remains better on this passive style.",
     "round4_post_phase1_notes": {
       "phase1_bullet4_updated": "round4_phase1_complete bullet 4 now includes r4_burst_orchestrator_modes.json."
+    }
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "Phase 1: extract trades stratified by burst vs isolated for focal buyer_agg participants (K=20). Phase 1/2: post-burst extract mean-revert vs trend heuristic counts. Sim: trader_v16 Q=8 when |pos|<=30 else Q=4.",
+    "analysis_outputs": [
+      "run_r4_participant_extract_burst_stratify.py",
+      "analysis_outputs/r4_participant_extract_burst_stratify_k20.json",
+      "run_r4_burst_extract_meanrev_trend.py",
+      "analysis_outputs/r4_burst_extract_meanrev_trend_k.json",
+      "trader_v16.py",
+      "backtest_logs/trader_v16_worse.log",
+      "backtest_logs/trader_v16_all.log"
+    ],
+    "used_to_decide": "**Participant×burst (r4_participant_extract_burst_stratify_k20.json):** Mark **67** buyer_agg on extract has **n=2** burst vs **n=162** isolated — **do not** condition Mark67 edge on burst timestamps (tiny burst n). Other focal rows similarly burst-sparse. **Post-burst path (r4_burst_extract_meanrev_trend_k.json):** **315** bursts with fwd100; heuristic **mean-revert** **112** (**36%**) vs **trend** **110** (**35%**), **93** other — **no** single dominant follow-through for a simple fade/chase rule. **trader_v16** (flat **Q=8** if |pos|≤30 else 4): worse/all **13,694** vs v2 **13,236** (**+458**) with **4,351** trades — modest **PnL lift** from larger flat clip on this slice; validate on more days.",
+    "round4_post_phase1_notes": {
+      "phase1_bullets_1_4_updated": "round4_phase1_complete bullets 1 and 4 cite burst stratify + meanrev/trend JSONs."
     }
   }
 ]

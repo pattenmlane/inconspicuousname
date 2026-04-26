@@ -1,0 +1,248 @@
+{
+  "burst_def": ">=3 trades same (day,timestamp) any symbol",
+  "K": 20,
+  "focal_cells": {
+    "Mark 67_buyer_agg": {
+      "pooled": {
+        "burst": {
+          "n": 2,
+          "mean": 1.25,
+          "median": 1.25
+        },
+        "isolated": {
+          "n": 162,
+          "mean": 1.8209876543209877,
+          "median": 1.5
+        }
+      },
+      "per_day": {
+        "1": {
+          "burst": {
+            "n": 1,
+            "mean": 3.5,
+            "median": 3.5
+          },
+          "isolated": {
+            "n": 57,
+            "mean": 2.008771929824561,
+            "median": 2.0
+          }
+        },
+        "2": {
+          "burst": {
+            "n": 1,
+            "mean": -1.0,
+            "median": -1.0
+          },
+          "isolated": {
+            "n": 60,
+            "mean": 1.4916666666666667,
+            "median": 1.25
+          }
+        },
+        "3": {
+          "burst": {
+            "n": 0
+          },
+          "isolated": {
+            "n": 45,
+            "mean": 2.022222222222222,
+            "median": 1.5
+          }
+        }
+      }
+    },
+    "Mark 49_buyer_agg": {
+      "pooled": {
+        "burst": {
+          "n": 0
+        },
+        "isolated": {
+          "n": 105,
+          "mean": 1.8285714285714285,
+          "median": 2.0
+        }
+      },
+      "per_day": {
+        "1": {
+          "burst": {
+            "n": 0
+          },
+          "isolated": {
+            "n": 35,
+            "mean": 1.8,
+            "median": 2.0
+          }
+        },
+        "2": {
+          "burst": {
+            "n": 0
+          },
+          "isolated": {
+            "n": 36,
+            "mean": 1.6666666666666667,
+            "median": 2.0
+          }
+        },
+        "3": {
+          "burst": {
+            "n": 0
+          },
+          "isolated": {
+            "n": 34,
+            "mean": 2.0294117647058822,
+            "median": 1.5
+          }
+        }
+      }
+    },
+    "Mark 22_buyer_agg": {
+      "pooled": {
+        "burst": {
+          "n": 2,
+          "mean": 1.25,
+          "median": 1.25
+        },
+        "isolated": {
+          "n": 94,
+          "mean": 2.132978723404255,
+          "median": 1.5
+        }
+      },
+      "per_day": {
+        "1": {
+          "burst": {
+            "n": 1,
+            "mean": 3.5,
+            "median": 3.5
+          },
+          "isolated": {
+            "n": 40,
+            "mean": 2.55,
+            "median": 3.25
+          }
+        },
+        "2": {
+          "burst": {
+            "n": 1,
+            "mean": -1.0,
+            "median": -1.0
+          },
+          "isolated": {
+            "n": 34,
+            "mean": 1.3529411764705883,
+            "median": 1.5
+          }
+        },
+        "3": {
+          "burst": {
+            "n": 0
+          },
+          "isolated": {
+            "n": 20,
+            "mean": 2.625,
+            "median": 3.5
+          }
+        }
+      }
+    },
+    "Mark 55_buyer_agg": {
+      "pooled": {
+        "burst": {
+          "n": 7,
+          "mean": 0.9285714285714286,
+          "median": 2.0
+        },
+        "isolated": {
+          "n": 591,
+          "mean": 0.4027072758037225,
+          "median": 0.5
+        }
+      },
+      "per_day": {
+        "1": {
+          "burst": {
+            "n": 0
+          },
+          "isolated": {
+            "n": 186,
+            "mean": 0.5672043010752689,
+            "median": 0.5
+          }
+        },
+        "2": {
+          "burst": {
+            "n": 1,
+            "mean": -3.5,
+            "median": -3.5
+          },
+          "isolated": {
+            "n": 217,
+            "mean": 0.35944700460829493,
+            "median": 0.5
+          }
+        },
+        "3": {
+          "burst": {
+            "n": 6,
+            "mean": 1.6666666666666667,
+            "median": 2.0
+          },
+          "isolated": {
+            "n": 188,
+            "mean": 0.2898936170212766,
+            "median": 0.25
+          }
+        }
+      }
+    },
+    "Mark 14_buyer_agg": {
+      "pooled": {
+        "burst": {
+          "n": 4,
+          "mean": 1.375,
+          "median": 2.0
+        },
+        "isolated": {
+          "n": 327,
+          "mean": 0.5657492354740061,
+          "median": 0.5
+        }
+      },
+      "per_day": {
+        "1": {
+          "burst": {
+            "n": 0
+          },
+          "isolated": {
+            "n": 97,
+            "mean": 1.3195876288659794,
+            "median": 1.0
+          }
+        },
+        "2": {
+          "burst": {
+            "n": 0
+          },
+          "isolated": {
+            "n": 118,
+            "mean": 0.4364406779661017,
+            "median": 0.25
+          }
+        },
+        "3": {
+          "burst": {
+            "n": 4,
+            "mean": 1.375,
+            "median": 2.0
+          },
+          "isolated": {
+            "n": 112,
+            "mean": 0.049107142857142856,
+            "median": 0.0
+          }
+        }
+      }
+    }
+  }
+}

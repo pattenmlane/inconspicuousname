@@ -334,5 +334,26 @@
       "trades_or_fills_summary": "Day3 +11208 vs 11272 worse (VEV_5300 -65 on all); total 33354."
     },
     "total_profit": 33420
+  },
+  {
+    "iteration": 16,
+    "trader_file": "trader_v16.py",
+    "strategy_description": "Tiered Sonic: core (5200 and 5300 spr<=2) = full v11 surface; wing-only (both<=3 but not core) = hydro + outer VEVs 4000/4500/6000/6500 only; else = v11 loose soft U with M55 skip.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 33259,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v16.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v16_worse.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v16_worse.log",
+      "trades_or_fills_summary": "Day1 +17024 (hydro +13396, V4000 +3306, U +356 vs v15 +4084); day2 +3882 (U +1816 vs v15 -672); day3 +12352 (U +2809 vs +1729); total 33259 vs v15 33420 vs v11 13338; worse=all identical."
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 33259,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v16.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v16_all.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v16_all.log",
+      "trades_or_fills_summary": "Same as worse (33259)."
+    },
+    "total_profit": 33259
   }
 ]

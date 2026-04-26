@@ -112,5 +112,113 @@
         }
       }
     }
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3_r4_burst_wide_gate_extract.py",
+    "strategy_description": "Post-Phase-3: M01\u2192M22 VEV burst but joint gate **wide** (not both 5200/5300 <=2). Tape has 3 such ticks (day 3); sim buys 6 at ask when fires.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -228,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v3_r4_burst_wide_gate_extract.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v3_burst_wide_gate_worse.json",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v3_burst_wide_gate_worse.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "1": 0,
+          "2": 0,
+          "3": -228,
+          "total": -228
+        },
+        "fills": {
+          "submission_trade_count": 1,
+          "submission_filled_abs_qty": 6,
+          "submission_by_symbol": {
+            "VELVETFRUIT_EXTRACT": {
+              "trade_count": 1,
+              "filled_abs_qty": 6
+            }
+          }
+        }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -228,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v3_r4_burst_wide_gate_extract.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v3_burst_wide_gate_all.json",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v3_burst_wide_gate_all.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "1": 0,
+          "2": 0,
+          "3": -228,
+          "total": -228
+        },
+        "fills": {
+          "submission_trade_count": 1,
+          "submission_filled_abs_qty": 6,
+          "submission_by_symbol": {
+            "VELVETFRUIT_EXTRACT": {
+              "trade_count": 1,
+              "filled_abs_qty": 6
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "iteration": 4,
+    "trader_file": "trader_v4_r4_joint_tight_passive_extract.py",
+    "strategy_description": "Post-Phase-3: passive improved bid/ask on VELVETFRUIT_EXTRACT only when Sonic joint tight (5200&5300<=2); extract-only.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 820,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v4_r4_joint_tight_passive_extract.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v4_tight_passive_worse.json",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v4_tight_passive_worse.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "1": -698,
+          "2": -188,
+          "3": 1705,
+          "total": 820
+        },
+        "fills": {
+          "submission_trade_count": 338,
+          "submission_filled_abs_qty": 1862,
+          "submission_by_symbol": {
+            "VELVETFRUIT_EXTRACT": {
+              "trade_count": 338,
+              "filled_abs_qty": 1862
+            }
+          }
+        }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -764,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v4_r4_joint_tight_passive_extract.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v4_tight_passive_all.json",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v4_tight_passive_all.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "1": -795,
+          "2": -1828,
+          "3": 1859,
+          "total": -764
+        },
+        "fills": {
+          "submission_trade_count": 351,
+          "submission_filled_abs_qty": 1960,
+          "submission_by_symbol": {
+            "VELVETFRUIT_EXTRACT": {
+              "trade_count": 351,
+              "filled_abs_qty": 1960
+            }
+          }
+        }
+      }
+    }
   }
 ]

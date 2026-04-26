@@ -1,0 +1,18 @@
+{
+  "profit": {
+    "1": -698,
+    "2": -188,
+    "3": 1705,
+    "total": 820
+  },
+  "fills": {
+    "submission_trade_count": 338,
+    "submission_filled_abs_qty": 1862,
+    "submission_by_symbol": {
+      "VELVETFRUIT_EXTRACT": {
+        "trade_count": 338,
+        "filled_abs_qty": 1862
+      }
+    }
+  }
+}

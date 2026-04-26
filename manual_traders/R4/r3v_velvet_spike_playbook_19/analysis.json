@@ -258,5 +258,33 @@
       ],
       "repro_script": "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase3_joint_gate_study.py"
     }
+  },
+  {
+    "round4_followup_post_phase3": {
+      "date_note": "2026-04-26 follow-up after Phase 3 gate: quantify where Sonic binds and test orthogonal sims.",
+      "wide_gate_m01_m22_burst": {
+        "outputs": [
+          "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_followup_wide_gate_m01_m22_burst.json"
+        ],
+        "finding": "Only **3** Mark01\u2192Mark22 VEV burst rows occur when joint_tight is false (all day 3); tape fwd20 extract at those ticks mean **+2** (mid) \u2014 anecdotal, not a tradeable sample."
+      },
+      "hydro_14_38_by_gate": {
+        "outputs": [
+          "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_followup_hydro_14_38_fwd20_by_gate.csv"
+        ],
+        "finding": "Mark14\u2194Mark38 HYDROGEL prints: joint_tight vs wide shows **mixed** mean fwd20 by day (e.g. day1 tight +1.6 vs loose +0.22; day2 tight negative) \u2014 no simple \u2018tight always better\u2019 for this pair."
+      },
+      "mark55_extract_by_gate": {
+        "outputs": [
+          "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_followup_mark55_extract_fwd20_by_gate.csv"
+        ],
+        "finding": "Mark 55 on extract: tight vs loose fwd20 means flip by day; gate alone does not stabilize Mark55 markouts."
+      },
+      "sims": {
+        "v3_wide_gate_burst_buy": "manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v3_r4_burst_wide_gate_extract.py \u2014 **1** fill, **-228** PnL (worse=all); falsifies chasing rare wide-gate bursts with same size as v1.",
+        "v4_joint_tight_passive_extract": "manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v4_r4_joint_tight_passive_extract.py \u2014 extract-only passive MM when gate tight: **+820** worse, **-764** all (fill asymmetry); positive under worse but not robust across match mode."
+      },
+      "repro_script": "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_followup_gated_flows.py"
+    }
   }
 ]

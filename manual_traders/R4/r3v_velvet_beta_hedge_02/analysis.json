@@ -308,5 +308,15 @@
       "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_extract_fwd1_mid_by_joint_day.csv"
     ],
     "used_to_decide": "**fwd1** means are tiny vs unit std (~1.1) on all cells; tight vs loose sign flips by day (e.g. day3 loose mean **-0.021** vs tight **+0.011**) — **no large unconditional micro-drift** to harvest at one tick from this table alone. **trader_v9** PnL **identical** to v8 (**12727** worse=all) — inner VEV soft-MM when loose is **zero marginal** in this harness; v8 vs v5 delta is entirely **extract when joint off** (+ wings/hydro still tight-only)."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "Tape: share of **loose-book** (joint gate false) extract trades where Mark 55 is **aggressive** (buyer M55 & price>=ask1, or seller M55 & price<=bid1) — analyze_r4_mark55_loose_extract_touch.py.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/analyze_r4_mark55_loose_extract_touch.py",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_mark55_aggr_on_extract_loose_by_day.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_mark55_aggr_on_extract_loose_pooled.csv"
+    ],
+    "used_to_decide": "Among extract prints at timestamps with **tight==False**, **~85%** rows (878/1030 pooled) are Mark55 aggressive-touch — dominant flow in loose intervals. **trader_v10** skips **only** soft extract quotes on those ticks (tight path unchanged): sim **+13286** worse=all vs v9 **+12727**; **day2 U** **-80** vs **-723**; day1 U slightly lower (+3988 vs +4084). Counterparty filter is **material** for loose-path MM in this harness."
   }
 ]

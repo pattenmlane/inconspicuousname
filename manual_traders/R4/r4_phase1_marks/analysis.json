@@ -346,5 +346,18 @@
       "manual_traders/R4/r4_phase1_marks/backtests/iter8_r4d1-3_all.log"
     ],
     "used_to_decide": "**Strongest counterparty\u00d7gate tape signal** in phase8 is **hydro duopoly \u00d7 joint gate \u2192 fwd extract mid**; **v8** translates part of that into **positive hydro `worse`** without hurting extract. For **VEV-only** goals, **v3** remains the cleaner baseline until **`worse`** voucher fills exist."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "**Tape (horizon check):** ``analyze_r4_hydro_duopoly_gate_multik.py`` \u2014 **Mark14\u2192Mark38** **HYDROGEL_PACK** prints: mean **fwd_EXTRACT_K** tight vs loose is **positive** at **K=5, 20, 100** price-bar steps (Welch **p\u22483.9e-4**, **7.5e-4**, **2.8e-7**); **K=100** delta **\u2248+4.77** vs **+1.61** at K=20. **Sim:** ``trader_v9`` = **v8** + **v4** **VEV_5200/5300** legs. **`worse`** **3685** (same per-product lines as **v8**; **VEV** **0**). **`all`** **9730** vs **v8** **6338** / **v4** **9427** \u2014 hydro **+303** adds on top of **v4**-style voucher **`all`** PnL; product lines sum **9729** vs engine total **9730** (rounding). **Conclusion:** hydro and voucher legs are **orthogonal** in this sim; **`worse`** still shows **no** voucher attribution.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_phase1_marks/analyze_r4_hydro_duopoly_gate_multik.py",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase9_hydro_14_38_gate_multik_extract_fwd.txt",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase9_hydro_14_38_gate_multik_extract_fwd.csv",
+      "manual_traders/R4/r4_phase1_marks/trader_v9.py",
+      "manual_traders/R4/r4_phase1_marks/backtests/iter9_r4d1-3_worse.log",
+      "manual_traders/R4/r4_phase1_marks/backtests/iter9_r4d1-3_all.log"
+    ],
+    "used_to_decide": "For **`all`**, **v9** is the **full** tight-regime stack (extract + hydro + **5200/5300**). For **`worse`**, **v9** adds **no** voucher PnL over **v8**; keep **v8** if hydro is allowed, else **v3** for extract-only."
   }
 ]

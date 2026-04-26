@@ -1,0 +1,91 @@
+Suggested direction — Round 4 research / trading
+==================================================
+
+Phase 1 — With counterparty IDs (Round 4)
+------------------------------------------
+
+Participant-level alpha / predictiveness
+For each name U, tag prints where buyer==U or seller==U, then measure forward mid move (or markout) over 5/20/100 ticks, conditional on product, spread regime, time-of-day. Persistently positive mean markout for one side (e.g. always buying before up-moves) flags informed-style buying.
+
+Deviation from “bot baseline”
+Cluster Marks into roles (e.g. 01→22 basket seller, 14↔38 hydro duopoly). Define expected forward move after a print given (buyer,seller,symbol,regime). Names whose residual (actual − bot-conditional mean) is large and stable look like the interesting agent (if any human-like ID appears) or a mis-specified bot you can fade.
+
+Sequence / graph methods
+Build a directed graph buyer→seller weighted by count and notional; detect motifs (triads, repeated two-step chains). “Insider-like” often shows up as short paths from flow into a concentrated seller/buyer before large moves in another product (lead–lag).
+
+Burst structure
+Same-timestamp multi-symbol prints: attribute to orchestrating party (e.g. buyer across names). If bursts precede systematic moves in extract or core strikes, that party is your candidate scheduler, not necessarily “insider” but structural.
+
+Adverse selection vs inventory
+If you can approximate inventory (from own fills + visible pressure), test whether prints from party U hurt the passive side more when U is aggressive — classic informed trading signature (harder without full book history; easier in sim with full tapes).
+
+
+Phase 2 — Identifying other tradeable edges (often more stable than “insider”)
+------------------------------------------------------------------------------
+
+Named-bot exploitation (Round 4–specific)
+Condition quotes/fades on (buyer,seller) and burst signatures (e.g. post Mark 01 → Mark 22 basket: mean-revert vs trend depending on follow-through stats).
+
+Microstructure
+Queue position, touch changes, full-book microprice vs mid, spread regimes, trade-through frequency — edges that survive without any “insider.”
+
+Cross-instrument lead–lag
+Extract vs voucher wings vs hydro; Granger-style or simple lagged correlation of signed flow — works well when bots run fixed pipelines.
+
+Regime splits
+Same signal only in tight spread / high depth / first hour — reduces overfit and often separates bot schedules from noise.
+
+Vol / smile mispricing
+Your R3 BS + smile residual work; in R4 you can ask whether certain Marks’ prints cluster when smile is steepest (systematic pressure on wings).
+
+Execution / adverse selection
+When to take vs quote: use counterparty identity to not provide liquidity right before historically bad markouts for that pair.
+
+Inventory-aware MM
+Skew quotes when your position + observed pressure from a repeatedly selling Mark align.
+
+
+Phase 3 — Round 3 community framing (carry into Round 4)
+--------------------------------------------------------
+Sources (verbatim + synthesis in repo):
+  previous round work/round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt (lines 1–35)
+  previous round work/round3work/vouchers_final_strategy/STRATEGY.txt (“How the messages fit together”, lines 12–22)
+
+How STRATEGY.txt summarizes the Discord tips (lines 12–22):
+  • inclineGod (both messages): The game is not only “price” of options vs
+    underlying — for each voucher you also need how spreads (book width) move,
+    and you should look at correlation of spreads, not just correlation of prices.
+  • Sonic: The useful “VEV bot flow” style signal is not always on; it depends on
+    book state (tight enough to hedge). If VEV_5200 and VEV_5300 spreads go wider
+    than about 2 ticks, the t-stat of your test crashes — execution noise dominates.
+    Concrete recipe: require both 5200 and 5300 spread ≤ 2 at the same time —
+    fewer events (n drops) but ~2× better per-event edge and cleaner signal
+    (fewer false triggers).
+
+Verbatim excerpts from ORIGINAL_DISCORD_QUOTES.txt (community — Round 3 context):
+
+  inclineGod — 10:43 AM
+  “simple tip :
+   understand how underlying asset price movements affect option contract prices and spreads (for each contract)”
+
+  inclineGod — 12:23 PM
+  “dont just look at corr of prices.
+  look at corr of spreads.”
+
+  Sonic — 10:45 PM
+  “dont have time to actually push on r3 this week so dropping this in case someone can use it
+
+  VEV bot flow signal is gated on voucher book state. t stat decays hard when 5200 and 5300 spreads widen past 2 ticks. informed bot only fires when it can hedge into a tight surface, makes sense mechanically
+
+  condition on both 5200 spread at or below 2 and 5300 spread at or below 2 at the same time, per event edge roughly doubles, way fewer false fires. n drops but the signal is cleaner
+
+  free alpha, gl”
+
+From the same quotes file (lines 31–35): a fourth person posted the 6-panel plot
+screenshot and said something like “free alpha here you go” — reproduced in-repo as
+outputs/r3_tight_spread_6panel.png from analyze_vev_5200_5300_tight_gate_r3.py
+(paths relative to vouchers_final_strategy folder in round3work).
+
+Round 4 tie-in: counterparty IDs and Mark-level conditioning do not replace the
+spread / joint-gate lesson — they stack: e.g. measure predictiveness of prints
+**inside** Sonic’s tight 5200+5300 regime first, then split by (buyer, seller).

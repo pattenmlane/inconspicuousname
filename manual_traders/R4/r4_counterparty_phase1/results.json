@@ -80,5 +80,26 @@
       "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v3_all.log",
       "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v3_all.json"
     }
+  },
+  {
+    "iteration": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "v3 + Phase 1 adverse selection: when joint tight, skip VELVET **sell** quotes if tape has aggressive buy (price>=ask1) with passive seller Mark22 or Mark49. VEV surface unchanged.",
+    "total_profit": 6793,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v4.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r4_counterparty_phase1/backtest_r4_v4_worse.log",
+    "note_vs_v3": "v4 worse +6793 vs v3 +4672 (+2121). v1 still +7207.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 6793,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v4_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v4_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 9187,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v4_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v4_all.json"
+    }
   }
 ]

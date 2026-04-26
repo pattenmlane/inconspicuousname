@@ -308,5 +308,17 @@
       "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v3_all.log"
     ],
     "used_to_decide": "v3 worse +4672 < v1 +7207 but > v2 +1766; naive tight-MM still loses on VEV wings day3. Next: inventory skew or avoid quoting when Mark22 sells at touch (Phase 1 adverse table)."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "Counterparty-conditioned execution on top of Phase 3 tight MM: offline counts of VELVET aggressive buys (price>=ask1) with passive seller Mark22/Mark49 per day; `trader_v4` skips extract sell quotes when same pattern appears in `state.market_trades` at the tick.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_v4_skip_trigger_counts.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p1_adverse_aggrbuy_fwd20_by_passive_seller.csv",
+      "manual_traders/R4/r4_counterparty_phase1/trader_v4.py",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v4_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v4_all.log"
+    ],
+    "used_to_decide": "v4 worse +6793 improves v3 +4672 by +2121; extract PnL +2170 vs +1018 v3. Still below v1 burst-long +7207. Trigger rate ~53-71 aggressive Mark22/49 sells per day on extract tape."
   }
 ]

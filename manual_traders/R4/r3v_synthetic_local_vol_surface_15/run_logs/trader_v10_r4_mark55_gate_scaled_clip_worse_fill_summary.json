@@ -1,0 +1,1 @@
+{"trader": "trader_v10_r4_mark55_gate_scaled_clip.py", "match_trades": "worse", "round": 4, "total_profit": 14702, "per_day": {"1": 5542, "2": 8962, "3": 197}, "params": {"CLIP_MAX": 12, "CLIP_MIN": 4, "ROLL_WIN": 400, "ROLL_LO": 0.18, "ROLL_HI": 0.42, "SAT_GAIN": 0.72}}

@@ -301,5 +301,17 @@
       "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v9_r4_mark55_gate_micro_saturation_all_stdout.txt"
     ],
     "used_to_decide": "Keep **v5** for positive day-3 without saturation layer; use **v4** for max total on this tape; **v6** only as attribution. Next research: inventory cap or half-size on day-3 when roll mean crosses threshold, not OR of micro+saturation."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "Mark55 tape slice: `_r4_mark55_roll_gate_fwd_analysis.py` \u2192 `r4_p7_mark55_fwd20_by_roll_tertile.csv` — within each day, tertiles of **roll_tight_rate** at trade time vs fwd_mid_k20. Day 3 **high_roll** has highest mean fwd20 (\u22481.02), falsifying v7\u2019s \u2018skip high saturation\u2019 hypothesis for **mid** signal. Trader v10: **scale clip down** with roll (no skip); backtest beats v4 on total; below v6 (calendar skip) but deployable shape.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/_r4_mark55_roll_gate_fwd_analysis.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase3/r4_p7_mark55_fwd20_by_roll_tertile.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v10_r4_mark55_gate_scaled_clip.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v10_r4_mark55_gate_scaled_clip_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v10_r4_mark55_gate_scaled_clip_all_stdout.txt"
+    ],
+    "used_to_decide": "**v10** total **14,702** (beats **v4** 13,162; **below v6** 14,842 which zeroes day-3); day3 **+197** vs v4 \u22121680. Risk **sized** to roll saturation (no skip); next: sweep CLIP_MIN/MAX, ROLL_HI, SAT_GAIN; optional inventory cap."
   }
 ]

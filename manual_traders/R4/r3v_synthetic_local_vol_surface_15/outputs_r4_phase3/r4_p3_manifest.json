@@ -8,6 +8,7 @@
     "r4_p3_mark55_mark49_fwd20_tight_vs_loose_by_day.csv",
     "r4_p3_mark67_fwd20_tight_vs_loose_by_day.csv",
     "r4_p5_mark55_gate_multik_welch.csv",
-    "r4_p6_rolling_tight_prevalence_by_day.csv"
+    "r4_p6_rolling_tight_prevalence_by_day.csv",
+    "r4_p7_mark55_fwd20_by_roll_tertile.csv"
   ]
 }

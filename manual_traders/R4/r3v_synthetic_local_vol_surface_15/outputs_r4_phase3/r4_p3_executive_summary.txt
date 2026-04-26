@@ -47,3 +47,11 @@ Rolling gate prevalence (`r4_p6_rolling_tight_prevalence_by_day.csv`, WIN=400): 
 Follow-on traders (Mark55 + gate):
   • **v7** rolling tight rate **> 0.32** → skip (buffer reset per `backtest_day`): total **10,238** — **does not** beat v4; day-3 still negative (~−2.46k).
   • **v8** only when roll tight rate **< 0.12** (rare spell): total **4,756** — over-filters; not viable.
+  • **v9** v5 + saturation skip (roll>0.40): total **5,216** — worse than v5.
+
+Mark55 fwd20 vs **tertile of rolling tight rate** at trade time (`r4_p7_mark55_fwd20_by_roll_tertile.csv`):
+  On **day 3**, the **high_roll** tertile has the **highest** mean fwd20 — skipping high saturation (v7) was **wrong**
+  for mid-forward signal on that day; better to **size down** exposure instead.
+
+  • **v10** Mark55+gate with **scaled clip** (12→4 as roll rises): total **14,702**; day-3 **+197**; beats **v4** (13,162);
+    **below v6** (14,842 calendar skip) but **tradeable** (no magic day index) and **fixes day-3 sign** vs v4.

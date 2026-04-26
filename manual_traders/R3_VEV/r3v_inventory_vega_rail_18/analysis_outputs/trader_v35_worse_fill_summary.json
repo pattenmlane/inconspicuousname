@@ -1,0 +1,22 @@
+{
+  "trader": "trader_v35.py",
+  "match_trades": "worse",
+  "n_submission_trade_events": 3917,
+  "by_symbol": {
+    "VELVETFRUIT_EXTRACT": {
+      "fills": 2019,
+      "abs_qty": 34518.0,
+      "net_qty": 412.0
+    },
+    "VEV_5200": {
+      "fills": 1168,
+      "abs_qty": 9466.0,
+      "net_qty": -96.0
+    },
+    "VEV_5300": {
+      "fills": 730,
+      "abs_qty": 6582.0,
+      "net_qty": 176.0
+    }
+  }
+}

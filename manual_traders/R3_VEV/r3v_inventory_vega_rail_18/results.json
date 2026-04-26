@@ -381,5 +381,62 @@
       "backtest_log_file": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v34_all_backtest.log",
       "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v34_all_fill_summary.json"
     }
+  },
+  {
+    "iteration": 35,
+    "trader_file": "trader_v35.py",
+    "strategy_description": "Joint gate + extract momentum (EMA) + MR on 5200/5300. Worse failed; mid-momentum not execution-safe.",
+    "backtest_round": 3,
+    "backtest_note": "Command `3` = all available Round 3 day CSVs (0-3).",
+    "backtest_worse": {
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v35.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v35_worse_backtest.log",
+      "total_profit": -84649,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v35_worse_backtest.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v35_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v35.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v35_all_backtest.log",
+      "total_profit": -84531,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v35_all_backtest.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v35_all_fill_summary.json"
+    }
+  },
+  {
+    "iteration": 36,
+    "trader_file": "trader_v36.py",
+    "strategy_description": "Joint gate + extract-only momentum (wider thr, small Q). Still large worse loss.",
+    "backtest_round": 3,
+    "backtest_note": "Command `3` = all available Round 3 day CSVs (0-3).",
+    "backtest_worse": {
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v36.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v36_worse_backtest.log",
+      "total_profit": -75559,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v36_worse_backtest.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v36_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v36.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v36_all_backtest.log",
+      "total_profit": -75619,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v36_all_backtest.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v36_all_fill_summary.json"
+    }
+  },
+  {
+    "iteration": 37,
+    "trader_file": "trader_v37.py",
+    "strategy_description": "Parent v34 scaled: Q_VEV=25, EDGE=2.5, EMA=100. Best worse total in vouchers line so far (+28,546 on 4 R3 days).",
+    "backtest_round": 3,
+    "backtest_note": "Command `3` = all available Round 3 day CSVs (0-3).",
+    "backtest_worse": {
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v37.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v37_worse_backtest.log",
+      "total_profit": 28546,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v37_worse_backtest.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v37_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v37.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v37_all_backtest.log",
+      "total_profit": 28756,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v37_all_backtest.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v37_all_fill_summary.json"
+    }
   }
 ]

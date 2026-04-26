@@ -187,5 +187,24 @@
       "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v34_all_backtest.log"
     ],
     "used_to_decide": "v32: gate + extract + 5100/5200/5300 mean-rev \u2192 worse PnL strongly negative; STRATEGY mid-forward caveat applies. v33: VEV only (5100/5200/5300) \u2192 worse +13,898 over 4 R3 days. v34: gate legs only 5200+5300, slower EMA \u2192 best worse +19,335; all +19,522. None approach 200k/day floor; next pass should explore slower gates, sub-day regime, or inventory caps while keeping joint spread definition."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "Re-read STRATEGY.txt and ORIGINAL_DISCORD_QUOTES.txt. tape analysis run_tight_regime_forward_extract.py: K=20 forward extract mid is positive in joint-tight rows on days 0-3 (e.g. day0 share_pos_fw_tight~0.54, mean_fw_tight~+0.55). That supports **long-horizon mid drift in tight** but not a simple bid/ask rule. Tried v35 (gate + extract momentum + gate-leg MR) and v36 (extract-only momentum under gate) \u2014 both large **worse** losses; v37 scales v34 MR parameters (Q, EDGE, EMA) and reaches **worse +28,546** over 4 days, best in this line so far. Still \u00ab 200k/day per STRATEGY profit goal.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/run_tight_regime_forward_extract.py",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/tight_regime_forward_extract_k20_by_day.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v35.py",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v36.py",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v37.py",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v35_worse_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v35_all_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v36_worse_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v36_all_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v37_worse_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v37_all_backtest.log"
+    ],
+    "used_to_decide": "Forward-mid statistics favor **caution** on naive extract momentum in worse matching; v37 (gate-leg MR with larger chips) is current ship candidate vs v32-v34. Next: sub-sample days 0-2 only, or add inventory/flatten rules while keeping the joint 5200/5300 spread definition."
   }
 ]

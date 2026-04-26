@@ -1,0 +1,7 @@
+v26 triggers (n=27): extract spread at print vs forward V5300 mid.
+extract_spread<=2: n=27 ext_spread_mean=1.593 meanK5=0.0556 fracposK5=0.333 meanK20=0.0370 fracposK20=0.444
+extract_spread>2: n=0
+--- by day (extract<=2) ---
+day_1_ext<=2: n=5 ext_spread_mean=1.800 meanK5=-0.1000 fracposK5=0.200 meanK20=0.0000 fracposK20=0.400
+day_2_ext<=2: n=7 ext_spread_mean=1.429 meanK5=0.3571 fracposK5=0.429 meanK20=0.1429 fracposK20=0.429
+day_3_ext<=2: n=15 ext_spread_mean=1.600 meanK5=-0.0333 fracposK5=0.333 meanK20=0.0000 fracposK20=0.467

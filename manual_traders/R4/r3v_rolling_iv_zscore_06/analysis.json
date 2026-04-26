@@ -313,5 +313,23 @@
       "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v29_2026-04-25_r4_all.log"
     ],
     "used_to_decide": "Total **+377** worse+all vs **+768** v26 — smaller clip trims day-3 loss slightly but sacrifices day-2 notional capture; **keep v26** as primary variant unless multi-day grid expands."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "Tape `r4_phase7_extract_spread_at_v26.py`: at each **v26** trigger, extract BBO spread at print — **27/27** already **<=2** (mean ~1.59); forward V5300 stats match joint-tight subset from phase5. So print-time extract filter is redundant; **execution-time** extract<=2 is a different test.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/r4_phase7_extract_spread_at_v26.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/outputs/r4_p7_extract_spread_at_v26_triggers.txt",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v30_2026-04-25_r4_worse.log"
+    ],
+    "used_to_decide": "`trader_v30.py` adds extract spread<=2 **when lifting** — total **-3** worse+all vs **+768** v26: joint-tight windows often coincide with **wider** extract book later, so the extra gate **removes the profitable lifts** and leaves near-flat noise."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "`trader_v31.py`: v26 with V5300 spread cap **4** instead of **6**.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v31_2026-04-25_r4_worse.log"
+    ],
+    "used_to_decide": "PnL **identical** to v26 (**+768** worse+all) — in practice lifts occur only when V5300 spread already **<=4** in this trigger set; tighter cap is a no-op here."
   }
 ]

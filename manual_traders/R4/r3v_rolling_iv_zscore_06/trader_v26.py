@@ -8,18 +8,21 @@ microprice>mid clause is vacuous on this slice (see refine note in JSON / txt).
 
 Execution matches `trader_v24.py`: within the post-trigger window, lift **VEV_5300**
 at the ask only if **both** 5200 and 5300 spreads are still <=2 and V5300 spread
-<=6; flatten to bid when the window ends.
+<=6; flatten to bid when the window ends. **Signal windows** use merged absolute
+time (`day_cum_offset` + local `state.timestamp`); see `merged_ts_util.py` and
+`TradingState.day_num` in the backtester.
 
 Hydrogel not traded. Limits per round4description.
 """
 
 from __future__ import annotations
 
-import bisect
 import json
 from pathlib import Path
 
 from datamodel import Order, OrderDepth, TradingState
+
+from merged_ts_util import window_active
 
 HYDRO = "HYDROGEL_PACK"
 UNDER = "VELVETFRUIT_EXTRACT"
@@ -45,21 +48,23 @@ LIMITS = {
 }
 
 _SIG_PATH = Path(__file__).resolve().parent / "outputs" / "r4_v26_signals.json"
-_TRIGGERS: list[int] | None = None
+_SIG_PACK: tuple[list[int], int, dict[int, int]] | None = None
 _WINDOW: int = 50_000
 
 
-def _load_signals() -> tuple[list[int], int]:
-    global _TRIGGERS, _WINDOW
-    if _TRIGGERS is not None:
-        return _TRIGGERS, _WINDOW
+def _load_signals() -> tuple[list[int], int, dict[int, int]]:
+    global _SIG_PACK, _WINDOW
+    if _SIG_PACK is not None:
+        return _SIG_PACK
     if not _SIG_PATH.is_file():
-        _TRIGGERS = []
-        return _TRIGGERS, _WINDOW
+        _SIG_PACK = ([], _WINDOW, {})
+        return _SIG_PACK
     obj = json.loads(_SIG_PATH.read_text())
-    _TRIGGERS = sorted(int(x) for x in obj.get("mark67_extract_buy_aggr_filtered_merged_ts", []))
+    tr = sorted(int(x) for x in obj.get("mark67_extract_buy_aggr_filtered_merged_ts", []))
     _WINDOW = int(obj.get("window_ts", _WINDOW))
-    return _TRIGGERS, _WINDOW
+    cum = {int(k): int(v) for k, v in obj.get("day_cum_offset", {}).items()}
+    _SIG_PACK = (tr, _WINDOW, cum)
+    return _SIG_PACK
 
 
 def _touch(depth: OrderDepth) -> tuple[int | None, int | None]:
@@ -75,15 +80,6 @@ def _spread(depth: OrderDepth) -> int | None:
     return int(va - vb)
 
 
-def _active(ts: int, triggers: list[int], w: int) -> bool:
-    if not triggers:
-        return False
-    lo = ts - w
-    i = bisect.bisect_right(triggers, ts)
-    j = bisect.bisect_left(triggers, lo)
-    return j < i
-
-
 class Trader:
     def run(self, state: TradingState):
         try:
@@ -91,9 +87,9 @@ class Trader:
         except json.JSONDecodeError:
             td = {}
 
-        triggers, w = _load_signals()
+        triggers, w, cum = _load_signals()
         ts = int(state.timestamp)
-        on = _active(ts, triggers, w)
+        on = window_active(state, ts, triggers, w, cum)
 
         result: dict[str, list[Order]] = {p: [] for p in LIMITS}
         pos = state.position

@@ -36,6 +36,7 @@ class TestRunner:
             market_trades={},
             position={},
             observations=Observation({}, {}),
+            day_num=self.day,
         )
         result = BacktestResult(data.round_num, data.day_num)
 
@@ -80,6 +81,7 @@ class TestRunner:
     def __initialize_trade_state(self, state: TradingState, data: BacktestData, timestamp: int) -> TradingState:
 
         state.timestamp = timestamp
+        state.day_num = data.day_num
 
         for product in data.products:
             order_depth = OrderDepth()

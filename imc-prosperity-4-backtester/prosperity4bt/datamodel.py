@@ -96,9 +96,11 @@ class TradingState(object):
                  own_trades: Dict[Symbol, List[Trade]],
                  market_trades: Dict[Symbol, List[Trade]],
                  position: Dict[Product, Position],
-                 observations: Observation):
+                 observations: Observation,
+                 day_num: int = -1):
         self.traderData = traderData
         self.timestamp = timestamp
+        self.day_num = day_num
         self.listings = listings
         self.order_depths = order_depths
         self.own_trades = own_trades

@@ -14,11 +14,12 @@ Hydrogel not traded. Limits per round4description.
 
 from __future__ import annotations
 
-import bisect
 import json
 from pathlib import Path
 
 from datamodel import Order, OrderDepth, TradingState
+
+from merged_ts_util import window_active
 
 HYDRO = "HYDROGEL_PACK"
 UNDER = "VELVETFRUIT_EXTRACT"
@@ -44,21 +45,23 @@ LIMITS = {
 }
 
 _SIG_PATH = Path(__file__).resolve().parent / "outputs" / "r4_v23_signals.json"
-_TRIGGERS: list[int] | None = None
+_SIG_PACK: tuple[list[int], int, dict[int, int]] | None = None
 _WINDOW: int = 50_000
 
 
-def _load_signals() -> tuple[list[int], int]:
-    global _TRIGGERS, _WINDOW
-    if _TRIGGERS is not None:
-        return _TRIGGERS, _WINDOW
+def _load_signals() -> tuple[list[int], int, dict[int, int]]:
+    global _SIG_PACK, _WINDOW
+    if _SIG_PACK is not None:
+        return _SIG_PACK
     if not _SIG_PATH.is_file():
-        _TRIGGERS = []
-        return _TRIGGERS, _WINDOW
+        _SIG_PACK = ([], _WINDOW, {})
+        return _SIG_PACK
     obj = json.loads(_SIG_PATH.read_text())
-    _TRIGGERS = sorted(int(x) for x in obj.get("mark67_extract_buy_aggr_abs_ts", []))
+    tr = sorted(int(x) for x in obj.get("mark67_extract_buy_aggr_abs_ts", []))
     _WINDOW = int(obj.get("window_ts", _WINDOW))
-    return _TRIGGERS, _WINDOW
+    cum = {int(k): int(v) for k, v in obj.get("day_cum_offset", {}).items()}
+    _SIG_PACK = (tr, _WINDOW, cum)
+    return _SIG_PACK
 
 
 def _touch(depth: OrderDepth) -> tuple[int | None, int | None]:
@@ -74,15 +77,6 @@ def _spread(depth: OrderDepth) -> int | None:
     return int(va - vb)
 
 
-def _active(ts: int, triggers: list[int], w: int) -> bool:
-    if not triggers:
-        return False
-    lo = ts - w
-    i = bisect.bisect_right(triggers, ts)
-    j = bisect.bisect_left(triggers, lo)
-    return j < i
-
-
 class Trader:
     def run(self, state: TradingState):
         try:
@@ -90,9 +84,9 @@ class Trader:
         except json.JSONDecodeError:
             td = {}
 
-        triggers, w = _load_signals()
+        triggers, w, cum = _load_signals()
         ts = int(state.timestamp)
-        on = _active(ts, triggers, w)
+        on = window_active(state, ts, triggers, w, cum)
 
         result: dict[str, list[Order]] = {p: [] for p in LIMITS}
         pos = state.position

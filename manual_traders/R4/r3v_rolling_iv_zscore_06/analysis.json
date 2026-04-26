@@ -382,5 +382,17 @@
       "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v36_2026-04-25_r4_worse.log"
     ],
     "used_to_decide": "v36 PnL still **+768** identical to v26 — removing day-3-origin triggers does **not** change day_3 **-6697**; that loss is **unwind of inventory** from day 1–2 windows (and/or overlapping activity), not from the 15 dropped triggers alone. True day-3 mitigation needs **flatten-before-roll**, **shorter W**, or **caps** (already explored)."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "**Critical sim bugfix:** precomputed merged trigger lists were compared to **per-day local** `state.timestamp` without adding `day_cum_offset[day]`, so post-trigger windows **never** extended across tape-day boundaries (e.g. day-2 trigger invisible on day-3 local clock). Patched `TradingState.day_num` + `merged_ts_util.window_active` and updated all R4 merged-signal traders (v23–v36, v25). Re-backtest `trader_v26.py`: total **+3,231** worse+all (day3 **+1,686** vs prior **-6,697**). Prior `results.json` rows for v26-class runs used the buggy matcher.",
+    "analysis_outputs": [
+      "imc-prosperity-4-backtester/prosperity4bt/datamodel.py",
+      "imc-prosperity-4-backtester/prosperity4bt/test_runner.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/merged_ts_util.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v26_2026-04-26_r4_worse_mergedfix.log",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v37_2026-04-26_r4_worse.log"
+    ],
+    "used_to_decide": "`trader_v37.py` adds **EOD flatten** on tape days 1–2 (local ts >= 994_900) before roll; total **+3,101** — slightly below fixed v26 due to early exit cost on day_1 (**373** vs **503**)."
   }
 ]

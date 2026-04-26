@@ -599,5 +599,85 @@
         "note": "worse_and_all_identical_this_run"
       }
     }
+  },
+  {
+    "iteration": 17,
+    "trader_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v26.py",
+    "strategy_description": "**Post-fix** (2026-04-26): merged trigger windows use `day_cum_offset[state.day_num]+timestamp` (see merged_ts_util + TradingState.day_num). Supersedes prior v26 backtests that bisected on local ts only.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 3231,
+      "per_day_pnl": {
+        "day_1": 503,
+        "day_2": 1042,
+        "day_3": 1686
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v26_2026-04-26_r4_worse_mergedfix.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v26.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v26_2026-04-26_r4_worse_mergedfix.log",
+      "trades_or_fills_summary": {
+        "pnl_by_product_last_day_block": {
+          "VEV_5300": 3231
+        },
+        "note": "merged_timeline_window_match_fix"
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 3231,
+      "per_day_pnl": {
+        "day_1": 503,
+        "day_2": 1042,
+        "day_3": 1686
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v26_2026-04-26_r4_all_mergedfix.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v26.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v26_2026-04-26_r4_all_mergedfix.log",
+      "trades_or_fills_summary": {
+        "pnl_by_product_last_day_block": {
+          "VEV_5300": 3231
+        },
+        "note": "worse_and_all_identical_this_run"
+      }
+    }
+  },
+  {
+    "iteration": 18,
+    "trader_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v37.py",
+    "strategy_description": "Fixed v26 + **EOD flatten** on tape days 1–2 when local ts>=994_900 (PAD=5000 before day end); no EOD rule on day 3.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 3101,
+      "per_day_pnl": {
+        "day_1": 373,
+        "day_2": 1042,
+        "day_3": 1686
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v37_2026-04-26_r4_worse.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v37.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v37_2026-04-26_r4_worse.log",
+      "trades_or_fills_summary": {
+        "pnl_by_product_last_day_block": {
+          "VEV_5300": 3101
+        },
+        "note": "vs_fixed_v26_3231"
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 3101,
+      "per_day_pnl": {
+        "day_1": 373,
+        "day_2": 1042,
+        "day_3": 1686
+      },
+      "backtest_log_file": "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v37_2026-04-26_r4_all.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v37.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress --out manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v37_2026-04-26_r4_all.log",
+      "trades_or_fills_summary": {
+        "pnl_by_product_last_day_block": {
+          "VEV_5300": 3101
+        },
+        "note": "worse_and_all_identical_this_run"
+      }
+    }
   }
 ]

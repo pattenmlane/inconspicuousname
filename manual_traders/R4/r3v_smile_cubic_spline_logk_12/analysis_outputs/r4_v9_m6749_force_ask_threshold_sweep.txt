@@ -1,0 +1,18 @@
+Round 4 trader_v9 — M6749_FORCE_ASK_POS grid (same code path as v9 except constant).
+Base: v8 (suppress extract asks 250 ts after M67→M49 buy-aggr extract, gate-off).
+Recycle: if extract_pos > threshold, allow asks anyway.
+
+R4 days 1–3, --no-merge-pnl, --match-trades worse (day totals d1/d2/d3, then sum):
+
+  threshold 20:  23248 / 10975 / 13248  total 47471  (extract d2 worse log 8386 vs v8 9410)
+  threshold 36:  23248 / 11230 / 13248  total 47726  (v9 first try)
+  threshold 50:  23248 / 11230 / 13248  total 47726  (same as 36 on this tape)
+  threshold 80:  23248 / 11642 / 13248  total 48138
+
+  v8 (no recycle): 23248 / 11999 / 13248  total 48495
+
+Conclusion: any tested recycle bound **hurts** worse-fill vs v8 on d1–3; likely
+re-enabling asks trims the day-2 extract edge before inventory would hit high long.
+
+Default in trader_v9.py: M6749_FORCE_ASK_POS = LIMITS[EXTRACT] + 1 (never recycles on
+this tape) so v9 === v8 for reproducibility; tune when longer tape or position stress.

@@ -398,5 +398,49 @@
     },
     "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v8.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-merge-pnl",
     "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v8.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-merge-pnl"
+  },
+  {
+    "iteration": 9,
+    "round": 4,
+    "trader_file": "trader_v9.py",
+    "strategy_description": "**trader_v8** + optional **inventory recycle**: if M67→M49 ask-suppression window is active but **extract position > M6749_FORCE_ASK_POS**, still place extract asks. Default **`M6749_FORCE_ASK_POS = LIMITS[EXTRACT]+1`** (never) so R4 d1–3 matches v8; sweep shows thresholds 20–80 all **hurt** worse vs v8.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 48495,
+      "backtest_log_file": "backtest_logs/trader_v9_round4_worse.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": {
+          "day1": 23248,
+          "day2": 11999,
+          "day3": 13248
+        },
+        "non_zero_pnl_products_per_day": {
+          "day1": 4,
+          "day2": 3,
+          "day3": 4
+        },
+        "note": "**Identical** to v8 when recycle disabled; threshold sweep in analysis_outputs/r4_v9_m6749_force_ask_threshold_sweep.txt."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 53456,
+      "backtest_log_file": "backtest_logs/trader_v9_round4_all.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": {
+          "day1": 25980,
+          "day2": 16642,
+          "day3": 10834
+        },
+        "non_zero_pnl_products_per_day": {
+          "day1": 11,
+          "day2": 10,
+          "day3": 11
+        },
+        "note": "Matches v8 all when recycle disabled."
+      }
+    },
+    "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v9.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-merge-pnl",
+    "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v9.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-merge-pnl"
   }
 ]

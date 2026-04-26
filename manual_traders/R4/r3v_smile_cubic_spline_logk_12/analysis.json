@@ -361,5 +361,17 @@
       "results.json"
     ],
     "used_to_decide": "**v8** is new best worse+all on this three-day grid; still validate on more days if added. Risk: long inventory skew if extract runs up without ask recycle — monitor position in extended runs."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "**Phase 2 inventory hook (suggested direction):** **trader_v9** = v8 + optional resume of extract **asks** when `extract_pos > M6749_FORCE_ASK_POS` during the M67→M49 suppression window. **Threshold sweep** (worse, R4 d1–3): 20→total **47,471**; 36/50→**47,726**; 80→**48,138**; all **below v8’s 48,495** — re-enabling asks early **eats** the day-2 extract edge (see `analysis_outputs/r4_v9_m6749_force_ask_threshold_sweep.txt`). **Default** `M6749_FORCE_ASK_POS = LIMITS[EXTRACT]+1` makes v9 **bit-identical** to v8 on this tape; ship v8 for production on d1–3, use v9 as a **tunable** template for longer runs.",
+    "analysis_outputs": [
+      "trader_v9.py",
+      "analysis_outputs/r4_v9_m6749_force_ask_threshold_sweep.txt",
+      "backtest_logs/trader_v9_round4_worse.log",
+      "backtest_logs/trader_v9_round4_all.log",
+      "results.json"
+    ],
+    "used_to_decide": "No inventory recycle threshold **beats** v8 on this three-day worse grid; defer recycle tuning until more tape days or explicit inventory stress metrics."
   }
 ]

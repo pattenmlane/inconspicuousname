@@ -131,7 +131,8 @@
       "Mark 55 aggressive sells on extract: pooled k=100 mean ≈ -0.92 (t≈-2.5) but k=5/k=20 ≈ 0 / -0.11 (not short-horizon). trader_v7 (Sonic gate + short on each M55 agg sell tape print) loses -13671 worse with 600 contracts — high-frequency fade contradicts long-horizon mid evidence and accumulates adverse path PnL.",
       "Mark 55→Mark 01→Mark 22 two-hop: offline extract drift negative pooled but day-1 k20 flat; trader_v8 stateful short under Sonic gate still -11396 (19 fills) — not a tradable translation of the graph motif.",
       "Burst orchestrator (dominant buyer|seller per multi-print ts): Mark 01|Mark 22 dominates but extract k=20 forward means flip positive days 2–3 after slightly negative day 1 — not a monotone fade target without further conditioning.",
-      "Hydro duopoly (Mark38 agg buy HYDROGEL_PACK from Mark14): Sonic-tight rows show **positive** mean extract k=20 (+0.53, n=129) vs loose negative (-0.46, n=378) — contradicts using joint voucher gate to justify shorting extract on that flow; trader_v9 sim -14281."
+      "Hydro duopoly (Mark38 agg buy HYDROGEL_PACK from Mark14): Sonic-tight rows show **positive** mean extract k=20 (+0.53, n=129) vs loose negative (-0.46, n=378) — contradicts using joint voucher gate to justify shorting extract on that flow; trader_v9 sim -14281.",
+      "Reverse hydro leg (M38 sell to M14 at bid): tight subset strongly positive extract k20/k100 offline but day3 mean k20 negative; trader_v10 long sim +11633 total yet still << 200k/day bar and day3 PnL disagrees with naive extrapolation from tight-only means."
     ]
   },
   {
@@ -174,7 +175,7 @@
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2c_hydro_m38_m14_summary.json",
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2c_hydro_m38_m14_by_gate.csv"
         ],
-        "conclusion": "Mark67 grid: lags 1–2 price rows (~100–200 ts) corr ~0.12 / ~0.095 vs signed M67 extract flow (decays at longer lag). Hydro duopoly slice: Mark38 aggressive buy of HYDROGEL_PACK from Mark14 (n=507) has pooled extract dm_ex k20 mean ≈ -0.21 (|t|≈1.14); Sonic-tight subset (n=129) has **positive** mean k20 ≈ +0.53 vs loose (n=378) ≈ -0.46 — **inverts** naive 'short extract on duopoly lift under tight gate' story. trader_v9 sim (gate + short extract on that hydro print) loses -14281 worse/all (37 fills, 600 qty)."
+        "conclusion": "Mark67 grid: lags 1–2 price rows (~100–200 ts) corr ~0.12 / ~0.095 vs signed M67 extract flow (decays at longer lag). Hydro duopoly (Mark38 agg buy hydro from Mark14, n=507): pooled extract k20 ≈ -0.21 (weak |t|); **tight** subset mean k20 **+0.53** vs **loose -0.46** — inverts a naive short under gate (trader_v9 -14281). Reverse leg (Mark14 buyer, Mark38 seller — all sell_agg, M38 hitting bid, n=496): pooled k20 ≈ -0.12 (n.s.); **tight** mean k20 **+1.08** (t≈2.62, n=126), k100 **+3.19** (t≈4.32) vs **loose** k20 **-0.53** (t≈-2.33). trader_v10 (gate + long extract on that hydro print) +11633 worse/all (36 fills, 600 qty) — profitable vs v9 but day3 sim negative (-3044) while offline day3 k20 for this slice is ≈ -0.80 (t≈-2.41); path PnL ≠ mid-only table."
       },
       {
         "bullet": "4) Regime splits (Sonic gate × Mark67)",
@@ -335,7 +336,8 @@
       "total_profit_worse": 5304,
       "total_profit_all": 10953,
       "submission_fills_worse": {"n_trades": 27, "extract_qty": 248},
-      "gap_to_target": "200k/day × 3 days would be 600k total; best observed ~0.9% of that under worse fills."
+      "gap_to_target": "200k/day × 3 days would be 600k total; best observed ~0.9% of that under worse fills.",
+      "cross_phase_note": "trader_v10 (Phase2 hydro leg + same Sonic gate) +11633 worse over days 1–3 — higher PnL than v3 but driven by hydro counterparty, not Mark67 voucher flow."
     }
   },
   {
@@ -444,5 +446,20 @@
       "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v9_round4_all_fills_summary.json"
     ],
     "used_to_decide": "Pooled hydro→extract k=20 is only mildly negative; gate-conditioned means flip positive in the tight subset (n=129). Sim shorting extract on each gated hydro signal is strongly negative (-14281) — do not stack Sonic gate as endorsement for this cross-product fade."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "Phase 2 hydro reverse leg: Mark14 buyer / Mark38 seller on HYDROGEL_PACK (Phase1 agg all sell_agg — M38 aggressive sell at bid). r4_hydro_reverse_pair_extract.py -> r4_p2c_hydro_m14_m38_summary.json, r4_p2c_hydro_m14_m38_by_gate.csv. trader_v10.py: Sonic gate + that tape print -> long extract at ask (clip 18); backtests worse+all.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_hydro_reverse_pair_extract.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2c_hydro_m14_m38_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2c_hydro_m14_m38_by_gate.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v10.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v10_round4_worse.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v10_round4_all.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v10_round4_worse_fills_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v10_round4_all_fills_summary.json"
+    ],
+    "used_to_decide": "Symmetric duopoly direction matters: M38→M14 bid hits associate with strong positive extract drift in tight gate (k20 +1.08, k100 +3.19, n=126) vs negative loose. Sim long +11633 (36 fills) beats v9 but day3 loses (-3044) while offline day3 k20 for this slice is negative — mid-only gate slice overstates tradable edge magnitude and sign stability intraday."
   }
 ]

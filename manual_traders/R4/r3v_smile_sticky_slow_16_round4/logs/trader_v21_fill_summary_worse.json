@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v21.py",
+  "match_trades": "worse",
+  "round": 4,
+  "total_profit": 21231,
+  "per_day_total": { "1": 5698, "2": 12741, "3": 2792 },
+  "note": "vs v19 21253: -22. M55 sell -> extract ask qty halved (6 vs 12); day3 extract +2168 vs +2190."
+}

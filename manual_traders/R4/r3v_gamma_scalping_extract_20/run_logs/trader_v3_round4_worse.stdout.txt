@@ -47,4 +47,4 @@ Round 4 day 2: 2,746
 Round 4 day 3: -1,118
 Total profit: 2,814
 
-Successfully saved backtest results to manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v3_round4_worse.log
+Successfully saved backtest results to manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v3_round4_worse_postfix.log

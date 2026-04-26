@@ -346,5 +346,28 @@
       "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v5.json"
     ],
     "used_to_decide": "**Rolling correlation** between tight-share (W∈{20,50,100}) and extract **fwd20** is **small but consistently positive** on all three days (ρ≈0.07–0.14 in `r4_rolling_tight_share_corr_k20.csv`) — aligns with Phase 3’s point-in-time tight uplift, extended to **local persistence** of the gate. **`trader_v5`** stacks **v2** (Mark67 lift under gate) with **v3** (surface MM); **worse total 8039** beats **v2** 5224 and **v3** 2814; **all** 9401. **Bugfix:** v3/v4 requote state reset each tick because `mm_tick` was not in `traderData` — v5 loads/persists `store` from `state.traderData` so MM cadence works like offline design. Day 3 worse still **−550** aggregate (VEV loss dominates extract gain) — next: inventory skew or reduce MM when net short VEVs."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "**v3/v4** `traderData` fix + **inventory-skew** sim sweep (**v6**, **v7**). Patched **v3** and **v4** to `json.loads` / `json.dumps` `store` so `mm_tick` persists (same pattern as **v5**). Re-ran **v3/v4** worse+all: **PnL unchanged** from prior broken-cadence runs (2814 / 2786 worse) — the bug did not alter these totals on this tape. **v6** = **v5** + asymmetric clips (6 vs 10 when adding to inventory): **8039** worse — **identical** to **v5** (skew did not bind on filled paths). **v7** = stronger skew (4 vs 10): worse **7878** (< v5); day 3 **−483** vs v5 **−550** (small VEV drawdown reduction) but days 1–2 lost more than day 3 gained. **Ship:** **v5** remains best worse total; skew needs a different mechanism (e.g. one-sided quoting, extract hedge) if we revisit inventory-aware MM.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v3.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v4.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v6.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v7.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v3_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v3_round4_all.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v4_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v4_round4_all.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v6_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v6_round4_all.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v7_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v7_round4_all.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v3.json",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v4.json",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v6.json",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v7.json"
+    ],
+    "used_to_decide": "Correct **v3/v4** persistence for auditability; confirm **mild clip skew** is a dead knob at 6/10 on this sim path; **reject v7** vs **v5** on worse total despite marginal day-3 VEV improvement."
   }
 ]

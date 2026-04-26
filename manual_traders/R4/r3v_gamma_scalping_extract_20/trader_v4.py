@@ -78,7 +78,10 @@ class Trader:
     def run(self, state: TradingState) -> tuple[dict[str, list[Order]], int, str]:
         result: dict[str, list[Order]] = {p: [] for p in PRODUCTS}
         conversions = 0
-        store: dict[str, Any] = {}
+        try:
+            store: dict[str, Any] = json.loads(state.traderData) if (state.traderData or "").strip() else {}
+        except (json.JSONDecodeError, TypeError):
+            store = {}
         obs = getattr(state.observations, "plainValueObservations", None) or {}
 
         if not joint_tight_gate(state):

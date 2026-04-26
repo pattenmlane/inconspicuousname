@@ -62,7 +62,7 @@
   {
     "iteration": 3,
     "trader_file": "trader_v3.py",
-    "strategy_description": "Post–Phase 3: **Sonic joint gate** then passive MM **only VEV_5200 + VEV_5300** (BBO+1, clip 10, requote every 2 ticks). No extract/hydrogel orders. Tests whether tight-surface quoting alone is PnL-stable under worse fills.",
+    "strategy_description": "Post–Phase 3: **Sonic joint gate** then passive MM **only VEV_5200 + VEV_5300** (BBO+1, clip 10, requote every 2 ticks). `traderData` now persists `mm_tick` (earlier runs reset store each tick so REQUOTE_EVERY was ineffective; totals unchanged at **2814** worse after fix). No extract/hydrogel orders.",
     "total_profit": 2814,
     "backtest_round": 4,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v3.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
@@ -82,7 +82,7 @@
   {
     "iteration": 4,
     "trader_file": "trader_v4.py",
-    "strategy_description": "**v3** + skip VEV MM for this requote tick when tape shows **Mark 14→Mark 55** on **VELVETFRUIT_EXTRACT** (counterparty adverse-selection test). Worse total **2786** vs v3 **2814**; day 3 unchanged vs v3.",
+    "strategy_description": "**v3** + skip VEV MM for this requote tick when tape shows **Mark 14→Mark 55** on **VELVETFRUIT_EXTRACT** (counterparty adverse-selection test). `mm_tick` persisted via `traderData` (same fix as v3). Worse **2786** vs v3 **2814**; day 3 unchanged vs v3.",
     "total_profit": 2786,
     "backtest_round": 4,
     "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v4.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
@@ -117,6 +117,46 @@
       "backtest_log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v5_round4_all.log",
       "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v5_round4_all.stdout.txt",
       "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v5.json"
+    }
+  },
+  {
+    "iteration": 6,
+    "trader_file": "trader_v6.py",
+    "strategy_description": "**v5** + per-leg inventory skew on 5200/5300: when long, buy clip **6** / sell **10**; when short, buy **10** / sell **6**; flat **10/10**. **Worse 8039** — identical to **v5** (skew 6 vs 10 did not change fills/PnL in this sim).",
+    "total_profit": 8039,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v6.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_worse": {
+      "total_profit": 8039,
+      "backtest_log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v6_round4_worse.log",
+      "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v6_round4_worse.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v6.json"
+    },
+    "backtest_all": {
+      "total_profit": 9401,
+      "backtest_log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v6_round4_all.log",
+      "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v6_round4_all.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v6.json"
+    }
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "**v6** with **stronger** skew (**4** vs **10** clips). Worse **7878** (< **v5** 8039); day 3 worse **−483** vs **v5** **−550** — small day-3 improvement but **not** worth aggregate loss vs v5.",
+    "total_profit": 7878,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v7.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_worse": {
+      "total_profit": 7878,
+      "backtest_log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v7_round4_worse.log",
+      "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v7_round4_worse.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v7.json"
+    },
+    "backtest_all": {
+      "total_profit": 9220,
+      "backtest_log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v7_round4_all.log",
+      "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v7_round4_all.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v7.json"
     }
   }
 ]

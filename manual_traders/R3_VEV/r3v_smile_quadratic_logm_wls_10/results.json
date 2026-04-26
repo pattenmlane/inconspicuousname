@@ -798,5 +798,259 @@
         }
       }
     }
+  },
+  {
+    "iteration": 24,
+    "trader_file": "trader_v24.py",
+    "strategy_description": "vouchers_final_strategy gate + v23 VEV one-tick MM; extract: EMA(20) on mid, taker 50@touch when |S-EMA|>=1 else MM. Ablation: mid momentum not tradable under worse (STRATEGY caveat).",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/backtest_worse_trader_v24_r3_d012.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v24.py 3-0 3-1 3-2 --data Prosperity4Data --no-out --no-progress --no-vis --match-trades worse",
+      "backtest_round": 3,
+      "backtest_days": "0-2",
+      "total_profit": -164495,
+      "day_total_profit": {
+        "0": -52892,
+        "1": -51210,
+        "2": -60393
+      },
+      "extract_plus_vev_only_total": -164495,
+      "trades_or_fills_summary": {
+        "note": "per-product from log; HYDROGEL 0",
+        "vev_extract_by_day": {
+          "0": {
+            "VEV_6500": 0,
+            "VEV_6000": 0,
+            "VEV_5500": -21,
+            "VEV_5400": -182,
+            "VEV_5300": -14,
+            "VEV_5200": 82,
+            "VEV_5100": 0,
+            "VEV_5000": 0,
+            "VEV_4500": 0,
+            "VEV_4000": 125,
+            "VELVETFRUIT_EXTRACT": -52883,
+            "HYDROGEL_PACK": 0
+          },
+          "1": {
+            "VEV_6500": 0,
+            "VEV_6000": 0,
+            "VEV_5500": -21,
+            "VEV_5400": 59,
+            "VEV_5300": 873,
+            "VEV_5200": 314,
+            "VEV_5100": -26,
+            "VEV_5000": -32,
+            "VEV_4500": -34,
+            "VEV_4000": 395,
+            "VELVETFRUIT_EXTRACT": -52738,
+            "HYDROGEL_PACK": 0
+          },
+          "2": {
+            "VEV_6500": 0,
+            "VEV_6000": 0,
+            "VEV_5500": 23,
+            "VEV_5400": 433,
+            "VEV_5300": 1828,
+            "VEV_5200": 918,
+            "VEV_5100": 0,
+            "VEV_5000": 0,
+            "VEV_4500": 0,
+            "VEV_4000": 433,
+            "VELVETFRUIT_EXTRACT": -64028,
+            "HYDROGEL_PACK": 0
+          }
+        }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/backtest_all_trader_v24_r3_d012.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v24.py 3-0 3-1 3-2 --data Prosperity4Data --no-out --no-progress --no-vis --match-trades all",
+      "backtest_round": 3,
+      "backtest_days": "0-2",
+      "total_profit": -164518,
+      "day_total_profit": {
+        "0": -53119,
+        "1": -50994,
+        "2": -60405
+      },
+      "extract_plus_vev_only_total": -164518,
+      "trades_or_fills_summary": {
+        "note": "per-product from log; HYDROGEL 0",
+        "vev_extract_by_day": {
+          "0": {
+            "VEV_6500": 0,
+            "VEV_6000": 0,
+            "VEV_5500": -21,
+            "VEV_5400": -182,
+            "VEV_5300": -14,
+            "VEV_5200": 82,
+            "VEV_5100": 0,
+            "VEV_5000": 0,
+            "VEV_4500": 0,
+            "VEV_4000": 125,
+            "VELVETFRUIT_EXTRACT": -53110,
+            "HYDROGEL_PACK": 0
+          },
+          "1": {
+            "VEV_6500": 0,
+            "VEV_6000": 0,
+            "VEV_5500": -21,
+            "VEV_5400": 59,
+            "VEV_5300": 873,
+            "VEV_5200": 314,
+            "VEV_5100": -26,
+            "VEV_5000": -32,
+            "VEV_4500": -34,
+            "VEV_4000": 395,
+            "VELVETFRUIT_EXTRACT": -52522,
+            "HYDROGEL_PACK": 0
+          },
+          "2": {
+            "VEV_6500": 0,
+            "VEV_6000": 0,
+            "VEV_5500": 23,
+            "VEV_5400": 433,
+            "VEV_5300": 1828,
+            "VEV_5200": 918,
+            "VEV_5100": 0,
+            "VEV_5000": 0,
+            "VEV_4500": 0,
+            "VEV_4000": 433,
+            "VELVETFRUIT_EXTRACT": -64040,
+            "HYDROGEL_PACK": 0
+          }
+        }
+      }
+    }
+  },
+  {
+    "iteration": 25,
+    "trader_file": "trader_v25.py",
+    "strategy_description": "Joint gate + one-tick VEV+extract MM only (v23 logic), larger per-side when tight: gate legs 40, others 28, extract 64. No taker, no WLS.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/backtest_worse_trader_v25_r3_d012.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v25.py 3-0 3-1 3-2 --data Prosperity4Data --no-out --no-progress --no-vis --match-trades worse",
+      "backtest_round": 3,
+      "backtest_days": "0-2",
+      "total_profit": 4427,
+      "day_total_profit": {
+        "0": 101,
+        "1": 974,
+        "2": 3352
+      },
+      "extract_plus_vev_only_total": 4427,
+      "trades_or_fills_summary": {
+        "note": "identical to v23 PnL; backtester may cap per-tick size",
+        "vev_extract_by_day": {
+          "0": {
+            "VEV_6500": 0,
+            "VEV_6000": 0,
+            "VEV_5500": -21,
+            "VEV_5400": -182,
+            "VEV_5300": -14,
+            "VEV_5200": 82,
+            "VEV_5100": 0,
+            "VEV_5000": 0,
+            "VEV_4500": 0,
+            "VEV_4000": 125,
+            "VELVETFRUIT_EXTRACT": 110,
+            "HYDROGEL_PACK": 0
+          },
+          "1": {
+            "VEV_6500": 0,
+            "VEV_6000": 0,
+            "VEV_5500": -21,
+            "VEV_5400": 59,
+            "VEV_5300": 873,
+            "VEV_5200": 314,
+            "VEV_5100": -26,
+            "VEV_5000": -32,
+            "VEV_4500": -34,
+            "VEV_4000": 395,
+            "VELVETFRUIT_EXTRACT": -554,
+            "HYDROGEL_PACK": 0
+          },
+          "2": {
+            "VEV_6500": 0,
+            "VEV_6000": 0,
+            "VEV_5500": 23,
+            "VEV_5400": 433,
+            "VEV_5300": 1828,
+            "VEV_5200": 918,
+            "VEV_5100": 0,
+            "VEV_5000": 0,
+            "VEV_4500": 0,
+            "VEV_4000": 433,
+            "VELVETFRUIT_EXTRACT": -282,
+            "HYDROGEL_PACK": 0
+          }
+        }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/backtest_all_trader_v25_r3_d012.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_smile_quadratic_logm_wls_10/trader_v25.py 3-0 3-1 3-2 --data Prosperity4Data --no-out --no-progress --no-vis --match-trades all",
+      "backtest_round": 3,
+      "backtest_days": "0-2",
+      "total_profit": 4427,
+      "day_total_profit": {
+        "0": 101,
+        "1": 974,
+        "2": 3352
+      },
+      "extract_plus_vev_only_total": 4427,
+      "trades_or_fills_summary": {
+        "note": "same as worse in this run",
+        "vev_extract_by_day": {
+          "0": {
+            "VEV_6500": 0,
+            "VEV_6000": 0,
+            "VEV_5500": -21,
+            "VEV_5400": -182,
+            "VEV_5300": -14,
+            "VEV_5200": 82,
+            "VEV_5100": 0,
+            "VEV_5000": 0,
+            "VEV_4500": 0,
+            "VEV_4000": 125,
+            "VELVETFRUIT_EXTRACT": 110,
+            "HYDROGEL_PACK": 0
+          },
+          "1": {
+            "VEV_6500": 0,
+            "VEV_6000": 0,
+            "VEV_5500": -21,
+            "VEV_5400": 59,
+            "VEV_5300": 873,
+            "VEV_5200": 314,
+            "VEV_5100": -26,
+            "VEV_5000": -32,
+            "VEV_4500": -34,
+            "VEV_4000": 395,
+            "VELVETFRUIT_EXTRACT": -554,
+            "HYDROGEL_PACK": 0
+          },
+          "2": {
+            "VEV_6500": 0,
+            "VEV_6000": 0,
+            "VEV_5500": 23,
+            "VEV_5400": 433,
+            "VEV_5300": 1828,
+            "VEV_5200": 918,
+            "VEV_5100": 0,
+            "VEV_5000": 0,
+            "VEV_4500": 0,
+            "VEV_4000": 433,
+            "VELVETFRUIT_EXTRACT": -282,
+            "HYDROGEL_PACK": 0
+          }
+        }
+      }
+    }
   }
 ]

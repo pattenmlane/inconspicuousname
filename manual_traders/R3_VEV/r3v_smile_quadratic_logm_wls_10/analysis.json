@@ -149,5 +149,22 @@
       "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt"
     ],
     "used_to_decide": "v23: stop legacy WLS stack; on joint tight book post quotes. Fixed sp==2 bug (join quote). R3 d0-2 total 4427 (<<200k/day floor) \u2014 naive MM in gate is insufficient; next: taker/lean on forward extract signal when gate+spread ok, or pair 5200/5300 with extract beta hedge."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "v24 tested STRATEGY.txt optional (2) directional read with EMA(K=20) taker on extract when joint gate on. v24 backtest: large negative total under worse; confirms mid-only signal needs execution discount (caveat in STRATEGY).",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt"
+    ],
+    "used_to_decide": "Deprecate EMA taker; v25 = v23-style MM only, larger size when tight (Sonic: size up in clean regime) \u2014 no taker, no smile."
+  },
+  {
+    "iteration": 18,
+    "analysis_description": "v25: doubled v23 per-side size caps; backtester output matched v23 totals \u2014 suggests market/limit capping of fills, so size scale did not add PnL yet.",
+    "analysis_outputs": [
+      "results.json"
+    ],
+    "used_to_decide": "Next: staggered size by spread width per contract, or v23-only for extract + gate legs only, or taker on VEVs not extract."
   }
 ]

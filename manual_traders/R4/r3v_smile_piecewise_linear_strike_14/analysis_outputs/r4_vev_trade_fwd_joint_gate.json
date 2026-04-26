@@ -1,0 +1,158 @@
+{
+  "method": "fwd on traded VEV mid; joint_tight from 5200+5300 at trade ts",
+  "per_strike_k20_means": {
+    "VEV_4000": {
+      "tight": {
+        "n": 118,
+        "mean": 0.4703389830508475
+      },
+      "loose": {
+        "n": 322,
+        "mean": -0.13043478260869565
+      }
+    },
+    "VEV_4500": {
+      "tight": {
+        "n": 3,
+        "mean": 3.5
+      },
+      "loose": {
+        "n": 0
+      }
+    },
+    "VEV_5000": {
+      "tight": {
+        "n": 3,
+        "mean": 2.8333333333333335
+      },
+      "loose": {
+        "n": 0
+      }
+    },
+    "VEV_5100": {
+      "tight": {
+        "n": 3,
+        "mean": 2.1666666666666665
+      },
+      "loose": {
+        "n": 0
+      }
+    },
+    "VEV_5200": {
+      "tight": {
+        "n": 47,
+        "mean": 0.2978723404255319
+      },
+      "loose": {
+        "n": 0
+      }
+    },
+    "VEV_5300": {
+      "tight": {
+        "n": 163,
+        "mean": -0.1165644171779141
+      },
+      "loose": {
+        "n": 1,
+        "mean": 0.5
+      }
+    },
+    "VEV_5400": {
+      "tight": {
+        "n": 275,
+        "mean": 0.02
+      },
+      "loose": {
+        "n": 1,
+        "mean": 0.5
+      }
+    },
+    "VEV_5500": {
+      "tight": {
+        "n": 305,
+        "mean": 0.014754098360655738
+      },
+      "loose": {
+        "n": 1,
+        "mean": 0.0
+      }
+    },
+    "VEV_6000": {
+      "tight": {
+        "n": 316,
+        "mean": 0.0
+      },
+      "loose": {
+        "n": 1,
+        "mean": 0.0
+      }
+    },
+    "VEV_6500": {
+      "tight": {
+        "n": 316,
+        "mean": 0.0
+      },
+      "loose": {
+        "n": 1,
+        "mean": 0.0
+      }
+    }
+  },
+  "per_strike_k20_welch_tight_vs_loose_min_n_25": {
+    "VEV_4000": {
+      "mean_tight": 0.4703389830508475,
+      "mean_loose": -0.13043478260869565,
+      "n_tight": 118,
+      "n_loose": 322,
+      "t_stat": 1.3122606984836094,
+      "p_value": 0.19084320924924278
+    },
+    "VEV_4500": null,
+    "VEV_5000": null,
+    "VEV_5100": null,
+    "VEV_5200": null,
+    "VEV_5300": null,
+    "VEV_5400": null,
+    "VEV_5500": null,
+    "VEV_6000": null,
+    "VEV_6500": null
+  },
+  "pooled_all_vev_k20": {
+    "tight": {
+      "n": 1549,
+      "mean": 0.05551969012265978
+    },
+    "loose": {
+      "n": 327,
+      "mean": -0.12538226299694188
+    }
+  },
+  "pooled_all_vev_k20_welch": {
+    "mean_tight": 0.05551969012265978,
+    "mean_loose": -0.12538226299694188,
+    "n_tight": 1549,
+    "n_loose": 327,
+    "t_stat": 0.75054850989719,
+    "p_value": 0.4534386904529618
+  },
+  "pooled_all_vev_k5": {
+    "tight": {
+      "n": 1549,
+      "mean": -0.004519044544867657
+    },
+    "loose": {
+      "n": 329,
+      "mean": -0.11550151975683891
+    }
+  },
+  "pooled_all_vev_k100": {
+    "tight": {
+      "n": 1536,
+      "mean": 0.19759114583333334
+    },
+    "loose": {
+      "n": 325,
+      "mean": -0.5923076923076923
+    }
+  }
+}

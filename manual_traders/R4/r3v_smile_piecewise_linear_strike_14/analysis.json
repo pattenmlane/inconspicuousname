@@ -365,5 +365,21 @@
       "m01_m22_vev_extract_same_ts": "Phase-1 snap_at + forward_mid K=20 on extract series at the basket timestamp.",
       "trader_v9_vs_v2_v8": "Bad-hour filter recovers some PnL vs good-hour-only v8 but remains below unconstrained v2."
     }
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "Tape: all VEV_* trades — forward mid on traded strike at K∈{5,20,100}, split by joint-tight at trade ts; per-strike Welch K=20 when n>=25. Sim: trader_v10 = joint gate + extract L1>=3 (wide extract book).",
+    "analysis_outputs": [
+      "run_r4_vev_trade_fwd_joint_gate.py",
+      "analysis_outputs/r4_vev_trade_fwd_joint_gate.json",
+      "trader_v10.py",
+      "backtest_logs/trader_v10_worse.log",
+      "backtest_logs/trader_v10_all.log"
+    ],
+    "used_to_decide": "**VEV trade markouts × gate (r4_vev_trade_fwd_joint_gate.json):** Pooled all strikes **K=20**: mean fwd on traded mid **~+0.056** when joint-tight (n=1549) vs **~−0.125** when loose (n=327) — directionally favors tight but **Welch p~0.45** (not significant; imbalanced loose n). Only **VEV_4000** has both arms **n≥25** for K=20 Welch; there tight mean **~+0.47** vs loose **~−0.13**, **p~0.19**. Other strikes lack loose-side count for stable per-strike tests. **trader_v10** (joint tight + **extract spread ≥3**): worse **13,044** vs v2 **13,236** (**−192**), **4,364** trades — **closest** microstructure variant to v2 so far (contrast v6 tight extract **+220**). Wide extract under Sonic gate is **not** toxic like ultra-tight filter.",
+    "round4_post_phase3_notes": {
+      "vev_fwd_joint_gate": "Forward on the traded voucher's own mid series (not extract).",
+      "trader_v10_vs_v2": "Small PnL gap vs v2; optional refinement only."
+    }
   }
 ]

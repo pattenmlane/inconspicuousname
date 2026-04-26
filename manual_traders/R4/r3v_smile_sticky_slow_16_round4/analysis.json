@@ -252,5 +252,18 @@
       "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v4_fill_summary_all.json"
     ],
     "used_to_decide": "**Falsified** for primary metric: **worse** total **4661** vs **v3 4852** (\u2212191). Phase-3 **mid** forward edge under tight gate does **not** map to better **bid/ask PnL** when we quote one tick closer with larger size under `--match-trades worse` \u2014 adverse selection dominates (notably **HYDROGEL_PACK** day3 **\u2212494** vs v3 **+98**). **all** mode also down (**5294** vs v3 **5613**). Next: keep v3-style width/size for U/H in tight, or tighten **extract only** (not hydro), or revert to v2/v3 baseline and seek **non-width** hooks (counterparty-conditioned skew)."
+  },
+  {
+    "iteration": 7,
+    "round": 4,
+    "analysis_description": "Sim: **trader_v5** implements iteration-6 follow-up \u2014 **tight-regime mid\u00b11 + larger size on extract only**; hydro and VEVs unchanged from v3. Tests whether v4\u2019s loss was **cross-product** tightening vs **extract-specific** adverse selection.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v5.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v5_backtest_worse.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v5_backtest_all.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v5_fill_summary_worse.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v5_fill_summary_all.json"
+    ],
+    "used_to_decide": "**Supported on `--match-trades worse`:** total **5906** vs **v3 4852** (+1054) and vs **v4 4661** (+1245). **HYDROGEL** per-day PnL matches v3 (e.g. day1 **193**, day3 **98**) \u2014 confirms isolation. **Extract** gains concentrated day1 (**492** vs v3 **204**) and day3 (**2173** vs **816**); day2 extract **1068** vs v3 **1660** (tradeoff). **all** mode collapses (**1446**) because tight extract gets picked off \u2014 reinforces **worse** as objective. Next levers: milder extract tight half (e.g. size 9 only) for day2 stability; or asymmetric bid/ask from Phase-1 Mark hooks beyond Mark38/Mark67."
   }
 ]

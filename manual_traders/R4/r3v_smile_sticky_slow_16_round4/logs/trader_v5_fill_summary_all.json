@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v5.py",
+  "match_trades": "all",
+  "round": 4,
+  "total_profit": 1446,
+  "per_day_total": { "1": 219, "2": -510, "3": 1738 },
+  "note": "vs trader_v3 all 5613: -4167. Tighter extract under 'all' drives large negative extract line days 1-2; worse mode is the relevant objective."
+}

@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v5.py",
+  "match_trades": "worse",
+  "round": 4,
+  "total_profit": 5906,
+  "per_day_total": { "1": 1526, "2": 1584, "3": 2797 },
+  "note": "vs trader_v3 worse 4852: +1054. Extract-only tight aggression (mid±1, sz 12 on U when tight); H/VEVs same as v3. vs v4 worse 4661: +1245 (v4 hurt hydro/VEVs)."
+}

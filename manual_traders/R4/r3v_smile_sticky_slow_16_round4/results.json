@@ -110,5 +110,26 @@
     "backtest_round": 4,
     "match_trades_primary": "worse",
     "note": "vs v3 worse 4852: **-191**. Main drag: HYDROGEL day3 **-494** vs v3 **+98**; extract day2 **1068** vs **1660**. Mid-only gate edge does not survive tighter passive quotes + worse match."
+  },
+  {
+    "iteration": 7,
+    "round": 4,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "v3 + **extract-only** tight-regime aggression: when Sonic tight, **VELVETFRUIT_EXTRACT** mid\u00b11 and size **12**; **HYDROGEL_PACK** and all **VEV_*** stay mid\u00b12 size **6** (isolates v4 failure mode). Mark38/Mark67 unchanged.",
+    "backtest_worse": {
+      "total_profit": 5906,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v5.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v5_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v5_fill_summary_worse.json"
+    },
+    "backtest_all": {
+      "total_profit": 1446,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v5.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v5_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v5_fill_summary_all.json"
+    },
+    "backtest_round": 4,
+    "match_trades_primary": "worse",
+    "note": "vs v3 worse **+1054** (4852\u21925906). vs v4 +1245. Day2 total lower (1584 vs 2175) but day1+3 extract gains dominate. **all** mode poor\u2014optimize on worse only."
   }
 ]

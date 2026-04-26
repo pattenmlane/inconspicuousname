@@ -1,0 +1,50 @@
+running algorithm '/workspace/manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v5.py'...
+Backtesting /workspace/manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v5.py for round: 4 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: -34
+VEV_4000: 874
+VELVETFRUIT_EXTRACT: -815
+HYDROGEL_PACK: 193
+Total profit: 219
+Backtesting /workspace/manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v5.py for round: 4 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 525
+VELVETFRUIT_EXTRACT: -1,026
+HYDROGEL_PACK: -10
+Total profit: -510
+Backtesting /workspace/manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v5.py for round: 4 day: 3
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 24
+VEV_4000: 502
+VELVETFRUIT_EXTRACT: 1,114
+HYDROGEL_PACK: 98
+Total profit: 1,738
+Profit summary:
+Round 4 day 1: 219
+Round 4 day 2: -510
+Round 4 day 3: 1,738
+Total profit: 1,446
+
+Successfully saved backtest results to backtests/2026-04-26_17-31-01.log

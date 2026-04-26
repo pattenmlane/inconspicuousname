@@ -169,5 +169,33 @@
       "vs_trader_v4_worse": 60,
       "vs_trader_v4_all": 2313
     }
+  },
+  {
+    "iteration": 7,
+    "trader_file": "manual_traders/R4/r4_counterparty_research/trader_v6.py",
+    "strategy_description": "v5 sweep: tight-regime extract size 28 instead of 24 (edge 0 unchanged); loose unchanged vs v2.",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r4_counterparty_research/trader_v6.py\" 4 --data Prosperity4Data --no-progress --no-out --no-vis",
+    "total_profit": 33922,
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 33922,
+      "daily_profit": [16234, 6943, 10745],
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v6_worse.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v6_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 35782,
+      "daily_profit": [16975, 7244, 11564],
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v6_all.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v6_all.json"
+    },
+    "vs_trader_v5": {
+      "worse_delta": -516,
+      "all_delta": -398,
+      "conclusion": "Larger tight extract size hurt vs v5; keep 24 or lower."
+    },
+    "tape_context": "manual_traders/R4/r4_counterparty_research/outputs/r4_joint_gate_occupancy.json"
   }
 ]

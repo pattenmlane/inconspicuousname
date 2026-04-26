@@ -426,5 +426,39 @@
       "vs_v4_worse": 60,
       "vs_v4_all": 2313
     }
+  },
+  {
+    "iteration": "r4_joint_gate_occupancy_tape",
+    "analysis_description": "Aligned-panel fraction of timestamps with VEV_5200 and VEV_5300 spread <= 2 (inner join with extract); day-stability for when tight-regime MM applies.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_research/run_r4_joint_gate_occupancy.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_joint_gate_occupancy.json",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_joint_gate_occupancy_by_day.csv"
+    ],
+    "used_to_decide": "P(tight) pooled ~0.257 on 30k aligned rows; by day: 0.138 (day1), 0.173 (day2), 0.461 (day3). Day 3 is much more often tight, so extract-tilt behavior matters more on day 3.",
+    "summary": {
+      "pooled_P_tight": 0.2574,
+      "P_tight_by_day": [0.1381, 0.1727, 0.4614]
+    }
+  },
+  {
+    "iteration": "r4_trader_v6_tight_extract_size_sweep",
+    "analysis_description": "Parameter sweep: trader_v6 = v5 but SIZE_U_TIGHT_EXTRACT 28 vs 24. Both worse and all PnL drop vs v5.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_research/trader_v6.py",
+      "manual_traders/R4/r4_counterparty_research/runlog_v6_worse.txt",
+      "manual_traders/R4/r4_counterparty_research/runlog_v6_all.txt",
+      "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v6_worse.json",
+      "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v6_all.json"
+    ],
+    "used_to_decide": "v6 worse 33922 vs v5 34438 (-516); all 35782 vs 36180 (-398). Day 3 worse especially weaker (10745 vs 11361). Marginal forward-U edge does not support larger tight-book extract inventory in this sim.",
+    "backtest_summary": {
+      "worse_total": 33922,
+      "worse_daily": [16234, 6943, 10745],
+      "all_total": 35782,
+      "all_daily": [16975, 7244, 11564],
+      "vs_v5_worse": -516,
+      "vs_v5_all": -398
+    }
   }
 ]

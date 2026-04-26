@@ -197,5 +197,37 @@
       "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v27_gate_sizing_v25_all.log"
     ],
     "used_to_decide": "v27 total 22,350 > v25 21,633 on the same 4 day backtest (merge added day_3; v25 three-day 21,610 comparable). Keep joint gate as sizing/hurdle modulator, not 5200 re-entry. Profit/day on strong days 1-2 is still \u00ab 200k \u2014 more work: scale orders, or combine with other edges; do not add hydrogel unless thesis expands."
+  },
+  {
+    "iteration": 28,
+    "analysis_description": "Reread round3work/vouchers_final_strategy/STRATEGY.txt and ORIGINAL_DISCORD_QUOTES.txt (Sonic: both 5200 and 5300 \u22642; inclineGod: spread correlation / book state). Stopped all legacy per-agent surface code: joint-gate--first, wall_mid+regime FV from velvetfruit, Frankfurt take + passive on VELVET+all VEV. IV/Greek: none (thesis is book-state MM).",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v28_joint_gate_vev_extract_mm.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v28_joint_gate_vev_extract_mm_worse.log",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v28_joint_gate_vev_extract_mm_all.log"
+    ],
+    "used_to_decide": "v28 total -287,559 (worse): far OTM/ITM VEVs bleed under passive+taking. STRATEGY caveat (mid \u2192 PnL) applies: naive MM on all ten is not the joint-gate \u2018hedgeable surface\u2019 in practice. Next: restrict names."
+  },
+  {
+    "iteration": 29,
+    "analysis_description": "Same v28, restrict to 5000\u20135500 strip (6 names) to avoid 4000/4500/6000/6500. Still large negative PnL: 5400/5500+even core MM adverse under worse. Confirms per-contract spread/liquidity varies by strike; Sonic does not say \u2018quote every VEV in gate\u2019.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v29_joint_gate_core_vev_u.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v29_joint_gate_core_vev_u_worse.log",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v29_joint_gate_core_vev_u_all.log"
+    ],
+    "used_to_decide": "v29 -131,094. Pivot to the minimal set Sonic names: 5200, 5300, plus extract only."
+  },
+  {
+    "iteration": 30,
+    "analysis_description": "Minimal **vouchers_final_strategy** book: VELVETFRUIT_EXTRACT + VEV_5200 + VEV_5300 when joint gate on; same wall_mid/Frankfurt; clip 18. Aligns with Discord \u2018hedge into a tight surface\u2019 (two named legs) without wing inventory.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v30_gate_legs_plus_extract_mm.py",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v30_gate_legs_plus_extract_mm_worse.log",
+      "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v30_gate_legs_plus_extract_mm_all.log"
+    ],
+    "used_to_decide": "v30 +4,810 worse, +6,066 all (days 0\u20133). Far from 200k/day; next levers: inventory skew, only passive (no taker) in gate, or layer another signal\u2014still within this thesis only."
   }
 ]

@@ -269,5 +269,68 @@
     "match_trades": "worse",
     "backtest_log_file": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v27_gate_sizing_v25_worse.log",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v27_gate_sizing_v25_worse_fill_summary.json"
+  },
+  {
+    "iteration": 28,
+    "trader_file": "trader_v28_joint_gate_vev_extract_mm.py",
+    "strategy_description": "vouchers_final_strategy ONLY: Sonic joint gate (s5200,s5300 both \u22642) then no-op else; inclineGod-style per-book wall_mid+regime FV; Frankfurt+passive on VELVETFRUIT_EXTRACT and ALL 10 VEV. No hydrogel, no legacy IV. Wide wings lost heavily under worse.",
+    "total_profit": -287559,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v28_joint_gate_vev_extract_mm.py 3 --data Prosperity4Data --match-trades worse",
+    "backtest_worse": {
+      "total_profit": -287559,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v28_joint_gate_vev_extract_mm_worse.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v28_joint_gate_vev_extract_mm_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "total_profit": -288126,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v28_joint_gate_vev_extract_mm_all.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v28_joint_gate_vev_extract_mm_all_fill_summary.json"
+    },
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v28_joint_gate_vev_extract_mm_worse.log",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v28_joint_gate_vev_extract_mm_worse_fill_summary.json"
+  },
+  {
+    "iteration": 29,
+    "trader_file": "trader_v29_joint_gate_core_vev_u.py",
+    "strategy_description": "Same v28 thesis, narrow to VELVETFRUIT_EXTRACT + VEV_5000\u20135500 (6 names). Still large losses on 5400/5500+5300+5200; worse -131,094; all -130,095.",
+    "total_profit": -131094,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v29_joint_gate_core_vev_u.py 3 --data Prosperity4Data --match-trades worse",
+    "backtest_worse": {
+      "total_profit": -131094,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v29_joint_gate_core_vev_u_worse.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v29_joint_gate_core_vev_u_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "total_profit": -130095,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v29_joint_gate_core_vev_u_all.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v29_joint_gate_core_vev_u_all_fill_summary.json"
+    },
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v29_joint_gate_core_vev_u_worse.log",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v29_joint_gate_core_vev_u_worse_fill_summary.json"
+  },
+  {
+    "iteration": 30,
+    "trader_file": "trader_v30_gate_legs_plus_extract_mm.py",
+    "strategy_description": "Minimal Sonic book: same joint gate, trade ONLY VELVETFRUIT_EXTRACT + VEV_5200 + VEV_5300 (gate legs + underlying). Capped clip 18. Fills the community \u2018tight surface\u2019 story without trading far strikes; small positive PnL under worse; all > worse.",
+    "total_profit": 4810,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/trader_v30_gate_legs_plus_extract_mm.py 3 --data Prosperity4Data --match-trades worse",
+    "backtest_worse": {
+      "total_profit": 4810,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v30_gate_legs_plus_extract_mm_worse.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v30_gate_legs_plus_extract_mm_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "total_profit": 6066,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v30_gate_legs_plus_extract_mm_all.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v30_gate_legs_plus_extract_mm_all_fill_summary.json"
+    },
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v30_gate_legs_plus_extract_mm_worse.log",
+    "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_synthetic_local_vol_surface_15/run_logs/trader_v30_gate_legs_plus_extract_mm_worse_fill_summary.json"
   }
 ]

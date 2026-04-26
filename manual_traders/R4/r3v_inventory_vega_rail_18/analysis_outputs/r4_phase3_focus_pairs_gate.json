@@ -1,0 +1,122 @@
+[
+  {
+    "buyer": "Mark 67",
+    "seller": "Mark 22",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 5,
+    "n_tight": 15,
+    "mean_tight": 2.0,
+    "n_wide": 60,
+    "mean_wide": 2.075
+  },
+  {
+    "buyer": "Mark 67",
+    "seller": "Mark 22",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 20,
+    "n_tight": 15,
+    "mean_tight": 2.8333333333333335,
+    "n_wide": 60,
+    "mean_wide": 1.825
+  },
+  {
+    "buyer": "Mark 67",
+    "seller": "Mark 22",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 100,
+    "n_tight": 15,
+    "mean_tight": 3.1666666666666665,
+    "n_wide": 60,
+    "mean_wide": 0.11666666666666667
+  },
+  {
+    "buyer": "Mark 67",
+    "seller": "Mark 49",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 5,
+    "n_tight": 12,
+    "mean_tight": 1.5,
+    "n_wide": 77,
+    "mean_wide": 1.9350649350649352
+  },
+  {
+    "buyer": "Mark 67",
+    "seller": "Mark 49",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 20,
+    "n_tight": 12,
+    "mean_tight": 1.0833333333333333,
+    "n_wide": 77,
+    "mean_wide": 1.7207792207792207
+  },
+  {
+    "buyer": "Mark 67",
+    "seller": "Mark 49",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 100,
+    "n_tight": 12,
+    "mean_tight": -0.125,
+    "n_wide": 76,
+    "mean_wide": 2.2434210526315788
+  },
+  {
+    "buyer": "Mark 01",
+    "seller": "Mark 22",
+    "symbol": "VEV_5300",
+    "K": 5,
+    "n_tight": 132,
+    "mean_tight": -0.14772727272727273,
+    "n_wide": 0,
+    "mean_wide": null
+  },
+  {
+    "buyer": "Mark 01",
+    "seller": "Mark 22",
+    "symbol": "VEV_5300",
+    "K": 20,
+    "n_tight": 132,
+    "mean_tight": -0.12121212121212122,
+    "n_wide": 0,
+    "mean_wide": null
+  },
+  {
+    "buyer": "Mark 01",
+    "seller": "Mark 22",
+    "symbol": "VEV_5300",
+    "K": 100,
+    "n_tight": 131,
+    "mean_tight": 0.026717557251908396,
+    "n_wide": 0,
+    "mean_wide": null
+  },
+  {
+    "buyer": "Mark 55",
+    "seller": "Mark 14",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 5,
+    "n_tight": 86,
+    "mean_tight": 0.19186046511627908,
+    "n_wide": 245,
+    "mean_wide": 0.2857142857142857
+  },
+  {
+    "buyer": "Mark 55",
+    "seller": "Mark 14",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 20,
+    "n_tight": 86,
+    "mean_tight": 0.4418604651162791,
+    "n_wide": 245,
+    "mean_wide": 0.6224489795918368
+  },
+  {
+    "buyer": "Mark 55",
+    "seller": "Mark 14",
+    "symbol": "VELVETFRUIT_EXTRACT",
+    "K": 100,
+    "n_tight": 85,
+    "mean_tight": 1.8411764705882352,
+    "n_wide": 243,
+    "mean_wide": 0.8374485596707819
+  }
+]

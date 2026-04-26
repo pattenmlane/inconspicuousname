@@ -159,5 +159,58 @@
         {"item": "7 Inventory-aware MM", "outputs": [], "conclusion": "Not simulated this pass (no MM fills); defer to strategy code + backtester once counterparty-conditioned quoting is implemented."}
       ]
     }
+  },
+  {
+    "iteration": 2,
+    "analysis_description": "Round 4 Phase 3: Sonic joint gate (VEV_5200 and VEV_5300 BBO spread <=2, same timestamp inner-join with extract per analyze_vev_5200_5300_tight_gate_r3.py) on R4 days 1-3; inclineGod-style spread-spread and spread vs next-tick extract change; three-way (buyer,seller,symbol)×gate×forward K.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/analyze_vev_5200_5300_tight_gate_r3.py",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/run_r4_phase3_joint_gate_analysis.py",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase3_gate_forward_extract_k20.json",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase3_spread_correlations.json",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase3_threeway_pair_gate_fwd.csv",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase3_focus_pairs_gate.json",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase3_summary.txt"
+    ],
+    "used_to_decide": "Population-level joint gate **does** separate positive 20-tick extract forward from not-tight on R4 (reconciles with R3 summary); pair-conditioned slices differ (Mark67→49 long horizon flips negative in tight). Mark01→Mark22 VEV_5300 prints occur only under tight in this tape slice."
+  },
+  {
+    "round4_phase3_complete": {
+      "comparison_to_phase1_2_without_population_gate": "Phase 1/2 used **trade-timestamp** gate flags. Phase 3 adds the **full-grid** Sonic gate distribution: **all ticks** with valid 5200+5300+extract show mean 20-tick extract forward **+0.32** when tight vs **-0.12** when not (`r4_phase3_gate_forward_extract_k20.json`, n_tight=7706, n_not=22234, t_approx≈7.9). This **supports** Sonic’s “cleaner forward mid under tight books” at the **population** level on R4, whereas Phase 2’s **Mark67→22 extract** slice at print-time showed **little** tight-vs-wide separation for short K — the gate cleans the **aggregate extract** signal more than every **counterparty-conditioned** subset.",
+      "inclineGod_spread_panels": "Pooled Pearson: **s5200–s5300 ≈ 0.31**, **s5200–s5100 ≈ 0.45**; extract spread vs 5200/5300 spreads near **0**; next-tick extract Δ vs s5200/s5300 weak negative (~−0.008 / −0.016) (`r4_phase3_spread_correlations.json`).",
+      "counterparty_x_gate": "Mark 01→Mark 22 **VEV_5300** prints: **n_wide=0** for all K in focus table — in this tape, that basket leg trades **only** when the joint gate is on (`r4_phase3_focus_pairs_gate.json`). Mark 67→Mark 22 extract: at **K=100**, mean forward is **higher** tight than wide (+3.17 vs +0.12, small n_tight=15); Mark 67→Mark 49 at **K=100** shows **lower** mean in tight than wide (**−0.125 vs +2.24**) — **gate does not universally help** that pair at long horizon.",
+      "top_5_tier_edges": [
+        {
+          "rank": 1,
+          "edge": "**Population** Sonic joint gate: 20-tick **VELVETFRUIT_EXTRACT** forward mid **+0.32** (tight) vs **−0.12** (not), large n — primary R4 confirmation of community plot logic on this tape.",
+          "outputs": ["manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase3_gate_forward_extract_k20.json"]
+        },
+        {
+          "rank": 2,
+          "edge": "**Spread–spread:** VEV_5200 vs VEV_5100 BBO spreads correlate **~0.45** (same timestamps) — inclineGod “corr of spreads” has a strong co-move between adjacent strikes.",
+          "outputs": ["manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase3_spread_correlations.json"]
+        },
+        {
+          "rank": 3,
+          "edge": "**Three-way** Mark 67→Mark 22 on extract at **K=100**: mean forward **+3.17** (tight, n=15) vs **+0.12** (wide, n=60) — long-horizon **interaction** (see `r4_phase3_focus_pairs_gate.json`).",
+          "outputs": ["manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase3_focus_pairs_gate.json"]
+        },
+        {
+          "rank": 4,
+          "edge": "**Structural:** Mark 01→Mark 22 **VEV_5300** counterparty prints **only** occur under joint tight (n_wide=0) — any 5300 basket fade must be **tight-regime** logic.",
+          "outputs": ["manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase3_focus_pairs_gate.json"]
+        },
+        {
+          "rank": 5,
+          "edge": "**Three-way** Mark 55→Mark 14 extract **K=100**: mean **+1.84** tight (n=85) vs **+0.84** wide (n=243) — gate associates with **stronger** long-horizon up-move after that MM pair.",
+          "outputs": ["manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase3_focus_pairs_gate.json"]
+        }
+      ],
+      "falsifications_or_risks": [
+        "Mark 67→Mark 49 extract **K=100**: mean **lower** when tight than wide — do not assume gate improves every Mark pair at every horizon.",
+        "Mark 01→Mark 22 VEV_5300 short horizons remain **negative** mean forward even **inside** tight (K=5/20) — gate enables observation but does not flip sign.",
+        "Repo path `previous round work/round3work/vouchers_final_strategy/` is absent here; referenced `round3work/vouchers_final_strategy/analyze_vev_5200_5300_tight_gate_r3.py` for convention parity."
+      ]
+    }
   }
 ]

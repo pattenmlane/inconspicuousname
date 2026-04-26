@@ -1,0 +1,9 @@
+{
+  "pearson_s5200_s5300": 0.30759572531181073,
+  "pearson_s5200_s_extract": 0.008579133648986971,
+  "pearson_s5300_s_extract": 0.005380991786353916,
+  "n_rows": 30000,
+  "pearson_s5200_s5100": 0.4509971271892864,
+  "pearson_s5200_dm_extract_next_tick": -0.008250866726149043,
+  "pearson_s5300_dm_extract_next_tick": -0.01554547985401598
+}

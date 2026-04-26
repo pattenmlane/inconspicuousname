@@ -1,0 +1,6 @@
+Round 4 Phase 3 — joint gate + spread panels
+===========================================
+Pooled pearson s5200,s5300: 0.30759572531181073
+Forward extract K=20 mean tight vs not: 0.32351414482221647 vs -0.12103085364756679
+Three-way rows (n_tight>=8, n_wide>=15): 30
+See r4_phase3_*.csv/json

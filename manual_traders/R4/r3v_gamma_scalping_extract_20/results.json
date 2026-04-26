@@ -538,5 +538,25 @@
       "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v26_round4_all.stdout.txt",
       "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v26.json"
     }
+  },
+  {
+    "iteration": 27,
+    "trader_file": "trader_v27.py",
+    "strategy_description": "**Hybrid:** Mark 67 lift **CLIP_EX=20 / MAX_EX_POS=120** when **Sonic joint gate on** (same as **v19**); when gate **off**, lift only **CLIP_EX=4 / MAX_EX_POS=40** per signal. Surface MM unchanged (**v8** day-3 off). **New best worse 10692** vs **v19** 9602 (+1090): days 1–2 extract PnL higher; day 3 extract **+74** vs **+812** (most day-3 M67 prints are **not** joint-tight so get small clip). **all** 13319.",
+    "total_profit": 10692,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v27.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_worse": {
+      "total_profit": 10692,
+      "backtest_log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v27_round4_worse.log",
+      "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v27_round4_worse.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v27.json"
+    },
+    "backtest_all": {
+      "total_profit": 13319,
+      "backtest_log_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v27_round4_all.log",
+      "backtest_stdout_file": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v27_round4_all.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v27.json"
+    }
   }
 ]

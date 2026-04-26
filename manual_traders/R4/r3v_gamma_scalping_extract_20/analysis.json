@@ -542,6 +542,19 @@
       "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_mark67_extract_fwdmid_joint_gate_pooled.csv",
       "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_mark67_extract_fwdmid_joint_gate_by_day.csv"
     ],
-    "used_to_decide": "Negative result for **‘mid markout proves always-lift’** under loose books; reinforces **Phase 1 vs sim** gap already seen with **`trader_v1`**. Keep **v19**; cite these CSVs when explaining why **gate stays on extract** despite similar short-horizon mids."
+    "used_to_decide": "Negative result for **‘mid markout proves always-lift’** under loose books; reinforces **Phase 1 vs sim** gap already seen with **`trader_v1`**. **Update:** **`trader_v27`** (hybrid sizing) now beats **v19** on **`worse`** total — see iteration **29**; this iteration’s mid tables still explain why **v26** (full size off-tight) failed."
+  },
+  {
+    "iteration": 29,
+    "analysis_description": "**Tier-A sim (hybrid sizing):** **`trader_v27`** — Mark 67 follow uses **v19** clip/cap (**20**, **120**) **only** when **joint gate on**; **gate off** uses **CLIP_EX_LOOSE=4**, **MAX_EX_LOOSE=40** (still lift-at-ask on aggressive tape). Surface MM unchanged (**v8** day-3 surface off). **`worse` 10692** vs **v19** **9602** (+**1090**); vs **v26** **8564** (+**2128**). **Trade-off:** day 3 extract **+74** vs **v19** **+812** (most day-3 M67 prints are **not** joint-tight so get small clip). **all** **13319** vs v19 **13237**. **Conclusion:** **binary gate on extract** is not optimal; **regime-sized** follow dominates **`worse`** here. **Ship candidate** for **`worse` total:** **v27** over **v19**.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v27.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v27_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v27_round4_all.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v27.json",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_mark67_aggr_extract_joint_gate_counts_by_day.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_mark67_extract_fwdmid_joint_gate_pooled.csv"
+    ],
+    "used_to_decide": "Reconciles **v26** with **tape mids**: **size** on off-tight prints was the lever, not **omitting** them. Phase 2 **regime split** + Phase 3 **surface gate** can coexist with **scaled** off-tight extract."
   }
 ]

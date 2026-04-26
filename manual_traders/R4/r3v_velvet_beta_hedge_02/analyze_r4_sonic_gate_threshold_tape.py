@@ -1,7 +1,7 @@
 """
 Tape-only: inner-join VEV_5200 and VEV_5300 on (day, timestamp); joint_tight_TH = both spr<=TH.
 
-Compare TH in {1, 2}: frequency of joint rows and mean extract mid fwd_20 (K=20 next price rows)
+Compare TH in {1, 2, 3}: frequency of joint rows and mean extract mid fwd_20 (K=20 next price rows)
 conditional on joint (same definition as Phase 3 panel).
 """
 from __future__ import annotations
@@ -68,7 +68,7 @@ def extract_fwd20() -> pd.DataFrame:
 def main() -> None:
     m = inner_sprices().merge(extract_fwd20(), on=["day", "timestamp"], how="left")
     by = []
-    for th in (1, 2):
+    for th in (1, 2, 3):
         joint = (m["s5200"] <= th) & (m["s5300"] <= th)
         m2 = m.assign(joint=joint)
         for d, g in m2.groupby("day"):
@@ -86,7 +86,7 @@ def main() -> None:
             )
     pd.DataFrame(by).sort_values(["th", "day"]).to_csv(OUT / "r4_sonic_gate_threshold_by_day.csv", index=False)
     pool = []
-    for th in (1, 2):
+    for th in (1, 2, 3):
         joint = (m["s5200"] <= th) & (m["s5300"] <= th)
         sub = m.loc[joint & m["fwd_20"].notna(), "fwd_20"]
         pool.append(

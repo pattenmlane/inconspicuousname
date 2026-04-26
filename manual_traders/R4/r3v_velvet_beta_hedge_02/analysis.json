@@ -351,12 +351,22 @@
   },
   {
     "iteration": 14,
-    "analysis_description": "Phase-3 tape: compare Sonic joint definition `both spr5200, spr5300 <= TH` for **TH=1** vs **TH=2** on inner-join timestamps — `analyze_r4_sonic_gate_threshold_tape.py` (pooled + by day; mean extract fwd_20 at joint from price tape K=20).",
+    "analysis_description": "Phase-3 tape: compare Sonic joint definition `both spr5200, spr5300 <= TH` for **TH in {1,2,3}** on inner-join timestamps — `analyze_r4_sonic_gate_threshold_tape.py` (pooled + by day; mean extract fwd_20 at joint from price tape K=20).",
     "analysis_outputs": [
       "manual_traders/R4/r3v_velvet_beta_hedge_02/analyze_r4_sonic_gate_threshold_tape.py",
       "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_sonic_gate_joint_pooled_by_th.csv",
       "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_sonic_gate_threshold_by_day.csv"
     ],
-    "used_to_decide": "**Pooled (30k ts):** TH=1 **p_joint=0.61%** (183 rows) mean extract fwd20 **+0.49**; TH=2 **p_joint=25.7%** (7722) mean **+0.32** — stricter joint is **rare**; conditional fwd is **higher** at TH=1 in pooled but **small-n** and **unstable** by day (TH=1 by-day mean fwd20 **0.16–0.66**). **trader_v14** (harness MM only when `spr<=1` on both): **+4698** vs v11 **13338** — **reject** stricter BBO threshold for this MM style: almost **no** wing VEV fills; revenue collapses. **Sonic le2 remains** the operational default."
+    "used_to_decide": "**Pooled (30k ts):** TH=1 **p_joint=0.61%** (183 rows) mean extract fwd20 **+0.49**; TH=2 **p_joint=25.7%** (7722) mean **+0.32**; **TH=3 p_joint~97%** (29176) mean **~+0.025** — very loose joint flag is almost always on; conditional fwd_20 is **~flat** (not a Sonic *tight* regime in the R3 sense). **trader_v14** (`spr<=1`): **+4698** vs v11 **13338** — reject **strict** threshold for this MM. **Sonic le2** remains the reference for the joint tight story."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "Same `analyze_r4_sonic_gate_threshold_tape.py` output row **TH=3** (see r4_sonic_gate_joint_pooled_by_th.csv): joint frequency and conditional extract fwd_20; paired with `trader_v15` (v11 logic, TH=3 on 5200/5300 for full-surface path).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_sonic_gate_joint_pooled_by_th.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_sonic_gate_threshold_by_day.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v15.py"
+    ],
+    "used_to_decide": "**trader_v15** (joint when both spr**<=3**): sim **+33420** worse / **+33354** all vs v11 **13338** — **large harness lift** from quoting full surface on **~97%** of time steps vs **~25%** for TH=2, driven mainly by **HYDROGEL** and **VEV_4000** PnL scale-up. This is **not** the 2-tick joint thesis (tape conditional fwd_20 at TH=3 joint is **~0**); it is a **sensitivity** showing total sim PnL is **gated-occupancy** dominated, not a validation of *Sonic tight = clean signal*. For counterparty-conditional strategies aligned with STRATEGY, **TH=2** (v10/v11) remains the default; TH=3 is a **leverage/occupancy** knob with different economic meaning."
   }
 ]

@@ -313,5 +313,26 @@
       "trades_or_fills_summary": "Same as worse (4698)."
     },
     "total_profit": 4698
+  },
+  {
+    "iteration": 15,
+    "trader_file": "trader_v15.py",
+    "strategy_description": "v11 with looser Sonic joint: both 5200 and 5300 BBO spreads <= 3 (v11 <= 2). Same loose-path M55 skip and soft U=14 when joint false.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 33420,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v15.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v15_worse.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v15_worse.log",
+      "trades_or_fills_summary": "Day1 +20752 (hydro +13396, U +4084, V4000 +3306); day2 +1395; day3 +11272 (hydro +6906, U +1729, V4000 +2594); total 33420 vs v11 13338; near-full-surface time ~97% joint (spr<=3) vs v11 ~25%."
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 33354,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v15.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v15_all.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v15_all.log",
+      "trades_or_fills_summary": "Day3 +11208 vs 11272 worse (VEV_5300 -65 on all); total 33354."
+    },
+    "total_profit": 33420
   }
 ]

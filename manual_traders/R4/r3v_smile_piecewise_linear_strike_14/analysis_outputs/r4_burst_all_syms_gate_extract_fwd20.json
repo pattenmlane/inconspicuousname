@@ -1,0 +1,65 @@
+{
+  "burst_def": ">=3 trades same (day,timestamp) any symbol",
+  "K": 20,
+  "n_burst_timestamps_by_day": {
+    "1": 98,
+    "2": 95,
+    "3": 125
+  },
+  "pooled": {
+    "burst_joint_tight": {
+      "n": 317,
+      "mean": 0.29337539432176657
+    },
+    "burst_joint_loose": {
+      "n": 1,
+      "mean": 2.0
+    },
+    "control_non_burst_sampled": {
+      "n": 317,
+      "mean": 0.0946372239747634
+    }
+  },
+  "per_day": {
+    "1": {
+      "burst_tight": {
+        "n": 98,
+        "mean": -0.1326530612244898
+      },
+      "burst_loose": {
+        "n": 0
+      },
+      "control": {
+        "n": 97,
+        "mean": 0.5515463917525774
+      }
+    },
+    "2": {
+      "burst_tight": {
+        "n": 95,
+        "mean": 0.3263157894736842
+      },
+      "burst_loose": {
+        "n": 0
+      },
+      "control": {
+        "n": 95,
+        "mean": -0.3894736842105263
+      }
+    },
+    "3": {
+      "burst_tight": {
+        "n": 124,
+        "mean": 0.6048387096774194
+      },
+      "burst_loose": {
+        "n": 1,
+        "mean": 2.0
+      },
+      "control": {
+        "n": 125,
+        "mean": 0.108
+      }
+    }
+  }
+}

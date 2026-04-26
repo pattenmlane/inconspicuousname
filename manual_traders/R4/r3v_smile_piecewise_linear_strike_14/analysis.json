@@ -273,5 +273,24 @@
       "focal_Mark14_to_55_k20": "tight mean ~+0.18 (n=84) vs loose ~-0.39 (n=232); t_approx ~1.05 — not statistically strong at pair level.",
       "trader_v4_vs_v2": "v4 worse total 7329 vs v2 13236; more trades (~4433 vs 4365) but smaller edge per inventory path — fixed Q=4 wins on this backtest slice."
     }
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "Tape: (1) extract trades stratified by aggressor (price vs concurrent extract BBO) × joint-tight × K∈{5,20,100}; (2) all-symbol burst (>=3 trades same ts) × joint gate vs balanced non-burst control, extract fwd20. Sim: trader_v5 flat Q boost vs v2.",
+    "analysis_outputs": [
+      "run_r4_extract_aggressor_gate_markout.py",
+      "analysis_outputs/r4_extract_aggressor_gate_markout.json",
+      "run_r4_burst_gate_extract_fwd.py",
+      "analysis_outputs/r4_burst_all_syms_gate_extract_fwd20.json",
+      "trader_v5.py",
+      "backtest_logs/trader_v5_worse.log",
+      "backtest_logs/trader_v5_all.log"
+    ],
+    "used_to_decide": "Aggressor×gate: buyer_agg K=20 mean is **lower** when joint-tight (~+0.47, n=190) than loose (~+0.82, n=579); seller_agg K=20 is **higher** when tight (~+0.065, n=161) vs loose (~-0.24, n=451) — asymmetric; passive buy logic is not the same cell as tape buyer_agg. All-symbol bursts: **317/318** burst timestamps are joint-tight (only 1 loose on day 3); burst extract fwd20 pooled mean ~+0.29 vs control sample ~+0.095 — aligns Phase-2 burst story but gate rarely splits bursts here. v5 (Q=6 if |pos|<=15 else 4): worse **13,245** vs v2 **13,236** — negligible; keep v2 simplicity.",
+    "round4_post_phase3_notes": {
+      "aggressor_gate_markout": "r4_extract_aggressor_gate_markout.json — per-day tables included; ambig n=0 at extract (trades at touch).",
+      "burst_all_syms_gate": "r4_burst_all_syms_gate_extract_fwd20.json — burst timestamps co-occur with Sonic tight ~99.7% in this tape slice.",
+      "trader_v5_vs_v2": "Flat Q boost ~flat PnL vs v2; not worth added complexity on this run."
+    }
   }
 ]

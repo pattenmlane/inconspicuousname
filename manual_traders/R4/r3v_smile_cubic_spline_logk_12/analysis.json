@@ -350,5 +350,16 @@
       "results.json"
     ],
     "used_to_decide": "Abandon symmetric and bid-only **fi** nudges for this tape under worse; **v4** remains best worse baseline. Any M67→M49 extract rule likely needs **different** action (e.g. skip sell only, or size cap) + longer sim grid."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "**trader_v8** implements **ask suppression** (no passive extract **sell** for 250 ticks after M67→M49 buy-aggr extract, gate-off) on top of **v4** hydro. R4 d1–3: **worse 48,495** (**+1,212** vs v4 47,283) — first M67→M49 rule that **improves** primary worse-fill. Extract worse log: day2 **9,410** vs v4 **8,198** (+1,212); days 1/3 unchanged. **All 53,456** (+2,928 vs v4) — day2 extract dominates there too.",
+    "analysis_outputs": [
+      "trader_v8.py",
+      "backtest_logs/trader_v8_round4_worse.log",
+      "backtest_logs/trader_v8_round4_all.log",
+      "results.json"
+    ],
+    "used_to_decide": "**v8** is new best worse+all on this three-day grid; still validate on more days if added. Risk: long inventory skew if extract runs up without ask recycle — monitor position in extended runs."
   }
 ]

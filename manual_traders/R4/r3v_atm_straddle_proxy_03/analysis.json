@@ -329,5 +329,28 @@
       "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_adverse_aggressor_fwd20.json"
     ],
     "used_to_decide": "v7 worse 8865 equals v4; all-match 8224 equals v4. Risk-off rule is correct hygiene but negligible frequency on this tape; no PnL gain vs v4."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Lead-lag Mark55: tape scan W=2000 ticks before Mark67 aggressive buy; Mark55 aggressive extract sell in window -> suppress Mark67 lift (49 ticks of 164 Mark67 aggr-buy ticks). build_m55_lead_suppress_cache.py + r4_m55_lead_suppress_*.json.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/build_m55_lead_suppress_cache.py",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_m55_lead_suppress_mark67_W2000.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_m55_lead_suppress_pairs.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v8_round4_worse.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v8_round4_all.log"
+    ],
+    "used_to_decide": "v8 worse 9673 > v4 8865; all 9354 > v4 8224. Lead-lag suppress removes some bad co-movement days 1-2 while day3 still negative but smaller magnitude in worse run. New best worse-total in this strategy folder."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "trader_v9: v8 + delayed short VEV_5300 after Mark 01 buyer prints (Phase 1 n=132 cohort). Offline audit: zero Mark01 VEV_5300 trades satisfy price>=ask1 on days 1-2 when BBO aligned to price tick index (ph1 style); cohort is bid-side prints. Execution: ts>=schedule+35, Sonic tight, s5300<=6, clip 4 per due batch (max 12).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v9_round4_worse.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v9_round4_all.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_participant_predictivity.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph3_burst_fwd5_vev5300_by_gate.json"
+    ],
+    "used_to_decide": "v9 worse 9145 < v8 9673; VEV_5300 PnL -528 aggregated days 1-2 under worse (shorts lose vs mid-only negative markout). Confirms Phase 3 basket-burst story: fading 5300 after orchestrated flow is not a simple add even delayed and Sonic-gated; keep v8 as live candidate."
   }
 ]

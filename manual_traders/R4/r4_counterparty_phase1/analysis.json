@@ -409,5 +409,17 @@
       "manual_traders/R4/r4_counterparty_phase1/fill_summary_v11_all.json"
     ],
     "used_to_decide": "`trader_v11` applies the same sell-skip as v9 on each surface VEV when tight. activitiesLog terminal: worse **+7608.5** vs v9 **+7582** (+26.5); **all** **+9992** vs v9 **+9976** (+16). Marginal gain; sparse triggers explain small delta. **Ship v11** over v9 if chasing every tick; difference is small enough that v9 remains acceptable."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Phase-2 **inventory-aware MM** ablation on top of v11: under joint tight only, when |position|>=50 for a product, halve clip on the side that increases |inv| (_skewed_clips). Motivation: repeated pressure + drift (suggested direction Phase 2 \u00a77) \u2014 test if reduced add in direction of existing position helps under worse fills.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/trader_v12.py",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v12_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v12_all.log",
+      "manual_traders/R4/r4_counterparty_phase1/fill_summary_v12_worse.json",
+      "manual_traders/R4/r4_counterparty_phase1/fill_summary_v12_all.json"
+    ],
+    "used_to_decide": "**Falsified in sim:** terminal worse **+7492.5** vs v11 **+7608.5** (-116); all **+9304** vs **+9992**. Example terminal line: VEV_5300 **1548** vs v11 **1842**. Simple half-clip skew at POS_TH=50 cuts too much good VEV/extract flow. **Keep v11**; if revisiting skew, need state that does not symmetrically shrink the profitable VEV5300 leg (e.g. threshold by product or only VELVET)."
   }
 ]

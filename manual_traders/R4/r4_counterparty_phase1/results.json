@@ -248,5 +248,26 @@
       "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v11_all.log",
       "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v11_all.json"
     }
+  },
+  {
+    "iteration": 12,
+    "trader_file": "trader_v12.py",
+    "strategy_description": "v11 + Phase-2-style **inventory skew** under joint tight: if |position|>=50, half base clip on side that increases |inv| (long: smaller buys; short: smaller sells). POS_TH=50.",
+    "total_profit": 7492.5,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v12.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r4_counterparty_phase1/backtest_r4_v12_worse.log",
+    "note_vs_v11": "**Negative ablation:** terminal activitiesLog worse **+7492.5** vs v11 **+7608.5** (-116). `all` **+9304** vs v11 **+9992**. VEV_5300 line drops ~294 in terminal parse. Prefer v11.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 7492.5,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v12_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v12_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 9304,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v12_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v12_all.json"
+    }
   }
 ]

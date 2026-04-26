@@ -382,5 +382,25 @@
       "manual_traders/R4/r4_counterparty_gated/backtest_logs/v11_all.log"
     ],
     "used_to_decide": "Worse total 30,932 (+676 vs v10 30,256); all 33,466 (+3,045 vs v10 30,421). Fewer trades (4511 vs 4632 worse) and lower extract notional than v10; gross_notional 86.43M vs 92.30M. Day splits worse: day1 16,361 (+1 vs v10), day2 5,255 (\u22122,623 vs v10), day3 9,316 (+3,297 vs v10) \u2014 gating the take mostly removes the v10 day-2 bump while improving day 3. New champion for worse and all on this branch; keep v10 as ungated-take reference."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "trader_v12 = v11-style stack but Mark67 aggressive take on every extract-tight key tick: buy at ask with qty 8 when Sonic joint is loose, qty 22 when joint tight (v11 only fires take under joint).",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_gated/trader_v12.py",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v12_worse.log",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v12_all.log"
+    ],
+    "used_to_decide": "Worse 30,842 (\u221290 vs v11 30,932); all 33,860 (+394 vs v11 33,466). More extract activity than v11 (1542 vs 1408 extract trades worse; gross_notional 91.6M vs 86.4M) but worse-match PnL regresses \u2014 the extra loose-book takes do not pay under --match-trades worse on this tape. Champion remains v11 for worse; v12 only wins on all mode."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "trader_v13 = trader_v11 with joint-gated Mark67 take quantity raised from 22 to 35 at best ask (same gates and rest of logic as v11).",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_gated/trader_v13.py",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v13_worse.log",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v13_all.log"
+    ],
+    "used_to_decide": "Worse 30,932 and all 34,188: identical worse PnL and trade summary to v11 (4511 trades, same extract row); all mode +722 vs v11 likely from marginal fill-path tie-breaks without changing worse economics. Conclude 22\u219235 does not move realized worse outcomes here; keep v11 take size."
   }
 ]

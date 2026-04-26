@@ -29,7 +29,12 @@
       "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_stratified_markout_cells_n20_t2.csv",
       "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_stratify_markouts_summary.json",
       "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_participant_net_flow_r4.csv",
-      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_baseline_resid_pos_tail_n20.csv"
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_baseline_resid_pos_tail_n20.csv",
+      "manual_traders/R4/r4_counterparty_gated/run_r4_phase1_passive_lp_markouts.py",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_passive_seller_after_aggr_buy_markout_by_name.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_passive_buyer_after_aggr_sell_markout_by_name.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_stratified_mark67_extract_by_day_session_spread_burst.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase1_passive_lp_summary.json"
     ],
     "phase1_extras_against_prompt": {
       "per_trade_event_file": "r4_phase1_trade_events.csv — all 4281 events with K∈{5,20,100} fwd_mids, fwd_ext, ts_bucket, spread_bucket, burst_ge4, aggression (stratify in pandas without re-joining).",
@@ -39,7 +44,9 @@
       "graph_reciprocity_hubs": "r4_edge_pairs_with_reciprocity.csv (reverse pair counts, reciprocity ratio), r4_node_degree_in_out_top30.csv, r4_top20_directed_edge_pairs.csv. gross_notional = sum |price*qty| per directed pair.",
       "cluster_volume_balance": "r4_participant_net_flow_r4.csv: per-name buy vs sell row counts and sum(|p*q|) — Mark 14 near symmetric MM; Mark 67 buy-only in tape rows (0 sell-side).",
       "burst_orchestrator": "r4_burst_orchestrator_by_timestamp.csv: mode buyer/seller on each (day,timestamp) with ≥2 prints; Mark01/Mark22 dominate most multi-print ticks on this slice.",
-      "residual_positive_tail": "r4_baseline_resid_pos_tail_n20.csv: top mean residual (buyer,seller,symbol) with n_cell≥20 after global pair×symbol mean baseline (supplements trade-level r4_trade_level_residual_fwd20.csv)."
+      "residual_positive_tail": "r4_baseline_resid_pos_tail_n20.csv: top mean residual (buyer,seller,symbol) with n_cell≥20 after global pair×symbol mean baseline (supplements trade-level r4_trade_level_residual_fwd20.csv).",
+      "passive_lp_markouts": "r4_passive_seller_after_aggr_buy_markout_by_name.csv (seller when trade is aggr_buy) and r4_passive_buyer_after_aggr_sell_markout_by_name.csv (buyer when aggr_sell); n≥20 per (passive_name,symbol,K). r4_phase1_passive_lp_summary.json: worst cells. Mark 14 passive seller on HYDRO after aggr buys: mean fwd20 −0.35 (CI crosses 0; t≈−0.93). Mark 14 passive *buyer* after aggr sells on extract/VEVs: mildly negative means at K=20 in several rows (see passive buyer CSV).",
+      "mark67_day_stratify": "r4_stratified_mark67_extract_by_day_session_spread_burst.csv — Mark67 extract aggr buy split by tape day × ts_bucket × spread_bucket × burst_ge4 (n≥10); 36 rows for multi-day stability checks."
     },
     "phase1_bullets": [
       {
@@ -81,9 +88,12 @@
       {
         "bullet": "5) Adverse selection proxy (aggressive buy: passive seller forward mid)",
         "outputs": [
-          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_passive_seller_markout_aggr_buy.csv"
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_passive_seller_markout_aggr_buy.csv",
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_passive_seller_after_aggr_buy_markout_by_name.csv",
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_passive_buyer_after_aggr_sell_markout_by_name.csv",
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase1_passive_lp_summary.json"
         ],
-        "conclusion": "Worst mean fwd_mid_20 after aggressive buys hitting Mark 14 as seller on HYDROGEL_PACK (~−0.35, n=507); other cells less negative — candidate avoid-providing-liquidity-to pattern on hydro when Mark14 is passive seller, needs execution sim."
+        "conclusion": "Original aggr-buy→passive-seller table: worst mean fwd_mid_20 when Mark 14 passive seller on HYDRO (~−0.35, n=507). Extended passive-LP tables (n≥20 per name×symbol×K): same Mark14×HYDRO×K=20 mean −0.35 but bootstrap CI for mean crosses zero (t≈−0.9) — economically bad mean but not a sharp t-test; still a reasonable avoid-quote cell. Symmetric passive *buyer* after aggr sells: Mark14 on extract K=20 mean −0.24 (n=316, CI crosses 0) — mild adverse selection on both sides of Mark14 in some products. Mark22/Mark49 passive sellers on extract after aggr buys show large *positive* fwd (liquidity provision rewarded in those cells) — population heterogeneity, not uniform fade."
       }
     ],
     "top_5_tradeable_edges_ranked": [
@@ -153,7 +163,8 @@
       "Mark 38 aggressive flow on HYDROGEL_PACK shows no significant consistent directional fwd across K (|t|<1 in participant table).",
       "Mark 55 aggressive sells on extract at K=100 are significantly negative (t≈−2.5) but short horizons weaker — mixed story, not a clean long signal.",
       "Simple Mark01→Mark22 basket on VEV_5300 is not uniformly a fade across days (sign flip day 1 vs 2 in cell table).",
-      "Mark 22 aggressive sells on VEV_5500 K=5 are negative but small magnitude (mean −0.026) — economically marginal vs tick size."
+      "Mark 22 aggressive sells on VEV_5500 K=5 are negative but small magnitude (mean −0.026) — economically marginal vs tick size.",
+      "Mark 14 passive seller on HYDRO after aggressive buys: mean fwd20 negative (~−0.35) but bootstrap 95% CI for mean crosses zero (weak t); still a caution cell, not a sharp statistical lock."
     ],
     "used_to_decide": "Phase 1 completion gate satisfied: all five Phase-1 bullets have CSV/JSON/txt outputs under manual_traders/R4/r4_counterparty_gated/analysis_outputs/. Proceed to Phase 2 (named-bot conditioning, microstructure, cross-lead–lag) only after strategy code consumes these edges; do not claim 200k/day until backtested."
   },

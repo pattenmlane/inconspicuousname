@@ -1,0 +1,74 @@
+{
+  "n_passive_seller_cells_n20": 18,
+  "n_passive_buyer_cells_n20": 33,
+  "worst_passive_seller_K20_head": [
+    {
+      "passive_name": "Mark 14",
+      "role": "passive_seller_after_aggr_buy",
+      "symbol": "HYDROGEL_PACK",
+      "K": 20,
+      "n": 507,
+      "mean_fwd": -0.3530571992110454,
+      "median_fwd": 0.0,
+      "t_stat": -0.9265111759629896,
+      "frac_pos": 0.4930966469428008,
+      "boot_ci95_mean_lo": -1.1046844181459567,
+      "boot_ci95_mean_hi": 0.3925295857988164
+    },
+    {
+      "passive_name": "Mark 01",
+      "role": "passive_seller_after_aggr_buy",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "K": 20,
+      "n": 244,
+      "mean_fwd": 0.006147540983606557,
+      "median_fwd": 0.0,
+      "t_stat": 0.02254841886603109,
+      "frac_pos": 0.47540983606557374,
+      "boot_ci95_mean_lo": -0.5368852459016393,
+      "boot_ci95_mean_hi": 0.5533299180327866
+    }
+  ],
+  "worst_passive_buyer_K20_head": [
+    {
+      "passive_name": "Mark 14",
+      "role": "passive_buyer_after_aggr_sell",
+      "symbol": "VEV_5300",
+      "K": 20,
+      "n": 28,
+      "mean_fwd": -0.25,
+      "median_fwd": -0.5,
+      "t_stat": -0.8260208649387009,
+      "frac_pos": 0.32142857142857145,
+      "boot_ci95_mean_lo": -0.8214285714285714,
+      "boot_ci95_mean_hi": 0.35714285714285715
+    },
+    {
+      "passive_name": "Mark 14",
+      "role": "passive_buyer_after_aggr_sell",
+      "symbol": "VELVETFRUIT_EXTRACT",
+      "K": 20,
+      "n": 316,
+      "mean_fwd": -0.23734177215189872,
+      "median_fwd": 0.0,
+      "t_stat": -1.040850794089224,
+      "frac_pos": 0.4177215189873418,
+      "boot_ci95_mean_lo": -0.6867879746835442,
+      "boot_ci95_mean_hi": 0.20573575949367068
+    },
+    {
+      "passive_name": "Mark 14",
+      "role": "passive_buyer_after_aggr_sell",
+      "symbol": "VEV_4000",
+      "K": 20,
+      "n": 232,
+      "mean_fwd": -0.1788793103448276,
+      "median_fwd": 0.0,
+      "t_stat": -0.6090217622057494,
+      "frac_pos": 0.44396551724137934,
+      "boot_ci95_mean_lo": -0.7370689655172413,
+      "boot_ci95_mean_hi": 0.3879849137931031
+    }
+  ],
+  "n_m67_stratified_rows": 36
+}

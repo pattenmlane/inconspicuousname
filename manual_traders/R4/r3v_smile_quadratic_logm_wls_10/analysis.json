@@ -87,10 +87,11 @@
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_pair_residual_gate_split.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_leadlag_gated.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_passive_m22_gated.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_day_stability.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_gate.json",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
     ],
-    "used_to_decide": "Inner-join extract fwd20 tight vs wide Welch t≈7.94 (matches Phase2 strength). Signed-flow extract vs VEV_5300 lag-0 corr is much more negative on tight timestamps (-0.23) than wide (+0.013) — gate concentrates a cross-asset flow structure. Mark01→Mark22 burst fwd5 vs wide-book VEV_5300 fwd5 pool remains significant (t≈3.23) but almost all bursts are asof-tight (no clean Mark×tight×wide three-way split on tape).",
+    "used_to_decide": "Inner-join extract fwd20 tight vs wide Welch t≈7.94 (matches Phase2 strength). Signed-flow extract vs VEV_5300 lag-0 corr is much more negative on tight timestamps (-0.23) than wide (+0.013) — gate concentrates a cross-asset flow structure. Mark01→Mark22 burst fwd5 vs wide-book VEV_5300 fwd5 pool remains significant (t≈3.23) but almost all bursts are asof-tight (no clean Mark×tight×wide three-way split on tape). Per-day table r4_p3_day_stability.csv added for day-stability audit. Sim: trader_v2 (joint gate + full VEV surface MM) total 6088 worse/all d1–3 vs v1 3634.",
     "round4_phase3_complete": {
       "phase": 3,
       "tape_days": [1, 2, 3],
@@ -106,6 +107,7 @@
         "pair_residual_gate_split": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_pair_residual_gate_split.csv",
         "leadlag_gated": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_leadlag_gated.csv",
         "passive_m22_gated": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_passive_m22_gated.csv",
+        "day_stability": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_day_stability.csv",
         "gate_json": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_gate.json",
         "script": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
       },

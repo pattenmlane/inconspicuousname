@@ -15,6 +15,7 @@ Writes:
   r4_p3_pair_residual_gate_split.csv— mean |residual_fwd20| by gate (Mark01→Mark22 cells)
   r4_p3_leadlag_gated.csv           — signed-flow corr extract vs 5300, tight vs wide rows
   r4_p3_passive_m22_gated.csv       — Mark22 seller_agg fwd20 split by gate at print ts
+  r4_p3_day_stability.csv           — per-day: extract fwd20 tight vs wide, signed-flow corr, burst counts
   r4_phase3_summary.txt
   r4_phase3_gate.json               — fragment for analysis.json
 """
@@ -452,6 +453,44 @@ def main() -> None:
     mm22_t_p, mm22_pool, t22_pool, p22_pool = welch_vs_pool(m22_t.values, pool_53w_wide, rng=rng)
     m22_tight_mean = float(np.nanmean(m22_t.values)) if len(m22_t) else float("nan")
 
+    # --- Per-day stability (after echo_df / piv exist)
+    day_rows: list[dict] = []
+    for d in DAYS:
+        sub = gate_panel[gate_panel["day"] == d]
+        valid = sub["fwd20_ext"].notna()
+        tt = sub.loc[valid & sub["joint_tight"], "fwd20_ext"].astype(float)
+        ww = sub.loc[valid & ~sub["joint_tight"], "fwd20_ext"].astype(float)
+        mtd, mwd, tsd, tpd = tstat_welch(tt.values, ww.values)
+        day_rows.append(
+            {
+                "day": int(d),
+                "gate_panel_rows": int(len(sub)),
+                "frac_joint_tight": float(sub["joint_tight"].mean()),
+                "n_ext_fwd20_tight": int(len(tt)),
+                "n_ext_fwd20_wide": int(len(ww)),
+                "mean_ext_fwd20_tight": float(mtd) if math.isfinite(mtd) else float("nan"),
+                "mean_ext_fwd20_wide": float(mwd) if math.isfinite(mwd) else float("nan"),
+                "welch_t_ext_fwd20_tight_vs_wide": float(tsd) if math.isfinite(tsd) else float("nan"),
+                "p_welch_ext_fwd20": float(tpd) if math.isfinite(tpd) else float("nan"),
+            }
+        )
+    day_df = pd.DataFrame(day_rows)
+    ll_rows: list[dict] = []
+    for d in DAYS:
+        pv = piv[piv["day"] == d]
+        ct = lag_corr_for_mask(pv, pv["gate_aligned"] & pv["jt"])
+        cw = lag_corr_for_mask(pv, pv["gate_aligned"] & ~pv["jt"])
+        ll_rows.append({"day": int(d), "lag0_corr_tight_ex_vev5300": ct, "lag0_corr_wide_ex_vev5300": cw})
+    stab = day_df.merge(pd.DataFrame(ll_rows), on="day")
+    echo_al_pre = echo_df.loc[echo_df["gate_aligned"]] if len(echo_df) else echo_df
+    if len(echo_al_pre):
+        eb = echo_al_pre.groupby("day", as_index=False).agg(
+            n_m01_m22_burst=("fwd5", "count"),
+            mean_burst_vev5300_fwd5=("fwd5", "mean"),
+        )
+        stab = stab.merge(eb, on="day", how="left")
+    stab.to_csv(OUT / "r4_p3_day_stability.csv", index=False)
+
     # Top |r| spread pairs for summary (full inner timestamps)
     top_sp = corr_df[(corr_df["sample"] == "all_inner_timestamps") & (corr_df["corr_kind"] == "spread")].copy()
     top_sp["abs_r"] = top_sp["pearson_r"].abs()
@@ -467,8 +506,21 @@ def main() -> None:
         f"Signed-flow lag-0 corr (timestamp sets): tight_ts={c_tight:.4f} wide_ts={c_wide:.4f}",
         f"Mark22 seller_agg VEV5300 fwd20: pairwise Welch t={t22:.3f} | vs wide-book fwd20_5300 pool: mean_print={m22_tight_mean:.4f} mean_pool={mm22_pool:.4f} t={t22_pool:.3f} p={p22_pool:.2e} (n_prints={len(s22a)})",
         "",
-        "Top spread–spread |r| on inner-join timestamps (inclineGod panel):",
+        "Per-day stability (r4_p3_day_stability.csv):",
     ]
+    for _, r in stab.iterrows():
+        lines.append(
+            f"  day {int(r['day'])}: ext_fwd20 Welch t={r['welch_t_ext_fwd20_tight_vs_wide']:.3f} "
+            f"(mean_tight={r['mean_ext_fwd20_tight']:.4f} mean_wide={r['mean_ext_fwd20_wide']:.4f} "
+            f"n_tight={int(r['n_ext_fwd20_tight'])} n_wide={int(r['n_ext_fwd20_wide'])}) | "
+            f"corr_tight={r['lag0_corr_tight_ex_vev5300']:.4f} corr_wide={r['lag0_corr_wide_ex_vev5300']:.4f}"
+        )
+    lines.extend(
+        [
+            "",
+            "Top spread–spread |r| on inner-join timestamps (inclineGod panel):",
+        ]
+    )
     for _, r in top_sp.iterrows():
         lines.append(f"  {r['x']} vs {r['y']}: r={r['pearson_r']:.4f} n={int(r['n_pair'])}")
     (OUT / "r4_phase3_summary.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -538,6 +590,7 @@ def main() -> None:
                 "r4_p3_pair_residual_gate_split.csv",
                 "r4_p3_leadlag_gated.csv",
                 "r4_p3_passive_m22_gated.csv",
+                "r4_p3_day_stability.csv",
                 "r4_phase3_summary.txt",
                 "r4_phase3_analysis.py",
             )},

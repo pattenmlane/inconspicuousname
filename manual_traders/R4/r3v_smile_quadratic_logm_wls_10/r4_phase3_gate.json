@@ -24,6 +24,7 @@
       "r4_p3_pair_residual_gate_split.csv": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_pair_residual_gate_split.csv",
       "r4_p3_leadlag_gated.csv": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_leadlag_gated.csv",
       "r4_p3_passive_m22_gated.csv": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_passive_m22_gated.csv",
+      "r4_p3_day_stability.csv": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_day_stability.csv",
       "r4_phase3_summary.txt": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_summary.txt",
       "r4_phase3_analysis.py": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
     },

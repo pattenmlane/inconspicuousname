@@ -72,5 +72,44 @@
       "script": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase2_analysis.py",
       "summary": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase2_summary.txt"
     }
+  },
+  {
+    "iteration": 2,
+    "trader_file": "trader_v2.py",
+    "strategy_description": "Phase-3-inspired sim: same Sonic joint gate as v1; one-tick MM on VELVETFRUIT_EXTRACT plus all VEV strikes when gate on. Core strikes 5200/5300 use per-side size 18; other VEVs use 10 (wider books often). Tests inclineGod spread-comovement idea; no hydrogel; no live counterparty in state.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/backtest_worse_trader_v2_r4_d123.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_quadratic_logm_wls_10/trader_v2.py 4-1 4-2 4-3 --data Prosperity4Data --no-out --no-progress --no-vis --match-trades worse",
+      "backtest_round": 4,
+      "backtest_days": "1-3",
+      "total_profit": 6088,
+      "day_total_profit": {"1": 974, "2": 3352, "3": 1762},
+      "trades_or_fills_summary": {
+        "note": "from stdout; hydrogel 0; worse identical to all this run",
+        "hydrogel_pnl_by_day": {"1": 0, "2": 0, "3": 0},
+        "nonzero_vev_extract_day1": {"VEV_4000": 395, "VEV_4500": -34, "VEV_5000": -32, "VEV_5100": -26, "VEV_5200": 314, "VEV_5300": 873, "VEV_5400": 59, "VEV_5500": -21, "VELVETFRUIT_EXTRACT": -554},
+        "nonzero_vev_extract_day2": {"VEV_4000": 433, "VEV_5200": 918, "VEV_5300": 1828, "VEV_5400": 433, "VEV_5500": 23, "VELVETFRUIT_EXTRACT": -282},
+        "nonzero_vev_extract_day3": {"VEV_4000": 1363, "VEV_4500": 27, "VEV_5000": 26, "VEV_5100": 4, "VEV_5200": -259, "VEV_5300": -859, "VEV_5400": -194, "VEV_5500": -2, "VELVETFRUIT_EXTRACT": 1655}
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/backtest_all_trader_v2_r4_d123.log",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_quadratic_logm_wls_10/trader_v2.py 4-1 4-2 4-3 --data Prosperity4Data --no-out --no-progress --no-vis --match-trades all",
+      "backtest_round": 4,
+      "backtest_days": "1-3",
+      "total_profit": 6088,
+      "day_total_profit": {"1": 974, "2": 3352, "3": 1762},
+      "trades_or_fills_summary": {
+        "note": "totals match worse for this trader/run",
+        "hydrogel_pnl_by_day": {"1": 0, "2": 0, "3": 0}
+      }
+    },
+    "phase3_analysis_extension": {
+      "script": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py",
+      "day_stability_csv": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_day_stability.csv",
+      "note": "Per-day extract fwd20 tight vs wide Welch t and signed-flow corr; see r4_phase3_summary.txt tail"
+    }
   }
 ]

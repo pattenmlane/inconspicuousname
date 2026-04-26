@@ -7,6 +7,11 @@ Phase-2 M01→M22 burst VEV5300 fwd5: pairwise Welch t=nan | vs wide-book fwd5_5
 Signed-flow lag-0 corr (timestamp sets): tight_ts=-0.2317 wide_ts=0.0127
 Mark22 seller_agg VEV5300 fwd20: pairwise Welch t=nan | vs wide-book fwd20_5300 pool: mean_print=-0.1437 mean_pool=0.0688 t=-1.236 p=2.17e-01 (n_prints=160)
 
+Per-day stability (r4_p3_day_stability.csv):
+  day 1: ext_fwd20 Welch t=5.325 (mean_tight=0.5992 mean_wide=-0.0483 n_tight=1381 n_wide=8599) | corr_tight=-0.1710 corr_wide=nan
+  day 2: ext_fwd20 Welch t=4.238 (mean_tight=0.4641 mean_wide=-0.0181 n_tight=1727 n_wide=8253) | corr_tight=-0.2510 corr_wide=nan
+  day 3: ext_fwd20 Welch t=6.781 (mean_tight=0.1879 mean_wide=-0.3950 n_tight=4598 n_wide=5382) | corr_tight=-0.2461 corr_wide=0.0269
+
 Top spread–spread |r| on inner-join timestamps (inclineGod panel):
   sp_VEV_4000 vs sp_VEV_4500: r=0.8762 n=30000
   sp_VEV_4500 vs sp_VEV_5000: r=0.7153 n=30000

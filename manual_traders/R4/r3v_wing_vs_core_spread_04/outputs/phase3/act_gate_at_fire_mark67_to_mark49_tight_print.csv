@@ -1,0 +1,13 @@
+signal_set,tape_day,print_ts,fire_ts,joint_tight_at_fire
+mark67_to_mark49_tight_print,1,39400,39500,True
+mark67_to_mark49_tight_print,2,134300,134400,False
+mark67_to_mark49_tight_print,2,547100,547200,True
+mark67_to_mark49_tight_print,2,720500,720600,True
+mark67_to_mark49_tight_print,2,872400,872500,False
+mark67_to_mark49_tight_print,3,117400,117500,False
+mark67_to_mark49_tight_print,3,357500,357600,True
+mark67_to_mark49_tight_print,3,406500,406600,False
+mark67_to_mark49_tight_print,3,616700,616800,True
+mark67_to_mark49_tight_print,3,769200,769300,False
+mark67_to_mark49_tight_print,3,873400,873500,True
+mark67_to_mark49_tight_print,3,969100,969200,False

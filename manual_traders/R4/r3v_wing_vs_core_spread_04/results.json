@@ -199,5 +199,28 @@
       "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v8_all.log",
       "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v8_all.json"
     }
+  },
+  {
+    "iteration": 9,
+    "trader_file": "trader_v9.py",
+    "strategy_description": "Ablation of v8: Mark67\u2192Mark49 extract **tight at print**, lag+100, **no** act-time Sonic gate \u2014 always attempt 1-lot taker buy at fire.",
+    "total_profit": 28.0,
+    "backtest_round": 4,
+    "backtest_days": "4-1 4-2 4-3",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 28.0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v9.py 4 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v9_worse.log",
+      "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v9_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v9_worse.json",
+      "note": "Tape: joint tight at fire_ts for 67\u219249 signals is **6/12** (act_gate_tight_at_fire_coverage.json). v8 had **1** SUBMISSION fill; v9 has **3** \u2014 act gate was binding on **2** fires, but extra fills did not raise total PnL (28 vs 29.5) due to day-3 mark-to-tape."
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 28.0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v9.py 4 --data Prosperity4Data --match-trades all --no-vis --out manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v9_all.log",
+      "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v9_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v9_all.json"
+    }
   }
 ]

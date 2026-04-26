@@ -1,0 +1,16 @@
+signal_set,tape_day,print_ts,fire_ts,joint_tight_at_fire
+mark67_to_mark22_tight_print,1,575800,575900,False
+mark67_to_mark22_tight_print,1,632800,632900,False
+mark67_to_mark22_tight_print,1,812900,813000,True
+mark67_to_mark22_tight_print,1,949400,949500,False
+mark67_to_mark22_tight_print,2,378400,378500,False
+mark67_to_mark22_tight_print,2,424600,424700,False
+mark67_to_mark22_tight_print,2,793900,794000,False
+mark67_to_mark22_tight_print,3,254000,254100,False
+mark67_to_mark22_tight_print,3,294300,294400,True
+mark67_to_mark22_tight_print,3,349100,349200,True
+mark67_to_mark22_tight_print,3,405400,405500,False
+mark67_to_mark22_tight_print,3,462100,462200,True
+mark67_to_mark22_tight_print,3,512800,512900,True
+mark67_to_mark22_tight_print,3,560900,561000,True
+mark67_to_mark22_tight_print,3,588300,588400,True

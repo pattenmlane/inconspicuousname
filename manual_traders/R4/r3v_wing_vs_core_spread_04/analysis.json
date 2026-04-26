@@ -367,5 +367,18 @@
       "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v8_worse.log"
     ],
     "used_to_decide": "Do **not** prioritize 67\u219249+tight as a primary taker rule vs 67\u219222+tight (v3); tape fwd edge is smaller and execution overlap with act-gate is thin."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "r4_act_gate_coverage_at_fire.py: at **fire_ts = print_ts+100**, joint Sonic tight holds for **7/15** Mark67\u219222+tight-print signals and **6/12** Mark67\u219249+tight-print signals (act_gate_tight_at_fire_coverage.json + per-row CSVs). So v8\u2019s scarcity of SUBMISSION fills is **not** mainly \u201cbook always wide at fire\u201d. trader_v9 removes act gate vs v8: **same 3** SUBMISSION rows, total PnL **28** vs **29.5** (worse=all) \u2014 act gate was marginal; **worse** matching caps fills on this path regardless.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_act_gate_coverage_at_fire.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/act_gate_tight_at_fire_coverage.json",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/act_gate_at_fire_mark67_to_mark22_tight_print.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/act_gate_at_fire_mark67_to_mark49_tight_print.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v9.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v9_worse.log"
+    ],
+    "used_to_decide": "Keep act gate for **risk** on 67\u219249 if desired, but do not expect more fills from removing it under `worse`; focus on pairs with higher edge (67\u219222) or `all` fill diagnostics."
   }
 ]

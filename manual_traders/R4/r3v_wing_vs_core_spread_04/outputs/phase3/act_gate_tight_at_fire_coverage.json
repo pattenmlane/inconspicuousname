@@ -1,0 +1,18 @@
+[
+  {
+    "label": "mark67_to_mark22_tight_print",
+    "n": 15,
+    "n_tight_at_fire": 7,
+    "p_tight_at_fire": 0.4666666666666667,
+    "n_missing_book": 0,
+    "detail_csv": "/workspace/manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/act_gate_at_fire_mark67_to_mark22_tight_print.csv"
+  },
+  {
+    "label": "mark67_to_mark49_tight_print",
+    "n": 12,
+    "n_tight_at_fire": 6,
+    "p_tight_at_fire": 0.5,
+    "n_missing_book": 0,
+    "detail_csv": "/workspace/manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/act_gate_at_fire_mark67_to_mark49_tight_print.csv"
+  }
+]

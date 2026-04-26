@@ -164,6 +164,21 @@ def main() -> None:
     )
     agg.to_csv(OUT / "r4_p3_threeway_burst_tight_fwd_u20.csv", index=False)
 
+    # Same three-way cells but **always** forward **VELVETFRUIT_EXTRACT** mid +20 rows (not trade symbol)
+    rows_day = []
+    for d in DAYS:
+        for (b, t), lab in [((0, False), "nb_wide"), ((0, True), "nb_tight"), ((1, True), "b_tight")]:
+            x = en[(en["day"] == d) & (en["burst_exact"] == b) & (en["tight_joint"] == t)]["fwd_u_20"].dropna()
+            rows_day.append(
+                {
+                    "day": d,
+                    "cell": lab,
+                    "n": int(len(x)),
+                    "mean_fwd_u20": float(x.mean()) if len(x) else float("nan"),
+                }
+            )
+    pd.DataFrame(rows_day).to_csv(OUT / "r4_p3_threeway_extract_fwd20_by_day.csv", index=False)
+
     gtab = (
         sub01.groupby("tight_joint")["fwd_u_20"]
         .agg(["count", "mean", "median"])

@@ -293,7 +293,20 @@
         }
       ],
       "comparison_without_gate": "Phase 1/2 pooled forward extract after bursts did not condition on 5200/5300. Phase 3 shows **tight alone** already implies large positive fwd_u20 on trade timestamps; **adding burst on top of tight lowers** the mean vs **tight without burst** in this merge. Sonic gate **does not increase** the naive burst-follow sim PnL (v2 << v1); it **filters** to safer but **smaller** opportunity set.",
-      "interaction_phase1_phase2": "Phase 1 burst vs control and Phase 2 burst_exact vs isolated both highlighted burst extract lift. Phase 3 refines: **relative to other tight-timestamp trades**, burst rows are **not** the highest forward mean — the gate **cleans** the population (tight vs wide) as Sonic suggests, but **Mark01->Mark22 burst is not the unique driver** of positive fwd_u20 once tight is controlled."
+      "interaction_phase1_phase2": "Phase 1 burst vs control and Phase 2 burst_exact vs isolated both highlighted burst extract lift. Phase 3 refines: **relative to other tight-timestamp trades**, burst rows are **not** the highest forward mean — the gate **cleans** the population (tight vs wide) as Sonic suggests, but **Mark01->Mark22 burst is not the unique driver** of positive fwd_u20 once tight is controlled.",
+      "followup_day_stability_extract_fwd20": "Recomputed three-way means using **always VELVETFRUIT_EXTRACT** mid +20 rows at each trade timestamp (`r4_p3_threeway_extract_fwd20_by_day.csv`). **nb_tight** is positive all days (0.63, 0.72, 0.25). **b_tight** flips sign across days (-0.47, -0.18, +0.97) — **not stable** for burst+tight as a simple long trigger; **nb_tight** is the more consistent mid-only signal."
     }
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "Post-Phase-3: added `r4_p3_threeway_extract_fwd20_by_day.csv` to phase3 script (extract forward always). Implemented `trader_v3.py` — Sonic tight joint gate only, two-sided MM on VELVET + VEV_5100-5500; wide regime small trim. Backtest vs v1/v2.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_p3_threeway_extract_fwd20_by_day.csv",
+      "manual_traders/R4/r4_counterparty_phase1/r4_phase3_sonic_gate_analysis.py",
+      "manual_traders/R4/r4_counterparty_phase1/trader_v3.py",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v3_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v3_all.log"
+    ],
+    "used_to_decide": "v3 worse +4672 < v1 +7207 but > v2 +1766; naive tight-MM still loses on VEV wings day3. Next: inventory skew or avoid quoting when Mark22 sells at touch (Phase 1 adverse table)."
   }
 ]

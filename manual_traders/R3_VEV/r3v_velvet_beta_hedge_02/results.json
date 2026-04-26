@@ -318,5 +318,26 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v34_worse_d0d1d2.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v33_v34_d0d1d2.json (trader_v34 key)"
+  },
+  {
+    "iteration": 37,
+    "trader_file": "trader_v35.py",
+    "strategy_description": "v33 + STRATEGY.txt joint BBO gate: s5200<=2 and s5300<=2 (ask1-bid1) => TIGHT_VEV_TILT_MULT 1.06 on VEV tilt; one-tick-inside VELVETFRUIT_EXTRACT (U_SIZE 18) when tight; v33 shock guard. Hydrogel MM as v4/v33. New best total 18,232 d0-2 (worse=all fill stats here).",
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 18232,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v35.py 3-0 3-1 3-2 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v35_worse_d0d1d2.log",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v35_worse_d0d1d2.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v35_d0d1d2_worse_all.json (backtest_worse)"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 18232,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/trader_v35.py 3-0 3-1 3-2 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v35_all_d0d1d2.log",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v35_all_d0d1d2.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v35_d0d1d2_worse_all.json (backtest_all)"
+    },
+    "total_profit": 18232
   }
 ]

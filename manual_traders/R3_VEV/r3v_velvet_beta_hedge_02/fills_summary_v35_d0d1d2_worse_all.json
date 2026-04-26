@@ -1,0 +1,20 @@
+{
+  "note": "R3 days 0-1-2; worse and all gave identical per-day PnL in this run.",
+  "trader_v35": {
+    "backtest_worse": {
+      "total_profit": 18232,
+      "day_totals": [7509, 11325, -602],
+      "log": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v35_worse_d0d1d2.log"
+    },
+    "backtest_all": {
+      "total_profit": 18232,
+      "day_totals": [7509, 11325, -602],
+      "log": "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v35_all_d0d1d2.log"
+    },
+    "vev_plus_extract_profit": {
+      "day_totals": [3353, 3554, 3692],
+      "total": 10599,
+      "method": "Sum of VEV_* + VELVETFRUIT_EXTRACT from printed per-product lines; hydrogel excluded for objective"
+    }
+  }
+}

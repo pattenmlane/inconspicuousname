@@ -121,5 +121,17 @@
       "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/analysis_v10_extract_shock_v4000_brief.json"
     ],
     "used_to_decide": "v33: v22 + 0.9x tilt when |ret1|>1.0. v34: v22 + 0.22*clip(ret2) in the tilt (short memory). v33 total 16,273 (beats v22 16,260 and prior best 16,260) on 3-0/1/2 worse. v34 16,213. New best: trader_v33.py."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Reread round3work/vouchers_final_strategy/STRATEGY.txt: tight = BBO (ask1-bid1) on VEV_5200 and VEV_5300 both <= TH=2; forward extract mid (K=20) more favorable on average when both tight (see outputs/r3_tight_spread_summary.txt, day0 Welch t~4.7). Implementation for trader_v35: same TH on live BBO to flag joint_tight; scale integer VEV tilt by 1.06 when on; one-tick-inside VELVETFRUIT_EXTRACT when joint_tight; keep v33 shock damp. Replicated STRATEGY spread definition for the gate; voucher tilt path unchanged from prior (synth spread ladder).",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/fills_summary_v35_d0d1d2_worse_all.json",
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v35_worse_d0d1d2.log",
+      "manual_traders/R3_VEV/r3v_velvet_beta_hedge_02/r3v_v35_all_d0d1d2.log"
+    ],
+    "used_to_decide": "trader_v35.py: v33 + joint BBO tight gate (5200&5300) with +6% VEV tilt and extract MM in gate. R3 d0-2: total 18,232 in both worse and all (identical in this run); VEV+extract only subtotal 10,599 from printed lines. Beats v33 total 16,273. Future: tune gate mult / extract size; optional hydrogel-off variant for 200k/day VEV+U target."
   }
 ]

@@ -257,10 +257,10 @@
         "finding": "R4 has only **~165** V5300 trade rows across three days; **163/165** are already joint-tight (only **1** loose with valid mids). Tight: mean same-symbol fwd K5 **-0.19** (sell-aggr heavy); K100 **+0.26**. Confirms: **Sonic book state is the default** whenever 5300 prints — the gate stratifies almost nothing in aggregate tape stats; PnL edge instead comes from **Who + when** (Mark67+window sim), not from conditioning raw 5300 prints on gate here."
       },
       "tier_a_sim_update": {
-        "trader": "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v70.py",
-        "interaction": "(Mark67 prefilter + Sonic joint at lift + window exit) x **Q=5** x **FLATTEN_MAX=11** sell clip",
-        "r4_days_1_3_total_profit": 3699,
-        "note": "v50 (+3470) improved by **tighter flatten chunk** vs 30; optimum ~**11** ticks/sell (v69=10 +3693, v70=11 +3699, v65=12 +3667). **W≠50k** with Q=5 is strongly negative (v59 40k **-1294**, v60 45k +1352, v61 55k +2523, v62 60k +2165) — keep **JSON window 50_000**."
+        "trader": "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v75.py",
+        "interaction": "(Mark67 prefilter + Sonic joint at lift + window exit) x **Q=5** x **FLATTEN_MAX=9** sell clip",
+        "r4_days_1_3_total_profit": 3722,
+        "note": "Flatten grid extended below 10: **v75 FLATTEN=9 +3722** > v74=8 +3703 > v70=11 +3699 > v69=10 +3693; **v73=7** +3566 (day_1 crushed). **W≠50k** with Q=5 stays bad — keep JSON **50_000**. Tape: `r4_phase13` — mean **~43%** of price rows inside each v26 window have joint gate tight (execution often off-tight surface)."
       },
       "script": "manual_traders/R4/r3v_rolling_iv_zscore_06/r4_phase3_joint_gate.py"
     }
@@ -481,6 +481,17 @@
       "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v70_2026-04-26_r4_worse_f10-14.log",
       "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v70.py"
     ],
-    "used_to_decide": "Ship **`trader_v70.py`** as current best (+**229** vs v50, +**415** vs v46); do not shrink W without re-validation. Optional: **v69** (+3693) if 11 feels overfit to 3 days. **`results.json`** iterations **43–56** log **v59–v72** (W sweep + flatten grid)."
+    "used_to_decide": "Do not shrink **W** off 50k without re-validation. Flatten grid **10–30** logged in **`results.json`** iters **47–56** (v63–v72). **Superseded** by iter **24** (FLATTEN **7–9** + Q cross-check → **v75** best)."
+  },
+  {
+    "iteration": 24,
+    "analysis_description": "**Phase 13 tape:** `r4_phase13_joint_tight_in_v26_windows.py` — among **price-grid** timestamps inside each Mark67+v26 **50k** window, fraction where **5200&5300** spreads both **<=2**: mean **~0.43**, median **~0.46**, min **~0.02**, max **~0.83** (`outputs/r4_p13_joint_tight_fraction_per_v26_window.csv`). Confirms joint-tight is **intermittent** during the sim hold window (not a constant Sonic surface). **Sim bracket** below FLATTEN=10: **v75 (9) +3,722** best; v74 (8) +3,703; v73 (7) +3,566; **Q×flatten**: v76 Q=4 +3,454; v77 Q=6 +3,454 with FLATTEN=11.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/r4_phase13_joint_tight_in_v26_windows.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/outputs/r4_p13_joint_tight_in_v26_windows.txt",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/outputs/r4_p13_joint_tight_fraction_per_v26_window.csv",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v75_2026-04-26_r4_worse_v73grid.log"
+    ],
+    "used_to_decide": "Default sim candidate → **`trader_v75.py`**; keep **v70** as near-best if you want a round-number flatten cap."
   }
 ]

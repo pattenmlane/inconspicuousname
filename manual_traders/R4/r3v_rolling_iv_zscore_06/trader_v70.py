@@ -1,6 +1,5 @@
 """
-**FLATTEN_MAX=11** on v50 line (Q=5, W=50k, EOD=800). **Best R4 sim +3,699** days 1-3.
-Grid: 10→3693, 11→3699, 12→3667, 13→3651, 14→3615, 15→3616, 18→3586, 20→3575, 30→3470.
+**FLATTEN_MAX=11** on v50 line — **+3,699** R4 days 1-3. Superseded by **`trader_v75`** (**FLATTEN_MAX=9**, **+3,722**).
 """
 from __future__ import annotations
 

@@ -247,5 +247,21 @@
       "trades_or_fills_summary": "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v8_round4_all_fills_summary.json",
       "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v8.py\" 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v8_round4_all.json"
     }
+  },
+  {
+    "iteration": 9,
+    "trader_file": "(none — offline Phase 1 burst orchestrator)",
+    "strategy_description": "r4_burst_orchestrator_analysis.py: dominant buyer/seller at each multi-print timestamp; extract dm_ex_k20; Sonic gate merge. No new trader or backtest.",
+    "total_profit": null,
+    "backtest_round": 4,
+    "match_trades": null,
+    "backtest_log_file": null,
+    "trades_or_fills_summary": null,
+    "analysis_only_outputs": [
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_burst_orchestrator_analysis.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_orchestrator_summary.json"
+    ],
+    "backtest_worse": null,
+    "backtest_all": null
   }
 ]

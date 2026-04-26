@@ -138,5 +138,23 @@
       "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v27_round3_worse_fills_summary.json"
     ],
     "used_to_decide": "No tradeable up/down asymmetry on extract moves; do not add directional filters. Theta/mid ladder is strong and cross-sectionally stable on tape, so v26 applies a soft size haircut where |Θ_day|/mid is high (wings) while keeping residual-decile signal unchanged. v26 and v27 both reach total_profit 4673 (+2 vs v24); v27’s gentler THETA_K ties v26—keep v26 as default reference. Branch best is now v26/v27; still orders of magnitude below the ~800k surface bar."
+  },
+  {
+    "iteration": 28,
+    "analysis_description": "Read round3work/vouchers_final_strategy/STRATEGY.txt and outputs/r3_tight_spread_summary.txt: joint condition spread_5200<=2 AND spread_5300<=2 (L1) aligns with more favorable short-horizon extract mid forward move (K=20) on day-0 tape (Welch t~4.7, P~3e-6). in inclineGod/sonic framing: use spreads as state; P(both tight)~10% on that run. Merged main adds Round 3 day-3 data in Prosperity4Data. Implemented v28 (soft size mult + optional join-bid extract) and v29 (hard: no VEV orders unless gate). Both worse and all backtest logs + tradeHistory fill summaries per user request.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_6panel.png",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v28_round3_worse.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v28_round3_all.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v29_round3_worse.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v29_round3_all.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v28_round3_worse_fills_summary.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v28_round3_all_fills_summary.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v29_round3_worse_fills_summary.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v29_round3_all_fills_summary.json"
+    ],
+    "used_to_decide": "Soft joint gate (v28) multiplies the existing v27 stack by 1.25 (tight) or 0.45 (wide) and adds a small extract long in tight—total_profit 14390 worse on R3 **days 0–3** (day 3 is new tape). Hard gate (v29) cuts activity too much; total 1160 worse. Next: re-tune WIDE mult vs extract overlay; consider gate-only for the two anchor strikes, not the whole decile; re-run v27 on 4 days for apples-to-apples baseline. Still under 200k/day target."
   }
 ]

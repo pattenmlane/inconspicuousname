@@ -1,0 +1,18 @@
+{
+  "source": "trader_v29_round3_worse.json",
+  "num_trades": 4175,
+  "filled_abs_qty_by_symbol": {
+    "VELVETFRUIT_EXTRACT": 1424,
+    "HYDROGEL_PACK": 1030,
+    "VEV_4000": 472,
+    "VEV_6000": 294,
+    "VEV_6500": 294,
+    "VEV_5500": 278,
+    "VEV_5400": 238,
+    "VEV_5300": 124,
+    "VEV_5200": 18,
+    "VEV_4500": 1,
+    "VEV_5000": 1,
+    "VEV_5100": 1
+  }
+}

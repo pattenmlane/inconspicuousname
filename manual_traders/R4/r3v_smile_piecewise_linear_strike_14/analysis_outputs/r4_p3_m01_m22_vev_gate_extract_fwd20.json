@@ -1,0 +1,15 @@
+{
+  "n_total": 1339,
+  "n_tight": 1336,
+  "n_loose": 3,
+  "mean_fwd20_extract_when_tight": 0.29528443113772457,
+  "mean_fwd20_extract_when_loose": 2.0,
+  "welch": {
+    "mean_a": 0.29528443113772457,
+    "mean_b": 2.0,
+    "n_a": 1336,
+    "n_b": 3,
+    "t_stat": -13.5550130598231,
+    "p_value": 2.5959391914244084e-39
+  }
+}

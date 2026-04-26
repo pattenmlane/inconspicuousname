@@ -1,0 +1,15 @@
+{
+  "pooled_full_corr_s5200_s5300": 0.3071269744238464,
+  "pooled_tight_n": 7706,
+  "pooled_tight_corr_s5200_s5300": 0.1719952766969943,
+  "pooled_loose_n": 22234,
+  "pooled_loose_corr_s5200_s5300": 0.07585557885169601,
+  "pooled_welch_tight_vs_loose_fwd20": {
+    "mean_a": 0.32351414482221647,
+    "mean_b": -0.12103085364756679,
+    "n_a": 7706,
+    "n_b": 22234,
+    "t_stat": 7.935123655204991,
+    "p_value": 2.268068162568603e-15
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "phase3_vs_phase1": "Phase1 pooled Mark01->Mark22 on VEV_5300 unconditional mean ~ -0.08 (r4_focal_pair); Phase3 uses aligned extract fwd20 at trade timestamp (not VEV mid) \u2014 see r4_p3_m01_m22_vev_gate_extract_fwd20.json.",
+  "phase3_vs_phase2_without_gate": "Phase2 pooled Welch tight vs loose on extract fwd20 (r4_p3_spread_spread): mean_tight ~+0.32 vs mean_loose ~-0.12 (t~7.9, p~2e-15) \u2014 Sonic gate strongly separates forward extract mid on R4 tape.",
+  "per_day_joint_gate_ttest": {
+    "1": {
+      "p_tight": 0.13837675350701403,
+      "welch_tight_vs_loose_fwd20_extract": {
+        "mean_a": 0.5992034757422158,
+        "mean_b": -0.048319572043260844,
+        "n_a": 1381,
+        "n_b": 8599,
+        "t_stat": 5.324774200000131,
+        "p_value": 1.1325992390512087e-07
+      },
+      "corr_s5200_s5300": 0.23554876095090876,
+      "corr_s5200_s_ext": 0.02250483444323423,
+      "corr_s5300_s_ext": 0.0060261722591970455,
+      "corr_s5200_m_ext": 0.3881528430604708,
+      "corr_s5300_m_ext": 0.32425072915844616,
+      "corr_s5200_s5300_tight_only": 0.5112567060888807,
+      "corr_s5200_s5300_loose_only": 0.02328204173551378
+    },
+    "2": {
+      "p_tight": 0.17304609218436873,
+      "welch_tight_vs_loose_fwd20_extract": {
+        "mean_a": 0.46409959467284306,
+        "mean_b": -0.018114624984853993,
+        "n_a": 1727,
+        "n_b": 8253,
+        "t_stat": 4.238249348907661,
+        "p_value": 2.3364087202802188e-05
+      },
+      "corr_s5200_s5300": 0.26498871679113534,
+      "corr_s5200_s_ext": -0.0034976777252665537,
+      "corr_s5300_s_ext": -0.013769724410224147,
+      "corr_s5200_m_ext": 0.46578571053002166,
+      "corr_s5300_m_ext": 0.40694226580332143,
+      "corr_s5200_s5300_tight_only": 0.2662174111751214,
+      "corr_s5200_s5300_loose_only": 0.07595198643012224
+    },
+    "3": {
+      "p_tight": 0.46072144288577155,
+      "welch_tight_vs_loose_fwd20_extract": {
+        "mean_a": 0.1879077859939104,
+        "mean_b": -0.3950204384986994,
+        "n_a": 4598,
+        "n_b": 5382,
+        "t_stat": 6.781484217589801,
+        "p_value": 1.2578558881780901e-11
+      },
+      "corr_s5200_s5300": 0.1841126412863622,
+      "corr_s5200_s_ext": 0.0048227702554734025,
+      "corr_s5300_s_ext": 0.01802853907917324,
+      "corr_s5200_m_ext": 0.42512255286967515,
+      "corr_s5300_m_ext": 0.3514453091587099,
+      "corr_s5200_s5300_tight_only": 0.09664380536445874,
+      "corr_s5200_s5300_loose_only": 0.14269723728038647
+    }
+  },
+  "spread_spread": {
+    "pooled_full_corr_s5200_s5300": 0.3071269744238464,
+    "pooled_tight_n": 7706,
+    "pooled_tight_corr_s5200_s5300": 0.1719952766969943,
+    "pooled_loose_n": 22234,
+    "pooled_loose_corr_s5200_s5300": 0.07585557885169601,
+    "pooled_welch_tight_vs_loose_fwd20": {
+      "mean_a": 0.32351414482221647,
+      "mean_b": -0.12103085364756679,
+      "n_a": 7706,
+      "n_b": 22234,
+      "t_stat": 7.935123655204991,
+      "p_value": 2.268068162568603e-15
+    }
+  },
+  "tight_burst_overlap": {
+    "1": {
+      "n_tight_ts": 1381,
+      "n_burst_ts": 98,
+      "n_tight_and_burst": 98,
+      "frac_tight_that_is_burst": 0.07096307023895727
+    },
+    "2": {
+      "n_tight_ts": 1727,
+      "n_burst_ts": 95,
+      "n_tight_and_burst": 95,
+      "frac_tight_that_is_burst": 0.05500868558193399
+    },
+    "3": {
+      "n_tight_ts": 4614,
+      "n_burst_ts": 125,
+      "n_tight_and_burst": 124,
+      "frac_tight_that_is_burst": 0.026874729085392284
+    }
+  },
+  "sonic_clean_hypothesis": "Day 1: corr(s5200,s5300) rises to ~0.51 in tight-only vs ~0.02 loose-only \u2014 spread co-movement visible when Sonic gate on (inclineGod)."
+}

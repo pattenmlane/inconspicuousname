@@ -1,0 +1,18 @@
+{
+  "burst=True_tight=True": {
+    "n": 1336,
+    "mean_fwd20_extract": 0.29528443113772457
+  },
+  "burst=True_tight=False": {
+    "n": 3,
+    "mean_fwd20_extract": 2.0
+  },
+  "burst=False_tight=True": {
+    "n": 0,
+    "mean_fwd20_extract": null
+  },
+  "burst=False_tight=False": {
+    "n": 0,
+    "mean_fwd20_extract": null
+  }
+}

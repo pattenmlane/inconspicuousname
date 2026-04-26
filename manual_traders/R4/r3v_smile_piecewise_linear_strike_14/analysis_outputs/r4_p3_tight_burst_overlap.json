@@ -1,0 +1,20 @@
+{
+  "1": {
+    "n_tight_ts": 1381,
+    "n_burst_ts": 98,
+    "n_tight_and_burst": 98,
+    "frac_tight_that_is_burst": 0.07096307023895727
+  },
+  "2": {
+    "n_tight_ts": 1727,
+    "n_burst_ts": 95,
+    "n_tight_and_burst": 95,
+    "frac_tight_that_is_burst": 0.05500868558193399
+  },
+  "3": {
+    "n_tight_ts": 4614,
+    "n_burst_ts": 125,
+    "n_tight_and_burst": 124,
+    "frac_tight_that_is_burst": 0.026874729085392284
+  }
+}

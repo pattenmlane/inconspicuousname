@@ -180,5 +180,31 @@
       },
       "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R4/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_piecewise_linear_strike_14/trader_v6.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v6_all.log"
     }
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "Post-Phase3: joint gate + long cap — passive buy as v2 but no new buys when extract position >= 72 (no sells); limits pyramiding vs v2.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 5924,
+      "backtest_log_file": "manual_traders/R4/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v7_worse.log",
+      "trades_or_fills_summary": {
+        "n_trades": 4322,
+        "notable_symbols": ["VELVETFRUIT_EXTRACT"]
+      },
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R4/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_piecewise_linear_strike_14/trader_v7.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v7_worse.log"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 5924,
+      "backtest_log_file": "manual_traders/R4/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v7_all.log",
+      "trades_or_fills_summary": {
+        "n_trades": 4322,
+        "notable_symbols": ["VELVETFRUIT_EXTRACT"]
+      },
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:manual_traders/R4/r3v_smile_piecewise_linear_strike_14\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_piecewise_linear_strike_14/trader_v7.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_smile_piecewise_linear_strike_14/backtest_logs/trader_v7_all.log"
+    }
   }
 ]

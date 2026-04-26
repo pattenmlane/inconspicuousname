@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v19.py",
+  "match_trades": "worse",
+  "round": 4,
+  "total_profit": 21253,
+  "per_day_total": { "1": 5698, "2": 12741, "3": 2814 },
+  "note": "vs v17 21244: +9. M67 tick: tight bid half 2 (mid-2) vs v17 mid-1. Day2 extract +12226 vs +12265 (-39); day3 +2190 vs +2142 (+48)."
+}

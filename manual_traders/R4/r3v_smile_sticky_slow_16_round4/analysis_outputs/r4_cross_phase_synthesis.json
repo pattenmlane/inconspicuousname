@@ -25,10 +25,10 @@
     },
     {
       "layer": "Post-phase sim best",
-      "trader": "trader_v17.py",
-      "worse_total_round4_days_1_3": 21244,
-      "delta_vs_trader_v12": 16,
-      "mechanism": "v12 day-conditioned tight ask +1 ask half when Mark67 aggressive buy and gate tight (marginal; day3 base ask +2 can bump to +3)"
+      "trader": "trader_v19.py",
+      "worse_total_round4_days_1_3": 21253,
+      "parent": "trader_v17.py (21244) + M67-conditional wide bid mid-2 vs mid-1",
+      "mechanism": "v12 schedule + v17 ask bump; on M67 aggressive buy (gate tight) also quote extract bid at mid-2 not mid-1 (+9 vs v17)"
     }
   ],
   "r3_strategy_paths_used": [

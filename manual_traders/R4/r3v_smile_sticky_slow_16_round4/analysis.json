@@ -446,5 +446,16 @@
       "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v18_fill_summary_worse.json"
     ],
     "used_to_decide": "**No marginal PnL:** worse **21244** **identical** to **v17** (same per-day and per-line extract). Same mechanism as **v10\u2192v13 +4** ask: **integer BBO clamp** collapses a larger notional ask offset to the same **bid_px/ask_px** as the weaker bump. **Conclusion:** phase-1 Mark67 hook is **saturated** at v17\u2019s +1; further widening is redundant until **grid step** (half tick) or **conditional bid** is explored."
+  },
+  {
+    "iteration": 22,
+    "round": 4,
+    "analysis_description": "Sim: **v19** = v17 + **wider extract bid (mid\u22122)** on **M67 aggressive buy** ticks only (Sonic tight); tests orthogonal skew vs v17/v18 ask-only path.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v19.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v19_backtest_worse.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v19_fill_summary_worse.json"
+    ],
+    "used_to_decide": "**Small `worse` win:** **21253** vs v17 **21244** (+9). Unlike **v8** (unconditional wide bid on tight extract), this **M67-conditional** bid step changes **actual bid integers** on lift ticks and trades off day2 vs day3 extract PnL. **all** also +18. **Champion** for next iteration base: **trader_v19**."
   }
 ]

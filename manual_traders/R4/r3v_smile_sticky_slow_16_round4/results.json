@@ -415,5 +415,26 @@
     "backtest_round": 4,
     "match_trades_primary": "worse",
     "note": "**Ties v17** (21244) bit-for-bit: BBO `ba-1` / `bb+1` clamp means extra ask half \u2014> same integer prices as v17. No further PnL from larger M67 bump; **v17** remains the minimal sufficient rule."
+  },
+  {
+    "iteration": 22,
+    "round": 4,
+    "trader_file": "trader_v19.py",
+    "strategy_description": "**v17** + on **M67 aggressive buy** (Sonic tight), use tight extract **bid** at **mid\u22122** instead of **mid\u22121** (wider bid only on those ticks; ask schedule unchanged from v17). Asymmetric to ask-only v17/v18.",
+    "backtest_worse": {
+      "total_profit": 21253,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v19.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v19_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v19_fill_summary_worse.json"
+    },
+    "backtest_all": {
+      "total_profit": 14272,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v19.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v19_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v19_fill_summary_all.json"
+    },
+    "backtest_round": 4,
+    "match_trades_primary": "worse",
+    "note": "**+9 vs v17** (21253 vs 21244). v8-style wide bid was globally bad; **M67-conditional** wide bid is slightly positive. Day2 extract **-39** vs v17; day3 **+48**; day1 same."
   }
 ]

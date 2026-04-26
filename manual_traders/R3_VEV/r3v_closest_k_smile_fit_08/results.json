@@ -202,5 +202,65 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v20.txt",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v20.json"
+  },
+  {
+    "iteration": 21,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v21.py",
+    "strategy_description": "Joint 5200/5300 tight BBO (both spread<=2) + v15 local smile / RV-IV / shock, no hydrogel. Tight: smaller extract edge + larger U size; wide: larger extract edge + smaller U, +1 tick on all VEVs. (Failed vs no-gate: wide-book VEV widened too much.)",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v21.py\" 3 --data Prosperity4Data --no-progress --no-out --no-vis",
+    "total_profit": 13918,
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 13918,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v21_worse.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v21_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 17248,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v21_all.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v21_all.json"
+    }
+  },
+  {
+    "iteration": 22,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v22.py",
+    "strategy_description": "v15 (no hydrogel, day-3 anchor) + joint 5200/5300 tight gate applied to extract only (TH=2: tighter U edge and larger U size when both tight; vouchers unchanged from v15). PnL objective: VEV + extract. Backtest 4 days (0-3) after main merge.",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v22.py\" 3 --data Prosperity4Data --no-progress --no-out --no-vis",
+    "total_profit": 16564,
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 16564,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v22_worse.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v22_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 19330,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v22_all.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v22_all.json"
+    }
+  },
+  {
+    "iteration": 23,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v23.py",
+    "strategy_description": "v15 with hydrogel removed and day-3 anchor: baseline for VEV+extract PnL without 5200/5300 gate (same v15 VEV+extract+shock+smile logic).",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v23.py\" 3 --data Prosperity4Data --no-progress --no-out --no-vis",
+    "total_profit": 15624,
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 15624,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v23_worse.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v23_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 18434,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v23_all.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v23_all.json"
+    }
   }
 ]

@@ -188,5 +188,39 @@
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v20.json"
     ],
     "used_to_decide": "v20 improved over v19 (39833) but still below v15 (39945). Conclusion: simple always-on selective shock overlay (v15) remains better than regime-gated shock logic; keep v15 as best baseline and avoid extra regime branching for this component."
+  },
+  {
+    "iteration": 21,
+    "analysis_description": "Pulled main: round3work/vouchers_final_strategy/ (STRATEGY.txt, r3_tight_spread_summary.txt). Tight = both BBO spreads on VEV_5200 and VEV_5300 <= 2; forward extract mid (K=20) higher when tight; spread-spread and spread-mid corrs. Copied r3_tight_spread_summary.txt into this branch under analysis_outputs for audit.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/r3_tight_spread_summary.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v21_worse.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v21_all.txt"
+    ],
+    "used_to_decide": "trader_v21: v15+ gate but widened +1 on all VEVs when not tight. On 4-tape R3 (days 0-3) worse total 13918 — gate hurt vs extract-only (see v22/v23) because book-wide VEV edge blow-up dominated; abandoned this variant."
+  },
+  {
+    "iteration": 22,
+    "analysis_description": "Same shared thesis: joint tight gate; implementation applies gate to VELVETFRUIT_EXTRACT MM only (1 tick edge, size 12 vs 18) while VEV quoting remains v15 (local smile, RV-IV, vega, shock). No HYDROGEL_PACK per PnL objective.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v22_worse.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v22_worse.json",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v22_all.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v22_all.json"
+    ],
+    "used_to_decide": "v22 (worse 16564, all 19330) vs v23 no-gate baseline (15624 / 18434): +940 worse / +896 all for joint tight sizing on U only, holding VEV path fixed. Suggests mid-forward edge from tight books translates modestly to executable extract MM under 4 days; still well below 200k/day target — need larger U edge/sizing or fill-time logic next."
+  },
+  {
+    "iteration": 23,
+    "analysis_description": "Control: v15 with hydrogel trading removed, same day-3 HYDROGEL open mid anchor 10011 as v22; isolates VEV+extract for comparison to v15/v22.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v23_worse.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v23_worse.json",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v23_all.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v23_all.json"
+    ],
+    "used_to_decide": "Baseline for joint-gate A/B. Confirms v15 PnL was largely hydrogel; VEV+extract line without gate is 15624 worse (4 days) vs prior 3-day v15 headline 39945 not comparable. Use v23 as the no-gate control for 5200/5300 experiments going forward."
   }
 ]

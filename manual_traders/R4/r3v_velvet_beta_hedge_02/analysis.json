@@ -378,5 +378,14 @@
       "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_sonic_tier_gate_shares_by_day.csv"
     ],
     "used_to_decide": "**Pooled:** p_core **25.7%**, p_wing_only **71.5%**, p_loose **2.7%** — wing band is where v15 differs from v11. **trader_v16** sim **+33259** worse=all vs v15 **+33420** (**-161**): hydro and outer VEV match v15 path on wing band, but **no soft extract** there (U day1 **+356** vs v15 **+4084**); day2–3 U **higher** than v15 because more time in true loose with soft U. **Conclusion:** for harness PnL, **either** quote full surface on spr<=3 (v15) **or** keep Sonic core for extract; **splitting** wing hydro without wing U **sacrifices** most of the v15 uplift."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "Three-way interaction test: **Sonic tier** (core vs wing-only vs loose) × **Mark55 aggressive extract** × **extract quote** — `trader_v17.py`. Reuses tier time shares from iteration 16 (`r4_sonic_tier_gate_shares_pooled.csv`).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v17.py",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_sonic_tier_gate_shares_pooled.csv"
+    ],
+    "used_to_decide": "**trader_v17** vs **v15**: **+33979** worse / **+33914** all vs v15 **+33420** / **+33354** (**+559** worse) — **wing-band M55 skip on U only** fixes day2 extract (**-29** vs **-672**) with small day1 U giveback (**+3988** vs **+4084**); hydro and V4000 lines match v15. **Interpretation:** counterparty filter is **most valuable** when gate legs are **wider than Sonic core** but still inside spr<=3 occupancy band (~71% of timestamps); core joint (~26%) keeps unconditional U MM as in v11."
   }
 ]

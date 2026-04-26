@@ -1,0 +1,17 @@
+{
+  "n_m01_m22_burst_ge4": 292,
+  "burst_event": {
+    "label": "m01_m22_burst_ge4",
+    "n": 292,
+    "mean_fwd_5": 0.22774,
+    "mean_fwd_20": 0.332192,
+    "mean_fwd_50": 0.458763
+  },
+  "control_singleton": {
+    "label": "singleton_control_sample",
+    "n": 400,
+    "mean_fwd_5": 0.02125,
+    "mean_fwd_20": -0.00125,
+    "mean_fwd_50": -0.010025
+  }
+}

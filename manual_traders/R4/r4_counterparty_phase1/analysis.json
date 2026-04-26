@@ -99,5 +99,85 @@
       "M01\u2192M22 VEV_5300 singleton bucket n=0 (all 5300 prints in sample are burst-associated) — cannot compare burst vs singleton for that exact pair.",
       "Residual mean near zero after rich (buyer,seller,sym,spr_q) cell means — no single global additive anomaly; edges are local/cell-specific."
     ]
+  },
+  {
+    "iteration": 1,
+    "round": 4,
+    "analysis_description": "Phase 2 scripts: (1) Mark01→Mark22 burst≥4 vs singleton control — forward VEV_5300 mids; (2) hourly signed flow vs next-hour extract return correlation; (3) IV gap 5200 vs 5300 vs M01→22 trade density by hour; (4) VEV_5300 spread buckets vs mean |fwd20 mid|. Pilot trader_v1 loads trade CSVs by timestamp (union across days for overlapping ts) because backtester leaves market_trades empty.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase2_burst_m01_m22.py",
+      "manual_traders/R4/r4_counterparty_phase1/r4_phase2_burst_m01_m22.json",
+      "manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase2_leadlag_flow.py",
+      "manual_traders/R4/r4_counterparty_phase1/r4_phase2_leadlag_hourly.json",
+      "manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase2_iv_mark_clusters.py",
+      "manual_traders/R4/r4_counterparty_phase1/r4_phase2_iv_mark_density.json",
+      "manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase2_spread_fwd_vol.py",
+      "manual_traders/R4/r4_counterparty_phase1/r4_phase2_spread_fwd5300.json"
+    ],
+    "used_to_decide": "Phase 2 completion gate below; sim pilot falsifies naive copy of Phase-1 mid edge at touch without inventory."
+  },
+  {
+    "round4_phase2_complete": true,
+    "phase1_interaction": "Phase-1 Mark67 buyer_agg extract mid markouts stay positive in tape; Phase-2 pilot trader_v1 (buy on Mark67 aggressive tape + sell on Mark55 aggressive tape) loses -2908 worse / -2960 all — mid predictability does not survive worse-fill execution without richer state. Mark01→22 burst slice now shows **positive** VEV_5300 fwd vs singleton control (+0.33 vs -0.001 at K=20), refining Phase-1's negative burst-only note for 5300 (that was M01→22 on 5300 only; here we use any M01→22 in burst).",
+    "phase2_bullets": [
+      {
+        "bullet": "2.1 Named-bot / burst",
+        "outputs": ["manual_traders/R4/r4_counterparty_phase1/r4_phase2_burst_m01_m22.json"],
+        "conclusion": "292 timestamps with ≥4 prints including Mark01→Mark22 row: mean VEV_5300 fwd20 +0.33 vs singleton control +0.00 — basket bursts align with short-horizon 5300 lift."
+      },
+      {
+        "bullet": "2.2 Microstructure spread regimes",
+        "outputs": ["manual_traders/R4/r4_counterparty_phase1/r4_phase2_spread_fwd5300.json"],
+        "conclusion": "Tight L1 spread (≤2) on 5300 has **lower** mean |fwd20| mid change (1.25) than 3–6 tick bucket (1.45) — tight book is calmer, not higher vol, on this tape slice."
+      },
+      {
+        "bullet": "2.3 Cross-instrument lead–lag (hourly)",
+        "outputs": ["manual_traders/R4/r4_counterparty_phase1/r4_phase2_leadlag_hourly.json"],
+        "conclusion": "Corr(5300 signed flow hour h, extract hour return h+1) ≈ +0.05 on n=27 hour-pairs — weak; not a standalone edge."
+      },
+      {
+        "bullet": "2.5 Vol / smile vs Marks",
+        "outputs": ["manual_traders/R4/r4_counterparty_phase1/r4_phase2_iv_mark_density.json"],
+        "conclusion": "Hourly |IV5200−IV5300| vs M01→22 trade counts — tables in JSON for regime overlays (steepness co-occurs with basket activity in some bins)."
+      },
+      {
+        "bullet": "2.6 Execution pilot",
+        "outputs": ["manual_traders/R4/r4_counterparty_phase1/backtest_trader_v1_r4_worse.log", "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v1_r4_all.log"],
+        "conclusion": "Counterparty-triggered touch trades on extract are **negative** PnL under worse fills — do not ship naive Phase-1 copy rule."
+      }
+    ],
+    "top_5_tradeable_edges_phase2": [
+      {
+        "rank": 1,
+        "edge": "After Mark01→Mark22 multi-print burst (≥4 rows at ts), VEV_5300 mid drifts up vs singleton timestamps (fwd20 ~+0.33 vs ~0).",
+        "orthogonal_to_phase1": "Uses burst orchestration, not only Mark67 extract cell.",
+        "days": [1, 2, 3],
+        "caveat": "Control is random singleton sample, not matched propensity."
+      },
+      {
+        "rank": 2,
+        "edge": "Tight 5300 spread regime is lower realized |Δmid| over 20 rows — useful as **vol-off** filter for other signals.",
+        "orthogonal_to_phase1": "Pure microstructure, no counterparty.",
+        "days": [1, 2, 3]
+      },
+      {
+        "rank": 3,
+        "edge": "Mark55 seller_agg on extract still shows negative long-horizon mid markout in Phase-1 table — Phase-2 sim suggests fading at touch needs bid improvement logic.",
+        "orthogonal_to_phase1": "Confirms adverse-selection story; sim loss on naive sell trigger.",
+        "days": [1, 2, 3]
+      },
+      {
+        "rank": 4,
+        "edge": "Hourly 5300 signed flow vs next-hour extract return correlation near zero — deprioritize simple Granger-style hourly pipeline.",
+        "orthogonal_to_phase1": "Cross-asset timing.",
+        "days": [1, 2, 3]
+      },
+      {
+        "rank": 5,
+        "edge": "IV gap hour table (r4_phase2_iv_mark_density.json) — combine with burst gate in Phase 3 Sonic conditioning.",
+        "orthogonal_to_phase1": "Smile × identity interaction.",
+        "days": [1, 2, 3]
+      }
+    ]
   }
 ]

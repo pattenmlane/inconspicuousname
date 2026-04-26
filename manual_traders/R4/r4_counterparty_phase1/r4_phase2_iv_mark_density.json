@@ -1,0 +1,64 @@
+{
+  "per_hour": [
+    {
+      "hour_bin": 0,
+      "mean_abs_iv_diff_5200_5300": 0.003343,
+      "m01_m22_trades": 158,
+      "n_iv_samples": 60
+    },
+    {
+      "hour_bin": 1,
+      "mean_abs_iv_diff_5200_5300": 0.004402,
+      "m01_m22_trades": 115,
+      "n_iv_samples": 60
+    },
+    {
+      "hour_bin": 2,
+      "mean_abs_iv_diff_5200_5300": 0.004081,
+      "m01_m22_trades": 99,
+      "n_iv_samples": 60
+    },
+    {
+      "hour_bin": 3,
+      "mean_abs_iv_diff_5200_5300": 0.003626,
+      "m01_m22_trades": 169,
+      "n_iv_samples": 60
+    },
+    {
+      "hour_bin": 4,
+      "mean_abs_iv_diff_5200_5300": 0.005349,
+      "m01_m22_trades": 113,
+      "n_iv_samples": 60
+    },
+    {
+      "hour_bin": 5,
+      "mean_abs_iv_diff_5200_5300": 0.005208,
+      "m01_m22_trades": 165,
+      "n_iv_samples": 60
+    },
+    {
+      "hour_bin": 6,
+      "mean_abs_iv_diff_5200_5300": 0.005635,
+      "m01_m22_trades": 154,
+      "n_iv_samples": 60
+    },
+    {
+      "hour_bin": 7,
+      "mean_abs_iv_diff_5200_5300": 0.00666,
+      "m01_m22_trades": 142,
+      "n_iv_samples": 60
+    },
+    {
+      "hour_bin": 8,
+      "mean_abs_iv_diff_5200_5300": 0.006673,
+      "m01_m22_trades": 127,
+      "n_iv_samples": 60
+    },
+    {
+      "hour_bin": 9,
+      "mean_abs_iv_diff_5200_5300": 0.00539,
+      "m01_m22_trades": 97,
+      "n_iv_samples": 60
+    }
+  ]
+}

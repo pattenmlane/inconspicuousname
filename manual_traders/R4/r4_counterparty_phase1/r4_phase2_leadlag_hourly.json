@@ -1,0 +1,5 @@
+{
+  "n_hour_pairs_lag1": 27,
+  "corr_f5300_h_vs_extract_return_h_plus_1": 0.0521,
+  "note": "Coarse hour buckets (ts//100000); sign from touch heuristic."
+}

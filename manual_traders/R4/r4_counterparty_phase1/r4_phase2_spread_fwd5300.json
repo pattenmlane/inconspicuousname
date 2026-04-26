@@ -1,0 +1,10 @@
+{
+  "mean_abs_fwd20_mid_by_spread_bucket": {
+    "spr_le2": 1.2468,
+    "spr_3_6": 1.452997
+  },
+  "n": {
+    "spr_le2": 27504,
+    "spr_3_6": 2436
+  }
+}

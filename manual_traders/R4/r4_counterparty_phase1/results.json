@@ -38,5 +38,45 @@
         "note": "Matches worse (no trades)."
       }
     }
+  },
+  {
+    "iteration": 1,
+    "round": 4,
+    "trader_file": "trader_v1.py",
+    "strategy_description": "Phase 2 pilot: preload ROUND_4 trade CSVs keyed by timestamp; on tape Mark 67 aggressive buy on VELVETFRUIT_EXTRACT buy small at ask; on Mark 55 aggressive sell sell small at bid. Cooldown between signals. Documents that Phase-1 mid edge does not trivially convert to PnL.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -2908,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v1.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v1_r4_worse.log",
+      "backtest_output": {
+        "day1": -1052,
+        "day2": -3548,
+        "day3": 1692,
+        "total": -2908
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VELVETFRUIT_EXTRACT"],
+        "underlying_pnl": -2908,
+        "note": "Only extract traded; hydrogel and VEVs zero."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -2960,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v1.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v1_r4_all.log",
+      "backtest_output": {
+        "day1": -1052,
+        "day2": -3548,
+        "day3": 1640,
+        "total": -2960
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VELVETFRUIT_EXTRACT"],
+        "underlying_pnl": -2960,
+        "note": "Day 3 PnL differs slightly vs worse (fill matching)."
+      }
+    }
   }
 ]

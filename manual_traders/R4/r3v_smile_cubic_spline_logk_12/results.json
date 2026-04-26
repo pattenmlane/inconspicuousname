@@ -222,5 +222,49 @@
     },
     "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v4.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-merge-pnl",
     "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v4.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-merge-pnl"
+  },
+  {
+    "iteration": 5,
+    "round": 4,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "**trader_v4** + **Phase 2** M01→M22 burst risk (live ≥4 prints at ts **or** offline ±500): same **VEV_5300** edge/MM tweak as v3. Stacks hydro M38→M14 caution unchanged.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 47283,
+      "backtest_log_file": "backtest_logs/trader_v5_round4_worse.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": {
+          "day1": 23248,
+          "day2": 10787,
+          "day3": 13248
+        },
+        "non_zero_pnl_products_per_day": {
+          "day1": 4,
+          "day2": 3,
+          "day3": 4
+        },
+        "note": "**Identical** day PnL to v4 worse — VEV_5300 burst tweak net-neutral when stacked with hydro rule on this tape."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 50343,
+      "backtest_log_file": "backtest_logs/trader_v5_round4_all.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": {
+          "day1": 25991,
+          "day2": 13392,
+          "day3": 10960
+        },
+        "non_zero_pnl_products_per_day": {
+          "day1": 11,
+          "day2": 10,
+          "day3": 11
+        },
+        "note": "−185 vs v4 all (50528); worse-fill objective unchanged — prefer **v4** over v5 for all-mode on d1–3."
+      }
+    },
+    "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v5.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-merge-pnl",
+    "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v5.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-merge-pnl"
   }
 ]

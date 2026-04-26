@@ -317,5 +317,16 @@
       "results.json"
     ],
     "used_to_decide": "First counterparty rule that **improves** primary worse-fill total on this tape; do **not** stack naive joint-gate filter on this hydro pair without re-tabling by day."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "**Stack test (Phase 2 on Phase 1 sim):** **trader_v5** = v4 hydro M38→M14 caution + M01→M22 burst VEV_5300 nudge (v3 logic). R4 d1–3: **worse 47,283** — **same** per-day totals as v4 (burst tweak net-neutral under worse). **All 50,343** vs v4 **50,528** (−185) — extra VEV_5300 conservatism hurts all-fill path without helping worse.",
+    "analysis_outputs": [
+      "trader_v5.py",
+      "backtest_logs/trader_v5_round4_worse.log",
+      "backtest_logs/trader_v5_round4_all.log",
+      "results.json"
+    ],
+    "used_to_decide": "Ship **v4** as best worse-fill combo so far; **v5** not an upgrade. Next stack candidate: Mark67→Mark49 **directional** extract (tape positive) vs sim adverse-selection risk — needs careful size."
   }
 ]

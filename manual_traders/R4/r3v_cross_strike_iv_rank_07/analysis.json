@@ -31,11 +31,13 @@
         "bullet": "1) Participant-level alpha / predictiveness",
         "outputs": [
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_participant_forward_stats.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_participant_cross_forward_stats.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_headline_cells_by_day.csv",
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_participant_forward_by_burst.csv",
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_participant_forward_by_session.csv",
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_phase1_machine_summary.json"
         ],
-        "conclusion": "Strongest cell: Mark 67 aggressive buys on VELVETFRUIT_EXTRACT show large positive self-mid change at k=5 (n=164, mean≈1.96 ticks, t≈13, bootstrap 95% CI on mean excludes 0) stable in tight/all bins; Mark 22 aggressive sells on VEV_5300 show negative k=5 self-mid (n=160, mean≈-0.20, t≈-3.3). Mark 55 on extract is horizon-sensitive — tabulated in r4_p1_mark55_extract_summary.json: buy_agg k5/k20 means ≈ +0.20/+0.41 (t≈2.2/2.5); sell_agg k5/k20 ≈ +0.05/-0.11 (t n.s.), k100 ≈ -0.92 (t≈-2.5). **Burst vs isolated** (`r4_p1_participant_forward_by_burst.csv`): same cells split multi_print_burst vs isolated_print (median + bootstrap CI columns in participant CSVs). **Session buckets** (H00_07 / H08_15 / H16_23 from `hour_cs`): for Mark67|VELVET|buy_agg|all|k=5 only H00_07 meets n≥10 (n=164; other sessions empty) because R4 tape’s `hour_cs` only takes values 0–2, so 8-hour / full-day seasonality is not separately identifiable in this cut."
+        "conclusion": "Participant tables now loop **every distinct buyer/seller string** on the tape (R4 has only Mark IDs — no non-Mark counterparties). Strongest cell unchanged: Mark 67 aggressive buys on VELVETFRUIT_EXTRACT, k=5 self/extract (n=164, mean≈1.96, t≈13, CI excludes 0). **Per-day** (`r4_p1_headline_cells_by_day.csv`): M67|extract|buy_agg k=5 positive mean all three days (n 58/61/45, t>5 each); k=100 turns **negative on day 3** (mean≈−1.08, t≈−0.76) — long-hold extrapolation from k=5 is not day-homogeneous. **Cross-asset** at trade time (`r4_p1_participant_cross_forward_stats.csv`, n≥30 cells): forward **extract** and **hydro** mids from each (participant, side, trade_symbol, spread_bin) row; hydro is mostly weak |t| vs self-mid. Mark 22 aggressive sells on VEV_5300: negative k=5 self-mid (n=160). Mark 55 sell_agg on extract: horizon split as before. **Burst vs isolated** / **session**: same as prior iteration."
       },
       {
         "bullet": "2) Deviation from bot baseline (pair cell means + residuals)",
@@ -91,7 +93,7 @@
         "effect": "mean Δmid ≈ +1.96 price units at k=5 on same symbol",
         "n": 164,
         "days": "1,2,3",
-        "evidence": "r4_phase1_machine_summary.json top row; participant_forward_stats.csv"
+        "evidence": "r4_phase1_machine_summary.json; r4_p1_participant_forward_stats.csv; per-day k=5 in r4_p1_headline_cells_by_day.csv (days 1–3 all positive mean, n 58/61/45)"
       },
       {
         "rank": 2,
@@ -99,7 +101,7 @@
         "effect": "mean Δmid ≈ -0.20 at k=5",
         "n": 160,
         "days": "1,2,3",
-        "evidence": "r4_phase1_machine_summary.json; participant_forward_stats.csv"
+        "evidence": "r4_phase1_machine_summary.json; r4_p1_participant_forward_stats.csv; r4_p1_headline_cells_by_day.csv (k=5 self-mid negative days 1–3)"
       },
       {
         "rank": 3,
@@ -107,7 +109,7 @@
         "effect": "burst mean Δextract ≈ 0.33 vs non-burst ≈ 0.08",
         "n": "1608 burst vs 2671 non-burst",
         "days": "1,2,3",
-        "evidence": "r4_p1_burst_extract_fwd_k20.csv"
+        "evidence": "r4_p1_burst_extract_fwd_k20.csv (caveat: r4_p1_burst_matched_control_ex_k20.json — burst vs nearest isolated timestamp paired difference not significant)"
       },
       {
         "rank": 4,
@@ -138,7 +140,8 @@
       "Reverse hydro leg (M38 sell to M14 at bid): tight subset strongly positive extract k20/k100 offline but day3 mean k20 negative; trader_v10 long sim +11633 total yet still << 200k/day bar and day3 PnL disagrees with naive extrapolation from tight-only means.",
       "Mark 22 VEV sell-pressure EMA + extract inventory trim (trader_v11 on top of v3) lowers worse/all totals vs v3 (+4764 / +5058 vs +5304 / +10953) with fewer taker fills — this MM-sketch is not a PnL upgrade at tested thresholds.",
       "8-hour / full-day ‘session’ splits on Phase-1 participant tables are degenerate: `hour_cs` in r4_p1_trade_enriched.csv only 0,1,2 (example: Mark 67|extract|k=5 populates a single r4_p1_participant_forward_by_session.csv row) — not a disproof of time-of-day effects, a **data-coverage** limit for this run.",
-      "Burst vs nearest isolated-timestamp control on extract k=20 (387 pairs): mean paired difference burst−control ≈ +0.13, t≈0.79, bootstrap 95% CI crosses zero — naive ‘bursts predict extract drift vs matched quiet times’ is **not** significant at burst-clock resolution in this construction."
+      "Burst vs nearest isolated-timestamp control on extract k=20 (387 pairs): mean paired difference burst−control ≈ +0.13, t≈0.79, bootstrap 95% CI crosses zero — naive ‘bursts predict extract drift vs matched quiet times’ is **not** significant at burst-clock resolution in this construction.",
+      "Round 4 trade CSVs only list **Mark** buyer/seller strings (7 buyers / 6 sellers in tape) — ‘each distinct name U’ is fully enumerated by the participant tables; there is no separate non-Mark counterparty universe in this dataset."
     ]
   },
   {
@@ -513,5 +516,17 @@
       "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_burst_matched_control_ex_k20.json"
     ],
     "used_to_decide": "Participant-level reporting now matches plan wording (median + CI + burst stratum). Matched-control burst test weakens treating raw burst timestamps as a clean extract alpha source vs isolated tape times; headline M67/M22 participant cells unchanged in sign but CIs are auditable in CSV."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "Phase 1 exhaustive counterparty enumeration + cross-asset + day stability: participant loops use every distinct buyer/seller string on tape (R4 = Marks only). New r4_p1_participant_cross_forward_stats.csv (forward extract and hydro mids from each trade row, n≥30 per cell). New r4_p1_headline_cells_by_day.csv (Mark67 extract buy_agg, Mark22 VEV_5300 sell_agg, Mark55 extract sell_agg — per day self/extract/hydro k∈5,20,100). Updated top_5_tradeable_edges evidence paths and burst caveat. Re-ran r4_phase1_counterparty_analysis.py.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_phase1_counterparty_analysis.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_participant_forward_stats.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_participant_cross_forward_stats.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_headline_cells_by_day.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_trade_enriched.csv"
+    ],
+    "used_to_decide": "Plan text ‘each U’ is satisfied by construction (only Mark names exist on tape). Cross-forward table shows hydro/extract co-moves are mostly secondary vs self-mid for voucher-focused signals. M67 k=100 on day 3 flips negative — refines rank-1 edge as **short-horizon** not unconditional long-hold."
   }
 ]

@@ -4,6 +4,6 @@
   "mean_control_ex_k20": 0.19896640826873385,
   "mean_diff_burst_minus_control": 0.13049095607235142,
   "t_diff": 0.7893287654385224,
-  "diff_mean_ci95_lo": -0.17919896640826868,
-  "diff_mean_ci95_hi": 0.43943798449612387
+  "diff_mean_ci95_lo": -0.19644702842377262,
+  "diff_mean_ci95_hi": 0.44334625322997395
 }

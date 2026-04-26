@@ -8,6 +8,8 @@ hour_cs = (timestamp // 100) // 3600 (contiguous 1-hour buckets from first tick 
 on R4 days 1–3 this field only attains 0,1,2 so wide “session” labels collapse for key marks).
 
 Aggression at trade time: compare trade price to concurrent L1 bid/ask on that symbol.
+Participant loops iterate **every distinct buyer/seller string** on the tape (Round 4 has only Mark names).
+
 Session stratification: session_bin in {H00_07, H08_15, H16_23} from hour_cs; written to
 r4_p1_participant_forward_by_session.csv (requires n≥10 per cell).
 
@@ -15,6 +17,12 @@ Participant tables also include median, bootstrap 95% CI on mean (400 resamples,
 and r4_p1_participant_forward_by_burst.csv (multi_print_burst vs isolated_print).
 r4_p1_burst_matched_control_ex_k20.json: paired extract k=20 at burst timestamps vs nearest
 same-day isolated price timestamp (control).
+
+r4_p1_participant_cross_forward_stats.csv: at each (participant, side, trade_symbol, spread_bin),
+mean/median/t/CI on **extract** and **hydro** forward mids (same horizons).
+
+r4_p1_headline_cells_by_day.csv: per-day n/mean/median for Mark67|extract buy_agg, Mark22|5300 sell_agg,
+Mark55|extract sell_agg — self / extract / hydro forwards (t only if day n≥5).
 """
 from __future__ import annotations
 
@@ -76,6 +84,10 @@ def classify_agg(price: float, bid: float, ask: float) -> str:
     return "passive_mid"
 
 
+def _tape_names(series: pd.Series) -> list[str]:
+    return sorted({str(x) for x in series.dropna().unique() if str(x).strip()})
+
+
 def summarize(series: pd.Series, rng: np.random.Generator | None = None, n_boot: int = 400) -> dict[str, Any]:
     """Mean, median, t on mean, fraction positive, bootstrap 95% CI on mean (if n>=30)."""
     x = series.dropna().astype(float).values
@@ -111,6 +123,23 @@ def summarize(series: pd.Series, rng: np.random.Generator | None = None, n_boot:
         "mean_ci95_lo": lo,
         "mean_ci95_hi": hi,
     }
+
+
+def summarize_day(series: pd.Series) -> dict[str, Any]:
+    """Per-day slice: always report n/mean/median/pos_frac; t only if n>=5 and std>0."""
+    x = series.dropna().astype(float).values
+    n = int(len(x))
+    if n == 0:
+        return {"n": 0, "mean": float("nan"), "median": float("nan"), "t": float("nan"), "pos_frac": float("nan")}
+    m = float(np.mean(x))
+    med = float(np.median(x))
+    pos_frac = float(np.mean(x > 0))
+    tstat = float("nan")
+    if n >= 5:
+        s = float(np.std(x, ddof=1))
+        if s > 1e-12:
+            tstat = float(m / (s / np.sqrt(n)))
+    return {"n": n, "mean": m, "median": med, "t": tstat, "pos_frac": pos_frac}
 
 
 def main() -> None:
@@ -194,8 +223,7 @@ def main() -> None:
     participant_rows: list[dict[str, Any]] = []
     for side_key, col_side in [("buy_agg", "buyer"), ("sell_agg", "seller")]:
         sub = df[df["agg"] == side_key]
-        marks = sorted({m for m in sub[col_side].unique() if str(m).startswith("Mark")})
-        for u in marks:
+        for u in _tape_names(sub[col_side]):
             g = sub[sub[col_side] == u]
             if len(g) < 20:
                 continue
@@ -226,6 +254,76 @@ def main() -> None:
         os.path.join(OUT_DIR, "r4_p1_participant_forward_stats.csv"), index=False
     )
 
+    # Cross-asset forwards at trade (symbol) time: extract and hydro mid changes
+    cross_rows: list[dict[str, Any]] = []
+    for side_key, col_side in [("buy_agg", "buyer"), ("sell_agg", "seller")]:
+        sub = df[df["agg"] == side_key]
+        for u in _tape_names(sub[col_side]):
+            g = sub[sub[col_side] == u]
+            if len(g) < 20:
+                continue
+            for sym in g["symbol"].unique():
+                gs = g[g["symbol"] == sym]
+                for spb in ["tight", "mid", "wide", "all"]:
+                    if spb == "all":
+                        gg = gs
+                    else:
+                        gg = gs[gs["spread_bin"] == spb]
+                    if len(gg) < 30:
+                        continue
+                    for k in K_LIST:
+                        for tgt, col in [
+                            ("VELVETFRUIT_EXTRACT", f"dm_ex_k{k}"),
+                            ("HYDROGEL_PACK", f"dm_hy_k{k}"),
+                        ]:
+                            st = summarize(gg[col], rng=rng)
+                            cross_rows.append(
+                                {
+                                    **st,
+                                    "participant": u,
+                                    "side": side_key,
+                                    "trade_symbol": sym,
+                                    "spread_bin": spb,
+                                    "horizon_k": k,
+                                    "forward_target": tgt,
+                                }
+                            )
+    if cross_rows:
+        pd.DataFrame(cross_rows).to_csv(
+            os.path.join(OUT_DIR, "r4_p1_participant_cross_forward_stats.csv"), index=False
+        )
+
+    # Per-day stability for headline Phase-1 cells (multi-day tape requirement)
+    day_stab: list[dict[str, Any]] = []
+    headline_specs = [
+        ("Mark 67", "buy_agg", "buyer", "VELVETFRUIT_EXTRACT", "all"),
+        ("Mark 22", "sell_agg", "seller", "VEV_5300", "all"),
+        ("Mark 55", "sell_agg", "seller", "VELVETFRUIT_EXTRACT", "all"),
+    ]
+    for name, agg, col_side, sym, spb in headline_specs:
+        sub = df[(df["agg"] == agg) & (df[col_side] == name) & (df["symbol"] == sym)]
+        if spb != "all":
+            sub = sub[sub["spread_bin"] == spb]
+        for d in DAYS:
+            for k in K_LIST:
+                g = sub[sub["day"] == int(d)]
+                for col_label, col in [
+                    ("self_mid", f"dm_self_k{k}"),
+                    ("extract", f"dm_ex_k{k}"),
+                    ("hydro", f"dm_hy_k{k}"),
+                ]:
+                    st = summarize_day(g[col])
+                    day_stab.append(
+                        {
+                            "cell": f"{name}|{agg}|{sym}|{spb}",
+                            "day": int(d),
+                            "horizon_k": k,
+                            "fwd": col_label,
+                            **st,
+                        }
+                    )
+    pd.DataFrame(day_stab).to_csv(os.path.join(OUT_DIR, "r4_p1_headline_cells_by_day.csv"), index=False)
+
     def _session(h: int) -> str:
         h = int(h)
         if h < 8:
@@ -238,8 +336,7 @@ def main() -> None:
     for side_key, col_side in [("buy_agg", "buyer"), ("sell_agg", "seller")]:
         sub = df[df["agg"] == side_key].copy()
         sub["session_bin"] = sub["hour_cs"].map(_session)
-        marks = sorted({m for m in sub[col_side].unique() if str(m).startswith("Mark")})
-        for u in marks:
+        for u in _tape_names(sub[col_side]):
             g = sub[sub[col_side] == u]
             if len(g) < 20:
                 continue
@@ -278,8 +375,7 @@ def main() -> None:
     burst_rows: list[dict[str, Any]] = []
     for side_key, col_side in [("buy_agg", "buyer"), ("sell_agg", "seller")]:
         sub = df[df["agg"] == side_key].copy()
-        marks = sorted({m for m in sub[col_side].unique() if str(m).startswith("Mark")})
-        for u in marks:
+        for u in _tape_names(sub[col_side]):
             g = sub[sub[col_side] == u]
             if len(g) < 20:
                 continue

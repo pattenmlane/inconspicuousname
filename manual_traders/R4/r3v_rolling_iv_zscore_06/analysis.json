@@ -256,6 +256,12 @@
         "slice": "All VEV_5300 tape trades R4 days 1-3; K = forward price-grid rows. Joint tight = 5200&5300 spread both <=2 at print ts.",
         "finding": "R4 has only **~165** V5300 trade rows across three days; **163/165** are already joint-tight (only **1** loose with valid mids). Tight: mean same-symbol fwd K5 **-0.19** (sell-aggr heavy); K100 **+0.26**. Confirms: **Sonic book state is the default** whenever 5300 prints — the gate stratifies almost nothing in aggregate tape stats; PnL edge instead comes from **Who + when** (Mark67+window sim), not from conditioning raw 5300 prints on gate here."
       },
+      "tier_a_sim_update": {
+        "trader": "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v50.py",
+        "interaction": "(Mark67 prefilter + Sonic joint at lift + window exit) x **Q=5** clip",
+        "r4_days_1_3_total_profit": 3470,
+        "note": "Beats v46 (+3284) after merged-ts fix; MAX_SPREAD_V sweep unchanged; with Q=5, EOD_PAD 700-820 ties (+3470) — inventory not EOD-limited."
+      },
       "script": "manual_traders/R4/r3v_rolling_iv_zscore_06/r4_phase3_joint_gate.py"
     }
   },
@@ -452,5 +458,19 @@
       "manual_traders/R4/r3v_rolling_iv_zscore_06/outputs/r4_p12_v5300_joint_gate_markout.txt"
     ],
     "used_to_decide": "Ship **v46** or **v49** (identical PnL) as strict best EOD; update default from v42. Phase 3 object extended with `followup_v5300_trade_prints` (joint gate is almost always on when 5300 trades in this R4 sample)."
+  },
+  {
+    "iteration": 22,
+    "analysis_description": "Execution sweep on **v46** (Mark67+Sonic+EOD800): **Q** ∈ {4,5,6,7}, **MAX_SPREAD_V** ∈ {4,6,8}, **EOD_PAD** 810, and **Q=5** with EOD 700/780/820. **Q=5** (`trader_v50`) total **+3,470** vs v46 **+3,284** — gain is **+283 day_3** and **+70 day_1** with **-167 day_2** vs Q=6; smaller inventory dominates. **Q=7** **+3,207** (day_3 collapses). **Q=4** **+3,183**. **MAX_SPREAD_V** 4/8 identical to 6 (no-op). With **Q=5**, EOD_PAD 700–820 all **identical +3,470** — EOD flatten rarely fires before window exit when clip caps position.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v50.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/logs/trader_v50_2026-04-26_r4_worse.log",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v51.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v52.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v53.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v56.py",
+      "manual_traders/R4/r3v_rolling_iv_zscore_06/trader_v58.py"
+    ],
+    "used_to_decide": "Tier-A sim candidate: **Mark67 filtered + Sonic exec + lift Q=5** (`v50`/`v56`/`v57`/`v58` equivalent). Prefer **v50** (EOD=800 matches prior tuned band). Keep v46/v49 if you insist on Q=6 for notional."
   }
 ]

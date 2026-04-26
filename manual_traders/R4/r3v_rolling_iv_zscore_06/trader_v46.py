@@ -1,5 +1,6 @@
 """
-EOD **PAD=800** — **best R4 EOD sweep** with v26 signals (ties v49 PAD=820): total **+3,284** days 1-3 (vs v42 750: +3,279).
+EOD **PAD=800**, **Q=6**: total **+3,284** R4 days 1-3. Superseded on total PnL by
+**`trader_v50` (Q=5, same EOD)** at **+3,470** — smaller clip reduces inventory drag.
 """
 
 from __future__ import annotations

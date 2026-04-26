@@ -343,5 +343,18 @@
       "manual_traders/R4/r3v_jump_gap_filter_17/results.json"
     ],
     "used_to_decide": "For **worse** shipping, **v12 adds no value over v11** on this 3-day R4 run; Mark49-only windows may still matter under `all` fills. Consider separate Mark49-only trader if we need isolation."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "`trader_v13`: identical to v11 except **bid clip +2** (not +1) on Mark22 aggressive-buy **print** timestamps — joint-on bid **18**/ask **16**, off-joint bid **7**/ask **5**. **`--match-trades worse` total 7,616** vs v11 **7,590** (**+26**) vs v1 **7,514** (**+102**). Day-1 unchanged **4,314**; day-2 **1,402** vs v11 **1,377** (+25); day-3 **1,899** unchanged. **`all` total 8,098** vs v11 **8,072** (+26). So modest **monotonic** improvement from larger bid-only lift without symmetric fair tilt; still need more days to claim robustness.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_jump_gap_filter_17/trader_v13.py",
+      "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter13_backtest_worse.log",
+      "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter13_backtest_all.log",
+      "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter13_fill_summary_worse.json",
+      "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter13_fill_summary_all.json",
+      "manual_traders/R4/r3v_jump_gap_filter_17/results.json"
+    ],
+    "used_to_decide": "Prefer **v13** over v11/v12 for worse-match Mark22-print overlay until +3 is tested or drawdown limits appear; v12 union still redundant on worse."
   }
 ]

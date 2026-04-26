@@ -1,0 +1,8 @@
+{
+  "source": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter13_backtest_worse.log",
+  "match_trades": "worse",
+  "per_day": {"1": 4314.0, "2": 1402.0, "3": 1899.0},
+  "total_profit": 7616.0,
+  "per_product_total": {"VELVETFRUIT_EXTRACT": 7616.0},
+  "note": "Mark22 print: bid mq_base+2 (v11 was +1). vs v11 worse +26; vs v1 +102"
+}

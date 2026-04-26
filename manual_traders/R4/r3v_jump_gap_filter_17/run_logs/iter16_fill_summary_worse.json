@@ -1,0 +1,8 @@
+{
+  "source": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter16_backtest_worse.log",
+  "match_trades": "worse",
+  "per_day": {"1": 4314.0, "2": 1402.0, "3": 1899.0},
+  "total_profit": 7616.0,
+  "union_counts_per_day": {"1": 63, "2": 69, "3": 47},
+  "note": "M22-seller ∪ M67-buyer aggr-buy print timestamps; identical PnL to v13/v15 — extra ticks vs M22-only do not bind fills under worse"
+}

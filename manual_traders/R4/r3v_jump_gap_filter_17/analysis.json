@@ -459,5 +459,18 @@
       "manual_traders/R4/r3v_jump_gap_filter_17/analysis.json"
     ],
     "used_to_decide": "Phase-2 lead–lag (`leadlag_*.csv`) remains the primary cross-instrument timing evidence; 2-hop **consecutive-print** motif table is a **null** for strong extract scheduling on this tape slice."
+  },
+  {
+    "iteration": 20,
+    "analysis_description": "**Sim:** `preprocess_r4_extract_aggr_buy_m22_m67_union.py` builds **union** of extract `aggr_buy` timestamps for Mark **22** seller and Mark **67** buyer (63/69/47 per day vs 37/34/19 for M22-only; overlap 32/26/17). **`trader_v16`** = v13 bid+2 on union. **`--match-trades worse` 7,616** and **`all` 8,178** **identical** to **v13/v15** (same per-day extract lines). **Interpretation:** union-only ticks (M67-only without M22 seller on that print) do **not** generate incremental worse-match fills vs M22-only or M67-only overlays — the binding constraint is unchanged (same effective bid clip path as v13).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_jump_gap_filter_17/preprocess_r4_extract_aggr_buy_m22_m67_union.py",
+      "manual_traders/R4/r3v_jump_gap_filter_17/precomputed/r4_extract_aggr_buy_m22_m67_union_print.json",
+      "manual_traders/R4/r3v_jump_gap_filter_17/trader_v16.py",
+      "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter16_backtest_worse.log",
+      "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter16_backtest_all.log",
+      "manual_traders/R4/r3v_jump_gap_filter_17/results.json"
+    ],
+    "used_to_decide": "No need to ship union over M22-only for this parameterization; tape union is useful for **coverage accounting** but not for worse PnL lift here."
   }
 ]

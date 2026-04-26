@@ -1,0 +1,45 @@
+{
+  "method": "TH=2, K=20 forward steps on VELVETFRUIT_EXTRACT mid; inner-join 5200+5300+extract. Same as STRATEGY.txt / analyze_vev_5200_5300_tight_gate_r3.py.",
+  "days": {
+    "0": {
+      "day_index_in_csv": 0,
+      "n_valid_fwd": 9980,
+      "P_tight": 0.10210420841683367,
+      "mean_fwd_tight": 0.5485770363101079,
+      "mean_fwd_nottight": -0.07209016850797902,
+      "welch_tstat": 4.692773013419702,
+      "welch_p": 2.9781507652056225e-06,
+      "corr_s5200_s5300": 0.21899602525804285
+    },
+    "1": {
+      "day_index_in_csv": 1,
+      "n_valid_fwd": 9980,
+      "P_tight": 0.13837675350701403,
+      "mean_fwd_tight": 0.5992034757422158,
+      "mean_fwd_nottight": -0.048319572043260844,
+      "welch_tstat": 5.324774200000131,
+      "welch_p": 1.1325992390512087e-07,
+      "corr_s5200_s5300": 0.23554876095090876
+    },
+    "2": {
+      "day_index_in_csv": 2,
+      "n_valid_fwd": 9980,
+      "P_tight": 0.17304609218436873,
+      "mean_fwd_tight": 0.46409959467284306,
+      "mean_fwd_nottight": -0.018114624984853993,
+      "welch_tstat": 4.238249348907661,
+      "welch_p": 2.3364087202802188e-05,
+      "corr_s5200_s5300": 0.26498871679113534
+    },
+    "3": {
+      "day_index_in_csv": 3,
+      "n_valid_fwd": 980,
+      "P_tight": 0.05510204081632653,
+      "mean_fwd_tight": 1.1388888888888888,
+      "mean_fwd_nottight": -0.0642548596112311,
+      "welch_tstat": 1.7385568336683697,
+      "welch_p": 0.08740719166012795,
+      "corr_s5200_s5300": 0.21491983876812448
+    }
+  }
+}

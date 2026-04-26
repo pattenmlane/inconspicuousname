@@ -222,5 +222,38 @@
       "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v23_all.json"
     ],
     "used_to_decide": "Baseline for joint-gate A/B. Confirms v15 PnL was largely hydrogel; VEV+extract line without gate is 15624 worse (4 days) vs prior 3-day v15 headline 39945 not comparable. Use v23 as the no-gate control for 5200/5300 experiments going forward."
+  },
+  {
+    "iteration": 24,
+    "analysis_description": "Reread round3work/vouchers_final_strategy/STRATEGY.txt and ORIGINAL_DISCORD_QUOTES.txt (merge main). New multiday stat script: inner-join 5200+5300+extract, TH=2, K=20 forward on extract mid (tight_gate_multiday_d0_3.json) — replicates 6-panel summary on days 0-2, adds day3 (n_valid_fwd=980) with higher mean_fwd_tight but noisier t-stat. inclineGod: spread correlation day0 corr(s5200,s5300)~0.22; Sonic: all four days show positive mean K-step forward under tight vs negative/lower off-tight in tape.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analyze_tight_gate_multiday_r3.py",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/tight_gate_multiday_d0_3.json",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v24_worse.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v24_all.txt"
+    ],
+    "used_to_decide": "trader_v24: first pure-thesis implementation (no legacy smile/RV-IV) — two-regime book MM from BBO on 5200+5300, DTE from anchors. Worse 9552 / all 13892 on 4 days, far from 200k/day target; pure mid-proxy fair and fixed edges are too weak vs execution. Tight-only v25 and size bump v26 tested same round."
+  },
+  {
+    "iteration": 25,
+    "analysis_description": "Same multiday forward-mid edge under joint gate; implement Sonic-style risk filter: no quotes unless both spreads <=2.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/analysis_outputs/tight_gate_multiday_d0_3.json",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v25_worse.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v25_all.txt"
+    ],
+    "used_to_decide": "v25: trade only in tight (P~0.1-0.17 tape). Massive PnL drop (worse 1196) — need continuous MM in wide regime for inventory/PnL; use gate as size/edge modulator, not full silence."
+  },
+  {
+    "iteration": 26,
+    "analysis_description": "Parameter sweep: v24 with U and VEV tight sizes 26 vs 22.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v26_worse.txt",
+      "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v26_all.txt"
+    ],
+    "used_to_decide": "Identical PnL to v24; effective fills likely cap size — abandon v26; next work should improve fair (IV surface) or use gate only as overlay on a stronger VEV engine, still grounded in 5200/5300 spread state."
   }
 ]

@@ -262,5 +262,65 @@
       "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v23_all.txt",
       "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v23_all.json"
     }
+  },
+  {
+    "iteration": 24,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v24.py",
+    "strategy_description": "vouchers_final_strategy ONLY: joint 5200+5300 BBO spread gate (TH=2, ask1-bid1). Tight: aggressive MM on U+all VEVs; wide: defensive. Fair = intrinsic + (mid-intrinsic)*exp(-0.5*T) DTE-wind from round3description. No HYDROGEL, no smile/RV-IV. Aligns with inclineGod (spread state) and Sonic (joint tight filter).",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v24.py\" 3 --data Prosperity4Data --no-progress --no-out --no-vis",
+    "total_profit": 9552,
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 9552,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v24_worse.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v24_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 13892,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v24_all.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v24_all.json"
+    }
+  },
+  {
+    "iteration": 25,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v25.py",
+    "strategy_description": "Same fair/MM as v24 tight path but quote VEV+U ONLY when joint gate is on; empty orders when either 5200 or 5300 spread >2 (Sonic 'wide = different regime').",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v25.py\" 3 --data Prosperity4Data --no-progress --no-out --no-vis",
+    "total_profit": 1196,
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 1196,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v25_worse.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v25_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 2024,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v25_all.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v25_all.json"
+    }
+  },
+  {
+    "iteration": 26,
+    "trader_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v26.py",
+    "strategy_description": "Grid on v24: SIZE_U_T and VEV_SIZE_T 26 vs 22. Backtest PnL identical to v24 (worse 9552, all 13892) — likely effective fill size capped, so v26 not adopted.",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trader_v26.py\" 3 --data Prosperity4Data --no-progress --no-out --no-vis",
+    "total_profit": 9552,
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 9552,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v26_worse.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v26_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 13892,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/runlog_v26_all.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_closest_k_smile_fit_08/trade_fill_summary_v26_all.json"
+    }
   }
 ]

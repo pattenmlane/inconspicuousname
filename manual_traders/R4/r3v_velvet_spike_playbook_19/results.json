@@ -58,5 +58,59 @@
         }
       }
     }
+  },
+  {
+    "iteration": 2,
+    "trader_file": "trader_v2_r4_burst_extract_joint_gate.py",
+    "strategy_description": "Phase 3: same as v1 burst long extract, but only when VEV_5200 and VEV_5300 L1 spreads both <=2 at the tick (Sonic joint gate). On this tape PnL matches v1 (gate non-binding for M01\u219222 bursts).",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 4834,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v2_r4_burst_extract_joint_gate.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v2_burst_joint_gate_worse.json",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v2_burst_joint_gate_worse.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "1": 3002,
+          "2": 5240,
+          "3": -3408,
+          "total": 4834
+        },
+        "fills": {
+          "submission_trade_count": 102,
+          "submission_filled_abs_qty": 600,
+          "submission_by_symbol": {
+            "VELVETFRUIT_EXTRACT": {
+              "trade_count": 102,
+              "filled_abs_qty": 600
+            }
+          }
+        }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 4834,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v2_r4_burst_extract_joint_gate.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v2_burst_joint_gate_all.json",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v2_burst_joint_gate_all.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "1": 3002,
+          "2": 5240,
+          "3": -3408,
+          "total": 4834
+        },
+        "fills": {
+          "submission_trade_count": 102,
+          "submission_filled_abs_qty": 600,
+          "submission_by_symbol": {
+            "VELVETFRUIT_EXTRACT": {
+              "trade_count": 102,
+              "filled_abs_qty": 600
+            }
+          }
+        }
+      }
+    }
   }
 ]

@@ -174,5 +174,89 @@
       ],
       "repro_script": "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase2_study.py"
     }
+  },
+  {
+    "round4_phase3_complete": {
+      "reference_docs_read": [
+        "round4work/suggested direction.txt (Phase 3 block)",
+        "round3work/vouchers_final_strategy/STRATEGY.txt",
+        "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt"
+      ],
+      "joint_gate_definition": "Same as analyze_vev_5200_5300_tight_gate_r3.py: inner-join VEV_5200, VEV_5300, VELVETFRUIT_EXTRACT on timestamp; joint_tight = (s5200<=2) and (s5300<=2) on L1 ask1-bid1.",
+      "phase3_outputs": [
+        {
+          "task": "Re-run extract forward-mid (K=20) tight vs not-tight on R4 aligned panel",
+          "paths": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase3_extract_fwd20_tight_vs_loose_by_day.csv"
+          ],
+          "finding": "Days 1\u20132: mean fwd20 on extract is strongly higher when joint_tight (e.g. day1 tight +0.60 vs loose -0.05; day2 +0.46 vs -0.02). Day 3: joint_tight fraction jumps to ~0.46 but tight mean (+0.19) vs loose (-0.40) is dominated by different loose sample \u2014 still positive gap but regime mix shifted vs R3-style constant P(tight)~0.10."
+        },
+        {
+          "task": "inclineGod spread\u2013spread + spread vs extract mid dynamics",
+          "paths": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase3_spread_spread_corr_by_day.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase3_spread_spread_scatter.png",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase3_extract_spread_vs_abs_mid_change.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase3_extract_fwd20_hist_by_day.png"
+          ],
+          "finding": "corr(s5200,s5300) ~0.18\u20130.27 by day (co-movement). corr(extract_spread, |d_mid_ext|) ~ -0.20 each day \u2014 wider extract book aligns with smaller tick-to-tick mid moves (different object than voucher spreads)."
+        },
+        {
+          "task": "Three-way: Mark01\u2192Mark22 VEV burst \u00d7 joint_tight \u00d7 fwd20_ex at print",
+          "paths": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase3_burst_m01_m22_vev_fwd20_by_gate.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase3_burst_m01_m22_fwd20_pooled_by_gate.json"
+          ],
+          "finding": "Pooled: joint_tight=True n=1336 mean fwd20_ex \u2248 +0.295 vs Phase-2 ungated burst mean \u2248 +0.30 (almost identical). joint_tight=False only n=3 (mean +2.0) \u2014 no stable \u2018wide gate\u2019 burst baseline. By-day under tight gate: day1 burst mean **negative** (-0.19, n=393), day2 positive (+0.36), day3 positive (+0.60) \u2014 **counterparty\u00d7gate does not produce a sign-stable Tier-A markout** on this slice."
+        },
+        {
+          "task": "Sim Tier-A candidate: burst long extract only when joint gate on book",
+          "paths": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v2_r4_burst_extract_joint_gate.py",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v2_burst_joint_gate_worse.json",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v2_burst_joint_gate_all.json"
+          ],
+          "finding": "PnL **identical** to v1 (+4834 total; 102 fills) \u2014 on this tape every Mark01\u2192Mark22 multi-VEV burst tick already has 5200/5300 spreads \u22642, so Sonic gate is **non-binding** for that pattern here; falsifies \u2018gate cleans burst sim\u2019 for current parameters but also shows burst\u2192gate interaction is empty in practice."
+        }
+      ],
+      "comparison_to_phase1_phase2_without_gate": {
+        "burst_fwd20_ex": "Phase-2 ungated burst mean \u2248 +0.30 on 1339 rows; Phase-3 joint-tight burst pooled mean \u2248 +0.295 on 1336 rows \u2014 **no meaningful uplift** from adding Sonic box for this counterparty pattern on R4 days 1\u20133.",
+        "sonic_cleaning_hypothesis": "Aligned-panel tight vs loose **does** show higher average extract fwd20 on tight timestamps (esp. days 1\u20132), consistent with community mid story, but **Mark01\u2192Mark22 burst conditioning does not inherit a cleaner sign path** when split by gate (day1 negative under tight).",
+        "execution": "v2 does not change sim vs v1 \u2192 gate must bind other strategies or bursts must occur under wide 5200/5300 to test Sonic\u2019s \u2018t-stat dies when wide\u2019 claim in sim."
+      },
+      "ranked_tier_a_candidates": [
+        {
+          "rank": 1,
+          "name": "Joint-tight timestamp filter for extract fwd20 (panel-level, not burst)",
+          "evidence": "r4_phase3_extract_fwd20_tight_vs_loose_by_day.csv",
+          "tier": "B+ (mid evidence; day3 composition risk)"
+        },
+        {
+          "rank": 2,
+          "name": "Extract spread vs |d_mid| microstructure (negative corr ~ -0.22)",
+          "evidence": "r4_phase3_extract_spread_vs_abs_mid_change.csv",
+          "tier": "B (vol/regime, not counterparty)"
+        },
+        {
+          "rank": 3,
+          "name": "Voucher spread co-move corr(s5200,s5300) ~0.2\u20130.27",
+          "evidence": "r4_phase3_spread_spread_corr_by_day.csv + scatter png",
+          "tier": "B (context for gate geometry)"
+        },
+        {
+          "rank": 4,
+          "name": "Burst\u00d7gate\u00d7Mark01\u219222 \u2014 **not** Tier-A (sign unstable by day under tight)",
+          "evidence": "r4_phase3_burst_m01_m22_vev_fwd20_by_gate.csv",
+          "tier": "C / negative"
+        },
+        {
+          "rank": 5,
+          "name": "Sim v2 burst+gate == v1 burst (gate non-binding here)",
+          "evidence": "run_logs r4_v2 vs r4_v1",
+          "tier": "C (hypothesis pruning)"
+        }
+      ],
+      "repro_script": "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase3_joint_gate_study.py"
+    }
   }
 ]

@@ -1,0 +1,12 @@
+[
+  {
+    "joint_tight": false,
+    "n": 3,
+    "mean": 2.0
+  },
+  {
+    "joint_tight": true,
+    "n": 1336,
+    "mean": 0.29528443113772457
+  }
+]

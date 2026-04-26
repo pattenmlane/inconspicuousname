@@ -1,0 +1,50 @@
+running algorithm '/workspace/manual_traders/R4/r3v_atm_straddle_proxy_03/trader_v10.py'...
+Backtesting /workspace/manual_traders/R4/r3v_atm_straddle_proxy_03/trader_v10.py for round: 4 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: -1,176
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 2,860
+HYDROGEL_PACK: 0
+Total profit: 1,684
+Backtesting /workspace/manual_traders/R4/r3v_atm_straddle_proxy_03/trader_v10.py for round: 4 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: -2,676
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 7,414
+HYDROGEL_PACK: 0
+Total profit: 4,738
+Backtesting /workspace/manual_traders/R4/r3v_atm_straddle_proxy_03/trader_v10.py for round: 4 day: 3
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: -920
+HYDROGEL_PACK: 0
+Total profit: -920
+Profit summary:
+Round 4 day 1: 1,684
+Round 4 day 2: 4,738
+Round 4 day 3: -920
+Total profit: 5,502
+
+Successfully saved backtest results to backtests/2026-04-26_18-04-51.log

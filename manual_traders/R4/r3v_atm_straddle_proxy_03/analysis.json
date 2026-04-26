@@ -352,5 +352,16 @@
       "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph3_burst_fwd5_vev5300_by_gate.json"
     ],
     "used_to_decide": "v9 worse 9145 < v8 9673; VEV_5300 PnL -528 aggregated days 1-2 under worse (shorts lose vs mid-only negative markout). Confirms Phase 3 basket-burst story: fading 5300 after orchestrated flow is not a simple add even delayed and Sonic-gated; keep v8 as live candidate."
+  },
+  {
+    "iteration": 10,
+    "analysis_description": "trader_v10: mined Phase1 participant table for unused strong edge — Mark 22 seller on VEV_5300 K=5 (n≈163, mean≈-0.19, t≈-3.18). Live: same-tick aggressive sell (price<=bid1) + Sonic joint + s5300<=6, short clip 4, days 1-2. Offline: ~38–44 unique ts/day with Mark22 aggr sell 5300 vs ~82 tape rows/day (multiple prints per ts).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v10_round4_worse.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v10_round4_all.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_participant_predictivity.json",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph1_m22_5300_aggr_sell_counts.json"
+    ],
+    "used_to_decide": "v10 worse 5901 << v8 9673; VEV_5300 -3772 vs v8 0 over days 1-2 under worse. Tape audit (r4_ph1_m22_5300_aggr_sell_counts.json): days 1-2 have 38-44 unique ts with Mark22 aggr sell 5300 — clip-4 shorts at bid still lose badly under worse fills vs mid-only Phase1 statistic. Do not stack this leg; v8 remains best."
   }
 ]

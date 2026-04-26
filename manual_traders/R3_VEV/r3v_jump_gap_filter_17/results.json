@@ -192,5 +192,53 @@
     "comparable_3day_worse_sum_extract_vev": 47843,
     "comparable_3day_all_sum_extract_vev": 48934,
     "note": "After merge, round 3 backtest includes day 3 (prices_round_3_day_3.csv, short tape). 3-day sum for apples-to-apples vs prior iter: worse 47,843; v17 prior was 63,106 over days 0-2 with hydrogel. PnL focus: extract+VEV only (no hydrogel)."
+  },
+  {
+    "iteration": 20,
+    "trader_file": "trader_v20.py",
+    "strategy_description": "Vouchers thesis only: joint 5200/5300 TOB gate for clip + edges; no LOO spline, no v17 PTP, no v15 move-asym; fair = BS with flat IV from ATM (nearest K to extract wall-mid), Greek thread via per-strike IV persist + vega. Wide regime: 4/2 take/make, half size; tight: 2/1, full size, +1 extract bid skew when gate on.",
+    "total_profit": 28982,
+    "backtest_round": 3,
+    "backtest_worse": {
+      "total_profit": 28982,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v20.py 3 --data Prosperity4Data --match-trades worse --no-vis",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter20_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter20_fill_summary_worse.json",
+      "match_trades": "worse"
+    },
+    "backtest_all": {
+      "total_profit": 31544,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v20.py 3 --data Prosperity4Data --match-trades all --no-vis",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter20_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter20_fill_summary_all.json",
+      "match_trades": "all"
+    },
+    "comparable_3day_worse_sum_extract_vev": 28796,
+    "comparable_3day_all_sum_extract_vev": 31042
+  },
+  {
+    "iteration": 21,
+    "trader_file": "trader_v21.py",
+    "strategy_description": "vouchers_final_strategy soft gate on family-12 LOO spline: both 5200+5300 <=2 = base take/make 2/1 and MM 18/22; else +1 / +0.5 edges and 50% rounded sizes. Extract clip 25 vs 10 as v19. Dropped v17 neighbor PTP pause and v15 signed move-asym (legacy thesis). No hydrogel.",
+    "total_profit": 39796,
+    "backtest_round": 3,
+    "backtest_worse": {
+      "total_profit": 39796,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v21.py 3 --data Prosperity4Data --match-trades worse --no-vis",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter21_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter21_fill_summary_worse.json",
+      "match_trades": "worse"
+    },
+    "backtest_all": {
+      "total_profit": 41754,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v21.py 3 --data Prosperity4Data --match-trades all --no-vis",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter21_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter21_fill_summary_all.json",
+      "match_trades": "all"
+    },
+    "comparable_3day_worse_sum_extract_vev": 48923,
+    "comparable_3day_all_sum_extract_vev": 50642,
+    "day_3_pnl_worse": -9128,
+    "note": "3-day sum (worse) 48,923 is slightly above v19 3-day 47,843, but 4-day 39,796 is below v19 4-day 47,899: day 3 PnL -9,128 (wings) vs v19 +56. Soft VEV flow on the short day + no jump pause adds tail risk."
   }
 ]

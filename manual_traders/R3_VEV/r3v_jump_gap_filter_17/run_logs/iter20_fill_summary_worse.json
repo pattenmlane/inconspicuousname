@@ -1,0 +1,15 @@
+{
+  "source": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter20_backtest_worse.log",
+  "match_trades": "worse",
+  "per_day": {
+    "0": 5306.0,
+    "1": 10214.0,
+    "2": 13276.0,
+    "3": 186.0
+  },
+  "total_profit": 28982.0,
+  "extract_plus_vev_only": true,
+  "hydrogel_pnl": 0.0,
+  "comparable_3day_total": 28796.0,
+  "note": "v20: vouchers_final_strategy-only reimplementation (flat ATM IV, joint gate sizing; no LOO). Ablation: weak vs v19; prefer v19/v21 line."
+}

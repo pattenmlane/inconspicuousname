@@ -167,5 +167,31 @@
       "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter19_fill_summary_all.json"
     ],
     "used_to_decide": "v19 = v17 + joint gate. When not both tight: VEV off, extract only with max_q 10 per side; when both tight: v17 PTP + full VEV + extract 25. Worse: total 4-day 47,899; 3-day extract+vev 47,843 (vs v17 63,106 on days 0-2 **with** hydrogel, not directly comparable). Gate + dropping hydrogel hurt PnL here; try softer gate (e.g. size not hard off), or re-add hydrogel for carry while keeping risk filter on VEV only."
+  },
+  {
+    "iteration": 20,
+    "analysis_description": "STRATEGY.txt + Discord quotes (Sonic: both 5200+5300 at or below 2; inclineGod: spread / spread--spread view). Ablation trader: no LOO spline, no jump-PTP, no move-asym — only **joint gate** for clips and edges + BS fair with **flat ATM IV** and per-strike IV in state for next-tick init; T from `t_years_effective` (round3description).",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v20.py",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter20_backtest_worse.log",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter20_backtest_all.log",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter20_fill_summary_worse.json",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter20_fill_summary_all.json"
+    ],
+    "used_to_decide": "v20 isolates the thesis (gate + simple IV) from LOO/legacy; worse 28,982 4-day (3-day 28,796) is far below v19 — the cubic LOO + prior controls carry most of the PnL; flat IV MM is a poor substitute here. No further tuning of v20 without re-adding a smile."
+  },
+  {
+    "iteration": 21,
+    "analysis_description": "v21: keep family-12 LOO spline for fair + jump-refit **cadence** but remove **v17** neighbor PTP post-jump pause and **v15** signed move-asym (deprioritized launch line). `joint_t` ON = same as v19 VEV parameters; OFF = take edge +1, make edge +0.5, MM/TAKE sizes halved (rounded) — **soft** Sonic wide-book handling while still trading VEVs.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v21.py",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter21_backtest_worse.log",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter21_backtest_all.log",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter21_fill_summary_worse.json",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter21_fill_summary_all.json"
+    ],
+    "used_to_decide": "Worse 4-day 39,796 < v19 47,899; 3-day 48,923 nudges above v19 47,843 but day-3 is -9,128 (v19 +56) on VEV_4000/4500/5300. Next: re-add a **tight** gate or cut wings when gate is off, or a **day-3** / low-tape guard without reintroducing full neighbor-jump stack."
   }
 ]

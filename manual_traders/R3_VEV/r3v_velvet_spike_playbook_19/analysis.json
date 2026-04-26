@@ -150,5 +150,14 @@
       "round3work/vouchers_final_strategy/outputs/r3_tight_spread_6panel.png"
     ],
     "used_to_decide": "Ship **trader_v23_tight_surface_passive.py**: (1) Sonic joint gate: s5200\u22642 and s5300\u22642, plus extract spread \u22648 so execution is not noise-dominated; (2) only **VEV_5200, VEV_5300, VELVETFRUIT_EXTRACT** in tight regime (no other strikes) — 'hedge into tight surface' scope; (3) passive two-sided 5200/5300, passive extract reversion to rolling mid with band edge (no market-taking) to respect STRATEGY mid-vs-PnL caveat. Backtest days 0\u20133: **worse 2,646** vs **all 2,619** (far from 200k/day floor). Next: tune gate as risk sizing not binary off; optional extract-off ablation; explore spread-of-spreads signal per inclineGod beyond static TH."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "inclineGod **spread--spread** object: on Prosperity4Data ROUND_3 price CSVs, inner-join VEV_5200 and VEV_5300 on timestamp; L1 spread each; **imb = |s5200-s5300|**. Conditional on **Sonic** joint box (both \u22642), summarize imb distribution (days 0-3 in repo). Wrote `analysis_outputs/r3_spread_imbalance_by_day.json`. Confirms in-box spreads are usually **identical (imb=0)**; non-zero imb is a minority, motivating soft sizing rather than hard off.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/analysis_outputs/r3_spread_imbalance_by_day.json",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt"
+    ],
+    "used_to_decide": "Implemented v24: joint gate (unchanged) + **quality** = f(|s5200-s5300|, s_ext) to scale passive lot sizes on 5200/5300/EX. Found **extract filter imb<=1** was bad (both 0+2 in-box is common) \u2192 **v25** drops that filter and **softens** quality curve. v24 worse **2,231**; v25 worse **2,599**; best baseline remains **v23 2,646** on this tape. 200k/day still not approached \u2014 need next: inventory-aware extract, and/or not pure passive, still within same thesis only."
   }
 ]

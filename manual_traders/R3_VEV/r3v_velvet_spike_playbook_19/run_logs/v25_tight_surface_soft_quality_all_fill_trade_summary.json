@@ -1,0 +1,27 @@
+{
+  "profit": {
+    "0": 132,
+    "1": 1502,
+    "2": 926,
+    "3": 2,
+    "total": 2562
+  },
+  "fills": {
+    "submission_trade_count": 95,
+    "submission_filled_abs_qty": 400,
+    "submission_by_symbol": {
+      "VELVETFRUIT_EXTRACT": {
+        "trade_count": 43,
+        "filled_abs_qty": 221
+      },
+      "VEV_5200": {
+        "trade_count": 18,
+        "filled_abs_qty": 63
+      },
+      "VEV_5300": {
+        "trade_count": 34,
+        "filled_abs_qty": 116
+      }
+    }
+  }
+}

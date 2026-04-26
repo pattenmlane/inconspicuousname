@@ -698,5 +698,149 @@
         }
       }
     }
+  },
+  {
+    "iteration": 24,
+    "trader_file": "trader_v24_tight_surface_quality_sized.py",
+    "strategy_description": "vouchers_final_strategy: hard Sonic joint gate; inclineGod spread-imb and s_ext combined into a quality score to scale 5200/5300/EX lot caps. v24 also gated extract reversion on |imb|<=1 (bad when 5200/5300 both 0 and 2 in-box).",
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 2231,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v24_tight_surface_quality_sized.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v24_tight_surface_quality_sized_worse.json",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v24_tight_surface_quality_sized_worse.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "0": 158,
+          "1": 1383,
+          "2": 688,
+          "3": 2,
+          "total": 2231
+        },
+        "fills": {
+          "submission_trade_count": 88,
+          "submission_filled_abs_qty": 354,
+          "submission_by_symbol": {
+            "VELVETFRUIT_EXTRACT": {
+              "trade_count": 42,
+              "filled_abs_qty": 188
+            },
+            "VEV_5200": {
+              "trade_count": 17,
+              "filled_abs_qty": 62
+            },
+            "VEV_5300": {
+              "trade_count": 29,
+              "filled_abs_qty": 104
+            }
+          }
+        }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 2192,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v24_tight_surface_quality_sized.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v24_tight_surface_quality_sized_all.json",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v24_tight_surface_quality_sized_all.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "0": 94,
+          "1": 1360,
+          "2": 736,
+          "3": 2,
+          "total": 2192
+        },
+        "fills": {
+          "submission_trade_count": 95,
+          "submission_filled_abs_qty": 374,
+          "submission_by_symbol": {
+            "VELVETFRUIT_EXTRACT": {
+              "trade_count": 43,
+              "filled_abs_qty": 195
+            },
+            "VEV_5200": {
+              "trade_count": 18,
+              "filled_abs_qty": 63
+            },
+            "VEV_5300": {
+              "trade_count": 34,
+              "filled_abs_qty": 116
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "iteration": 25,
+    "trader_file": "trader_v25_tight_surface_soft_quality.py",
+    "strategy_description": "v24 retuned: same Sonic gate and scope; softer quality (less shrink on |imb| and s_ext); no extract gating on imbalance. Worse total 2,599 — between v24 (2,231) and v23 (2,646); still far from 200k/day target.",
+    "backtest_round": 3,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 2599,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v25_tight_surface_soft_quality.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v25_tight_surface_soft_quality_worse.json",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v25_tight_surface_soft_quality_worse.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "0": 196,
+          "1": 1525,
+          "2": 876,
+          "3": 2,
+          "total": 2599
+        },
+        "fills": {
+          "submission_trade_count": 88,
+          "submission_filled_abs_qty": 380,
+          "submission_by_symbol": {
+            "VELVETFRUIT_EXTRACT": {
+              "trade_count": 42,
+              "filled_abs_qty": 214
+            },
+            "VEV_5200": {
+              "trade_count": 17,
+              "filled_abs_qty": 62
+            },
+            "VEV_5300": {
+              "trade_count": 29,
+              "filled_abs_qty": 104
+            }
+          }
+        }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 2562,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/trader_v25_tight_surface_soft_quality.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v25_tight_surface_soft_quality_all.json",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_velvet_spike_playbook_19/run_logs/v25_tight_surface_soft_quality_all.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "0": 132,
+          "1": 1502,
+          "2": 926,
+          "3": 2,
+          "total": 2562
+        },
+        "fills": {
+          "submission_trade_count": 95,
+          "submission_filled_abs_qty": 400,
+          "submission_by_symbol": {
+            "VELVETFRUIT_EXTRACT": {
+              "trade_count": 43,
+              "filled_abs_qty": 221
+            },
+            "VEV_5200": {
+              "trade_count": 18,
+              "filled_abs_qty": 63
+            },
+            "VEV_5300": {
+              "trade_count": 34,
+              "filled_abs_qty": 116
+            }
+          }
+        }
+      }
+    }
   }
 ]

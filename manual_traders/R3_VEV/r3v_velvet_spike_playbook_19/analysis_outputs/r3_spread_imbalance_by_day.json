@@ -1,0 +1,54 @@
+{
+  "TH": 2,
+  "description": "inclineGod: spread spread relationship \u2014 imbalance |s5200-s5300| when Sonic joint box holds",
+  "by_day": {
+    "0": {
+      "n_bars": 10000,
+      "n_tight": 1020,
+      "P_tight": 0.102,
+      "imb_given_tight": {
+        "mean": 0.07745098039215687,
+        "p50": 0.0,
+        "p75": 0.0,
+        "p90": 0.0,
+        "frac0": 0.9225490196078432
+      }
+    },
+    "1": {
+      "n_bars": 10000,
+      "n_tight": 1381,
+      "P_tight": 0.1381,
+      "imb_given_tight": {
+        "mean": 0.07603186097031137,
+        "p50": 0.0,
+        "p75": 0.0,
+        "p90": 0.0,
+        "frac0": 0.9239681390296887
+      }
+    },
+    "2": {
+      "n_bars": 10000,
+      "n_tight": 1727,
+      "P_tight": 0.1727,
+      "imb_given_tight": {
+        "mean": 0.15286624203821655,
+        "p50": 0.0,
+        "p75": 0.0,
+        "p90": 1.0,
+        "frac0": 0.8471337579617835
+      }
+    },
+    "3": {
+      "n_bars": 1000,
+      "n_tight": 54,
+      "P_tight": 0.054,
+      "imb_given_tight": {
+        "mean": 0.12962962962962962,
+        "p50": 0.0,
+        "p75": 0.0,
+        "p90": 1.0,
+        "frac0": 0.8703703703703703
+      }
+    }
+  }
+}

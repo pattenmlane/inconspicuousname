@@ -295,9 +295,10 @@
         "bullet": "Execution / sim (worse + all)",
         "outputs": [
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v1_round4_worse.json",
-          "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v3_round4_worse.json"
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v3_round4_worse.json",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v4_round4_worse.json"
         ],
-        "conclusion": "trader_v3 (Sonic gate + Mark67 agg buy + lift ask, clip 24): +5304 worse, +10953 all over days 1–3; trader_v2 wings: -900. Fills summaries count SUBMISSION rows only."
+        "conclusion": "trader_v3 (Sonic gate + Mark67 agg buy + lift ask, clip 24): +5304 worse, +10953 all over days 1–3; trader_v2 wings: -900; trader_v4 (Mark22 5300 fade): -3054 worse. Fills summaries count SUBMISSION as buyer or seller."
       }
     ],
     "phase3_sim_headline": {
@@ -307,5 +308,20 @@
       "submission_fills_worse": {"n_trades": 27, "extract_qty": 248},
       "gap_to_target": "200k/day × 3 days would be 600k total; best observed ~0.9% of that under worse fills."
     }
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "Post–Phase-3 evidence pass: day-stability table for Mark 22 aggressive sells on VEV_5300 (agg=sell_agg) from r4_p1_trade_enriched.csv — horizons k∈{5,20,100} by day and pooled. trader_v4 sim (Sonic gate + fade at bid on that tape signal). Extended r4_summarize_submission_fills.py to count seller==SUBMISSION for short fills.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_mark22_vev5300_sell_stability.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_mark22_vev5300_sell_agg_by_day.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v4.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v4_round4_worse.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v4_round4_all.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v4_round4_worse_fills_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v4_round4_all_fills_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_summarize_submission_fills.py"
+    ],
+    "used_to_decide": "k=5 negative mean on Mark22|5300|sell_agg is stable days 1–3 (n 38/44/78; t≈-2.1,-2.3,-1.4). k=20 turns weakly positive by day 3 (mean +0.013, n=78) so a static short-hold fade is horizon-mismatched. trader_v4 (path-dependent inventory) loses -3054 worse / -2063 all with 54 sell fills and 900 contracts traded — mid-only edge does not survive this execution overlay."
   }
 ]

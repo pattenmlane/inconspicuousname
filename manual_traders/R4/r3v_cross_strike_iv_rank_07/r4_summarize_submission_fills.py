@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Summarize own fills from prosperity4bt JSON: tradeHistory rows with buyer == SUBMISSION."""
+"""Summarize own fills from prosperity4bt JSON: tradeHistory rows where we are SUBMISSION (buy or sell)."""
 from __future__ import annotations
 
 import argparse
@@ -15,7 +15,9 @@ def main() -> None:
     args = p.parse_args()
     data = json.loads(args.json_path.read_text())
     th = data.get("tradeHistory") or []
-    own = [t for t in th if isinstance(t, dict) and t.get("buyer") == "SUBMISSION"]
+    own_buys = [t for t in th if isinstance(t, dict) and t.get("buyer") == "SUBMISSION"]
+    own_sells = [t for t in th if isinstance(t, dict) and t.get("seller") == "SUBMISSION"]
+    own = own_buys + own_sells
     qty_by_sym: Counter[str] = Counter()
     for t in own:
         sym = t.get("symbol")
@@ -25,6 +27,8 @@ def main() -> None:
     out = {
         "source": args.json_path.name,
         "num_submission_trades": len(own),
+        "num_buy_submission": len(own_buys),
+        "num_sell_submission": len(own_sells),
         "filled_abs_qty_by_symbol": dict(sorted(qty_by_sym.items(), key=lambda x: -x[1])),
     }
     text = json.dumps(out, indent=2) + "\n"

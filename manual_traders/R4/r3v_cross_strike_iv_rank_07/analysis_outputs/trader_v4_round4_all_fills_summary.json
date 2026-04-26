@@ -1,0 +1,9 @@
+{
+  "source": "trader_v4_round4_all.json",
+  "num_submission_trades": 89,
+  "num_buy_submission": 0,
+  "num_sell_submission": 89,
+  "filled_abs_qty_by_symbol": {
+    "VEV_5300": 900
+  }
+}

@@ -1,6 +1,8 @@
 {
   "source": "trader_v1_round4_all.json",
   "num_submission_trades": 22,
+  "num_buy_submission": 22,
+  "num_sell_submission": 0,
   "filled_abs_qty_by_symbol": {
     "VELVETFRUIT_EXTRACT": 198
   }

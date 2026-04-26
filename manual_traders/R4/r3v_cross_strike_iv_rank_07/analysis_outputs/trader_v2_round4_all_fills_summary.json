@@ -1,6 +1,8 @@
 {
   "source": "trader_v2_round4_all.json",
   "num_submission_trades": 146,
+  "num_buy_submission": 146,
+  "num_sell_submission": 0,
   "filled_abs_qty_by_symbol": {
     "VEV_6000": 900,
     "VEV_6500": 900

@@ -299,5 +299,14 @@
       "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_m01_m22_vev_tight_by_day_fwd_extract.csv"
     ],
     "used_to_decide": "LOO: holding out **day 3** leaves pooled m5 **+0.058** (days 1–2) but m20 **+0.27**; holding out **day 1** leaves m5 **+0.017**, m20 **+0.50**. **By-day** tight-VEV subset: day1 m20 **-0.19** (n=393), day2 m20 **+0.36** (n=390), day3 m20 **+0.60** (n=553) — **fwd20 sign and magnitude unstable by day**; pooled positive m20 is **day-3 dominated**. trader_v8: partial hard gate (wings+hydro only when tight) + reduced inner+U when loose — sim **+12727** worse / **+12662** all vs v5 **11854**; **day2 extract collapses to -723** (loose-book soft MM hurt vs v5 +1286), gains on days 1 and 3."
+  },
+  {
+    "iteration": 9,
+    "analysis_description": "Tape: one-row-ahead extract mid step (fwd1) by Sonic joint tight vs loose, per day — analyze_r4_extract_fwd1_joint_by_day.py. Ablation: trader_v9 drops inner-VEV quotes when loose (extract-only soft path).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/analyze_r4_extract_fwd1_joint_by_day.py",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_extract_fwd1_mid_by_joint_day.csv"
+    ],
+    "used_to_decide": "**fwd1** means are tiny vs unit std (~1.1) on all cells; tight vs loose sign flips by day (e.g. day3 loose mean **-0.021** vs tight **+0.011**) — **no large unconditional micro-drift** to harvest at one tick from this table alone. **trader_v9** PnL **identical** to v8 (**12727** worse=all) — inner VEV soft-MM when loose is **zero marginal** in this harness; v8 vs v5 delta is entirely **extract when joint off** (+ wings/hydro still tight-only)."
   }
 ]

@@ -1,0 +1,7 @@
+trader_v5 (--match-trades worse, days 1-3), v3 extract + VEV 5200/5300 when joint tight.
+
+EXTRA_VEV_HALF in {-0.5, -0.25, 0, 0.5, 1.0, 1.5, 2.0}: total PnL always **3382** (VEV_5200/5300 lines 0 each day).
+
+SIZE_VEV_ATM in {8, 12, 20, 32, 40} with EXTRA_VEV_HALF=0: total **3382** (same).
+
+Conclusion: under **`worse`**, gate-leg VEV quotes do not change aggregate PnL vs **v3** in this grid; adverse matching nets VEV flow to ~zero (same as R4 v4 note).

@@ -295,5 +295,19 @@
       "manual_traders/R4/r4_phase1_marks/backtests/iter4_r4d1-3_all.log"
     ],
     "used_to_decide": "Keep **v3** as best `worse` extract-only; v4 documents hedge-surface MM for `all` exploration only unless VEV quoting is retuned for `worse`."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "**Tape:** ``analyze_r4_01_22_vev_spreads_at_prints.py`` \u2014 at Mark01\u2192Mark22 print timestamps, mean **s5200** and **s5300** from the aligned panel (e.g. day-1 VEV_5300 prints: mean s5300 **2.0**, n=32). **Sim:** ``trader_v5`` adds **EXTRA_VEV_HALF** to gate-leg VEV quotes. **Result:** exhaustive `worse` grid (extra half \u22120.5..+2, size 8..40) **never moves** total off **3382** (VEV **0** under `worse`). With **EXTRA=0.5**, **`all`** collapses to **6036** (no VEV PnL) vs **v4** **9427** \u2014 widening VEV quotes **removed** favorable `all` fills. **Conclusion:** for this backtester, **`worse`** is insensitive to this VEV half knob; **`all`** hedge from **v4** needs **EXTRA=0** (or different quote logic, not half-only).",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_phase1_marks/analyze_r4_01_22_vev_spreads_at_prints.py",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase5_01_22_bbo_spreads_at_prints.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase5_01_22_bbo_spreads_at_prints.txt",
+      "manual_traders/R4/r4_phase1_marks/outputs/post_v4_vev_extra_half_grid_worse.txt",
+      "manual_traders/R4/r4_phase1_marks/trader_v5.py",
+      "manual_traders/R4/r4_phase1_marks/backtests/iter5_r4d1-3_worse.log",
+      "manual_traders/R4/r4_phase1_marks/backtests/iter5_r4d1-3_all.log"
+    ],
+    "used_to_decide": "Do **not** ship wider gate-leg halves for `all` if hedge PnL matters; keep **v4** for `all` exploration, **v3** for `worse` until a different VEV execution model is found."
   }
 ]

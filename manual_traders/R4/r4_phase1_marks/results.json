@@ -177,5 +177,44 @@
         "vs_iteration_3_all_total": 6036
       }
     }
+  },
+  {
+    "iteration": 5,
+    "trader_file": "trader_v5.py",
+    "strategy_description": "**v4** + **EXTRA_VEV_HALF** (ticks) added only to **VEV_5200/5300** half-spread when joint tight. Tape: ``phase5_01_22_bbo_spreads_at_prints`` \u2014 at Mark01\u2192Mark22 prints, mean **s5300** often **\u22482** (Sonic threshold). **Grid** on `worse`: EXTRA_VEV_HALF \u2208{\u22120.5,\u22120.25,0,0.5,1,1.5,2} and SIZE_VEV_ATM \u2208{8,12,20,32,40} \u2014 **all** total **3382** (ties **v3**; VEV **0** each day under `worse`). **`all`** with EXTRA=0.5: total **6036** (extract-only VEV lines **0** vs **v4** 9427 with EXTRA=0). Locked **EXTRA_VEV_HALF=0.5** in file for documentation.",
+    "parameter_sweep": {
+      "EXTRA_VEV_HALF_values_worse": [-0.5, -0.25, 0, 0.5, 1.0, 1.5, 2.0],
+      "worse_total_all_extra_values": 3382,
+      "SIZE_VEV_ATM_values_with_extra_0": [8, 12, 20, 32, 40],
+      "worse_total_all_sizes": 3382,
+      "locked_EXTRA_VEV_HALF": 0.5
+    },
+    "backtest_worse": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "worse",
+      "total_profit": 3382,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter5_r4d1-3_worse.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v5.py 4 --data Prosperity4Data --match-trades worse --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 1227, "2": 1553, "3": 602 },
+        "per_product_worse_4d": { "VELVETFRUIT_EXTRACT": 3382, "VEV_5200": 0, "VEV_5300": 0 },
+        "vs_iteration_3_worse_total": 3382
+      }
+    },
+    "backtest_all": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "all",
+      "total_profit": 6036,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter5_r4d1-3_all.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v5.py 4 --data Prosperity4Data --match-trades all --no-out --no-vis",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 790, "2": 1834, "3": 3411 },
+        "per_product_all_4d": { "VELVETFRUIT_EXTRACT": 6036, "VEV_5200": 0, "VEV_5300": 0 },
+        "vs_iteration_4_all_total": 9427,
+        "vs_iteration_3_all_total": 6036
+      }
+    }
   }
 ]

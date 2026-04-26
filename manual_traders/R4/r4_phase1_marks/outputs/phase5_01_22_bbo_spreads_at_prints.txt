@@ -1,0 +1,8 @@
+Mark01→Mark22: mean BBO spreads at print timestamp (from aligned panel)
+day1 VEV_5300: n=32 mean_s5200=1.156 mean_s5300=2.000
+day1 VEV_5400: n=76 mean_s5200=1.066 mean_s5300=1.408
+day2 VEV_5300: n=31 mean_s5200=1.226 mean_s5300=1.968
+day2 VEV_5400: n=78 mean_s5200=1.128 mean_s5300=1.436
+day3 VEV_5200: n=11 mean_s5200=2.000 mean_s5300=1.364
+day3 VEV_5300: n=69 mean_s5200=1.275 mean_s5300=1.667
+day3 VEV_5400: n=109 mean_s5200=1.239 mean_s5300=1.367

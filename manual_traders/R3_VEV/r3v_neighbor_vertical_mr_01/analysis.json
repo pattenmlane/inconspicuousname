@@ -147,5 +147,14 @@
       "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v15_all.log"
     ],
     "used_to_decide": "v15 = gate + D=mid5200-mid5300 pair MR only. Backtest (worse and all) total -109, sum days0-2 = -2; need larger edge model or size when gate (still far from 200k/day). Next: tune Z/q, or add extract in a way that does not buy every N ticks, or use forward-sign from same-tick momentum."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "v16 adds a conservative VELVETFRUIT_EXTRACT target-position overlay (E_TARGET, E_LOT, E_COOLDOWN) on top of v15, aligned with STRATEGY optional layer-2 (long extract in tight regime) while avoiding the failed every-few-ticks overlay. Off-gate: flatten long at bid. Tape spot-check: day0 joint tight (both L1 ask-bid <=2) on ~10% of rows with both names — consistent with r3_tight_spread_summary P~0.1. last_ex_tick initialized to -E_COOLDOWN and reset on day roll so the first in-session add is not starved by warm-up+tick count. Backtester output still shows 0 extract PnL (same as v15).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v16_worse.log",
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v16_all.log"
+    ],
+    "used_to_decide": "v16 is behaviorally a pair-only strategy in the reported PnL; next: verify Order fill semantics in sim or add explicit logging; try smaller E_TARGET with larger E_LOT to force visible extract PnL, or momentum-triggered one-shot long extract when gate first turns on."
   }
 ]

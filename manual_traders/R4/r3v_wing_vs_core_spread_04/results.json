@@ -268,5 +268,28 @@
       "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v11_all.log",
       "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v11_all.json"
     }
+  },
+  {
+    "iteration": 12,
+    "trader_file": "trader_v12.py",
+    "strategy_description": "Stack: trader_v1 Mark67 buy-aggr extract (lag+100, act-time Sonic) + Phase2 Mark01\u2192Mark22 **basket burst** (\u22654 prints same ts) lag+100 taker buy 1 lot VEV_5300 with same gate. Signals: phase2/mark67 JSON + signals_01_22_basket_burst_fire.json (273 fires). Independent acted_* sets.",
+    "total_profit": 805.5,
+    "backtest_round": 4,
+    "backtest_days": "4-1 4-2 4-3",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 805.5,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v12.py 4 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v12_worse.log",
+      "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v12_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v12_worse.json",
+      "note": "99 SUBMISSION rows (35 extract + 64 VEV_5300). Extract leg matches v1 (+447.5 product PnL); burst leg adds +358 on VEV_5300 vs v1 baseline. Mid-only drift (vev5300_after_01_22_basket_burst_drift.csv) does not bound taker PnL under worse; day3 VEV_5300 MTM -172 dominates burst leg."
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 805.5,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v12.py 4 --data Prosperity4Data --match-trades all --no-vis --out manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v12_all.log",
+      "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v12_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v12_all.json"
+    }
   }
 ]

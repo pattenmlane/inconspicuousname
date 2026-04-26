@@ -407,5 +407,17 @@
       "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v11_worse.log"
     ],
     "used_to_decide": "Tape tight-at-fire is **not** a sufficient statistic for sim PnL without act-time state; use v1 or explicit pair filters rather than mid-only Sonic-at-fire gating alone."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "r4_emit_01_22_basket_burst_signals.py: replicates Phase-2 basket_burst set from ROUND_4 trades \u2014 Mark 01\u2192Mark 22 same (tape_day,timestamp) with \u22654 rows \u2192 **273** unique merged fire timestamps (lag+100). trader_v12 stacks v1 extract leg + 1-lot taker VEV_5300 on those fires, both gated by joint Sonic at **act** time. Backtest worse=all: **805.5** total, **99** SUBMISSION rows (35 U, 64 VEV_5300); per-symbol end PnL from summarizer: U **447.5** (matches v1), VEV_5300 **+358**.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_emit_01_22_basket_burst_signals.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase2/signals_01_22_basket_burst_fire.json",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v12.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v12_worse.log",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v12_worse.json"
+    ],
+    "used_to_decide": "Phase-2 **mid** forward drift on VEV_5300 after basket bursts is positive at K=5/20, but **lagged taker** buys on every burst fire under `worse` are **not** a free add to v1: burst leg is profitable pooled (+358 over 3 days) but **not** close to mid-implied per fire (64 fills); day-3 VEV_5300 leg MTM is **negative** in sim. Treat burst\u21925300 as a separate hypothesis needing horizon/exit tuning, not a default stack on v1."
   }
 ]

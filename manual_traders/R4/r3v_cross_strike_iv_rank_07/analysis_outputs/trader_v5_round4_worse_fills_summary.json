@@ -1,0 +1,9 @@
+{
+  "source": "trader_v5_round4_worse.json",
+  "num_submission_trades": 27,
+  "num_buy_submission": 27,
+  "num_sell_submission": 0,
+  "filled_abs_qty_by_symbol": {
+    "VELVETFRUIT_EXTRACT": 248
+  }
+}

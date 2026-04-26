@@ -159,8 +159,13 @@
       },
       {
         "bullet": "5) Vol / smile vs Marks",
-        "outputs": [],
-        "conclusion": "Deferred: full R3-style smile residual × counterparty grid not computed this pass (CPU); next iteration will subsample bisection IV on VEV_5000 vs seller ID."
+        "outputs": [
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_phase2b_iv_smile_mark22.py",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2b_machine_summary.json",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2b_steep_vs_fwd_k20_by_symbol.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2b_m22_sell_join_smile.csv"
+        ],
+        "conclusion": "VEV_5000 has only 3 trade rows in Phase-1 enriched tape — cannot build seller×IV grid. Instead: at each of 317 unique (day,timestamp) with Mark22 seller on any VEV, fit quadratic IV in log-moneyness (10 strikes, BS bisection, T=(5-day)/365). Steepness q25/q50/q75 ≈ 0.070/0.078/0.089; 99.65% of Mark22 voucher sells coincide with sonic_tight. Top vs bottom steepness quartile: mean dm_self_k20 differs trivially on VEV_5300 (-0.50 vs -0.33, n 37/48) and ~0 on deep wings (6000/6500). Sim trader_v5 = v3 + require steepness≥q75 cal offline → identical PnL/fills to v3 (filter never binds when M67 fires)."
       },
       {
         "bullet": "6) Execution / adverse selection (sim)",
@@ -298,11 +303,11 @@
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v3_round4_worse.json",
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v4_round4_worse.json"
         ],
-        "conclusion": "trader_v3 (Sonic gate + Mark67 agg buy + lift ask, clip 24): +5304 worse, +10953 all over days 1–3; trader_v2 wings: -900; trader_v4 (Mark22 5300 fade): -3054 worse. Fills summaries count SUBMISSION as buyer or seller."
+        "conclusion": "trader_v3 (Sonic gate + Mark67 agg buy + lift ask, clip 24): +5304 worse, +10953 all over days 1–3; trader_v5 (add IV smile steepness≥q75): same totals/fills as v3; trader_v2 wings: -900; trader_v4 (Mark22 5300 fade): -3054 worse. Fills summaries count SUBMISSION as buyer or seller."
       }
     ],
     "phase3_sim_headline": {
-      "best_trader": "trader_v3.py",
+      "best_trader": "trader_v3.py (trader_v5 ties: same worse/all PnL and fills)",
       "total_profit_worse": 5304,
       "total_profit_all": 10953,
       "submission_fills_worse": {"n_trades": 27, "extract_qty": 248},
@@ -323,5 +328,22 @@
       "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_summarize_submission_fills.py"
     ],
     "used_to_decide": "k=5 negative mean on Mark22|5300|sell_agg is stable days 1–3 (n 38/44/78; t≈-2.1,-2.3,-1.4). k=20 turns weakly positive by day 3 (mean +0.013, n=78) so a static short-hold fade is horizon-mismatched. trader_v4 (path-dependent inventory) loses -3054 worse / -2063 all with 54 sell fills and 900 contracts traded — mid-only edge does not survive this execution overlay."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "Phase 2 follow-up (deferred bullet 5): IV smile proxy × Mark 22 voucher flow. Script r4_phase2b_iv_smile_mark22.py builds r4_p2b_smile_at_m22_sell_ts.csv, r4_p2b_m22_sell_join_smile.csv, r4_p2b_steep_vs_fwd_k20_by_symbol.csv, r4_p2b_machine_summary.json. trader_v5.py stacks offline q75 steepness threshold on trader_v3; backtests worse+all.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_phase2b_iv_smile_mark22.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2b_smile_at_m22_sell_ts.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2b_m22_sell_join_smile.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2b_steep_vs_fwd_k20_by_symbol.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2b_machine_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/trader_v5.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v5_round4_worse.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v5_round4_all.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v5_round4_worse_fills_summary.json",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v5_round4_all_fills_summary.json"
+    ],
+    "used_to_decide": "Smile steepness at Mark22 voucher sells is high and concentrated (mean ~0.079); quartile spread in forward k=20 markouts on VEV_5300 is small vs noise. IV×counterparty filter does not down-select Mark67+gate extract entries in sim (v5 ≡ v3 PnL)."
   }
 ]

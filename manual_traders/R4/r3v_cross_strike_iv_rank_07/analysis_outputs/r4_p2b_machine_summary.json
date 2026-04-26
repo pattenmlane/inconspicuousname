@@ -1,0 +1,14 @@
+{
+  "n_unique_ts_m22_vev_sell": 317,
+  "n_m22_vev_sell_trades": 1433,
+  "steepness_quantiles_at_those_ts": {
+    "q25": 0.07037102837331513,
+    "q50": 0.07800441124654538,
+    "q75": 0.08866474225530145
+  },
+  "n_finite_steepness": 317,
+  "mean_steepness": 0.07915128844110317,
+  "sonic_tight_fraction_of_m22_sell_rows": 0.9965108164689462,
+  "mean_steep_when_sonic_tight": 0.07866720349305421,
+  "mean_steep_when_sonic_loose": 0.0723980182909265
+}

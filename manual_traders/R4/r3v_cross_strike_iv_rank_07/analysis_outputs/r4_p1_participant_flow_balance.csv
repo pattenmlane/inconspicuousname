@@ -1,0 +1,8 @@
+participant,n_prints_as_buyer,n_prints_as_seller,qty_buyer,qty_seller,net_signed_qty_buy_minus_sell
+Mark 01,1599,244,6053.0,1375.0,4678.0
+Mark 67,165,0,1510.0,0.0,1510.0
+Mark 14,1127,1045,4510.0,4208.0,302.0
+Mark 38,733,745,2493.0,2507.0,-14.0
+Mark 55,598,600,3254.0,3297.0,-43.0
+Mark 49,17,105,115.0,1071.0,-956.0
+Mark 22,42,1542,206.0,5683.0,-5477.0

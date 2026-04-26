@@ -400,5 +400,24 @@
     ],
     "backtest_worse": null,
     "backtest_all": null
+  },
+  {
+    "iteration": 16,
+    "trader_file": "(none — Phase 1/2 analysis in r4_phase1_counterparty_analysis.py)",
+    "strategy_description": "Cell-mean baseline + per-print residuals; participant_flow_balance; top_cell_residual_dispersion; pair_forward_by_burst; microprice_minus_mid on passive_mid. No backtest.",
+    "total_profit": null,
+    "backtest_round": 4,
+    "match_trades": null,
+    "backtest_log_file": null,
+    "trades_or_fills_summary": null,
+    "analysis_only_outputs": [
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_phase1_counterparty_analysis.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_trade_enriched.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_participant_flow_balance.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_top_cell_residual_dispersion_k20.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_pair_forward_by_burst.csv"
+    ],
+    "backtest_worse": null,
+    "backtest_all": null
   }
 ]

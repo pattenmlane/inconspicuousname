@@ -169,9 +169,15 @@ def main() -> None:
             continue
         r = prow.iloc[0]
         bid, ask = float(r["bid_price_1"]), float(r["ask_price_1"])
+        bv = float(pd.to_numeric(r["bid_volume_1"], errors="coerce") or 0.0) if "bid_volume_1" in r.index else 0.0
+        av = float(pd.to_numeric(r["ask_volume_1"], errors="coerce") or 0.0) if "ask_volume_1" in r.index else 0.0
         spread = float(r["spread"]) if pd.notna(r["spread"]) else float("nan")
         mid0 = float(r["mid_price"])
         agg = classify_agg(px, bid, ask)
+        micro_minus_mid = np.nan
+        if agg == "passive_mid" and bid < ask and (bv + av) > 0:
+            micro = (ask * bv + bid * av) / (bv + av)
+            micro_minus_mid = float(micro - mid0)
         if sym in sq.index and spread == spread:
             if spread <= float(sq.loc[sym, "q33"]):
                 sp_bin = "tight"
@@ -196,6 +202,7 @@ def main() -> None:
             "hour_cs": int(hour),
             "agg": agg,
             "notional": float(tr["notional"]),
+            "microprice_minus_mid": micro_minus_mid,
         }
         for k in K_LIST:
             m1 = mid_fwd(lookup, day, sym, ts, k)
@@ -209,7 +216,6 @@ def main() -> None:
         rows.append(rec)
 
     df = pd.DataFrame(rows)
-    df.to_csv(os.path.join(OUT_DIR, "r4_p1_trade_enriched.csv"), index=False)
 
     burst_counts = df.groupby(["day", "timestamp"]).size().reset_index(name="n_prints")
     burst_ts = set(
@@ -219,6 +225,46 @@ def main() -> None:
         )
     )
     df["burst"] = [(int(a), int(b)) in burst_ts for a, b in zip(df["day"], df["timestamp"])]
+
+    # Phase 1 bullet 2: cell-mean baseline E[dm_self_k20 | pair, symbol, spread_bin] and per-print residual
+    ag = df["agg"].isin(["buy_agg", "sell_agg"])
+    cell_mean = (
+        df.loc[ag]
+        .groupby(["pair", "symbol", "spread_bin"], observed=True)["dm_self_k20"]
+        .mean()
+        .rename("cell_mean_dm_self_k20")
+        .reset_index()
+    )
+    df = df.merge(cell_mean, on=["pair", "symbol", "spread_bin"], how="left")
+    df["residual_cell_dm_self_k20"] = np.where(
+        ag,
+        df["dm_self_k20"] - df["cell_mean_dm_self_k20"],
+        np.nan,
+    )
+
+    df.to_csv(os.path.join(OUT_DIR, "r4_p1_trade_enriched.csv"), index=False)
+
+    # Net flow / volume balance per counterparty name (all prints, not only aggressive)
+    names = sorted(set(all_trades["buyer"].dropna().astype(str).unique()) | set(all_trades["seller"].dropna().astype(str).unique()))
+    bal_rows: list[dict[str, Any]] = []
+    for u in names:
+        b = all_trades[all_trades["buyer"] == u]
+        s = all_trades[all_trades["seller"] == u]
+        qb = float(b["quantity"].astype(float).sum()) if len(b) else 0.0
+        qs = float(s["quantity"].astype(float).sum()) if len(s) else 0.0
+        bal_rows.append(
+            {
+                "participant": u,
+                "n_prints_as_buyer": int(len(b)),
+                "n_prints_as_seller": int(len(s)),
+                "qty_buyer": qb,
+                "qty_seller": qs,
+                "net_signed_qty_buy_minus_sell": qb - qs,
+            }
+        )
+    pd.DataFrame(bal_rows).sort_values("net_signed_qty_buy_minus_sell", ascending=False).to_csv(
+        os.path.join(OUT_DIR, "r4_p1_participant_flow_balance.csv"), index=False
+    )
 
     participant_rows: list[dict[str, Any]] = []
     for side_key, col_side in [("buy_agg", "buyer"), ("sell_agg", "seller")]:
@@ -419,16 +465,63 @@ def main() -> None:
     sub20.groupby(["pair", "symbol", "spread_bin"]).agg(n=("dm", "count"), mean_dm=("dm", "mean")).reset_index().to_csv(
         os.path.join(OUT_DIR, "r4_p1_pair_cell_means_k20.csv"), index=False
     )
-    pm = sub20.groupby("pair")["dm"].mean()
-    sub20["residual"] = sub20["dm"] - sub20["pair"].map(pm)
-    pr = (
-        sub20.groupby("pair")["residual"]
-        .agg(["mean", "count"])
+    # Residual vs cell-mean baseline (pair × symbol × spread_bin), then aggregate mean |residual| by pair
+    def _std_ddof1(s: pd.Series) -> float:
+        x = s.dropna()
+        return float(x.std(ddof=1)) if len(x) > 1 else 0.0
+
+    def _mean_abs(s: pd.Series) -> float:
+        return float(np.mean(np.abs(s.dropna().values))) if len(s.dropna()) else 0.0
+
+    cell_res = (
+        sub20.groupby(["pair", "symbol", "spread_bin"], observed=True)["residual_cell_dm_self_k20"]
+        .agg(n="count", std_res=_std_ddof1, mean_abs_res=_mean_abs)
         .reset_index()
-        .rename(columns={"mean": "mean_res", "count": "count"})
     )
-    pr = pr[pr["count"] >= 40].sort_values("mean_res", key=np.abs, ascending=False)
-    pr.head(30).to_csv(os.path.join(OUT_DIR, "r4_p1_top_residual_pairs_k20.csv"), index=False)
+    cell_res = cell_res[cell_res["n"] >= 30].sort_values("std_res", ascending=False)
+    cell_res.head(50).to_csv(os.path.join(OUT_DIR, "r4_p1_top_cell_residual_dispersion_k20.csv"), index=False)
+    # Same content under legacy filename (Phase-1 gate lists this path): within-cell dispersion after cell-mean baseline
+    cell_res.head(50).to_csv(os.path.join(OUT_DIR, "r4_p1_top_residual_pairs_k20.csv"), index=False)
+
+    # Phase 2-style: (buyer|seller pair) × symbol × spread × burst stratum — pooled forward stats
+    pair_burst_rows: list[dict[str, Any]] = []
+    sub_ag = df[df["agg"].isin(["buy_agg", "sell_agg"])].copy()
+    for (pair, sym), grp in sub_ag.groupby(["pair", "symbol"], observed=True):
+        for spb in ["all", "tight", "mid", "wide"]:
+            if spb == "all":
+                g = grp
+            else:
+                g = grp[grp["spread_bin"] == spb]
+            if len(g) < 10:
+                continue
+            for burst_label, bm in [
+                ("multi_print_burst", g["burst"]),
+                ("isolated_print", ~g["burst"]),
+            ]:
+                gg = g[bm]
+                if len(gg) < 30:
+                    continue
+                for k in K_LIST:
+                    for fwd_key, col in [
+                        ("self_mid", f"dm_self_k{k}"),
+                        ("extract", f"dm_ex_k{k}"),
+                    ]:
+                        st = summarize(gg[col], rng=rng)
+                        pair_burst_rows.append(
+                            {
+                                **st,
+                                "pair": pair,
+                                "symbol": sym,
+                                "spread_bin": spb,
+                                "burst_stratum": burst_label,
+                                "horizon_k": k,
+                                "forward": fwd_key,
+                            }
+                        )
+    if pair_burst_rows:
+        pd.DataFrame(pair_burst_rows).to_csv(
+            os.path.join(OUT_DIR, "r4_p1_pair_forward_by_burst.csv"), index=False
+        )
 
     all_trades.groupby(["buyer", "seller"]).agg(count=("quantity", "count"), notional=("notional", "sum")).reset_index().sort_values(
         "count", ascending=False

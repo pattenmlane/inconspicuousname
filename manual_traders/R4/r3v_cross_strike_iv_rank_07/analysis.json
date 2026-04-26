@@ -43,9 +43,12 @@
         "bullet": "2) Deviation from bot baseline (pair cell means + residuals)",
         "outputs": [
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_pair_cell_means_k20.csv",
-          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_top_residual_pairs_k20.csv"
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_top_cell_residual_dispersion_k20.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_top_residual_pairs_k20.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_participant_flow_balance.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_trade_enriched.csv"
         ],
-        "conclusion": "Pair-conditioned means at k=20 are tabulated; residual file ranks pairs after subtracting global pair mean — dominant structure remains Mark 01→Mark 22 mass on vouchers (see initial summary), residuals highlight smaller sub-pairs for Phase-2 conditioning."
+        "conclusion": "**Cell-mean baseline:** for each aggressive print, `cell_mean_dm_self_k20` = mean k=20 self-mid in its `(pair, symbol, spread_bin)` cell; per-print `residual_cell_dm_self_k20` is in `r4_p1_trade_enriched.csv`. **Dispersion ranking** (`r4_p1_top_cell_residual_dispersion_k20.csv` = same rows as legacy `r4_p1_top_residual_pairs_k20.csv`): hydro duopoly cells Mark14|Mark38 and Mark38|Mark14 on HYDROGEL_PACK|tight have highest within-cell residual std (~8.7 on ~500 prints) — large second-order variation inside the dominant pair×product regime. **Flow balance** (`r4_p1_participant_flow_balance.csv`): Mark01 net +4678 lots bought vs sold, Mark22 −5477, Mark67 +1510 (buy-only in tape), matches `r4_initial_analysis_summary.txt` roles."
       },
       {
         "bullet": "3) Sequence / graph methods",
@@ -83,7 +86,7 @@
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_m22_m49_extract_markout_by_day.csv",
           "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_m22_m49_extract_markout_summary.json"
         ],
-        "conclusion": "r4_p1_mark22_seller_markout_by_buyer_k20.csv aggregates Mark 22 aggressive sells across products — the Mark 49 tail (n=12, mean k=20 ≈ -2.71) is entirely VELVETFRUIT_EXTRACT (no Mark49 buyer on Mark22 voucher sells in this tape). sell_agg-only extract rows (n=11): pooled mean dm_self k5/k20/k100 ≈ -2.36 / -3.09 / -4.35 (t ≈ -2.66 / -1.93 / -3.14); per-day k=20 means are mixed (day2 small n positive). Sim trader_v6 (Sonic gate + short extract on M22→M49 aggressive sell) is negative under worse (-156) with only 3 fills / 10 qty — tail too sparse to scale."
+        "conclusion": "r4_p1_mark22_seller_markout_by_buyer_k20.csv aggregates Mark 22 aggressive sells across products — the Mark 49 tail (n=12, mean k=20 ≈ -2.71) is entirely VELVETFRUIT_EXTRACT (no Mark49 buyer on Mark22 voucher sells in this tape). sell_agg-only extract rows (n=11): pooled mean dm_self k5/k20/k100 ≈ -2.36 / -3.09 / -4.35 (t ≈ -2.66 / -1.93 / -3.14); per-day k=20 means are mixed (day2 small n positive). Sim trader_v6 (Sonic gate + short extract on M22→M49 aggressive sell) is negative under worse (-156) with only 3 fills / 10 qty — tail too sparse to scale. **Passive microprice:** `microprice_minus_mid` (L1 book imbalance proxy) is only populated for `agg==passive_mid` (n=3 on R4 days 1–3) — tape is almost entirely aggressive at touch, so per-Mark microprice conditioning is not empirically supported here."
       }
     ],
     "top_5_tradeable_edges": [
@@ -141,7 +144,8 @@
       "Mark 22 VEV sell-pressure EMA + extract inventory trim (trader_v11 on top of v3) lowers worse/all totals vs v3 (+4764 / +5058 vs +5304 / +10953) with fewer taker fills — this MM-sketch is not a PnL upgrade at tested thresholds.",
       "8-hour / full-day ‘session’ splits on Phase-1 participant tables are degenerate: `hour_cs` in r4_p1_trade_enriched.csv only 0,1,2 (example: Mark 67|extract|k=5 populates a single r4_p1_participant_forward_by_session.csv row) — not a disproof of time-of-day effects, a **data-coverage** limit for this run.",
       "Burst vs nearest isolated-timestamp control on extract k=20 (387 pairs): mean paired difference burst−control ≈ +0.13, t≈0.79, bootstrap 95% CI crosses zero — naive ‘bursts predict extract drift vs matched quiet times’ is **not** significant at burst-clock resolution in this construction.",
-      "Round 4 trade CSVs only list **Mark** buyer/seller strings (7 buyers / 6 sellers in tape) — ‘each distinct name U’ is fully enumerated by the participant tables; there is no separate non-Mark counterparty universe in this dataset."
+      "Round 4 trade CSVs only list **Mark** buyer/seller strings (7 buyers / 6 sellers in tape) — ‘each distinct name U’ is fully enumerated by the participant tables; there is no separate non-Mark counterparty universe in this dataset.",
+      "After subtracting the **cell-mean** baseline (pair×symbol×spread_bin), the naive summary ‘mean residual aggregated by pair only’ is ~0 by construction — second-order structure lives in **within-cell dispersion** (`r4_p1_top_cell_residual_dispersion_k20.csv`) and per-print residuals in `r4_p1_trade_enriched.csv`, not in pair-only means."
     ]
   },
   {
@@ -168,8 +172,11 @@
     "phase2_bullets": [
       {
         "bullet": "1) Named-bot exploitation (burst ±W, pair conditioning)",
-        "outputs": ["manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_burst_pair_mark67_extract_k20.csv"],
-        "conclusion": "Mark67|extract k=20 means identical with/without ±500ts neighborhood of Mark01→Mark22 prints; burst slice n=16 too thin to claim synergy."
+        "outputs": [
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p2_burst_pair_mark67_extract_k20.csv",
+          "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_pair_forward_by_burst.csv"
+        ],
+        "conclusion": "Mark67|extract k=20 means identical with/without ±500ts neighborhood of Mark01→Mark22 prints; burst slice n=16 too thin to claim synergy. **Pair × burst stratum** (`r4_p1_pair_forward_by_burst.csv`, n≥30): e.g. Mark01|Mark22 on VEV_5300 in **multi_print_burst** shows negative k=5 self-mid (mean≈−0.15, t≈−2.3, n=132) vs isolated stratum often thinner — use file for burst-conditioned basket pipes vs participant-only burst splits."
       },
       {
         "bullet": "2) Microstructure (touch/spread under Sonic gate)",
@@ -528,5 +535,17 @@
       "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_trade_enriched.csv"
     ],
     "used_to_decide": "Plan text ‘each U’ is satisfied by construction (only Mark names exist on tape). Cross-forward table shows hydro/extract co-moves are mostly secondary vs self-mid for voucher-focused signals. M67 k=100 on day 3 flips negative — refines rank-1 edge as **short-horizon** not unconditional long-hold."
+  },
+  {
+    "iteration": 16,
+    "analysis_description": "Phase 1 bullet 2 + Phase 2 pair×burst: r4_phase1_counterparty_analysis.py adds cell-mean baseline for k=20 self-mid (pair×symbol×spread_bin), per-print residual_cell_dm_self_k20 in r4_p1_trade_enriched.csv, r4_p1_participant_flow_balance.csv (qty net per name), r4_p1_top_cell_residual_dispersion_k20.csv (top within-cell residual std). r4_p1_pair_forward_by_burst.csv: (pair,symbol,spread_bin)×burst_stratum×horizon for self_mid and extract (n≥30). microprice_minus_mid for passive_mid prints (n=3). Updated phase1 bullet 2/5 and phase2 bullet 1 conclusions.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/r4_phase1_counterparty_analysis.py",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_trade_enriched.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_participant_flow_balance.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_top_cell_residual_dispersion_k20.csv",
+      "manual_traders/R4/r3v_cross_strike_iv_rank_07/analysis_outputs/r4_p1_pair_forward_by_burst.csv"
+    ],
+    "used_to_decide": "Cell-mean baseline makes naive pair-only residual means ~0; dispersion table surfaces hydro duopoly and extract pipe cells as high within-regime variance. Pair×burst file gives Phase-2-style conditioning without new script entrypoint."
   }
 ]

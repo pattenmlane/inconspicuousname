@@ -1,0 +1,17 @@
+mark,side,symbol,bucket,n,mean_fwd_same
+Mark 22,aggr_sell,VEV_5400,burst_ge4,270,0.014814814814814815
+Mark 22,aggr_sell,VEV_5500,burst_ge4,287,0.024390243902439025
+Mark 22,aggr_sell,VEV_5500,not_burst,19,-0.13157894736842105
+Mark 22,aggr_sell,VEV_6000,burst_ge4,292,0.0
+Mark 22,aggr_sell,VEV_6000,not_burst,25,0.0
+Mark 22,aggr_sell,VEV_6500,burst_ge4,292,0.0
+Mark 22,aggr_sell,VEV_6500,not_burst,25,0.0
+Mark 22,aggr_sell,VEV_5300,burst_ge4,159,-0.14465408805031446
+Mark 38,aggr_buy,HYDROGEL_PACK,not_burst,508,-0.3297244094488189
+Mark 38,aggr_buy,VEV_4000,not_burst,205,0.2146341463414634
+Mark 38,aggr_sell,VEV_4000,not_burst,231,-0.18831168831168832
+Mark 38,aggr_sell,HYDROGEL_PACK,burst_ge4,9,-3.2222222222222223
+Mark 38,aggr_sell,HYDROGEL_PACK,not_burst,498,0.16164658634538154
+Mark 55,aggr_buy,VELVETFRUIT_EXTRACT,not_burst,591,0.4027072758037225
+Mark 55,aggr_sell,VELVETFRUIT_EXTRACT,not_burst,595,-0.09663865546218488
+Mark 67,aggr_buy,VELVETFRUIT_EXTRACT,not_burst,162,1.8209876543209877

@@ -518,5 +518,12 @@
     "note": "Phases 1\u20133 completion gates in `analysis.json` remain **satisfied**; this iteration aligns the on-disk gate with the expanded Phase-1 ops template.",
     "backtest_worse": null,
     "backtest_all": null
+  },
+  {
+    "iteration": 14,
+    "trader_file": "N/A",
+    "strategy_description": "Phase 1 **stability supplement** only: `analyze_r4_phase1_stability_supplement.py` \u2192 net aggr flow, pair reciprocity, bootstrap CI, markout \u00d7 burst. No trader; **`round4_phase1_complete`** amended (rank 4 + supplement field).",
+    "backtest_worse": null,
+    "backtest_all": null
   }
 ]

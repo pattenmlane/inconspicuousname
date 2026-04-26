@@ -21,9 +21,9 @@ from pathlib import Path
 
 import pandas as pd
 
-HERE = Path(__file__).resolve()
-OUT = HERE.parent / "outputs"
-REPO = HERE.parents[3]
+HERE = Path(__file__).resolve().parent
+OUT = HERE / "outputs"
+REPO = HERE.parents[2]
 DATA = REPO / "Prosperity4Data" / "ROUND_4"
 DAYS = [1, 2, 3]
 

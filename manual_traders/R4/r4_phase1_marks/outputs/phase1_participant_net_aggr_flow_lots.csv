@@ -1,0 +1,8 @@
+mark,n_aggr_buy,n_aggr_sell,lots_aggr_buy,lots_aggr_sell,net_aggr_lots_buy_minus_sell
+Mark 01,0,0,0,0,0
+Mark 14,0,0,0,0,0
+Mark 22,6,1430,46,5003,-4957
+Mark 38,733,745,2493,2507,-14
+Mark 49,1,1,9,8,1
+Mark 55,598,600,3254,3297,-43
+Mark 67,164,0,1509,0,1509

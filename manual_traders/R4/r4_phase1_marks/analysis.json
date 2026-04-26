@@ -25,6 +25,7 @@
     "data": "Prosperity4Data/ROUND_4 trades_round_4_day_{1,2,3}.csv + prices same days",
     "ops_ping_alignment": "Phase 1 bullets covered by `analyze_phase1.py` + outputs (see `outputs/PHASE1_PING_CHECKLIST.md`). **K** = price-bar / unique-timestamp steps (documented in `PHASE1_SUMMARY.md`). **7** distinct participant strings on tape: counts in `outputs/phase1_participant_print_counts.csv`.",
     "phase1_post_hoc_tape_refinement": "Later scripts (**phase8+**) add **Sonic joint gate \u00d7 (buyer,seller) \u00d7 hydro** tables; the original Phase-1 **participant null** for generic Mark\u00d7symbol markouts is **not** replaced\u2014gate-conditioned hydro is a **separate, stronger** tape signal.",
+    "ops_template_supplement_2026": "``analyze_r4_phase1_stability_supplement.py``: **net** aggressor lot imbalance (`phase1_participant_net_aggr_flow_lots.csv`); **pair reciprocity** for all mark pairs (`phase1_pair_reciprocity_all_marks.csv`); **bootstrap 95% CI** (2000) on `fwd_same_K` for cells with **n\u226550** plus per-day means (`phase1_participant_markout_bootstrap_n50plus.csv`); **burst_ge4** split for K=20 (`phase1_participant_markout_x_burst_k20.csv`); `phase1_bootstrap_summary.txt` reports **4 / 36** cells with **ci95_lo>0**; positive-CI cells include **Mark 55 aggr_buy** extract K=5,20 and **Mark 67 aggr_buy** extract K=5,20 (large point estimates; not adjusted for multiple testing; **K=100** and **aggr_sell** paths are mixed).",
     "bullet_evidence": [
       {
         "bullet": "1) Participant-level alpha / predictiveness",
@@ -97,12 +98,12 @@
       },
       {
         "rank": 4,
-        "name": "Mark 55 on extract (balanced MM)",
-        "rule_sketch": "High touch rate on extract both sides; candidate for **neutral** reference bot when modeling microstructure later.",
-        "effect": "~43% buy/sell share on extract in r4_initial_analysis_summary (qual cross-check)",
-        "n": "O(10^2) extract rows",
-        "days": "1,2,3",
-        "caveat": "No directional markout."
+        "name": "Mark 55 / Mark 67 **aggr_buy** on **VELVETFRUIT_EXTRACT** (bootstrap-positive mean, short K)",
+        "rule_sketch": "In **n\u226550** cells, **95% bootstrap CI** of mean `fwd_same_5` and `fwd_same_20` is **strictly above 0** for **Mark 55** and **Mark 67** aggressive **buy** on extract (see `phase1_participant_markout_bootstrap_n50plus.csv`).",
+        "effect": "e.g. Mark 55 aggr_buy extract: mean fwd_same_20 \u2248 **0.41** with CI above 0; Mark 67 even larger at K=5,20",
+        "n": "598/164 prints respectively in those cells (see CSV)",
+        "days": "1,2,3 (daily means in CSV often same sign for Mark 55 K=5,20; Mark 100 mixed)",
+        "caveat": "**Not** vs spread-matched pool; **4** significant-looking cells of **36** with n\u226550 \u2014 **multiple testing**; still **no** clean execution under **`worse`** in sim; Mark 100 horizons blow up CI width."
       },
       {
         "rank": 5,
@@ -117,7 +118,8 @@
     "no_edge_findings": [
       "Aggressor-tagged **participant \u00d7 symbol \u00d7 K** markouts: **no** |t|\u22652 with n\u226540 vs spread-matched pool.",
       "Baseline-adjusted fwd_same_20 residuals show **no** persistent pair-level alpha.",
-      "Passive-party extract fwd20 proxy: **flat** across Marks."
+      "Passive-party extract fwd20 proxy: **flat** across Marks.",
+      "Bootstrap n\u226550: only **4 / 36** cells with **entire 95% CI** above 0; **16/36** have same-sign daily means (others flip sign by day) \u2014 see `phase1_bootstrap_summary.txt`."
     ],
     "next_phase": "Phase 2 may condition the burst hint and pair structure on **finer windows**, **microprice**, and **Mark\u00d7burst** interactions; Phase 3 will re-test inside Sonic gate on R4."
   },
@@ -412,5 +414,19 @@
       "manual_traders/R4/r4_phase1_marks/outputs/phase1_participant_print_counts.csv"
     ],
     "used_to_decide": "Treat **round4work** Phase-1 ops checklist as **covered** by the mapped artifacts; new work continues under **r4_phase1_marks/outputs/phase8+** and sim **trader_v*** without reopening the Phase-2/3 gate objects."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "**Phase 1 template supplement (quant):** ``analyze_r4_phase1_stability_supplement.py`` \u2014 (1) **net aggressor lots** by Mark (buy-side aggr_buy minus sell-side aggr_sell qty). (2) **Reciprocity** R for every ordered Mark pair on the **full** tape. (3) **Bootstrap** (2000) **95% percentile CI** on mean `fwd_same_K` for participant cells with **n\u226550** (same aggr filters as `participant_tables`) + per-day means + same-sign flag. (4) **burst_ge4** vs not for **K=20** markouts where n allows. **Summary:** `phase1_bootstrap_summary.txt` \u2014 **4/36** cells with **ci95_lo>0** (all **Mark 55** or **Mark 67**, **VELVETFRUIT_EXTRACT**, **aggr_buy**, **K=5 or 20**); **not** FDR-corrected. **`round4_phase1_complete`** updated in place with **ops_template_supplement_2026**, revised **rank 4**, and extra **no_edge** line.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_phase1_marks/analyze_r4_phase1_stability_supplement.py",
+      "manual_traders/R4/r4_phase1_marks/analyze_r4_phase1_compliance_table.py",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase1_participant_net_aggr_flow_lots.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase1_pair_reciprocity_all_marks.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase1_participant_markout_bootstrap_n50plus.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase1_participant_markout_x_burst_k20.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase1_bootstrap_summary.txt"
+    ],
+    "used_to_decide": "Marks **55** and **67** aggressive **buy** on **extract** show **raw** forward same-asset means with **bootstrap CIs** above zero at short K on 3 days \u2014 **candidate** for follow-up **execution** tests (not proof of `worse` sim alpha). Most cells still have CIs straddling zero; **phases 2/3** gates unchanged."
   }
 ]

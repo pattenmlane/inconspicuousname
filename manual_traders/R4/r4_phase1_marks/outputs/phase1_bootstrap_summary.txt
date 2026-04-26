@@ -1,0 +1,3 @@
+Cells with n>=50: 36
+95% bootstrap CI: lower bound > 0 (strict positive): 4
+ sign_strict_same_sign_3d: 16 / 36

@@ -1,0 +1,21 @@
+{
+  "n_m01_m22_5300_joint_tight_ticks": 132,
+  "n_tick_includes_symbols_5400_6500": 114,
+  "frac_tick_includes_wing_syms": 0.8636363636363636,
+  "n_tick_m01_m22_on_each_of_5300_through_6500": 108,
+  "frac_m01_m22_full_ladder": 0.8181818181818182,
+  "co_print_counts": {
+    "VEV_5300": 132,
+    "VEV_6500": 132,
+    "VEV_6000": 132,
+    "VEV_5500": 126,
+    "VEV_5400": 119,
+    "VEV_5200": 30,
+    "VELVETFRUIT_EXTRACT": 5,
+    "HYDROGEL_PACK": 5,
+    "VEV_4000": 2,
+    "VEV_5100": 1,
+    "VEV_5000": 1,
+    "VEV_4500": 1
+  }
+}

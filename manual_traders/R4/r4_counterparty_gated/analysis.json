@@ -328,5 +328,17 @@
       "manual_traders/R4/r4_counterparty_gated/backtest_logs/v6_all.log"
     ],
     "used_to_decide": "Enables future Round-4 agents to branch on buyer/seller per tick without offline key files; v1 sanity unchanged after patch."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Tape script run_r4_basket_wing_stats.py: among 132 joint-tight timestamps with a Mark01\u2192Mark22 print on VEV_5300, 108 also have Mark01\u2192Mark22 on each of VEV_5300\u20136500 in the same tick (frac 0.818). trader_v7 extends v6 by skipping bids on that full ladder when joint tight + full-ladder M01\u2192M22 co-print holds.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_gated/run_r4_basket_wing_stats.py",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_m01_m22_5300_joint_tight_coprint_summary.json",
+      "manual_traders/R4/r4_counterparty_gated/trader_v7.py",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v7_worse.log",
+      "manual_traders/R4/r4_counterparty_gated/backtest_logs/v7_all.log"
+    ],
+    "used_to_decide": "Backtest worse 26,194 and all 24,301 match v1/v5/v6 exactly (same trade counts and notionals). The coordinated-ladder bid suppression never moves the fill path versus single-5300 fade: either those ticks were not marginal for our bids, or PnL is dominated by extract/hydro as in prior iterations. Hypothesis falsified for this MM implementation; champion remains v1 unless we add inventory-aware or aggressive take logic keyed to counterparty."
   }
 ]

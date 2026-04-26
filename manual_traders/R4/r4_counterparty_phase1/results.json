@@ -478,5 +478,45 @@
         "note": "Slightly above worse (+6 day3)."
       }
     }
+  },
+  {
+    "iteration": 12,
+    "round": 4,
+    "trader_file": "trader_v12.py",
+    "strategy_description": "v11 further scale: LOT=6, MAX_POS=90 (same v7 execution stack). Tests linearity toward strike cap.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 744,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v12.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v12_r4_worse.log",
+      "backtest_output": {
+        "day1": 704,
+        "day2": 40,
+        "day3": 0,
+        "total": 744
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "vs v11 worse +420: ~1.77× profit for 1.5× LOT and 1.5× MAX_POS — scaling continues on this tape."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 750,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v12.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v12_r4_all.log",
+      "backtest_output": {
+        "day1": 704,
+        "day2": 40,
+        "day3": 6,
+        "total": 750
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "+6 day3 vs worse (matcher)."
+      }
+    }
   }
 ]

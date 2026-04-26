@@ -343,5 +343,18 @@
       "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v11_r4_all.log"
     ],
     "used_to_decide": "Default **v11** for max PnL on this tape under current execution rules if risk cap allows 60×5300; else **v7** as conservative baseline. Counterparty-conditioned basket-only still not preferred in sim (v9) despite stronger multik mids."
+  },
+  {
+    "iteration": 12,
+    "round": 4,
+    "analysis_description": "(1) Cross-asset tape: **VELVETFRUIT_EXTRACT** forward mid at same (joint tight + M01→M22 burst) timestamps, split by M01→M22 on **VEV_5300** vs basket-only — analyze_r4_tight_burst_extract_fwd_by_5300_leg.py → r4_tight_burst_extract_fwd_by_5300_leg.json. Pooled: **any** burst extract K20 mean **+0.31** (n=291); **on_5300_leg** K20 **+0.046** (n=131); **basket_only** K20 **+0.525** (n=160). K50: basket_only **+0.701** vs on_5300 **+0.481**. Short K extract less clean than 5300 mids but long-K basket lift mirrors voucher split. (2) **trader_v12** LOT=6 MAX_POS=90: worse **+744**, all **+750** vs v11 +420/+426 — scaling toward 300 cap continues.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/analyze_r4_tight_burst_extract_fwd_by_5300_leg.py",
+      "manual_traders/R4/r4_counterparty_phase1/r4_tight_burst_extract_fwd_by_5300_leg.json",
+      "manual_traders/R4/r4_counterparty_phase1/trader_v12.py",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v12_r4_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v12_r4_all.log"
+    ],
+    "used_to_decide": "Extract forward under burst is **much stronger in basket-only** at K20+ (Phase 2 cross-asset + Phase 3 gate stack); candidate for a **paired** long-extract leg later (not implemented this iteration — v1/v2 showed extract touch is fragile). v12 documents continued linear-ish scale-up of the 5300-only bot under worse fills."
   }
 ]

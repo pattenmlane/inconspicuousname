@@ -1,0 +1,50 @@
+running algorithm '/workspace/manual_traders/R4/r4_counterparty_phase1/trader_v12.py'...
+Backtesting /workspace/manual_traders/R4/r4_counterparty_phase1/trader_v12.py for round: 4 day: 1
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 704
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: 704
+Backtesting /workspace/manual_traders/R4/r4_counterparty_phase1/trader_v12.py for round: 4 day: 2
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 40
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: 40
+Backtesting /workspace/manual_traders/R4/r4_counterparty_phase1/trader_v12.py for round: 4 day: 3
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 0
+HYDROGEL_PACK: 0
+Total profit: 0
+Profit summary:
+Round 4 day 1: 704
+Round 4 day 2: 40
+Round 4 day 3: 0
+Total profit: 744
+
+Successfully saved backtest results to backtests/2026-04-26_18-24-06.log

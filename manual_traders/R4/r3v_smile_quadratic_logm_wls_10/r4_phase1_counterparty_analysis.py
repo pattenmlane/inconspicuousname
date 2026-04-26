@@ -8,6 +8,9 @@ Horizon K = K *next observation rows* per symbol after sorting by (day, timestam
 
 Writes under this folder:
   - r4_p1_forward_by_mark.csv
+  - r4_p1_participant_by_day.csv     — per distinct name U×day×role×K (day-stability; min n per cell)
+  - r4_p1_name_flow_balance.csv     — per-name trade counts, qty balance, notional
+  - r4_p1_name_universe.txt         — how many unique buyer/seller strings (R4 d1-3: 7, all Mark *)
   - r4_p1_mark_product_cross.csv   — Mark×role×traded symbol×K×spread regime: same/extract/hydro fwd + bootstrap CI
   - r4_p1_mark_burst_same_sym.csv    — same-symbol fwd stratified burst vs isolated
   - r4_p1_2hop_motifs.csv            — 2-hop buyer→seller→seller2 counts (structural)
@@ -15,10 +18,12 @@ Writes under this folder:
   - r4_p1_graph_edges.csv
   - r4_p1_burst_events.csv
   - r4_p1_phase1_summary.txt
+
+Note: does not overwrite r4_phase1_gate.json (refined in-repo); re-run that block by hand or keep analysis.json
+as the source of truth for the Phase 1 completion object.
 """
 from __future__ import annotations
 
-import json
 import math
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -29,11 +34,6 @@ import pandas as pd
 REPO = Path(__file__).resolve().parents[3]  # .../manual_traders/R4/<id>/file -> repo root
 DATA = REPO / "Prosperity4Data" / "ROUND_4"
 OUT = Path(__file__).resolve().parent
-REL_PREFIX = "manual_traders/R4/r3v_smile_quadratic_logm_wls_10"
-
-
-def _rel(p: Path) -> str:
-    return f"{REL_PREFIX}/{p.name}"
 DAYS = [1, 2, 3]
 KS = (5, 20, 100)
 PRODUCTS = [
@@ -152,10 +152,46 @@ def main() -> None:
     m = m.merge(ex, on=["day", "timestamp"], how="left")
     m = m.merge(hy, on=["day", "timestamp"], how="left")
 
-    # --- 1) Participant-level: Mark U as buyer aggressor vs seller aggressor
+    all_names = sorted({str(x) for x in m["buyer"]} | {str(x) for x in m["seller"]})
+    (OUT / "r4_p1_name_universe.txt").write_text(
+        "Round 4 Phase 1 — distinct counterparty names (buyer ∪ seller) over tape days 1–3\n"
+        f"count: {len(all_names)}\n"
+        f"names: {all_names!r}\n"
+        "Horizon K: next K price rows for that symbol after (day, timestamp), sorted by time (see script docstring).\n",
+        encoding="utf-8",
+    )
+
+    # Notional buy/sell from each name's side (aggressor-agnostic: signed flow by initiator of trade)
+    name_rows = []
+    for u in all_names:
+        bmask = m["buyer"] == u
+        smask = m["seller"] == u
+        nb, ns = int(bmask.sum()), int(smask.sum())
+        if nb + ns == 0:
+            continue
+        q_b = m.loc[bmask, "quantity"].to_numpy()
+        q_s = m.loc[smask, "quantity"].to_numpy()
+        p_b = m.loc[bmask, "price"].to_numpy()
+        p_s = m.loc[smask, "price"].to_numpy()
+        notional_b = float(np.nansum(p_b * q_b)) if len(q_b) else 0.0
+        notional_s = float(np.nansum(p_s * q_s)) if len(q_s) else 0.0
+        name_rows.append(
+            {
+                "name": u,
+                "n_as_buyer": nb,
+                "n_as_seller": ns,
+                "n_prints": nb + ns,
+                "net_prints_buy_minus_sell": nb - ns,
+                "signed_qty_imbalance": float(np.nansum(q_b) - np.nansum(q_s)),
+                "notional_as_buyer": notional_b,
+                "notional_as_seller": notional_s,
+            }
+        )
+    pd.DataFrame(name_rows).sort_values("n_prints", ascending=False).to_csv(OUT / "r4_p1_name_flow_balance.csv", index=False)
+
+    # --- 1) Participant-level: name U (every distinct string) as buyer/seller aggressor; pooled + per-day
     rows = []
-    marks = sorted(set(m["buyer"]) | set(m["seller"]))
-    marks = [x for x in marks if x.startswith("Mark ")]
+    marks = all_names
     for u in marks:
         for role, mask in (
             ("buyer_agg", (m["buyer"] == u) & (m["side"] == "buyer_aggressive")),
@@ -185,7 +221,7 @@ def main() -> None:
                         continue
                     rows.append(
                         {
-                            "mark": u,
+                            "name": u,
                             "role": role,
                             "horizon_K": k,
                             "regime": regime,
@@ -197,7 +233,47 @@ def main() -> None:
                         }
                     )
     df_mark = pd.DataFrame(rows)
+    # Back-compat alias column for older references
+    if len(df_mark):
+        df_mark["mark"] = df_mark["name"]
     df_mark.to_csv(OUT / "r4_p1_forward_by_mark.csv", index=False)
+
+    # Per-day same-symbol forward (stability: sign across days; min n)
+    day_stab: list[dict] = []
+    for u in all_names:
+        for role, mask in (
+            ("buyer_agg", (m["buyer"] == u) & (m["side"] == "buyer_aggressive")),
+            ("seller_agg", (m["seller"] == u) & (m["side"] == "seller_aggressive")),
+            ("any_touch", (m["buyer"] == u) | (m["seller"] == u)),
+        ):
+            for d in DAYS:
+                sub = m.loc[mask & (m["day"] == d)]
+                if len(sub) < 5:
+                    continue
+                for k in KS:
+                    col = f"fwd_mid_{k}"
+                    v = sub[col].to_numpy(dtype=float)
+                    v = v[np.isfinite(v)]
+                    if len(v) < 5:
+                        continue
+                    day_stab.append(
+                        {
+                            "name": u,
+                            "day": d,
+                            "role": role,
+                            "horizon_K": k,
+                            "n": len(v),
+                            "mean_fwd": float(np.mean(v)),
+                            "median_fwd": float(np.median(v)),
+                            "frac_pos": float(np.mean(v > 0)),
+                            "t_vs_zero": float(
+                                np.mean(v) / (np.std(v, ddof=1) / math.sqrt(len(v)))
+                            )
+                            if len(v) > 1 and np.std(v, ddof=1) > 0
+                            else float("nan"),
+                        }
+                    )
+    pd.DataFrame(day_stab).to_csv(OUT / "r4_p1_participant_by_day.csv", index=False)
 
     # --- 1b) Burst vs isolated (same-symbol fwd) for Mark flows
     ts_n = m.groupby(["day", "timestamp"])["symbol"].transform("count")
@@ -381,76 +457,7 @@ def main() -> None:
                 f"  {r['mark']} {r['role']} K={int(r['horizon_K'])} mean={r['mean_fwd']:.4f} n={int(r['n'])} t={r['t_vs_zero']:.2f} frac+={r['frac_pos']:.2f}"
             )
     (OUT / "r4_p1_phase1_summary.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
-
-    # Phase 1 gate JSON fragment
-    gate = {
-        "round4_phase1_complete": {
-            "phase": 1,
-            "tape_days": DAYS,
-            "outputs": {
-                "participant_forward": _rel(OUT / "r4_p1_forward_by_mark.csv"),
-                "mark_product_cross": _rel(OUT / "r4_p1_mark_product_cross.csv"),
-                "mark_burst_same_sym": _rel(OUT / "r4_p1_mark_burst_same_sym.csv"),
-                "two_hop_motifs": _rel(OUT / "r4_p1_2hop_motifs.csv"),
-                "pair_residuals": _rel(OUT / "r4_p1_pair_baseline_residuals.csv"),
-                "graph_edges": _rel(OUT / "r4_p1_graph_edges.csv"),
-                "bursts": _rel(OUT / "r4_p1_burst_events.csv"),
-                "summary_txt": _rel(OUT / "r4_p1_phase1_summary.txt"),
-                "script": f"{REL_PREFIX}/r4_phase1_counterparty_analysis.py",
-            },
-            "bullets": [
-                {"bullet": "1 participant-level", "conclusion": "See r4_p1_forward_by_mark.csv; Mark-conditioned fwd mids vary by role/K; many cells low-n.", "paths": ["r4_p1_forward_by_mark.csv"]},
-                {"bullet": "1b cross-asset + per-traded-product", "conclusion": "r4_p1_mark_product_cross.csv: same-symbol vs extract vs hydro fwd at print time by Mark×role×product×K×spread regime with bootstrap 95% CI on mean.", "paths": ["r4_p1_mark_product_cross.csv"]},
-                {"bullet": "1c burst vs isolated", "conclusion": "r4_p1_mark_burst_same_sym.csv stratifies same-symbol fwd when (day,ts) has ≥4 trades vs isolated prints.", "paths": ["r4_p1_mark_burst_same_sym.csv"]},
-                {"bullet": "2 bot baseline / residuals", "conclusion": "Per (buyer,seller,symbol) mean fwd20 and trade-level residuals in r4_p1_pair_baseline_residuals.csv.", "paths": ["r4_p1_pair_baseline_residuals.csv"]},
-                {"bullet": "3 graph motifs", "conclusion": "Mark 01→Mark 22 dominates edge list (r4_p1_graph_edges.csv); 2-hop chain enumeration r4_p1_2hop_motifs.csv.", "paths": ["r4_p1_graph_edges.csv", "r4_p1_2hop_motifs.csv"]},
-                {"bullet": "4 bursts", "conclusion": "Multi-symbol same-ts bursts listed; vs random-time extract fwd20 compare in summary.", "paths": ["r4_p1_burst_events.csv", "r4_p1_phase1_summary.txt"]},
-                {"bullet": "5 adverse selection", "conclusion": "Proxy: aggressive-side fwd on same symbol; detailed in forward_by_mark for buyer_agg vs seller_agg.", "paths": ["r4_p1_forward_by_mark.csv"]},
-            ],
-            "top_5_tradeable_edges": [
-                {
-                    "rank": 1,
-                    "hypothesis": "Document Mark 01→Mark 22 basket prints as structural (high n); exploit as regime / avoid fading without sim",
-                    "effect": "Pair frequency >> others",
-                    "n": int(eg.iloc[0]["n"]) if len(eg) else 0,
-                    "days": DAYS,
-                },
-                {
-                    "rank": 2,
-                    "hypothesis": "Conditional forward mids after bursts vs control (extract) — see summary means",
-                    "effect": f"burst_ext_fwd20_mean={burst_mean:.4f} vs_ctrl={ctrl_mean:.4f}",
-                    "n": int(len(burst_big)),
-                    "days": DAYS,
-                },
-                {
-                    "rank": 3,
-                    "hypothesis": "Per-Mark aggressive buy/sell fwd tables for horizon selection (K=5/20/100)",
-                    "effect": "See CSV; pick cells with n>=30 and stable sign across days (manual follow-up)",
-                    "n": int(len(df_mark)),
-                    "days": DAYS,
-                },
-                {
-                    "rank": 4,
-                    "hypothesis": "Residual outliers after (buyer,seller,symbol) mean — second-order fade/lean candidates",
-                    "effect": "Distribution in residuals CSV",
-                    "n": int(len(m2)),
-                    "days": DAYS,
-                },
-                {
-                    "rank": 5,
-                    "hypothesis": "Spread-regime split (tight vs wide quantiles) on Mark flows",
-                    "effect": "See forward_by_mark regime column",
-                    "n": int(len(df_mark)),
-                    "days": DAYS,
-                },
-            ],
-            "negative_results": [
-                "No single Mark×horizon cell yet meets institutional 'edge' without out-of-sample sim; tape is 3 days only.",
-                "Trade count O(1e3) vs price rows O(1e5): many BBO timestamps have no prints — forward joins are sparse for some symbols.",
-            ],
-        }
-    }
-    (OUT / "r4_phase1_gate.json").write_text(json.dumps(gate, indent=2), encoding="utf-8")
+    # r4_phase1_gate.json is maintained manually to match analysis.json (round4_phase1_complete) — not overwritten here.
 
 
 if __name__ == "__main__":

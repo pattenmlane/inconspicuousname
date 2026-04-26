@@ -1,0 +1,4 @@
+Round 4 Phase 1 — distinct counterparty names (buyer ∪ seller) over tape days 1–3
+count: 7
+names: ['Mark 01', 'Mark 14', 'Mark 22', 'Mark 38', 'Mark 49', 'Mark 55', 'Mark 67']
+Horizon K: next K price rows for that symbol after (day, timestamp), sorted by time (see script docstring).

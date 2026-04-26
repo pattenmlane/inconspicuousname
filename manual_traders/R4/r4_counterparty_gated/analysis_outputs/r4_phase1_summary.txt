@@ -1,0 +1,49 @@
+Round 4 Phase 1 — summary (automated)
+====================================
+Trades analyzed: 4,281 | price rows: 360,000
+Horizon K = steps in price tape for same (day, symbol); fwd_mid_K = mid(t+K)-mid(t) at same ts index.
+
+Top |t-stat| participant×symbol×K (aggr_buy / aggr_sell roles): see r4_participant_fwd_by_symbol.csv
+participant        role              symbol   K   n  mean_fwd    t_stat  frac_pos
+    Mark 67  U_aggr_buy VELVETFRUIT_EXTRACT   5 164  1.960366 13.025623  0.835366
+    Mark 67  U_aggr_buy VELVETFRUIT_EXTRACT  20 164  1.814024  5.860101  0.646341
+    Mark 22 U_aggr_sell            VEV_5300   5 160 -0.203125 -3.312707  0.237500
+    Mark 55 U_aggr_sell VELVETFRUIT_EXTRACT 100 595 -0.918487 -2.504568  0.433333
+    Mark 55  U_aggr_buy VELVETFRUIT_EXTRACT  20 598  0.408863  2.478876  0.510033
+    Mark 55  U_aggr_buy VELVETFRUIT_EXTRACT   5 598  0.198997  2.246478  0.464883
+    Mark 22 U_aggr_sell            VEV_5500   5 306 -0.026144 -1.920751  0.055556
+    Mark 67  U_aggr_buy VELVETFRUIT_EXTRACT 100 163  1.371166  1.873917  0.536585
+    Mark 22 U_aggr_sell            VEV_5200   5  44 -0.227273 -1.503588  0.318182
+    Mark 55  U_aggr_buy VELVETFRUIT_EXTRACT 100 595  0.531092  1.403872  0.496656
+    Mark 22 U_aggr_sell            VEV_5400   5 275 -0.030909 -1.317257  0.163636
+    Mark 38 U_aggr_sell            VEV_4000   5 233 -0.169528 -1.163021  0.424893
+    Mark 38  U_aggr_buy            VEV_4000   5 209  0.174641  1.121382  0.478469
+    Mark 22 U_aggr_sell            VEV_5300  20 160 -0.143750 -1.106725  0.381250
+    Mark 38  U_aggr_buy            VEV_4000  20 207  0.260870  0.909532  0.483254
+    Mark 22 U_aggr_sell            VEV_5500 100 304 -0.036184 -0.881797  0.232026
+    Mark 38  U_aggr_buy       HYDROGEL_PACK  20 515 -0.327184 -0.869649  0.495146
+    Mark 38 U_aggr_sell       HYDROGEL_PACK 100 505  0.588119  0.728014  0.483235
+    Mark 38  U_aggr_buy       HYDROGEL_PACK 100 512 -0.548828 -0.676702  0.483495
+    Mark 22 U_aggr_sell            VEV_5200 100  44  0.625000  0.662168  0.568182
+    Mark 38  U_aggr_buy       HYDROGEL_PACK   5 515 -0.119417 -0.641889  0.458252
+    Mark 55 U_aggr_sell VELVETFRUIT_EXTRACT  20 600 -0.105833 -0.618150  0.438333
+    Mark 22 U_aggr_sell            VEV_5500  20 306  0.014706  0.610333  0.140523
+    Mark 38 U_aggr_sell            VEV_4000  20 233 -0.173820 -0.594263  0.446352
+    Mark 22 U_aggr_sell            VEV_5300 100 159  0.147799  0.577886  0.493750
+
+Burst vs control (extract forward 20 steps):
+{
+  "n_bursts": 293,
+  "mean_fwd_ext_20_burst": 0.33447098976109213,
+  "mean_fwd_ext_20_control": 0.11433447098976109,
+  "n_control": 879
+}
+
+Worst passive sellers after aggressive buys on them (mean fwd_mid_20, n>=20):
+ seller              symbol  mean_fwd20_after_aggr_buy   n
+Mark 14       HYDROGEL_PACK                  -0.353057 507
+Mark 01 VELVETFRUIT_EXTRACT                   0.006148 244
+Mark 14            VEV_4000                   0.214634 205
+Mark 14 VELVETFRUIT_EXTRACT                   0.575529 331
+Mark 49 VELVETFRUIT_EXTRACT                   1.831731 104
+Mark 22 VELVETFRUIT_EXTRACT                   2.022222  90

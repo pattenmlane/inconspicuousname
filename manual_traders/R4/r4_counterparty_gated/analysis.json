@@ -1,0 +1,133 @@
+[
+  {
+    "iteration": 0,
+    "title": "round4_phase1_complete",
+    "analysis_description": "Round 4 Phase 1 exhaustive counterparty analysis on Prosperity4Data/ROUND_4 days 1–3 (4281 trades merged to 4281 event rows). Forward moves = K steps along price tape for same (day, product). Aggression = price vs concurrent BBO (aggr_buy / aggr_sell / passive_mid). Script: manual_traders/R4/r4_counterparty_gated/run_r4_phase1_analysis.py",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_gated/run_r4_phase1_analysis.py",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_phase1_summary.txt",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_participant_fwd_by_symbol.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_cell_mean_fwd20_by_day_pair_symbol.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_trade_level_residual_fwd20.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_directed_edges_buyer_seller.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_twohop_motif_fwd_extract20.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_burst_event_rows.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_burst_vs_control_summary.json",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_passive_seller_markout_aggr_buy.csv",
+      "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_mark67_aggr_extract_fwd5_by_day.csv",
+      "round4work/outputs/r4_initial_analysis_summary.txt",
+      "round4work/outputs/r4_counterparty_sketch.txt"
+    ],
+    "phase1_bullets": [
+      {
+        "bullet": "1) Participant-level alpha / predictiveness",
+        "outputs": [
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_participant_fwd_by_symbol.csv",
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_mark67_aggr_extract_fwd5_by_day.csv"
+        ],
+        "conclusion": "Mark 67 aggressive buys on VELVETFRUIT_EXTRACT show strongly positive mean forward mid at K=5,20 (n≈164, t≈13 and 5.8) with ~64–84% positive at short horizons; stable positive mean across days 1–3 (see r4_mark67_aggr_extract_fwd5_by_day.csv). Mark 22 aggressive sells on VEV_5300 at K=5 show negative mean fwd (−0.20, t≈−3.3, n=160) but Mark01→Mark22 on VEV_5300 reverses sign by day (day1 mean −0.70 vs day2 +0.18 in r4_cell_mean_fwd20_by_day_pair_symbol.csv) — not day-stable as a simple fade."
+      },
+      {
+        "bullet": "2) Deviation from bot baseline (pair×symbol cell means + residuals)",
+        "outputs": [
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_trade_level_residual_fwd20.csv",
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_cell_mean_fwd20_by_day_pair_symbol.csv"
+        ],
+        "conclusion": "Residual file supports second-order checks; dominant Mark01→Mark22 cells on wings are near zero on average with day heterogeneity on VEV_5300 — no large uniform positive residual after simple cell baseline across all days."
+      },
+      {
+        "bullet": "3) Sequence / graph (directed buyer→seller + 2-hop motifs vs extract fwd20)",
+        "outputs": [
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_directed_edges_buyer_seller.csv",
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_twohop_motif_fwd_extract20.csv"
+        ],
+        "conclusion": "Top directed pair Mark01→Mark22 matches sketch; two-hop Mark38→Mark14→Mark38 is frequent (n=160) with negative mean extract fwd20 (−0.58) while Mark55→Mark01→Mark22 (n=25) shows small positive mean (+0.16) — structural chains exist but need Phase-2 conditioning (burst, symbol) before trading."
+      },
+      {
+        "bullet": "4) Burst structure (same day,timestamp ≥4 prints) vs random control",
+        "outputs": [
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_burst_event_rows.csv",
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_burst_vs_control_summary.json"
+        ],
+        "conclusion": "293 burst timestamps vs 879 control samples: mean VELVET forward-20-step mid change +0.33 vs +0.11 on control (r4_burst_vs_control_summary.json) — bursts associate with higher short-horizon extract drift on this slice."
+      },
+      {
+        "bullet": "5) Adverse selection proxy (aggressive buy: passive seller forward mid)",
+        "outputs": [
+          "manual_traders/R4/r4_counterparty_gated/analysis_outputs/r4_passive_seller_markout_aggr_buy.csv"
+        ],
+        "conclusion": "Worst mean fwd_mid_20 after aggressive buys hitting Mark 14 as seller on HYDROGEL_PACK (~−0.35, n=507); other cells less negative — candidate avoid-providing-liquidity-to pattern on hydro when Mark14 is passive seller, needs execution sim."
+      }
+    ],
+    "top_5_tradeable_edges_ranked": [
+      {
+        "rank": 1,
+        "edge": "After Mark 67 aggressive buy on VELVETFRUIT_EXTRACT, short-horizon extract mid drifts up (K=5 mean ~+2.0, t≈13, n=164; day-split means ~1.75–2.2 on days 1–3).",
+        "effect_size": "mean fwd_mid_5 ≈ +1.96 price units",
+        "n": 164,
+        "days_validated": [
+          1,
+          2,
+          3
+        ],
+        "caveat": "Mid-only; not yet validated with worse fills or inventory."
+      },
+      {
+        "rank": 2,
+        "edge": "Same-timestamp burst (≥4 prints) predicts higher extract forward 20-tick move than random non-burst times (+0.33 vs +0.11).",
+        "effect_size": "+0.22 vs control mean difference",
+        "n_burst": 293,
+        "n_control": 879,
+        "days_validated": [
+          1,
+          2,
+          3
+        ],
+        "caveat": "Overlapping windows; not causal proof."
+      },
+      {
+        "rank": 3,
+        "edge": "Mark 22 aggressive sell on VEV_5300 at K=5: negative mean forward mid on the same symbol (−0.20, t≈−3.3, n=160).",
+        "effect_size": "−0.20 over 5 tape steps",
+        "n": 160,
+        "days_validated": [
+          1,
+          2,
+          3
+        ],
+        "caveat": "Mark01→Mark22 cell splits by day (5300 negative day1, positive day2) — use with regime split in Phase 2."
+      },
+      {
+        "rank": 4,
+        "edge": "Frequent two-hop Mark38→Mark14→Mark38 coincides with negative extract fwd20 mean (−0.58, n=160).",
+        "effect_size": "−0.58 extract mid change 20 steps after second hop timestamp",
+        "n": 160,
+        "days_validated": [
+          1,
+          2,
+          3
+        ],
+        "caveat": "Consecutive-trade chain definition is coarse; refine with time windows."
+      },
+      {
+        "rank": 5,
+        "edge": "Mark 14 as passive seller on HYDROGEL after aggressive buys shows most negative mean fwd_mid_20 in hydro slice (~−0.35, n=507).",
+        "effect_size": "≈ −0.35",
+        "n": 507,
+        "days_validated": [
+          1,
+          2,
+          3
+        ],
+        "caveat": "Adverse-selection proxy only; needs quote-level sim."
+      }
+    ],
+    "negative_or_null_findings": [
+      "Mark 38 aggressive flow on HYDROGEL_PACK shows no significant consistent directional fwd across K (|t|<1 in participant table).",
+      "Mark 55 aggressive sells on extract at K=100 are significantly negative (t≈−2.5) but short horizons weaker — mixed story, not a clean long signal.",
+      "Simple Mark01→Mark22 basket on VEV_5300 is not uniformly a fade across days (sign flip day 1 vs 2 in cell table).",
+      "Mark 22 aggressive sells on VEV_5500 K=5 are negative but small magnitude (mean −0.026) — economically marginal vs tick size."
+    ],
+    "used_to_decide": "Phase 1 completion gate satisfied: all five Phase-1 bullets have CSV/JSON/txt outputs under manual_traders/R4/r4_counterparty_gated/analysis_outputs/. Proceed to Phase 2 (named-bot conditioning, microstructure, cross-lead–lag) only after strategy code consumes these edges; do not claim 200k/day until backtested."
+  }
+]

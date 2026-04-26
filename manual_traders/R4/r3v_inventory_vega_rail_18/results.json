@@ -55,5 +55,43 @@
       "backtest_log_file": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v2_all_backtest.log",
       "trades_or_fills_summary": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v2_all_fill_summary.json"
     }
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "Sonic joint gate: long VELVETFRUIT_EXTRACT at ask every tight tick (CLIP=12), flatten at bid when gate off. Tests naive translation of Phase 3 population mid edge to execution.",
+    "backtest_round": 4,
+    "backtest_note": "Round 4 days 1-3; stdout cumulative total profit.",
+    "backtest_worse": {
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_inventory_vega_rail_18/trader_v3.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v3_worse_backtest.log",
+      "total_profit": -351398,
+      "backtest_log_file": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v3_worse_backtest.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v3_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_inventory_vega_rail_18/trader_v3.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v3_all_backtest.log",
+      "total_profit": -351698,
+      "backtest_log_file": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v3_all_backtest.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v3_all_fill_summary.json"
+    }
+  },
+  {
+    "iteration": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "Joint gate edge-triggered extract: buy CLIP=8 on rising edge of tight only; flatten long on falling edge; max 4 entries per csv day. Reduces churn vs v3.",
+    "backtest_round": 4,
+    "backtest_note": "Round 4 days 1-3.",
+    "backtest_worse": {
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_inventory_vega_rail_18/trader_v4.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v4_worse_backtest.log",
+      "total_profit": -512,
+      "backtest_log_file": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v4_worse_backtest.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v4_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_inventory_vega_rail_18/trader_v4.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v4_all_backtest.log",
+      "total_profit": -512,
+      "backtest_log_file": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v4_all_backtest.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v4_all_fill_summary.json"
+    }
   }
 ]

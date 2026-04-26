@@ -212,5 +212,20 @@
         "Repo path `previous round work/round3work/vouchers_final_strategy/` is absent here; referenced `round3work/vouchers_final_strategy/analyze_vev_5200_5300_tight_gate_r3.py` for convention parity."
       ]
     }
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "Execution falsification of population Sonic gate edge: trader_v3 naively buys VELVETFRUIT_EXTRACT at ask whenever joint tight and sells at bid when wide (CLIP=12). Under --match-trades worse cumulative PnL ≈ -351k over days 1-3 with ~12.7k submission fills (see results iteration 3). trader_v4 throttles to rising-edge entries (max 4/day) + exit on falling edge: worse and all both -512 with 24 submission events — still negative, confirms mid-forward statistic does not map to naive bid/ask churn (STRATEGY.txt caveat).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_inventory_vega_rail_18/trader_v3.py",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/trader_v4.py",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v3_worse_backtest.log",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v3_all_backtest.log",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v4_worse_backtest.log",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v4_all_backtest.log",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v3_worse_fill_summary.json",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v4_worse_fill_summary.json"
+    ],
+    "used_to_decide": "Next strategies must combine gate with **counterparty-conditioned** or **inventory/mark** rules (Phase 1/3 three-way), not raw touch buying; optional: only trade when same-tick Mark pattern matches positive slice."
   }
 ]

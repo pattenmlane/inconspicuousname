@@ -482,5 +482,98 @@
         "trade_history_md5_16": "6178eacd07913795"
       }
     }
+  },
+  {
+    "iteration": 11,
+    "round": 4,
+    "trader_file": "manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v9.py",
+    "strategy_description": "v8 clone with stricter **AGGR_MAX_POSITION=100** (vs 160) before Tier-A buy-at-ask. **Worse:** identical to v8 (total 12,953, tradeHistory MD5 247d64b0253dca4a) — cap never binds on this tape. **All:** total **10,306** vs v8 **10,432** (−126); tradeHistory MD5 differs (955 own rows vs 958) — inventory gate only perturbs all-mode matching path.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 12953,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v9.py 4-1 4-2 4-3 --data Prosperity4Data --no-vis --out manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v9_d123_worse.json --match-trades worse",
+      "backtest_log_file": "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v9_d123_worse_full.log",
+      "trades_or_fills_summary": {
+        "per_day_profit": {
+          "day_1": 4648,
+          "day_2": 2210,
+          "day_3": 6095
+        },
+        "own_fill_rows": 833,
+        "own_fill_qty": 3200,
+        "own_fill_qty_by_symbol": {
+          "VELVETFRUIT_EXTRACT": 3021,
+          "VEV_4000": 179
+        },
+        "trade_history_md5_16": "247d64b0253dca4a",
+        "same_trade_history_as_v8_worse": true
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 10306,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v9.py 4-1 4-2 4-3 --data Prosperity4Data --no-vis --out manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v9_d123_all.json --match-trades all",
+      "backtest_log_file": "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v9_d123_all_full.log",
+      "trades_or_fills_summary": {
+        "per_day_profit": {
+          "day_1": 4688,
+          "day_2": 224,
+          "day_3": 5394
+        },
+        "own_fill_rows": 955,
+        "own_fill_qty": 3733,
+        "own_fill_qty_by_symbol": {
+          "VELVETFRUIT_EXTRACT": 3554,
+          "VEV_4000": 179
+        },
+        "trade_history_md5_16": "11c3b55a5aba8bde"
+      }
+    }
+  },
+  {
+    "iteration": 12,
+    "round": 4,
+    "trader_file": "manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v10.py",
+    "strategy_description": "v8 + **larger Tier-A aggression**: buy at ask qty **3** (min buy room **8**, cooldown 25, max pos 160). Worse total **13,327** vs v8 **12,953** (+374); all **10,807** vs v8 **10,432** (+375). Same own_fill_rows (833 worse) but +15 extract qty on worse — fewer signal ticks pass min room, larger lift when they do.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 13327,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v10.py 4-1 4-2 4-3 --data Prosperity4Data --no-vis --out manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v10_d123_worse.json --match-trades worse",
+      "backtest_log_file": "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v10_d123_worse_full.log",
+      "trades_or_fills_summary": {
+        "per_day_profit": {
+          "day_1": 4778,
+          "day_2": 2372,
+          "day_3": 6177
+        },
+        "own_fill_rows": 833,
+        "own_fill_qty": 3215,
+        "own_fill_qty_by_symbol": {
+          "VELVETFRUIT_EXTRACT": 3036,
+          "VEV_4000": 179
+        },
+        "trade_history_md5_16": "4cb010168602bb29"
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 10807,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v10.py 4-1 4-2 4-3 --data Prosperity4Data --no-vis --out manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v10_d123_all.json --match-trades all",
+      "backtest_log_file": "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v10_d123_all_full.log",
+      "trades_or_fills_summary": {
+        "per_day_profit": {
+          "day_1": 4818,
+          "day_2": 387,
+          "day_3": 5602
+        },
+        "own_fill_rows": 958,
+        "own_fill_qty": 3754,
+        "own_fill_qty_by_symbol": {
+          "VELVETFRUIT_EXTRACT": 3575,
+          "VEV_4000": 179
+        },
+        "trade_history_md5_16": "c58b6bd06c5f84f6"
+      }
+    }
   }
 ]

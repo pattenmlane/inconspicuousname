@@ -330,5 +330,27 @@
       "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v8_d123_all_full.log"
     ],
     "used_to_decide": "Tune AGGR_BUY_Q / cooldown / min buy room vs inventory skew; optional **sell trim avoidance** on same ticks (v7 showed harm) — next iteration could gate aggression on position < threshold only."
+  },
+  {
+    "iteration": 11,
+    "round": 4,
+    "analysis_description": "trader_r4_v9: Tier-A aggression same as v8 but **AGGR_MAX_POSITION=100** vs 160. **Worse** days 1–3: total **12,953**, per-day and `tradeHistory` MD5 **247d64b0253dca4a** identical to v8 — the 100 cap **never binds** on the worse-fill path (signal ticks always have extract position ≤100 in this run). **All** mode: total **10,306** vs v8 **10,432** (−126); own_fill_rows 955 vs 958; MD5 **11c3b55a5aba8bde** — stricter cap perturbs tape-matching only under `all`, not a worse-mode improvement.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v9.py",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v9_d123_worse_full.log",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v9_d123_all_full.log"
+    ],
+    "used_to_decide": "Drop 100-cap branch for production unless we find ticks where pos>100 at signal; prefer **size** tuning (v10) or cooldown."
+  },
+  {
+    "iteration": 12,
+    "round": 4,
+    "analysis_description": "trader_r4_v10: v8 with **AGGR_BUY_Q=3** and **AGGR_MIN_BUY_ROOM=8** (cooldown 25, max pos 160). Round 4 days 1–3 **worse** total **13,327** vs v8 **12,953** (+374); per-day +130/+162/+82 vs v8. **All** total **10,807** vs v8 **10,432** (+375). own_fill_rows still **833** on worse (same fill-event count) but own extract qty **3036** vs **3021** (+15) — larger lift per qualifying signal. `tradeHistory` MD5 worse **4cb010168602bb29**. Day-stable improvement across all three days in worse mode.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v10.py",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v10_d123_worse_full.log",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v10_d123_all_full.log"
+    ],
+    "used_to_decide": "Ship v10 over v8 for this tape slice unless out-of-sample breaks; next sweeps: **cooldown 15 vs 40**, **AGGR_BUY_Q=4** with room≥10 (risk), or **skip aggression** when extract spread>2."
   }
 ]

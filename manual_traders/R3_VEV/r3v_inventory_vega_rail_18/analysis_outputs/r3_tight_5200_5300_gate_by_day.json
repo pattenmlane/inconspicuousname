@@ -1,0 +1,30 @@
+{
+  "definition": "At each timestamp, both VEV_5200 and VEV_5300 have bid/ask; joint_tight = spr5200<=2 and spr5300<=2.",
+  "th": 2,
+  "by_csv_day": {
+    "0": {
+      "timestamps_both_books": 10000,
+      "share_joint_tight": 0.102,
+      "mean_s5200": 2.926,
+      "mean_s5300": 2.1606,
+      "p90_s5200": 3.0,
+      "p90_s5300": 3.0
+    },
+    "1": {
+      "timestamps_both_books": 10000,
+      "share_joint_tight": 0.1381,
+      "mean_s5200": 2.8779,
+      "mean_s5300": 2.1088,
+      "p90_s5200": 3.0,
+      "p90_s5300": 3.0
+    },
+    "2": {
+      "timestamps_both_books": 10000,
+      "share_joint_tight": 0.1727,
+      "mean_s5200": 2.8605,
+      "mean_s5300": 2.051,
+      "p90_s5200": 3.0,
+      "p90_s5300": 3.0
+    }
+  }
+}

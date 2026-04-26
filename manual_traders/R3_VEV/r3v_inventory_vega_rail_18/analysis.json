@@ -153,5 +153,20 @@
       "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v30_fill_summary.json"
     ],
     "used_to_decide": "Dynamic gating preserved the v25 shape but did not exceed best PnL (v29 +142, v30 +144 vs best +146). Keep simpler fixed-gate leaders v25/v27 for tie-break simplicity."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "Read round3work/vouchers_final_strategy/STRATEGY.txt and outputs/r3_tight_spread_summary.txt: joint BBO spread gate (VEV_5200 and VEV_5300 both ask-bid <= 2) aligns with more favorable short-horizon extract mid; spread-spread and book-state (Sonic/inclineGod). Replicated our own gate share per day: run_tight_5200_5300_stats.py -> r3_tight_5200_5300_gate_by_day.json. v31: parent v25 with continuous TIGHT_VEGA_ROOM_MULT when gate on, WIDE when off; no extra extract MM to respect mid-vs-execution caveat. IV vega-rail and smile unchanged.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/run_tight_5200_5300_stats.py",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/r3_tight_5200_5300_gate_by_day.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v31_worse_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v31_all_backtest.log",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v31_worse_fill_summary.json",
+      "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v31_all_fill_summary.json"
+    ],
+    "used_to_decide": "Joint gate integrated as continuous vega room scaling only. Days 0-2 only (3-0 3-1 3-2) after merge: worse PnL +177 vs v25 +146 on the same 3 days; all matches worse in this run (6 submission events each). Beware: bare '3' now backtests 4 days including new day-3 data."
   }
 ]

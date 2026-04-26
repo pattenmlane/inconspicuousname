@@ -307,5 +307,22 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v30_backtest.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v30_fill_summary.json"
+  },
+  {
+    "iteration": 31,
+    "trader_file": "trader_v31.py",
+    "strategy_description": "Joint 5200+5300 BBO spread gate (both <=2): continuous vega-rail mult (1.3 tight / 0.88 wide) on top of v25. No extract or hydrogel quotes (ST STRATEGY mid-vs-PnL). Backtest: round 3 days 0-2 only (3-0 3-1 3-2) because bare '3' now includes new day-3 data.",
+    "backtest_worse": {
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v31.py 3-0 3-1 3-2 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v31_worse_backtest.log",
+      "total_profit": 177,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v31_worse_backtest.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v31_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_inventory_vega_rail_18/trader_v31.py 3-0 3-1 3-2 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v31_all_backtest.log",
+      "total_profit": 177,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v31_all_backtest.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_inventory_vega_rail_18/analysis_outputs/trader_v31_all_fill_summary.json"
+    }
   }
 ]

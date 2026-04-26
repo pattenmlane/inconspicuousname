@@ -174,5 +174,18 @@
       "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v32_round3_worse_fills_summary.json"
     ],
     "used_to_decide": "Best in this pass: v30/v31 total 25675 worse over Round 3 days 0–3 (6419/day unweighted average) — still far from 200k/day; simple join-bid longs on tight gate are not enough under worse fills. v32 anchors-only 22973. Next: add exit/flatten logic, maker on both sides in tight, or time-decay/theta-aware rotation; consider crossing when spread=1; possibly repeat gate check only when spreads co-tighten (Sonic 'informed' regime) rather than every tick. Legacy IV-residual line stopped."
+  },
+  {
+    "iteration": 33,
+    "analysis_description": "Tape add-on gate_on_spread_widths_r3.json: when 5200 and 5300 are both <=2, **conditional** on that event their L1 spreads in Round 3 days 0–3 are always exactly 2.0 (median 2) — the joint gate is almost never 'spread=1' in our tapes. So two-sided 'inner' quotes (bb+1, ba-1) almost never apply on the anchor names when the gate is true; the MM posts at touch. v33/v34 two-sided MM on all VEVs+extract under gate: worse 2594 << v30 25675; v34 size grid matches v33. v35: touch MM extract+5200+5300 only: worse -162, all 2004. Conclusion: for this data, one-sided join-bid v30 still dominates these MM variants; mid-forward edge (STRATEGY) does not convert to PnL with symmetric maker at the touch under worse. inclineGod spread correlation thread preserved by tracking per-name spread in gate logic; Sonic state gate unchanged.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/gate_on_spread_widths_r3.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v33_round3_worse.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/backtest_logs/trader_v35_round3_worse.json",
+      "manual_traders/R3_VEV/r3v_cross_strike_iv_rank_07/analysis_outputs/trader_v33_round3_worse_fills_summary.json"
+    ],
+    "used_to_decide": "Keep v30 as best PnL among vouchers_final_strategy runs so far. Next: asymmetric MM (e.g. lean bid in tight per forward-mid story), or single-sided improve with more aggressive size only on 5200/5300 when gate on; avoid full symmetric touch on extract until inventory model. Still nowhere near 200k/day; need more edge than passive quotes."
   }
 ]

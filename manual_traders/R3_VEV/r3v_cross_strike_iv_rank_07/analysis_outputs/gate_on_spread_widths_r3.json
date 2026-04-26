@@ -1,0 +1,33 @@
+{
+  "th_gate": 2,
+  "round3_days": {
+    "0": {
+      "n_gate": 1020,
+      "share_spread_5200_ge3": 0.0,
+      "share_spread_5300_ge3": 0.0,
+      "median_sp_5200": 2.0,
+      "median_sp_5300": 2.0
+    },
+    "1": {
+      "n_gate": 1381,
+      "share_spread_5200_ge3": 0.0,
+      "share_spread_5300_ge3": 0.0,
+      "median_sp_5200": 2.0,
+      "median_sp_5300": 2.0
+    },
+    "2": {
+      "n_gate": 1727,
+      "share_spread_5200_ge3": 0.0,
+      "share_spread_5300_ge3": 0.0,
+      "median_sp_5200": 2.0,
+      "median_sp_5300": 2.0
+    },
+    "3": {
+      "n_gate": 54,
+      "share_spread_5200_ge3": 0.0,
+      "share_spread_5300_ge3": 0.0,
+      "median_sp_5200": 2.0,
+      "median_sp_5300": 2.0
+    }
+  }
+}

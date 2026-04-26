@@ -108,5 +108,15 @@
       "analysis_outputs/shock_nexttick_proxy_regimes_v21.json"
     ],
     "used_to_decide": "Shock and mis signs conflict on ~99% of shock ticks, explaining why mis_floor tweaks had little effect. Next-tick proxy improved with larger |dS| and degraded sharply when combined spread was wide (>~11). v21 therefore keeps robust smile + gamma floor but changes shock execution logic: require minimum |dS| for shock-only entries and raise shock threshold further in wide-book regimes."
+  },
+  {
+    "iteration": 22,
+    "analysis_description": "Read round3work/vouchers_final_strategy/STRATEGY.txt and outputs/r3_tight_spread_summary.txt: joint gate s5200<=2 and s5300<=2 (L1 ask-bid) aligns with higher mean K-step forward extract mid change and lower t-stat outside that box. Repro script: analyze_vev_5200_5300_tight_gate_r3.py. Merged origin/main brings round 3 day 3 tape; backtests now run days 0-3 unless constrained by CLI.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_6panel.png"
+    ],
+    "used_to_decide": "v22 wires the joint 5200/5300 tight spread as a risk-on sizing signal (clip 4->5 and larger extract hedge cap when both <=2), not a hard trade gate (hard gate + day_3 data test was strongly negative). Hydrogel disabled to focus PnL on VEV+extract. Worse and all match modes recorded; outputs were identical for this run."
   }
 ]

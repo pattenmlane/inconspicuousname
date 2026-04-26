@@ -1,0 +1,8 @@
+trader,SAT_GAIN,ROLL_WIN,ROLL_LO,ROLL_HI,total_worse,day1,day2,day3,notes
+v15_ref,0.72,400,0.20,0.40,14971,5556,9116,299,prior best (iteration 15)
+v21,0.68,400,0.20,0.40,14760,5556,9018,186,weaker sat
+v22,0.70,400,0.20,0.40,14753,5556,8898,299,
+v23,0.74,400,0.20,0.40,14850,5506,9046,299,best of this batch still < v15
+v24,0.76,400,0.20,0.40,14748,5482,8962,304,
+v25,0.72,300,0.20,0.40,14622,5389,8942,291,faster window hurts
+v26,0.72,500,0.20,0.40,14678,5402,9086,189,slower window hurts d3

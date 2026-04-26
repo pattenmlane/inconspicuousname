@@ -416,5 +416,66 @@
       "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v20_r4_mark55_v15_plus_microprice_all_stdout.txt"
     ],
     "used_to_decide": "Microprice stack on v15 is **strong negative** vs v15 alone \u2014 do not combine; Phase-2 filter orthogonal to this counterparty+roll-sizing lane on R4 days 1\u20133."
+  },
+  {
+    "iteration": 21,
+    "analysis_description": "Secondary sweep: v15 roll band fixed; **SAT_GAIN 0.68**. Total **14,760** (worse=all); day3 +186.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v21_r4_mark55_v15_sat068.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v21_r4_mark55_v15_sat068_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v21_r4_mark55_v15_sat068_all_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase3/r4_p10_mark55_v15_secondary_sweep.csv"
+    ],
+    "used_to_decide": "Below v15 14,971; keep SAT near 0.72."
+  },
+  {
+    "iteration": 22,
+    "analysis_description": "SAT_GAIN **0.70**. Total **14,753**.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v22_r4_mark55_v15_sat070.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v22_r4_mark55_v15_sat070_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v22_r4_mark55_v15_sat070_all_stdout.txt"
+    ],
+    "used_to_decide": "Still below v15."
+  },
+  {
+    "iteration": 23,
+    "analysis_description": "SAT_GAIN **0.74**. Total **14,850** \u2014 **best** of SAT sweep but **\u2212121** vs v15.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v23_r4_mark55_v15_sat074.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v23_r4_mark55_v15_sat074_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v23_r4_mark55_v15_sat074_all_stdout.txt"
+    ],
+    "used_to_decide": "v15 SAT 0.72 remains optimum in this bracket; optional backup **v23** if OOS sensitivity to 0.72."
+  },
+  {
+    "iteration": 24,
+    "analysis_description": "SAT_GAIN **0.76**. Total **14,748**.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v24_r4_mark55_v15_sat076.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v24_r4_mark55_v15_sat076_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v24_r4_mark55_v15_sat076_all_stdout.txt"
+    ],
+    "used_to_decide": "Stronger shrink not better than v15."
+  },
+  {
+    "iteration": 25,
+    "analysis_description": "**ROLL_WIN 300** (else v15). Total **14,622**.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v25_r4_mark55_v15_win300.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v25_r4_mark55_v15_win300_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v25_r4_mark55_v15_win300_all_stdout.txt"
+    ],
+    "used_to_decide": "Faster roll window hurts; keep **400**."
+  },
+  {
+    "iteration": 26,
+    "analysis_description": "**ROLL_WIN 500**. Total **14,678**; day3 +189.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v26_r4_mark55_v15_win500.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v26_r4_mark55_v15_win500_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v26_r4_mark55_v15_win500_all_stdout.txt"
+    ],
+    "used_to_decide": "Slower window also below v15; **v15** (ROLL_WIN 400, SAT 0.72, ROLL 0.20\u20130.40) stays global best on R4 days 1\u20133 in this line."
   }
 ]

@@ -62,3 +62,6 @@ Param sweep (`r4_p8_mark55_scaled_clip_param_sweep.csv`): v11–v13 (larger clip
 Fine roll band round 2 (`r4_p9_mark55_roll_band_round2.csv`): **v15** remains global max (14,971).
   **v18** (ROLL 0.21–0.41) second at **14,818**; v16/v17/v19 all **below v15**.
   **v20** = v15 + microprice>mid+0.35 → **4,520** total (worse=all) — Phase-2 filter **incompatible** with scaled-clip lane on this tape (not a tail hedge).
+
+Secondary sweep on **fixed v15 roll band** (`r4_p10_mark55_v15_secondary_sweep.csv`): SAT_GAIN 0.68–0.76 and ROLL_WIN 300/500.
+  **None** beat **v15** (14,971); best runner-up **v23** SAT 0.74 → **14,850**. ROLL_WIN≠400 consistently **lower** total.

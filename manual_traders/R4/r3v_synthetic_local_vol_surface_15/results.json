@@ -439,5 +439,131 @@
     "match_trades": "worse",
     "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v20_r4_mark55_v15_plus_microprice_worse_stdout.txt",
     "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v20_r4_mark55_v15_plus_microprice_worse_fill_summary.json"
+  },
+  {
+    "iteration": 21,
+    "trader_file": "trader_v21_r4_mark55_v15_sat068.py",
+    "strategy_description": "v15 roll 0.20\u20130.40 with SAT_GAIN **0.68** (vs v15 0.72). Secondary sweep.",
+    "total_profit": 14760,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v21_r4_mark55_v15_sat068.py 4 --data Prosperity4Data --match-trades worse --no-out",
+    "backtest_worse": {
+      "total_profit": 14760,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v21_r4_mark55_v15_sat068_worse_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v21_r4_mark55_v15_sat068_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "total_profit": 14760,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v21_r4_mark55_v15_sat068_all_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v21_r4_mark55_v15_sat068_all_fill_summary.json"
+    },
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v21_r4_mark55_v15_sat068_worse_stdout.txt",
+    "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v21_r4_mark55_v15_sat068_worse_fill_summary.json"
+  },
+  {
+    "iteration": 22,
+    "trader_file": "trader_v22_r4_mark55_v15_sat070.py",
+    "strategy_description": "v15 band; SAT_GAIN **0.70**.",
+    "total_profit": 14753,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v22_r4_mark55_v15_sat070.py 4 --data Prosperity4Data --match-trades worse --no-out",
+    "backtest_worse": {
+      "total_profit": 14753,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v22_r4_mark55_v15_sat070_worse_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v22_r4_mark55_v15_sat070_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "total_profit": 14753,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v22_r4_mark55_v15_sat070_all_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v22_r4_mark55_v15_sat070_all_fill_summary.json"
+    },
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v22_r4_mark55_v15_sat070_worse_stdout.txt",
+    "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v22_r4_mark55_v15_sat070_worse_fill_summary.json"
+  },
+  {
+    "iteration": 23,
+    "trader_file": "trader_v23_r4_mark55_v15_sat074.py",
+    "strategy_description": "v15 band; SAT_GAIN **0.74** \u2014 best secondary sweep **14,850** but still below v15 **14,971**.",
+    "total_profit": 14850,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v23_r4_mark55_v15_sat074.py 4 --data Prosperity4Data --match-trades worse --no-out",
+    "backtest_worse": {
+      "total_profit": 14850,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v23_r4_mark55_v15_sat074_worse_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v23_r4_mark55_v15_sat074_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "total_profit": 14850,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v23_r4_mark55_v15_sat074_all_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v23_r4_mark55_v15_sat074_all_fill_summary.json"
+    },
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v23_r4_mark55_v15_sat074_worse_stdout.txt",
+    "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v23_r4_mark55_v15_sat074_worse_fill_summary.json"
+  },
+  {
+    "iteration": 24,
+    "trader_file": "trader_v24_r4_mark55_v15_sat076.py",
+    "strategy_description": "v15 band; SAT_GAIN **0.76**.",
+    "total_profit": 14748,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v24_r4_mark55_v15_sat076.py 4 --data Prosperity4Data --match-trades worse --no-out",
+    "backtest_worse": {
+      "total_profit": 14748,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v24_r4_mark55_v15_sat076_worse_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v24_r4_mark55_v15_sat076_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "total_profit": 14748,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v24_r4_mark55_v15_sat076_all_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v24_r4_mark55_v15_sat076_all_fill_summary.json"
+    },
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v24_r4_mark55_v15_sat076_worse_stdout.txt",
+    "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v24_r4_mark55_v15_sat076_worse_fill_summary.json"
+  },
+  {
+    "iteration": 25,
+    "trader_file": "trader_v25_r4_mark55_v15_win300.py",
+    "strategy_description": "v15 band+SAT; **ROLL_WIN 300**.",
+    "total_profit": 14622,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v25_r4_mark55_v15_win300.py 4 --data Prosperity4Data --match-trades worse --no-out",
+    "backtest_worse": {
+      "total_profit": 14622,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v25_r4_mark55_v15_win300_worse_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v25_r4_mark55_v15_win300_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "total_profit": 14622,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v25_r4_mark55_v15_win300_all_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v25_r4_mark55_v15_win300_all_fill_summary.json"
+    },
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v25_r4_mark55_v15_win300_worse_stdout.txt",
+    "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v25_r4_mark55_v15_win300_worse_fill_summary.json"
+  },
+  {
+    "iteration": 26,
+    "trader_file": "trader_v26_r4_mark55_v15_win500.py",
+    "strategy_description": "v15 band+SAT; **ROLL_WIN 500**.",
+    "total_profit": 14678,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v26_r4_mark55_v15_win500.py 4 --data Prosperity4Data --match-trades worse --no-out",
+    "backtest_worse": {
+      "total_profit": 14678,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v26_r4_mark55_v15_win500_worse_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v26_r4_mark55_v15_win500_worse_fill_summary.json"
+    },
+    "backtest_all": {
+      "total_profit": 14678,
+      "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v26_r4_mark55_v15_win500_all_stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v26_r4_mark55_v15_win500_all_fill_summary.json"
+    },
+    "match_trades": "worse",
+    "backtest_log_file": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v26_r4_mark55_v15_win500_worse_stdout.txt",
+    "trades_or_fills_summary": "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v26_r4_mark55_v15_win500_worse_fill_summary.json"
   }
 ]

@@ -29,6 +29,7 @@
     "ops_template_graph_burst_2026": "``analyze_r4_phase1_graph_hubs_burst_control.py``: **in/out degree** (count and notional) for hub view (`phase1_graph_hub_degree_*.csv`); **orchestrator** rows at every burst (`phase1_orchestrator_at_burst_rows.csv`); **random timestamp control** for burst event study: per day, **k** = min(n burst (n_prints\u22654) timestamps, n control **1\u2264n<4**), sample control **without** replacement, compare **all prints'** `fwd_EXTRACT_20` \u2014 `phase1_burst_event_random_control_summary.txt` (pooled Welch **t\u22482.79** burst vs control on R4d1\u20133; see file for per-day and vs isolated).",
     "ops_template_phase16_baseline_passive": "``analyze_r4_phase1_baseline_passive_supplement.py``: **(2)** Residual = `fwd_EXTRACT_20` minus mean in **(symbol, spread_bin)** pool only (`phase16_baseline_fwd_extract_residual_by_pair.csv`, summary txt). **(5)** Passive adverse = `fwd_same_20` for passive seller after **aggr_buy**, **-fwd_same_20** for passive buyer after **aggr_sell** (`phase16_passive_adverse_by_party_symbol.csv`, summary txt).",
     "ops_template_phase17_participant_burst": "``analyze_r4_phase1_participant_burst_stratify.py``: participant cells by **burst_bucket** (``burst`` = n_prints_ts\u22654, ``isolated`` = 1, ``small_multi`` = 2\u20133) \u00d7 mark \u00d7 aggressor side \u00d7 symbol \u00d7 K; Welch **burst vs isolated** and **small_multi vs isolated** (`phase17_*`).",
+    "ops_template_phase18_burst_bootstrap": "``analyze_r4_phase1_participant_burst_bootstrap.py``: **2000**-draw bootstrap **95%** percentile CI on **mean** `fwd_same_K` and `fwd_EXTRACT_K` per (**participant**, **side**, **symbol**, **burst_bucket**, **K**) with **n\u226530** (`phase18_participant_burst_bootstrap.csv`, summary txt).",
     "bullet_evidence": [
       {
         "bullet": "1) Participant-level alpha / predictiveness",
@@ -38,9 +39,11 @@
           "manual_traders/R4/r4_phase1_marks/outputs/phase17_participant_burst_bucket_cells.csv",
           "manual_traders/R4/r4_phase1_marks/outputs/phase17_burst_vs_isolated_welch.csv",
           "manual_traders/R4/r4_phase1_marks/outputs/phase17_small_multi_vs_isolated_welch.csv",
-          "manual_traders/R4/r4_phase1_marks/outputs/phase17_participant_burst_stratify_summary.txt"
+          "manual_traders/R4/r4_phase1_marks/outputs/phase17_participant_burst_stratify_summary.txt",
+          "manual_traders/R4/r4_phase1_marks/outputs/phase18_participant_burst_bootstrap.csv",
+          "manual_traders/R4/r4_phase1_marks/outputs/phase18_participant_burst_bootstrap_summary.txt"
         ],
-        "conclusion": "Unconditional vs spread-pool: still **no** |Welch|\u22652 with n\u226540 (**null**). **Optional stratification** by same-timestamp **burst bucket** (`phase17_*`): **burst vs isolated** has **no** |t|\u22652 on same-asset (too few burst prints per participant\u00d7symbol). **small_multi vs isolated**: **Mark 38 aggr_sell hydro K=5** Welch **\u2248\u22122.17** (n=18/480); **Mark 55 aggr_buy extract K=20** Welch **\u22481.38** (n=24/567, same mean for extract fwd); **Mark 67** small_multi extract cells are **tiny** (n=8). Interpret as **hypothesis-generating** only (multiplicity, overlapping fwd windows)."
+        "conclusion": "Unconditional vs spread-pool: still **no** |Welch|\u22652 with n\u226540 (**null**). **Burst-bucket stratification** (`phase17_*`): **burst vs isolated** no |t|\u22652; **small_multi vs isolated** includes **Mark 38 aggr_sell hydro K=5** Welch **\u2248\u22122.17** and **Mark 55 aggr_buy extract K=20** Welch **\u22481.38** (exploratory). **Bootstrap** on cells with **n\u226530** (`phase18_*`): **5** cells have **ci95_lo(fwd_same)>0** (all **isolated** timestamp bucket): **Mark 67 aggr_buy extract** K=5,20 (**ci fully above 0**, 3-day same-sign for K=5,20) and **Mark 55 aggr_buy extract** K=5,20 (positive mean, **tighter** CI); **Mark 67 K=100** CI lower bound barely **>0** but daily signs **mixed**. **No** cell with **small_multi** extract K=20 achieves **ci95_lo>0** under the paired finite filter."
       },
       {
         "bullet": "2) Deviation from bot baseline (cell mean fwd_same_20 by buyer,seller,symbol,spread_bin)",
@@ -136,7 +139,8 @@
       "Baseline-adjusted fwd_same_20 residuals show **no** persistent pair-level alpha.",
       "Unconditional party column on extract (`extract_passive_party_fwd20_proxy`) is **near flat** (~0) because it does not separate passive vs aggressive; **sign-corrected** passive metric (**phase16_passive_adverse_***) is **not** flat and ranks **49 > 22 > 14** on extract.",
       "Bootstrap n\u226550: only **4 / 36** cells with **entire 95% CI** above 0; **16/36** have same-sign daily means (others flip sign by day) \u2014 see `phase1_bootstrap_summary.txt`.",
-      "Participant **burst vs isolated** same-asset Welch: **no** |t|\u22652 with usable n; **Mark 38 hydro** small_multi vs isolated reaches |t|>2 at **K=5** only (see `phase17_small_multi_vs_isolated_welch.csv`)."
+      "Participant **burst vs isolated** same-asset Welch: **no** |t|\u22652 with usable n; **Mark 38 hydro** small_multi vs isolated reaches |t|>2 at **K=5** only (see `phase17_small_multi_vs_isolated_welch.csv`).",
+      "**Mark 55 aggr_buy** extract **small_multi** K=20 (Welch **\u22481.38** in phase17) has **n=24** so it is **below** the **n\u226530** bootstrap gate in `phase18_*`; **isolated**-bucket **Mark 55** K=5,20 **does** get **ci95_lo>0** in phase18 (overlaps phase1 bootstrap rank-4 story)."
     ],
     "next_phase": "Phase 2 may condition the burst hint and pair structure on **finer windows**, **microprice**, and **Mark\u00d7burst** interactions; Phase 3 will re-test inside Sonic gate on R4."
   },
@@ -482,5 +486,15 @@
       "manual_traders/R4/r4_phase1_marks/outputs/phase17_participant_burst_stratify_summary.txt"
     ],
     "used_to_decide": "Confirms spread-pool **null** is not the whole story when conditioning on **co-trading intensity** at the print: **Mark 55 aggr_buy** on extract shows **higher** fwd_same_20 in **small_multi** than isolated at K=20 (Welch ~**1.38**, n=24/567). **Mark 38 aggr_sell hydro** small_multi vs isolated **K=5** Welch **\u2248\u22122.17**. Burst bucket still too sparse per cell for |t|\u22652 vs isolated."
+  },
+  {
+    "iteration": 18,
+    "analysis_description": "**Phase 1 bullet 1** — **bootstrap CI** for participant \u00d7 **burst_bucket** \u00d7 K (``analyze_r4_phase1_participant_burst_bootstrap.py``): **2000** resamples, **n\u226530**, seed **2027**; mean `fwd_same_K` and `fwd_EXTRACT_K` with **2.5/97.5** percentile CI; per-day mean columns + **sign_stable_same_3d**. **`round4_phase1_complete`**: bullet-1 outputs + conclusion; **no_edge** note on **n=24** small_multi gate; **ops_template_phase18_burst_bootstrap**.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_phase1_marks/analyze_r4_phase1_participant_burst_bootstrap.py",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase18_participant_burst_bootstrap.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase18_participant_burst_bootstrap_summary.txt"
+    ],
+    "used_to_decide": "**Mark 67 aggr_buy** extract **isolated** K=5,20: **strictly positive** 95% CI on mean fwd_same (aligns with phase1 bootstrap rank-4). **Mark 55 aggr_buy** extract **isolated** K=5,20 also **ci95_lo>0**. **Mark 67 K=100** CI lower bound >0 but **not** day-sign-stable. **Small_multi** extract K=20: **no** cell passes **n\u226530** + ci>0 (Welch-suggestive **n=24** path excluded from phase18 gate)."
   }
 ]

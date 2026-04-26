@@ -1,0 +1,14 @@
+Bootstrap N=2000, MIN_N=30, seed=2027
+Total cells: 41
+Cells with ci95_lo(fwd_same) > 0: 5
+Cells with ci95_hi(fwd_same) < 0: 2
+
+Top 15 by mean_fwd_same among cells with ci95_lo_same > 0:
+  Mark 67 aggr_buy VELVETFRUIT_EXTRACT isolated K=5 n=154 mean=1.977 CI=[1.678,2.286] stable=True
+  Mark 67 aggr_buy VELVETFRUIT_EXTRACT isolated K=20 n=154 mean=1.786 CI=[1.169,2.432] stable=True
+  Mark 67 aggr_buy VELVETFRUIT_EXTRACT isolated K=100 n=153 mean=1.5 CI=[0.0424,2.964] stable=False
+  Mark 55 aggr_buy VELVETFRUIT_EXTRACT isolated K=20 n=567 mean=0.3598 CI=[0.03075,0.6949] stable=True
+  Mark 55 aggr_buy VELVETFRUIT_EXTRACT isolated K=5 n=567 mean=0.1905 CI=[0.01497,0.3686] stable=True
+
+Extract cells (symbol VELVETFRUIT_EXTRACT) small_multi K=20, ci fully above 0:
+  (none)

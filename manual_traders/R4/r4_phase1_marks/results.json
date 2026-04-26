@@ -546,5 +546,12 @@
     "strategy_description": "Phase 1 **bullet 1** burst-bucket stratification: `analyze_r4_phase1_participant_burst_stratify.py` \u2192 `phase17_participant_burst_bucket_cells.csv`, `phase17_burst_vs_isolated_welch.csv`, `phase17_small_multi_vs_isolated_welch.csv`, summary txt. **`round4_phase1_complete`** bullet 1 + **no_edge** + **ops_template_phase17**.",
     "backtest_worse": null,
     "backtest_all": null
+  },
+  {
+    "iteration": 18,
+    "trader_file": "N/A",
+    "strategy_description": "Phase 1 **bullet 1** bootstrap: `analyze_r4_phase1_participant_burst_bootstrap.py` \u2192 `phase18_participant_burst_bootstrap.csv` + summary (participant \u00d7 burst_bucket \u00d7 K, n\u226530, 2000 draws). **`round4_phase1_complete`** bullet 1 + **no_edge** + **ops_template_phase18**.",
+    "backtest_worse": null,
+    "backtest_all": null
   }
 ]

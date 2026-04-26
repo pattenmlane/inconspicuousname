@@ -1,0 +1,24 @@
+{
+  "subset": "tight_and_burst",
+  "TH": 2.0,
+  "K5": {
+    "n": 291,
+    "mean": 0.230241,
+    "frac_positive": 0.4948
+  },
+  "K10": {
+    "n": 291,
+    "mean": 0.278351,
+    "frac_positive": 0.512
+  },
+  "K20": {
+    "n": 291,
+    "mean": 0.331615,
+    "frac_positive": 0.512
+  },
+  "K50": {
+    "n": 290,
+    "mean": 0.444828,
+    "frac_positive": 0.5448
+  }
+}

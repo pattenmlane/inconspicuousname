@@ -268,5 +268,18 @@
       "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v5_r4_all.log"
     ],
     "used_to_decide": "Prefer v5-style limit improvement over v3 ask for risk; still need exit/hold logic or extract hedge to capture population gate drift."
+  },
+  {
+    "iteration": 6,
+    "round": 4,
+    "analysis_description": "trader_v6: v5 entry + sell delay after regime ends — only flatten at bid when inactive for >=MIN_HOLD_TICKS since last tight+burst tick (MIN_HOLD=10, aligned r4_tight_burst_5300_fwd_horizons K10 mean ~+0.28). Quick ablations: MIN_HOLD=10 → worse PnL -132 (same as v5); MIN_HOLD=20 → -168 (worse, held through adverse drift); MIN_HOLD=5 → -136.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/trader_v6.py",
+      "manual_traders/R4/r4_counterparty_phase1/r4_tight_burst_5300_fwd_horizons.json",
+      "manual_traders/R4/r4_counterparty_phase1/analyze_r4_tight_burst_5300_fwd_horizons.py",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v6_r4_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v6_r4_all.log"
+    ],
+    "used_to_decide": "Hold-after-regime does not improve worse PnL at MIN_HOLD=10 vs v5; longer hold (20) hurts — next lever is exit price (improve vs bid) or paired extract when gate on, not only delay."
   }
 ]

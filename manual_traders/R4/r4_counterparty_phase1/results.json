@@ -238,5 +238,45 @@
         "note": "Same totals as worse on this run."
       }
     }
+  },
+  {
+    "iteration": 6,
+    "round": 4,
+    "trader_file": "trader_v6.py",
+    "strategy_description": "v5 + minimum hold: after gate+burst ends, wait MIN_HOLD_TICKS=10 (aligned ~K10 fwd mid on tape) before selling VEV_5300 at bid; ablation MIN_HOLD=20 worsened PnL on this run.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -132,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v6.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v6_r4_worse.log",
+      "backtest_output": {
+        "day1": -129,
+        "day2": -3,
+        "day3": 0,
+        "total": -132
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "Worse totals match v5 (-132); hold defers exit slightly vs immediate v5 flatten."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -135,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v6.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v6_r4_all.log",
+      "backtest_output": {
+        "day1": -129,
+        "day2": -3,
+        "day3": -3,
+        "total": -135
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "Day 3 small extra loss vs worse (-3) from fill matching on exit."
+      }
+    }
   }
 ]

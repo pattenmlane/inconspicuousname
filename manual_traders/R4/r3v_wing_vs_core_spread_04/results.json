@@ -153,5 +153,28 @@
       "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v6_all.log",
       "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v6_all.json"
     }
+  },
+  {
+    "iteration": 7,
+    "trader_file": "trader_v7.py",
+    "strategy_description": "Dual-leg taker on Tier-A fires: **1 lot extract + 1 lot VEV_5300** at best asks when act-time Sonic gate tight (same 15 signals as v3/v4).",
+    "total_profit": 123.0,
+    "backtest_round": 4,
+    "backtest_days": "4-1 4-2 4-3",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 123.0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v7.py 4 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v7_worse.log",
+      "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v7_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v7_worse.json",
+      "note": "End PnL decomposes as VELVETFRUIT_EXTRACT 91 + VEV_5300 32 = v3 + v4 (additive, no interaction)."
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 123.0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v7.py 4 --data Prosperity4Data --match-trades all --no-vis --out manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v7_all.log",
+      "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v7_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v7_all.json"
+    }
   }
 ]

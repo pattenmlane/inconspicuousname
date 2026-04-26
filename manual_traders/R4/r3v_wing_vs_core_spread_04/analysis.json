@@ -341,5 +341,18 @@
       "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v6_worse.json"
     ],
     "used_to_decide": "On this slice, extract leg (v3) beats scaled 5300 taker (v6); passive 5300 (v5) is a dead path in sim."
+  },
+  {
+    "iteration": 7,
+    "analysis_description": "Tape: on the 15 Tier-A timestamps, **correlation** between forward extract mid and forward VEV_5300 mid is **~0.86 (K=5), ~0.98 (K=20), ~0.98 (K=100)** (extract_vev5300_fwd_corr_by_k.csv); pooled mean **sum** of fwd mids ~+2.17/+3.13/+3.70 by K (extract_vev5300_joint_fwd_after_6722_tight.csv). Extended r4_analyze_vev5300_after_6722_tight.py to emit those tables. trader_v7: simultaneous taker buy extract+5300; backtest **+123** = **+91 extract + +32 5300** (exact sum of v3+v4) with **6** SUBMISSION rows \u2014 **additive**, no cross-leg interaction in PnL.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_analyze_vev5300_after_6722_tight.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/extract_vev5300_joint_fwd_after_6722_tight.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/extract_vev5300_fwd_corr_by_k.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v7.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v7_worse.log",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v7_worse.json"
+    ],
+    "used_to_decide": "High mid\u2013mid comovement explains additive sim; for capital efficiency prefer **v3** alone unless 5300 leg has independent use (hedge not modeled here)."
   }
 ]

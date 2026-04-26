@@ -1,0 +1,104 @@
+{
+  "n_extract_trades_tight": 351,
+  "n_extract_trades_loose": 1030,
+  "top_pairs_notional_tight": [
+    {
+      "pair": "Mark 14->Mark 55",
+      "notional": 2437030.0
+    },
+    {
+      "pair": "Mark 55->Mark 14",
+      "notional": 2388181.0
+    },
+    {
+      "pair": "Mark 55->Mark 01",
+      "notional": 2052411.0
+    },
+    {
+      "pair": "Mark 01->Mark 55",
+      "notional": 1971781.0
+    },
+    {
+      "pair": "Mark 67->Mark 49",
+      "notional": 696658.0
+    },
+    {
+      "pair": "Mark 67->Mark 22",
+      "notional": 601295.0
+    },
+    {
+      "pair": "Mark 49->Mark 22",
+      "notional": 114912.0
+    },
+    {
+      "pair": "Mark 22->Mark 55",
+      "notional": 88789.0
+    },
+    {
+      "pair": "Mark 55->Mark 22",
+      "notional": 63036.0
+    },
+    {
+      "pair": "Mark 55->Mark 49",
+      "notional": 52288.0
+    },
+    {
+      "pair": "Mark 49->Mark 55",
+      "notional": 36575.0
+    },
+    {
+      "pair": "Mark 22->Mark 49",
+      "notional": 26170.0
+    }
+  ],
+  "top_pairs_notional_loose": [
+    {
+      "pair": "Mark 55->Mark 14",
+      "notional": 6866498.0
+    },
+    {
+      "pair": "Mark 14->Mark 55",
+      "notional": 6798801.0
+    },
+    {
+      "pair": "Mark 01->Mark 55",
+      "notional": 5461143.0
+    },
+    {
+      "pair": "Mark 55->Mark 01",
+      "notional": 5167668.0
+    },
+    {
+      "pair": "Mark 67->Mark 49",
+      "notional": 4359900.0
+    },
+    {
+      "pair": "Mark 67->Mark 22",
+      "notional": 2263356.0
+    },
+    {
+      "pair": "Mark 22->Mark 55",
+      "notional": 393768.0
+    },
+    {
+      "pair": "Mark 49->Mark 22",
+      "notional": 352278.0
+    },
+    {
+      "pair": "Mark 55->Mark 22",
+      "notional": 262944.0
+    },
+    {
+      "pair": "Mark 22->Mark 49",
+      "notional": 257045.0
+    },
+    {
+      "pair": "Mark 55->Mark 49",
+      "notional": 230902.0
+    },
+    {
+      "pair": "Mark 49->Mark 55",
+      "notional": 99708.0
+    }
+  ]
+}

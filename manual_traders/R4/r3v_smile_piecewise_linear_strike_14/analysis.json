@@ -237,5 +237,24 @@
       "does_gate_clean_signal_like_sonic": "Yes for **population** extract fwd20 (strong Welch tight vs loose). No for **Mark01→22 identification** under naive merge — those prints are almost always already tight, so the gate does not separate counterparty states; burst vs non-burst is the more meaningful orthogonal axis for that pair.",
       "phase4_suggestion": "Next: strategies that trade **on** joint-tight episodes (v2-style) with inventory/risk caps; re-test Mark conditioning with burst definitions independent of M01→22 VEV (e.g. all >=3-trade bursts) and day-held-out."
     }
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "Post-Phase3 evidence: leave-one-csv-day-out Welch on joint-gate extract fwd20 (same K=20 as Phase 3); extract counterparty notional under tight vs loose at trade ts; trader_v3 inventory skew ablation vs v2.",
+    "analysis_outputs": [
+      "run_r4_loo_gate_validation.py",
+      "analysis_outputs/r4_loo_joint_gate_welch_fwd20.json",
+      "run_r4_counterparty_under_tight.py",
+      "analysis_outputs/r4_counterparty_extract_under_tight.json",
+      "trader_v3.py",
+      "backtest_logs/trader_v3_worse.log",
+      "backtest_logs/trader_v3_all.log"
+    ],
+    "used_to_decide": "LOO: pooled tight vs loose Welch remains strongly positive when any single csv day is excluded (t_stat 6.66–7.10, p~1e-11–1e-12); per-day tight mean fwd20 > loose for all three days. Counterparty: under joint-tight timestamps, tape extract trades concentrate notional in Mark14↔Mark55 and Mark55↔Mark01 pairs (r4_counterparty_extract_under_tight.json). Sim: naive passive skew at |pos|>40 (v3) cuts PnL vs v2 (+2961 worse vs +13236) — inventory skew fights the long-only edge; prefer flat lean or asymmetric caps tuned to sim.",
+    "round4_post_phase3_notes": {
+      "loo_joint_gate_fwd20": "r4_loo_joint_gate_welch_fwd20.json: exclude day 1/2/3 from pooled sample — tight mean fwd20 stays positive vs negative loose; all three LOO t-stats > 0; all three per-day-only Welch also tight>loose means.",
+      "counterparty_under_tight": "Inner-join trade ts to price-panel tight flag: 351 extract trades at tight ts vs 1030 at loose (days 1–3). Top notional tight pairs: Mark14→Mark55, Mark55→Mark14, Mark55→Mark01, Mark01→Mark55.",
+      "trader_v3_vs_v2": "v3 adds passive sells when long>40 and buys when short<-40 under the same gate; worse total_profit 2961 vs v2 13236 — do not ship this skew without redesign."
+    }
   }
 ]

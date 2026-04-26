@@ -213,13 +213,15 @@ def main() -> None:
     rows = []
     marks = sorted(set(m["buyer"]) | set(m["seller"]))
     for U in marks:
-        for role in ("any", "buy_aggr", "sell_aggr"):
+        for role in ("any", "buy_aggr", "sell_aggr", "mid_passive"):
             if role == "any":
                 sub = m[(m["buyer"] == U) | (m["seller"] == U)]
             elif role == "buy_aggr":
                 sub = m[(m["buyer"] == U) & (m["aggressor"] == "buy_aggr")]
-            else:
+            elif role == "sell_aggr":
                 sub = m[(m["seller"] == U) & (m["aggressor"] == "sell_aggr")]
+            else:
+                sub = m[((m["buyer"] == U) | (m["seller"] == U)) & (m["aggressor"] == "mid_passive")]
             for K in KS:
                 col = f"fwd_mid_{K}"
                 ex_col = f"extract_fwd_mid_{K}"
@@ -323,6 +325,45 @@ def main() -> None:
             OUT / "02_stratified_mark_symbol_fwd20_top80.csv", index=False
         )
 
+    # Stratified: add **session tertile** (ts_tert) — K=20, same min_n
+    sess_rows = []
+    for U in marks:
+        subu = m[(m["buyer"] == U) | (m["seller"] == U)]
+        for (sym, sq, br, tert), sub in subu.groupby(["symbol", "spread_q", "burst", "ts_tert"]):
+            x = pd.to_numeric(sub[col], errors="coerce").dropna()
+            if len(x) < 25:
+                continue
+            xa = x.to_numpy(dtype=float)
+            slo, shi = bootstrap_mean_ci(xa, n_boot=N_BOOT_STRAT, seed=hash((U, sym, sq, br, str(tert))) % (2**31))
+            sess_rows.append(
+                {
+                    "mark": U,
+                    "symbol": sym,
+                    "spread_q": str(sq),
+                    "burst": bool(br),
+                    "session_tert": str(tert),
+                    "n": len(x),
+                    "mean_fwd20": float(xa.mean()),
+                    "median_fwd20": float(np.median(xa)),
+                    "t_fwd20_mean0": one_sample_t_mean0(xa),
+                    "ci_fwd20_lo": slo,
+                    "ci_fwd20_hi": shi,
+                    "frac_pos": float((xa > 0).mean()),
+                }
+            )
+    if sess_rows:
+        pd.DataFrame(sess_rows).sort_values("mean_fwd20", ascending=False).head(80).to_csv(
+            OUT / "12_stratified_mark_session_fwd20_top80.csv", index=False
+        )
+        lines.append(f"Wrote {OUT / '12_stratified_mark_session_fwd20_top80.csv'}")
+
+    # Burst orchestrator: same (day,timestamp), >1 row — modal buyer/seller + symbol list
+    burst_tbl = burst_stats(tr)
+    burst_tbl = burst_tbl[burst_tbl["burst"]].copy()
+    burst_tbl = burst_tbl.sort_values(["day", "timestamp"])
+    burst_tbl.to_csv(OUT / "11_burst_orchestrator_timestamps.csv", index=False)
+    lines.append(f"Wrote {OUT / '11_burst_orchestrator_timestamps.csv'}")
+
     # --- 2) Baseline cell means (buyer, seller, symbol) ---
     cell = (
         m.groupby(["buyer", "seller", "symbol"])[col]
@@ -341,6 +382,37 @@ def main() -> None:
     edge = m.groupby(["buyer", "seller"]).agg(n=("symbol", "size"), notional=("quantity", "sum"))
     edge = edge.reset_index().sort_values("n", ascending=False)
     edge.to_csv(OUT / "05_directed_edges_buyer_seller.csv", index=False)
+
+    # Reciprocity: reverse edge count for top directed pairs (Phase 1 graph bullet)
+    rec_rows = []
+    edge_idx = edge.set_index(["buyer", "seller"])
+    for _, r in edge.head(200).iterrows():
+        a, b, n_ab = r["buyer"], r["seller"], int(r["n"])
+        key = (b, a)
+        n_ba = int(edge_idx.loc[key, "n"]) if key in edge_idx.index else 0
+        rec_rows.append(
+            {
+                "buyer": a,
+                "seller": b,
+                "n_ab": n_ab,
+                "n_ba_reverse": n_ba,
+                "reciprocity_ratio": (n_ba / n_ab) if n_ab > 0 else float("nan"),
+            }
+        )
+    pd.DataFrame(rec_rows).to_csv(OUT / "13_edge_reciprocity_top200_from_top200.csv", index=False)
+    lines.append(f"Wrote {OUT / '13_edge_reciprocity_top200_from_top200.csv'}")
+
+    # Hub scores: incident trade prints (out as buyer + in as seller) on directed edges
+    out_buy = edge.groupby("buyer")["n"].sum()
+    in_sell = edge.groupby("seller")["n"].sum()
+    participants = sorted(set(edge["buyer"]) | set(edge["seller"]))
+    hub = pd.DataFrame({"participant": participants})
+    hub["out_as_buyer"] = hub["participant"].map(out_buy).fillna(0).astype(int)
+    hub["in_as_seller"] = hub["participant"].map(in_sell).fillna(0).astype(int)
+    hub["total_incident_prints"] = hub["out_as_buyer"] + hub["in_as_seller"]
+    hub = hub.sort_values("total_incident_prints", ascending=False)
+    hub.to_csv(OUT / "14_mark_hub_incident_edge_counts.csv", index=False)
+    lines.append(f"Wrote {OUT / '14_mark_hub_incident_edge_counts.csv'}")
 
     two_hop = Counter()
     for _, r in edge.head(200).iterrows():

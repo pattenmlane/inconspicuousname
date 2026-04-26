@@ -247,5 +247,27 @@
       "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v4_r4_mark55_under_sonic_gate_all_stdout.txt"
     ],
     "used_to_decide": "Mark55+gated backtest **13,162** >> Mark67 variants — prioritize Mark55 counterparty lane under Sonic gate for next iteration; still validate OOS / day-stability beyond this 3-day tape."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "Tape: `_r4_mark55_gate_multik_analysis.py` — Mark55 aggr_buy EXTRACT × Sonic tight: Welch tight vs loose for fwd_mid K=5,20,100 on Phase-1 enriched trades. K=100 shows mean_tight > mean_loose with p≈0.024; K=5,20 n.s. Trader v5 stacks microprice filter on v4.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/_r4_mark55_gate_multik_analysis.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase3/r4_p5_mark55_gate_multik_welch.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v5_r4_mark55_gate_microprice.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v5_r4_mark55_gate_microprice_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v5_r4_mark55_gate_microprice_all_stdout.txt"
+    ],
+    "used_to_decide": "v5 total 9,854 < v4 13,162 but day-3 extract PnL +707 vs v4 \u22121680 — microprice filter trades **tail risk vs headroom**. Long-horizon tape hint (K=100) aligns with keeping exposure when gate+book pressure align; short K still noisy."
+  },
+  {
+    "iteration": 6,
+    "analysis_description": "Risk experiment: v6 = v4 with **no trades when state.backtest_day==3** on this 3-day slice (removes historical day-3 PnL entirely). Not a generalizable calendar rule\u2014documents that v4 loss is **concentrated** in day-3 in-sample.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v6_r4_mark55_gate_skip_day3.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v6_r4_mark55_gate_skip_day3_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v6_r4_mark55_gate_skip_day3_all_stdout.txt"
+    ],
+    "used_to_decide": "v6 total **14,842** = v4 day1+day2 only (+1,680 vs v4). Next: replace hardcoded day skip with **data-driven** regime (e.g. gate P(tight) high days) or inventory cap, not magic day index."
   }
 ]

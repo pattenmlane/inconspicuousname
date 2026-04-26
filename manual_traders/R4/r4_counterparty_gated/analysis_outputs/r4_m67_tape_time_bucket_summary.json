@@ -1,0 +1,7 @@
+{
+  "horizon_K": 5,
+  "horizon_unit": "K steps along price row index for (day, VELVETFRUIT_EXTRACT) \u2014 same as run_r4_phase1_analysis.py",
+  "timestamp_unit": "tape step index; step 100 from 0 to 999900 per day in ROUND_4 sample",
+  "tape_decile": "int clip(timestamp // 100000, 0, 9) \u2014 10 ~equal-width buckets in tape time",
+  "n_m67_extract_aggr_buy": 164
+}

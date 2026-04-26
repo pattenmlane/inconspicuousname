@@ -136,5 +136,21 @@
       "round3work/vouchers_final_strategy/outputs/r3_tight_spread_6panel.png"
     ],
     "used_to_decide": "Falsified under worse and all: large negative (worse -28430). Do not use raw signed momentum as a standalone directional rule with this execution; mid-forward result does not transfer. Prefer mean-reversion or a different VEV quoting model in later iterations."
+  },
+  {
+    "iteration": 25,
+    "analysis_description": "v23 extract MR extended per STRATEGY.txt optional layer (short-hold long/short both strikes with extract) using same dev signal: equal 5200+5300 with extract when joint tight; optional clip boost when s52+s53<=2 (spread--spread / tightness of the joint). Data remains round3work/vouchers_final_strategy definitions.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt"
+    ],
+    "used_to_decide": "v25 worse 14716 vs v23 4912: adding balanced voucher legs in tight regime helps total but VEV_5200 PnL negative on some days in backtest, while 5300 positive. Next: per-leg or single-leg v26."
+  },
+  {
+    "iteration": 26,
+    "analysis_description": "Per-voucher execution test: keep joint gate (both s<=2) but only trade VEV_5300 in direction of the same EMA reversion on extract; VEV_5200 spread still observed to define regime, no 5200 orders. Aligns with inclineGod 'each contract' spread/price but uses empirical fill asymmetry from v25.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt"
+    ],
+    "used_to_decide": "v26 worse 18034, all 18678, best in pivot line so far; still <<200k/day. Continue with scaling/tighter s_ex, or add second venue logic on 5200 with lighter size for hedge."
   }
 ]

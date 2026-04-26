@@ -6,14 +6,11 @@
 **Sizing:** When gate *tight*, slightly larger passive VELVETFRUIT_EXTRACT quotes (+ optional
 small deep passive on VEV_4000 when its book is wide). When *wide*, minimal extract only.
 
-**Counterparty caveat (Round 4 “Hello Mark”):** In this prosperity4bt runner, `TradingState`
-is built with `market_trades={}` during `Trader.run()` — tape trades are not injected before
-the strategy decision each tick. Tier-A patterns like (Mark 67 → Mark 22 on extract) from
-offline Phase 3 tables **cannot** be conditioned in-code without engine changes or a separate
-trade replay layer. This file encodes the **gate + microstructure** slice we can execute
-in-sim today; Mark-conditional logic is reserved for a follow-up if the harness exposes fills.
+**Counterparty:** `TestRunner` now copies tape rows into `state.market_trades` before each
+`Trader.run` (see `imc-prosperity-4-backtester/prosperity4bt/test_runner.py`). This v1 file
+does **not** read them; use `trader_r4_v3.py` for Mark-conditioned execution.
 
-See manual_traders/R4/r3v_wide_book_passive_11/analysis.json (round4_phase3_complete).
+See `analysis.json` (round4_phase3_complete, iteration 4+).
 """
 
 from __future__ import annotations

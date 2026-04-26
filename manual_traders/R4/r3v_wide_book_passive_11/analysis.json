@@ -264,5 +264,16 @@
       "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v2_d123_worse_full.log"
     ],
     "used_to_decide": "To realize Tier-A tape edge in sim, next step is **not** larger ex_buy when br<=7 — use **second order** (e.g. touch bid), **skew prices**, or **fade** path; or relax position / multi-level quotes. Harness now supports counterparty reads."
+  },
+  {
+    "iteration": 5,
+    "round": 4,
+    "analysis_description": "trader_r4_v3: Tier-A tick splits extract buy into touch-at-bb (up to 4) then bb+1 primary for remaining room + ex_buy bump. Ablated touch-only and reserve-after-primary; merged tradeHistory MD5 unchanged vs v1 on full days 1–3 (worse and all). Conclusion for this tape+matcher: **order-list reshuffle at same prices does not change realized fills** vs single Order in v1 — need different **prices**, **sell-side** reaction, or **non-passive** action to move PnL.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v3.py",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v3_d123_worse_full.log",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v3_d123_all_full.log"
+    ],
+    "used_to_decide": "Next sim experiments: signal-triggered **fair skew** (move bid/ask vs EMA), **reduce sell** on sig, or **take** small lift when tape prints at ask — each needs explicit worse-fill risk budget."
   }
 ]

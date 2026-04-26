@@ -217,5 +217,93 @@
       "simulation_note": "Counterparty-conditioned toy: `trader_v1.py` — Round 4 total **3,152** (`worse`), **3,602** (`all`); logs + `family12_outputs/run_fill_summary_v1.json`.",
       "phase3_prerequisite_met": true
     }
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "Round 4 Phase 3 — Sonic **joint tight gate** (inner-join 5200+5300+extract, TH=2, same as `round3work/vouchers_final_strategy/analyze_vev_5200_5300_tight_gate_r3.py`); inclineGod **spread–spread** and **Δspread–Δmid** tables; counterparty×gate markouts + `trader_v2` sim (gate + Mark67 follow).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/r4_phase3_sonic_gate_analysis.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_joint_panel_sample.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_sonic_forward_extract_k20.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_spread_spread_corr_by_day.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_spread_price_diffcorr.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_pair_markout_by_gate.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_three_way_mark01_22_vev5300.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_mark01_22_vev5300_gate_note.txt",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_mark67_extract_by_gate.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_mark67_extract_gate_welch_k5.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_mark01_22_vev5500_by_gate.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_mark01_22_vev5500_gate_welch.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_run_log.txt",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/trader_v2.py",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v2_round4_worse.log",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v2_round4_all.log",
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt"
+    ],
+    "used_to_decide": "Phase 3 gate object on next entry (`round4_phase3_complete`)."
+  },
+  {
+    "iteration": 5,
+    "analysis_description": "round4_phase3_complete",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_sonic_forward_extract_k20.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_spread_spread_corr_by_day.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_spread_price_diffcorr.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_mark67_extract_gate_welch_k5.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_three_way_mark01_22_vev5300.csv",
+      "manual_traders/R4/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v2.json"
+    ],
+    "used_to_decide": "Sonic gate on Round 4 **cleans** population-level extract-mid forward **K=20** (tight vs not, all days p≪1e-4). Counterparty×gate: **Mark 67** aggressive-extract K=5 markout **does not** significantly differ tight vs joint-off (Welch p≈0.64). **Mark 01→Mark 22** on **VEV_5300** is **mechanically** only observed when joint gate is on (n=1 gate-off 5300 trades total) — cannot test “only informative when tight” as independence; see `r4_phase3_mark01_22_vev5300_gate_note.txt`. Sim: **trader_v2** (gate+Mark67) **5224** worse vs **trader_v1** 3152 — gating reduced bad day-3 tail but is still a toy.",
+    "round4_phase3_complete": {
+      "gate_definition": "Same as R3 script: inner-join timestamps for VEV_5200, VEV_5300, VELVETFRUIT_EXTRACT; tight = (s5200≤2)∧(s5300≤2).",
+      "comparison_to_phase1_2_without_gate": {
+        "extract_forward_k20_population": "Without conditioning on counterparties, **joint tight** vs **not** shows **large positive** mean K=20 extract forward on all R4 days 1–3 (`r4_phase3_sonic_forward_extract_k20.csv`: e.g. day1 mean_tight≈+0.60 vs mean_not≈−0.05, Welch t≈5.3, p≈1e-7). This **supports** Sonic’s ‘cleaner signal when both legs tight’ on **extract mid** in Round 4 tapes — stronger separation than Phase 1 burst-vs-control which mixed rows.",
+        "mark67_aggressive_extract": "Phase 1/2 showed strong **positive** K=5 markout after Mark67 aggressive buys. Conditioning on **joint gate** does **not** sharpen it: pooled Welch tight vs off **p≈0.64** (`r4_phase3_mark67_extract_gate_welch_k5.csv`); cell counts small when tight (see `r4_phase3_mark67_extract_by_gate.csv`).",
+        "mark01_22_vev5300": "Phase 2 short-horizon **negative** markout on 5300 for this pair remains under gate (all prints are tight-only in slice). **Cannot** compare tight vs off for *this pair on this strike* — almost no gate-off 5300 tape prints (`r4_phase3_three_way_mark01_22_vev5300.csv`).",
+        "sim_trader_v1_vs_v2": "**trader_v1** (no gate): worse total **3152**, day3 extract **−1504**. **trader_v2** (gate+same rule): worse **5224**, day3 extract **+568** — gate **removes** the catastrophic day-3 path for this toy but is **not** validated as economic ‘alpha’ vs simpler baselines."
+      },
+      "inclineGod_spread_panels_round4": {
+        "spread_spread_level_corr": "`r4_phase3_spread_spread_corr_by_day.csv`: corr(s5200,s5300) ≈ **0.18–0.27** by day; corr with extract spread smaller and mixed sign.",
+        "spread_price_diff_corr": "`r4_phase3_spread_price_diffcorr.csv`: first-difference corr of **Δspread vs Δextract mid** in tight vs wide cohorts — magnitudes **small** (|ρ| typically <0.05 in reported rows); complements Phase 2’s ‘spread compression vs vol’ null on VEV_5200 by showing extract mid moves are not strongly tied to single-tick spread changes on this grid."
+      },
+      "top_tier_edges_ranked": [
+        {
+          "rank": 1,
+          "label": "Sonic population extract forward (K=20 tape steps)",
+          "rule": "When **joint gate on**, mean forward **VELVETFRUIT_EXTRACT** mid over **20** timestamps is **significantly higher** than when gate off — **all** R4 days 1–3.",
+          "evidence": "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_sonic_forward_extract_k20.csv"
+        },
+        {
+          "rank": 2,
+          "label": "VEV spread co-move (inclineGod)",
+          "rule": "**VEV_5200** and **VEV_5300** L1 spreads co-vary** positively** (ρ≈0.18–0.27) on full-day grids — book-state object distinct from extract mids.",
+          "evidence": "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_spread_spread_corr_by_day.csv"
+        },
+        {
+          "rank": 3,
+          "label": "Mechanical entanglement: Mark01→22 basket ↔ tight surface",
+          "rule": "Dominant **Mark 01→Mark 22** prints on **VEV_5300** occur **only** when the joint gate is satisfied in this tape — **not** a free third dimension for ‘fade when wide’ on that strike (n_off=1).",
+          "evidence": "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_mark01_22_vev5300_gate_note.txt"
+        },
+        {
+          "rank": 4,
+          "label": "Three-way interaction (limited n)",
+          "rule": "**Mark 01→Mark 22** on **VEV_5500** has **1** print with joint gate **off** (day 3) — **insufficient** for Welch tight vs off at any K (`r4_phase3_mark01_22_vev5500_gate_welch.csv`).",
+          "evidence": "manual_traders/R4/r3v_gamma_scalping_extract_20/analysis_outputs/r4_phase3_mark01_22_vev5500_gate_welch.csv"
+        },
+        {
+          "rank": 5,
+          "label": "Tier-B sim: gate + counterparty toy",
+          "rule": "**trader_v2**: joint gate **and** Mark67 aggressive-extract follow — **5224** worse / **6399** all over R4 days 1–3; improves on v1’s day-3 drawdown but still heuristic.",
+          "evidence": "manual_traders/R4/r3v_gamma_scalping_extract_20/run_logs/trader_v2_round4_worse.log, family12_outputs/run_fill_summary_v2.json"
+        }
+      ],
+      "negative_or_null_findings": [
+        "**Mark 67 × gate** on K=5 extract markout: no significant difference tight vs joint-off (p≈0.64).",
+        "**Δspread–Δmid** correlations (extract) are weak in tight/wide splits — do not use as standalone directional engine.",
+        "**Mark01→22 VEV_5500** gate-split Welch **not estimable** (n_off=1 per K)."
+      ]
+    }
   }
 ]

@@ -1,0 +1,4 @@
+K,n_tight,n_off,mean_tight,mean_off,welch_t,p_value,note
+5,298,1,,,,,insufficient_n_for_welch
+20,298,1,,,,,insufficient_n_for_welch
+100,296,1,,,,,insufficient_n_for_welch

@@ -1,0 +1,34 @@
+Wrote r4_phase3_joint_panel_sample.csv
+Sonic K=20 extract forward (R4):
+   day  p_tight  n_tight  ...  mean_fwd20_not   welch_t       p_value
+0    1   0.1381     1381  ...       -0.048320  5.324774  1.132599e-07
+1    2   0.1727     1727  ...       -0.018115  4.238249  2.336409e-05
+2    3   0.4614     4598  ...       -0.395020  6.781484  1.257856e-11
+
+[3 rows x 8 columns]
+Wrote r4_phase3_spread_spread_corr_by_day.csv
+Wrote r4_phase3_spread_price_diffcorr.csv
+Mark01→Mark22 VEV_5300 markout by gate:
+   tight_gate    K    n      mean
+0        True    5  132 -0.147727
+1        True   20  132 -0.121212
+2        True  100  131  0.026718
+Mark01→Mark22 VEV_5300 prints are only observable under joint tight in this slice; VEV_5300 trades with joint gate off: n=1 (too few for tight-vs-off Welch on same strike).
+Mark67 extract aggressive K=5 by gate/day:
+                count      mean
+tight_gate day                 
+False      1       53  2.311321
+           2       54  1.648148
+           3       30  2.066667
+True       1        5  1.000000
+           2        7  2.571429
+           3       15  1.666667
+Mark67 aggressive extract K=5: tight vs joint-off Welch → mean_tight=1.7777777777777777, mean_off=1.9963503649635037, p=0.6430739882439682
+Mark01→Mark22 VEV_5500 by gate:
+   tight_gate    K    n      mean
+0       False    5    1  0.000000
+1       False   20    1  0.000000
+2       False  100    1  0.000000
+3        True    5  298 -0.020134
+4        True   20  298  0.025168
+5        True  100  296 -0.023649

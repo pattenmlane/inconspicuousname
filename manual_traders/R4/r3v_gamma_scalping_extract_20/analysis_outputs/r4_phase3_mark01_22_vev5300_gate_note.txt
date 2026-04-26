@@ -1,0 +1,1 @@
+Mark01→Mark22 VEV_5300 prints are only observable under joint tight in this slice; VEV_5300 trades with joint gate off: n=1 (too few for tight-vs-off Welch on same strike).

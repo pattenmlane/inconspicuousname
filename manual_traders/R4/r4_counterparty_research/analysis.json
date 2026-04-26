@@ -383,5 +383,26 @@
       "all_daily": [17552, 7458, 11274],
       "vs_trader_v2": "identical totals and daily breakdowns"
     }
+  },
+  {
+    "iteration": "r4_trader_v4_phase3_extract_tilt",
+    "analysis_description": "trader_v4 applies round4_phase3_complete tape signal (positive forward U when joint gate tight) only to VELVETFRUIT_EXTRACT edge/size; rest matches v2.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_research/trader_v4.py",
+      "manual_traders/R4/r4_counterparty_research/runlog_v4_worse.txt",
+      "manual_traders/R4/r4_counterparty_research/runlog_v4_all.txt",
+      "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v4_worse.json",
+      "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v4_all.json",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase3_gate_fwd_u_k20_pooled.json"
+    ],
+    "used_to_decide": "Hypothesis: lean into extract when 5200+5300 tight (tighter quotes, more size); lean out when loose. Backtest: worse-mode total +508 vs v2; all-mode total -2417 vs v2 (tighter extract bids fill more against tape under optimistic matching).",
+    "backtest_summary": {
+      "worse_total": 34378,
+      "worse_daily": [16062, 7582, 10734],
+      "all_total": 33867,
+      "all_daily": [16173, 6388, 11306],
+      "vs_trader_v2_worse": 508,
+      "vs_trader_v2_all": -2417
+    }
   }
 ]

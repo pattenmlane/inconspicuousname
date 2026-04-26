@@ -114,5 +114,32 @@
       "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v3_all.json"
     },
     "tape_evidence": "manual_traders/R4/r4_counterparty_research/outputs/r4_mark22_vev_roles_by_day.json"
+  },
+  {
+    "iteration": 5,
+    "trader_file": "manual_traders/R4/r4_counterparty_research/trader_v4.py",
+    "strategy_description": "v2 + Phase-3 extract tilt: when Sonic gate tight, quote extract tighter (edge 0) and larger (size 24); when loose, wider extract (edge 4) and smaller (size 7). VEV/hydro/Mark22-VEV logic unchanged from v2.",
+    "backtest_command_base": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt \"manual_traders/R4/r4_counterparty_research/trader_v4.py\" 4 --data Prosperity4Data --no-progress --no-out --no-vis",
+    "total_profit": 34378,
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 34378,
+      "daily_profit": [16062, 7582, 10734],
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v4_worse.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v4_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 33867,
+      "daily_profit": [16173, 6388, 11306],
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_research/runlog_v4_all.txt",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_research/trade_fill_summary_v4_all.json"
+    },
+    "vs_trader_v2": {
+      "worse_delta": 508,
+      "all_delta": -2417,
+      "note": "worse improves slightly; all match mode degrades (more aggressive extract fills hurt under all matching)."
+    }
   }
 ]

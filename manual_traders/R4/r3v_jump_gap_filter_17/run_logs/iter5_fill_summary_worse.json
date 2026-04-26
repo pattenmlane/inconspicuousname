@@ -1,0 +1,1 @@
+{"source": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter5_backtest_worse.log", "match_trades": "worse", "per_day": {"1": -6323.0, "2": -11684.0, "3": -31840.0}, "total_profit": -49847.0 "note": "Touch takers fill but bleed; diagnostic only"}

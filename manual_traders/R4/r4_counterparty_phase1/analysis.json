@@ -433,5 +433,17 @@
       "manual_traders/R4/r4_counterparty_phase1/fill_summary_v13_all.json"
     ],
     "used_to_decide": "Still **slightly negative** on worse: **+7593.5** vs v11 **+7608.5** (-15); VELVET terminal **-15**; VEV_5300 matches v11. **all** ties v11 at **+9992**. Conclusion: even velvet-only inventory skew at POS_TH=50 is not worth it on this backtest. **Best remains v11** for headline worse PnL."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "Sonic **gate-leg sizing** (Phase 3): v11 uses CLIP_V=6 for all surface VEVs; v14 uses **8** for VEV_5200/5300 only when joint tight (other surface strikes unchanged). Hypothesis: those legs are both the gate and the largest PnL lines.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/trader_v14.py",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v14_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v14_all.log",
+      "manual_traders/R4/r4_counterparty_phase1/fill_summary_v14_worse.json",
+      "manual_traders/R4/r4_counterparty_phase1/fill_summary_v14_all.json"
+    ],
+    "used_to_decide": "**Null result:** final-row cumulative PnL and per-product lines **match v11** (worse **+7608.5**, all **+9992**; 5200/5300 unchanged). 6->8 on gate legs does not change realized outcomes here \u2014 not worth extra parameter. **No change to ranked strategy: stay on v11**."
   }
 ]

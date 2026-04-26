@@ -290,5 +290,26 @@
       "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v13_all.log",
       "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v13_all.json"
     }
+  },
+  {
+    "iteration": 14,
+    "trader_file": "trader_v14.py",
+    "strategy_description": "v11 + under joint tight only: CLIP 8 (vs 6) for **VEV_5200** and **VEV_5300** (Sonic gate legs); 5100/5400/5500 still 6. Tests whether larger clips on the gate strikes add PnL.",
+    "total_profit": 7608.5,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v14.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r4_counterparty_phase1/backtest_r4_v14_worse.log",
+    "note_vs_v11": "Terminal activitiesLog **identical** to v11: worse **+7608.5**, VEV_5200/5300 lines match to the tick. **No marginal effect** from 6->8 clip on gate legs in this sim (likely binding elsewhere or same effective size).",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 7608.5,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v14_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v14_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 9992,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v14_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v14_all.json"
+    }
   }
 ]

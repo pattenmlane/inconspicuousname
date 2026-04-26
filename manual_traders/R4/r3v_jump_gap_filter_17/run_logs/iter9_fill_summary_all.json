@@ -1,0 +1,8 @@
+{
+  "source": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter9_backtest_all.log",
+  "match_trades": "all",
+  "per_day": {"1": 3409.0, "2": 2166.0, "3": 2421.0},
+  "total_profit": 7996.0,
+  "per_product_total": {"VELVETFRUIT_EXTRACT": 7996.0},
+  "note": "Matches v1 all-total; overlay inactive"
+}

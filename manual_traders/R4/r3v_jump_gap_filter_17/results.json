@@ -187,5 +187,47 @@
       "trades_or_fills_summary": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter8_fill_summary_all.json",
       "match_trades": "all"
     }
+  },
+  {
+    "iteration": 9,
+    "trader_file": "trader_v9.py",
+    "strategy_description": "Phase-1 edge: precomputed aggressive extract buy + Mark 22 seller print timestamps; when **also** Sonic joint tight, clip 18 and +1 fair tilt vs v1. Extract-only.",
+    "total_profit": 7514,
+    "backtest_round": 4,
+    "backtest_worse": {
+      "total_profit": 7514,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_jump_gap_filter_17/trader_v9.py 4 --data Prosperity4Data --match-trades worse --no-vis",
+      "backtest_log_file": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter9_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter9_fill_summary_worse.json",
+      "match_trades": "worse"
+    },
+    "backtest_all": {
+      "total_profit": 7996,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_jump_gap_filter_17/trader_v9.py 4 --data Prosperity4Data --match-trades all --no-vis",
+      "backtest_log_file": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter9_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter9_fill_summary_all.json",
+      "match_trades": "all"
+    }
+  },
+  {
+    "iteration": 10,
+    "trader_file": "trader_v10.py",
+    "strategy_description": "Same Mark22 aggressive-buy precompute as v9 but **no** joint gate: on print ts use clip 17 + +1 tilt; else v1. Tests Phase-1 signal without sparse joint∩print.",
+    "total_profit": 7648,
+    "backtest_round": 4,
+    "backtest_worse": {
+      "total_profit": 7648,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_jump_gap_filter_17/trader_v10.py 4 --data Prosperity4Data --match-trades worse --no-vis",
+      "backtest_log_file": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter10_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter10_fill_summary_worse.json",
+      "match_trades": "worse"
+    },
+    "backtest_all": {
+      "total_profit": 8878,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_jump_gap_filter_17/trader_v10.py 4 --data Prosperity4Data --match-trades all --no-vis",
+      "backtest_log_file": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter10_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter10_fill_summary_all.json",
+      "match_trades": "all"
+    }
   }
 ]

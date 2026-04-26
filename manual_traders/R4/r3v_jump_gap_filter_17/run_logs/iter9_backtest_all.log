@@ -1,0 +1,53 @@
+running algorithm '/workspace/manual_traders/R4/r3v_jump_gap_filter_17/trader_v9.py'...
+Backtesting /workspace/manual_traders/R4/r3v_jump_gap_filter_17/trader_v9.py for round: 4 day: 1
+  0%|          | 0/10000 [00:00<?, ?it/s] 20%|##        | 2042/10000 [00:00<00:00, 20415.83it/s] 41%|####      | 4094/10000 [00:00<00:00, 20471.72it/s] 61%|######1   | 6142/10000 [00:00<00:00, 15307.52it/s] 82%|########1 | 8176/10000 [00:00<00:00, 16955.92it/s]100%|##########| 10000/10000 [00:00<00:00, 17694.60it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 3,409
+HYDROGEL_PACK: 0
+Total profit: 3,409
+Backtesting /workspace/manual_traders/R4/r3v_jump_gap_filter_17/trader_v9.py for round: 4 day: 2
+  0%|          | 0/10000 [00:00<?, ?it/s] 20%|##        | 2041/10000 [00:00<00:00, 20407.78it/s] 41%|####      | 4082/10000 [00:00<00:00, 20175.42it/s] 61%|######1   | 6100/10000 [00:00<00:00, 12991.15it/s] 80%|########  | 8047/10000 [00:00<00:00, 14897.48it/s]100%|##########| 10000/10000 [00:00<00:00, 16064.82it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 2,166
+HYDROGEL_PACK: 0
+Total profit: 2,166
+Backtesting /workspace/manual_traders/R4/r3v_jump_gap_filter_17/trader_v9.py for round: 4 day: 3
+  0%|          | 0/10000 [00:00<?, ?it/s] 20%|##        | 2013/10000 [00:00<00:00, 20128.82it/s] 40%|####      | 4026/10000 [00:00<00:00, 19803.91it/s] 60%|######    | 6007/10000 [00:00<00:00, 19332.73it/s] 79%|#######9  | 7942/10000 [00:00<00:00, 11331.49it/s] 98%|#########7| 9754/10000 [00:00<00:00, 12990.71it/s]100%|##########| 10000/10000 [00:00<00:00, 14202.37it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 0
+VELVETFRUIT_EXTRACT: 2,421
+HYDROGEL_PACK: 0
+Total profit: 2,421
+Profit summary:
+Round 4 day 1: 3,409
+Round 4 day 2: 2,166
+Round 4 day 3: 2,421
+Total profit: 7,996
+
+Successfully saved backtest results to backtests/2026-04-26_17-53-18.log

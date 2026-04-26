@@ -274,5 +274,59 @@
         }
       }
     }
+  },
+  {
+    "iteration": 6,
+    "trader_file": "trader_v6_r4_joint_tight_inventory_mm_extract.py",
+    "strategy_description": "Sonic joint-tight passive extract MM (v4 base) + inventory skew: up to 2 ticks toward flattening and asymmetric LOT 3\u201314 when |pos|>25; size-only skew on 1-tick spread.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 3878,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v6_r4_joint_tight_inventory_mm_extract.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v6_inv_mm_worse.json",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v6_inv_mm_worse.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "1": -710,
+          "2": 2572,
+          "3": 2016,
+          "total": 3878
+        },
+        "fills": {
+          "submission_trade_count": 331,
+          "submission_filled_abs_qty": 1841,
+          "submission_by_symbol": {
+            "VELVETFRUIT_EXTRACT": {
+              "trade_count": 331,
+              "filled_abs_qty": 1841
+            }
+          }
+        }
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 2585,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v6_r4_joint_tight_inventory_mm_extract.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v6_inv_mm_all.json",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v6_inv_mm_all.json",
+      "trades_or_fills_summary": {
+        "profit": {
+          "1": -808,
+          "2": 1603,
+          "3": 1790,
+          "total": 2585
+        },
+        "fills": {
+          "submission_trade_count": 358,
+          "submission_filled_abs_qty": 2002,
+          "submission_by_symbol": {
+            "VELVETFRUIT_EXTRACT": {
+              "trade_count": 358,
+              "filled_abs_qty": 2002
+            }
+          }
+        }
+      }
+    }
   }
 ]

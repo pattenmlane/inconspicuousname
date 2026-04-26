@@ -298,5 +298,24 @@
       "finding": "Wide-gate subsample has **larger n** and **similar or higher** mean fwd20 than tight on days 1\u20132 (e.g. day1 wide mean ~2.11 n=53 vs tight ~1.20 n=5); day3 both positive. **Does not support** \u2018Mark67 signal only when Sonic tight\u2019 \u2014 gate does not clean this counterparty edge on R4 tape; Phase-1 tight-bucket stats were partly a thin-cell artifact vs this join.",
       "sim_v5": "trader_v5_r4_joint_tight_follow_m67_extract.py \u2014 mirror small buy when joint tight + M67 tape buy; +2364 total worse=all, 27 fills (lower churn than burst v1)."
     }
+  },
+  {
+    "round4_v6_inventory_mm_followup": {
+      "motivation": "v4 joint-tight passive extract MM was +820 worse but -764 all (days 1\u20133); Phase 2 called for inventory-aware MM as a lever on fill-mode asymmetry.",
+      "implementation": "manual_traders/R4/r3v_velvet_spike_playbook_19/trader_v6_r4_joint_tight_inventory_mm_extract.py \u2014 same Sonic gate as v4; when |extract position| grows past POS_SOFT=25, skew both legs by up to MAX_TICK_SKEW=2 ticks toward flattening and scale buy vs sell size (LOT_MIN\u2013LOT_MAX around LOT_BASE=8). One-tick BBO: no tick skew (would cross), size skew only.",
+      "backtest_round4_days_1_3": {
+        "worse_total": 3878,
+        "all_total": 2585,
+        "v4_reference_worse": 820,
+        "v4_reference_all": -764
+      },
+      "used_to_decide": "Inventory skew materially **raises** worse-mode PnL vs v4 and turns **all** mode **positive** on the same day set, so the v4 worse/all gap was partly addressable with execution skew rather than only tape signal. Still below burst-follow v1/v2 (+4834) on total PnL; next knobs are softer skew or burst\u00d7MM combo if desired.",
+      "artifacts": [
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v6_inv_mm_worse.json",
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v6_inv_mm_all.json",
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v6_inv_mm_worse_fill_trade_summary.json",
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/run_logs/r4_v6_inv_mm_all_fill_trade_summary.json"
+      ]
+    }
   }
 ]

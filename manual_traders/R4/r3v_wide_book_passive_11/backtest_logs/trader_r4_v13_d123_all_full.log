@@ -1,0 +1,48 @@
+running algorithm '/workspace/manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v13.py'...
+Backtesting /workspace/manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v13.py for round: 4 day: 1
+  0%|          | 0/10000 [00:00<?, ?it/s] 21%|##        | 2087/10000 [00:00<00:00, 20866.69it/s] 42%|####1     | 4174/10000 [00:00<00:00, 20803.53it/s] 63%|######2   | 6255/10000 [00:00<00:00, 14611.33it/s] 83%|########2 | 8282/10000 [00:00<00:00, 16386.46it/s]100%|##########| 10000/10000 [00:00<00:00, 17283.94it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 184
+VELVETFRUIT_EXTRACT: 4,634
+HYDROGEL_PACK: 0
+Total profit: 4,818
+Backtesting /workspace/manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v13.py for round: 4 day: 2
+  0%|          | 0/10000 [00:00<?, ?it/s] 20%|##        | 2008/10000 [00:00<00:00, 20071.64it/s] 40%|####      | 4016/10000 [00:00<00:00, 20025.10it/s] 60%|######    | 6019/10000 [00:00<00:00, 11793.08it/s] 79%|#######9  | 7909/10000 [00:00<00:00, 13762.05it/s] 99%|#########8| 9869/10000 [00:00<00:00, 15417.21it/s]100%|##########| 10000/10000 [00:00<00:00, 15148.07it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 263
+VELVETFRUIT_EXTRACT: 124
+HYDROGEL_PACK: 0
+Total profit: 387
+Backtesting /workspace/manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v13.py for round: 4 day: 3
+  0%|          | 0/10000 [00:00<?, ?it/s] 20%|#9        | 1996/10000 [00:00<00:00, 19836.11it/s] 40%|###9      | 3980/10000 [00:00<00:00, 19204.01it/s] 59%|#####9    | 5902/10000 [00:00<00:00, 18775.88it/s] 78%|#######7  | 7781/10000 [00:00<00:00, 10405.91it/s] 97%|#########6| 9688/10000 [00:00<00:00, 12428.24it/s]100%|##########| 10000/10000 [00:00<00:00, 13564.22it/s]
+VEV_6500: 0
+VEV_6000: 0
+VEV_5500: 0
+VEV_5400: 0
+VEV_5300: 0
+VEV_5200: 0
+VEV_5100: 0
+VEV_5000: 0
+VEV_4500: 0
+VEV_4000: 624
+VELVETFRUIT_EXTRACT: 4,978
+HYDROGEL_PACK: 0
+Total profit: 5,602
+
+Successfully saved backtest results to manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v13_d123_all.json

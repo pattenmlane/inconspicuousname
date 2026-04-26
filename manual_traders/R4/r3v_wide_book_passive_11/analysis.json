@@ -352,5 +352,39 @@
       "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v10_d123_all_full.log"
     ],
     "used_to_decide": "Ship v10 over v8 for this tape slice unless out-of-sample breaks; next sweeps: **cooldown 15 vs 40**, **AGGR_BUY_Q=4** with room≥10 (risk), or **skip aggression** when extract spread>2."
+  },
+  {
+    "iteration": 13,
+    "round": 4,
+    "analysis_description": "trader_r4_v11: v10 with **AGGR_COOLDOWN=15**. Backtest worse/all **identical** to v10 (13,327 / 10,807; `tradeHistory` MD5 **4cb010168602bb29** / **c58b6bd06c5f84f6**). Offline tape: Mark67→Mark22 on extract — **75** trade rows days 1–3; within-day consecutive gaps **min=700** ticks, **zero** gaps ≤25 or ≤40. **Conclusion:** cooldown 15/25/40 is **non-binding** on this tape; sweeps are null by construction.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v11.py",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v11_d123_worse_full.log",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v11_d123_all_full.log",
+      "manual_traders/R4/r3v_wide_book_passive_11/analysis_outputs_r4_tierA_signal_spacing.txt"
+    ],
+    "used_to_decide": "Next aggression sweeps should change **qty / min room** or **price level** (not cooldown) unless we find denser Tier-A clusters on other days."
+  },
+  {
+    "iteration": 14,
+    "round": 4,
+    "analysis_description": "trader_r4_v12: v10 with **AGGR_COOLDOWN=40**. Same null as v11 — **identical** PnL and `tradeHistory` to v10 (worse/all). Confirms long cooldown also irrelevant given sparse Tier-A timestamps.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v12.py",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v12_d123_worse_full.log",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v12_d123_all_full.log"
+    ],
+    "used_to_decide": "Keep v10 as representative; drop cooldown from tuning grid for R4 days 1–3 Tier-A."
+  },
+  {
+    "iteration": 15,
+    "round": 4,
+    "analysis_description": "trader_r4_v13: v10 + **extract L1 spread ≤2** gate before buy-at-ask. **Identical** to v10 on worse/all and `tradeHistory` — gate never excludes in sim (Tier-A ticks in this slice always have extract spread ≤2 when Sonic+tight+signal align), or redundant with existing filters. Evidence: same MD5 **4cb010168602bb29** / **c58b6bd06c5f84f6** as v10.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wide_book_passive_11/trader_r4_v13.py",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v13_d123_worse_full.log",
+      "manual_traders/R4/r3v_wide_book_passive_11/backtest_logs/trader_r4_v13_d123_all_full.log"
+    ],
+    "used_to_decide": "Try **spread ≤1** or **microprice vs mid** gate next if we want microstructure filtering; or log `extract_spread` at signal ticks in a one-off script."
   }
 ]

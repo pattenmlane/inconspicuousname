@@ -1,0 +1,12 @@
+{
+  "source": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter6_backtest_all.log",
+  "match_trades": "all",
+  "per_day": {"1": 672.0, "2": -3100.0, "3": 4479.0},
+  "total_profit": 2051.0,
+  "per_product_total": {
+    "VELVETFRUIT_EXTRACT": 7996.0,
+    "VEV_5300": -5945.0,
+    "HYDROGEL_PACK": 0.0
+  },
+  "note": "Same strategy as iter6 worse; extract PnL matches v1 totals; VEV_5300 leg identical worse vs all in this run (fills on 5300 likely taker-like)."
+}

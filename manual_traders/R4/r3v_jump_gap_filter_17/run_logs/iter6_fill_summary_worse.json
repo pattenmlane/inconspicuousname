@@ -1,0 +1,12 @@
+{
+  "source": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter6_backtest_worse.log",
+  "match_trades": "worse",
+  "per_day": {"1": 1527.0, "2": -3914.0, "3": 3957.0},
+  "total_profit": 1570.0,
+  "per_product_total": {
+    "VELVETFRUIT_EXTRACT": 7515.0,
+    "VEV_5300": -5945.0,
+    "HYDROGEL_PACK": 0.0
+  },
+  "note": "trader_v6: extract MM as v1 + joint gate + precomputed Mark01→Mark22 on VEV_5300 window; one-sided sell at bid on 5300 when signal. Worse fills dominate day-2 VEV drag."
+}

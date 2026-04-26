@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v12.py",
+  "match_trades": "all",
+  "round": 4,
+  "total_profit": 13858,
+  "per_day_total": { "1": 3681, "2": 7152, "3": 3026 },
+  "note": "vs v10 all 14222: -364 (day3 extract +2402 vs +2765 not enough to offset days 1-2)."
+}

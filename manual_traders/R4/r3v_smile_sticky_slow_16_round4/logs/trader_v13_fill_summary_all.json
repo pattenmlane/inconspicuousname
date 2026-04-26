@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v13.py",
+  "match_trades": "all",
+  "round": 4,
+  "total_profit": 19833,
+  "per_day_total": { "1": 6046, "2": 13057, "3": 730 },
+  "note": "vs v10 all 14222: +5611. 'all' mode separates +3 vs +4; worse-identical to v10."
+}

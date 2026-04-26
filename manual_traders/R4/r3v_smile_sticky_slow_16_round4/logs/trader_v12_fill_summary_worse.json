@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v12.py",
+  "match_trades": "worse",
+  "round": 4,
+  "total_profit": 21228,
+  "per_day_total": { "1": 5698, "2": 12780, "3": 2750 },
+  "note": "vs v10 19384: +1844. Day3 extract +2126 vs v10 +282 (ask +2 on tape day3 via opening-mid fingerprint); days 1-2 match v10."
+}

@@ -338,5 +338,28 @@
       "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v11_fill_summary_worse.json"
     ],
     "used_to_decide": "**Confirms asymmetry:** worse **5501** vs v9 **11850**. Widening **both** sides (bid to \u22122) repeats v8 lesson: **tight bid** (\u22121) + **only** ask retreat is the structure that works. v11 \u2248 v3-level total (4852) but slightly higher; still far below v9/v10."
+  },
+  {
+    "iteration": 14,
+    "round": 4,
+    "analysis_description": "**Day-conditioned tight ask** after discovering `TestRunner` **clears traderData** each tape day: infer **Round 4 tape day** from first available **extract opening mid** vs constants from `Prosperity4Data/ROUND_4/prices_round_4_day_*.csv` row ts=0.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v12.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v12_backtest_worse.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v12_backtest_all.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v12_fill_summary_worse.json"
+    ],
+    "used_to_decide": "**Improves v10 on `--match-trades worse`:** **21228** vs **19384** (+9.5%). v10\u2019s weak **day3** extract (**+282**) rose to **+2126** by using **ask +2** on tape day3 only (v9-style) while keeping **+3** on days 1\u20132. **First implementation** used timestamp rollover across days and **silently matched v10** \u2014 **invalid** for this backtester; fixed to opening-mid fingerprint. **all** slightly **down** vs v10 (\u2212364) \u2014 acceptable trade for worse-primary objective."
+  },
+  {
+    "iteration": 15,
+    "round": 4,
+    "analysis_description": "Grid: tight ask **+4** (`trader_v13`) vs v10 **+3**.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v13.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v13_backtest_worse.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v13_fill_summary_all.json"
+    ],
+    "used_to_decide": "**No worse-mode gain past +3:** worse **19384** **identical** to v10 (per-day lines match) \u2014 `ba-1` / `bb+1` clamp collapses +4 to same integers as +3. **`all`** rises to **19833** vs v10 **14222**, so +4 matters only under lenient fills. **Ship v12** as best **worse**; v13 not needed for primary metric."
   }
 ]

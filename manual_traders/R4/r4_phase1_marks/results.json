@@ -413,5 +413,59 @@
         "vs_iteration_8_all_total": 6338
       }
     }
+  },
+  {
+    "iteration": 11,
+    "trader_file": "trader_v11.py",
+    "strategy_description": "**v9** with **R4_HYDRO_HALF** (default 2.2) and **R4_HYDRO_SIZE** (default 14) from **env**. Same as **v9** at defaults; hydro tunable without editing **v9**.",
+    "tape_note": "``analyze_r4_hydro_duopoly_gate_by_side.py``: **HYDRO** Mark14\u219238 prints are **100% aggr_sell**; Mark38\u219214 **100% aggr_buy** in R4 days 1\u20133.",
+    "spot_check_worse_wide_hydro": {
+      "R4_HYDRO_HALF": 2.6,
+      "R4_HYDRO_SIZE": 14,
+      "total_profit": 4678,
+      "per_product_worse_4d": {
+        "VELVETFRUIT_EXTRACT": 3382,
+        "HYDROGEL_PACK": 1296,
+        "VEV_5200": 0,
+        "VEV_5300": 0
+      },
+      "note": "Same hydro scaling as **v10** at half 2.6; **VEV** still **0** on **`worse`**."
+    },
+    "backtest_worse": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "worse",
+      "total_profit": 3685,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter11_r4d1-3_worse.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v11.py 4 --data Prosperity4Data --match-trades worse --no-out --no-vis --no-progress",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 1424, "2": 1558, "3": 703 },
+        "per_product_worse_4d": {
+          "VELVETFRUIT_EXTRACT": 3382,
+          "HYDROGEL_PACK": 303,
+          "VEV_5200": 0,
+          "VEV_5300": 0
+        },
+        "vs_iteration_9_worse_total": 3685
+      }
+    },
+    "backtest_all": {
+      "round": 4,
+      "tape_days": "1,2,3",
+      "match_trades": "all",
+      "total_profit": 9730,
+      "backtest_log_file": "manual_traders/R4/r4_phase1_marks/backtests/iter11_r4d1-3_all.log",
+      "backtest_command": "PYTHONPATH=imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt python3 -m prosperity4bt manual_traders/R4/r4_phase1_marks/trader_v11.py 4 --data Prosperity4Data --match-trades all --no-out --no-vis --no-progress",
+      "trades_or_fills_summary": {
+        "day_totals": { "1": 2324, "2": 4756, "3": 2650 },
+        "per_product_all_4d": {
+          "VELVETFRUIT_EXTRACT": 6035,
+          "HYDROGEL_PACK": 303,
+          "VEV_5200": 1131,
+          "VEV_5300": 2260
+        },
+        "vs_iteration_9_all_total": 9730
+      }
+    }
   }
 ]

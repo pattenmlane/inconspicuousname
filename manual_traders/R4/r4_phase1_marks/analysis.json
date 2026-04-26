@@ -372,5 +372,19 @@
       "manual_traders/R4/r4_phase1_marks/backtests/iter10_r4d1-3_all.log"
     ],
     "used_to_decide": "Keep **HYDRO_HALF=2.2** for **conservative** stack (**v8**/default **v10**) unless explicitly exploring **wider** hydro (higher **`worse`** total but different extract path). **v10** exists for sweeps without editing **v8**."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "**Tape (adverse-selection slice):** ``analyze_r4_hydro_duopoly_gate_by_side.py`` \u2014 on **HYDROGEL_PACK**, **all** prints in the **Mark14\u219238** / **Mark38\u219214** cells are **one aggressor type each**: **14\u219238** is **only aggr_sell** (n=496 = 126T+370L); **38\u219214** is **only aggr_buy** (n=507). So the phase8/9 **tight>loose** lift on **fwd_EXTRACT_20** is **not** a mix of buy vs sell aggression \u2014 it is **entirely** **aggr_sell** for the first leg and **aggr_buy** for the reverse (passive counterparty is **Mark 14** in both conventions: buyer on aggr_sell prints, seller on aggr_buy prints). Pooled Welch matches the unstratified table (**14\u219238** **\u03b4\u2248+1.61**, **p\u22487.5e-4**; **38\u219214** **\u03b4\u2248+0.999**, **p\u22480.014**). **Sim:** ``trader_v11`` = **v9** + **R4_HYDRO_HALF** / **R4_HYDRO_SIZE** env (defaults **2.2/14** \u2192 same as **v9**/**v8**/**v10**). **`worse`** **3685**, **`all`** **9730**. **Spot:** **R4_HYDRO_HALF=2.6** gives **`worse`** **4678** (hydro **1296**, extract **3382**, **VEV 0**) \u2014 same hydro scaling as **v10** grid with **VEV** still zero under **`worse`**.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_phase1_marks/analyze_r4_hydro_duopoly_gate_by_side.py",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase11_hydro_duopoly_gate_by_side_summary.txt",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase11_hydro_duopoly_gate_by_side_pooled.csv",
+      "manual_traders/R4/r4_phase1_marks/outputs/phase11_hydro_duopoly_gate_by_side_by_day.csv",
+      "manual_traders/R4/r4_phase1_marks/trader_v11.py",
+      "manual_traders/R4/r4_phase1_marks/backtests/iter11_r4d1-3_worse.log",
+      "manual_traders/R4/r4_phase1_marks/backtests/iter11_r4d1-3_all.log"
+    ],
+    "used_to_decide": "Use **v11** when tuning **hydro** alongside **v9** VEV legs; tape shows the duopoly gate signal lives in **single-side** aggression cells, so any **fade/passive** rule should condition on **aggr_sell** vs **aggr_buy** explicitly, not a pooled \u201cany print\u201d story."
   }
 ]

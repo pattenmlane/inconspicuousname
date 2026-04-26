@@ -1,0 +1,13 @@
+HYDRO duopoly × joint gate × aggressor side (fwd_EXTRACT_20)
+
+=== Mark 14 -> Mark 38 (n=496) ===
+  pooled side=aggr_sell: nT=126 nL=370 delta=1.61 t=3.422 p=0.000749
+    day 1 side=aggr_sell: nT=25 nL=158 delta=2.47 p=0.022
+    day 2 side=aggr_sell: nT=33 nL=109 delta=2.081 p=0.0357
+    day 3 side=aggr_sell: nT=68 nL=103 delta=1.879 p=0.00547
+
+=== Mark 38 -> Mark 14 (n=507) ===
+  pooled side=aggr_buy: nT=129 nL=378 delta=0.9992 t=2.478 p=0.0139
+    day 1 side=aggr_buy: nT=25 nL=162 delta=1.811 p=0.0196
+    day 2 side=aggr_buy: nT=27 nL=134 delta=0.5676 p=0.438
+    day 3 side=aggr_buy: nT=77 nL=82 delta=1.149 p=0.0881

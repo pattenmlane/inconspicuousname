@@ -1,0 +1,206 @@
+{
+  "description": "Corr(sf_leg.shift(lag), extract_fwd_5) on extract price timestamps; exact-ts signed flow merge.",
+  "n_rows_panel": 29985,
+  "top_abs_corr": [
+    {
+      "regime": "loose",
+      "lag": 0,
+      "leg": "VELVETFRUIT_EXTRACT",
+      "corr_fwd5": 0.051923488104180994,
+      "n": 22267,
+      "absr": 0.051923488104180994
+    },
+    {
+      "regime": "all",
+      "lag": 0,
+      "leg": "VELVETFRUIT_EXTRACT",
+      "corr_fwd5": 0.04221905294954884,
+      "n": 29985,
+      "absr": 0.04221905294954884
+    },
+    {
+      "regime": "tight",
+      "lag": 5,
+      "leg": "VELVETFRUIT_EXTRACT",
+      "corr_fwd5": 0.026891061002727902,
+      "n": 7703,
+      "absr": 0.026891061002727902
+    },
+    {
+      "regime": "tight",
+      "lag": 5,
+      "leg": "VEV_6500",
+      "corr_fwd5": 0.022121522006423693,
+      "n": 7703,
+      "absr": 0.022121522006423693
+    },
+    {
+      "regime": "tight",
+      "lag": 1,
+      "leg": "VEV_4000",
+      "corr_fwd5": -0.02139640226677794,
+      "n": 7715,
+      "absr": 0.02139640226677794
+    },
+    {
+      "regime": "tight",
+      "lag": 7,
+      "leg": "VEV_6500",
+      "corr_fwd5": 0.020770548080548172,
+      "n": 7697,
+      "absr": 0.020770548080548172
+    },
+    {
+      "regime": "tight",
+      "lag": 7,
+      "leg": "VELVETFRUIT_EXTRACT",
+      "corr_fwd5": 0.020537193663316446,
+      "n": 7697,
+      "absr": 0.020537193663316446
+    },
+    {
+      "regime": "tight",
+      "lag": 3,
+      "leg": "VEV_5200",
+      "corr_fwd5": -0.019679258493955777,
+      "n": 7709,
+      "absr": 0.019679258493955777
+    },
+    {
+      "regime": "tight",
+      "lag": 2,
+      "leg": "VEV_5200",
+      "corr_fwd5": -0.018519838255299192,
+      "n": 7712,
+      "absr": 0.018519838255299192
+    },
+    {
+      "regime": "tight",
+      "lag": 2,
+      "leg": "VELVETFRUIT_EXTRACT",
+      "corr_fwd5": 0.018007458096215623,
+      "n": 7712,
+      "absr": 0.018007458096215623
+    },
+    {
+      "regime": "tight",
+      "lag": 3,
+      "leg": "VEV_4000",
+      "corr_fwd5": -0.017064510237328745,
+      "n": 7709,
+      "absr": 0.017064510237328745
+    },
+    {
+      "regime": "tight",
+      "lag": 5,
+      "leg": "VEV_4000",
+      "corr_fwd5": -0.01615405525213126,
+      "n": 7703,
+      "absr": 0.01615405525213126
+    },
+    {
+      "regime": "tight",
+      "lag": 6,
+      "leg": "VEV_6500",
+      "corr_fwd5": 0.015486178635070035,
+      "n": 7700,
+      "absr": 0.015486178635070035
+    },
+    {
+      "regime": "tight",
+      "lag": 0,
+      "leg": "HYDROGEL_PACK",
+      "corr_fwd5": -0.015438843646485545,
+      "n": 7718,
+      "absr": 0.015438843646485545
+    },
+    {
+      "regime": "tight",
+      "lag": 3,
+      "leg": "VEV_6500",
+      "corr_fwd5": -0.014910022513477122,
+      "n": 7709,
+      "absr": 0.014910022513477122
+    },
+    {
+      "regime": "tight",
+      "lag": 6,
+      "leg": "VELVETFRUIT_EXTRACT",
+      "corr_fwd5": 0.014074584559357948,
+      "n": 7700,
+      "absr": 0.014074584559357948
+    },
+    {
+      "regime": "loose",
+      "lag": 0,
+      "leg": "VEV_4000",
+      "corr_fwd5": 0.013425298372641238,
+      "n": 22267,
+      "absr": 0.013425298372641238
+    },
+    {
+      "regime": "tight",
+      "lag": 4,
+      "leg": "VEV_5300",
+      "corr_fwd5": 0.01323669690476714,
+      "n": 7706,
+      "absr": 0.01323669690476714
+    },
+    {
+      "regime": "tight",
+      "lag": 0,
+      "leg": "VELVETFRUIT_EXTRACT",
+      "corr_fwd5": 0.01307229459700947,
+      "n": 7718,
+      "absr": 0.01307229459700947
+    },
+    {
+      "regime": "tight",
+      "lag": 8,
+      "leg": "VELVETFRUIT_EXTRACT",
+      "corr_fwd5": 0.013030719355865144,
+      "n": 7694,
+      "absr": 0.013030719355865144
+    },
+    {
+      "regime": "tight",
+      "lag": 5,
+      "leg": "VEV_5300",
+      "corr_fwd5": 0.012716838696052231,
+      "n": 7703,
+      "absr": 0.012716838696052231
+    },
+    {
+      "regime": "loose",
+      "lag": 3,
+      "leg": "VELVETFRUIT_EXTRACT",
+      "corr_fwd5": 0.012564789884155594,
+      "n": 22258,
+      "absr": 0.012564789884155594
+    },
+    {
+      "regime": "tight",
+      "lag": 8,
+      "leg": "HYDROGEL_PACK",
+      "corr_fwd5": 0.012342885753825437,
+      "n": 7694,
+      "absr": 0.012342885753825437
+    },
+    {
+      "regime": "loose",
+      "lag": 8,
+      "leg": "VEV_4000",
+      "corr_fwd5": 0.012315319459947198,
+      "n": 22243,
+      "absr": 0.012315319459947198
+    },
+    {
+      "regime": "loose",
+      "lag": 2,
+      "leg": "VELVETFRUIT_EXTRACT",
+      "corr_fwd5": 0.010898116677497544,
+      "n": 22261,
+      "absr": 0.010898116677497544
+    }
+  ]
+}

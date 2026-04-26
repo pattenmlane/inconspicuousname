@@ -338,5 +338,15 @@
       "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_extract_loose_m55_side_fwd_by_day.csv"
     ],
     "used_to_decide": "**Pooled loose:** M55 aggr **buy** n=436 mean fwd5 **+0.28**, fwd20 **+0.47**; M55 aggr **sell** n=442 mean fwd5 **~0**, fwd20 **-0.21**; **other_loose** same as iter11 table. By day, **sell** bucket fwd20 **negative days 2–3** (-0.43, -0.48) while **buy** stays **positive** all days. **trader_v12** (skip soft U only on M55 **sell**, not buy): sim **12931** vs v11 **13338** — **worse** despite tape suggesting sells are the weaker bucket; re-quoting on M55 **buy** ticks hurts harness PnL vs skipping **any** M55 aggressive touch (v10/v11). **Conclusion:** keep **both-side** skip for loose soft U; do not replace with sell-only filter."
+  },
+  {
+    "iteration": 13,
+    "analysis_description": "Phase-2 supplement (orthogonal to prior zero OLS): signed aggressive flow at **exact** (day,timestamp) merged onto extract price timestamps; corr(flow.shift(lag), extract_fwd_5) for lags 0–8; split **all / tight / loose** Sonic gate — analyze_r4_signed_flow_lags_x_gate.py.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/analyze_r4_signed_flow_lags_x_gate.py",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_signed_flow_lag_corr_fwd5_x_gate.csv",
+      "manual_traders/R4/r3v_velvet_beta_hedge_02/outputs/r4_signed_flow_lags_x_gate.json"
+    ],
+    "used_to_decide": "**Max |corr| ~0.052** (loose, lag0, extract signed flow vs fwd5); tight-book cross-legs peak **~0.027** — **no economically large linear lead–lag** at price-row cadence with exact-ts flow. Complements Phase-2 `r4_phase2_extract_flow_lags_fwd5.json` (zeros on different construction). **trader_v13** (tight + M55 → smaller extract clip 12 vs 18): **identical 13338** to v11 — **three-way gate×M55×size** has **zero** harness delta (same fill saturation pattern as v5–v7 on tight U)."
   }
 ]

@@ -271,5 +271,26 @@
       "trades_or_fills_summary": "Same as worse (12931)."
     },
     "total_profit": 12931
+  },
+  {
+    "iteration": 13,
+    "trader_file": "trader_v13.py",
+    "strategy_description": "v11 + when joint tight and Mark55 aggressive on extract, use SIZE_U=12 instead of 18 for extract only (VEV/hydro unchanged). Loose path same as v11.",
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 13338,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v13.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v13_worse.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v13_worse.log",
+      "trades_or_fills_summary": "Identical per-line and total PnL to v11 (13338): day1 5530, day2 1659, day3 6148; worse=all identical."
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 13338,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_velvet_beta_hedge_02/trader_v13.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-out 2>&1 | tee manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v13_all.log",
+      "backtest_log_file": "manual_traders/R4/r3v_velvet_beta_hedge_02/r4_v13_all.log",
+      "trades_or_fills_summary": "Same as worse (13338)."
+    },
+    "total_profit": 13338
   }
 ]

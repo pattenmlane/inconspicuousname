@@ -276,5 +276,17 @@
       "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v9_all_fill_summary.json"
     ],
     "used_to_decide": "Retain **v6** as best worse-fill gate strategy; any falling-edge exit variant must **retry** sells while long and wide (or accept inventory risk), or use state beyond one tick if we still want fewer exit events. Script documents merged-log PnL: sum per-day end-of-day is **not** total when PnL is cumulative across days."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "trader_v10 (**hybrid** exit): same passive tight entry as v6/v9; on tight→wide, submit full long at best ask (v9); on **subsequent** wide ticks while still long, same CLIP-at-ask exit as v6. Backtest **worse** total **+252**, **2** extract SUBMISSION events, **net_qty 0** — numerically **identical** to v6 on this tape (falling-edge full sell is redundant once wide CLIP drains inventory). **All** total **+10,853** with **321** fills vs v6 **+10,834** / **323** (small path difference: v10 net_qty +3 vs v6 +0 in fill summaries). Confirms v9’s gap was **missing retries**, not the full-size first exit order itself.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_inventory_vega_rail_18/trader_v10.py",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v10_worse_backtest.log",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v10_all_backtest.log",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v10_worse_fill_summary.json",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v10_all_fill_summary.json"
+    ],
+    "used_to_decide": "For worse matching on this slice, **v6 ≡ v10**; prefer v6 for simplicity unless we need falling-edge semantics for logging or future partial fills. Next counterparty work: causal filter on Phase 1 Mark pairs (not oracle masks) + gate."
   }
 ]

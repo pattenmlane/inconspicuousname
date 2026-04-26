@@ -179,5 +179,57 @@
         "days": [1, 2, 3]
       }
     ]
+  },
+  {
+    "iteration": 2,
+    "round": 4,
+    "analysis_description": "Phase 3: Sonic joint gate on Round 4 (same definition as R3 script: ask1-bid1 on L1 inner-join 5200+5300+extract per timestamp). analyze_r4_phase3_sonic_gate_r4.py recomputes extract fwd20 tight vs loose, Mark67×gate, M01→22 on 5300×gate, burst×gate×extract; inclineGod spread–spread Pearson full/tight/loose subsamples.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase3_sonic_gate_r4.py",
+      "manual_traders/R4/r4_counterparty_phase1/r4_phase3_gate_summary.json",
+      "manual_traders/R4/r4_counterparty_phase1/r4_phase3_spread_spread.json",
+      "round3work/vouchers_final_strategy/analyze_vev_5200_5300_tight_gate_r3.py"
+    ],
+    "used_to_decide": "Phase 3 completion gate below; sim trader_v2 tests gate+Mark67 vs ungated v1."
+  },
+  {
+    "round4_phase3_complete": true,
+    "comparison_to_phase1_ungated": "Ungated Phase-1 pooled Mark67 buyer_agg extract fwd20 mean ~+1.81 (K=20, n=164). With joint gate ON at trade timestamp: mean fwd20 **+2.06** but only **n=27** (r4_phase3_gate_summary.json); loose bucket mean **+1.77** (n=137). Gate **amplifies** the mid markout on this subsample but **shrinks n** — consistent with Sonic (cleaner, fewer events).",
+    "comparison_to_phase2_ungated": "Phase-2 burst extract fwd20 (ungated) mean +0.35 vs singleton +0.08. Under gate **tight** at burst ts: mean **+0.33** (n=292); loose burst row n=1 only (unstable). Gate does **not** replace burst logic; it **stacks** on extract forward (population mean tight +0.32 vs loose -0.12, Welch t~7.94).",
+    "inclineGod_spread_spread": "Pearson s5200–s5300: **0.30** all sample, **0.19** tight-only, **0.05** loose-only (subsample every 5th ts). Voucher spreads co-move less when both already tight; extract spread vs 5200/5300 ~0 (weak linear link).",
+    "three_way_thesis": "Primary Round-4 candidate: **(joint tight gate, extract forward drift)** is large and significant on tape; **(Mark67 aggressive buy, gate on)** shows **higher** mean fwd20 than gate-off (+2.06 vs +1.77) but small n. **(M01→M22, VEV_5300, gate on)** mean fwd20 slightly negative (-0.12, n=132); **all** M01→M22 5300 prints in sample occur under tight gate (n_loose=0) — basket runs in tight surface; not a simple long 5300 after print.",
+    "tier_a_sim": "trader_v2: gate on → buy on Mark67 tape signal; gate off → flatten extract. Round4 total PnL **-1244** worse and all (vs v1 **-2908** worse) — gate **reduces** churn/loss vs ungated counterparty copy but still **not** profitable at touch; Tier-A evidence is **tape** not **PnL** yet.",
+    "ranked_edges_phase3": [
+      {
+        "rank": 1,
+        "edge": "Extract K=20 mid forward: mean **+0.32** when Sonic gate tight vs **-0.12** when loose (P_tight~0.26, Welch t~7.9, days 1-3).",
+        "path": "manual_traders/R4/r4_counterparty_phase1/r4_phase3_gate_summary.json",
+        "gate_cleans_signal": "yes for population extract fwd — large positive gap vs Phase1/2 unconditioned loose mean."
+      },
+      {
+        "rank": 2,
+        "edge": "Mark67 buyer_agg extract fwd20 mean **+2.06** when gate tight vs **+1.77** loose (small tight n).",
+        "path": "manual_traders/R4/r4_counterparty_phase1/r4_phase3_gate_summary.json",
+        "gate_cleans_signal": "partial — directionally aligns with Sonic; sample thin when tight."
+      },
+      {
+        "rank": 3,
+        "edge": "Spread–spread: s5200–s5300 correlation **drops** in tight subsample (co-movement muted when both books already narrow).",
+        "path": "manual_traders/R4/r4_counterparty_phase1/r4_phase3_spread_spread.json",
+        "gate_cleans_signal": "inclineGod-style object: book geometry changes by regime."
+      },
+      {
+        "rank": 4,
+        "edge": "M01→M22 on VEV_5300 under tight gate: mean fwd20 **-0.12** (n=132) — fade-long-5300-after-basket not supported by mid alone.",
+        "path": "manual_traders/R4/r4_counterparty_phase1/r4_phase3_gate_summary.json",
+        "gate_cleans_signal": "clarifies structure: basket prints live in tight regime but short-horizon 5300 drift not strongly positive here."
+      },
+      {
+        "rank": 5,
+        "edge": "Sim: gated Mark67 pilot (trader_v2) loses less than ungated v1 (-1244 vs -2908 worse) but still negative — execution layer still missing.",
+        "path": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v2_r4_worse.log",
+        "gate_cleans_signal": "risk filter helps vs naive Phase-2 bot; does not yet monetize mid edge."
+      }
+    ]
   }
 ]

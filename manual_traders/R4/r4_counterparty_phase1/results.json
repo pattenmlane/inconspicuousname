@@ -78,5 +78,45 @@
         "note": "Day 3 PnL differs slightly vs worse (fill matching)."
       }
     }
+  },
+  {
+    "iteration": 2,
+    "round": 4,
+    "trader_file": "trader_v2.py",
+    "strategy_description": "Phase 3 pilot: Sonic joint gate (VEV_5200 and VEV_5300 L1 full spread <=2). Buy VELVETFRUIT_EXTRACT at ask on tape Mark67 aggressive buy only when gate on; flatten long at bid when gate off. Cooldown 20 ticks. Tests gate as risk filter on Phase-1-style signal.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -1244,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v2.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v2_r4_worse.log",
+      "backtest_output": {
+        "day1": -204,
+        "day2": -116,
+        "day3": -924,
+        "total": -1244
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VELVETFRUIT_EXTRACT"],
+        "underlying_pnl": -1244,
+        "note": "Better than v1 (-2908) but still negative; gate reduces activity."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -1244,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v2.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v2_r4_all.log",
+      "backtest_output": {
+        "day1": -204,
+        "day2": -116,
+        "day3": -924,
+        "total": -1244
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VELVETFRUIT_EXTRACT"],
+        "underlying_pnl": -1244,
+        "note": "Same as worse on this run."
+      }
+    }
   }
 ]

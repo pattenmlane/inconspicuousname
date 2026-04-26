@@ -1,0 +1,10 @@
+{
+  "corr_s5200_s5300_all": 0.2989103525739865,
+  "corr_s5200_s5300_tight_only": 0.19042335029607385,
+  "corr_s5200_s5300_loose_only": 0.051483289915040926,
+  "corr_s5200_s_ext_all": -0.011695521361777083,
+  "corr_s5300_s_ext_all": -0.0035434462276639268,
+  "n_sample_all": 6000,
+  "n_sample_tight": 1491,
+  "n_sample_loose": 4509
+}

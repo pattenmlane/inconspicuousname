@@ -1,0 +1,39 @@
+{
+  "sonic_TH": 2.0,
+  "forward_K_price_rows": 20,
+  "P_joint_tight": 0.257381,
+  "n_tight_rows": 7706,
+  "n_loose_rows": 22234,
+  "extract_fwd20_mean_tight": 0.323514,
+  "extract_fwd20_mean_loose": -0.121031,
+  "extract_fwd20_welch_t_tight_minus_loose": 7.9351,
+  "extract_fwd20_mean_diff_tight_minus_loose": 0.444545,
+  "mark67_buyer_agg_extract_fwd20": {
+    "n_tight": 27,
+    "mean_tight": 2.055556,
+    "n_loose": 137,
+    "mean_loose": 1.766423
+  },
+  "m01_m22_VEV5300_fwd20": {
+    "n_tight": 132,
+    "mean_tight": -0.121212,
+    "n_loose": 0,
+    "mean_loose": null
+  },
+  "burst_ge4_extract_fwd20": {
+    "n_tight": 292,
+    "mean_tight": 0.328767,
+    "n_loose": 1,
+    "mean_loose": 2.0
+  },
+  "spread_spread_pearson": {
+    "corr_s5200_s5300_all": 0.2989103525739865,
+    "corr_s5200_s5300_tight_only": 0.19042335029607385,
+    "corr_s5200_s5300_loose_only": 0.051483289915040926,
+    "corr_s5200_s_ext_all": -0.011695521361777083,
+    "corr_s5300_s_ext_all": -0.0035434462276639268,
+    "n_sample_all": 6000,
+    "n_sample_tight": 1491,
+    "n_sample_loose": 4509
+  }
+}

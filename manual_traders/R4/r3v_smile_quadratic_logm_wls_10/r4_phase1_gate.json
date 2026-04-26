@@ -13,9 +13,11 @@
       "participant_by_hour": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_participant_by_hour.csv",
       "participant_forward": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_forward_by_mark.csv",
       "mark_product_cross": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_product_cross.csv",
+      "mark_product_cross_by_day": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_product_cross_by_day.csv",
       "mark_burst_same_sym": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_mark_burst_same_sym.csv",
       "two_hop_motifs": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_2hop_motifs.csv",
       "pair_residuals": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_pair_baseline_residuals.csv",
+      "pair_residual_by_regime": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_pair_residual_by_regime.csv",
       "residual_outliers": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_residual_outliers.csv",
       "passive_touch_markout": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_passive_touch_markout.csv",
       "graph_edges": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p1_graph_edges.csv",
@@ -41,9 +43,10 @@
       },
       {
         "bullet": "1b cross-asset + per-traded-product",
-        "conclusion": "r4_p1_mark_product_cross.csv: same-symbol vs extract vs hydro fwd at print time by Mark\u00d7role\u00d7product\u00d7K\u00d7spread regime with bootstrap 95% CI on mean.",
+        "conclusion": "Pooled r4_p1_mark_product_cross.csv; per tape day r4_p1_mark_product_cross_by_day.csv for day-stability of Mark\u00d7role\u00d7traded product cells.",
         "paths": [
-          "r4_p1_mark_product_cross.csv"
+          "r4_p1_mark_product_cross.csv",
+          "r4_p1_mark_product_cross_by_day.csv"
         ]
       },
       {
@@ -55,9 +58,10 @@
       },
       {
         "bullet": "2 bot baseline / residuals",
-        "conclusion": "Cell mean fwd20 by (buyer,seller,symbol) and residuals in r4_p1_pair_baseline_residuals.csv; top |residual| prints in r4_p1_residual_outliers.csv (hydro-heavy tails).",
+        "conclusion": "Cell mean fwd20 by (buyer,seller,symbol); residuals in r4_p1_pair_baseline_residuals.csv; mean residual by spread regime r4_p1_pair_residual_by_regime.csv; tail shocks r4_p1_residual_outliers.csv.",
         "paths": [
           "r4_p1_pair_baseline_residuals.csv",
+          "r4_p1_pair_residual_by_regime.csv",
           "r4_p1_residual_outliers.csv"
         ]
       },
@@ -107,8 +111,8 @@
       },
       {
         "rank": 3,
-        "hypothesis": "Mark 67 aggressive buys: large positive same-symbol short-horizon forwards (isolated prints; n in hundreds).",
-        "effect": "buyer_agg isolated K5 mean\u2248+1.98 (t\u224813.0) n=162; K20 mean\u2248+1.82 (t\u22485.8) n=162 (r4_p1_mark_burst_same_sym.csv; summary)",
+        "hypothesis": "Mark 67 aggressive buys on extract: positive short-horizon same-symbol forwards, stable across tape days.",
+        "effect": "Pooled isolated K5 n=162 (r4_p1_mark_burst_same_sym.csv); per-day r4_p1_mark_product_cross_by_day.csv on traded extract K5 same_symbol days 1\u20133 n 58/61/45, means \u2248+2.20/+1.75/+1.93",
         "n": 162,
         "days": [1, 2, 3]
       },
@@ -131,6 +135,7 @@
       "Mark 38 burst stratum: n=16\u201318 per subcell in r4_p1_mark_burst_same_sym.csv \u2014 not enough for stand-alone edge claims despite large point estimates.",
       "Mark 22 seller_agg on VELVETFRUIT_EXTRACT as traded_symbol: n=11 in r4_p1_mark_product_cross.csv \u2014 strong point estimates but too few prints for a sizing rule.",
       "Inner-grid mid-diff lead\u2013lag (r4_p1_inner_mid_diff_leadlag.csv): lag-0 r\u22480.62 extract vs VEV_5300; other lags |r|\u22640.02 \u2014 no distributed lag beyond same timestamp.",
+      "Cell-mean residuals average ~0 for large (buyer,seller,symbol) cells (r4_p1_pair_residual_by_regime.csv); anomalies are tail events in r4_p1_residual_outliers.csv.",
       "Mark 22 passive_bid n=36 in r4_p1_passive_touch_markout.csv \u2014 thin passive-side cells.",
       "Sparse tape vs dense BBO: 4281 trade rows vs ~1e5 price updates \u2014 many forward joins are per-print only; day-stability must be checked in Phase 3 tables.",
       "Sim clip ablations (v4, v8\u2013v11): joint-gate MM at Sonic \u22642 with varied per-side size often leaves total 11526 unchanged \u2014 clip not the binding constraint in that stack.",

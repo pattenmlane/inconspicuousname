@@ -12,6 +12,8 @@ Writes under this folder:
   - r4_p1_name_flow_balance.csv     — per-name trade counts, qty balance, notional
   - r4_p1_name_universe.txt         — how many unique buyer/seller strings (R4 d1-3: 7, all Mark *)
   - r4_p1_mark_product_cross.csv   — Mark×role×traded symbol×K×spread regime: same/extract/hydro fwd + bootstrap CI
+  - r4_p1_mark_product_cross_by_day.csv — same cells split by tape day (day-stability; min n per cell)
+  - r4_p1_pair_residual_by_regime.csv — mean/median/t of residual_fwd20 by (buyer,seller,symbol)×spread quantile
   - r4_p1_mark_burst_same_sym.csv    — same-symbol fwd stratified burst vs isolated
   - r4_p1_2hop_motifs.csv            — 2-hop buyer→seller→seller2 counts (structural)
   - r4_p1_pair_baseline_residuals.csv
@@ -374,6 +376,7 @@ def main() -> None:
 
     # --- 1c) Mark×role×traded product×K×spread regime: same / extract / hydro forwards
     cross_rows: list[dict] = []
+    cross_day_rows: list[dict] = []
     for u in marks:
         for role, mask in (
             ("buyer_agg", (m["buyer"] == u) & (m["side"] == "buyer_aggressive")),
@@ -429,7 +432,38 @@ def main() -> None:
                                     "ci95_high": hi,
                                 }
                             )
+                            for d in DAYS:
+                                vals_d = bb.loc[bb["day"] == d, col].to_numpy(dtype=float)
+                                vals_d = vals_d[np.isfinite(vals_d)]
+                                if len(vals_d) < 5:
+                                    continue
+                                lo_d, hi_d = bootstrap_mean_ci(vals_d, rng=rng)
+                                mu_d = float(np.mean(vals_d))
+                                t0_d = (
+                                    float(mu_d / (np.std(vals_d, ddof=1) / math.sqrt(len(vals_d))))
+                                    if len(vals_d) > 1 and np.std(vals_d, ddof=1) > 0
+                                    else float("nan")
+                                )
+                                cross_day_rows.append(
+                                    {
+                                        "day": d,
+                                        "mark": u,
+                                        "role": role,
+                                        "traded_symbol": traded,
+                                        "spread_regime": regime,
+                                        "horizon_K": k,
+                                        "fwd_target": tgt,
+                                        "n": len(vals_d),
+                                        "mean_fwd": mu_d,
+                                        "median_fwd": float(np.median(vals_d)),
+                                        "frac_pos": float(np.mean(vals_d > 0)),
+                                        "t_vs_zero": t0_d,
+                                        "ci95_low": lo_d,
+                                        "ci95_high": hi_d,
+                                    }
+                                )
     pd.DataFrame(cross_rows).to_csv(OUT / "r4_p1_mark_product_cross.csv", index=False)
+    pd.DataFrame(cross_day_rows).to_csv(OUT / "r4_p1_mark_product_cross_by_day.csv", index=False)
 
     # --- 2) Pair baseline: cell mean fwd20 by (buyer, seller, symbol), residual
     cell = m.groupby(["buyer", "seller", "symbol"], as_index=False).agg(
@@ -439,9 +473,45 @@ def main() -> None:
     glob = float(m["fwd_mid_20"].mean())
     m2 = m.merge(cell, on=["buyer", "seller", "symbol"], how="left")
     m2["residual_fwd20"] = m2["fwd_mid_20"] - m2["cell_mean_fwd20"].fillna(glob)
-    m2[["day", "timestamp", "buyer", "seller", "symbol", "side", "fwd_mid_20", "cell_mean_fwd20", "residual_fwd20"]].to_csv(
+    m2[["day", "timestamp", "buyer", "seller", "symbol", "side", "spread", "fwd_mid_20", "cell_mean_fwd20", "residual_fwd20"]].to_csv(
         OUT / "r4_p1_pair_baseline_residuals.csv", index=False
     )
+
+    pr_rows: list[dict] = []
+    for (buyer, seller, sym), g in m2.groupby(["buyer", "seller", "symbol"], sort=False):
+        if len(g) < 15:
+            continue
+        spr = g["spread"].to_numpy(dtype=float)
+        if not np.any(np.isfinite(spr)):
+            continue
+        spr_q = np.nanquantile(spr, [0.33, 0.66])
+        for regime, rmask in (
+            ("all", np.ones(len(g), dtype=bool)),
+            ("tight_spread", g["spread"].notna() & (g["spread"] <= spr_q[0])),
+            ("wide_spread", g["spread"].notna() & (g["spread"] >= spr_q[1])),
+        ):
+            rg = g.loc[rmask, "residual_fwd20"].to_numpy(dtype=float)
+            rg = rg[np.isfinite(rg)]
+            if len(rg) < 8:
+                continue
+            sd = float(np.std(rg, ddof=1))
+            pr_rows.append(
+                {
+                    "buyer": buyer,
+                    "seller": seller,
+                    "symbol": sym,
+                    "spread_regime": regime,
+                    "cell_n_total": int(len(g)),
+                    "n_residuals": len(rg),
+                    "mean_residual": float(np.mean(rg)),
+                    "median_residual": float(np.median(rg)),
+                    "std_residual": sd,
+                    "frac_pos_residual": float(np.mean(rg > 0)),
+                    "t_mean_vs_zero": float(np.mean(rg) / (sd / math.sqrt(len(rg)))) if len(rg) > 1 and sd > 0 else float("nan"),
+                }
+            )
+    pd.DataFrame(pr_rows).to_csv(OUT / "r4_p1_pair_residual_by_regime.csv", index=False)
+
     res_sorted = m2[np.isfinite(m2["residual_fwd20"])].copy()
     res_sorted["abs_res"] = res_sorted["residual_fwd20"].abs()
     res_sorted.sort_values("abs_res", ascending=False).head(200)[

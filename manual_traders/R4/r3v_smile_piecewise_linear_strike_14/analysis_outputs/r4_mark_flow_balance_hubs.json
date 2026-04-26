@@ -1,0 +1,120 @@
+{
+  "method": "Each trade: only Mark-Mark notional included in buy-minus-sell proxy; all trades count for participation and neighbor sets when both sides are Marks.",
+  "top_by_prints": [
+    {
+      "mark": "Mark 14",
+      "n_prints_touched": 2172,
+      "n_distinct_counterparties_mark_to_mark": 3,
+      "signed_notional_buy_minus_sell": -420278.0,
+      "gross_as_buyer": 29684752.0,
+      "gross_as_seller": 30105030.0
+    },
+    {
+      "mark": "Mark 01",
+      "n_prints_touched": 1843,
+      "n_distinct_counterparties_mark_to_mark": 2,
+      "signed_notional_buy_minus_sell": 245272.0,
+      "gross_as_buyer": 7465351.0,
+      "gross_as_seller": 7220079.0
+    },
+    {
+      "mark": "Mark 22",
+      "n_prints_touched": 1584,
+      "n_distinct_counterparties_mark_to_mark": 6,
+      "signed_notional_buy_minus_sell": -2839115.0,
+      "gross_as_buyer": 1192850.0,
+      "gross_as_seller": 4031965.0
+    },
+    {
+      "mark": "Mark 38",
+      "n_prints_touched": 1478,
+      "n_distinct_counterparties_mark_to_mark": 2,
+      "signed_notional_buy_minus_sell": 316069.0,
+      "gross_as_buyer": 21177491.0,
+      "gross_as_seller": 20861422.0
+    },
+    {
+      "mark": "Mark 55",
+      "n_prints_touched": 1198,
+      "n_distinct_counterparties_mark_to_mark": 5,
+      "signed_notional_buy_minus_sell": -208908.0,
+      "gross_as_buyer": 17083928.0,
+      "gross_as_seller": 17292836.0
+    },
+    {
+      "mark": "Mark 67",
+      "n_prints_touched": 165,
+      "n_distinct_counterparties_mark_to_mark": 3,
+      "signed_notional_buy_minus_sell": 7926450.0,
+      "gross_as_buyer": 7926450.0,
+      "gross_as_seller": 0.0
+    },
+    {
+      "mark": "Mark 49",
+      "n_prints_touched": 122,
+      "n_distinct_counterparties_mark_to_mark": 3,
+      "signed_notional_buy_minus_sell": -5019490.0,
+      "gross_as_buyer": 603473.0,
+      "gross_as_seller": 5622963.0
+    }
+  ],
+  "top_by_distinct_counterparties": [
+    {
+      "mark": "Mark 22",
+      "n_prints_touched": 1584,
+      "n_distinct_counterparties_mark_to_mark": 6,
+      "signed_notional_buy_minus_sell": -2839115.0,
+      "gross_as_buyer": 1192850.0,
+      "gross_as_seller": 4031965.0
+    },
+    {
+      "mark": "Mark 55",
+      "n_prints_touched": 1198,
+      "n_distinct_counterparties_mark_to_mark": 5,
+      "signed_notional_buy_minus_sell": -208908.0,
+      "gross_as_buyer": 17083928.0,
+      "gross_as_seller": 17292836.0
+    },
+    {
+      "mark": "Mark 14",
+      "n_prints_touched": 2172,
+      "n_distinct_counterparties_mark_to_mark": 3,
+      "signed_notional_buy_minus_sell": -420278.0,
+      "gross_as_buyer": 29684752.0,
+      "gross_as_seller": 30105030.0
+    },
+    {
+      "mark": "Mark 67",
+      "n_prints_touched": 165,
+      "n_distinct_counterparties_mark_to_mark": 3,
+      "signed_notional_buy_minus_sell": 7926450.0,
+      "gross_as_buyer": 7926450.0,
+      "gross_as_seller": 0.0
+    },
+    {
+      "mark": "Mark 49",
+      "n_prints_touched": 122,
+      "n_distinct_counterparties_mark_to_mark": 3,
+      "signed_notional_buy_minus_sell": -5019490.0,
+      "gross_as_buyer": 603473.0,
+      "gross_as_seller": 5622963.0
+    },
+    {
+      "mark": "Mark 01",
+      "n_prints_touched": 1843,
+      "n_distinct_counterparties_mark_to_mark": 2,
+      "signed_notional_buy_minus_sell": 245272.0,
+      "gross_as_buyer": 7465351.0,
+      "gross_as_seller": 7220079.0
+    },
+    {
+      "mark": "Mark 38",
+      "n_prints_touched": 1478,
+      "n_distinct_counterparties_mark_to_mark": 2,
+      "signed_notional_buy_minus_sell": 316069.0,
+      "gross_as_buyer": 21177491.0,
+      "gross_as_seller": 20861422.0
+    }
+  ],
+  "pooled_median_net_signed": -208908.0
+}

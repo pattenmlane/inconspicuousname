@@ -36,9 +36,10 @@
           "bullet": "2) Deviation from bot baseline (buyer_agg, fwd20, cell mean by buyer,seller,symbol)",
           "outputs": [
             "analysis_outputs/r4_baseline_buyer_agg_fwd20.json",
-            "analysis_outputs/r4_residuals_buyer_agg_fwd20.json"
+            "analysis_outputs/r4_residuals_buyer_agg_fwd20.json",
+            "analysis_outputs/r4_mark_flow_balance_hubs.json"
           ],
-          "conclusion": "Residuals vs cell means: mean ~0, stdev ~6 (n=1465 buyer_agg)."
+          "conclusion": "Residuals vs cell means: mean ~0, stdev ~6 (n=1465 buyer_agg). **Clustering (all Marks):** r4_mark_flow_balance_hubs — gross buy vs sell notional, Mark-to-Mark degree; **Mark 22** largest hub (6 counterparties) and most negative signed net; **Mark 01** net buyer; **Mark 14** most prints, low degree to few counterparties (hub-and-spoke vs 22/55). See JSON for tables."
         },
         {
           "bullet": "3) Sequence / graph buyer->seller",
@@ -122,6 +123,8 @@
       "analysis_outputs/r4_p2_extract_signed_flow_fwd20_corr.json",
       "analysis_outputs/r4_p2_m01_m22_burst_pairs.json",
       "analysis_outputs/r4_phase2_run_meta.json",
+      "run_r4_leadlag_extract_vev_mids.py",
+      "analysis_outputs/r4_leadlag_extract_vev_mids_deltas_by_day.json",
       "trader_v1.py",
       "_r3v_smile_core.py",
       "backtest_logs/trader_v1_worse.log",
@@ -134,7 +137,8 @@
         "burst_extract": "Phase 1 pooled burst vs control showed mild extract mid lift; Phase 2 conditions M01→M22 VEV bursts: VEV_5300 fwd20 mean ~+0.36 (n=317) — refines Phase-1 null on unconditional Mark01→22 5300 (-0.08) by isolating burst timestamps.",
         "joint_gate": "Phase 2 joint tight (5200+5300<=2) at M01→M22 burst times: only n=7 tight vs n=310 wide for extract fwd20; tight mean higher (~+0.71 vs ~+0.27) but tiny n — Sonic gate 'cleans' only a rare slice here (partial support, not statistically tight).",
         "microprice": "Orthogonal to counterparty: tight extract spread bin shows large mean fwd10 mid (+2.0 on n=186) vs negative in wide bins — confirms spread regime matters for mid dynamics (inclineGod-style).",
-        "residuals": "Signed aggressive net flow vs extract fwd20 corr ~0.12 (n=764) — weak linear link; does not replace pair/burst structure."
+        "residuals": "Signed aggressive net flow vs extract fwd20 corr ~0.12 (n=764) — weak linear link; does not replace pair/burst structure.",
+        "lead_lag_mids_extension": "r4_leadlag_extract_vev_mids_deltas_by_day.json: corr(Δm_extract, Δm_5200/5300) **strong at k=0** (e.g. day 1 ~0.71/0.62), **~0 for k≥1** at snapshot lags — co-movement is **contemporaneous** in this construction, not a clean voucher-**lead** over extract at tape resolution."
       },
       "top_5_tradeable_edges": [
         {
@@ -439,6 +443,24 @@
     "round4_post_phase3_notes": {
       "round4_phase1_complete_updated": "Bullets 3 and 5 in iteration-0 object now list reciprocity + passive markout files.",
       "sonic_threshold_sensitivity": "v13 worse=all 6694; supports tight ≤2 as in STRATEGY not arbitrary."
+    }
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "Phase 1: Mark gross flow / hub (buy−sell notional, degree). Phase 2: lead–lag corr of extract vs 5200/5300 **mid diffs** by snapshot lag (inner-join panel). Sim: trader_v14 hybrid 5200<=2, 5300<=3 ablation — equals v2 PnL in sim.",
+    "analysis_outputs": [
+      "run_r4_mark_flow_balance_hubs.py",
+      "analysis_outputs/r4_mark_flow_balance_hubs.json",
+      "run_r4_leadlag_extract_vev_mids.py",
+      "analysis_outputs/r4_leadlag_extract_vev_mids_deltas_by_day.json",
+      "trader_v14.py",
+      "backtest_logs/trader_v14_worse.log",
+      "backtest_logs/trader_v14_all.log"
+    ],
+    "used_to_decide": "**Mark roles (r4_mark_flow_balance_hubs.json):** **Mark 22** highest Mark-to-Mark **degree (6)** and most negative **signed** notional (heavy seller in Mark–Mark leg); **Mark 01** net **buyer**; **Mark 14** most prints, **degree 3** (few counterparties) — **hub vs spoke** pattern lines up with initial summary. **Lead–lag (d_mid diffs, r4_leadlag_extract_vev_mids_deltas_by_day.json):** **k=0** same-tick d_ext is **very** correlated with d_5200/d_5300 (e.g. day 1 corrs **~0.71 / 0.62**); **k≥1** corr(d_ext, d_vev[t−k]) **~0** — no simple **lagged** lead of voucher mids over extract; co-movement is **contemporaneous** at snapshot. **v14 (5200≤2, 5300≤3):** sim **13,236** = **v2**; price-panel adds **~66** joint timestamps vs strict 2+2 but **no** PnL difference here — 5300 rarely the binding margin when 5200≤2 in practice.",
+    "round4_post_phase2_notes": {
+      "phase1_bullet2_updated": "round4_phase1_complete bullet 2 now references r4_mark_flow_balance_hubs.json.",
+      "hybrid_v14": "Slightly wider 5300 without loosening 5200 is empirically inactive vs v2 on this backtester slice."
     }
   }
 ]

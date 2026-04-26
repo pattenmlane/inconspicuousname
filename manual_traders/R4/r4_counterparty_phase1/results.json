@@ -227,5 +227,26 @@
       "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v10_all.log",
       "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v10_all.json"
     }
+  },
+  {
+    "iteration": 11,
+    "trader_file": "trader_v11.py",
+    "strategy_description": "v9 + same Mark22/Mark49 aggressive-buy sell-skip on **each tight-gate VEV surface** leg (5100-5500), not only VELVET (Phase 1 adverse pattern extended).",
+    "total_profit": 7608.5,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v11.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r4_counterparty_phase1/backtest_r4_v11_worse.log",
+    "note_vs_v9": "Terminal cumulative PnL from activitiesLog: worse **+7608.5** vs v9 **+7582** (+26.5). Under joint tight, tape counts of aggr-buy vs Mark22/49 are tiny on VEVs (5 prints/3 days per r4_v11_aggrbuy_m22_m49_counts_under_tight.csv) so effect is small.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 7608.5,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v11_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v11_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 9992,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v11_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v11_all.json"
+    }
   }
 ]

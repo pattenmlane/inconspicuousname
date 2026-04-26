@@ -395,5 +395,19 @@
       "manual_traders/R4/r4_counterparty_phase1/fill_summary_v10_all.json"
     ],
     "used_to_decide": "**Falsified as MM overlay:** v10 worse **+6793** (ties v4) vs v9 **+7582**; terminal hydro PnL **0** \u2014 rule fires so often that hydro MM is effectively off. Mid markout tables are not sufficient; **keep Mark22-only** hydro buy-skip (v9), do not add Mark14 to this skip set."
+  },
+  {
+    "iteration": 11,
+    "analysis_description": "Offline: under Sonic joint tight, count aggressive buys (price>=ask1) with passive seller Mark22/Mark49 per symbol (`r4_v11_vev_aggrbuy_under_tight_gate.py` \u2192 `r4_v11_aggrbuy_m22_m49_counts_under_tight.csv`). VEV_5100/5200/5300 have 2+2+1 prints over days 1\u20133 vs 33 on VELVET.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/r4_v11_vev_aggrbuy_under_tight_gate.py",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_v11_aggrbuy_m22_m49_counts_under_tight.csv",
+      "manual_traders/R4/r4_counterparty_phase1/trader_v11.py",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v11_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v11_all.log",
+      "manual_traders/R4/r4_counterparty_phase1/fill_summary_v11_worse.json",
+      "manual_traders/R4/r4_counterparty_phase1/fill_summary_v11_all.json"
+    ],
+    "used_to_decide": "`trader_v11` applies the same sell-skip as v9 on each surface VEV when tight. activitiesLog terminal: worse **+7608.5** vs v9 **+7582** (+26.5); **all** **+9992** vs v9 **+9976** (+16). Marginal gain; sparse triggers explain small delta. **Ship v11** over v9 if chasing every tick; difference is small enough that v9 remains acceptable."
   }
 ]

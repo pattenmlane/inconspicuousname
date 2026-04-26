@@ -21,6 +21,15 @@
           "one_sentence": "Aggressor-conditioned forward mids are mostly near zero in tight VEV books except Mark 22 sell on tight VEV_5300 (negative K=20) and Mark 67 buy on extract (large positive K=5/20 but n\u224860/day); no single (Mark, side, product) shows large stable same-direction edge across all three days with n\u226530 per day in tight regime."
         },
         {
+          "phase1_item": "HYDROGEL_PACK — participant roles (pair balance) + cross-asset markouts",
+          "outputs": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_hydro_signed_flow_by_name_day.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_hydro_aggressor_fwd_cross_asset_by_day.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_hydro_flow_index.json"
+          ],
+          "one_sentence": "**Signed flow** on hydro is dominated by **Mark 14 \u2194 Mark 38** (near-balanced each day; day2 Mark38 net +72 qty vs Mark14 -70) with Mark 22 trace; **aggressive Mark 38** hydro prints (almost all **wide** book) show **no stable** positive forward **extract** mid at K=5/20/100 across days (e.g. day3 seller K20 mean **-0.74** extract, p\u22480.03; day1 seller K20 extract **+0.59**, p\u22480.07) \u2014 duopoly is structural in flow tables but **not** a clean cross-asset lift signal without further conditioning."
+        },
+        {
           "phase1_item": "Burst vs isolated print (timestamp density) + cross-asset extract fwd",
           "outputs": [
             "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_extract_fwd_ex_by_ts_density_pooled.csv",
@@ -106,7 +115,8 @@
         "(buyer,seller,product) cell-mean baseline leaves near-zero residuals for major Mark pairs \u2014 no obvious mis-modeled bot mean to exploit without richer features.",
         "Most aggressor\u00d7product\u00d7tight-bucket cells have |mean fwd_20| \u226a 0.5 mid units or unstable sign across days.",
         "Extract-only subsample at burst timestamps has **small n** (\u224814 rows) \u2014 do not equate with full multi-symbol burst extract event study.",
-        "Follow-up (round4_extract_aggr_buy_coverage): **Mark 01 has zero aggressive buy prints on VELVETFRUIT_EXTRACT** on days 1\u20133 \u2014 participant-level \u2018informed buy on extract\u2019 narratives for U=Mark 01 are undefined on this tape."
+        "Follow-up (round4_extract_aggr_buy_coverage): **Mark 01 has zero aggressive buy prints on VELVETFRUIT_EXTRACT** on days 1\u20133 \u2014 participant-level \u2018informed buy on extract\u2019 narratives for U=Mark 01 are undefined on this tape.",
+        "**HYDRO cross-asset (Mark 38 aggressive hydro \u2192 extract fwd):** sign and significance **flip by day and side** (wide-book only cells); not a legitimate stable edge without a regime model beyond spread_bucket=wide."
       ],
       "checklist_supplement_2026_04_26": {
         "suggested_direction_phase1_bullets": "All five Phase-1 themes are covered by existing CSV/JSON in `analysis_outputs/` (participant markouts, pooled t/bootstrap, **hour** + **timestamp-density** stratifications, baseline residuals, graph + two-hop motifs, burst event study, adverse proxy) \u2014 see `bullets` above. Cross-asset fwd for extract/hydro on every trade row is in `r4_trades_with_markout.csv` (columns fwd_*_ex).",
@@ -124,12 +134,20 @@
             "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_extract_fwd_ex_by_ts_density_pooled.csv"
           ],
           "note": "Hour buckets h0_7 / h8_15 / h16_23 from Phase-1 script (coarse). ts_density burst = any \u22653 trades same tick (all products)."
+        },
+        "hydro_cluster_cross_asset": {
+          "repro": "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_hydro_cross_asset_flow.py",
+          "outputs": [
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_hydro_signed_flow_by_name_day.csv",
+            "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_hydro_aggressor_fwd_cross_asset_by_day.csv"
+          ]
         }
       },
       "repro_scripts": [
         "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_counterparty_study.py",
         "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_supplement_cell_stats.py",
-        "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_burst_hour_stratify.py"
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_burst_hour_stratify.py",
+        "manual_traders/R4/r3v_velvet_spike_playbook_19/r4_phase1_hydro_cross_asset_flow.py"
       ]
     }
   },

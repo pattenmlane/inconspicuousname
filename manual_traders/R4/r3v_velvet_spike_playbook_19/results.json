@@ -670,5 +670,11 @@
     "note": "Phase 1 hour + burst/isolated stratification: r4_phase1_burst_hour_stratify.py \u2192 r4_phase1_aggressor_fwd_by_hour_product_pooled.csv, r4_phase1_aggressor_fwd_by_ts_density_pooled.csv, r4_phase1_extract_fwd_ex_by_ts_density_pooled.csv. round4_phase1_complete.bullets updated.",
     "phase": "round4_phase1_hour_ts_density",
     "analysis_reference": "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis.json"
+  },
+  {
+    "iteration": 16,
+    "note": "Phase 1 hydro: signed flow Mark14/38/22 per day + aggressive hydro markouts to extract_mid vs hydro_mid (r4_phase1_hydro_cross_asset_flow.py). See round4_phase1_complete new bullet + checklist_supplement.hydro_cluster_cross_asset.",
+    "phase": "round4_phase1_hydro_cluster",
+    "analysis_reference": "manual_traders/R4/r3v_velvet_spike_playbook_19/analysis.json"
   }
 ]

@@ -1,0 +1,6 @@
+{
+  "hydro_aggressor_cross_asset_csv": "/workspace/manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_hydro_aggressor_fwd_cross_asset_by_day.csv",
+  "hydro_signed_flow_csv": "/workspace/manual_traders/R4/r3v_velvet_spike_playbook_19/analysis_outputs/r4_phase1_hydro_signed_flow_by_name_day.csv",
+  "min_n_cells": 25,
+  "note": "Cross-asset columns use extract mid forward from **hydro trade timestamp** (same clock as Phase 1 markouts)."
+}

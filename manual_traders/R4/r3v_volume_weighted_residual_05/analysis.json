@@ -108,5 +108,134 @@
       "**Burst** timestamps do **not** outperform **random** single-trade timestamps on extract forward mid (mean burst\u2212control < 0 for K=5,20).",
       "**(buyer,seller,symbol)** cell-mean baseline for fwd_mid_20 leaves **near-zero** residuals for dominant hydro and U pairs \u2014 no obvious mis-modeled bot residual edge at this granularity."
     ]
+  },
+  {
+    "iteration": 1,
+    "analysis_description": "Round 4 Phase 2 (`round4work/suggested direction.txt` Phase 2): (1) Named-bot + **burst B** = same (day,timestamp) with Mark01\u2192Mark22 and \u22653 distinct VEV symbols \u2014 forward **VEV_5300** mid vs all other trades. (2) Microstructure on **U**: microprice deviation vs mid, spread vs |fwd|, spread compression (\u0394spr over 20 steps within day). (3) Lead\u2013lag: per-timestamp aggressive signed flow on U vs same-timestamp **VEV_5300** fwd 20 + 1-row lag. (4) Regime split: Mark67 buy_agg fwd U@20 under tight U spread (\u22646) vs wide (none in sample). (5) Sketch IV smile residual (3 strikes, coarse T) vs Mark01 same timestamp. (6) Pair markouts **VEV_5300** fwd5 for top pairs (only M01\u2192M22 had rows).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_volume_weighted_residual_05/phase2_r4_analysis.py",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_burstB_vev5300_fwd.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_burstB_meanrevert_vs_trend.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_u_microprice_corr.txt",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_u_spread_compression_corr.txt",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_leadlag_u_flow_fwd20_same_ts.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_leadlag_u_flow_lag1row_fwd20.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_mark67_buyagg_regime_fwd_u20.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_mark22_seller_vev5300_fwd5_summary.txt",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_pair_adverse_vev5300_fwd5.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_iv_residual_vs_m01_same_ts.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v1_worse.log",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v1_all.log"
+    ],
+    "used_to_decide": "Phase 2 gate below. **Burst B** refines Phase 1 (random-control burst null on *extract*): here **VEV_5300** fwd means are **higher** inside basket bursts than outside (n\u22481464 vs 2817), a **orthogonal** voucher-local effect. Phase 1 Mark67 U signal is **not** contradicted but is **tight-book only** in this slice (all 164 buy_agg rows have U spread \u22646). Microprice/spread compression correlations with future |U move| are ~0. IV sketch vs Mark01 same-ts is null (tiny n when Mark01 prints align with subsampled IV rows)."
+  },
+  {
+    "round4_phase2_complete": true,
+    "phase1_interaction": "Phase-1 **Mark67 buy_agg on U** mean fwd@20 (~+1.81) is **consistent** with Phase-2 regime table: **all** n=164 such prints occur when **U spread \u22646** (wide bucket empty). Phase-1 **burst vs random extract** negative result is **orthogonal** to Phase-2 finding that **Mark01\u2192Mark22 multi-VEV bursts** associate with **higher** short-horizon **VEV_5300** mid drift vs non-burst prints. Phase-1 **Mark01\u2192Mark22 VEV_5300** pooled negative fwd5 (\u2248\u22120.15) is **compatible** with burst conditioning: bursts lift mean fwd but most M01\u2192M22 prints are not in the burst-B subset.",
+    "phase2_bullets": [
+      {
+        "bullet": "1) Named-bot exploitation + burst signature B",
+        "outputs": [
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_burstB_vev5300_fwd.csv",
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_burstB_meanrevert_vs_trend.csv"
+        ],
+        "conclusion": "Burst-B rows show **higher** mean **VEV_5300** forward mid at K=5 and K=20 than non-burst trades (mean \u2248+0.20/+0.31 vs +0.007/\u22120.002; frac_pos higher). Mean-revert vs trend split (sign(fwd5)\u00b7sign(fwd20)) still mixed counts \u2014 not a clean one-sided MR rule."
+      },
+      {
+        "bullet": "2) Microstructure (U tape)",
+        "outputs": [
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_u_microprice_corr.txt",
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_u_spread_compression_corr.txt"
+        ],
+        "conclusion": "Correlations of microprice deviation and spread compression with future |U mid move| are **near zero** (\u2248\u22120.002 to \u2210.02) on ~30k ticks \u2014 **no** strong linear microprice edge in this pass."
+      },
+      {
+        "bullet": "3) Cross-instrument lead\u2013lag (U aggressive flow vs VEV_5300 fwd20)",
+        "outputs": [
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_leadlag_u_flow_fwd20_same_ts.csv",
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_leadlag_u_flow_lag1row_fwd20.csv"
+        ],
+        "conclusion": "Same-timestamp correlation **+\u22480.03\u20130.06** per day (weak positive); 1-row lag similar magnitude \u2014 **not** a standalone high-conviction lead\u2013lag edge."
+      },
+      {
+        "bullet": "4) Regime splits (Mark67 buy_agg \u00d7 U spread)",
+        "outputs": [
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_mark67_buyagg_regime_fwd_u20.csv"
+        ],
+        "conclusion": "**Confirms** Phase-1 Mark67 pattern is **only** observable under **tight U** books in this sample (wide bucket n=0)."
+      },
+      {
+        "bullet": "5) Vol / smile sketch + Mark01 co-timing",
+        "outputs": [
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_iv_residual_vs_m01_same_ts.csv"
+        ],
+        "conclusion": "Coarse 3-strike IV smile residual vs Mark01 print at same timestamp: **no** material mean shift (n for m01=1 is tiny)."
+      },
+      {
+        "bullet": "6) Execution / adverse selection (named counterparty markouts)",
+        "outputs": [
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_mark22_seller_vev5300_fwd5_summary.txt",
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_pair_adverse_vev5300_fwd5.csv"
+        ],
+        "conclusion": "**Mark22** as seller on **VEV_5300**: mean fwd5 **\u2248\u22120.19** (n=163, frac_pos\u22480.25). **Mark01\u2192Mark22** on **VEV_5300** fwd5 mean **\u2248\u22120.15** (n=132) \u2014 **avoid passive liquidity** that leans against this side without offsetting logic."
+      },
+      {
+        "bullet": "7) Inventory-aware MM",
+        "outputs": [],
+        "conclusion": "Not simulated (no own-inventory path in tape analysis); deferred to trader design once execution model exists."
+      }
+    ],
+    "top_5_tradeable_edge_candidates_phase2": [
+      {
+        "rank": 1,
+        "edge": "**Burst-B** (Mark01\u2192Mark22 multi-VEV same timestamp) \u2192 **higher VEV_5300** short-horizon fwd mid vs baseline trades (K=5/20; n\u22481464 burst rows).",
+        "paths": [
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_burstB_vev5300_fwd.csv"
+        ],
+        "days": "1\u20133 pooled",
+        "caveat": "Still tape-mid only; **worse** fills not tested; define execution (join vs lift) before sizing."
+      },
+      {
+        "rank": 2,
+        "edge": "**Mark67** aggressive buys on **U** under **tight U spread** retain Phase-1 positive fwd@20 (\u2248+1.81, n=164) \u2014 Phase-2 regime table shows **no** wide-spread observations in sample.",
+        "paths": [
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_mark67_buyagg_regime_fwd_u20.csv"
+        ],
+        "days": "1\u20133 pooled",
+        "caveat": "Conditional on spread\u22646 only; cannot extrapolate to wide books."
+      },
+      {
+        "rank": 3,
+        "edge": "Weak same-timestamp positive link: **U aggressive signed flow** vs **VEV_5300** fwd20 (corr ~0.03\u20130.06/day).",
+        "paths": [
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_leadlag_u_flow_fwd20_same_ts.csv"
+        ],
+        "days": "per-day rows",
+        "caveat": "Magnitude small; likely not tradable after costs."
+      },
+      {
+        "rank": 4,
+        "edge": "**Do-not-quote / fade** pressure: **Mark22** selling **VEV_5300** prints followed by **negative** mean fwd5 (\u2248\u22120.19).",
+        "paths": [
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_mark22_seller_vev5300_fwd5_summary.txt"
+        ],
+        "days": "1\u20133 pooled",
+        "caveat": "Execution rule must specify passive vs aggressive stance; markout is mid-based."
+      },
+      {
+        "rank": 5,
+        "edge": "**Mark01\u2192Mark22** on **VEV_5300** short fwd5 is negative on average (\u2248\u22120.15) \u2014 complements burst-B (bursts are subset; net pair drift can still be negative).",
+        "paths": [
+          "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase2/r4_phase2_pair_adverse_vev5300_fwd5.csv"
+        ],
+        "days": "1\u20133 pooled",
+        "caveat": "Phase-1 day-stability for K=20 was poor; Phase-2 adds burst conditioning as refinement."
+      }
+    ],
+    "phase2_negative_or_null": [
+      "U **microprice** deviation vs mid and **spread compression** show ~**zero** linear predictive power for future |U move|.",
+      "IV smile residual vs Mark01 same timestamp (sketch) \u2014 **null** with tiny aligned n.",
+      "Inventory-aware MM not analyzed on tape (no sim)."
+    ]
   }
 ]

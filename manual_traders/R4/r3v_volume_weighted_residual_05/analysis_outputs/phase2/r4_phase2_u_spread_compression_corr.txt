@@ -1,0 +1,1 @@
+corr(dspr_20, abs_fwd_mid_20)=-0.0035 n=29940

@@ -1,0 +1,4 @@
+corr(micro_dev, abs_fwd_mid_20)=-0.0016
+corr(U_spread, abs_fwd_mid_20)=-0.0190
+corr(U_spread, sign(fwd_mid_20))=-0.0251
+n_rows=29940

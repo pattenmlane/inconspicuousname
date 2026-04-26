@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v18.py",
+  "match_trades": "worse",
+  "round": 4,
+  "total_profit": 21244,
+  "per_day_total": { "1": 5698, "2": 12780, "3": 2766 },
+  "note": "Identical per-day lines to trader_v17: M67 ask +2 (cap 5) clamps to same prices as v17 +1 (cap 4)."
+}

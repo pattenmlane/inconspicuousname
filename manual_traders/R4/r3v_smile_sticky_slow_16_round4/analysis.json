@@ -435,5 +435,16 @@
         "parent_schedule": "trader_v12.py (21228)"
       }
     }
+  },
+  {
+    "iteration": 21,
+    "round": 4,
+    "analysis_description": "Ablation: **trader_v18** = v17 with **+2** ask bump on M67 (cap 5) vs v17 **+1** (cap 4).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v18.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v18_backtest_worse.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v18_fill_summary_worse.json"
+    ],
+    "used_to_decide": "**No marginal PnL:** worse **21244** **identical** to **v17** (same per-day and per-line extract). Same mechanism as **v10\u2192v13 +4** ask: **integer BBO clamp** collapses a larger notional ask offset to the same **bid_px/ask_px** as the weaker bump. **Conclusion:** phase-1 Mark67 hook is **saturated** at v17\u2019s +1; further widening is redundant until **grid step** (half tick) or **conditional bid** is explored."
   }
 ]

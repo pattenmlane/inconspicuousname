@@ -311,5 +311,26 @@
       "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v14_all.log",
       "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v14_all.json"
     }
+  },
+  {
+    "iteration": 15,
+    "trader_file": "trader_v15.py",
+    "strategy_description": "v11 + under joint tight: CLIP **8** for **VEV_5100, 5400, 5500** (non-gate wings); **VEV_5200/5300** stay at **6** (complement to v14 which bumped gate legs only).",
+    "total_profit": 7608.5,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v15.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r4_counterparty_phase1/backtest_r4_v15_worse.log",
+    "note_vs_v11": "Terminal activitiesLog **identical** to v11 (**+7608.5** worse, **+9992** all); 5400/5500/5200/5300 lines match. Wing clip increase is **non-binding** in this sim (cf v14 null on gate legs).",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 7608.5,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v15_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v15_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 9992,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v15_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v15_all.json"
+    }
   }
 ]

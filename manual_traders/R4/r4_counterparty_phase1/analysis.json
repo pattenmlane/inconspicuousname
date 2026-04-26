@@ -445,5 +445,17 @@
       "manual_traders/R4/r4_counterparty_phase1/fill_summary_v14_all.json"
     ],
     "used_to_decide": "**Null result:** final-row cumulative PnL and per-product lines **match v11** (worse **+7608.5**, all **+9992**; 5200/5300 unchanged). 6->8 on gate legs does not change realized outcomes here \u2014 not worth extra parameter. **No change to ranked strategy: stay on v11**."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "Complement v14: raise tight-gate clip on **non-gate** surface symbols (5100, 5400, 5500) 6->8 while keeping **5200/5300** at 6. Tests whether binding constraint was on wings rather than Sonic legs.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/trader_v15.py",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v15_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v15_all.log",
+      "manual_traders/R4/r4_counterparty_phase1/fill_summary_v15_worse.json",
+      "manual_traders/R4/r4_counterparty_phase1/fill_summary_v15_all.json"
+    ],
+    "used_to_decide": "**Null vs v11** again: terminal PnL and per-strike lines unchanged. Together with v14, **asymmetric clip bumps 6->8 on any single surface subset do not move** this backtest \u2014 likely inventory/depth/fill model caps effective size before CLIP_V. **Stop clip sweeps** at 8 for this architecture; next lever is logic (new counterparty regime) not CLIP_V nudges."
   }
 ]

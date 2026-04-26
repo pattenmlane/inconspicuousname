@@ -27,9 +27,10 @@
           "bullet": "1) Participant-level alpha / predictiveness",
           "outputs": [
             "analysis_outputs/r4_participant_screen_k20.json",
+            "analysis_outputs/r4_participant_screen_fwd20_day_bootstrap.json",
             "analysis_outputs/r4_phase1_run_meta.json"
           ],
-          "conclusion": "Pooled K=20 screen: Mark 67 buyer_agg on VELVETFRUIT_EXTRACT mean fwd mid ~+1.81 (n=164, t~5.86); day-split +2.03 / +1.45 / +2.02 on days 1/2/3. Mark 49 buyer_agg extract n=105 mean ~+1.83."
+          "conclusion": "Pooled K=20 screen: Mark 67 buyer_agg on VELVETFRUIT_EXTRACT mean fwd mid ~+1.81 (n=164, t~5.86); day-split +2.03 / +1.45 / +2.02 on days 1/2/3. Mark 49 buyer_agg extract n=105 mean ~+1.83. **Extension:** day-block bootstrap (2000× resample 3 days with replacement) — Mark 67 buyer_agg extract pooled mean CI95 ~[1.45, 2.03] (see bootstrap JSON); Mark 55 buyer_agg extract CI excludes 0 ~[0.33, 0.57]."
         },
         {
           "bullet": "2) Deviation from bot baseline (buyer_agg, fwd20, cell mean by buyer,seller,symbol)",
@@ -41,8 +42,11 @@
         },
         {
           "bullet": "3) Sequence / graph buyer->seller",
-          "outputs": ["analysis_outputs/r4_graph_top_pairs.txt"],
-          "conclusion": "Mark 01 -> Mark 22 dominates directed counts."
+          "outputs": [
+            "analysis_outputs/r4_graph_top_pairs.txt",
+            "analysis_outputs/r4_twohop_adjacent_extract_fwd20.json"
+          ],
+          "conclusion": "Mark 01 -> Mark 22 dominates directed counts. **Extension (adjacent-trade two-hop):** CSV row order motif A→B→C when trade[i].seller==trade[i+1].buyer; extract fwd20 at second leg ts — pooled motif mean **−0.24** (n=686) vs adjacent-pair control **+0.26** (n=3590): **not** a positive structural lead; top motifs are Mark14↔Mark38 hydro-style chains with near-zero or negative extract fwd."
         },
         {
           "bullet": "4) Burst structure + extract event study",
@@ -99,7 +103,8 @@
       "negative_or_null_findings": [
         "Mean-centered residuals vs buyer_agg cell means ~0.",
         "Mark 22 buyer_agg extract sparse per day.",
-        "No bid/ask PnL in Phase 1."
+        "No bid/ask PnL in Phase 1.",
+        "Adjacent-trade two-hop middle-match motif: extract fwd20 at second leg **worse** than control (see r4_twohop_adjacent_extract_fwd20.json) — not a tradeable positive chain signal."
       ],
       "phase2_gate": "Phase 1 documented; Phase 2 may proceed."
     }
@@ -396,6 +401,24 @@
     "round4_post_phase3_notes": {
       "leadlag_windows": "W in raw tape timestamp units; next extract = first extract trade with ts_extract > ts_vev same csv day.",
       "trader_v11_vs_v2": "Spread {2,3} filter collapses activity and PnL."
+    }
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Phase 1 extensions (post-gate workstream): (1) adjacent-trade two-hop graph motif A→B→C when seller_i==buyer_{i+1}, extract fwd20 at second leg vs control; (2) day-block bootstrap CI for top participant (party,symbol,role) cells K=20 on traded symbol. Sim: trader_v12 = duplicate of v2 for reproducible iteration log.",
+    "analysis_outputs": [
+      "run_r4_twohop_adjacent_extract_fwd.py",
+      "analysis_outputs/r4_twohop_adjacent_extract_fwd20.json",
+      "run_r4_participant_screen_day_bootstrap.py",
+      "analysis_outputs/r4_participant_screen_fwd20_day_bootstrap.json",
+      "trader_v12.py",
+      "backtest_logs/trader_v12_worse.log",
+      "backtest_logs/trader_v12_all.log"
+    ],
+    "used_to_decide": "**Two-hop (r4_twohop_adjacent_extract_fwd20.json):** Pooled extract fwd20 at second leg is **negative** for middle-name-matched adjacent pairs (**mean −0.24**, n=686) vs **+0.26** for other adjacent pairs (n=3590) — **falsifies** using naive CSV-adjacency as a positive scheduler signal for extract; dominant motifs are **Mark14↔Mark38** hydro-related chains. **Bootstrap:** Mark **67** buyer_agg **EXTRACT** pooled mean **~1.81**, cluster-bootstrap 95% CI **[1.45, 2.03]** — **strictly positive** under day resampling; Mark **55** buyer_agg extract CI **[0.33, 0.57]** excludes 0; Mark **14** buyer_agg hydro CI still straddles 0. **trader_v12** (v2 duplicate): **13,236** worse=all, **4365** trades — confirms baseline.",
+    "round4_post_phase3_notes": {
+      "phase1_gate_update": "round4_phase1_complete iteration-0 bullets 1 and 3 augmented with new output paths and conclusions.",
+      "trader_v12": "Identical logic to trader_v2; separate traderData key r4_iter12_gate_only."
     }
   }
 ]

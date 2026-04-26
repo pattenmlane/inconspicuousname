@@ -1,0 +1,137 @@
+{
+  "definition": "Adjacent rows in day trade CSV after sort(ts,sym); motif if trade[i].seller==trade[i+1].buyer; fwd20 extract at ts of trade i+1",
+  "n_adjacent_pairs": 4278,
+  "n_pairs_with_middle_match": 686,
+  "pooled_motif_extract_fwd20": {
+    "n": 686,
+    "mean": -0.24489795918367346,
+    "median": -0.5
+  },
+  "pooled_control_extract_fwd20": {
+    "n": 3590,
+    "mean": 0.25793871866295265,
+    "median": 0.0
+  },
+  "top_motifs": [
+    {
+      "motif": "Mark 14->Mark 38->Mark 14",
+      "n": 164,
+      "mean": -0.036585365853658534,
+      "median": -0.5
+    },
+    {
+      "motif": "Mark 38->Mark 14->Mark 38",
+      "n": 160,
+      "mean": -0.575,
+      "median": -1.0
+    },
+    {
+      "motif": "Mark 38->Mark 14->Mark 55",
+      "n": 75,
+      "mean": -0.26666666666666666,
+      "median": 0.0
+    },
+    {
+      "motif": "Mark 55->Mark 14->Mark 38",
+      "n": 69,
+      "mean": -0.2826086956521739,
+      "median": -1.0
+    },
+    {
+      "motif": "Mark 55->Mark 14->Mark 55",
+      "n": 32,
+      "mean": 0.40625,
+      "median": 1.0
+    },
+    {
+      "motif": "Mark 14->Mark 55->Mark 14",
+      "n": 26,
+      "mean": -0.11538461538461539,
+      "median": 0.0
+    },
+    {
+      "motif": "Mark 55->Mark 01->Mark 22",
+      "n": 25,
+      "mean": 0.16,
+      "median": 0.0
+    },
+    {
+      "motif": "Mark 55->Mark 01->Mark 55",
+      "n": 23,
+      "mean": -1.7826086956521738,
+      "median": -2.0
+    },
+    {
+      "motif": "Mark 01->Mark 55->Mark 14",
+      "n": 23,
+      "mean": 1.2173913043478262,
+      "median": 0.5
+    },
+    {
+      "motif": "Mark 14->Mark 55->Mark 01",
+      "n": 23,
+      "mean": -1.8695652173913044,
+      "median": -1.5
+    },
+    {
+      "motif": "Mark 38->Mark 14->Mark 22",
+      "n": 21,
+      "mean": 0.7380952380952381,
+      "median": -1.0
+    },
+    {
+      "motif": "Mark 01->Mark 55->Mark 01",
+      "n": 17,
+      "mean": -1.1764705882352942,
+      "median": -2.0
+    },
+    {
+      "motif": "Mark 55->Mark 14->Mark 22",
+      "n": 11,
+      "mean": 0.0,
+      "median": 0.0
+    },
+    {
+      "motif": "Mark 14->Mark 55->Mark 49",
+      "n": 2,
+      "mean": 5.25,
+      "median": 5.25
+    },
+    {
+      "motif": "Mark 14->Mark 55->Mark 22",
+      "n": 2,
+      "mean": 5.0,
+      "median": 5.0
+    },
+    {
+      "motif": "Mark 22->Mark 38->Mark 14",
+      "n": 2,
+      "mean": 3.5,
+      "median": 3.5
+    },
+    {
+      "motif": "Mark 14->Mark 38->Mark 22",
+      "n": 2,
+      "mean": -4.75,
+      "median": -4.75
+    },
+    {
+      "motif": "Mark 22->Mark 55->Mark 01",
+      "n": 1,
+      "mean": -2.0,
+      "median": -2.0
+    },
+    {
+      "motif": "Mark 67->Mark 22->Mark 38",
+      "n": 1,
+      "mean": 5.0,
+      "median": 5.0
+    },
+    {
+      "motif": "Mark 38->Mark 22->Mark 49",
+      "n": 1,
+      "mean": 2.5,
+      "median": 2.5
+    }
+  ]
+}

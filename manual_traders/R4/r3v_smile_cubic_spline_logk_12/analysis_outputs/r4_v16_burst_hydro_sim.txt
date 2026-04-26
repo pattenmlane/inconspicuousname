@@ -1,0 +1,11 @@
+trader_v16 = trader_v14 + hydro quoting in offline M01→M22 burst ±500 (sessions 1–2 only):
+  edge 5 clip 12 vs base 3/20; if also M38→M14 caution: max(edge) min(clip) with 6/10.
+
+Tape: r4_phase2_burst_window_mark20.csv — HYDRO in-window mean mark_20 −0.64 vs −0.04 out.
+
+R4 d1–3 backtest: **bit-identical** day totals and per-product lines to **v14** on both worse and all
+(50122 worse, 55131 all; hydro 13582 / 152 / 7042 worse).
+
+Conclusion: on this tape + fill model, widening/shrinking passive hydro in the burst window does not
+change realized worse-fill or all-fill PnL vs v14 (either no marginal fills in those states, or
+quotes remain outside the worse-fill matching set). **Do not** ship v16 over v14; keep v14.

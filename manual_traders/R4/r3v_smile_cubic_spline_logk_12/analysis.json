@@ -459,5 +459,17 @@
       "results.json"
     ],
     "used_to_decide": "Do **not** add v2’s 5300 burst tweak on top of v14 for this objective set; **v14** remains best worse and better all than v15."
+  },
+  {
+    "iteration": 18,
+    "analysis_description": "**Phase 2 hydro burst → sim (negative):** **trader_v16** = v14 + wider/shorter passive **HYDROGEL_PACK** in offline M01→M22 burst ±500 (sessions 1–2), stacked with M38→M14 via max edge / min clip. Tape cell (`r4_phase2_burst_window_mark20.csv`) shows worse in-window hydro markouts. **R4 d1–3:** worse and all **identical** to v14 (50122 / 55131) — hydro PnL lines unchanged; burst-window quote shift is **inert** under this worse-fill + tape pairing. See `analysis_outputs/r4_v16_burst_hydro_sim.txt`.",
+    "analysis_outputs": [
+      "trader_v16.py",
+      "analysis_outputs/r4_v16_burst_hydro_sim.txt",
+      "backtest_logs/trader_v16_round4_worse.log",
+      "backtest_logs/trader_v16_round4_all.log",
+      "results.json"
+    ],
+    "used_to_decide": "No incremental sim value from this hydro burst rule on top of v14; **v14** unchanged as the ship candidate."
   }
 ]

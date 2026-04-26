@@ -124,5 +124,16 @@
       "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v13_worse.log"
     ],
     "used_to_decide": "v13 uses vega at fitted IV only to break ties on v12\u2019s |z|*beta/h among open-candidates; backtest -366 vs v12 -138 (worse). Conclude vega tie-break is harmful here; next iteration should stay on v12 primary or use vega in a pre-filter, not re-rank open signals."
+  },
+  {
+    "iteration": 14,
+    "analysis_description": "Pivoted execution layer to team thesis in round3work/vouchers_final_strategy/STRATEGY.txt: joint gate when VEV_5200 and VEV_5300 both have top-of-book spread <=2 (r3_tight_spread_summary: day0 Welch t>4 for forward extract mid, P~0.1 tight). v14 gates new entries on that; sizing +25% on gate. Re-read completed outputs: r3_tight_spread_summary.txt (day0 stats). Mid-forward edge != tradable PnL; gate is used as risk filter per write-up. Both --match-trades worse and all logged for v14 (same PnL this run).",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v14_worse.log",
+      "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v14_all.log"
+    ],
+    "used_to_decide": "Joint 5200/5300 tight gate cuts v12-style losses from -138 to -19 over days0-2 (worse) but is far from 200k/day; most ticks are off-gate so next steps may add extract-only or ATM voucher logic when tight, or relax gate for non-wing strikes only."
   }
 ]

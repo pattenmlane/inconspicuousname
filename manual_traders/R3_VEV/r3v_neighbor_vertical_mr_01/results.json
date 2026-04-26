@@ -214,5 +214,52 @@
       "underlying_pnl": 0,
       "note": "Worse than v12 total -138: vega secondary key shifts some fills among tied v12 score (e.g. day2). Falsified as improvement for this tape; keep v12 ranking."
     }
+  },
+  {
+    "iteration": 14,
+    "trader_file": "trader_v14.py",
+    "strategy_description": "Shared joint tight-book gate (round3work/vouchers_final_strategy/STRATEGY.txt): new opens only when VEV_5200 and VEV_5300 L1 full spread (ask1-bid1) both <=2; 1.25x size when on. v12 family10 stack otherwise (WLS, EWMA z, agreement, beta hedge). Closes when |z|<CLOSE_Z and position !=0 are not gated. Incorporates inclineGod/Sonic book-state thesis.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -19,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v14.py 3 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v14_worse.log",
+      "backtest_output": {
+        "day0": -19,
+        "day1": -1,
+        "day2": 1,
+        "day3": 0,
+        "sum_days_0_2": -19
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": [
+          "VEV_4000",
+          "VEV_4500"
+        ],
+        "underlying_pnl": 0,
+        "note": "Gate strongly reduces churn vs v12; per-day PnL matches all-match run on this version."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -19,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/trader_v14.py 3 --data Prosperity4Data --match-trades all --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_neighbor_vertical_mr_01/backtest_trader_v14_all.log",
+      "backtest_output": {
+        "day0": -19,
+        "day1": -1,
+        "day2": 1,
+        "day3": 0,
+        "sum_days_0_2": -19
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": [
+          "VEV_4000",
+          "VEV_4500"
+        ],
+        "underlying_pnl": 0,
+        "note": "Identical to worse on printed days: thin activity under gate; no extract leg PnL."
+      }
+    }
   }
 ]

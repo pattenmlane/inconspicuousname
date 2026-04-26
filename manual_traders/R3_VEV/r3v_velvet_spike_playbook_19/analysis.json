@@ -139,5 +139,16 @@
       "round3work/vouchers_final_strategy/outputs/r3_tight_spread_6panel.png"
     ],
     "used_to_decide": "Implemented joint L1 spread gate for live trading: only run v15-style VEV MM when both VEV_5200 and VEV_5300 books are tight (spread \u2264 2); stand down otherwise. v21 added naive extract mean-reversion in the tight window; it destroyed PnL on worse fills (\u2248 -44k total over days 0\u20133) because mid-based forward edge does not survive bid/ask + worse matching. v22 drops extract and keeps VEV-only under the same gate: +1,497 worse / +1,452 all over four days \u2014 still far below ungated v15 (+7,181 on days 0\u20132) and below 200k/day bar. Next: partial gate (size/edge scaling, not full stand-down), or extract policy with explicit spread budget, or calibrate gate to days 0\u20132 only if day-3 is out-of-sample."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "Scope pivot: strategy work is now **only** round3work/vouchers_final_strategy/ per updated instructions. Re-read **STRATEGY.txt** and **ORIGINAL_DISCORD_QUOTES.txt** (Sonic: joint 5200/5300 \u22642 gate; t-stat dies when either widens; informed bot only when hedge into tight surface; inclineGod: spread correlation not just price). Reused existing 6-panel outputs (r3_tight_spread_6panel.png, r3_tight_spread_summary.txt) as empirical anchor. No new IV/spline family12 analysis this iteration.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_6panel.png"
+    ],
+    "used_to_decide": "Ship **trader_v23_tight_surface_passive.py**: (1) Sonic joint gate: s5200\u22642 and s5300\u22642, plus extract spread \u22648 so execution is not noise-dominated; (2) only **VEV_5200, VEV_5300, VELVETFRUIT_EXTRACT** in tight regime (no other strikes) — 'hedge into tight surface' scope; (3) passive two-sided 5200/5300, passive extract reversion to rolling mid with band edge (no market-taking) to respect STRATEGY mid-vs-PnL caveat. Backtest days 0\u20133: **worse 2,646** vs **all 2,619** (far from 200k/day floor). Next: tune gate as risk sizing not binary off; optional extract-off ablation; explore spread-of-spreads signal per inclineGod beyond static TH."
   }
 ]

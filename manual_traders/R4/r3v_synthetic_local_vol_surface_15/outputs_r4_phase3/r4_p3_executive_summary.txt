@@ -85,3 +85,5 @@ Level and **clock-time Δ** correlations (5200/5300/extract spreads vs extract m
 Welch tight vs loose fwd20 (`r4_p16_...csv`): **pooled p≈0.0086** (t≈2.68); per-day day-3 **p≈0.082** (n_tight=34, n_loose=43) — tape edge **stronger pooled** than single-day significance. Risk: **v32** skip `backtest_day==3` → **4,953** total (= v31 days 1–2); **v33** clip 4 → **886** total (day-3 still **−1,660**).
 
 Roll at print (`r4_p17_...csv`): day-3 M14/M38 prints — **high** roll_tight_rate associates with **better** fwd20 vs **low** roll (opposite of Mark55 v7 saturation story for this slice). Live **v34** (v31 + require roll>0.38): total **−138**; **v35** roll>0.32: **−667** — **do not** port Mark55 roll-shrink; keep **v31** or **v32** stress only.
+
+**Mark 49** passive seller on aggr_buy EXTRACT (`r4_p18_...`): n=104; **tight** mean fwd20 **lower** than **loose** (Welch **p≈0.43**); day-1 tight n=2 only. Live **v36** (gate + ba+1 clip 8): total **1,796** (worse=all) — small positive vs 0, **far** below Mark55 v4/v15.

@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v6.py",
+  "match_trades": "worse",
+  "round": 4,
+  "total_profit": 3000,
+  "per_day_total": { "1": -446, "2": 471, "3": 2975 },
+  "note": "vs v5 worse 5906: -2906. Mark55 aggressive sell \u2192 skip extract bid: day1 extract -1480 vs +492 (v5)."
+}

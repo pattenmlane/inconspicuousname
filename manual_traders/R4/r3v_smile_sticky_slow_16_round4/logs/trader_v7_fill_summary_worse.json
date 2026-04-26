@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v7.py",
+  "match_trades": "worse",
+  "round": 4,
+  "total_profit": 5906,
+  "per_day_total": { "1": 1526, "2": 1584, "3": 2797 },
+  "note": "Identical to trader_v5 worse logs: tight extract size 9 vs 12 is PnL-neutral under worse (same per-product lines)."
+}

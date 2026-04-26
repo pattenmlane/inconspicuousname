@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v6.py",
+  "match_trades": "all",
+  "round": 4,
+  "total_profit": -1460,
+  "per_day_total": { "1": -1754, "2": -1623, "3": 1916 },
+  "note": "Large negative extract under 'all'; hook interacts badly with fill matching."
+}

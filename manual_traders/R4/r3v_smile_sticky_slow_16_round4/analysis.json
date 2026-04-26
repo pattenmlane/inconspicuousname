@@ -265,5 +265,31 @@
       "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v5_fill_summary_all.json"
     ],
     "used_to_decide": "**Supported on `--match-trades worse`:** total **5906** vs **v3 4852** (+1054) and vs **v4 4661** (+1245). **HYDROGEL** per-day PnL matches v3 (e.g. day1 **193**, day3 **98**) \u2014 confirms isolation. **Extract** gains concentrated day1 (**492** vs v3 **204**) and day3 (**2173** vs **816**); day2 extract **1068** vs v3 **1660** (tradeoff). **all** mode collapses (**1446**) because tight extract gets picked off \u2014 reinforces **worse** as objective. Next levers: milder extract tight half (e.g. size 9 only) for day2 stability; or asymmetric bid/ask from Phase-1 Mark hooks beyond Mark38/Mark67."
+  },
+  {
+    "iteration": 8,
+    "round": 4,
+    "analysis_description": "Counterparty execution test: **Mark 55 aggressive sell** on extract (seller==Mark 55, price\u2264bid) \u2192 **no extract bid** (`trader_v6`, else same as v5). Phase 1 flagged Mark55 sell_agg long-horizon adverse; this tests a **short-horizon MM** translation.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v6.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v6_backtest_worse.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v6_backtest_all.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v6_fill_summary_worse.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v6_fill_summary_all.json"
+    ],
+    "used_to_decide": "**Reject for sim:** worse **3000** vs v5 **5906**. The hook **removes extract bid** on many ticks where v5 was **earning** (day1 extract **-1480** vs **+492**). Tape-level sell pressure at touch does **not** imply \u2018never bid\u2019 in this MM + worse-fill environment; may need **skew** not **hard off**, or a different conditioning set. **all** also very negative (**-1460**)."
+  },
+  {
+    "iteration": 9,
+    "round": 4,
+    "analysis_description": "Ablation: **trader_v7** = v5 with tight-extract base size **9** instead of **12** (same mid\u00b11 when Sonic tight).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v7.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v7_backtest_worse.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v7_backtest_all.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v7_fill_summary_worse.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v7_fill_summary_all.json"
+    ],
+    "used_to_decide": "**Under `--match-trades worse`, bit-identical outcome to v5** (total **5906**, same per-product lines) \u2014 in practice fills/rounding cap effective size below 12 so **9 vs 12** is a **no-op**. Slightly better **all** (**1650** vs **1446**) but secondary. **Ship v5** as the tight-extract baseline; next experiments should change **prices** (half-spread asymmetry) or **conditional one-sided** quotes, not redundant size steps."
   }
 ]

@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v7.py",
+  "match_trades": "all",
+  "round": 4,
+  "total_profit": 1650,
+  "per_day_total": { "1": 219, "2": -322, "3": 1752 },
+  "note": "vs v5 all 1446: +204 (small); worse-identical so v7 redundant for primary objective."
+}

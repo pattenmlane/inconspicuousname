@@ -381,5 +381,23 @@
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_signed_extract_flow_per_mark_lagcorr.csv",
       "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_passive_signedflow_summary.json"
     ]
+  },
+  {
+    "iteration": 17,
+    "trader_file": null,
+    "strategy_description": "Phase 1: burst orchestrator (mode buyer/seller) vs forward U; Mark67 signed extract flow lagcorr by day.",
+    "backtest_command_base": null,
+    "total_profit": null,
+    "backtest_round": 4,
+    "backtest_worse": null,
+    "backtest_all": null,
+    "phase1_burst_orch_mark67_outputs": [
+      "manual_traders/R4/r4_counterparty_research/run_phase1_burst_orchestrator_forward_u_r4.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_burst_orchestrator_forward_u.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_burst_orch_buyer_summary.csv",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_burst_orch_pair_summary.csv",
+      "manual_traders/R4/r4_counterparty_research/run_phase1_mark67_flow_lag_by_day_r4.py",
+      "manual_traders/R4/r4_counterparty_research/outputs/r4_phase1_mark67_signed_flow_lagcorr_by_day.csv"
+    ]
   }
 ]

@@ -1,0 +1,78 @@
+Vouchers / extract — "joint tight book" strategy (Round 3)
+==========================================================
+
+Where this lives
+----------------
+- `analyze_vev_5200_5300_tight_gate_r3.py` — reproduces the 6-panel analysis and writes
+  `outputs/r3_tight_spread_6panel.png` and `outputs/r3_tight_spread_summary.txt`.
+- Data: `Prosperity4Data/ROUND_3/prices_round_3_day_*.csv` (via `round3work/tipworkflow/data.py`).
+
+Context (Discord / community)
+-----------------------------
+- **inclineGod:** understand how the underlying moves, but do not stop at *price* correlation;
+  look at **spreads** (per contract) and how they behave — **liquidity / book state** is its own object.
+- **Sonic:** "VEV bot flow" (inferred activity) is more meaningful when the **voucher book** is
+  **tight** enough to **hedge**. A practical gate: when **VEV_5200** and **VEV_5300** **both** have
+  spread at or below **~2** (in price units on the tape), the signal is **cleaner** and
+  **n** (events) is smaller; when **either** widens past that, the **t-stat** of whatever you
+  are testing **decays** — mechanically you are in a **wide** book where execution dominates.
+
+What we measure (this folder)
+------------------------------
+- **Spread** = `ask_price_1 - bid_price_1` for each VEV, aligned on **timestamp** (inner-join
+  5200, 5300, and `VELVETFRUIT_EXTRACT` so we only use rows where all three exist).
+- **Tight** = `(spread_5200 <= TH) and (spread_5300 <= TH)` with default **TH = 2**.
+- **K-step forward return on extract** = `mid_extract(t+K) - mid_extract(t)` on that aligned
+  series, default **K = 20** (same *bar* index, not wall-clock; timestamps step in the data).
+
+What the plots show
+---------------------
+1. **Spreads over time** — both legs vs the threshold line.
+2. **VELVET mid** distribution when tight vs not (conditional on the same valid forward window).
+3. **Forward Δmid (K=20)** when tight vs not — the community finding: **average forward move on
+   mid** is **higher** when **both** books are **tight** (on our run, typical split: **positive
+   mean** under tight, **roughly zero or negative** under not-tight; see the generated summary text).
+4. **Cumulative** sum of `1_tight * fwd_k` (overlapping windows) — a **rough** diagnostic, not a
+   full PnL model.
+5. **Signal frequency** — rolling share of "both tight" (bursty).
+6. **Scatter** s5200 vs s5300 — the **low-left (both small)** region is the **joint** gate; red
+   lines at **TH** mark the **both ≤ TH** box.
+
+Is this "the strategy" for trading?
+-------------------------------------
+The **data** is mostly saying: **short-horizon extract *mid* dynamics** are **more favorable
+on average** when **both** **5200** and **5300** are **tight** **at the same time**.
+
+How people turn that into a **live** idea (two layers):
+
+1) **Risk filter (always consistent with the quotes)**  
+   **Only** run your VEV / flow / edge logic (whatever it is) — or only **size up** — when the
+   joint gate is **on**. When either book is **wide**, **do not** trust small mispricings; you
+   pay too much in **half-spread** and noise. This is **"trade when you can hedge into a tight
+   surface"**.
+
+2) **Directional extract (optional reading of the *same* forward-mid plot)**  
+   If you take the **mid** result literally as tradable, the story would be: when the gate is
+   **on**, **expected short-horizon extract mid change** is **higher** — so a **toy** policy is
+   to be **long extract** (or long **delta** via options) for **short holds** when the gate is
+   on. That is **not** the same as guaranteed money.
+
+**Critical caveat — mid vs PnL**  
+The analysis uses **mid** on the extract. In the backtester you **fill at bid/ask**. A
+**positive average mid move** can **disappear** after:
+- **paying the spread** to open/close,
+- **worse** trade matching,
+- and **overlapping** K-bar "signals" (double-counting in time).
+
+So: **yes**, the *natural reading* is "when both **s5200** and **s5300** are **≤ 2**, the
+**expected short-term change in extract mid** is **higher**" — that is what the histogram of
+**forward Δmid** is testing. **Making money** still requires an **execution model** (prices
+you can hit, size, **worse** fills), not mid alone.
+
+How to re-run
+-------------
+From repo root:
+
+  python3 round3work/vouchers_final_strategy/analyze_vev_5200_5300_tight_gate_r3.py
+
+Tunable constants at the top of the script: `TH`, `K`, `N_TS_PANEL1`, `MA_WIN`.

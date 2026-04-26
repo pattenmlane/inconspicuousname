@@ -369,5 +369,26 @@
       "manual_traders/R4/r3v_jump_gap_filter_17/results.json"
     ],
     "used_to_decide": "Stop increasing Mark22-print bid clip beyond **+2** for this strategy family unless inventory headroom or quote prices change; **ship v13** as the current best worse-match Mark22 overlay (+102 vs v1)."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "**Phase spec reconciliation (read `round4work/suggested direction.txt` + gates):** All three phase completion objects already live in this file (`round4_phase1_complete` in iteration 0, `round4_phase2_complete` in iteration 1, `round4_phase3_complete` in iteration 2). Crosswalk — **Phase 1** bullets → primary artifacts: (1) participant alpha → `outputs/phase1/participant_forward_stats*.csv` + `phase1_automated_summary.txt`; (2) bot baseline / residuals → `events_with_cell_residual.csv`, `pair_symbol_residual_summary.csv`, `leave_one_day_residuals.csv`; (3) graph / sequences → `graph_edges.csv`, `graph_summary.txt`, `two_hop_chain_counts.csv`; (4) bursts → `burst_multi_symbol.csv`, `burst_vs_control_extract_fwd.csv`; (5) adverse proxy → `adverse_proxy_k20_by_pair.csv`. **Phase 2** → `r4_phase2_analysis.py` + `outputs/phase2/*.csv` and `phase2_automated_summary.txt`. **Phase 3** → `r4_phase3_joint_gate_r4.py` + `outputs/phase3/*.csv`; inclineGod PNGs `r4_spread_spread_scatter_day{1,2,3}.png` and `r4_fwd_extract_hist_tight_vs_loose.png` **regenerated** (2026-04-26) via `MPLBACKEND=Agg python3 .../r4_phase3_joint_gate_r4.py` so paths in iteration-2 `analysis_outputs` match tree. **R3 verbatim refs** in-repo: `round3work/vouchers_final_strategy/STRATEGY.txt` and `ORIGINAL_DISCORD_QUOTES.txt` (not under `previous round work/` in this clone). **Sim (worse) best Mark22-print extract overlay:** `trader_v13.py` total **7,616** vs `trader_v1.py` **7,514** (`results.json` iterations 13 vs 1).",
+    "analysis_outputs": [
+      "round4work/suggested direction.txt",
+      "round4work/round4description.txt",
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "manual_traders/R4/r3v_jump_gap_filter_17/r4_phase1_counterparty_analysis.py",
+      "manual_traders/R4/r3v_jump_gap_filter_17/r4_phase2_analysis.py",
+      "manual_traders/R4/r3v_jump_gap_filter_17/r4_phase3_joint_gate_r4.py",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase1/",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase2/",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase3/r4_spread_spread_scatter_day1.png",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase3/r4_spread_spread_scatter_day2.png",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase3/r4_spread_spread_scatter_day3.png",
+      "manual_traders/R4/r3v_jump_gap_filter_17/outputs/phase3/r4_fwd_extract_hist_tight_vs_loose.png",
+      "manual_traders/R4/r3v_jump_gap_filter_17/results.json"
+    ],
+    "used_to_decide": "Treat Phase 1–3 as **closed** on tape evidence for this branch; further work is **sim translation** (precompute + `trader_v*`) and optional **new** tape slices — not re-litigating gate CSVs unless data or TH changes."
   }
 ]

@@ -292,5 +292,25 @@
       "**Mark01\u2192Mark22** on **VEV_5300** at K=20: **all** n=132 prints have `sonic_tight=True` but **mean fwd\u2248\u22120.12** \u2014 gate does not rescue this counterparty leg.",
       "**Burst-B \u2229 tight** on **VEV_5300** rows: mean fwd@20 still **\u2248\u22120.13** (n=162) \u2014 contradicts a naive \u2018always long 5300 after basket in tight surface\u2019 at this horizon."
     ]
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "Round 4 **execution falsification** of naive Sonic-gate extract long: `trader_v3.py` buys **U** at ask on **rising** joint-tight edge and sells at bid on falling edge. Backtest sums final-timestamp **profit_and_loss** across products from saved JSON activity log (same as printed **Total profit**).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_volume_weighted_residual_05/trader_v3.py",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v3_worse.log",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v3_all.log"
+    ],
+    "used_to_decide": "Strategy **fails badly**: total PnL **-291,883** (worse) / **-291,967** (all) over Round 4 days 1\u20133; **~8.4k** SUBMISSION fill rows on **U**. Confirms community caveat: **mid** forward edge under the gate does **not** translate to paying spread on **unconditional** aggressive long at gate turn-on. Next: passive / sized / counterparty-conditioned entries; note `TestRunner` calls `run()` **before** `OrderMatchMaker` populates `market_trades`, so same-tick counterparty gating from `state.market_trades` inside `run()` is unreliable without upstream change."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "Round 4 **passive U** under Sonic + tight U: `trader_v4.py` uses EMA(mid) dip/profit bands while joint gate on; improved bid (`min(bid+1,ask-1)` when spread\u22652) so `--match-trades worse` can match tape sells; flatten when gate opens.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_volume_weighted_residual_05/trader_v4.py",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v4_worse.log",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v4_all.log"
+    ],
+    "used_to_decide": "PnL **-468** worse / **-444** all (still negative but **~600\u00d7** smaller loss than v3); **165** worse SUBMISSION rows vs **8426** in v3 \u2014 spread cost dominated v3. Remaining drag: exit still pays spread (ask sells); Mark67 interaction not yet wired (needs tape at `run()` or runner reorder). Next iteration can try **only** passive round-trip (improved bid / improved ask) or smaller `EXIT_Q` / wider `PROFIT`."
   }
 ]

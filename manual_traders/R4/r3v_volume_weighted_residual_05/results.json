@@ -61,5 +61,47 @@
       "trades_or_fills_summary": "trade_history_rows=0 (no SUBMISSION fills)",
       "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_volume_weighted_residual_05/trader_v2.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v2_all.log"
     }
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "Sonic joint gate (5200/5300 spread<=2) + U spread<=8: aggressive buy U at ask on rising gate edge; flatten at bid on falling edge. Tests whether Phase-3 pooled positive extract fwd@20 under tight gate survives execution.",
+    "total_profit": -291883,
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -291883,
+      "backtest_log_file": "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v3_worse.log",
+      "trades_or_fills_summary": "trade_history_rows=12705; SUBMISSION rows=8426; own_fill_abs_qty_sum=116298 (from tradeHistory JSON)",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_volume_weighted_residual_05/trader_v3.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v3_worse.log"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -291967,
+      "backtest_log_file": "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v3_all.log",
+      "trades_or_fills_summary": "trade_history_rows=12717; SUBMISSION rows=8449; own_fill_abs_qty_sum=116442",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_volume_weighted_residual_05/trader_v3.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v3_all.log"
+    }
+  },
+  {
+    "iteration": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "Sonic gate + U spread<=6: passive mean-reversion on U only. While tight: buy at improved bid (bid+1 when spread>=2) when mid<EMA-DIP; sell EXIT_Q at ask when mid>EMA+PROFIT; when gate off flatten. Addresses v3 spread cost; no counterparty feed at run() entry in this backtester.",
+    "total_profit": -468,
+    "backtest_round": 4,
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": -468,
+      "backtest_log_file": "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v4_worse.log",
+      "trades_or_fills_summary": "trade_history_rows=4362; SUBMISSION rows=165; own_fill_abs_qty_sum=910",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_volume_weighted_residual_05/trader_v4.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis --out manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v4_worse.log"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": -444,
+      "backtest_log_file": "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v4_all.log",
+      "trades_or_fills_summary": "trade_history_rows=4363; SUBMISSION rows=167; own_fill_abs_qty_sum=926",
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_volume_weighted_residual_05/trader_v4.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis --out manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/r4_v4_all.log"
+    }
   }
 ]

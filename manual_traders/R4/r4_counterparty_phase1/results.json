@@ -164,5 +164,26 @@
       "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v7_all.log",
       "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v7_all.json"
     }
+  },
+  {
+    "iteration": 8,
+    "trader_file": "trader_v8.py",
+    "strategy_description": "v7 ablation: under joint tight, HYDROGEL_PACK **bid-only** (clip 3, no hydro asks); VELVET+VEV same as v7. Wide trim unchanged.",
+    "total_profit": 7127,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v8.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r4_counterparty_phase1/backtest_r4_v8_worse.log",
+    "note_vs_v7": "HYDROGEL -1751 vs v7 -2098 (+347) but total worse +7127 vs +7532 (-405).",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 7127,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v8_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v8_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 9521,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v8_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v8_all.json"
+    }
   }
 ]

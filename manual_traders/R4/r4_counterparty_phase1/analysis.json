@@ -357,5 +357,16 @@
       "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v7_all.log"
     ],
     "used_to_decide": "Total worse **+7532** beats v4 **+6793** but **HYDROGEL_PACK -2098** on worse fills \u2014 hydro MM is **not** a clean add; gains come from interaction with other legs/days. Treat as **mixed**: gate-conditioned hydro story validated in mid stats; execution still bleeds on hydro alone."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Hydro execution ablation: remove hydro **ask** liquidity in tight gate (bid-only, clip 3) to test whether v7 hydro loss was dominated by adverse fills on passive sells.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/trader_v8.py",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v8_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v8_all.log",
+      "manual_traders/R4/r4_counterparty_phase1/fill_summary_v8_worse.json"
+    ],
+    "used_to_decide": "Hydro PnL improves **-1751** vs **-2098** but **total worse drops** to **+7127** vs v7 **+7532** \u2014 removing hydro sells also removed offsetting edge / inventory path. **Prefer v7** over v8 for headline worse PnL; hydro-only metric improved but not enough."
   }
 ]

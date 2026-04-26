@@ -253,6 +253,21 @@ def main() -> None:
     sig_list = [[int(r.tape_day), int(r.timestamp), bool(r.joint_tight_print)] for r in sig.itertuples()]
     (OUT / "signals_mark67_buy_aggr_extract_with_tight.json").write_text(json.dumps(sig_list), encoding="utf-8")
 
+    # Tier-A three-way (Phase 3): Mark 67 → Mark 22 on extract, joint tight **at print** (price inner-join)
+    sub_6722_tight = m[
+        (m["symbol"] == EXTRACT)
+        & (m["buyer"] == "Mark 67")
+        & (m["seller"] == "Mark 22")
+        & (m["joint_tight_print"] == True)
+    ]
+    sig_6722 = sub_6722_tight[["tape_day", "timestamp", "fwd_extract_k20"]].drop_duplicates(subset=["tape_day", "timestamp"])
+    sig_6722_list = [[int(r.tape_day), int(r.timestamp)] for r in sig_6722.itertuples()]
+    (OUT / "signals_mark67_to_mark22_extract_joint_tight_at_print.json").write_text(
+        json.dumps(sig_6722_list), encoding="utf-8"
+    )
+    if len(sig_6722):
+        sig_6722.assign(pair="Mark 67->Mark 22").to_csv(OUT / "mark67_to_mark22_extract_tight_print_events.csv", index=False)
+
     if plt is not None:
         fig, axes = plt.subplots(1, 2, figsize=(10.5, 4.2))
         ax = axes[0]
@@ -288,6 +303,7 @@ def main() -> None:
         "K": K,
         "pooled_welch": {"mean_tight": mt, "mean_not_tight": mn, "t": tst, "p": pvl},
         "n_signals_mark67_with_tight_flag": len(sig_list),
+        "n_signals_mark67_to_mark22_extract_tight_at_print": len(sig_6722_list),
         "outputs": sorted(p.name for p in OUT.iterdir() if p.is_file()),
     }
     (OUT / "phase3_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")

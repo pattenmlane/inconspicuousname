@@ -1,0 +1,16 @@
+tape_day,timestamp,fwd_extract_k20,pair
+1,575800,3.5,Mark 67->Mark 22
+1,632800,0.0,Mark 67->Mark 22
+1,812900,-3.5,Mark 67->Mark 22
+1,949400,11.0,Mark 67->Mark 22
+2,378400,4.5,Mark 67->Mark 22
+2,424600,6.5,Mark 67->Mark 22
+2,793900,-1.0,Mark 67->Mark 22
+3,254000,-3.5,Mark 67->Mark 22
+3,294300,-2.0,Mark 67->Mark 22
+3,349100,3.5,Mark 67->Mark 22
+3,405400,-3.5,Mark 67->Mark 22
+3,462100,6.5,Mark 67->Mark 22
+3,512800,4.5,Mark 67->Mark 22
+3,560900,8.0,Mark 67->Mark 22
+3,588300,8.0,Mark 67->Mark 22

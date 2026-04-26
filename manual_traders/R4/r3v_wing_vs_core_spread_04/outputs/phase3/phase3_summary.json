@@ -8,13 +8,16 @@
     "p": 2.268068162568603e-15
   },
   "n_signals_mark67_with_tight_flag": 164,
+  "n_signals_mark67_to_mark22_extract_tight_at_print": 15,
   "outputs": [
     "extract_pair_by_joint_tight_fwd_k20.csv",
     "mark01_to_mark22_extract_fwd_k20_by_joint_tight.csv",
     "mark67_buy_aggr_extract_fwd_k20_by_joint_tight.csv",
+    "mark67_to_mark22_extract_tight_print_events.csv",
     "phase3_summary.json",
     "r4_phase3_gate_overview.png",
     "signals_mark67_buy_aggr_extract_with_tight.json",
+    "signals_mark67_to_mark22_extract_joint_tight_at_print.json",
     "sonic_gate_fwd_extract_k20_by_day.csv",
     "sonic_gate_fwd_extract_k20_pooled.txt",
     "spread_correlations_by_gate_subset.csv"

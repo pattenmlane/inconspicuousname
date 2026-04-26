@@ -234,16 +234,19 @@
       "counterparty_x_gate_interaction": {
         "outputs": [
           "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/extract_pair_by_joint_tight_fwd_k20.csv",
-          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/mark67_buy_aggr_extract_fwd_k20_by_joint_tight.csv"
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/mark67_buy_aggr_extract_fwd_k20_by_joint_tight.csv",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/signals_mark67_to_mark22_extract_joint_tight_at_print.json",
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/mark67_to_mark22_extract_tight_print_events.csv"
         ],
-        "conclusion": "**Tier-A three-way:** Mark67\u2192Mark22 on extract when **joint_tight_print=True** (n=15): mean fwd extract K=20 **+2.83** vs **+1.83** when false (n=60). Mark55\u219214 tight vs not also separates (\u2248+0.44 vs +0.62 mean \u2014 direction depends on pair). Mark01\u219222 **extract** prints never co-occur with tight in this slice (empty CSV)."
+        "conclusion": "**Tier-A three-way:** Mark67\u2192Mark22 on extract when **joint_tight_print=True** (n=15): mean fwd extract K=20 **+2.83** vs **+1.83** when false (n=60). Mark55\u219214 tight vs not also separates (\u2248+0.44 vs +0.62 mean \u2014 direction depends on pair). Mark01\u219222 **extract** prints never co-occur with tight in this slice (empty CSV). **Signals** for exact 15 timestamps: `signals_mark67_to_mark22_extract_joint_tight_at_print.json` + per-event fwd column in `mark67_to_mark22_extract_tight_print_events.csv`."
       },
       "sim_vs_mid_phase1": {
         "outputs": [
+          "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v3_worse.json",
           "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v2_worse.json",
           "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v1_worse.json"
         ],
-        "conclusion": "Requiring tight **at print** shrinks sim from **+447.5 / 35 fills (v1)** to **+120.5 / 4 fills (v2)** \u2014 execution path is **not** monotone with the mid-only tight bucket boost; most v1 edge came from **wide-at-print** Mark67 events that still passed gate **at act**."
+        "conclusion": "Requiring tight **at print** shrinks sim from **+447.5 / 35 fills (v1)** to **+120.5 / 4 fills (v2)**. **v3** (Mark67\u219222 extract + tight at print + lag + act gate): **+91 / 3 fills** \u2014 still profitable on 3 days but **not** an improvement over v1; pair filter removes most execution opportunities vs solo Mark67."
       },
       "top_5_edges_phase3_ranked": [
         {
@@ -282,8 +285,28 @@
           "paths": [
             "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/signals_mark67_buy_aggr_extract_with_tight.json"
           ]
+        },
+        {
+          "rank": 6,
+          "edge": "Exact **Mark67\u219222 extract + tight at print** event list (15) for reproducible sims (`trader_v3.py`).",
+          "paths": [
+            "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/signals_mark67_to_mark22_extract_joint_tight_at_print.json",
+            "manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v3.py"
+          ]
         }
       ]
     }
+  },
+  {
+    "iteration": 3,
+    "analysis_description": "Post\u2013phase3 follow-up: extend r4_phase3_sonic_gate_analysis.py to emit **Mark67\u2192Mark22 extract + joint tight at print** signals (15 rows); add trader_v3 (lagged taker) and backtests worse+all; update phase3_summary and phase3_complete sim ladder (v1/v2/v3). Day-stability of **mid** fwd K=20 on those 15 events: day1 n=4 mean+2.75; day2 n=3 mean+3.33; day3 n=8 mean+2.69 (all positive means; medians mixed).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/r4_phase3_sonic_gate_analysis.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/signals_mark67_to_mark22_extract_joint_tight_at_print.json",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/outputs/phase3/mark67_to_mark22_extract_tight_print_events.csv",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v3.py",
+      "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v3_worse.log"
+    ],
+    "used_to_decide": "Ship **v1** for PnL on this tape; use v3 event list for research / optional overlay sizing; consider maker on 5300 after 67\u219222 tight prints instead of taker extract."
   }
 ]

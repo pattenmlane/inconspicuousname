@@ -65,5 +65,27 @@
       "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v2_all.log",
       "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v2_all.json"
     }
+  },
+  {
+    "iteration": 3,
+    "trader_file": "trader_v3.py",
+    "strategy_description": "Tier-A three-way: lagged taker buy 1 lot extract after Mark 67 \u2192 Mark 22 prints on extract with **joint tight at print** (signals from phase3 script); still require tight gate at execution. Signals: outputs/phase3/signals_mark67_to_mark22_extract_joint_tight_at_print.json (15 events).",
+    "total_profit": 91.0,
+    "backtest_round": 4,
+    "backtest_days": "4-1 4-2 4-3",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 91.0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v3.py 4 --data Prosperity4Data --match-trades worse --no-vis --out manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v3_worse.log",
+      "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v3_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v3_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 91.0,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_wing_vs_core_spread_04/trader_v3.py 4 --data Prosperity4Data --match-trades all --no-vis --out manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v3_all.log",
+      "backtest_log_file": "manual_traders/R4/r3v_wing_vs_core_spread_04/backtest_r4_v3_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_wing_vs_core_spread_04/fill_summary_r4_v3_all.json"
+    }
   }
 ]

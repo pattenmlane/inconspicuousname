@@ -298,5 +298,45 @@
       "backtest_stdout_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v26_round3_all.stdout.txt",
       "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v25_v26.json"
     }
+  },
+  {
+    "iteration": 27,
+    "trader_file": "trader_v27.py",
+    "strategy_description": "v26 + Sonic “size up” on tight surface: OPTION_CLIP 24, REQUOTE_EVERY 1 (MM every tick). **Worse total 8435** — identical to v26 (worse matching likely caps effective size; no hydrogel).",
+    "total_profit": 8435,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v27.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_worse": {
+      "total_profit": 8435,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v27_round3_worse.log",
+      "backtest_stdout_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v27_round3_worse.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v27_v28.json"
+    },
+    "backtest_all": {
+      "total_profit": 8730,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v27_round3_all.log",
+      "backtest_stdout_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v27_round3_all.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v27_v28.json"
+    }
+  },
+  {
+    "iteration": 28,
+    "trader_file": "trader_v28.py",
+    "strategy_description": "v26 + **extract L1 spread filter** (inclineGod/STRATEGY: spreads per name): long-extract target only if VELVET spread ≤4; 5200+5300 MM unchanged. **Worse total 11,153** (all 11,576) — new best; still << 200k/day.",
+    "total_profit": 11153,
+    "backtest_round": 3,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v28.py 3 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+    "backtest_worse": {
+      "total_profit": 11153,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v28_round3_worse.log",
+      "backtest_stdout_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v28_round3_worse.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v27_v28.json"
+    },
+    "backtest_all": {
+      "total_profit": 11576,
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v28_round3_all.log",
+      "backtest_stdout_file": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v28_round3_all.stdout.txt",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v27_v28.json"
+    }
   }
 ]

@@ -180,5 +180,17 @@
       "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v25_v26.json"
     ],
     "used_to_decide": "Ship **v26** as the clean **tight-surface** baseline under the new thesis (gate-first, 5200+5300 only, ablated extract on last day). Next: tune extract layer (smaller target, join gate with extract spread) or add inventory-aware 5200/5300; still need scale if 200k/day is literal."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "vouchers_final_strategy sweep: **v27** = v26 with larger clip (24) and requote every tick; **worse** total **8435** same as v26 (per-tick requote/clip not binding under `match_trades worse` for 5200/5300 in this sim). **v28** = v26 + require **VELVETFRUIT_EXTRACT** BBO spread **≤4** before running the optional long-extract target layer (inclineGod “spreads per contract” plus STRATEGY’s inner-join on extract). Surface MM still runs on joint 5200/5300 tight gate. **Worse 11,153** vs v26 8,435 — dominant gain on extract + voucher lines when we avoid lifting extract in wide **underlying** books. Full logs: `run_logs/trader_v2{7,8}_round3_*.log`; `family12_outputs/run_fill_summary_v27_v28.json`.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v27.py",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/trader_v28.py",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v27_round3_worse.log",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/run_logs/trader_v28_round3_worse.log",
+      "manual_traders/R3_VEV/r3v_gamma_scalping_extract_20/family12_outputs/run_fill_summary_v27_v28.json"
+    ],
+    "used_to_decide": "Prefer **v28** for PnL under the new thesis. Next knobs: `EXTRACT_SPREAD_MAX_FOR_TARGET` grid, optional extract spread in {2,3,4,5}, and MM edge only if we stay vouchers-only."
   }
 ]

@@ -2,6 +2,7 @@ Round 4 — research manifest (strategy folder: r3v_inventory_vega_rail_18)
 ======================================================================
 Data: Prosperity4Data/ROUND_4/ prices + trades, csv days 1–3 (see FileSystemReader round 4).
 Horizon K: forward price ticks on 100-step grid (see run_r4_phase1_counterparty_analysis.py).
+Round 4 has **7** distinct buyer/seller names in the trade tape; participant-U tables enumerate all 7.
 
 Phase 1 — scripts
 -----------------
@@ -12,6 +13,8 @@ Phase 1 — outputs
 analysis_outputs/r4_phase1_pair_forward_summary.csv
 analysis_outputs/r4_phase1_pair_forward_by_day.csv
 analysis_outputs/r4_phase1_mark_forward_summary.csv
+analysis_outputs/r4_phase1_participant_U_forward.csv   (all names U, roles, same + extract + hydro)
+analysis_outputs/r4_phase1_participant_U_spread_tert.csv (U stratified by trade-symbol BBO spread tertile)
 analysis_outputs/r4_phase1_pair_residuals.csv
 analysis_outputs/r4_phase1_graph_edges.csv
 analysis_outputs/r4_phase1_twohop_same_symbol.csv

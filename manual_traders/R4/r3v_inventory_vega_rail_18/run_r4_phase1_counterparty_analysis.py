@@ -6,12 +6,12 @@ Horizon K: number of price **ticks** (timestamp index steps of 100) forward on t
 aligned grid shared by all products (verified identical ts sets per day).
 
 Outputs under manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/:
-  - r4_phase1_forward_by_mark.csv
-  - r4_phase1_pair_baseline_residuals.csv
-  - r4_phase1_graph_edges.csv
-  - r4_phase1_bursts.csv
-  - r4_phase1_adverse_aggressor.csv
-  - r4_phase1_summary.txt
+  - r4_phase1_pair_forward_summary.csv, r4_phase1_pair_forward_by_day.csv
+  - r4_phase1_mark_forward_summary.csv (7 Marks, fixed)
+  - r4_phase1_participant_U_forward.csv — **each distinct name** U, roles, same-symbol + extract + hydro
+  - r4_phase1_participant_U_spread_tert.csv — subset stratified by trade-symbol spread tertile
+  - r4_phase1_pair_residuals.csv, r4_phase1_graph_edges.csv, r4_phase1_bursts.csv
+  - r4_phase1_adverse_extract_after_01_22_5300.csv, r4_phase1_summary.txt
 """
 from __future__ import annotations
 
@@ -81,6 +81,26 @@ def t_stat(xs: list[float]) -> float | None:
     return m / (s / math.sqrt(len(xs)))
 
 
+def spread_tertiles(sprs_sym: list[int]) -> tuple[int, int] | None:
+    """Tertile cutoffs on non-negative BBO spreads for one symbol-day grid."""
+    vals = sorted(s for s in sprs_sym if s >= 0)
+    n = len(vals)
+    if n < 9:
+        return None
+    return (vals[n // 3], vals[2 * n // 3])
+
+
+def spr_bucket(spr: int, cuts: tuple[int, int] | None) -> str:
+    if spr < 0 or cuts is None:
+        return "miss"
+    t1, t2 = cuts
+    if spr <= t1:
+        return "T1_tightest_third"
+    if spr <= t2:
+        return "T2_mid_third"
+    return "T3_widest_third"
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     csv_days = [1, 2, 3]
@@ -93,10 +113,12 @@ def main() -> None:
     pair_fwd: dict[tuple, list[float]] = defaultdict(list)  # (buy,sell,sym,k) -> fwd same sym
     pair_fwd_day: dict[tuple, list[float]] = defaultdict(list)  # (buy,sell,sym,k,day)
     burst_groups: list[tuple[int, int, int, str, int]] = []  # day, ts, n, orchestrator, n_sym
+    all_names: set[str] = set()
 
     for csv_day in csv_days:
         tss, mids, sprs = grids[csv_day]
         idx_of = {ts: i for i, ts in enumerate(tss)}
+        cuts_by_sym: dict[str, tuple[int, int] | None] = {p: spread_tertiles(sprs[p]) for p in PRODUCTS}
         path = DATA / f"trades_round_4_day_{csv_day}.csv"
         trades_raw: list[dict] = []
         with path.open() as f:
@@ -151,6 +173,9 @@ def main() -> None:
             else:
                 aggr_side = "passive_mid"
 
+            all_names.add(buyer)
+            all_names.add(seller)
+
             rec: dict = {
                 "csv_day": csv_day,
                 "timestamp": ts,
@@ -162,6 +187,7 @@ def main() -> None:
                 "mid_t": mid0,
                 "spread_t": spr0,
                 "aggressor": aggr_side,
+                "spr_bucket_sym": spr_bucket(spr0, cuts_by_sym.get(sym)),
             }
             for K in K_HORIZONS:
                 if j + K >= len(tss):
@@ -185,6 +211,123 @@ def main() -> None:
                     else:
                         rec[f"fwd_{K}_{cx}"] = float(m1c - m0c)
             rows_out.append(rec)
+
+    # -------------------------------------------------------------------------
+    # Participant U — every distinct name, roles, same + cross-asset, spread tertile
+    # -------------------------------------------------------------------------
+    all_names.discard("")
+    u_cells: dict[tuple, list[float]] = defaultdict(list)
+    u_cells_tert: dict[tuple, list[float]] = defaultdict(list)
+    for rec in rows_out:
+        sym = rec["symbol"]
+        ag = rec["aggressor"]
+        sb = rec.get("spr_bucket_sym", "miss")
+        for K in K_HORIZONS:
+            f_same = rec.get(f"fwd_{K}_{sym}")
+            f_ex = rec.get(f"fwd_{K}_VELVETFRUIT_EXTRACT")
+            f_hy = rec.get(f"fwd_{K}_HYDROGEL_PACK")
+            for U, role_tag in ((rec.get("buyer"), "as_buyer"), (rec.get("seller"), "as_seller")):
+                if not U:
+                    continue
+                if role_tag == "as_buyer":
+                    if f_same is not None:
+                        u_cells[(U, "as_buyer", "same", sym, K)].append(float(f_same))
+                    if f_ex is not None:
+                        u_cells[(U, "as_buyer", "to_extract", "x", K)].append(float(f_ex))
+                    if f_hy is not None:
+                        u_cells[(U, "as_buyer", "to_hydro", "x", K)].append(float(f_hy))
+                    if ag == "buyer" and f_same is not None:
+                        u_cells[(U, "aggr_buy", "same", sym, K)].append(float(f_same))
+                    if sb in ("T1_tightest_third", "T2_mid_third", "T3_widest_third"):
+                        if f_same is not None:
+                            u_cells_tert[(U, "as_buyer", sb, "same", sym, K)].append(float(f_same))
+                        if f_ex is not None:
+                            u_cells_tert[(U, "as_buyer", sb, "to_extract", "x", K)].append(float(f_ex))
+                else:
+                    if f_same is not None:
+                        u_cells[(U, "as_seller", "same", sym, K)].append(float(f_same))
+                    if f_ex is not None:
+                        u_cells[(U, "as_seller", "to_extract", "x", K)].append(float(f_ex))
+                    if f_hy is not None:
+                        u_cells[(U, "as_seller", "to_hydro", "x", K)].append(float(f_hy))
+                    if ag == "seller" and f_same is not None:
+                        u_cells[(U, "aggr_sell", "same", sym, K)].append(float(f_same))
+                    if sb in ("T1_tightest_third", "T2_mid_third", "T3_widest_third"):
+                        if f_same is not None:
+                            u_cells_tert[(U, "as_seller", sb, "same", sym, K)].append(float(f_same))
+                        if f_ex is not None:
+                            u_cells_tert[(U, "as_seller", sb, "to_extract", "x", K)].append(float(f_ex))
+
+    def summarize_cells(cells: dict[tuple, list[float]], n_min: int) -> list[dict]:
+        out: list[dict] = []
+        for key, vals in cells.items():
+            if len(vals) < n_min:
+                continue
+            m = statistics.mean(vals)
+            med = statistics.median(vals)
+            t = t_stat(vals)
+            out.append(
+                {
+                    "mark": key[0],
+                    "role": key[1],
+                    "fwd_target": key[2],
+                    "out_symbol": key[3],
+                    "K": key[4],
+                    "n": len(vals),
+                    "mean": m,
+                    "median": med,
+                    "frac_pos": sum(1 for x in vals if x > 0) / len(vals),
+                    "t_stat": t,
+                }
+            )
+        return out
+
+    u_rows = summarize_cells(u_cells, n_min=5)
+    u_rows.sort(key=lambda x: (-(abs(x["t_stat"] or 0)), -x["n"]))
+
+    u_tert_rows: list[dict] = []
+    for key, vals in u_cells_tert.items():
+        if len(vals) < 5:
+            continue
+        U, role, sb, ft, out_sym, K = key
+        u_tert_rows.append(
+            {
+                "mark": U,
+                "role": role,
+                "spread_tertile_trade_symbol": sb,
+                "fwd_target": ft,
+                "out_symbol": out_sym,
+                "K": K,
+                "n": len(vals),
+                "mean": statistics.mean(vals),
+                "median": statistics.median(vals),
+                "frac_pos": sum(1 for x in vals if x > 0) / len(vals),
+                "t_stat": t_stat(vals),
+            }
+        )
+    u_tert_rows.sort(key=lambda x: (-(abs(x["t_stat"] or 0)), -x["n"]))
+
+    with (OUT / "r4_phase1_participant_U_forward.csv").open("w", newline="") as f:
+        cols = [
+            "mark", "role", "fwd_target", "out_symbol", "K", "n", "mean", "median", "frac_pos", "t_stat"
+        ]
+        w = csv.DictWriter(f, fieldnames=cols, extrasaction="ignore")
+        w.writeheader()
+        for row in u_rows:
+            w.writerow({c: ("" if row.get(c) is None else row[c]) for c in cols})
+    with (OUT / "r4_phase1_participant_U_spread_tert.csv").open("w", newline="") as f:
+        cols = [
+            "mark", "role", "spread_tertile_trade_symbol", "fwd_target", "out_symbol", "K",
+            "n", "mean", "median", "frac_pos", "t_stat",
+        ]
+        w = csv.DictWriter(f, fieldnames=cols, extrasaction="ignore")
+        w.writeheader()
+        for row in u_tert_rows:
+            w.writerow({c: ("" if row.get(c) is None else row[c]) for c in cols})
+
+    n_participants = len(all_names)
+    n_participant_u_cells = len(u_rows)
+    n_participant_u_tert_cells = len(u_tert_rows)
 
     # Write forward-by-trade sample (can be large — write pair aggregates instead mostly)
     pair_rows: list[dict] = []
@@ -414,8 +557,21 @@ def main() -> None:
         "Round 4 Phase 1 — automated summary",
         "====================================",
         f"Trade rows analyzed: {len(rows_out)}",
+        f"Distinct participant names (buyer ∪ seller, non-empty): {n_participants}",
+        f"Aggregated (U, role, fwd_target, out_symbol, K) cells n>=5: {n_participant_u_cells} (see r4_phase1_participant_U_forward.csv)",
+        f"Stratified by trade-symbol spread tertile (per day grid), n>=5: {n_participant_u_tert_cells} (see r4_phase1_participant_U_spread_tert.csv)",
         f"Unique (buyer,seller,symbol,K) pair cells (n>=5): {len(pair_rows)}",
         f"Same-timestamp multi-print bursts: {len(burst_groups)}",
+        "",
+        "Top 10 participant-U cells (|t_stat|) with n>=30:",
+    ]
+    u_top = [r for r in u_rows if r["n"] >= 30 and r.get("t_stat") is not None]
+    u_top.sort(key=lambda x: -abs(x["t_stat"] or 0))
+    for r in u_top[:10]:
+        lines.append(
+            f"  {r['mark']} {r['role']} {r['fwd_target']} {r['out_symbol']} K={r['K']} n={r['n']} mean={r['mean']:.4f} t={r['t_stat']:.3f}"
+        )
+    lines += [
         "",
         "Top 15 (buyer,seller,symbol,K) by |t_stat| among n>=30:",
     ]

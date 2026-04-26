@@ -1,8 +1,23 @@
 Round 4 Phase 1 — automated summary
 ====================================
 Trade rows analyzed: 4281
+Distinct participant names (buyer ∪ seller, non-empty): 7
+Aggregated (U, role, fwd_target, out_symbol, K) cells n>=5: 234 (see r4_phase1_participant_U_forward.csv)
+Stratified by trade-symbol spread tertile (per day grid), n>=5: 237 (see r4_phase1_participant_U_spread_tert.csv)
 Unique (buyer,seller,symbol,K) pair cells (n>=5): 84
 Same-timestamp multi-print bursts: 387
+
+Top 10 participant-U cells (|t_stat|) with n>=30:
+  Mark 67 aggr_buy same VELVETFRUIT_EXTRACT K=5 n=164 mean=1.9604 t=13.026
+  Mark 67 as_buyer same VELVETFRUIT_EXTRACT K=5 n=165 mean=1.9455 t=12.941
+  Mark 67 as_buyer to_extract x K=5 n=165 mean=1.9455 t=12.941
+  Mark 49 as_seller same VELVETFRUIT_EXTRACT K=5 n=105 mean=1.8190 t=9.631
+  Mark 49 as_seller to_extract x K=5 n=105 mean=1.8190 t=9.631
+  Mark 22 as_seller same VELVETFRUIT_EXTRACT K=5 n=101 mean=1.5446 t=6.415
+  Mark 67 as_buyer same VELVETFRUIT_EXTRACT K=20 n=165 mean=1.8455 t=5.967
+  Mark 67 as_buyer to_extract x K=20 n=165 mean=1.8455 t=5.967
+  Mark 67 aggr_buy same VELVETFRUIT_EXTRACT K=20 n=164 mean=1.8140 t=5.860
+  Mark 49 as_seller same VELVETFRUIT_EXTRACT K=20 n=105 mean=1.7952 t=4.877
 
 Top 15 (buyer,seller,symbol,K) by |t_stat| among n>=30:
   Mark 67->Mark 22 VELVETFRUIT_EXTRACT K=5 n=75 mean=2.0600 t=9.306

@@ -18,9 +18,11 @@
           "outputs": [
             "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_pair_forward_summary.csv",
             "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_pair_forward_by_day.csv",
-            "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_mark_forward_summary.csv"
+            "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_mark_forward_summary.csv",
+            "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_participant_U_forward.csv",
+            "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_participant_U_spread_tert.csv"
           ],
-          "conclusion": "Strong positive forward extract mid after Mark 67 buys from Mark 22 or Mark 49 at K=5 and K=20 (t>4 pooled); per-day means stay positive on csv days 1,2,3. Mark 01->Mark 22 on VEV_5300 shows negative short-horizon same-symbol fwd at K=5 pooled but not stable (day2 near zero)."
+          "conclusion": "All **7** distinct tape names covered: per-U same-symbol + cross-asset (K-step fwd on extract / hydro) for as_buyer / as_seller / aggr_buy / aggr_sell; trade-symbol **spread tertile** (T1–T3, per day grid) in the `_spread_tert` file. **|t|** leaders at n>=30: Mark 67 buyer/aggr on extract (K=5) ~+1.95 (t~13), Mark 49 as seller on extract (K=5) ~+1.82 (t~9.6), Mark 22 as seller (extract K=5) ~+1.54 (t~6.4). Pair table confirms Mark67->22/49; Mark 22 aggr_sell on 5300 short fwd negative. **Hour/session buckets** not in this pass (full-day grid only) — see gap in explicit_no_edge."
         },
         {
           "phase1_bullet": "2) Deviation from bot baseline (cell means / residuals)",
@@ -94,7 +96,9 @@
       "explicit_no_edge": [
         "No single Mark 'as_buyer' aggregate across all products shows uniform positive markout at K=100 with high t across all symbols — role is pair- and symbol-specific (see mark_forward_summary sparse rows).",
         "Mark 14->Mark 55 extract at K=100 shows negative mean in one cell — not a stable buy signal without further regime split.",
-        "Only three tape days; all 'stable across days' claims are limited to those csv days — Phase 2 should stress-test with execution sim."
+        "Only three tape days; all 'stable across days' claims are limited to those csv days — Phase 2 should stress-test with execution sim.",
+        "**Session / hour-of-day** stratification for per-name U tables is not implemented in `run_r4_phase1_counterparty_analysis.py` (full session grid per csv day). Spread **tertile** of the **trade’s symbol** is reported instead (`r4_phase1_participant_U_spread_tert.csv`).",
+        "**Bootstrap CI** for cell means: not computed; t-stat on i.i.d. assumption only (per suggested-direction note on inference)."
       ]
     }
   },
@@ -323,6 +327,18 @@
       "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/trader_v13_all_fill_summary.json"
     ],
     "used_to_decide": "Keep v6 as baseline; v13 is optional risk overlay for live if we want to avoid quoting extract into simultaneous 01→22 5300 tape without hurting this backtest slice. Next: multi-tick armed risk-off after 01→22 (symmetric to v12) or burst-conditioned skip."
+  },
+  {
+    "iteration": 12,
+    "analysis_description": "Phase 1 **extension (participant U)**: `run_r4_phase1_counterparty_analysis.py` now writes `r4_phase1_participant_U_forward.csv` (all **7** distinct tape names; roles as_buyer / as_seller / aggr_buy / aggr_sell; forward targets: same **trade** symbol, K-step forward mid change on extract, and on hydro) and `r4_phase1_participant_U_spread_tert.csv` (same cells stratified by **trade symbol** BBO spread tertile T1–T3 per csv-day price grid). `round4_phase1_complete` bullet 1 and explicit_no_edge updated. Summary: 234 U-cells and 237 tertile-cells with n>=5.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_inventory_vega_rail_18/run_r4_phase1_counterparty_analysis.py",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_participant_U_forward.csv",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_participant_U_spread_tert.csv",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/r4_phase1_summary.txt",
+      "manual_traders/R4/r3v_inventory_vega_rail_18/analysis_outputs/R4_RESEARCH_MANIFEST.txt"
+    ],
+    "used_to_decide": "R4 tape has only **seven** Mark names; exhaustive U-level table is small. For hour/session splits or bootstrap CIs, extend the script in a follow-up. Phase 2/3 objects unchanged."
   },
   {
     "round4_synthesis_2026_04_26": {

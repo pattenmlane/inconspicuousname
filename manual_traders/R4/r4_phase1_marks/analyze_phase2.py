@@ -18,8 +18,8 @@ import numpy as np
 import pandas as pd
 
 HERE = Path(__file__).resolve().parent
-# HERE is the ``r4_phase1_marks`` directory → parents[2] == /workspace
-REPO = HERE.parents[2]
+# Match analyze_phase1.REPO: three ancestors up from this **file** → /workspace
+REPO = Path(__file__).resolve().parents[3]
 DATA = REPO / "Prosperity4Data" / "ROUND_4"
 OUT = HERE / "outputs"
 OUT.mkdir(parents=True, exist_ok=True)

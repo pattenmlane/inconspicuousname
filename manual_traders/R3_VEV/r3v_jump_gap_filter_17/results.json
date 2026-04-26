@@ -168,5 +168,29 @@
     "backtest_log_file": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter18_backtest.log",
     "match_trades": "worse",
     "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter18_fill_summary.json"
+  },
+  {
+    "iteration": 19,
+    "trader_file": "trader_v19.py",
+    "strategy_description": "v17 + joint 5200/5300 TOB spread gate (both <=2) from round3work/vouchers_final_strategy/STRATEGY: full extract+VEV when ON; VEV off and extract clip 10 when OFF. No HYDROGEL. v17 PTP jump pause unchanged.",
+    "total_profit": 47899,
+    "backtest_round": 3,
+    "backtest_worse": {
+      "total_profit": 47899,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v19.py 3 --data Prosperity4Data --match-trades worse --no-vis",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter19_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter19_fill_summary_worse.json",
+      "match_trades": "worse"
+    },
+    "backtest_all": {
+      "total_profit": 49015,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt:round3work/plotting/original_method/combined_analysis\" python3 -m prosperity4bt manual_traders/R3_VEV/r3v_jump_gap_filter_17/trader_v19.py 3 --data Prosperity4Data --match-trades all --no-vis",
+      "backtest_log_file": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter19_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter19_fill_summary_all.json",
+      "match_trades": "all"
+    },
+    "comparable_3day_worse_sum_extract_vev": 47843,
+    "comparable_3day_all_sum_extract_vev": 48934,
+    "note": "After merge, round 3 backtest includes day 3 (prices_round_3_day_3.csv, short tape). 3-day sum for apples-to-apples vs prior iter: worse 47,843; v17 prior was 63,106 over days 0-2 with hydrogel. PnL focus: extract+VEV only (no hydrogel)."
   }
 ]

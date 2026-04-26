@@ -1,0 +1,15 @@
+{
+  "source": "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter19_backtest_worse.log",
+  "match_trades": "worse",
+  "per_day": {
+    "0": 2464.0,
+    "1": 8781.0,
+    "2": 36598.0,
+    "3": 56.0
+  },
+  "total_profit": 47899.0,
+  "extract_plus_vev_only": true,
+  "hydrogel_pnl": 0.0,
+  "comparable_3day_total": 47843.0,
+  "note": "v19: VELVETFRUIT_EXTRACT + VEVs only, no HYDROGEL. Days 0-2 sum for comparison to prior iter (v17 was 3 days 63106 worse)."
+}

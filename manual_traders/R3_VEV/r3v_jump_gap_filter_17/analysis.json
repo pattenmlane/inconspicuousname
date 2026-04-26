@@ -153,5 +153,19 @@
       "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter18_fill_summary.json"
     ],
     "used_to_decide": "Despite weak TOB widening signal, tested v17 + exponential post-shock widening of take/make edges with OTM (K/S) scaler. Total PnL 58,408 < v17 63,106 (day 0 6,684 vs 8,417; day 1 24,936 vs 25,124; day 2 similar). Falsified this edge bump at current amplitudes; keep v17 as lead for jump+neighbor gate; do not stack large discretionary edge add-ons without smaller grid or pause-only widening."
+  },
+  {
+    "iteration": 19,
+    "analysis_description": "Shared thesis from round3work/vouchers_final_strategy/STRATEGY.txt and outputs/r3_tight_spread_summary.txt: **Tight** = both VEV_5200 and VEV_5300 have ask_1-bid_1 <= 2; aligned with extract mid; forward K=20 mean extract change higher when tight (Welch t-stat in summary). P(both tight) ~0.10 day 0. We implement the gate in live `OrderDepth` (same TOB as tape) as regime filter. IV/Greeks: unchanged family-12 LOO spline + BS, delta for extract quote skew. **no hydrogel** in v19 to align 200k/day extract+VEV objective. Merge from main added R3 `prices_round_3_day_3` so backtester runs 4 day indices; day 3 is short; compare 3-day sums to prior 10k-tick days.",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_summary.txt",
+      "round3work/vouchers_final_strategy/outputs/r3_tight_spread_6panel.png",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter19_backtest_worse.log",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter19_backtest_all.log",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter19_fill_summary_worse.json",
+      "manual_traders/R3_VEV/r3v_jump_gap_filter_17/run_logs/iter19_fill_summary_all.json"
+    ],
+    "used_to_decide": "v19 = v17 + joint gate. When not both tight: VEV off, extract only with max_q 10 per side; when both tight: v17 PTP + full VEV + extract 25. Worse: total 4-day 47,899; 3-day extract+vev 47,843 (vs v17 63,106 on days 0-2 **with** hydrogel, not directly comparable). Gate + dropping hydrogel hurt PnL here; try softer gate (e.g. size not hard off), or re-add hydrogel for carry while keeping risk filter on VEV only."
   }
 ]

@@ -140,6 +140,20 @@
         "**All names:** tape has exactly **7** Mark IDs (listed in `r4_phase1c_name_coverage.txt`). `r4_phase1c_exhaustive_per_name.csv` gives mean/**median**/**t**/**frac_pos**/**bootstrap CI** for every (name, side_role, symbol) cell with n\u22655, for K\u2208{5,20,100} and fwd targets same_sym / U / hydro (351 detail rows) \u2014 completes ping \u201ceach U\u201d requirement on this 7-actor set.",
         "**Lead–lag (population):** M01\u2192M22 at **same U timestamp** vs extract **fwd_u_20** has Pearson r **\u2248-0.004, +0.006, +0.02** on days 1\u20133 (n=9980 ticks/day); 1-tick **lag** r similarly **~0.02 max** \u2014 **no** linear same-tick predictive link from basket prints to 20-tick U drift on full clock (Phase 1 structural ≠ signed extract clock signal without conditioning)."
       ]
+    },
+    "phase1d_spread_quantile_passive": {
+      "script": "manual_traders/R4/r3v_volume_weighted_residual_05/phase1d_r4_spread_quantile_passive_adverse.py",
+      "outputs": [
+        "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1d_mark67_u_buyagg_by_spread_quantile.csv",
+        "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1d_passive_side_adverse_by_mark.csv",
+        "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1d_mark_net_notional.csv",
+        "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1d_summary.txt"
+      ],
+      "bullets": [
+        "**Spread quantile (per day\u00d7symbol):** Mark67 **U buy_agg** rows all land in **`Q1_tight`** (narrowest 25% of `spread_sym` for **U** that day) \u2014 no cross-quartile contrast for this slice on R4 days 1\u20133; pooled stats match Phase-1 Mark67 table (n=164).",
+        "**Passive adverse (tape):** **Mark 22** / **Mark 49** as **passive_at_bid** (buyer on `sell_agg` prints) show **negative** mean same-symbol fwd@5 (\u2248**-1.4** / **-2.2**, n 36 / 16) \u2014 small-n tails but consistent with \u201chit on bid then drift down\u201d story; **Mark 22/49 passive_at_ask** remain **positive** fwd@5 (n 109 / 104). **Mark 01** passive rows are **~null** at K=5/20 (n large).",
+        "**Net notional (buy\u2212sell):** **Mark 67** net +\u22487.9M (only buys in tape); **Mark 22/49** large **negative** net (net sellers) \u2014 aligns with pair-graph roles; use with passive markout table for MM \u201cwho not to lean against\u201d hypotheses."
+      ]
     }
   },
   {
@@ -458,5 +472,17 @@
       "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1c_m01_m22_leadlag_extract_k20.txt"
     ],
     "used_to_decide": "Satisfies expanded Phase-1 spec \u201cfor each distinct name U\u201d: **7** only. New **negative** finding: on the **entire** U price grid, M01\u2192M22 indicator is **~uncorrelated** with short extract fwd (|r| < 0.02 day 1\u20132; ~0.018 day 3) \u2014 supports conditioning **on gate / counterparty slice** (Phase 2/3) rather than a raw clock signal. `r4_phase1c_exhaustive_per_name.csv` is the audit trail for all roles\u00d7symbol\u00d7K\u00d7target cells."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "Round 4 **Phase 1d** — **spread quantile** stratification (within each day\u00d7symbol on `spread_sym`) and **passive-side** markouts: `passive_at_ask` = aggressor buy hits Mark\u2019s ask; `passive_at_bid` = aggressor sell hits Mark\u2019s bid. Plus per-Mark **net notional** (buyer minus seller).",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_volume_weighted_residual_05/phase1d_r4_spread_quantile_passive_adverse.py",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1d_mark67_u_buyagg_by_spread_quantile.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1d_passive_side_adverse_by_mark.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1d_mark_net_notional.csv",
+      "manual_traders/R4/r3v_volume_weighted_residual_05/analysis_outputs/phase1/r4_phase1d_summary.txt"
+    ],
+    "used_to_decide": "Documents Phase-1 bullet **spread quantile** + **adverse selection** population proxies without sim inventory. Mark67 U buy_agg occupies only the **tightest** within-day U-spread quartile here. **Mark 22/49** passive-at-bid rows show **negative** short fwd (small n); complements Phase-2 Mark22 seller adverse on VEV_5300. Merged under `round4_phase1_complete.phase1d_spread_quantile_passive`."
   }
 ]

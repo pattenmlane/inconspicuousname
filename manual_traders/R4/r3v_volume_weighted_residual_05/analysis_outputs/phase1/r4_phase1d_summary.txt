@@ -1,0 +1,4 @@
+Per-(day,symbol) spread_sym quartiles: Q1_tight = narrowest 25% of prints for that product that day.
+Mark67 U buy_agg by spr_q: see r4_phase1d_mark67_u_buyagg_by_spread_quantile.csv
+Passive adverse: negative mean fwd_same_sym after passive_at_ask suggests seller got picked off (price rose after).
+Net notional (buyer - seller) table: r4_phase1d_mark_net_notional.csv

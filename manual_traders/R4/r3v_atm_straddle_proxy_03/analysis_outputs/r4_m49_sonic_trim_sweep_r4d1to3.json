@@ -3,8 +3,9 @@
   "rows": [
     {"id": "v19", "tight_k": 0, "loose_k": 3, "worse_total": 10382, "all_total": 9993, "note": "same as v16"},
     {"id": "v15", "tight_k": 1, "loose_k": 3, "worse_total": 10382, "all_total": 9997},
-    {"id": "v20", "tight_k": 1, "loose_k": 4, "worse_total": 11011, "all_total": 10274, "note": "hybrid: worse ties v17, all < v17"},
+    {"id": "v20", "tight_k": 1, "loose_k": 4, "worse_total": 11011, "all_total": 10274},
     {"id": "v17", "tight_k": 0, "loose_k": 4, "worse_total": 11011, "all_total": 10288},
-    {"id": "v18", "tight_k": 0, "loose_k": 5, "worse_total": 11704, "all_total": 10411, "note": "best on this sample"}
+    {"id": "v18", "tight_k": 0, "loose_k": 5, "worse_total": 11704, "all_total": 10411},
+    {"id": "v21", "tight_k": 0, "loose_k": 6, "worse_total": 11894, "all_total": 10430, "note": "best on this sample; v18 beaten"}
   ]
 }

@@ -89,5 +89,26 @@
     "backtest_round": 4,
     "match_trades_primary": "worse",
     "note": "PnL tied v2: 5200/5300 had zero PnL under v2 already."
+  },
+  {
+    "iteration": 6,
+    "round": 4,
+    "trader_file": "trader_v4.py",
+    "strategy_description": "v3 + **tight-regime aggression**: when Sonic tight, quote **mid±1** (vs ±2) and raise sizes (U/H **12**, VEVs **9** vs **6**). Wide-regime non-gate VEVs unchanged (±2, 6). Hypothesis: Phase-3 population extract fwd-mid favors tight gate \u2192 lean into fills; **falsified under worse fills**.",
+    "backtest_worse": {
+      "total_profit": 4661,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v4.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v4_backtest_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v4_fill_summary_worse.json"
+    },
+    "backtest_all": {
+      "total_profit": 5294,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v4.py 4 --data Prosperity4Data --match-trades all --no-vis --no-progress",
+      "backtest_log_file": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v4_backtest_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v4_fill_summary_all.json"
+    },
+    "backtest_round": 4,
+    "match_trades_primary": "worse",
+    "note": "vs v3 worse 4852: **-191**. Main drag: HYDROGEL day3 **-494** vs v3 **+98**; extract day2 **1068** vs **1660**. Mid-only gate edge does not survive tighter passive quotes + worse match."
   }
 ]

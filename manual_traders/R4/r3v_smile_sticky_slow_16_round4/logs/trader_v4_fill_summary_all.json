@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v4.py",
+  "match_trades": "all",
+  "round": 4,
+  "total_profit": 5294,
+  "per_day_total": { "1": 1708, "2": 4036, "3": -450 },
+  "note": "vs trader_v3 all 5613: -319. Core VEVs get meaningful PnL under 'all' but day3 net negative; extract line negative on days 1-2 in this mode."
+}

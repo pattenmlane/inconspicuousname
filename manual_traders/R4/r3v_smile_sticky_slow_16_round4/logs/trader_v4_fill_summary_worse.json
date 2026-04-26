@@ -1,0 +1,8 @@
+{
+  "trader_file": "trader_v4.py",
+  "match_trades": "worse",
+  "round": 4,
+  "total_profit": 4661,
+  "per_day_total": { "1": 1271, "2": 1298, "3": 2092 },
+  "note": "vs trader_v3 worse 4852: -191. Tight-regime mid±1 + larger sizes increased fills but worse adverse selection (esp. HYDROGEL_PACK day3 -494 vs v3 +98)."
+}

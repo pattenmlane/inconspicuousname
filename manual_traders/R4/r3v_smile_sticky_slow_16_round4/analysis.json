@@ -239,5 +239,18 @@
       "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v3_backtest_worse.log"
     ],
     "used_to_decide": "**Mark14\u2192Mark55 sell_agg**: mean fwd20 **+0.18** (tight, n=84) vs **-0.39** (wide, n=232) \u2014 clearest gate interaction in this slice. **Mark55\u2192Mark14 buy_agg** has **higher** mean in **wide** (+0.62 vs +0.44 tight) \u2014 not monotonic. **Mark01\u2192Mark22** had too few aligned aggressive rows for cells. **trader_v3** (skip 5200/5300 MM when loose) **ties v2** PnL because those strikes had **zero** PnL in v2 logs already."
+  },
+  {
+    "iteration": 6,
+    "round": 4,
+    "analysis_description": "Sim follow-up to iteration-5 suggestion: **tighter + larger** MM **only when Sonic gate tight** (`trader_v4`: mid\u00b11 vs \u00b12, sizes 12/9 vs 6). Compare to **v3** on same days 1\u20133.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/trader_v4.py",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v4_backtest_worse.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v4_backtest_all.log",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v4_fill_summary_worse.json",
+      "manual_traders/R4/r3v_smile_sticky_slow_16_round4/logs/trader_v4_fill_summary_all.json"
+    ],
+    "used_to_decide": "**Falsified** for primary metric: **worse** total **4661** vs **v3 4852** (\u2212191). Phase-3 **mid** forward edge under tight gate does **not** map to better **bid/ask PnL** when we quote one tick closer with larger size under `--match-trades worse` \u2014 adverse selection dominates (notably **HYDROGEL_PACK** day3 **\u2212494** vs v3 **+98**). **all** mode also down (**5294** vs v3 **5613**). Next: keep v3-style width/size for U/H in tight, or tighten **extract only** (not hydro), or revert to v2/v3 baseline and seek **non-width** hooks (counterparty-conditioned skew)."
   }
 ]

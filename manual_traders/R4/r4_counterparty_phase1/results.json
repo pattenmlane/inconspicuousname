@@ -598,5 +598,45 @@
         "note": "Day3 +6 5300 vs worse; still far below v12."
       }
     }
+  },
+  {
+    "iteration": 16,
+    "round": 4,
+    "trader_file": "trader_v15.py",
+    "strategy_description": "v12 + M22_HIGH entry filter only (m22_sell_qty_5300>=4 skip buy); **same exit as v12** (no early trim on high M22 — ablates v14 exit change).",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 304,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v15.py 4 --data Prosperity4Data --match-trades worse --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v15_r4_worse.log",
+      "backtest_output": {
+        "day1": 304,
+        "day2": 0,
+        "day3": 0,
+        "total": 304
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "Identical PnL to v14 worse — early exit was not the driver; entry filter alone removes most v12 PnL."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 310,
+      "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v15.py 4 --data Prosperity4Data --match-trades all --no-progress --no-vis",
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_trader_v15_r4_all.log",
+      "backtest_output": {
+        "day1": 304,
+        "day2": 0,
+        "day3": 6,
+        "total": 310
+      },
+      "trades_or_fills_summary": {
+        "nonzero_symbols": ["VEV_5300"],
+        "underlying_pnl": 0,
+        "note": "Matches v14 all; confirms ablation."
+      }
+    }
   }
 ]

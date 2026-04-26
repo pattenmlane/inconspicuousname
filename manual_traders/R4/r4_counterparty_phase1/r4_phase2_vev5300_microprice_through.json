@@ -1,0 +1,49 @@
+{
+  "symbol": "VEV_5300",
+  "TH_joint_gate": 2.0,
+  "pooled": {
+    "n": 164,
+    "mean_abs_mp_offset": 0.169274,
+    "frac_trade_through": 0.0,
+    "n_joint_tight": 163,
+    "mean_abs_mp_offset_joint_tight": 0.168726
+  },
+  "per_day": {
+    "1": {
+      "n": 39,
+      "mean_abs_mp_offset": 0.180597,
+      "frac_trade_through": 0.0,
+      "n_joint_tight": 39,
+      "mean_abs_mp_offset_joint_tight": 0.180597
+    },
+    "2": {
+      "n": 45,
+      "mean_abs_mp_offset": 0.241321,
+      "frac_trade_through": 0.0,
+      "n_joint_tight": 45,
+      "mean_abs_mp_offset_joint_tight": 0.241321
+    },
+    "3": {
+      "n": 80,
+      "mean_abs_mp_offset": 0.123228,
+      "frac_trade_through": 0.0,
+      "n_joint_tight": 79,
+      "mean_abs_mp_offset_joint_tight": 0.121514
+    }
+  },
+  "per_buyer_seller_n_ge_20": [
+    {
+      "buyer": "Mark 01",
+      "seller": "Mark 22",
+      "n": 132,
+      "frac_through": 0.0
+    },
+    {
+      "buyer": "Mark 14",
+      "seller": "Mark 22",
+      "n": 30,
+      "frac_through": 0.0
+    }
+  ],
+  "note": "microprice = L1 (bid*bid_vol + ask*ask_vol)/(bid_vol+ask_vol); through = print strictly beyond best bid or best ask when at touch."
+}

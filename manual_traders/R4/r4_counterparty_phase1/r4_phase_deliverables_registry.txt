@@ -22,6 +22,8 @@ manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase2_spread_fwd_vol.py
 manual_traders/R4/r4_counterparty_phase1/r4_phase2_spread_fwd5300.json
 manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase2_burst_mark22_5300_qty_vs_fwd.py  (inventory proxy)
 manual_traders/R4/r4_counterparty_phase1/r4_phase2_burst_m22_5300_qty_vs_fwd.json
+manual_traders/R4/r4_counterparty_phase1/analyze_r4_phase2_vev5300_microprice_and_through.py
+manual_traders/R4/r4_counterparty_phase1/r4_phase2_vev5300_microprice_through.json
 
 PHASE 3 — Sonic gate + spread–spread on Round 4 (see analysis.json round4_phase3_complete)
 ------------------------------------------------------------------------------------------

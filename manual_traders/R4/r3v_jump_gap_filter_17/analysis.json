@@ -271,5 +271,21 @@
       "manual_traders/R4/r3v_jump_gap_filter_17/results.json"
     ],
     "used_to_decide": "Prefer **v1** or **no 5300 overlay** for worse-match shipping until 5300 leg turns ≥0 or signal is retimed to **print-aligned** ticks only. v7 is the best **counterparty-overlay** attempt so far but still **costs ~1.75k** vs extract baseline over 3 days."
+  },
+  {
+    "iteration": 8,
+    "analysis_description": "Extended `preprocess_r4_m0122_5300_gate_signal.py` to emit **`r4_m0122_5300_print_joint_signal.json`**: timestamps of Mark01→Mark22 VEV_5300 trades where `joint_tight` is true on the **same** price row (32/31/69 prints per day vs hundreds of expanded-window ticks). **`trader_v8`** = v7 execution + print-only set. Backtest **worse total 6,554** vs v7 **5,766** vs v1 **7,514**; **VEV_5300 pooled −960** (was −1,748 in v7) — print alignment **cuts sim fade loss ~45%** but overlay still **−960 vs zero**. Day-2 total **+460** worse (v7 was **−144**). **All** total **7,036** vs v1 **7,996** on extract+5300 book.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_jump_gap_filter_17/preprocess_r4_m0122_5300_gate_signal.py",
+      "manual_traders/R4/r3v_jump_gap_filter_17/precomputed/r4_m0122_5300_print_joint_signal.json",
+      "manual_traders/R4/r3v_jump_gap_filter_17/precomputed/r4_m0122_5300_window_joint_signal.json",
+      "manual_traders/R4/r3v_jump_gap_filter_17/trader_v8.py",
+      "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter8_backtest_worse.log",
+      "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter8_backtest_all.log",
+      "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter8_fill_summary_worse.json",
+      "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter8_fill_summary_all.json",
+      "manual_traders/R4/r3v_jump_gap_filter_17/results.json"
+    ],
+    "used_to_decide": "Treat **expanded ±window** precompute as overly pessimistic for Tier-A sim overlays; **print-only** is closer to Phase-3 event semantics. Still **no worse-match ship** vs extract-only v1 until 5300 leg ≥0 or strategy changes (e.g. skip fade day-2, or inventory cap)."
   }
 ]

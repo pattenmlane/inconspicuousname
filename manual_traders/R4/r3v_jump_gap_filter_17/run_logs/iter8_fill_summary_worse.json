@@ -1,0 +1,14 @@
+{
+  "source": "manual_traders/R4/r3v_jump_gap_filter_17/run_logs/iter8_backtest_worse.log",
+  "match_trades": "worse",
+  "per_day": {"1": 3748.0, "2": 460.0, "3": 2347.0},
+  "total_profit": 6554.0,
+  "per_product_total": {
+    "VELVETFRUIT_EXTRACT": 7515.0,
+    "VEV_5300": -960.0,
+    "HYDROGEL_PACK": 0.0
+  },
+  "vev_5300_per_day": {"1": -516.0, "2": -892.0, "3": 448.0},
+  "precomputed_signal": "r4_m0122_5300_print_joint_signal.json",
+  "note": "Print-only joint-tight timestamps (32+31+69 tape rows); same v7 spread>=2 + cooldown + qty2. per_day from Profit summary; total may differ by 1 tick from sum of days in engine output."
+}

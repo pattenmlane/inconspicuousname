@@ -20,6 +20,7 @@ Writes:
   r4_p3_m0122_fwd20_by_day.csv      — Mark01→Mark22 all symbols: fwd20 by day (asof-tight only)
   r4_p3_burst_echo_by_day.csv       — M01→M22 ≥3VEV burst echo grouped by day
   r4_p3_top_pair_fwd_by_day.csv     — top graph pairs × day × K (asof-tight trades only)
+  r4_p3_top_pair_counts_by_day_gate.csv — same pairs: trade counts tight vs wide-on-panel per day
   r4_p3_m0122_fwd_by_symbol_day.csv — Mark01→Mark22: per symbol × day × K (tight only)
   r4_p3_m1438_fwd_by_symbol_day.csv — Mark14→Mark38 hydro duopoly leg (same layout)
   r4_p3_m3814_fwd_by_symbol_day.csv — Mark38→Mark14 return leg
@@ -625,6 +626,27 @@ def main() -> None:
                 )
     pd.DataFrame(pair_rows).to_csv(OUT / "r4_p3_top_pair_fwd_by_day.csv", index=False)
 
+    # Top pairs: print volume tight vs wide (asof-aligned timestamps only)
+    cnt_rows: list[dict] = []
+    for buyer, seller in top_pairs:
+        for d in DAYS:
+            sub = m[(m["buyer"] == buyer) & (m["seller"] == seller) & (m["day"] == d) & m["gate_aligned"]]
+            n_t = int((sub["joint_tight"] == True).sum())  # noqa: E712
+            n_w = int((sub["joint_tight"] == False).sum())  # noqa: E712
+            n_a = n_t + n_w
+            cnt_rows.append(
+                {
+                    "buyer": buyer,
+                    "seller": seller,
+                    "day": int(d),
+                    "n_aligned": n_a,
+                    "n_joint_tight": n_t,
+                    "n_wide_on_panel": n_w,
+                    "frac_tight_of_aligned": float(n_t / n_a) if n_a else float("nan"),
+                }
+            )
+    pd.DataFrame(cnt_rows).to_csv(OUT / "r4_p3_top_pair_counts_by_day_gate.csv", index=False)
+
     # Phase-1 bursts (>=4 trades same ts) × gate
     def _symset(s: pd.Series) -> str:
         return ",".join(sorted({str(x) for x in s}))
@@ -849,7 +871,7 @@ def main() -> None:
     lines.extend(
         [
             "",
-            "Counterparty day tables: r4_p3_mark_fwd_by_day.csv, r4_p3_m0122_fwd20_by_day.csv, r4_p3_m0122_fwd_by_symbol_day.csv, r4_p3_m0122_symbol_k_overall.csv, r4_p3_m1438_fwd_by_symbol_day.csv, r4_p3_m1438_symbol_k_overall.csv, r4_p3_m3814_fwd_by_symbol_day.csv, r4_p3_m3814_symbol_k_overall.csv, r4_p3_burst_echo_by_day.csv, r4_p3_top_pair_fwd_by_day.csv",
+            "Counterparty day tables: r4_p3_mark_fwd_by_day.csv, r4_p3_m0122_fwd20_by_day.csv, r4_p3_m0122_fwd_by_symbol_day.csv, r4_p3_m0122_symbol_k_overall.csv, r4_p3_m1438_fwd_by_symbol_day.csv, r4_p3_m1438_symbol_k_overall.csv, r4_p3_m3814_fwd_by_symbol_day.csv, r4_p3_m3814_symbol_k_overall.csv, r4_p3_burst_echo_by_day.csv, r4_p3_top_pair_fwd_by_day.csv, r4_p3_top_pair_counts_by_day_gate.csv",
             "",
             "Top spread–spread |r| on inner-join timestamps (inclineGod panel):",
         ]
@@ -928,6 +950,7 @@ def main() -> None:
                 "r4_p3_m0122_fwd20_by_day.csv",
                 "r4_p3_burst_echo_by_day.csv",
                 "r4_p3_top_pair_fwd_by_day.csv",
+                "r4_p3_top_pair_counts_by_day_gate.csv",
                 "r4_p3_m0122_fwd_by_symbol_day.csv",
                 "r4_p3_m0122_symbol_k_overall.csv",
                 "r4_p3_m1438_fwd_by_symbol_day.csv",

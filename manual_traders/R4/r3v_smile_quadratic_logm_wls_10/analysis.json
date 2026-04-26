@@ -98,6 +98,7 @@
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_symbol_k_overall.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m1438_symbol_k_overall.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m3814_symbol_k_overall.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_top_pair_counts_by_day_gate.csv",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_gate.json",
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
     ],
@@ -128,6 +129,7 @@
         "m0122_symbol_k_overall": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m0122_symbol_k_overall.csv",
         "m1438_symbol_k_overall": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m1438_symbol_k_overall.csv",
         "m3814_symbol_k_overall": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_m3814_symbol_k_overall.csv",
+        "top_pair_counts_by_day_gate": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_top_pair_counts_by_day_gate.csv",
         "gate_json": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_gate.json",
         "script": "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
       },
@@ -228,5 +230,14 @@
       "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
     ],
     "used_to_decide": "M14→M38 on VEV_4000: pooled K20 mean≈+1.1 t≈2.10 n=55 frac_days_mean_pos=1.0 — wing voucher prints under this pair are consistently positive at medium horizon; hydro same leg has noisy high-variance pooled means (large std). Sim: trader_v8 wing clip 20 vs v5 clip 10 — identical 11526 (wing clip not binding between 10 and 20)."
+  },
+  {
+    "iteration": "round4_phase3_top_pair_gate_counts",
+    "analysis_description": "For each top-8 directed pair from Phase 1 graph and each tape day: count of trades with merge_asof gate on inner panel, split into joint_tight vs wide-on-panel (r4_p3_top_pair_counts_by_day_gate.csv). Quantifies how often counterparty flow co-locates with Sonic tight surface.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_p3_top_pair_counts_by_day_gate.csv",
+      "manual_traders/R4/r3v_smile_quadratic_logm_wls_10/r4_phase3_analysis.py"
+    ],
+    "used_to_decide": "M01→M22: ~100% prints asof-tight days 1–2; M14→M38 only ~14–41% tight (majority wide-on-panel) — joint gate is a poor filter for hydro-duopoly flow vs basket flow. Sim: trader_v9 hydro clip 6 vs v5 clip 8 — identical 11526 (hydro clip still not binding)."
   }
 ]

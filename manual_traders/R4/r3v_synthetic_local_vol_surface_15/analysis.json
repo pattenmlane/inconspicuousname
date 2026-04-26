@@ -499,5 +499,17 @@
       "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v28_r4_mark14_passive_sell_extract_nogate_all_stdout.txt"
     ],
     "used_to_decide": "Total **3,888** \u2014 gate is **mandatory** for this Mark14 slice on R4 days 1\u20133; do not deploy ungated."
+  },
+  {
+    "iteration": 29,
+    "analysis_description": "Tape slice `r4_p12_mark14_fwd20_gate_tight_vs_loose.csv` (script `_r4_mark14_gate_fwd20_slice.py`): Mark14 seller aggr_buy EXTRACT fwd20 split by **joint tight** at print time. **Day 3**: tight n=52 mean **\u22120.07** vs loose n=64 mean **+0.23** \u2014 gate conditioning **inverts** quality for this slice vs population extract. Trader **v29** applies v15-style roll clip on v27; backtest **9,598** (worse=all) vs v27 **14,268**.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/_r4_mark14_gate_fwd20_slice.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/outputs_r4_phase3/r4_p12_mark14_fwd20_gate_tight_vs_loose.csv",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/trader_v29_r4_mark14_passive_sell_scaled_clip.py",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v29_r4_mark14_passive_sell_scaled_clip_worse_stdout.txt",
+      "manual_traders/R4/r3v_synthetic_local_vol_surface_15/run_logs/trader_v29_r4_mark14_passive_sell_scaled_clip_all_stdout.txt"
+    ],
+    "used_to_decide": "**Do not** reuse Mark55 roll-shrink on Mark14 lane; keep **v27** fixed clip if this counterparty is used. Primary lane remains **v15**."
   }
 ]

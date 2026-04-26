@@ -420,5 +420,17 @@
       "results.json"
     ],
     "used_to_decide": "Prefer **v11** over v10 for this three-day grid: same Phase-1 M67→M22 stack on d1–2 without d3 sim penalty. **Live** competition without `PROSPERITY4_BACKTEST_DAY` still applies M67→M22 like v10 — add round/day from competition API if a production rule needs tape-day gating. Re-validate v11 if additional R4 days land."
+  },
+  {
+    "iteration": 15,
+    "analysis_description": "**trader_v12** = v11 with explicit tape **session** helpers: optional env `PROSPERITY4_TAPE_DAY` (alias for `PROSPERITY4_BACKTEST_DAY`); if env unset and `timestamp >= 1_000_000`, infer session `1 + ts//1_000_000` so a hypothetical long merged-tape run can still ablate the third session when the env is stuck. **R4 d1–3** per-day backtests: **identical** PnL to v11 (worse 48,803, all 54,565). See `analysis_outputs/r4_v12_tape_session_note.txt`.",
+    "analysis_outputs": [
+      "trader_v12.py",
+      "analysis_outputs/r4_v12_tape_session_note.txt",
+      "backtest_logs/trader_v12_round4_worse.log",
+      "backtest_logs/trader_v12_round4_all.log",
+      "results.json"
+    ],
+    "used_to_decide": "Default grid: **v12 ≡ v11**; use v12 when you want a documented, env-extensible `tape day` for production wiring or custom merged streams."
   }
 ]

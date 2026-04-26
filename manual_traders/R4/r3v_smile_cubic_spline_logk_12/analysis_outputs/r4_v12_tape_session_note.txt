@@ -1,0 +1,13 @@
+trader_v12 vs v11 (R4, Prosperity4 backtester as of 2026-04)
+===========================================================
+
+**Bit-identical PnL** to v11 for the supported invocation `4-1` … `4-3` with `--no-merge-pnl` (separate per-day `TestRunner` reloads; env `PROSPERITY4_BACKTEST_DAY` is set by the engine each run).
+
+v12 changes:
+- Reads optional `PROSPERITY4_TAPE_DAY` (alias for `PROSPERITY4_BACKTEST_DAY`) for the same 1-based tape day.
+- If **both** are unset, `m67_m22_triggers_may_update(ts)` still defaults to "session 1" (full M67→M22 like v10) for timestamps in `0..999_900`.
+- If `timestamp >= 1_000_000`, infers 1 + (timestamp // 1_000_000) as a **1-based session index** (matches default `ResultMerger` +100 tick stitch spacing only when a **single** continuous price stream** uses merged offsets; the stock CLI backtests one tape file per process, so this branch is inert on default R4 data).
+
+Rationale: document v11’s day-3 ablation in code and allow future runners or long merged tapes to disable M67→M22 on the third session without mis-reading env when a merge keeps `day=1` in the environment.
+
+verified worse totals v11=v12: 48803; all: 54565.

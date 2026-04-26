@@ -530,5 +530,49 @@
     },
     "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v11.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-merge-pnl",
     "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v11.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-merge-pnl"
+  },
+  {
+    "iteration": 12,
+    "round": 4,
+    "trader_file": "trader_v12.py",
+    "strategy_description": "Same PnL as **v11** on R4 d1–3: adds `PROSPERITY4_TAPE_DAY` env alias + optional merged-timestamp session inference (see `analysis_outputs/r4_v12_tape_session_note.txt`).",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 48803,
+      "backtest_log_file": "backtest_logs/trader_v12_round4_worse.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": {
+          "day1": 23556,
+          "day2": 11999,
+          "day3": 13248
+        },
+        "non_zero_pnl_products_per_day": {
+          "day1": 4,
+          "day2": 3,
+          "day3": 4
+        },
+        "note": "Matches v11; prod wiring can use PROSPERITY4_TAPE_DAY."
+      }
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 54565,
+      "backtest_log_file": "backtest_logs/trader_v12_round4_all.log",
+      "trades_or_fills_summary": {
+        "day_total_profit": {
+          "day1": 26722,
+          "day2": 17009,
+          "day3": 10834
+        },
+        "non_zero_pnl_products_per_day": {
+          "day1": 11,
+          "day2": 10,
+          "day3": 11
+        },
+        "note": "Matches v11."
+      }
+    },
+    "backtest_command_worse": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v12.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades worse --no-progress --no-vis --no-merge-pnl",
+    "backtest_command_all": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r3v_smile_cubic_spline_logk_12/trader_v12.py 4-1 4-2 4-3 --data Prosperity4Data --match-trades all --no-progress --no-vis --no-merge-pnl"
   }
 ]

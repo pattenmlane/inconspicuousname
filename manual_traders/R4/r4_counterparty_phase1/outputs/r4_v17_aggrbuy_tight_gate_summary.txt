@@ -1,0 +1,10 @@
+Round 4 — VEV surface aggressive BUY under **joint tight** (5200 & 5300 spread <= 2)
+
+Script: r4_v17_vev_aggrbuy_tight_passiveseller.py
+Horizon: fwd+20 = 20 price rows ahead, same (day,symbol).
+
+Finding:
+- Rows are **only** passive seller **Mark 22** on VEV_5100/5200/5300 (Mark 49: **0** rows in this slice).
+- Counts: VEV_5200 n=2, VEV_5100 n=2, VEV_5300 n=1 — too sparse to justify a **new** sell-skip beyond v11’s Mark22/49 rule (already covers Mark22).
+
+Conclusion: **No new counterparty sell-skip** from this table; v16-style **buy**-skip on Mark14 aggr sells was already falsified.

@@ -353,5 +353,26 @@
       "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v16_all.log",
       "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v16_all.json"
     }
+  },
+  {
+    "iteration": 17,
+    "trader_file": "trader_v17.py",
+    "strategy_description": "v11 logic with **looser Sonic joint gate**: both **VEV_5200** and **VEV_5300** top-of-book spread **<= 3** ticks (vs v11 **<= 2**). Same clips and Mark22/49 sell-skips + hydro rules.",
+    "total_profit": 28314,
+    "backtest_round": 4,
+    "backtest_command": "PYTHONPATH=\"imc-prosperity-4-backtester:imc-prosperity-4-backtester/prosperity4bt\" python3 -m prosperity4bt manual_traders/R4/r4_counterparty_phase1/trader_v17.py 4 --data Prosperity4Data --match-trades worse --no-vis --no-progress --out manual_traders/R4/r4_counterparty_phase1/backtest_r4_v17_worse.log",
+    "note_vs_v11": "Terminal activitiesLog: worse **+28314** vs v11 **+7608.5** (+20705.5). Hydro **+17577** vs **+789**; VELVET **+7619.5** vs **+3702**. **Not** the canonical Sonic <=2 gate; shows **strong PnL sensitivity** to gate width on days 1-3 sim. Validate OOS before treating as production.",
+    "backtest_worse": {
+      "match_trades": "worse",
+      "total_profit": 28314,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v17_worse.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v17_worse.json"
+    },
+    "backtest_all": {
+      "match_trades": "all",
+      "total_profit": 30973.5,
+      "backtest_log_file": "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v17_all.log",
+      "trades_or_fills_summary": "manual_traders/R4/r4_counterparty_phase1/fill_summary_v17_all.json"
+    }
   }
 ]

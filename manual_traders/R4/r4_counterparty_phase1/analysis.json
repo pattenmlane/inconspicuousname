@@ -472,5 +472,21 @@
       "manual_traders/R4/r4_counterparty_phase1/fill_summary_v16_all.json"
     ],
     "used_to_decide": "`trader_v16` skips VEV **bids** on 5300/5400/5500 for one tick when tight + Mark14 passive on aggressive sell. **Falsified in sim:** worse **+7127.5** vs v11 **+7608.5**; loss concentrated in **VEV_5300** line. Population mid markout \u2260 profitable MM filter here (similar to v5 symmetric velvet buy-skip). **Do not ship**; keep v11."
+  },
+  {
+    "iteration": 17,
+    "analysis_description": "**Tape:** `r4_v17_vev_aggrbuy_tight_passiveseller.py` + CSVs \u2014 under **strict** joint tight (<=2), aggressive VEV buys with passive seller are almost entirely **Mark 22** with n\u22641\u20132 per symbol (Mark49 absent); see `outputs/r4_v17_aggrbuy_tight_gate_summary.txt`. No new sell-skip beyond v11.",
+    "analysis_outputs": [
+      "manual_traders/R4/r4_counterparty_phase1/r4_v17_vev_aggrbuy_tight_passiveseller.py",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_v17_vev_aggrbuy_tight_fwd20_rows.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_v17_vev_aggrbuy_tight_summary_by_symbol_seller.csv",
+      "manual_traders/R4/r4_counterparty_phase1/outputs/r4_v17_aggrbuy_tight_gate_summary.txt",
+      "manual_traders/R4/r4_counterparty_phase1/trader_v17.py",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v17_worse.log",
+      "manual_traders/R4/r4_counterparty_phase1/backtest_r4_v17_all.log",
+      "manual_traders/R4/r4_counterparty_phase1/fill_summary_v17_worse.json",
+      "manual_traders/R4/r4_counterparty_phase1/fill_summary_v17_all.json"
+    ],
+    "used_to_decide": "**Gate threshold experiment:** v17 = v11 with joint spread **<=3** on 5200+5300. Terminal worse **+28314** vs v11 **+7608.5** \u2014 most incremental PnL is **HYDROGEL** + **VELVET** from quoting in a **wider** tight regime (more timestamps pass the gate). Canonical Sonic/community definition is **<=2** (v11). Treat v17 as **sensitivity / ablation**: large in-sample lift does not replace thesis fidelity without OOS tape days. **Rank for sim PnL:** v17 >> v11 on this 3-day run; **rank for stated strategy spec:** v11."
   }
 ]

@@ -1,0 +1,52 @@
+{
+  "source": "Prosperity4Data/ROUND_3/prices_round_3_day_*.csv (semicolon)",
+  "method": "inner join 5200+5300+extract on timestamp; spread=ask1-bid1; tight if both spread<=TH; forward extract mid = m_ext(t+K)-m_ext(t)",
+  "TH": 2,
+  "K": 20,
+  "days": [
+    {
+      "day": 0,
+      "n_merged": 10000,
+      "corr_s5200_s5300": 0.218847,
+      "K": 20,
+      "TH": 2,
+      "P_tight": 0.1021,
+      "valid_fwd_n": 9980,
+      "mean_fwd_mid_tight": 0.548577,
+      "mean_fwd_mid_not_tight": -0.07209
+    },
+    {
+      "day": 1,
+      "n_merged": 10000,
+      "corr_s5200_s5300": 0.235413,
+      "K": 20,
+      "TH": 2,
+      "P_tight": 0.13838,
+      "valid_fwd_n": 9980,
+      "mean_fwd_mid_tight": 0.599203,
+      "mean_fwd_mid_not_tight": -0.04832
+    },
+    {
+      "day": 2,
+      "n_merged": 10000,
+      "corr_s5200_s5300": 0.265556,
+      "K": 20,
+      "TH": 2,
+      "P_tight": 0.17305,
+      "valid_fwd_n": 9980,
+      "mean_fwd_mid_tight": 0.4641,
+      "mean_fwd_mid_not_tight": -0.018115
+    },
+    {
+      "day": 3,
+      "n_merged": 1000,
+      "corr_s5200_s5300": 0.212858,
+      "K": 20,
+      "TH": 2,
+      "P_tight": 0.0551,
+      "valid_fwd_n": 980,
+      "mean_fwd_mid_tight": 1.138889,
+      "mean_fwd_mid_not_tight": -0.064255
+    }
+  ]
+}

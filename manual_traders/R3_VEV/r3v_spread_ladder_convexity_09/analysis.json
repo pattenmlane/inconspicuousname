@@ -183,5 +183,36 @@
       "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v21_all.json"
     ],
     "used_to_decide": "Keep v20 over v21 for PnL; re-tune or cap extract participation next (U_MAX_CLIP, require tighter gate persistence) to reduce day0 drawdown while preserving upside."
+  },
+  {
+    "iteration": 22,
+    "analysis_description": "Pivoted away from per-agent family13 thesis: read round3work/vouchers_final_strategy/STRATEGY.txt and ORIGINAL_DISCORD_QUOTES.txt (Sonic: both 5200+5300<=\u00b12 / t-stat; inclineGod: spread correlation). Ran pandas multi-day join analysis (analysis_tight_gate_multiday_v22.json) reproducing corr(s5200,s5300) ~0.22-0.27 and large mean K=20 forward extract mid when tight on days 0-3. Implemented standalone trader: joint gate only, spread product in state, HYDROGEL=0, VELVET+10 VEV. Fixed 1-tick book bug: must touch bid/ask when spread=1. Backtest 4 R3 days worse 7110, all 10610 (optimize worse).",
+    "analysis_outputs": [
+      "round3work/vouchers_final_strategy/STRATEGY.txt",
+      "round3work/vouchers_final_strategy/ORIGINAL_DISCORD_QUOTES.txt",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/analyze_tight_gate_spreadcorr_r3.py",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/analysis_tight_gate_multiday_v22.json",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f22_worse.log",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v22_worse.json"
+    ],
+    "used_to_decide": "Pure gate + passive MM: far below 200k/day goal; v23 tests directional U lean; v24 negative subset sweep."
+  },
+  {
+    "iteration": 23,
+    "analysis_description": "v22 with extract directional lean from same-tick d(mid) and larger clips. Worse 7269 vs 7110 v22 (small lift); all 10087 < v22 all (directional U hurt in generous fill model).",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f23_worse.log",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v23_worse.json"
+    ],
+    "used_to_decide": "Prefer v23 on worse-fill objective over v22; still nowhere near 200k/day: next need inventory skew / tiered size on s5200 x s5300 or more selective surface."
+  },
+  {
+    "iteration": 24,
+    "analysis_description": "Parameter sweep: quote only 5100-5500+VELVET when tight (near gate strikes); wide still unwinds full book. Worse 5217 \u2014 do not use.",
+    "analysis_outputs": [
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/backtest_r3v_f24_worse.log",
+      "manual_traders/R3_VEV/r3v_spread_ladder_convexity_09/fill_summary_v24_worse.json"
+    ],
+    "used_to_decide": "Dropping 4000-4500/6000-6500 from new quotes when tight reduces path quality vs full ladder v22/23; keep full universe for next iteration or offset with IV-neutral fly later."
   }
 ]

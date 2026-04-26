@@ -289,5 +289,15 @@
       "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph3_mark67_aggr_extract_fwd20_by_gate.json"
     ],
     "used_to_decide": "v3 worse 8383 > v0 7794 and >> v2 5107; all-match 7802 < v0 7448 (day-3 adverse selection worse when larger clips). Next: cap tight clip on day 3 or add extract spread filter from ph2."
+  },
+  {
+    "iteration": 4,
+    "analysis_description": "trader_v4: extends v3 with _prosperity4bt_hist_day>=3 smaller clips, extract spread cap (clip floored to loose if s_ex>10) and skip if s_ex>16; grounded in Phase 2 Mark67 spread regime and v3 day-3 tail.",
+    "analysis_outputs": [
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v4_round4_worse.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/backtest_logs/trader_v4_round4_all.log",
+      "manual_traders/R4/r3v_atm_straddle_proxy_03/analysis_outputs/r4_ph2_mark67_aggr_buy_extract_spread_regime.json"
+    ],
+    "used_to_decide": "v4 worse 8865 > v3 8383; day3 extract -586 vs -1068 (worse). all-match total 8224 > v0 7448; day3 still negative (-1260) but less than v3 (-1682). Best worse-total Mark67+Sonic-sizing line in this folder to date."
   }
 ]
